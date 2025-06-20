@@ -26,6 +26,20 @@
       align-items: center;
     }
 
+    .header-menu {
+      .nav-link {
+        color: $gray-600;
+
+        i {
+          color: $gray-500;
+        }
+
+        &:hover {
+          color: $gray-900;
+        }
+      }
+    }
+
     .app-header-right {
       align-items: center;
       display: flex;
@@ -54,9 +68,8 @@
   transition: width .2s;
 
   .logo-src {
-    height: $logo-height;
-    width: $logo-width;
-    background: url('utils/images/logo-inverse.png');
+    min-height: $logo-height;
+    min-width: $logo-width;
   }
 }
 
@@ -71,9 +84,6 @@
 // Header Modifiers
 
 @import "modifiers/fixed-header";
-@import "modifiers/header-dots";
-@import "modifiers/header-megamenu";
-@import "modifiers/header-buttons";
 
 // Header Themes
 

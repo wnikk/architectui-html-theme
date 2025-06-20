@@ -9,6 +9,7 @@ $enable-grid-classes: true;
 $enable-print-styles: false;
 
 $body-bg: #fff;
+$app-body-bg: #f3f4f6;
 
 // Colors
 
@@ -42,26 +43,26 @@ $grays: map-merge(
 );
 
 //--#{$color}
-$brand: #3f6ad8;
-$blue: #78C3FB;
+$brand: #EEAA55;
+$blue: #33AAFF;
 $indigo: #444054;
 $purple: #794c8a;
 $pink: #f65ca2;
 $red: #d92550;
-$orange: #fd7e14;
+$orange: #f97316;
 $yellow: #f7b924;
-$green: #3ac47d;
+$green: #50C366;
 $teal: #16E0BD;
 $cyan: #16aaff;
-$blue-light: #eeeeee;
+$blue-light: #94CFFF;
 
 $primary: $brand;
 $secondary: $gray-600;
 $success: $green;
-$info: $cyan;
-$warning: $yellow;
-$danger: $red;
-$light: $blue-light;
+$info: $blue;
+$warning: $orange;
+$danger: #CF3E2F;
+$light: $gray-300;
 $dark: $gray-800;
 $focus: $indigo;
 $alt: $purple;
@@ -104,11 +105,12 @@ $card-cap-bg: $white;
 $card-border-color: rgba(shade-color($primary, 25%), .125);
 
 $dropdown-min-width: 15rem;
-$dropdown-link-hover-bg: #e0f3ff;
+$dropdown-link-hover-bg: rgba(shade-color($primary, 50%), .03);
 $dropdown-item-padding-y: .4rem;
 $dropdown-padding-y: .65rem;
 
-$box-shadow-default: 0 0.46875rem 2.1875rem rgba(shade-color($primary, 50%), .03), 0 0.9375rem 1.40625rem rgba(shade-color($primary, 50%), .03), 0 0.25rem 0.53125rem rgba(shade-color($primary, 50%), .05), 0 0.125rem 0.1875rem rgba(shade-color($primary, 50%), .03);
+$box-shadow-default: 0 1.3rem 1.7rem 0 $gray-200;
+//$box-shadow-default: 0 0.46875rem 2.1875rem rgba(shade-color($primary, 50%), .03), 0 0.9375rem 1.40625rem rgba(shade-color($primary, 50%), .03), 0 0.25rem 0.53125rem rgba(shade-color($primary, 50%), .05), 0 0.125rem 0.1875rem rgba(shade-color($primary, 50%), .03);
 
 $box-shadow-default-right: 0.46875rem 0 2.1875rem rgba(shade-color($primary, 50%), .03),
 0.9375rem 0 1.40625rem rgba(shade-color($primary, 50%), .03),
@@ -180,7 +182,7 @@ $list-group-border-color: rgba($primary, .08) !default;
 // List Group
 
 // @each $color, $value in $theme-colors {
-//   @include list-group-item-variant($color, color-level($color, -9), color-level($color, 6));
+//   @include list-group-item-variant($color, theme-color-level($color, -9), theme-color-level($color, 6));
 // }
 
 // Background
@@ -194,3 +196,14 @@ $list-group-border-color: rgba($primary, .08) !default;
     @include bg-gradient-variant(".bg-gradient-#{$color}", $value);
   }
 }
+
+// Bootstrap 5.3
+
+$tertiary: #3fb247;
+
+$custom-theme-colors:map-merge($theme-colors, (
+  "tertiary": $tertiary
+));
+
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");

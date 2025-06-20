@@ -4,24 +4,24 @@
 
 $use-all: true;
 
-@import "~animate-sass/helpers/mixins",
-"~animate-sass/helpers/settings",
-"~animate-sass/helpers/base";
+@import "./../components/animate-sass/helpers/mixins",
+"./../components/animate-sass/helpers/settings",
+"./../components/animate-sass/helpers/base";
 
 // ATTENTION
-@import "~animate-sass/animations/attention-seekers/bounce",
-"~animate-sass/animations/attention-seekers/flash",
-"~animate-sass/animations/attention-seekers/pulse",
-"~animate-sass/animations/attention-seekers/shake",
-"~animate-sass/animations/attention-seekers/swing",
-"~animate-sass/animations/attention-seekers/wiggle",
-"~animate-sass/animations/attention-seekers/wobble",
-"~animate-sass/animations/attention-seekers/tada";
+@import "./../components/animate-sass/animations/attention-seekers/bounce",
+"./../components/animate-sass/animations/attention-seekers/flash",
+"./../components/animate-sass/animations/attention-seekers/pulse",
+"./../components/animate-sass/animations/attention-seekers/shake",
+"./../components/animate-sass/animations/attention-seekers/swing",
+"./../components/animate-sass/animations/attention-seekers/wiggle",
+"./../components/animate-sass/animations/attention-seekers/wobble",
+"./../components/animate-sass/animations/attention-seekers/tada";
 
 // BOUNCE
-@import "~animate-sass/animations/bounce-enter/bounceIn",
-"~animate-sass/animations/bounce-enter/bounceInDown",
-"~animate-sass/animations/bounce-enter/bounceInLeft",
+@import "components/animate-sass/animations/bounce-enter/bounceIn",
+"components/animate-sass/animations/bounce-enter/bounceInDown",
+"components/animate-sass/animations/bounce-enter/bounceInLeft",
 "~animate-sass/animations/bounce-enter/bounceInRight",
 "~animate-sass/animations/bounce-enter/bounceInUp",
 "~animate-sass/animations/bounce-exit/bounceOut",
@@ -58,7 +58,8 @@ $use-all: true;
 "~animate-sass/animations/flippers/flipOutY";
 
 // LIGHTSPEED
-@import "./_animate-override";
+@import "~animate-sass/animations/lightspeed/lightSpeedIn",
+"~animate-sass/animations/lightspeed/lightSpeedOut";
 
 // ROTATE
 @import "~animate-sass/animations/rotate-enter/rotateIn",

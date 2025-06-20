@@ -12,55 +12,24 @@
 // BOOTSTRAP 5 VARIABLES
 
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
-@import "components/bootstrap5/functions";
+@import "components/bootstrap533/functions";
 
 // 2. Include any default variable overrides here
-
 @import "themes/layout-variables";
 
 // 3. Include remainder of required Bootstrap stylesheets
+//@import "components/bootstrap5/bootstrap";
+// Configuration
+//@import "components/bootstrap533/functions";
+@import "components/bootstrap533/variables";
+@import "components/bootstrap533/variables-dark";
+@import "components/bootstrap533/maps";
+@import "components/bootstrap533/mixins";
+@import "components/bootstrap533/utilities";
+@import "components/bootstrap533/root";
 
-@import "components/bootstrap5/variables";
-@import "components/bootstrap5/variables-dark";
-@import "components/bootstrap5/maps";
-@import "components/bootstrap5/mixins";
-@import "components/bootstrap5/utilities";
-
-// BOOTSTRAP 5 IMPORTS
-
-@import "components/bootstrap5/root";
-@import "components/bootstrap5/reboot";
-@import "components/bootstrap5/type";
-@import "components/bootstrap5/images";
-@import "components/bootstrap5/containers";
-@import "components/bootstrap5/grid";
-@import "components/bootstrap5/tables";
-@import "components/bootstrap5/forms";
-@import "components/bootstrap5/buttons";
-@import "components/bootstrap5/transitions";
-@import "components/bootstrap5/dropdown";
-@import "components/bootstrap5/button-group";
-@import "components/bootstrap5/nav";
-@import "components/bootstrap5/navbar";
-@import "components/bootstrap5/card";
-@import "components/bootstrap5/accordion";
-@import "components/bootstrap5/breadcrumb";
-@import "components/bootstrap5/pagination";
-@import "components/bootstrap5/badge";
-@import "components/bootstrap5/alert";
-@import "components/bootstrap5/progress";
-@import "components/bootstrap5/list-group";
-@import "components/bootstrap5/close";
-@import "components/bootstrap5/toasts";
-@import "components/bootstrap5/modal";
-@import "components/bootstrap5/tooltip";
-@import "components/bootstrap5/popover";
-@import "components/bootstrap5/carousel";
-@import "components/bootstrap5/spinners";
-@import "components/bootstrap5/offcanvas";
-@import "components/bootstrap5/placeholders";
-@import "components/bootstrap5/helpers";
-@import "components/bootstrap5/utilities/api";
+// 4. Replace Bootstrap stylesheets
+@import "themes/default/bootstrap-variables";
 
 // LAYOUT
 
@@ -69,8 +38,10 @@
 // UTILS
 
 @import "utils/helpers";
+// @todo: replace to classic names
 @import "utils/backgrounds";
-@import "utils/animate";
+//@import "utils/animate";
+@import "components/animate-sass/animate";
 @import "utils/comps-animations";
 
 // ELEMENTS
@@ -96,9 +67,9 @@
 @import "components/perfect-scrollbar/perfect-scrollbar";
 
 // FontAwesome
-@import "components/icons/fontawesome/fontawesome";
+//@import "components/icons/fontawesome/fontawesome";
 // P7 Icons
-@import "components/icons/p7icons";
+//@import "components/icons/p7icons";
 // Hamburger button
 @import "components/hamburgers/hamburgers";
 // Notifications
@@ -112,4 +83,4 @@
 // Responsive
 @import "layout/responsive/responsive-base";
 // DEMO
-@import "demo-ui/demo";
+//@import "demo-ui/demo";

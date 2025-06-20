@@ -2,9 +2,9 @@
 
 // Variables
 
-$app-container-bg: #f1f4f6;
-$app-sidebar-bg: #ffffff;
-$app-header-bg: #fafbfc;
+$app-container-bg: $app-body-bg;
+$app-sidebar-bg: $body-bg;
+$app-header-bg: $app-body-bg;
 $app-header-logo-bg: rgba(255, 255, 255, .9);
 
 // Content
@@ -15,17 +15,13 @@ $app-header-logo-bg: rgba(255, 255, 255, .9);
     background: $app-container-bg;
   }
 
-  .app-sidebar {
-    background: $app-sidebar-bg;
-  }
-
   .app-page-title {
-    background: rgba(255, 255, 255, .45);
   }
 
   .app-footer .app-footer__inner,
   .app-header {
-    background: $app-header-bg;
+    background: $body-bg;
+    border-bottom-left-radius: 10px;
   }
 
   &.fixed-header {
@@ -34,4 +30,9 @@ $app-header-logo-bg: rgba(255, 255, 255, .9);
     }
   }
 
+}
+.app-theme-white.closed-sidebar {
+  .app-sidebar {
+    background: $app-sidebar-bg;
+  }
 }
