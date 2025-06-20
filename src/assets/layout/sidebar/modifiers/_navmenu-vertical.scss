@@ -59,7 +59,12 @@
         text-decoration: none;
 
         i.metismenu-icon {
-          opacity: .6;
+          opacity: 1;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          text-fill-color: transparent;
+          background-image: linear-gradient(to right, $blue 0%, $cyan 100%);
         }
 
         i.metismenu-state-icon {
