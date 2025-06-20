@@ -12,7 +12,7 @@
 // BOOTSTRAP 5 VARIABLES
 
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
-@import "components/bootstrap533/functions";
+@import "components/bootstrap537/functions";
 
 // 2. Include any default variable overrides here
 @import "themes/layout-variables";
@@ -20,13 +20,13 @@
 // 3. Include remainder of required Bootstrap stylesheets
 //@import "components/bootstrap5/bootstrap";
 // Configuration
-//@import "components/bootstrap533/functions";
-@import "components/bootstrap533/variables";
-@import "components/bootstrap533/variables-dark";
-@import "components/bootstrap533/maps";
-@import "components/bootstrap533/mixins";
-@import "components/bootstrap533/utilities";
-@import "components/bootstrap533/root";
+//@import "components/bootstrap537/functions";
+@import "components/bootstrap537/variables";
+@import "components/bootstrap537/variables-dark";
+@import "components/bootstrap537/maps";
+@import "components/bootstrap537/mixins";
+@import "components/bootstrap537/utilities";
+@import "components/bootstrap537/root";
 
 // 4. Replace Bootstrap stylesheets
 @import "themes/default/bootstrap-variables";
