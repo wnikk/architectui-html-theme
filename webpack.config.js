@@ -31,7 +31,8 @@ module.exports = (options) => {
         mode: options.isProduction ? 'production' : 'development',
         devtool: options.devtool,
         entry: {
-            main: './src/app.js',
+            app: './src/app.js',
+            main: './src/main.js',
             demo: './src/scripts-init/demo.js',
             toastr: './src/scripts-init/toastr.js',
             scrollbar: './src/scripts-init/scrollbar.js',
