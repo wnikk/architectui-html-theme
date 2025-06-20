@@ -10,6 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="{{ htmlWebpackPlugin.options.description }}">
     <meta name="msapplication-tap-highlight" content="no">
+
+    {{> ThemeOptions/head-scripts }}
+
     <!--
     =========================================================
     * ArchitectUI HTML Theme Dashboard - v4.1.0
@@ -24,7 +27,6 @@
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         {{> AppHeader/header }}
-        {{> ThemeOptions/theme-options }}
         <div class="app-main">
             {{> @partial-block }}
         </div>

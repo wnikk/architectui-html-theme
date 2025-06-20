@@ -2,9 +2,9 @@
 const Path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractSASS = new MiniCssExtractPlugin({filename:'./[name].css'});
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const pages = require('./src/pages');
@@ -17,16 +17,18 @@ for (let i = 0; i < pages.length; i++) {
             filename: page.output,
             title: page.content.title,
             heading_icon: page.content.heading_icon,
-            description: page.content.description
+            description: page.content.description,
+            inject: 'body',
+            minify: false
         })
     );
 }
 
 module.exports = (options) => {
-    const dest = Path.join(__dirname, 'architectui-html-free');
+    const dest = Path.join(__dirname, 'dist');
 
     let webpackConfig = {
-        mode: 'none',
+        mode: options.isProduction ? 'production' : 'development',
         devtool: options.devtool,
         entry: {
             main: './src/app.js',
@@ -39,27 +41,25 @@ module.exports = (options) => {
         },
         output: {
             path: dest,
-            filename: './assets/scripts/[name].js'
+            filename: '[name].js',
+            clean: true
         },
         plugins: [
-            new webpack.ProvidePlugin({
-                $: 'jquery',
-                jQuery: 'jquery',
-                'window.jQuery': 'jquery',
-                Tether: 'tether',
-                'window.Tether': 'tether',
-                Popper: ['popper.js', 'default'],
+            new MiniCssExtractPlugin({
+                filename: '[name].css'
             }),
+            new CssMinimizerPlugin(), // minifies only CSS
             new CopyWebpackPlugin({
-              patterns: [
-                { from: './src/assets/images', to: './assets/images' }
-              ]
+                patterns: [
+                    { from: './src/assets/images', to: './assets/images' }
+                ]
             }),
             new webpack.DefinePlugin({
                 'process.env': {
                     NODE_ENV: JSON.stringify(options.isProduction ? 'production' : 'development')
                 }
-            })
+            }),
+            ...renderedPages
         ],
         module: {
             rules: [
@@ -82,6 +82,17 @@ module.exports = (options) => {
                     }
                 },
                 {
+                    test: /\.(scss|css)$/i,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        {
+                            loader: 'sass-loader',
+                            options: { warnRuleAsWarning: false }
+                        }
+                    ]
+                },
+                {
                     test: /\.(woff|woff2|eot|ttf|otf)$/i,
                     type: 'asset/resource',
                 },
@@ -90,61 +101,25 @@ module.exports = (options) => {
                     type: 'asset/resource',
                 }
             ]
+        },
+        optimization: {
+            minimize: false, // disables JS minification
+            runtimeChunk: false,
+            splitChunks: false
         }
     };
 
     if (options.isProduction) {
-        webpackConfig.entry = [
-            './src/app.js',
-            './src/scripts-init/demo.js',
-            './src/scripts-init/toastr.js',
-            './src/scripts-init/scrollbar.js',
-            './src/scripts-init/calendar.js',
-            './src/scripts-init/maps.js',
-            './src/scripts-init/charts/chartjs.js',
-        ];
-
         webpackConfig.plugins.push(
-            ExtractSASS,
-            new CleanWebpackPlugin([dest], {
+            new CleanWebpackPlugin({
                 verbose: true,
                 dry: false
             })
         );
-
-        webpackConfig.module.rules.push({
-            test: /\.scss$/i,
-            use: ExtractSASS.extract(['css-loader',           {
-                loader: "sass-loader",
-                options: {
-                  warnRuleAsWarning: false,
-                },
-            }])
-        }, {
-            test: /\.css$/i,
-            use: ExtractSASS.extract(['css-loader'])
-        });
-
     } else {
         webpackConfig.plugins.push(
             new webpack.HotModuleReplacementPlugin()
         );
-
-        webpackConfig.module.rules.push({
-            test: /\.scss$/i,
-            use: ['style-loader', 'css-loader',
-            {
-                loader: "sass-loader",
-                options: {
-                  warnRuleAsWarning: false,
-                },
-            }]
-        }, {
-            test: /\.css$/i,
-            use: ['style-loader', 'css-loader']
-        }
-        );
-
         webpackConfig.devServer = {
             port: options.port,
             historyApiFallback: true,
@@ -161,8 +136,6 @@ module.exports = (options) => {
             }
         };
     }
-
-    webpackConfig.plugins = webpackConfig.plugins.concat(renderedPages);
 
     return webpackConfig;
 };
