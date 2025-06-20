@@ -5,7 +5,7 @@ It is used by thousands of developers to build SaaS and various other admin pane
 
 ## Preview
 
-![ArchitectUI Bootstrap 5](https://raw.githubusercontent.com/wnikk/architectui-html-theme/blob/master/dist/assets/images/architectui-bootstrap-5-preview.png)
+![ArchitectUI Bootstrap 5](https://github.com/wnikk/architectui-html-theme/blob/master/dist/assets/images/architectui-bootstrap-5-preview.png)
 
 ## Installation
 
