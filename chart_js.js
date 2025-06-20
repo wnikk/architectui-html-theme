@@ -164,7 +164,7 @@ eval("\n\nwindow.chartColors = {\n  red: \"#dc3545\",\n  orange: \"#fd7e14\",\n 
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("bf6c7f35a3f0407e0f36")
+/******/ 		__webpack_require__.h = () => ("cd5d0364a661e3aa8c5b")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
