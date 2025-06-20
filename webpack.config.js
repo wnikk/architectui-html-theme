@@ -32,7 +32,7 @@ module.exports = (options) => {
         devtool: options.devtool,
         entry: {
             app: './src/app.js',
-            main: './scripts-init/main.js',
+            main: './src/scripts-init/main.js',
             demo: './src/scripts-init/demo.js',
             toastr: './src/scripts-init/toastr.js',
             scrollbar: './src/scripts-init/scrollbar.js',
