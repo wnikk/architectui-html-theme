@@ -470,6 +470,23 @@
                         });
                     });
                 </script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const link = document.createElement('link');
+                        link.rel = 'stylesheet';
+                        link.href = 'https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css';
+                        document.head.appendChild(link);
+                    });
+                </script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const link = document.createElement('link');
+                        link.rel = 'stylesheet';
+                        link.href = 'https://cdn.jsdelivr.net/npm/@mdi/light-font@0.2.63/css/materialdesignicons-light.min.css';
+                        document.head.appendChild(link);
+                    });
+                </script>
+            
             
                 <div class="app-main__outer">
                     <div class="app-main__inner">
@@ -537,36 +554,58 @@
                                     </div>
                                 </div>    </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="main-card mb-3 card">
-                                    <div class="card-body"><h4 class="card-title">Gradient Icons</h4>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-ambulance bg-primary"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-volume-up bg-primary-subtle"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-archive bg-info"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-binoculars bg-info-subtle"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-certificate bg-success"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-download bg-success-subtle"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-cog bg-warning"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-fire-extinguisher bg-warning-subtle"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-hammer bg-danger"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-database bg-danger-subtle"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-exclamation bg-light"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-file-archive bg-light-subtle"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-gavel bg-secondary"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-crosshairs bg-secondary-subtle"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-satellite bg-dark"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-keyboard bg-dark-subtle"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-gamepad bg-dark-subtle"> </i></div>
-                                        <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-ship bg-danger-subtle"> </i></div>
+                        <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a role="tab" class="nav-link active" id="tab-0" data-bs-toggle="tab" href="#tab-content-0" aria-selected="true">
+                                    <span>FontAwesome 6.6 in default dist</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a role="tab" class="nav-link" id="tab-1" data-bs-toggle="tab" href="#tab-content-1" aria-selected="false" tabindex="-1">
+                                    <span>Material Design external 7.4.47</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a role="tab" class="nav-link" id="tab-2" data-bs-toggle="tab" href="#tab-content-2" aria-selected="false" tabindex="-1">
+                                    <span>Material Design Light external 0.2.63</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane tabs-animation fade active show" id="tab-content-0" role="tabpanel" aria-labelledby="tab-0">
+            
+            
+            
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="main-card mb-3 card">
+                                            <div class="card-body"><h4 class="card-title">Gradient Icons</h4>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-ambulance bg-primary"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-volume-up bg-primary-subtle"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-archive bg-info"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-binoculars bg-info-subtle"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-certificate bg-success"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-download bg-success-subtle"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-cog bg-warning"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-fire-extinguisher bg-warning-subtle"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-hammer bg-danger"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-database bg-danger-subtle"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-exclamation bg-light"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-file-archive bg-light-subtle"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-gavel bg-secondary"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-crosshairs bg-secondary-subtle"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-satellite bg-dark"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-keyboard bg-dark-subtle"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-gamepad bg-dark-subtle"> </i></div>
+                                                <div class="font-icon-wrapper h1"><i class="fa icon-gradient fa-ship bg-danger-subtle"> </i></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="main-card mb-3 card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">FontAwesome 6.6.0</h4>
-                                        <div class="row icon-cards">
+                                    <div class="col-md-12">
+                                        <div class="main-card mb-3 card">
+                                            <div class="card-body">
+                                                <h4 class="card-title">FontAwesome 6.6.0</h4>
+                                                <div class="row icon-cards">
             
             
             
@@ -11478,12 +11517,70 @@
             
             
             
+                                                </div><!-- end of row -->
+                                            </div><!-- end of card-body -->
+                                        </div><!-- end of main-card -->
+                                    </div><!-- end of col-md-12 -->
+                                </div><!-- end of row -->
+            
+            
+                            </div><!-- end of tab-pane -->
+            
+                            <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel" aria-labelledby="tab-1">
+                               <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="main-card mb-3 card">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Material Design 7.4.47</h4>
+                                                <div class="h1 font-icon-wrapper"><i class="mdi mdi-home"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="mdi mdi-application-cog"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="mdi mdi-account-convert"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="mdi mdi-alien mdi-rotate-45"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="mdi mdi-alien"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="mdi mdi-alien mdi-rotate-135"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="icon-gradient bg-primary mdi mdi-application-export"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="icon-gradient bg-primary-subtle mdi mdi-credit-card-check"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="icon-gradient bg-danger-subtle mdi mdi-database-alert"></i></div>
+                                                <span>And other...</span>
+                                                <br/>
+                                                <p>
+                                                    Full list Material Design Icons on <a href="https://pictogrammers.com/library/mdi/" target="_blank">this page</a>.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                </div><!-- end of row -->
+                            </div><!-- end of tab-pane -->
+            
+                            <div class="tab-pane tabs-animation fade" id="tab-content-2" role="tabpanel" aria-labelledby="tab-2">
+                               <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="main-card mb-3 card">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Material Design Light 0.2.63</h4>
+                                                <div class="h1 font-icon-wrapper"><i class="mdil mdil-account"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="mdil mdil-comment"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="mdil mdil-credit-card-scan"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="mdi mdil mdil-flask mdi-rotate-45"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="mdi mdil mdil-flask"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="mdi mdil mdil-flask mdi-rotate-135"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="icon-gradient bg-primary mdil mdil-gift"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="icon-gradient bg-primary-subtle mdil mdil-lock"></i></div>
+                                                <div class="h1 font-icon-wrapper"><i class="icon-gradient bg-danger-subtle mdil mdil-music"></i></div>
+                                                <span>And other...</span>
+                                                <br/>
+                                                <p>
+                                                    Full list Material Design Icons Light on <a href="https://pictogrammers.com/library/mdil/" target="_blank">this page</a>.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- end of row -->
+            
+                            </div><!-- end of tab-pane -->
+                        </div><!-- end of tab-content -->
+            
+                    </div><!-- end of app-main__inner  -->
                     <div class="app-wrapper-footer">
                         <div class="app-footer">
                             <div class="app-footer__inner">
@@ -11520,7 +11617,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>    </div>
+                    </div>    </div><!-- end of app-main__outer -->
         </div>
     </div>
 <script defer src="app.js"></script><script defer src="main.js"></script><script defer src="demo.js"></script><script defer src="toastr.js"></script><script defer src="scrollbar.js"></script><script defer src="fullcalendar.js"></script><script defer src="maps.js"></script><script defer src="chart_js.js"></script></body>
