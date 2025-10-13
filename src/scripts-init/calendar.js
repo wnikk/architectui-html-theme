@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
  if (calendarEl != undefined) {
    const calendar = new Calendar(calendarEl, {
+     themeSystem: 'bootstrap5',
      plugins: [ interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin ],
      headerToolbar: {
        left: 'prev,next today',
