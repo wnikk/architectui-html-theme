@@ -1,0 +1,948 @@
+<!doctype html>
+<html lang="en" data-aui-header="fixed" data-aui-sidebar="fixed" data-aui-footer="static" data-aui-tabs="shadow" data-aui-dark-only="cyberpunk ">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tabs - Tabs are used to split content between multiple sections. Wide variety available.</title>
+<meta name="description" content="Tabs are used to split content between multiple sections. Wide variety available.">
+<link rel="icon" href="favicon.ico">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="architectui.css">
+
+<script>
+(function () {
+  var d = document.documentElement, s = {}, m, t;
+  try { s = JSON.parse(localStorage.getItem("architectui")) || {}; } catch (e) {}
+  if (s.theme === "light" || s.theme === "dark") { s.mode = s.theme; delete s.theme; }
+  if (s.theme === "blue") delete s.theme;
+  for (var k in s) d.setAttribute("data-aui-" + k, s[k]);
+  t = /^[a-z0-9-]+$/.test(s.theme || "") ? s.theme : "";
+  m = s.mode || "light";
+  if (t) {
+    var css = document.querySelector('link[href$="architectui.css"]').getAttribute("href");
+    document.write('<link rel="stylesheet" id="aui-theme" href="' + css.replace(/architectui\.css$/, "themes/" + t + ".css") + '">');
+    if ((" " + d.getAttribute("data-aui-dark-only") + " ").indexOf(" " + t + " ") > -1) m = "dark";
+  }
+  if (m === "system") m = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  d.setAttribute("data-bs-theme", m);
+})();
+</script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.49.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
+<script defer src="architectui.js"></script>
+
+    <!--
+    =========================================================
+    * ArchitectUI HTML Theme Dashboard - v5.3.0
+    =========================================================
+    * Product Page: https://dashboardpack.com
+    * Copyright 2025 DashboardPack (https://dashboardpack.com)
+    * Licensed under MIT (https://github.com/DashboardPack/architectui-html-theme-free/blob/master/LICENSE)
+    =========================================================
+    * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+    -->
+</head>
+<body>
+    
+<svg class="position-absolute" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+        <linearGradient id="aui-gradient-primary" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#4facfe"/><stop offset="1" stop-color="#00f2fe"/></linearGradient>
+        <linearGradient id="aui-gradient-info" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#a18cd1"/><stop offset="1" stop-color="#8ec5fc"/></linearGradient>
+        <linearGradient id="aui-gradient-success" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3cba92"/><stop offset="1" stop-color="#8fd3f4"/></linearGradient>
+        <linearGradient id="aui-gradient-warning" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f6d365"/><stop offset="1" stop-color="#fda085"/></linearGradient>
+        <linearGradient id="aui-gradient-danger" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f093fb"/><stop offset="1" stop-color="#f5576c"/></linearGradient>
+        <linearGradient id="aui-gradient-secondary" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#29323c"/><stop offset="1" stop-color="#485563"/></linearGradient>
+        <linearGradient id="aui-gradient-dark" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
+        <linearGradient id="aui-gradient-focus" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3a3648"/><stop offset="1" stop-color="#5d5873"/></linearGradient>
+        <linearGradient id="aui-gradient-alternate" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
+    </defs>
+</svg>
+
+    <div class="aui-app">
+        <header class="aui-header">
+    <div class="aui-header__brand">
+        <button type="button" class="aui-burger aui-header__mobile-toggle" data-bs-toggle="offcanvas" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
+        
+<a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
+    <img class="aui-logo__img aui-logo__img--default" src="assets/images/logo.png" alt="ArchitectUI">
+    <img class="aui-logo__img aui-logo__img--on-dark" src="assets/images/logo-on-dark.png" alt="ArchitectUI">
+</a>
+
+        <button type="button" class="aui-burger aui-header__collapse" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
+        <button type="button" class="btn btn-primary btn-sm aui-header__more" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
+    </div>
+    <div class="aui-header__content collapse" id="auiHeaderContent">
+        <div class="aui-header__left">
+            <div class="aui-search" data-aui-search>
+    <div class="aui-search__holder">
+        <input type="search" class="aui-search__input" placeholder="Type to search" aria-label="Search">
+        <button type="button" class="aui-search__toggle" data-aui-search-toggle aria-label="Search"><span></span></button>
+    </div>
+    <button type="button" class="btn-close aui-search__close" data-aui-search-close aria-label="Close search"></button>
+</div>
+<ul class="nav aui-header-menu">
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="database" class="aui-nav-icon"></i>Statistics</a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="square-pen" class="aui-nav-icon"></i>Projects</a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="settings" class="aui-nav-icon"></i>Settings</a>
+    </li>
+</ul>
+
+        </div>
+        <div class="aui-header__right">
+            <button type="button" class="aui-mode-toggle me-3" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+    <i data-lucide="moon" class="aui-mode-toggle__dark"></i>
+    <i data-lucide="sun" class="aui-mode-toggle__light"></i>
+</button>
+<div class="aui-user">
+    <div class="dropdown">
+        <a class="aui-user__toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+            <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
+            <i data-lucide="chevron-down" class="ms-2 aui-opacity-80"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end">
+            <button type="button" class="dropdown-item">User Account</button>
+            <button type="button" class="dropdown-item">Settings</button>
+            <h6 class="dropdown-header">Header</h6>
+            <button type="button" class="dropdown-item">Actions</button>
+            <div class="dropdown-divider"></div>
+            <button type="button" class="dropdown-item">Dividers</button>
+        </div>
+    </div>
+    <div class="aui-user__info">
+        <div class="aui-user__name">Alina Mclourd</div>
+        <div class="aui-user__role">VP People Manager</div>
+    </div>
+    <button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 aui-user__action" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
+</div>
+
+        </div>
+    </div>
+</header>
+
+        <aside class="aui-sidebar">
+    <div class="offcanvas-md offcanvas-start aui-sidebar__panel aui-scrollbar" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
+        <div class="offcanvas-header">
+            
+<a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
+    <img class="aui-logo__img aui-logo__img--default" src="assets/images/logo.png" alt="ArchitectUI">
+    <img class="aui-logo__img aui-logo__img--on-dark" src="assets/images/logo-on-dark.png" alt="ArchitectUI">
+</a>
+
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#auiSidebar" aria-label="Close menu"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="aui-nav" id="auiNav">
+                <li class="aui-nav__heading">Dashboards</li>
+                <li>
+                    <a class="aui-nav__link" href="index.html">
+                        <i data-lucide="rocket" class="aui-nav__icon"></i>Dashboard Example 1
+                    </a>
+                </li>
+                <li class="aui-nav__heading">UI Components</li>
+                <li>
+                    <a class="aui-nav__link collapsed" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
+                        <i data-lucide="gem" class="aui-nav__icon"></i>Elements<i data-lucide="chevron-down" class="aui-nav__caret"></i>
+                    </a>
+                    <div class="collapse" id="nav-elements" data-bs-parent="#auiNav">
+                        <ul class="aui-nav__sub">
+                            <li><a class="aui-nav__link" href="elements-buttons-standard.html">Buttons</a></li>
+                            <li><a class="aui-nav__link" href="elements-dropdowns.html">Dropdowns</a></li>
+                            <li><a class="aui-nav__link" href="elements-icons.html">Icons</a></li>
+                            <li><a class="aui-nav__link" href="elements-badges-labels.html">Badges</a></li>
+                            <li><a class="aui-nav__link" href="elements-cards.html">Cards</a></li>
+                            <li><a class="aui-nav__link" href="elements-list-group.html">List Groups</a></li>
+                            <li><a class="aui-nav__link" href="elements-navigation.html">Navigation Menus</a></li>
+                            <li><a class="aui-nav__link" href="elements-utilities.html">Utilities</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="aui-nav__link" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nav-components">
+                        <i data-lucide="car" class="aui-nav__icon"></i>Components<i data-lucide="chevron-down" class="aui-nav__caret"></i>
+                    </a>
+                    <div class="collapse show" id="nav-components" data-bs-parent="#auiNav">
+                        <ul class="aui-nav__sub">
+                            <li><a class="aui-nav__link active" href="components-tabs.html" aria-current="page">Tabs</a></li>
+                            <li><a class="aui-nav__link" href="components-accordions.html">Accordions</a></li>
+                            <li><a class="aui-nav__link" href="components-notifications.html">Notifications</a></li>
+                            <li><a class="aui-nav__link" href="components-modals.html">Modals</a></li>
+                            <li><a class="aui-nav__link" href="components-progress-bar.html">Progress Bar</a></li>
+                            <li><a class="aui-nav__link" href="components-tooltips-popovers.html">Tooltips &amp; Popovers</a></li>
+                            <li><a class="aui-nav__link" href="components-carousel.html">Carousel</a></li>
+                            <li><a class="aui-nav__link" href="components-calendar.html">Calendar</a></li>
+                            <li><a class="aui-nav__link" href="components-pagination.html">Pagination</a></li>
+                            <li><a class="aui-nav__link" href="components-scrollable-elements.html">Scrollable</a></li>
+                            <li><a class="aui-nav__link" href="components-maps.html">Maps</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="aui-nav__link" href="tables-regular.html">
+                        <i data-lucide="monitor" class="aui-nav__icon"></i>Tables
+                    </a>
+                </li>
+                <li class="aui-nav__heading">Widgets</li>
+                <li>
+                    <a class="aui-nav__link" href="dashboard-boxes.html">
+                        <i data-lucide="monitor" class="aui-nav__icon"></i>Dashboard Boxes
+                    </a>
+                </li>
+                <li class="aui-nav__heading">Forms</li>
+                <li>
+                    <a class="aui-nav__link" href="forms-controls.html">
+                        <i data-lucide="mouse" class="aui-nav__icon"></i>Forms Controls
+                    </a>
+                </li>
+                <li>
+                    <a class="aui-nav__link" href="forms-layouts.html">
+                        <i data-lucide="pipette" class="aui-nav__icon"></i>Forms Layouts
+                    </a>
+                </li>
+                <li>
+                    <a class="aui-nav__link" href="forms-validation.html">
+                        <i data-lucide="pen-line" class="aui-nav__icon"></i>Forms Validation
+                    </a>
+                </li>
+                <li class="aui-nav__heading">Charts</li>
+                <li>
+                    <a class="aui-nav__link" href="charts-chartjs.html">
+                        <i data-lucide="chart-column" class="aui-nav__icon"></i>ChartJS
+                    </a>
+                </li>
+                <li class="aui-nav__heading">PRO Version</li>
+                <li>
+                    <a class="aui-nav__link" href="https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/" target="_blank" rel="noopener">
+                        <i data-lucide="external-link" class="aui-nav__icon"></i>Upgrade to PRO <i data-lucide="trending-up" class="ms-1"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</aside>
+
+        <main class="aui-main" id="main">
+            <div class="aui-main__inner">
+                <div class="aui-page-title">
+    <div class="aui-page-title__wrapper">
+        <div class="aui-page-title__heading">
+            <div class="aui-page-title__icon">
+                <i data-lucide="archive" class="aui-icon-gradient-primary"></i>
+            </div>
+            <div>
+                Tabs
+                <div class="aui-page-title__subheading">Tabs are used to split content between multiple sections. Wide variety available.</div>
+            </div>
+        </div>
+        <div class="aui-page-title__actions">
+    <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
+        <i data-lucide="star"></i>
+    </button>
+    <div class="d-inline-block dropdown">
+        <button type="button" class="btn btn-info aui-btn-shadow aui-btn-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i data-lucide="briefcase-business" class="aui-opacity-70"></i>Buttons
+        </button>
+        <div class="dropdown-menu dropdown-menu-end">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i data-lucide="inbox" class="aui-nav-icon"></i><span>Inbox</span><span class="ms-auto badge rounded-pill bg-secondary">86</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i data-lucide="book-open" class="aui-nav-icon"></i><span>Book</span><span class="ms-auto badge rounded-pill bg-danger">5</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i data-lucide="image" class="aui-nav-icon"></i><span>Picture</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link disabled" aria-disabled="true"><i data-lucide="file" class="aui-nav-icon"></i><span>File Disabled</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+                <ul class="aui-body-tabs aui-tabs-animated nav">
+    <li class="nav-item">
+        <a role="tab" class="nav-link active" id="tab-0" data-bs-toggle="tab" href="#tab-content-0">
+            <span>Card Tabs</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a role="tab" class="nav-link" id="tab-1" data-bs-toggle="tab" href="#tab-content-1">
+            <span>Animated Lines</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a role="tab" class="nav-link" id="tab-2" data-bs-toggle="tab" href="#tab-content-2">
+            <span>Basic</span>
+        </a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="tab-content-0" role="tabpanel">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 card">
+                    <div class="card-header"><i data-lucide="award" class="aui-card-icon"></i>Header with Tabs
+                        <div class="ms-auto text-nowrap">
+                            <div role="group" class="btn-group-sm nav btn-group">
+                                <a data-bs-toggle="tab" href="#tab-eg1-0" class="aui-btn-shadow active btn btn-primary">Tab 1</a>
+                                <a data-bs-toggle="tab" href="#tab-eg1-1" class="aui-btn-shadow btn btn-primary">Tab 2</a>
+                                <a data-bs-toggle="tab" href="#tab-eg1-2" class="aui-btn-shadow btn btn-primary">Tab 3</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg1-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg1-1" role="tabpanel"><p>Like Aldus PageMaker including versions of Lorem. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                                essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg1-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                    <div class="d-block text-end card-footer">
+                        <a href="#" class="aui-btn-wide btn btn-success">Save</a>
+                    </div>
+                </div>
+                <div class="mb-3 card">
+                    <div class="card-header"><i data-lucide="award" class="aui-card-icon"></i>Header Tabs Buttons
+                        <div class="ms-auto text-nowrap">
+                            <div class="nav">
+                                <a data-bs-toggle="tab" href="#tab-eg2-0" class="rounded-pill aui-btn-wide active btn btn-outline-alternate btn-sm">Tab 1</a>
+                                <a data-bs-toggle="tab" href="#tab-eg2-1" class="rounded-pill aui-btn-wide me-1 ms-1 btn btn-outline-alternate btn-sm">Tab 2</a>
+                                <a data-bs-toggle="tab" href="#tab-eg2-2" class="rounded-pill aui-btn-wide btn btn-outline-alternate btn-sm">Tab 3</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg2-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg2-1" role="tabpanel"><p>Like Aldus PageMaker including versions of Lorem. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                                essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg2-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                    <div class="d-block text-end card-footer">
+                        <a href="#" class="aui-btn-wide btn btn-success">Save</a>
+                    </div>
+                </div>
+                <div class="mb-3 card">
+                    <div class="card-header"><i data-lucide="gift" class="aui-card-icon"></i>Alternate Tabs
+                        <div class="ms-auto text-nowrap">
+                            <div role="group" class="btn-group-sm nav btn-group">
+                                <a data-bs-toggle="tab" href="#tab-eg3-0" class="rounded-pill ps-3 active btn btn-focus">Tab 1</a>
+                                <a data-bs-toggle="tab" href="#tab-eg3-1" class="btn btn-focus">Tab 2</a>
+                                <a data-bs-toggle="tab" href="#tab-eg3-2" class="rounded-pill pe-3 btn btn-focus">Tab 3</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg3-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg3-1" role="tabpanel"><p>Like Aldus PageMaker including versions of Lorem. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                                essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg3-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 card">
+                    <div class="card-header"><i data-lucide="gift" class="aui-card-icon"></i>Header Tabs Standard Buttons
+                        <div class="ms-auto text-nowrap">
+                            <div class="nav">
+                                <a data-bs-toggle="tab" href="#tab-eg4-0" class="border-0 rounded-pill aui-btn-wide aui-btn-transition active btn btn-outline-danger">Tab 1</a>
+                                <a data-bs-toggle="tab" href="#tab-eg4-1" class="me-1 ms-1 rounded-pill aui-btn-wide border-0 aui-btn-transition btn btn-outline-danger">Tab 2</a>
+                                <a data-bs-toggle="tab" href="#tab-eg4-2" class="border-0 rounded-pill aui-btn-wide aui-btn-transition btn btn-outline-danger">Tab 3</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg4-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg4-1" role="tabpanel"><p>Like Aldus PageMaker including versions of Lorem. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                                essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg4-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                    <div class="d-block text-end card-footer">
+                        <a href="#" class="aui-btn-wide btn btn-success">Save</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 card">
+                    <div class="aui-card-tabs card-header">
+                        <div class="aui-card-header-title">
+                            <i data-lucide="bike" class="aui-card-icon"></i>
+                            Header Alternate Tabs
+                        </div>
+                        <ul class="nav">
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg5-0" class="active nav-link">Tab 1</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg5-1" class="nav-link">Tab 2</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg5-2" class="nav-link">Tab 3</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg5-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg5-1" role="tabpanel"><p>Like Aldus PageMaker including versions of Lorem. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                                essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg5-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                    <div class="d-block text-end card-footer">
+                        <a href="#" class="aui-btn-wide aui-btn-shadow btn btn-danger">Delete</a>
+                    </div>
+                </div>
+                <div class="mb-3 card">
+                    <div class="card-header"><i data-lucide="gift" class="aui-card-icon"></i>Header Tabs Standard Buttons
+                        <div class="ms-auto text-nowrap">
+                            <div class="nav">
+                                <a data-bs-toggle="tab" href="#tab-eg6-0" class="border-0 aui-btn-transition active btn btn-outline-primary">Tab 1</a>
+                                <a data-bs-toggle="tab" href="#tab-eg6-1" class="me-1 ms-1 border-0 aui-btn-transition btn btn-outline-primary">Tab 2</a>
+                                <a data-bs-toggle="tab" href="#tab-eg6-2" class="border-0 aui-btn-transition btn btn-outline-primary">Tab 3</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg6-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg6-1" role="tabpanel"><p>Like Aldus PageMaker including versions of Lorem. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                                essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg6-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                    <div class="d-block text-end card-footer">
+                        <a href="#" class="aui-btn-wide btn btn-success">Save</a>
+                    </div>
+                </div>
+                <div class="mb-3 card">
+                    <div class="card-header">
+                        <ul class="nav nav-justified">
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg7-0" class="active nav-link">Tab 1</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg7-1" class="nav-link">Tab 2</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg7-2" class="nav-link">Tab 3</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg7-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg7-1" role="tabpanel"><p>Like Aldus PageMaker including versions of Lorem. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                                essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg7-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="tab-content-1" role="tabpanel">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 card">
+                    <div class="card-body">
+                        <ul class="aui-tabs-shadow aui-tabs-animated nav">
+                            <li class="nav-item">
+                                <a role="tab" class="nav-link active" id="tab-c-0" data-bs-toggle="tab" href="#tab-animated-0">
+                                    <span>Tab 1</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a role="tab" class="nav-link" id="tab-c-1" data-bs-toggle="tab" href="#tab-animated-1">
+                                    <span>Tab 2</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a role="tab" class="nav-link" id="tab-c-2" data-bs-toggle="tab" href="#tab-animated-2">
+                                    <span>Tab 3</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-animated-0" role="tabpanel">
+                                <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+                                    book.
+                                    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+                            </div>
+                            <div class="tab-pane" id="tab-animated-1" role="tabpanel">
+                                <p class="mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                                    unknown
+                                    printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+                            </div>
+                            <div class="tab-pane" id="tab-animated-2" role="tabpanel">
+                                <p class="mb-0">It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+                                    PageMaker including versions of Lorem Ipsum.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 card">
+                    <div class="card-header aui-card-tabs-animated">
+                        <ul class="nav nav-justified">
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg115-0" class="active nav-link">Tab 1</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg115-1" class="nav-link">Tab 2</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg115-2" class="nav-link">Tab 3</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg115-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg115-1" role="tabpanel"><p>Like Aldus PageMaker including versions of Lorem. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                                essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg115-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 card">
+                    <div class="card-body">
+                        <ul class="aui-tabs-shadow nav-justified aui-tabs-animated nav">
+                            <li class="nav-item">
+                                <a role="tab" class="nav-link active" id="tab-c1-0" data-bs-toggle="tab" href="#tab-animated1-0">
+                                    <span>Tab 1</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a role="tab" class="nav-link" id="tab-c1-1" data-bs-toggle="tab" href="#tab-animated1-1">
+                                    <span>Tab 2</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a role="tab" class="nav-link" id="tab-c1-2" data-bs-toggle="tab" href="#tab-animated1-2">
+                                    <span>Tab 3</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-animated1-0" role="tabpanel">
+                                <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+                                    book.
+                                    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+                            </div>
+                            <div class="tab-pane" id="tab-animated1-1" role="tabpanel">
+                                <p class="mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                                    unknown
+                                    printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+                            </div>
+                            <div class="tab-pane" id="tab-animated1-2" role="tabpanel">
+                                <p class="mb-0">It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+                                    PageMaker including versions of Lorem Ipsum.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 card">
+                    <div class="aui-card-tabs aui-card-tabs-animated card-header">
+                        <div class="aui-card-header-title aui-fs-lg text-capitalize fw-normal"><i data-lucide="gift" class="aui-card-icon"></i>Tabs Alternate Animation</div>
+                        <ul class="nav">
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg8-0" class="active nav-link">Tab 1</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg8-1" class="nav-link">Tab 2</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg8-2" class="nav-link">Tab 3</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg8-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg8-1" role="tabpanel"><p>Like Aldus PageMaker including versions of Lorem. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                                essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg8-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                    <div class="d-block text-center card-footer">
+                        <a href="#" class="aui-btn-wide btn btn-link">Link Button</a>
+                        <a href="#" class="aui-btn-wide aui-btn-shadow btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="tab-content-2" role="tabpanel">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 card">
+                    <div class="card-body"><h5 class="card-title">Basic</h5>
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg10-0" class="active nav-link">Tab 1</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg10-1" class="nav-link">Tab 2</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg10-2" class="nav-link">Tab 3</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg10-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg10-1" role="tabpanel"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a
+                                galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg10-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 card">
+                    <div class="card-body"><h5 class="card-title">Justified Alignment</h5>
+                        <ul class="nav nav-tabs nav-justified">
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg11-0" class="active nav-link">Tab 1</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg11-1" class="nav-link">Tab 2</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg11-2" class="nav-link">Tab 3</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg11-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg11-1" role="tabpanel"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a
+                                galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg11-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 card">
+                    <div class="card-body"><h5 class="card-title">Tabs Variations</h5>
+                        <div class="mb-3">
+                            <div role="group" class="btn-group-sm nav btn-group">
+                                <a data-bs-toggle="tab" href="#tab-eg12-0" class="rounded-pill ps-3 active btn btn-warning">Tab 1</a>
+                                <a data-bs-toggle="tab" href="#tab-eg12-1" class="btn btn-warning">Tab 2</a>
+                                <a data-bs-toggle="tab" href="#tab-eg12-2" class="rounded-pill pe-3 btn btn-warning">Tab 3</a>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg12-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg12-1" role="tabpanel"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a
+                                galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg12-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Pills</h5>
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg13-0" class="active nav-link">Pill 1</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg13-1" class="nav-link">Pill 2</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg13-2" class="nav-link">Pill 3</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg13-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg13-1" role="tabpanel"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a
+                                galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg13-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 card">
+                    <div class="card-body"><h5 class="card-title">Pills</h5>
+                        <ul class="nav nav-pills nav-fill">
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg14-0" class="active nav-link">Pill 1</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg14-1" class="nav-link">Pill 2</a></li>
+                            <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg14-2" class="nav-link">Pill 3</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg14-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg14-1" role="tabpanel"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a
+                                galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg14-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 card">
+                    <div class="card-body"><h5 class="card-title">Button Group Tabs</h5>
+                        <div class="mb-3 text-center">
+                            <div role="group" class="btn-group-sm nav btn-group">
+                                <a data-bs-toggle="tab" href="#tab-eg15-0" class="aui-btn-shadow active btn btn-primary">Tab 1</a>
+                                <a data-bs-toggle="tab" href="#tab-eg15-1" class="aui-btn-shadow btn btn-primary">Tab 2</a>
+                                <a data-bs-toggle="tab" href="#tab-eg15-2" class="aui-btn-shadow btn btn-primary">Tab 3</a>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-eg15-0" role="tabpanel"><p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker
+                                including versions of Lorem Ipsum.</p></div>
+                            <div class="tab-pane" id="tab-eg15-1" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                            <div class="tab-pane" id="tab-eg15-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has not only five centuries, but also the leap into not only five centuries, but also the leap into
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+            <footer class="aui-footer">
+    <div class="aui-footer__inner">
+        <div class="aui-footer__left">
+            <ul class="nav">
+                <li class="nav-item"><a href="#" class="nav-link">Footer Link 1</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Footer Link 2</a></li>
+            </ul>
+        </div>
+        <div class="aui-footer__right">
+            <ul class="nav">
+                <li class="nav-item"><a href="#" class="nav-link">Footer Link 3</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><span class="badge bg-success me-1 ms-0"><small>NEW</small></span>Footer Link 4</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+        </main>
+    </div>
+    
+<button type="button" class="btn btn-warning aui-settings-toggle" data-bs-toggle="offcanvas" data-bs-target="#auiSettings" aria-controls="auiSettings" aria-label="Theme settings">
+    <i data-lucide="settings"></i>
+</button>
+<div class="offcanvas offcanvas-end aui-settings" tabindex="-1" id="auiSettings" aria-labelledby="auiSettingsLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="auiSettingsLabel">Theme Settings</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+        <h3 class="aui-settings__heading">Layout Options</h3>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item px-4">
+                <div class="form-check form-switch mb-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="aui-setting-header" data-aui-setting="header" value="fixed" data-aui-off="static">
+                    <label class="form-check-label ms-2" for="aui-setting-header">
+                        <span class="aui-widget__heading d-block">Fixed Header</span>
+                        <span class="aui-settings__hint">Makes the header top fixed, always visible!</span>
+                    </label>
+                </div>
+            </li>
+            <li class="list-group-item px-4">
+                <div class="form-check form-switch mb-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="aui-setting-sidebar" data-aui-setting="sidebar" value="fixed" data-aui-off="static">
+                    <label class="form-check-label ms-2" for="aui-setting-sidebar">
+                        <span class="aui-widget__heading d-block">Fixed Sidebar</span>
+                        <span class="aui-settings__hint">Makes the sidebar left fixed, always visible!</span>
+                    </label>
+                </div>
+            </li>
+            <li class="list-group-item px-4">
+                <div class="form-check form-switch mb-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="aui-setting-footer" data-aui-setting="footer" value="fixed" data-aui-off="static">
+                    <label class="form-check-label ms-2" for="aui-setting-footer">
+                        <span class="aui-widget__heading d-block">Fixed Footer</span>
+                        <span class="aui-settings__hint">Makes the app footer bottom fixed, always visible!</span>
+                    </label>
+                </div>
+            </li>
+        </ul>
+        <h3 class="aui-settings__heading">Theme</h3>
+        <div class="aui-settings__group">
+            <div class="mb-2 aui-settings__hint">Mode</div>
+            <div class="btn-group btn-group-sm mb-3 aui-segmented" role="radiogroup" aria-label="Color mode">
+                <input type="radio" class="btn-check" name="aui-mode" id="aui-mode-light" value="light" data-aui-setting="mode">
+                <label class="btn" for="aui-mode-light">Light</label>
+                <input type="radio" class="btn-check" name="aui-mode" id="aui-mode-dark" value="dark" data-aui-setting="mode">
+                <label class="btn" for="aui-mode-dark">Dark</label>
+                <input type="radio" class="btn-check" name="aui-mode" id="aui-mode-system" value="system" data-aui-setting="mode">
+                <label class="btn" for="aui-mode-system">System</label>
+            </div>
+            <div class="mb-2 aui-settings__hint">Style</div>
+            <div class="aui-theme-grid" role="radiogroup" aria-label="Theme">
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-business" value="" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-business">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
+                    <span class="aui-theme-option__name">Business</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-orange" value="orange" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-orange">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
+                    <span class="aui-theme-option__name">Orange</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-indigo" value="indigo" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-indigo">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
+                    <span class="aui-theme-option__name">Indigo</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-indigo-img" value="indigo-img" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-indigo-img">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
+                    <span class="aui-theme-option__name">Indigo Photo</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-coffee" value="coffee" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-coffee">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
+                    <span class="aui-theme-option__name">Coffee</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-green" value="green" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-green">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
+                    <span class="aui-theme-option__name">Garden</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-raspberry" value="raspberry" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-raspberry">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
+                    <span class="aui-theme-option__name">Warm</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-teal" value="teal" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-teal">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
+                    <span class="aui-theme-option__name">Operations</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-violet" value="violet" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-violet">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
+                    <span class="aui-theme-option__name">Space</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-cyberpunk" value="cyberpunk" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-cyberpunk">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
+                    <span class="aui-theme-option__name">Cyberpunk<br><small>dark only</small></span>
+                </label>
+            </div>
+        </div>
+        <h3 class="aui-settings__heading">Page Section Tabs</h3>
+        <div class="aui-settings__group">
+            <div class="btn-group btn-group-sm" role="group" aria-label="Page section tabs">
+                <input type="radio" class="btn-check" name="aui-tabs" id="aui-tabs-shadow" value="shadow" data-aui-setting="tabs">
+                <label class="btn btn-outline-primary" for="aui-tabs-shadow">Shadow</label>
+                <input type="radio" class="btn-check" name="aui-tabs" id="aui-tabs-line" value="line" data-aui-setting="tabs">
+                <label class="btn btn-outline-primary" for="aui-tabs-line">Line</label>
+            </div>
+        </div>
+        <h3 class="aui-settings__heading">Header Options</h3>
+        <div class="aui-settings__group">
+            <div class="mb-2 aui-settings__hint">Choose Color Scheme</div>
+            <div class="aui-swatches" role="radiogroup" aria-label="Header color">
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-default" value="" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--default" for="aui-header-scheme-default" title="default"><span class="visually-hidden">default</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-primary" value="primary" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--primary" for="aui-header-scheme-primary" title="primary"><span class="visually-hidden">primary</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-secondary" value="secondary" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--secondary" for="aui-header-scheme-secondary" title="secondary"><span class="visually-hidden">secondary</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-success" value="success" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--success" for="aui-header-scheme-success" title="success"><span class="visually-hidden">success</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-info" value="info" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--info" for="aui-header-scheme-info" title="info"><span class="visually-hidden">info</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-warning" value="warning" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--warning" for="aui-header-scheme-warning" title="warning"><span class="visually-hidden">warning</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-danger" value="danger" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--danger" for="aui-header-scheme-danger" title="danger"><span class="visually-hidden">danger</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-light" value="light" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--light" for="aui-header-scheme-light" title="light"><span class="visually-hidden">light</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-dark" value="dark" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--dark" for="aui-header-scheme-dark" title="dark"><span class="visually-hidden">dark</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-focus" value="focus" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--focus" for="aui-header-scheme-focus" title="focus"><span class="visually-hidden">focus</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-alternate" value="alternate" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--alternate" for="aui-header-scheme-alternate" title="alternate"><span class="visually-hidden">alternate</span></label>
+            </div>
+        </div>
+        <h3 class="aui-settings__heading">Sidebar Options</h3>
+        <div class="aui-settings__group">
+            <div class="mb-2 aui-settings__hint">Choose Color Scheme</div>
+            <div class="aui-swatches" role="radiogroup" aria-label="Sidebar color">
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-default" value="" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--default" for="aui-sidebar-scheme-default" title="default"><span class="visually-hidden">default</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-primary" value="primary" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--primary" for="aui-sidebar-scheme-primary" title="primary"><span class="visually-hidden">primary</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-secondary" value="secondary" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--secondary" for="aui-sidebar-scheme-secondary" title="secondary"><span class="visually-hidden">secondary</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-success" value="success" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--success" for="aui-sidebar-scheme-success" title="success"><span class="visually-hidden">success</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-info" value="info" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--info" for="aui-sidebar-scheme-info" title="info"><span class="visually-hidden">info</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-warning" value="warning" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--warning" for="aui-sidebar-scheme-warning" title="warning"><span class="visually-hidden">warning</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-danger" value="danger" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--danger" for="aui-sidebar-scheme-danger" title="danger"><span class="visually-hidden">danger</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-light" value="light" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--light" for="aui-sidebar-scheme-light" title="light"><span class="visually-hidden">light</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-dark" value="dark" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--dark" for="aui-sidebar-scheme-dark" title="dark"><span class="visually-hidden">dark</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-focus" value="focus" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--focus" for="aui-sidebar-scheme-focus" title="focus"><span class="visually-hidden">focus</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-alternate" value="alternate" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--alternate" for="aui-sidebar-scheme-alternate" title="alternate"><span class="visually-hidden">alternate</span></label>
+            </div>
+        </div>
+        <div class="aui-settings__group border-top">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-aui-reset>Restore Default</button>
+        </div>
+    </div>
+</div>
+
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+    <div class="toast" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
+        <div class="toast-header">
+            <i data-lucide="calendar" class="text-primary me-2"></i>
+            <strong class="me-auto">Example Toast</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">You don't have any new items in your calendar today!</div>
+    </div>
+</div>
+
+</body>
+</html>
