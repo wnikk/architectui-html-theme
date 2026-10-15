@@ -1,80 +1,50 @@
 # AGENTS.md
 
-Guide for coding agents that change this repository. To *use* the theme in another project, read `llms-full.txt` instead.
+Guide for AI agents that build pages or applications with ArchitectUI. The complete reference is [`llms-full.txt`](llms-full.txt); the short index is [`llms.txt`](llms.txt).
 
-## Project
+## What it is
 
-ArchitectUI 5 is a Bootstrap 5.3 admin theme: `dist/architectui.css`, `dist/architectui.js`, optional `dist/themes/*.css`, and 26 demo pages. Bootstrap and Lucide load from a CDN; the theme never rebuilds Bootstrap. The demo is built with Eleventy 3 (pages) and the Sass CLI (styles). These are the only two dev dependencies.
+ArchitectUI is a ready-made admin theme for Bootstrap 5.3: one stylesheet and one small script on top of Bootstrap and Lucide icons loaded from a CDN. Standard Bootstrap 5 markup gets a finished, consistent look: page frame (header, sidebar, page title, footer), every Bootstrap component, dark mode and ten switchable visual themes. It is a set of styles and basic scripts for markup, an extended Bootstrap base. It is not a framework and not an npm package, and it needs no build step.
 
-## Commands
+## Files
 
-Node 22 or newer.
+Take them from `dist/`:
 
-```bash
-npm install
-npm run dev     # serve the demo at http://localhost:8080, rebuild on change
-npm run build   # clean dist/ and build pages and styles
-```
+| File | Purpose |
+|------|---------|
+| `architectui.css` | The theme with the default look (Business) |
+| `architectui.js` | Sidebar collapse, settings panel, theme and mode switching, header search, icon rendering |
+| `themes/<id>.css` | Optional visual themes, loaded after `architectui.css` |
+| `assets/images/` | Logos and images used by the frame |
+| `index.html` and other pages | Complete demo pages to copy markup from |
 
-`dist/` is committed. Run `npm run build` after every source change and commit `src/` and `dist/` together. Never edit files in `dist/` by hand.
+Bootstrap 5.3 (CSS and bundle JS) and Lucide come from a CDN; the exact URLs are in the `<head>` of `dist/index.html`.
 
-## Layout
+## Build a page
 
-| Path | Contents |
-|------|----------|
-| `src/scss/architectui.scss` | Entry point. Order: tokens, base, frame, ui, utilities, then `_business.scss` |
-| `src/scss/_config.scss` | Sass maps: colors, gradients, header and sidebar schemes, breakpoints |
-| `src/scss/_tokens.scss` | Layout tokens and colors that themes do not set |
-| `src/scss/_business.scss` | The default Business look, compiled into `architectui.css` with `$scoped: true` |
-| `src/scss/frame/` | Header, sidebar, logo, search, page title, footer, settings panel, burger |
-| `src/scss/ui/` | Buttons, cards, dropdowns, navs, elements, widgets, third-party containers |
-| `src/scss/utilities/` | Color utilities, helpers, animations, icon colors |
-| `src/scss/themes/_theme.scss` | Shared theme base: `tokens`, `palette`, `base` mixins and the optional scope |
-| `src/scss/themes/<id>.scss` | One visual theme each; compiled to `dist/themes/<id>.css` |
-| `src/js/architectui.js` | Theme script (classic script, IIFE, one global `window.ArchitectUI`) |
-| `src/pages/*.html` | Demo pages with front matter; `src/pages/*.js` page scripts |
-| `src/_includes/` | Layout `base.njk` and frame partials (Nunjucks) |
-| `src/_data/` | `menu.json`, `themes.json`, `cdn.json`, Lucide icon list, `pkg.js` |
-| `eleventy.config.js` | Page build, passthrough copies, dev server |
+1. Copy `dist/index.html`. Keep the `<head>` and the frame; replace the content inside `.aui-main__inner` after the page title.
+2. Write standard Bootstrap 5.3 markup: grid, cards, tables, forms, navs, modals, toasts. The theme already styles them.
+3. Add `aui-` classes only for what Bootstrap does not have (number widgets, card actions, animated tabs). The list is in `llms-full.txt`, section 8.
+4. Icons: `<i data-lucide="name"></i>`. After inserting markup dynamically, call `ArchitectUI.refresh(element)`.
+5. Keep paths relative and scripts as classic `<script defer>`: the pages then work from any folder and from disk.
 
-Folders that start with `_` (for example `_old`) are local and ignored by git. Do not put project files there.
+## Settings, themes, modes
 
-## Page front matter
+- Layout modes are attributes on `<html>`: `data-aui-header`, `data-aui-sidebar`, `data-aui-footer`, `data-aui-sidebar-collapsed`, `data-aui-tabs`, `data-aui-header-scheme`, `data-aui-sidebar-scheme`.
+- Theme: `data-aui-theme="<id>"` plus `themes/<id>.css`. No attribute means the default Business look.
+- Mode: `data-aui-mode` (`light`, `dark`, `system`) becomes `data-bs-theme`.
+- The settings panel stores choices in `localStorage` under `architectui`; the inline script in `<head>` applies them before the first paint.
+- Event `aui:theme-change` on `document` fires after a theme or mode change.
 
-| Key | Meaning |
-|-----|---------|
-| `title`, `description` | Page title and subtitle (required) |
-| `icon`, `iconClass` | Lucide icon of the page title and its class (default `aui-icon-gradient-primary`) |
-| `styles` | Keys from `cdn.styles`: library CSS for this page |
-| `scripts` | Keys from `cdn.scripts`: library scripts for this page (UMD bundles) |
-| `script` | Page script from `src/pages/`, loaded with `defer` |
+## Customize
 
-## Conventions
+- Colors, radii, shadows and sizes are CSS variables (`--bs-*`, `--aui-*`). Override them in your own stylesheet loaded after `architectui.css`; no rebuild is needed.
+- For your own styles, use the variables instead of fixed colors, so themes and dark mode keep working.
+- A new visual theme is one Sass file in `src/scss/themes/`: a palette for both modes and the rules only this theme needs. Build it with `npm install` and `npm run build` (Node 22 or newer).
 
-- Markup is Bootstrap 5.3. No Bootstrap 4 attributes or classes (`data-toggle`, `ml-*`, `custom-control`, `form-group`, inputs inside labels).
-- Theme classes use the `aui-` prefix with BEM-style parts (`aui-widget__heading`). Layout modes are `data-aui-*` attributes on `<html>`.
-- Every color, size, radius and shadow is a CSS variable. Components read `--aui-*` and `--bs-*`; do not hard-code colors in component rules.
-- Business rules must stay scoped (`:where(:root:not([data-aui-theme]))`), so that a selected theme turns them off. Use the `t.scope` mixin and `t.$root`, `t.$light`, `t.$dark` from `_theme.scss`.
-- A new visual theme is one file in `src/scss/themes/` plus an entry in `src/_data/themes.json`. Tokens every theme must set are listed by the `tokens` mixin; colors themes set themselves are `$aui-theme-colors`.
-- `src/js/architectui.js` stays a dependency-free classic script wrapped in an IIFE, at most 150 lines. Page scripts are IIFEs too and read libraries from `window`.
-- All URLs in pages are relative; all scripts are classic `defer` scripts. The built demo must open from disk (`file://`).
-- Comments are in English and describe only the code next to them: no task numbers, no history, no references to local notes.
-- Icons are Lucide (`<i data-lucide="name">`). After inserting markup, call `ArchitectUI.refresh(element)`.
+## Rules
 
-## Check before you finish
-
-1. `npm run build` prints no errors or Sass warnings.
-2. Open the changed pages in a browser (`npm run dev`, or open `dist/*.html` from disk) and check:
-   - the browser console has no errors;
-   - light and dark mode;
-   - the Business look and at least the Orange theme;
-   - widths 375, 1024 and 1366 px.
-3. For a theme change, verify that other themes look as before: they must not depend on Business rules.
-
-## Release
-
-1. Change the version in `package.json`, in `package-lock.json` (the top two entries) and in the banner of `src/scss/architectui.scss`.
-2. Add an entry to `Changelog.md` (Changed / Fixed).
-3. Run `npm run build`.
-
-The banner in the pages takes the version from `package.json`.
+- Use Bootstrap 5.3 markup. Do not use Bootstrap 4 classes or attributes (`data-toggle`, `ml-*`, `custom-control`, inputs inside labels).
+- Do not add Tailwind, jQuery, Font Awesome or another CSS framework; they break the consistent look.
+- Every tab list has an active first tab; every `data-bs-target` points to an existing element; every form check has a label with `for`.
+- Check the result visually in the browser: light and dark mode, the default look and at least one other theme, phone and desktop widths. A page without console errors can still look wrong.

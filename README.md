@@ -118,7 +118,7 @@ The theme adds `focus`, `alternate` and `tertiary` to the Bootstrap color set (`
 
 - [`llms.txt`](llms.txt) — short description of the theme and links, in the [llms.txt](https://llmstxt.org) format.
 - [`llms-full.txt`](llms-full.txt) — complete usage reference: page template, frame markup, settings, script API, themes, tokens, component classes.
-- [`AGENTS.md`](AGENTS.md) — how to change this repository: structure, build, conventions, checks.
+- [`AGENTS.md`](AGENTS.md) — short how-to for agents: which files to take, how to build a page, settings, customizing, rules.
 
 Both `llms` files are also copied to `dist/`, so a deployed demo serves them at its root.
 
