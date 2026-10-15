@@ -26,7 +26,7 @@ How it differs from Tailwind CSS and similar utility-first kits:
 - [Full reference for agents](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/llms-full.txt): page template, frame markup, settings, JS API, themes, tokens, component classes, rules
 - [README](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/README.md): quick start, themes, layout options, development
 - [Changelog](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/Changelog.md): what changed in each version
-- [Contributor guide for agents](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/AGENTS.md): repository structure, build, conventions
+- [Agent guide](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/AGENTS.md): short how-to: files, building a page, settings, customizing, rules
 
 ## Examples
 
