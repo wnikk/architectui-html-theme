@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.3.3] - 2026-10-16
+
+### Fixed
+- The collapsed sidebar (icon rail) expands while a menu item has keyboard focus, not only on mouse hover.
+- A "Skip to content" link appears above the header on the first Tab press and moves focus to the main content.
+- Stacked progress bars use the Bootstrap 5.3 `progress-stacked` markup.
+- Form demo pages no longer carry leftover `position-relative` classes.
+
+### Changed
+- Eleventy 3.1.7; `npm audit` reports no vulnerabilities.
+- `package.json` is private: the theme is not an npm package.
+- The unused `eslint.config.js` is removed; the build keeps two dev dependencies, Eleventy and Sass.
+
 ## [5.3.2] - 2026-10-15
 
 ### Added

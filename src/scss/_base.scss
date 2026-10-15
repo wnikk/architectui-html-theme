@@ -40,6 +40,18 @@ svg.lucide {
   stroke-width: 2;
 }
 
+// Skip link: shown above the fixed header while it has keyboard focus
+.aui-skip-link:focus {
+  position: fixed;
+  top: .5rem;
+  left: .5rem;
+  z-index: 1090;
+}
+
+.aui-main:focus {
+  outline: 0;
+}
+
 // Thin native scrollbars
 .aui-scrollbar {
   scrollbar-width: thin;

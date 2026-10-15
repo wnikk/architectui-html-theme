@@ -213,23 +213,24 @@
   }
 }
 
+// The rail expands on hover and while a menu item has keyboard focus
 @include rail-range {
-  .aui-sidebar:not(:hover) {
+  .aui-sidebar:not(:hover, :focus-within) {
     @include rail-items;
   }
 
-  .aui-sidebar:hover {
+  .aui-sidebar:is(:hover, :focus-within) {
     width: var(--aui-sidebar-width);
   }
 }
 
 @include wide {
   [data-aui-sidebar-collapsed] {
-    .aui-sidebar:not(:hover) {
+    .aui-sidebar:not(:hover, :focus-within) {
       @include rail-items;
     }
 
-    .aui-sidebar:hover {
+    .aui-sidebar:is(:hover, :focus-within) {
       width: var(--aui-sidebar-width);
     }
   }

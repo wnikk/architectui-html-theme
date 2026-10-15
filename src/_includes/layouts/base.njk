@@ -14,11 +14,12 @@
     -->
 </head>
 <body>
+    <a class="visually-hidden-focusable btn btn-primary aui-skip-link" href="#main">Skip to content</a>
     {% include "partials/icon-gradients.njk" %}
     <div class="aui-app">
         {% include "partials/header.njk" %}
         {% include "partials/sidebar.njk" %}
-        <main class="aui-main" id="main">
+        <main class="aui-main" id="main" tabindex="-1">
             <div class="aui-main__inner">
                 {% include "partials/page-title.njk" %}
                 {{ content | safe }}
