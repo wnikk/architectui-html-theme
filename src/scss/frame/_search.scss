@@ -1,0 +1,141 @@
+// Поиск в шапке: круглая кнопка раскрывается в поле ввода. Открытие — класс is-open (модуль темы).
+
+.aui-search {
+  --aui-search-size: 42px;
+  --aui-search-bg: rgba(0, 0, 0, .06);
+  --aui-search-color: var(--bs-primary);
+  position: relative;
+  margin-right: .6667rem;
+}
+
+.aui-search__holder {
+  position: relative;
+  width: var(--aui-search-size);
+  height: var(--aui-search-size);
+  overflow: hidden;
+  border-radius: 50px;
+  transition: all .3s ease-in-out;
+}
+
+.aui-search__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 70px 0 20px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--bs-body-color);
+  font-size: var(--bs-body-font-size);
+  opacity: 0;
+  transform: translate(0, 60px);
+  transition: all .3s cubic-bezier(0, .105, .035, 1.57);
+  transition-delay: .3s;
+}
+
+.aui-search__toggle {
+  position: relative;
+  z-index: 2;
+  float: right;
+  width: var(--aui-search-size);
+  height: var(--aui-search-size);
+  padding: 0;
+  border: 0;
+  border-radius: 30px;
+  background: var(--aui-search-bg);
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+
+  // Лупа нарисована двумя псевдоэлементами и поворачивается при открытии
+  > span {
+    position: relative;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+    transform: rotate(45deg);
+    transition: all .4s cubic-bezier(.65, -.6, .24, 1.65);
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+    }
+
+    &::before {
+      top: 13px;
+      left: 9px;
+      width: 4px;
+      height: 11px;
+      border-radius: 2px;
+      background: var(--aui-search-color);
+    }
+
+    &::after {
+      top: 0;
+      left: 4px;
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--aui-search-color);
+      border-radius: 16px;
+    }
+  }
+}
+
+.aui-search__close {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 1;
+  margin-top: -.5em;
+  opacity: 0 !important;
+  pointer-events: none;
+  transition: all .2s cubic-bezier(.285, -.45, .935, .11);
+  transition-delay: .1s;
+}
+
+.aui-search.is-open {
+  width: 330px;
+
+  .aui-search__holder {
+    width: 290px;
+    background: rgba(0, 0, 0, .05);
+    transition: all .5s cubic-bezier(0, .105, .035, 1.57);
+  }
+
+  .aui-search__input {
+    opacity: 1;
+    transform: translate(0, 11px);
+  }
+
+  .aui-search__toggle > span {
+    transform: rotate(-45deg);
+  }
+
+  .aui-search__close {
+    left: 300px;
+    opacity: .6 !important;
+    pointer-events: auto;
+    transition: all .6s cubic-bezier(0, .105, .035, 1.57);
+    transition-delay: .5s;
+
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .aui-search.is-open {
+    width: 220px;
+
+    .aui-search__holder {
+      width: 180px;
+    }
+
+    .aui-search__close {
+      left: 190px;
+    }
+  }
+}

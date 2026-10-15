@@ -17,8 +17,11 @@ export default function (eleventyConfig) {
     "src/assets/favicon.ico": "favicon.ico",
     "src/js/architectui.js": "architectui.js",
   });
+  // Модули страниц лежат рядом со страницами и копируются в корень dist/
+  eleventyConfig.addPassthroughCopy("src/pages/*.js");
 
   eleventyConfig.addWatchTarget("src/js/");
+  eleventyConfig.addWatchTarget("src/pages/*.js");
   // CSS пишет sass --watch прямо в dist/, dev-сервер перезагружает страницу по этому файлу
   eleventyConfig.setServerOptions({ watch: ["dist/architectui.css"] });
 

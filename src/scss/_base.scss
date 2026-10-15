@@ -1,0 +1,50 @@
+// Базовые правила поверх Bootstrap
+
+body {
+  background: var(--aui-app-bg);
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 400;
+}
+
+a,
+a:hover,
+.btn-link,
+.btn-link:hover {
+  text-decoration: none;
+}
+
+:where(a, button, .btn):focus:not(:focus-visible) {
+  outline: none;
+}
+
+legend {
+  font-size: var(--bs-body-font-size);
+  font-weight: 700;
+}
+
+// Иконки Lucide: заглушка до отрисовки и размер по умолчанию
+i[data-lucide],
+svg.lucide {
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -.2em;
+  flex-shrink: 0;
+}
+
+svg.lucide {
+  stroke-width: 2;
+}
+
+// Тонкие системные полосы прокрутки
+.aui-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, .2) transparent;
+}
+
+[data-bs-theme="dark"] .aui-scrollbar {
+  scrollbar-color: rgba(255, 255, 255, .2) transparent;
+}

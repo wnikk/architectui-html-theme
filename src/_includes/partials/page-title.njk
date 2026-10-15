@@ -1,13 +1,12 @@
-<div class="app-page-title">
-    <div class="page-title-wrapper">
-        <div class="page-title-heading">
-            <div class="page-title-icon">
-                <i class="{{ icon }}">
-                </i>
+<div class="aui-page-title">
+    <div class="aui-page-title__wrapper">
+        <div class="aui-page-title__heading">
+            <div class="aui-page-title__icon">
+                <i data-lucide="{{ icon }}" class="{{ iconClass or 'aui-icon-gradient-primary' }}"></i>
             </div>
-            <div>{{ title }}
-                <div class="page-title-subheading">{{ description }}
-                </div>
+            <div>
+                {{ title }}
+                <div class="aui-page-title__subheading">{{ description }}</div>
             </div>
         </div>
         {% include "partials/page-title-actions.njk" %}

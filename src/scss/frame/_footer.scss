@@ -1,0 +1,45 @@
+// Подвал
+@use "../config" as *;
+
+.aui-footer {
+  height: var(--aui-header-height);
+}
+
+.aui-footer__inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 var(--aui-gutter) 0 calc(var(--aui-gutter) / 2);
+  background: var(--aui-surface);
+  border-bottom-left-radius: 10px;
+}
+
+.aui-footer__left {
+  display: flex;
+  align-items: center;
+}
+
+.aui-footer__right {
+  display: flex;
+  margin-left: auto;
+}
+
+[data-aui-footer="fixed"] .aui-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 1010;
+
+  .aui-footer__inner {
+    box-shadow: .3rem -.46875rem 2.1875rem rgba(var(--aui-shadow-rgb), .02), .3rem -.9375rem 1.40625rem rgba(var(--aui-shadow-rgb), .02), .3rem -.25rem .53125rem rgba(var(--aui-shadow-rgb), .04), .3rem -.125rem .1875rem rgba(var(--aui-shadow-rgb), .02);
+  }
+}
+
+@include mobile {
+  .aui-footer__right {
+    display: none;
+  }
+
+  .aui-footer__left {
+    width: 100%;
+  }
+}

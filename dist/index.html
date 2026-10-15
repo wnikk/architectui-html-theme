@@ -1,31 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-aui-header="fixed" data-aui-sidebar="fixed" data-aui-footer="static" data-aui-tabs="shadow">
 <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Analytics Dashboard - This is an example dashboard created using build-in elements and components.</title>
-<meta name="description" content="This is an example dashboard created using build-in elements and components.">
+<title>Analytics Dashboard - This is an example dashboard created using built-in elements and components.</title>
+<meta name="description" content="This is an example dashboard created using built-in elements and components.">
 <link rel="icon" href="favicon.ico">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<script>try{var s=JSON.parse(localStorage.getItem("architectui"))||{},d=document.documentElement;for(var k in s)d.setAttribute(k=="theme"?"data-bs-theme":"data-aui-"+k,s[k])}catch(e){}</script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/css/perfect-scrollbar.min.css" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/metismenu@3.1.0/dist/metisMenu.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="architectui.css">
 
-<script type="importmap">{"imports":{"chart.js":"https://cdn.jsdelivr.net/npm/chart.js@4.5.1/+esm","chart.js/auto":"https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm","@kurkle/color":"https://cdn.jsdelivr.net/npm/@kurkle/color@0.4.0/+esm","@fullcalendar/core":"https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.19/+esm","@fullcalendar/daygrid":"https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.19/+esm","@fullcalendar/timegrid":"https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.19/+esm","@fullcalendar/list":"https://cdn.jsdelivr.net/npm/@fullcalendar/list@6.1.19/+esm","@fullcalendar/interaction":"https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.19/+esm","leaflet":"https://cdn.jsdelivr.net/npm/leaflet@1.9.4/+esm"}}</script>
+<script type="importmap">{"imports":{"chart.js":"https://cdn.jsdelivr.net/npm/chart.js@4.5.1/+esm","chart.js/auto":"https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm","leaflet":"https://cdn.jsdelivr.net/npm/leaflet@1.9.4/+esm"}}</script>
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/metismenu@3.1.0/dist/metisMenu.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/lucide@1.49.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
-<script defer src="architectui.js"></script>
+<script type="module" src="architectui.js"></script>
+<script type="module" src="charts-chartjs.js"></script>
 
     <!--
     =========================================================
-    * ArchitectUI HTML Theme Dashboard - v4.1.0
+    * ArchitectUI HTML Theme Dashboard - v5.0.0
     =========================================================
     * Product Page: https://dashboardpack.com
     * Copyright 2025 DashboardPack (https://dashboardpack.com)
@@ -35,1025 +30,975 @@
     -->
 </head>
 <body>
-    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-        <div class="app-header header-shadow">
-    <div class="app-header__logo">
-    <img class="logo-src" src="assets/images/logo-inverse.png" alt="ArchitectUI">
-    <div class="header__pane ms-auto">
-        <div>
-            <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                </span>
-            </button>
-        </div>
+    
+<svg class="position-absolute" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+        <linearGradient id="aui-gradient-primary" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#4facfe"/><stop offset="1" stop-color="#00f2fe"/></linearGradient>
+        <linearGradient id="aui-gradient-info" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#a18cd1"/><stop offset="1" stop-color="#8ec5fc"/></linearGradient>
+        <linearGradient id="aui-gradient-success" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3cba92"/><stop offset="1" stop-color="#8fd3f4"/></linearGradient>
+        <linearGradient id="aui-gradient-warning" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f6d365"/><stop offset="1" stop-color="#fda085"/></linearGradient>
+        <linearGradient id="aui-gradient-danger" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f093fb"/><stop offset="1" stop-color="#f5576c"/></linearGradient>
+        <linearGradient id="aui-gradient-secondary" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#29323c"/><stop offset="1" stop-color="#485563"/></linearGradient>
+        <linearGradient id="aui-gradient-dark" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
+        <linearGradient id="aui-gradient-focus" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3a3648"/><stop offset="1" stop-color="#5d5873"/></linearGradient>
+        <linearGradient id="aui-gradient-alternate" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
+    </defs>
+</svg>
+
+    <div class="aui-app">
+        <header class="aui-header">
+    <div class="aui-header__brand">
+        <button type="button" class="aui-burger aui-header__mobile-toggle" data-bs-toggle="offcanvas" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
+        
+<a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
+    <img class="aui-logo__img aui-logo__img--default" src="assets/images/logo.png" alt="ArchitectUI">
+    <img class="aui-logo__img aui-logo__img--on-dark" src="assets/images/logo-on-dark.png" alt="ArchitectUI">
+</a>
+
+        <button type="button" class="aui-burger aui-header__collapse" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
+        <button type="button" class="btn btn-primary btn-sm aui-header__more" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
     </div>
-</div>
-<div class="app-header__mobile-menu">
-    <div>
-        <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
-            <span class="hamburger-box">
-                <span class="hamburger-inner"></span>
-            </span>
-        </button>
+    <div class="aui-header__content collapse" id="auiHeaderContent">
+        <div class="aui-header__left">
+            <div class="aui-search" data-aui-search>
+    <div class="aui-search__holder">
+        <input type="search" class="aui-search__input" placeholder="Type to search" aria-label="Search">
+        <button type="button" class="aui-search__toggle" data-aui-search-toggle aria-label="Search"><span></span></button>
     </div>
+    <button type="button" class="btn-close aui-search__close" data-aui-search-close aria-label="Close search"></button>
 </div>
-<div class="app-header__menu">
-    <span>
-        <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-            <span class="btn-icon-wrapper">
-                <i class="fa fa-ellipsis-v fa-w-6"></i>
-            </span>
-        </button>
-    </span>
-</div>
-    <div class="app-header__content">
-        <div class="app-header-left">
-            <div class="search-wrapper">
-    <div class="input-holder">
-        <input type="text" class="search-input" placeholder="Type to search">
-        <button class="search-icon"><span></span></button>
-    </div>
-    <button class="btn-close"></button>
-</div>
-<ul class="header-menu nav">
+<ul class="nav aui-header-menu">
     <li class="nav-item">
-        <a href="javascript:void(0);" class="nav-link">
-            <i class="nav-link-icon fa fa-database"> </i>
-            Statistics
-        </a>
+        <a href="#" class="nav-link"><i data-lucide="database" class="aui-nav-icon"></i>Statistics</a>
     </li>
-    <li class="btn-group nav-item">
-        <a href="javascript:void(0);" class="nav-link">
-            <i class="nav-link-icon fa fa-edit"></i>
-            Projects
-        </a>
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="square-pen" class="aui-nav-icon"></i>Projects</a>
     </li>
-    <li class="dropdown nav-item">
-        <a href="javascript:void(0);" class="nav-link">
-            <i class="nav-link-icon fa fa-cog"></i>
-            Settings
-        </a>
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="settings" class="aui-nav-icon"></i>Settings</a>
     </li>
 </ul>
+
         </div>
-        <div class="app-header-right">
-            <div class="header-btn-lg pe-0">
-    <div class="widget-content p-0">
-        <div class="widget-content-wrapper">
-            <div class="widget-content-left">
-                <div class="btn-group">
-                    <a data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                        <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">
-                        <i class="fa fa-angle-down ms-2 opacity-8"></i>
+        <div class="aui-header__right">
+            <div class="aui-user">
+    <div class="dropdown">
+        <a class="aui-user__toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+            <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
+            <i data-lucide="chevron-down" class="ms-2 aui-opacity-80"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end">
+            <button type="button" class="dropdown-item">User Account</button>
+            <button type="button" class="dropdown-item">Settings</button>
+            <h6 class="dropdown-header">Header</h6>
+            <button type="button" class="dropdown-item">Actions</button>
+            <div class="dropdown-divider"></div>
+            <button type="button" class="dropdown-item">Dividers</button>
+        </div>
+    </div>
+    <div class="aui-user__info">
+        <div class="aui-user__name">Alina Mclourd</div>
+        <div class="aui-user__role">VP People Manager</div>
+    </div>
+    <button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 aui-user__action" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
+</div>
+
+        </div>
+    </div>
+</header>
+
+        <aside class="aui-sidebar">
+    <div class="offcanvas-md offcanvas-start aui-sidebar__panel aui-scrollbar" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
+        <div class="offcanvas-header">
+            
+<a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
+    <img class="aui-logo__img aui-logo__img--default" src="assets/images/logo.png" alt="ArchitectUI">
+    <img class="aui-logo__img aui-logo__img--on-dark" src="assets/images/logo-on-dark.png" alt="ArchitectUI">
+</a>
+
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#auiSidebar" aria-label="Close menu"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="aui-nav" id="auiNav">
+                <li class="aui-nav__heading">Dashboards</li>
+                <li>
+                    <a class="aui-nav__link active" href="index.html" aria-current="page">
+                        <i data-lucide="rocket" class="aui-nav__icon"></i>Dashboard Example 1
                     </a>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                        <button type="button" tabindex="0" class="dropdown-item">User Account</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Settings</button>
-                        <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Actions</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Dividers</button>
+                </li>
+                <li class="aui-nav__heading">UI Components</li>
+                <li>
+                    <a class="aui-nav__link collapsed" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
+                        <i data-lucide="gem" class="aui-nav__icon"></i>Elements<i data-lucide="chevron-down" class="aui-nav__caret"></i>
+                    </a>
+                    <div class="collapse" id="nav-elements" data-bs-parent="#auiNav">
+                        <ul class="aui-nav__sub">
+                            <li><a class="aui-nav__link" href="elements-buttons-standard.html">Buttons</a></li>
+                            <li><a class="aui-nav__link" href="elements-dropdowns.html">Dropdowns</a></li>
+                            <li><a class="aui-nav__link" href="elements-icons.html">Icons</a></li>
+                            <li><a class="aui-nav__link" href="elements-badges-labels.html">Badges</a></li>
+                            <li><a class="aui-nav__link" href="elements-cards.html">Cards</a></li>
+                            <li><a class="aui-nav__link" href="elements-list-group.html">List Groups</a></li>
+                            <li><a class="aui-nav__link" href="elements-navigation.html">Navigation Menus</a></li>
+                            <li><a class="aui-nav__link" href="elements-utilities.html">Utilities</a></li>
+                        </ul>
                     </div>
-                </div>
-            </div>
-            <div class="widget-content-left  ms-3 header-user-info">
-                <div class="widget-heading">
-                    Alina Mclourd
-                </div>
-                <div class="widget-subheading">
-                    VP People Manager
-                </div>
-            </div>
-            <div class="widget-content-right header-user-info ms-3">
-                <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-                    <i class="fa text-white fa-calendar pe-1 ps-1"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-        </div>
-    </div>
-</div>
-        <div class="app-main">
-            <div class="app-sidebar sidebar-shadow">
-    <div class="app-header__logo">
-    <img class="logo-src" src="assets/images/logo-inverse.png" alt="ArchitectUI">
-    <div class="header__pane ms-auto">
-        <div>
-            <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                </span>
-            </button>
-        </div>
-    </div>
-</div>
-<div class="app-header__mobile-menu">
-    <div>
-        <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
-            <span class="hamburger-box">
-                <span class="hamburger-inner"></span>
-            </span>
-        </button>
-    </div>
-</div>
-<div class="app-header__menu">
-    <span>
-        <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-            <span class="btn-icon-wrapper">
-                <i class="fa fa-ellipsis-v fa-w-6"></i>
-            </span>
-        </button>
-    </span>
-</div>
-    <div class="scrollbar-sidebar">
-        <div class="app-sidebar__inner">
-            <ul class="vertical-nav-menu">
-                <li class="app-sidebar__heading">Dashboards</li>
-                <li>
-                    <a href="index.html" class="mm-active">
-                        <i class="metismenu-icon fa fa-rocket"></i>
-                        Dashboard Example 1
-                    </a>
-                </li>
-                <li class="app-sidebar__heading">UI Components</li>
-                <li>
-                    <a href="#">
-                        <i class="metismenu-icon fa fa-gem"></i>
-                        Elements
-                        <i class="metismenu-state-icon fa fa-angle-down caret-left"></i>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="elements-buttons-standard.html">
-                                <i class="metismenu-icon"></i>Buttons
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-dropdowns.html">
-                                <i class="metismenu-icon"></i>Dropdowns
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-icons.html">
-                                <i class="metismenu-icon"></i>Icons
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-badges-labels.html">
-                                <i class="metismenu-icon"></i>Badges
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-cards.html">
-                                <i class="metismenu-icon"></i>Cards
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-list-group.html">
-                                <i class="metismenu-icon"></i>List Groups
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-navigation.html">
-                                <i class="metismenu-icon"></i>Navigation Menus
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-utilities.html">
-                                <i class="metismenu-icon"></i>Utilities
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="metismenu-icon fa fa-car"></i>
-                        Components
-                        <i class="metismenu-state-icon fa fa-angle-down caret-left"></i>
+                    <a class="aui-nav__link collapsed" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-components">
+                        <i data-lucide="car" class="aui-nav__icon"></i>Components<i data-lucide="chevron-down" class="aui-nav__caret"></i>
                     </a>
-                    <ul>
-                        <li>
-                            <a href="components-tabs.html">
-                                <i class="metismenu-icon"></i>Tabs
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-accordions.html">
-                                <i class="metismenu-icon"></i>Accordions
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-notifications.html">
-                                <i class="metismenu-icon"></i>Notifications
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-modals.html">
-                                <i class="metismenu-icon"></i>Modals
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-progress-bar.html">
-                                <i class="metismenu-icon"></i>Progress Bar
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-tooltips-popovers.html">
-                                <i class="metismenu-icon"></i>Tooltips &amp; Popovers
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-carousel.html">
-                                <i class="metismenu-icon"></i>Carousel
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-calendar.html">
-                                <i class="metismenu-icon"></i>Calendar
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-pagination.html">
-                                <i class="metismenu-icon"></i>Pagination
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-scrollable-elements.html">
-                                <i class="metismenu-icon"></i>Scrollable
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-maps.html">
-                                <i class="metismenu-icon"></i>Maps
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="collapse" id="nav-components" data-bs-parent="#auiNav">
+                        <ul class="aui-nav__sub">
+                            <li><a class="aui-nav__link" href="components-tabs.html">Tabs</a></li>
+                            <li><a class="aui-nav__link" href="components-accordions.html">Accordions</a></li>
+                            <li><a class="aui-nav__link" href="components-notifications.html">Notifications</a></li>
+                            <li><a class="aui-nav__link" href="components-modals.html">Modals</a></li>
+                            <li><a class="aui-nav__link" href="components-progress-bar.html">Progress Bar</a></li>
+                            <li><a class="aui-nav__link" href="components-tooltips-popovers.html">Tooltips &amp; Popovers</a></li>
+                            <li><a class="aui-nav__link" href="components-carousel.html">Carousel</a></li>
+                            <li><a class="aui-nav__link" href="components-calendar.html">Calendar</a></li>
+                            <li><a class="aui-nav__link" href="components-pagination.html">Pagination</a></li>
+                            <li><a class="aui-nav__link" href="components-scrollable-elements.html">Scrollable</a></li>
+                            <li><a class="aui-nav__link" href="components-maps.html">Maps</a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
-                    <a href="tables-regular.html">
-                        <i class="metismenu-icon fa fa-computer"></i>
-                        Tables
+                    <a class="aui-nav__link" href="tables-regular.html">
+                        <i data-lucide="monitor" class="aui-nav__icon"></i>Tables
                     </a>
                 </li>
-                <li class="app-sidebar__heading">Widgets</li>
+                <li class="aui-nav__heading">Widgets</li>
                 <li>
-                    <a href="dashboard-boxes.html">
-                        <i class="metismenu-icon fa fa-computer"></i>
-                        Dashboard Boxes
+                    <a class="aui-nav__link" href="dashboard-boxes.html">
+                        <i data-lucide="monitor" class="aui-nav__icon"></i>Dashboard Boxes
                     </a>
                 </li>
-                <li class="app-sidebar__heading">Forms</li>
+                <li class="aui-nav__heading">Forms</li>
                 <li>
-                    <a href="forms-controls.html">
-                        <i class="metismenu-icon fa fa-computer-mouse"></i>
-                        Forms Controls
+                    <a class="aui-nav__link" href="forms-controls.html">
+                        <i data-lucide="mouse" class="aui-nav__icon"></i>Forms Controls
                     </a>
                 </li>
                 <li>
-                    <a href="forms-layouts.html">
-                        <i class="metismenu-icon fa fa-eye-dropper"></i>
-                        Forms Layouts
+                    <a class="aui-nav__link" href="forms-layouts.html">
+                        <i data-lucide="pipette" class="aui-nav__icon"></i>Forms Layouts
                     </a>
                 </li>
                 <li>
-                    <a href="forms-validation.html">
-                        <i class="metismenu-icon fa fa-pen-clip"></i>
-                        Forms Validation
+                    <a class="aui-nav__link" href="forms-validation.html">
+                        <i data-lucide="pen-line" class="aui-nav__icon"></i>Forms Validation
                     </a>
                 </li>
-                <li class="app-sidebar__heading">Charts</li>
+                <li class="aui-nav__heading">Charts</li>
                 <li>
-                    <a href="charts-chartjs.html">
-                        <i class="metismenu-icon fa fa-square-poll-vertical"></i>
-                        ChartJS
+                    <a class="aui-nav__link" href="charts-chartjs.html">
+                        <i data-lucide="chart-column" class="aui-nav__icon"></i>ChartJS
                     </a>
                 </li>
-                <li class="app-sidebar__heading">PRO Version</li>
+                <li class="aui-nav__heading">PRO Version</li>
                 <li>
-                    <a href="https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/" target="_blank" rel="noopener">
-                        <i class="metismenu-icon fa fa-square-up-right"></i>
-                        Upgrade to PRO <i class="fa fa-arrow-trend-up"></i>
+                    <a class="aui-nav__link" href="https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/" target="_blank" rel="noopener">
+                        <i data-lucide="external-link" class="aui-nav__icon"></i>Upgrade to PRO <i data-lucide="trending-up" class="ms-1"></i>
                     </a>
                 </li>
             </ul>
         </div>
     </div>
-</div>
+</aside>
 
-            <div class="app-main__outer">
-                <div class="app-main__inner">
-                    <div class="app-page-title">
-    <div class="page-title-wrapper">
-        <div class="page-title-heading">
-            <div class="page-title-icon">
-                <i class="fa fa-car icon-gradient bg-primary">
-                </i>
+        <main class="aui-main" id="main">
+            <div class="aui-main__inner">
+                <div class="aui-page-title">
+    <div class="aui-page-title__wrapper">
+        <div class="aui-page-title__heading">
+            <div class="aui-page-title__icon">
+                <i data-lucide="car" class="aui-icon-gradient-primary"></i>
             </div>
-            <div>Analytics Dashboard
-                <div class="page-title-subheading">This is an example dashboard created using build-in elements and components.
-                </div>
+            <div>
+                Analytics Dashboard
+                <div class="aui-page-title__subheading">This is an example dashboard created using built-in elements and components.</div>
             </div>
         </div>
-        <div class="page-title-actions">
-    <button type="button" data-bs-toggle="tooltip" title="Example Tooltip" data-bs-placement="bottom" class="btn-shadow me-3 btn btn-dark">
-        <i class="fa fa-star"></i>
+        <div class="aui-page-title__actions">
+    <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
+        <i data-lucide="star"></i>
     </button>
     <div class="d-inline-block dropdown">
-        <button type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
-            <span class="btn-icon-wrapper pe-2 opacity-7">
-                <i class="fa fa-business-time fa-w-20"></i>
-            </span>
-            Buttons
+        <button type="button" class="btn btn-info aui-btn-shadow aui-btn-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i data-lucide="briefcase-business" class="aui-opacity-70"></i>Buttons
         </button>
-        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+        <div class="dropdown-menu dropdown-menu-end">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
-                        <i class="nav-link-icon lnr-inbox"></i>
-                        <span>
-                            Inbox
-                        </span>
-                        <div class="ms-auto badge rounded-pill bg-secondary">86</div>
-                    </a>
+                    <a href="#" class="nav-link"><i data-lucide="inbox" class="aui-nav-icon"></i><span>Inbox</span><span class="ms-auto badge rounded-pill bg-secondary">86</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
-                        <i class="nav-link-icon lnr-book"></i>
-                        <span>
-                            Book
-                        </span>
-                        <div class="ms-auto badge rounded-pill bg-danger">5</div>
-                    </a>
+                    <a href="#" class="nav-link"><i data-lucide="book-open" class="aui-nav-icon"></i><span>Book</span><span class="ms-auto badge rounded-pill bg-danger">5</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
-                        <i class="nav-link-icon lnr-picture"></i>
-                        <span>
-                            Picture
-                        </span>
-                    </a>
+                    <a href="#" class="nav-link"><i data-lucide="image" class="aui-nav-icon"></i><span>Picture</span></a>
                 </li>
                 <li class="nav-item">
-                    <a disabled href="javascript:void(0);" class="nav-link disabled">
-                        <i class="nav-link-icon lnr-file-empty"></i>
-                        <span>
-                            File Disabled
-                        </span>
-                    </a>
+                    <a href="#" class="nav-link disabled" aria-disabled="true"><i data-lucide="file" class="aui-nav-icon"></i><span>File Disabled</span></a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
-    </div>
-</div>
-                                <div class="row">
-                <div class="col-md-6 col-xl-4">
-                    <div class="card mb-3 widget-content bg-primary">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading">Total Orders</div>
-                                <div class="widget-subheading">Last year expenses</div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white"><span>1896</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="card mb-3 widget-content bg-success">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading">Clients</div>
-                                <div class="widget-subheading">Total Clients Profit</div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white"><span>$ 568</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="card mb-3 widget-content bg-warning">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading">Followers</div>
-                                <div class="widget-subheading">People Interested</div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white"><span>46%</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-                    <div class="card mb-3 widget-content bg-secondary">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading">Products Sold</div>
-                                <div class="widget-subheading">Revenue streams</div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-warning"><span>$14M</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-lg-6">
-                    <div class="mb-3 card">
-                        <div class="card-header-tab card-header-tab-animation card-header">
-                            <div class="card-header-title">
-                                <i class="header-icon lnr-apartment icon-gradient bg-danger"> </i>
-                                Sales Report
-                            </div>
-                            <ul class="nav">
-                                <li class="nav-item"><a href="javascript:void(0);" class="active nav-link">Last</a></li>
-                                <li class="nav-item"><a href="javascript:void(0);" class="nav-link second-tab-toggle">Current</a></li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <div class="tab-content">
-                                <div class="tab-pane fade show active" id="tabs-eg-77">
-                                    <div class="card mb-3 widget-chart widget-chart2 text-start w-100">
-                                        <div class="widget-chat-wrapper-outer">
-                                            <div class="widget-chart-wrapper widget-chart-wrapper-lg opacity-10 m-0">
-                                                       <div class="chart-container">
-                                        <canvas id="chart-vert-bar" style="height: 227px;"></canvas>
-                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h6 class="text-muted text-uppercase font-size-md opacity-5 fw-normal">Top Authors</h6>
-                                    <div class="scroll-area-sm">
-                                        <div class="scrollbar-container">
-                                            <ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
-                                                <li class="list-group-item">
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            <div class="widget-content-left me-3">
-                                                                <img width="42" class="rounded-circle" src="assets/images/avatars/9.jpg" alt="">
-                                                            </div>
-                                                            <div class="widget-content-left">
-                                                                <div class="widget-heading">Ella-Rose Henry</div>
-                                                                <div class="widget-subheading">Web Developer</div>
-                                                            </div>
-                                                            <div class="widget-content-right">
-                                                                <div class="font-size-xlg text-muted">
-                                                                    <small class="opacity-5 pe-1">$</small>
-                                                                    <span>129</span>
-                                                                    <small class="text-danger ps-2">
-                                                                        <i class="fa fa-angle-down"></i>
-                                                                    </small>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            <div class="widget-content-left me-3">
-                                                                <img width="42" class="rounded-circle" src="assets/images/avatars/5.jpg" alt="">
-                                                            </div>
-                                                            <div class="widget-content-left">
-                                                                <div class="widget-heading">Ruben Tillman</div>
-                                                                <div class="widget-subheading">UI Designer</div>
-                                                            </div>
-                                                            <div class="widget-content-right">
-                                                                <div class="font-size-xlg text-muted">
-                                                                    <small class="opacity-5 pe-1">$</small>
-                                                                    <span>54</span>
-                                                                    <small class="text-success ps-2">
-                                                                        <i class="fa fa-angle-up"></i>
-                                                                    </small>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            <div class="widget-content-left me-3">
-                                                                <img width="42" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
-                                                            </div>
-                                                            <div class="widget-content-left">
-                                                                <div class="widget-heading">Vinnie Wagstaff</div>
-                                                                <div class="widget-subheading">Java Programmer</div>
-                                                            </div>
-                                                            <div class="widget-content-right">
-                                                                <div class="font-size-xlg text-muted">
-                                                                    <small class="opacity-5 pe-1">$</small>
-                                                                    <span>429</span>
-                                                                    <small class="text-warning ps-2">
-                                                                        <i class="fa fa-dot-circle"></i>
-                                                                    </small>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            <div class="widget-content-left me-3">
-                                                                <img width="42" class="rounded-circle" src="assets/images/avatars/3.jpg" alt="">
-                                                            </div>
-                                                            <div class="widget-content-left">
-                                                                <div class="widget-heading">Ella-Rose Henry</div>
-                                                                <div class="widget-subheading">Web Developer</div>
-                                                            </div>
-                                                            <div class="widget-content-right">
-                                                                <div class="font-size-xlg text-muted">
-                                                                    <small class="opacity-5 pe-1">$</small>
-                                                                    <span>129</span>
-                                                                    <small class="text-danger ps-2">
-                                                                        <i class="fa fa-angle-down"></i>
-                                                                    </small>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            <div class="widget-content-left me-3">
-                                                                <img width="42" class="rounded-circle" src="assets/images/avatars/2.jpg" alt="">
-                                                            </div>
-                                                            <div class="widget-content-left">
-                                                                <div class="widget-heading">Ruben Tillman</div>
-                                                                <div class="widget-subheading">UI Designer</div>
-                                                            </div>
-                                                            <div class="widget-content-right">
-                                                                <div class="font-size-xlg text-muted">
-                                                                    <small class="opacity-5 pe-1">$</small>
-                                                                    <span>54</span>
-                                                                    <small class="text-success ps-2">
-                                                                        <i class="fa fa-angle-up"></i>
-                                                                    </small>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-6">
-                    <div class="mb-3 card">
-                        <div class="card-header-tab card-header">
-                            <div class="card-header-title">
-                                <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Bandwidth Reports
-                            </div>
-                            <div class="btn-actions-pane-right">
-                                <div class="nav">
-                                    <a href="javascript:void(0);" class="border-0 btn-pill btn-wide btn-transition active btn btn-outline-alternate">Tab 1</a>
-                                    <a href="javascript:void(0);" class="ms-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt">Tab 2</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane fade active show" id="tab-eg-55">
-                                <div class="widget-chart p-3">
-                                    <div style="height: 350px">
-                                        <canvas id="line-chart"></canvas>
-                                    </div>
-                                    <div class="widget-chart-content text-center mt-5">
-                                        <div class="widget-description mt-0 text-warning">
-                                            <i class="fa fa-arrow-left"></i>
-                                            <span class="ps-1">175.5%</span>
-                                            <span class="text-muted opacity-8 ps-1">increased server resources</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pt-2 card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="widget-content">
-                                                <div class="widget-content-outer">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left">
-                                                            <div class="widget-numbers fsize-3 text-muted">63%</div>
-                                                        </div>
-                                                        <div class="widget-content-right">
-                                                            <div class="text-muted opacity-6">Generated Leads</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="widget-progress-wrapper mt-1">
-                                                        <div class="progress-bar-sm progress-bar-animated-alt progress">
-                                                            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100" style="width: 63%;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="widget-content">
-                                                <div class="widget-content-outer">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left">
-                                                            <div class="widget-numbers fsize-3 text-muted">32%</div>
-                                                        </div>
-                                                        <div class="widget-content-right">
-                                                            <div class="text-muted opacity-6">Submitted Tickers</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="widget-progress-wrapper mt-1">
-                                                        <div class="progress-bar-sm progress-bar-animated-alt progress">
-                                                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" style="width: 32%;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="widget-content">
-                                                <div class="widget-content-outer">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left">
-                                                            <div class="widget-numbers fsize-3 text-muted">71%</div>
-                                                        </div>
-                                                        <div class="widget-content-right">
-                                                            <div class="text-muted opacity-6">Server Allocation</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="widget-progress-wrapper mt-1">
-                                                        <div class="progress-bar-sm progress-bar-animated-alt progress">
-                                                            <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" style="width: 71%;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="widget-content">
-                                                <div class="widget-content-outer">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left">
-                                                            <div class="widget-numbers fsize-3 text-muted">41%</div>
-                                                        </div>
-                                                        <div class="widget-content-right">
-                                                            <div class="text-muted opacity-6">Generated Leads</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="widget-progress-wrapper mt-1">
-                                                        <div class="progress-bar-sm progress-bar-animated-alt progress">
-                                                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="41" aria-valuemin="0" aria-valuemax="100" style="width: 41%;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-xl-4">
-                    <div class="card mb-3 widget-content">
-                        <div class="widget-content-outer">
-                            <div class="widget-content-wrapper">
-                                <div class="widget-content-left">
-                                    <div class="widget-heading">Total Orders</div>
-                                    <div class="widget-subheading">Last year expenses</div>
-                                </div>
-                                <div class="widget-content-right">
-                                    <div class="widget-numbers text-success">1896</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="card mb-3 widget-content">
-                        <div class="widget-content-outer">
-                            <div class="widget-content-wrapper">
-                                <div class="widget-content-left">
-                                    <div class="widget-heading">Products Sold</div>
-                                    <div class="widget-subheading">Revenue streams</div>
-                                </div>
-                                <div class="widget-content-right">
-                                    <div class="widget-numbers text-warning">$3M</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="card mb-3 widget-content">
-                        <div class="widget-content-outer">
-                            <div class="widget-content-wrapper">
-                                <div class="widget-content-left">
-                                    <div class="widget-heading">Followers</div>
-                                    <div class="widget-subheading">People Interested</div>
-                                </div>
-                                <div class="widget-content-right">
-                                    <div class="widget-numbers text-danger">45,9%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-                    <div class="card mb-3 widget-content">
-                        <div class="widget-content-outer">
-                            <div class="widget-content-wrapper">
-                                <div class="widget-content-left">
-                                    <div class="widget-heading">Income</div>
-                                    <div class="widget-subheading">Expected totals</div>
-                                </div>
-                                <div class="widget-content-right">
-                                    <div class="widget-numbers text-focus">$147</div>
-                                </div>
-                            </div>
-                            <div class="widget-progress-wrapper">
-                                <div class="progress-bar-sm progress-bar-animated-alt progress">
-                                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100" style="width: 54%;"></div>
-                                </div>
-                                <div class="progress-sub-label">
-                                    <div class="sub-label-left">Expenses</div>
-                                    <div class="sub-label-right">100%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="main-card mb-3 card">
-                        <div class="card-header">Active Users
-                            <div class="btn-actions-pane-right">
-                                <div role="group" class="btn-group-sm btn-group">
-                                    <button class="active btn btn-focus">Last Week</button>
-                                    <button class="btn btn-focus">All Month</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th>Name</th>
-                                    <th class="text-center">City</th>
-                                    <th class="text-center">Status</th>
-                                    <th class="text-center">Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="text-center text-muted">#345</td>
-                                    <td>
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left me-3">
-                                                    <div class="widget-content-left">
-                                                        <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">John Doe</div>
-                                                    <div class="widget-subheading opacity-7">Web Developer</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">Madrid</td>
-                                    <td class="text-center">
-                                        <div class="badge bg-warning">Pending</div>
-                                    </td>
-                                    <td class="text-center">
-                                        <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">#347</td>
-                                    <td>
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left me-3">
-                                                    <div class="widget-content-left">
-                                                        <img width="40" class="rounded-circle" src="assets/images/avatars/3.jpg" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">Ruben Tillman</div>
-                                                    <div class="widget-subheading opacity-7">Etiam sit amet orci eget</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">Berlin</td>
-                                    <td class="text-center">
-                                        <div class="badge bg-success">Completed</div>
-                                    </td>
-                                    <td class="text-center">
-                                        <button type="button" id="PopoverCustomT-2" class="btn btn-primary btn-sm">Details</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">#321</td>
-                                    <td>
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left me-3">
-                                                    <div class="widget-content-left">
-                                                        <img width="40" class="rounded-circle" src="assets/images/avatars/2.jpg" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">Elliot Huber</div>
-                                                    <div class="widget-subheading opacity-7">Lorem ipsum dolor sic</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">London</td>
-                                    <td class="text-center">
-                                        <div class="badge bg-danger">In Progress</div>
-                                    </td>
-                                    <td class="text-center">
-                                        <button type="button" id="PopoverCustomT-3" class="btn btn-primary btn-sm">Details</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">#55</td>
-                                    <td>
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left me-3">
-                                                    <div class="widget-content-left">
-                                                        <img width="40" class="rounded-circle" src="assets/images/avatars/1.jpg" alt=""></div>
-                                                </div>
-                                                <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">Vinnie Wagstaff</div>
-                                                    <div class="widget-subheading opacity-7">UI Designer</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">Amsterdam</td>
-                                    <td class="text-center">
-                                        <div class="badge bg-info">On Hold</div>
-                                    </td>
-                                    <td class="text-center">
-                                        <button type="button" id="PopoverCustomT-4" class="btn btn-primary btn-sm">Details</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="d-block text-center card-footer">
-                            <button class="me-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="fa fa-trash btn-icon-wrapper"> </i></button>
-                            <button class="btn-wide btn btn-success">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-3">
-                    <div class="card-shadow-danger mb-3 widget-chart widget-chart2 text-start card">
-                        <div class="widget-content">
-                            <div class="widget-content-outer">
-                                <div class="widget-content-wrapper">
-                                    <div class="widget-content-left pe-2 fsize-1">
-                                        <div class="widget-numbers mt-0 fsize-3 text-danger">71%</div>
-                                    </div>
-                                    <div class="widget-content-right w-100">
-                                        <div class="progress-bar-xs progress">
-                                            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" style="width: 71%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="widget-content-left fsize-1">
-                                    <div class="text-muted opacity-6">Income Target</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card-shadow-success mb-3 widget-chart widget-chart2 text-start card">
-                        <div class="widget-content">
-                            <div class="widget-content-outer">
-                                <div class="widget-content-wrapper">
-                                    <div class="widget-content-left pe-2 fsize-1">
-                                        <div class="widget-numbers mt-0 fsize-3 text-success">54%</div>
-                                    </div>
-                                    <div class="widget-content-right w-100">
-                                        <div class="progress-bar-xs progress">
-                                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100" style="width: 54%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="widget-content-left fsize-1">
-                                    <div class="text-muted opacity-6">Expenses Target</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card-shadow-warning mb-3 widget-chart widget-chart2 text-start card">
-                        <div class="widget-content">
-                            <div class="widget-content-outer">
-                                <div class="widget-content-wrapper">
-                                    <div class="widget-content-left pe-2 fsize-1">
-                                        <div class="widget-numbers mt-0 fsize-3 text-warning">32%</div>
-                                    </div>
-                                    <div class="widget-content-right w-100">
-                                        <div class="progress-bar-xs progress">
-                                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" style="width: 32%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="widget-content-left fsize-1">
-                                    <div class="text-muted opacity-6">Spendings Target</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card-shadow-info mb-3 widget-chart widget-chart2 text-start card">
-                        <div class="widget-content">
-                            <div class="widget-content-outer">
-                                <div class="widget-content-wrapper">
-                                    <div class="widget-content-left pe-2 fsize-1">
-                                        <div class="widget-numbers mt-0 fsize-3 text-info">89%</div>
-                                    </div>
-                                    <div class="widget-content-right w-100">
-                                        <div class="progress-bar-xs progress">
-                                            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100" style="width: 89%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="widget-content-left fsize-1">
-                                    <div class="text-muted opacity-6">Totals Target</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
+    </div>
+</div>
+
+                <div class="row">
+    <div class="col-md-6 col-xl-4">
+        <div class="card mb-3 aui-widget bg-primary">
+            <div class="aui-widget__wrapper text-white">
+                <div class="aui-widget__left">
+                    <div class="aui-widget__heading">Total Orders</div>
+                    <div class="aui-widget__subheading">Last year expenses</div>
                 </div>
-                <div class="app-wrapper-footer">
-    <div class="app-footer">
-        <div class="app-footer__inner">
-            <div class="app-footer-left">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a href="javascript:void(0);" class="nav-link">
-                            Footer Link 1
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="javascript:void(0);" class="nav-link">
-                            Footer Link 2
-                        </a>
-                    </li>
-                </ul>
+                <div class="aui-widget__right">
+                    <div class="aui-widget__numbers text-white"><span>1896</span></div>
+                </div>
             </div>
-            <div class="app-footer-right">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a href="javascript:void(0);" class="nav-link">
-                            Footer Link 3
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="javascript:void(0);" class="nav-link">
-                            <div class="badge bg-success me-1 ms-0">
-                                <small>NEW</small>
-                            </div>
-                            Footer Link 4
-                        </a>
-                    </li>
-                </ul>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="card mb-3 aui-widget bg-success">
+            <div class="aui-widget__wrapper text-white">
+                <div class="aui-widget__left">
+                    <div class="aui-widget__heading">Clients</div>
+                    <div class="aui-widget__subheading">Total Clients Profit</div>
+                </div>
+                <div class="aui-widget__right">
+                    <div class="aui-widget__numbers text-white"><span>$ 568</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="card mb-3 aui-widget bg-warning">
+            <div class="aui-widget__wrapper text-white">
+                <div class="aui-widget__left">
+                    <div class="aui-widget__heading">Followers</div>
+                    <div class="aui-widget__subheading">People Interested</div>
+                </div>
+                <div class="aui-widget__right">
+                    <div class="aui-widget__numbers text-white"><span>46%</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
+        <div class="card mb-3 aui-widget bg-secondary">
+            <div class="aui-widget__wrapper text-white">
+                <div class="aui-widget__left">
+                    <div class="aui-widget__heading">Products Sold</div>
+                    <div class="aui-widget__subheading">Revenue streams</div>
+                </div>
+                <div class="aui-widget__right">
+                    <div class="aui-widget__numbers text-warning"><span>$14M</span></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12 col-lg-6">
+        <div class="mb-3 card">
+            <div class="aui-card-tabs aui-card-tabs-animated card-header">
+                <div class="aui-card-header-title">
+                    <i data-lucide="building" class="aui-card-icon"></i>
+                    Sales Report
+                </div>
+                <ul class="nav">
+                    <li class="nav-item"><a href="#" class="active nav-link">Last</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Current</a></li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tabs-eg-77">
+                        <div class="card mb-3 text-start w-100">
+                            <div>
+                                <div class="opacity-100 m-0">
+                                           <div class="aui-chart aui-chart-sm">
+                            <canvas id="chart-vert-bar"></canvas>
+                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h6 class="text-muted text-uppercase aui-fs-1 opacity-50 fw-normal">Top Authors</h6>
+                        <div class="aui-scroll aui-scroll-sm">
+                                <ul class="aui-list-borderless list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <div class="aui-widget p-0">
+                                            <div class="aui-widget__wrapper">
+                                                <div class="aui-widget__left me-3">
+                                                    <img width="42" class="rounded-circle" src="assets/images/avatars/9.jpg" alt="">
+                                                </div>
+                                                <div class="aui-widget__left">
+                                                    <div class="aui-widget__heading">Ella-Rose Henry</div>
+                                                    <div class="aui-widget__subheading">Web Developer</div>
+                                                </div>
+                                                <div class="aui-widget__right">
+                                                    <div class="aui-fs-2 text-muted">
+                                                        <small class="opacity-50 pe-1">$</small>
+                                                        <span>129</span>
+                                                        <small class="text-danger ps-2">
+                                                            <i data-lucide="chevron-down"></i>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="aui-widget p-0">
+                                            <div class="aui-widget__wrapper">
+                                                <div class="aui-widget__left me-3">
+                                                    <img width="42" class="rounded-circle" src="assets/images/avatars/5.jpg" alt="">
+                                                </div>
+                                                <div class="aui-widget__left">
+                                                    <div class="aui-widget__heading">Ruben Tillman</div>
+                                                    <div class="aui-widget__subheading">UI Designer</div>
+                                                </div>
+                                                <div class="aui-widget__right">
+                                                    <div class="aui-fs-2 text-muted">
+                                                        <small class="opacity-50 pe-1">$</small>
+                                                        <span>54</span>
+                                                        <small class="text-success ps-2">
+                                                            <i data-lucide="chevron-up"></i>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="aui-widget p-0">
+                                            <div class="aui-widget__wrapper">
+                                                <div class="aui-widget__left me-3">
+                                                    <img width="42" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                </div>
+                                                <div class="aui-widget__left">
+                                                    <div class="aui-widget__heading">Vinnie Wagstaff</div>
+                                                    <div class="aui-widget__subheading">Java Programmer</div>
+                                                </div>
+                                                <div class="aui-widget__right">
+                                                    <div class="aui-fs-2 text-muted">
+                                                        <small class="opacity-50 pe-1">$</small>
+                                                        <span>429</span>
+                                                        <small class="text-warning ps-2">
+                                                            <i data-lucide="circle-dot"></i>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="aui-widget p-0">
+                                            <div class="aui-widget__wrapper">
+                                                <div class="aui-widget__left me-3">
+                                                    <img width="42" class="rounded-circle" src="assets/images/avatars/3.jpg" alt="">
+                                                </div>
+                                                <div class="aui-widget__left">
+                                                    <div class="aui-widget__heading">Ella-Rose Henry</div>
+                                                    <div class="aui-widget__subheading">Web Developer</div>
+                                                </div>
+                                                <div class="aui-widget__right">
+                                                    <div class="aui-fs-2 text-muted">
+                                                        <small class="opacity-50 pe-1">$</small>
+                                                        <span>129</span>
+                                                        <small class="text-danger ps-2">
+                                                            <i data-lucide="chevron-down"></i>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="aui-widget p-0">
+                                            <div class="aui-widget__wrapper">
+                                                <div class="aui-widget__left me-3">
+                                                    <img width="42" class="rounded-circle" src="assets/images/avatars/2.jpg" alt="">
+                                                </div>
+                                                <div class="aui-widget__left">
+                                                    <div class="aui-widget__heading">Ruben Tillman</div>
+                                                    <div class="aui-widget__subheading">UI Designer</div>
+                                                </div>
+                                                <div class="aui-widget__right">
+                                                    <div class="aui-fs-2 text-muted">
+                                                        <small class="opacity-50 pe-1">$</small>
+                                                        <span>54</span>
+                                                        <small class="text-success ps-2">
+                                                            <i data-lucide="chevron-up"></i>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <div class="col-md-12 col-lg-6">
+        <div class="mb-3 card">
+            <div class="aui-card-tabs card-header">
+                <div class="aui-card-header-title">
+                    <i data-lucide="rocket" class="aui-card-icon"></i>
+                    Bandwidth Reports
+                </div>
+                <div class="ms-auto text-nowrap">
+                    <div class="nav">
+                        <a href="#" class="border-0 rounded-pill aui-btn-wide aui-btn-transition active btn btn-outline-alternate">Tab 1</a>
+                        <a href="#" class="ms-1 rounded-pill aui-btn-wide border-0 aui-btn-transition btn btn-outline-alternate">Tab 2</a>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="tab-eg-55">
+                    <div class="p-3">
+                        <div class="aui-chart aui-chart-lg">
+                            <canvas id="line-chart"></canvas>
+                        </div>
+                        <div class="text-center mt-5">
+                            <div class="mt-0 text-warning">
+                                <i data-lucide="arrow-left"></i>
+                                <span class="ps-1">175.5%</span>
+                                <span class="text-muted aui-opacity-80 ps-1">increased server resources</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="aui-widget">
+                                    <div class="aui-widget__outer">
+                                        <div class="aui-widget__wrapper">
+                                            <div class="aui-widget__left">
+                                                <div class="aui-widget__numbers aui-fs-3 text-muted">63%</div>
+                                            </div>
+                                            <div class="aui-widget__right">
+                                                <div class="text-muted aui-opacity-60">Generated Leads</div>
+                                            </div>
+                                        </div>
+                                        <div class="aui-widget__progress mt-1">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100" style="width: 63%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="aui-widget">
+                                    <div class="aui-widget__outer">
+                                        <div class="aui-widget__wrapper">
+                                            <div class="aui-widget__left">
+                                                <div class="aui-widget__numbers aui-fs-3 text-muted">32%</div>
+                                            </div>
+                                            <div class="aui-widget__right">
+                                                <div class="text-muted aui-opacity-60">Submitted Tickers</div>
+                                            </div>
+                                        </div>
+                                        <div class="aui-widget__progress mt-1">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" style="width: 32%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="aui-widget">
+                                    <div class="aui-widget__outer">
+                                        <div class="aui-widget__wrapper">
+                                            <div class="aui-widget__left">
+                                                <div class="aui-widget__numbers aui-fs-3 text-muted">71%</div>
+                                            </div>
+                                            <div class="aui-widget__right">
+                                                <div class="text-muted aui-opacity-60">Server Allocation</div>
+                                            </div>
+                                        </div>
+                                        <div class="aui-widget__progress mt-1">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" style="width: 71%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="aui-widget">
+                                    <div class="aui-widget__outer">
+                                        <div class="aui-widget__wrapper">
+                                            <div class="aui-widget__left">
+                                                <div class="aui-widget__numbers aui-fs-3 text-muted">41%</div>
+                                            </div>
+                                            <div class="aui-widget__right">
+                                                <div class="text-muted aui-opacity-60">Generated Leads</div>
+                                            </div>
+                                        </div>
+                                        <div class="aui-widget__progress mt-1">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="41" aria-valuemin="0" aria-valuemax="100" style="width: 41%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-xl-4">
+        <div class="card mb-3 aui-widget">
+            <div class="aui-widget__outer">
+                <div class="aui-widget__wrapper">
+                    <div class="aui-widget__left">
+                        <div class="aui-widget__heading">Total Orders</div>
+                        <div class="aui-widget__subheading">Last year expenses</div>
+                    </div>
+                    <div class="aui-widget__right">
+                        <div class="aui-widget__numbers text-success">1896</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="card mb-3 aui-widget">
+            <div class="aui-widget__outer">
+                <div class="aui-widget__wrapper">
+                    <div class="aui-widget__left">
+                        <div class="aui-widget__heading">Products Sold</div>
+                        <div class="aui-widget__subheading">Revenue streams</div>
+                    </div>
+                    <div class="aui-widget__right">
+                        <div class="aui-widget__numbers text-warning">$3M</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="card mb-3 aui-widget">
+            <div class="aui-widget__outer">
+                <div class="aui-widget__wrapper">
+                    <div class="aui-widget__left">
+                        <div class="aui-widget__heading">Followers</div>
+                        <div class="aui-widget__subheading">People Interested</div>
+                    </div>
+                    <div class="aui-widget__right">
+                        <div class="aui-widget__numbers text-danger">45,9%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
+        <div class="card mb-3 aui-widget">
+            <div class="aui-widget__outer">
+                <div class="aui-widget__wrapper">
+                    <div class="aui-widget__left">
+                        <div class="aui-widget__heading">Income</div>
+                        <div class="aui-widget__subheading">Expected totals</div>
+                    </div>
+                    <div class="aui-widget__right">
+                        <div class="aui-widget__numbers text-focus">$147</div>
+                    </div>
+                </div>
+                <div class="aui-widget__progress">
+                    <div class="progress">
+                        <div class="progress-bar bg-info" role="progressbar" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100" style="width: 54%;"></div>
+                    </div>
+                    <div class="aui-widget__progress-label">
+                        <div>Expenses</div>
+                        <div class="ms-auto">100%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="mb-3 card">
+            <div class="card-header">Active Users
+                <div class="ms-auto text-nowrap">
+                    <div role="group" class="btn-group-sm btn-group">
+                        <button class="active btn btn-focus">Last Week</button>
+                        <button class="btn btn-focus">All Month</button>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th>Name</th>
+                        <th class="text-center">City</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="text-center text-muted">#345</td>
+                        <td>
+                            <div class="aui-widget p-0">
+                                <div class="aui-widget__wrapper">
+                                    <div class="aui-widget__left me-3">
+                                        <div class="aui-widget__left">
+                                            <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="aui-widget__left aui-flex-2">
+                                        <div class="aui-widget__heading">John Doe</div>
+                                        <div class="aui-widget__subheading aui-opacity-70">Web Developer</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">Madrid</td>
+                        <td class="text-center">
+                            <div class="badge bg-warning">Pending</div>
+                        </td>
+                        <td class="text-center">
+                            <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center text-muted">#347</td>
+                        <td>
+                            <div class="aui-widget p-0">
+                                <div class="aui-widget__wrapper">
+                                    <div class="aui-widget__left me-3">
+                                        <div class="aui-widget__left">
+                                            <img width="40" class="rounded-circle" src="assets/images/avatars/3.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="aui-widget__left aui-flex-2">
+                                        <div class="aui-widget__heading">Ruben Tillman</div>
+                                        <div class="aui-widget__subheading aui-opacity-70">Etiam sit amet orci eget</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">Berlin</td>
+                        <td class="text-center">
+                            <div class="badge bg-success">Completed</div>
+                        </td>
+                        <td class="text-center">
+                            <button type="button" id="PopoverCustomT-2" class="btn btn-primary btn-sm">Details</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center text-muted">#321</td>
+                        <td>
+                            <div class="aui-widget p-0">
+                                <div class="aui-widget__wrapper">
+                                    <div class="aui-widget__left me-3">
+                                        <div class="aui-widget__left">
+                                            <img width="40" class="rounded-circle" src="assets/images/avatars/2.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="aui-widget__left aui-flex-2">
+                                        <div class="aui-widget__heading">Elliot Huber</div>
+                                        <div class="aui-widget__subheading aui-opacity-70">Lorem ipsum dolor sic</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">London</td>
+                        <td class="text-center">
+                            <div class="badge bg-danger">In Progress</div>
+                        </td>
+                        <td class="text-center">
+                            <button type="button" id="PopoverCustomT-3" class="btn btn-primary btn-sm">Details</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center text-muted">#55</td>
+                        <td>
+                            <div class="aui-widget p-0">
+                                <div class="aui-widget__wrapper">
+                                    <div class="aui-widget__left me-3">
+                                        <div class="aui-widget__left">
+                                            <img width="40" class="rounded-circle" src="assets/images/avatars/1.jpg" alt=""></div>
+                                    </div>
+                                    <div class="aui-widget__left aui-flex-2">
+                                        <div class="aui-widget__heading">Vinnie Wagstaff</div>
+                                        <div class="aui-widget__subheading aui-opacity-70">UI Designer</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">Amsterdam</td>
+                        <td class="text-center">
+                            <div class="badge bg-info">On Hold</div>
+                        </td>
+                        <td class="text-center">
+                            <button type="button" id="PopoverCustomT-4" class="btn btn-primary btn-sm">Details</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-block text-center card-footer">
+                <button class="me-2 aui-btn-icon aui-btn-icon-only btn btn-outline-danger"><i data-lucide="trash"></i></button>
+                <button class="aui-btn-wide btn btn-success">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-lg-3">
+        <div class="aui-card-shadow-danger mb-3 text-start card">
+            <div class="aui-widget">
+                <div class="aui-widget__outer">
+                    <div class="aui-widget__wrapper">
+                        <div class="aui-widget__left pe-2 aui-fs-1">
+                            <div class="aui-widget__numbers mt-0 aui-fs-3 text-danger">71%</div>
+                        </div>
+                        <div class="aui-widget__right w-100">
+                            <div class="progress">
+                                <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" style="width: 71%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aui-widget__left aui-fs-1">
+                        <div class="text-muted aui-opacity-60">Income Target</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="aui-card-shadow-success mb-3 text-start card">
+            <div class="aui-widget">
+                <div class="aui-widget__outer">
+                    <div class="aui-widget__wrapper">
+                        <div class="aui-widget__left pe-2 aui-fs-1">
+                            <div class="aui-widget__numbers mt-0 aui-fs-3 text-success">54%</div>
+                        </div>
+                        <div class="aui-widget__right w-100">
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100" style="width: 54%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aui-widget__left aui-fs-1">
+                        <div class="text-muted aui-opacity-60">Expenses Target</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="aui-card-shadow-warning mb-3 text-start card">
+            <div class="aui-widget">
+                <div class="aui-widget__outer">
+                    <div class="aui-widget__wrapper">
+                        <div class="aui-widget__left pe-2 aui-fs-1">
+                            <div class="aui-widget__numbers mt-0 aui-fs-3 text-warning">32%</div>
+                        </div>
+                        <div class="aui-widget__right w-100">
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" style="width: 32%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aui-widget__left aui-fs-1">
+                        <div class="text-muted aui-opacity-60">Spendings Target</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="aui-card-shadow-info mb-3 text-start card">
+            <div class="aui-widget">
+                <div class="aui-widget__outer">
+                    <div class="aui-widget__wrapper">
+                        <div class="aui-widget__left pe-2 aui-fs-1">
+                            <div class="aui-widget__numbers mt-0 aui-fs-3 text-info">89%</div>
+                        </div>
+                        <div class="aui-widget__right w-100">
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100" style="width: 89%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aui-widget__left aui-fs-1">
+                        <div class="text-muted aui-opacity-60">Totals Target</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+            <footer class="aui-footer">
+    <div class="aui-footer__inner">
+        <div class="aui-footer__left">
+            <ul class="nav">
+                <li class="nav-item"><a href="#" class="nav-link">Footer Link 1</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Footer Link 2</a></li>
+            </ul>
+        </div>
+        <div class="aui-footer__right">
+            <ul class="nav">
+                <li class="nav-item"><a href="#" class="nav-link">Footer Link 3</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><span class="badge bg-success me-1 ms-0"><small>NEW</small></span>Footer Link 4</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+        </main>
+    </div>
+    
+<button type="button" class="btn btn-warning aui-settings-toggle" data-bs-toggle="offcanvas" data-bs-target="#auiSettings" aria-controls="auiSettings" aria-label="Theme settings">
+    <i data-lucide="settings"></i>
+</button>
+<div class="offcanvas offcanvas-end aui-settings" tabindex="-1" id="auiSettings" aria-labelledby="auiSettingsLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="auiSettingsLabel">Theme Settings</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+        <h3 class="aui-settings__heading">Layout Options</h3>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item px-4">
+                <div class="form-check form-switch mb-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="aui-setting-header" data-aui-setting="header" value="fixed" data-aui-off="static">
+                    <label class="form-check-label ms-2" for="aui-setting-header">
+                        <span class="aui-widget__heading d-block">Fixed Header</span>
+                        <span class="aui-settings__hint">Makes the header top fixed, always visible!</span>
+                    </label>
+                </div>
+            </li>
+            <li class="list-group-item px-4">
+                <div class="form-check form-switch mb-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="aui-setting-sidebar" data-aui-setting="sidebar" value="fixed" data-aui-off="static">
+                    <label class="form-check-label ms-2" for="aui-setting-sidebar">
+                        <span class="aui-widget__heading d-block">Fixed Sidebar</span>
+                        <span class="aui-settings__hint">Makes the sidebar left fixed, always visible!</span>
+                    </label>
+                </div>
+            </li>
+            <li class="list-group-item px-4">
+                <div class="form-check form-switch mb-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="aui-setting-footer" data-aui-setting="footer" value="fixed" data-aui-off="static">
+                    <label class="form-check-label ms-2" for="aui-setting-footer">
+                        <span class="aui-widget__heading d-block">Fixed Footer</span>
+                        <span class="aui-settings__hint">Makes the app footer bottom fixed, always visible!</span>
+                    </label>
+                </div>
+            </li>
+        </ul>
+        <h3 class="aui-settings__heading">Appearance</h3>
+        <div class="aui-settings__group">
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" role="switch" id="aui-setting-theme" data-aui-setting="theme" value="dark" data-aui-off="light">
+                <label class="form-check-label ms-2" for="aui-setting-theme"><span class="aui-widget__heading">Dark Theme</span></label>
+            </div>
+            <div class="mb-2 aui-settings__hint">Page Section Tabs</div>
+            <div class="btn-group btn-group-sm" role="group" aria-label="Page section tabs">
+                <input type="radio" class="btn-check" name="aui-tabs" id="aui-tabs-shadow" value="shadow" data-aui-setting="tabs">
+                <label class="btn btn-outline-primary" for="aui-tabs-shadow">Shadow</label>
+                <input type="radio" class="btn-check" name="aui-tabs" id="aui-tabs-line" value="line" data-aui-setting="tabs">
+                <label class="btn btn-outline-primary" for="aui-tabs-line">Line</label>
+            </div>
+        </div>
+        <h3 class="aui-settings__heading">Header Options</h3>
+        <div class="aui-settings__group">
+            <div class="mb-2 aui-settings__hint">Choose Color Scheme</div>
+            <div class="aui-swatches" role="radiogroup" aria-label="Header color">
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-default" value="" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--default" for="aui-header-scheme-default" title="default"><span class="visually-hidden">default</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-primary" value="primary" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--primary" for="aui-header-scheme-primary" title="primary"><span class="visually-hidden">primary</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-secondary" value="secondary" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--secondary" for="aui-header-scheme-secondary" title="secondary"><span class="visually-hidden">secondary</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-success" value="success" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--success" for="aui-header-scheme-success" title="success"><span class="visually-hidden">success</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-info" value="info" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--info" for="aui-header-scheme-info" title="info"><span class="visually-hidden">info</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-warning" value="warning" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--warning" for="aui-header-scheme-warning" title="warning"><span class="visually-hidden">warning</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-danger" value="danger" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--danger" for="aui-header-scheme-danger" title="danger"><span class="visually-hidden">danger</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-light" value="light" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--light" for="aui-header-scheme-light" title="light"><span class="visually-hidden">light</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-dark" value="dark" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--dark" for="aui-header-scheme-dark" title="dark"><span class="visually-hidden">dark</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-focus" value="focus" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--focus" for="aui-header-scheme-focus" title="focus"><span class="visually-hidden">focus</span></label>
+                <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-alternate" value="alternate" data-aui-setting="header-scheme">
+                <label class="aui-swatch aui-swatch--alternate" for="aui-header-scheme-alternate" title="alternate"><span class="visually-hidden">alternate</span></label>
+            </div>
+        </div>
+        <h3 class="aui-settings__heading">Sidebar Options</h3>
+        <div class="aui-settings__group">
+            <div class="mb-2 aui-settings__hint">Choose Color Scheme</div>
+            <div class="aui-swatches" role="radiogroup" aria-label="Sidebar color">
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-default" value="" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--default" for="aui-sidebar-scheme-default" title="default"><span class="visually-hidden">default</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-primary" value="primary" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--primary" for="aui-sidebar-scheme-primary" title="primary"><span class="visually-hidden">primary</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-secondary" value="secondary" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--secondary" for="aui-sidebar-scheme-secondary" title="secondary"><span class="visually-hidden">secondary</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-success" value="success" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--success" for="aui-sidebar-scheme-success" title="success"><span class="visually-hidden">success</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-info" value="info" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--info" for="aui-sidebar-scheme-info" title="info"><span class="visually-hidden">info</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-warning" value="warning" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--warning" for="aui-sidebar-scheme-warning" title="warning"><span class="visually-hidden">warning</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-danger" value="danger" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--danger" for="aui-sidebar-scheme-danger" title="danger"><span class="visually-hidden">danger</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-light" value="light" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--light" for="aui-sidebar-scheme-light" title="light"><span class="visually-hidden">light</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-dark" value="dark" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--dark" for="aui-sidebar-scheme-dark" title="dark"><span class="visually-hidden">dark</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-focus" value="focus" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--focus" for="aui-sidebar-scheme-focus" title="focus"><span class="visually-hidden">focus</span></label>
+                <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-alternate" value="alternate" data-aui-setting="sidebar-scheme">
+                <label class="aui-swatch aui-swatch--alternate" for="aui-sidebar-scheme-alternate" title="alternate"><span class="visually-hidden">alternate</span></label>
+            </div>
+        </div>
+        <div class="aui-settings__group border-top">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-aui-reset>Restore Default</button>
+        </div>
+    </div>
+</div>
+
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+    <div class="toast" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
+        <div class="toast-header">
+            <i data-lucide="calendar" class="text-primary me-2"></i>
+            <strong class="me-auto">Example Toast</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">You don't have any new items in your calendar today!</div>
+    </div>
+</div>
+
 </body>
 </html>

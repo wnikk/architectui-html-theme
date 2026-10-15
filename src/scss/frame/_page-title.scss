@@ -1,0 +1,87 @@
+// Заголовок страницы: иконка, название, описание и кнопки действий
+@use "../config" as *;
+
+.aui-page-title {
+  position: relative;
+  margin: calc(var(--aui-gutter) * -1) calc(var(--aui-gutter) * -1) var(--aui-gutter);
+  padding: var(--aui-gutter);
+
+  + .aui-body-tabs {
+    margin-top: calc(var(--aui-gutter) * -1) !important;
+  }
+}
+
+.aui-page-title__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.aui-page-title__heading {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.aui-page-title__subheading {
+  padding: 3px 0 0;
+  font-size: var(--bs-body-font-size);
+  opacity: .6;
+}
+
+.aui-page-title__icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 0 var(--aui-gutter) 0 0;
+  background: var(--aui-surface);
+  border-radius: var(--bs-border-radius);
+  box-shadow: var(--aui-shadow);
+
+  svg.lucide,
+  i[data-lucide] {
+    width: 2rem;
+    height: 2rem;
+    vertical-align: 0;
+  }
+}
+
+.aui-page-title__actions {
+  margin-left: auto;
+}
+
+@include mobile {
+  .aui-page-title {
+    text-align: center;
+  }
+
+  .aui-page-title__wrapper,
+  .aui-page-title__heading {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .aui-page-title__icon {
+    display: none;
+  }
+
+  .aui-page-title__actions {
+    margin: .75rem auto 0;
+  }
+}
+
+@include phone {
+  .aui-page-title {
+    margin: -.75rem -.75rem .75rem;
+    padding: .75rem;
+
+    + .aui-body-tabs {
+      margin-top: -.75rem !important;
+    }
+  }
+}

@@ -1,168 +1,69 @@
-// Toastr
+// Страница уведомлений: конфигуратор Toast Bootstrap 5
+import { refresh } from "./architectui.js";
 
-import toastr from 'toastr';
+const form = document.getElementById("toastForm");
+const code = document.getElementById("toastCode");
 
-$(document).ready(() => {
+const value = (name) => form.querySelector(`[name="${name}"]:checked`).value;
 
-    $(function () {
-        var i = -1;
-        var toastCount = 0;
-        var $toastlast;
-        var getMessage = function () {
-            var msgs = ['My name is Inigo Montoya. You killed my father. Prepare to die!',
-                '<div><input class="input-small" value="textbox"/>&nbsp;<a href="http://johnpapa.net" target="_blank">This is a hyperlink</a></div><div><button type="button" id="okBtn" class="btn btn-primary">Close me</button><button type="button" id="surpriseBtn" class="btn" style="margin: 0 8px 0 8px">Surprise me</button></div>',
-                'Are you the six fingered man?',
-                'Inconceivable!',
-                'I do not think that means what you think it means.',
-                'Have fun storming the castle!'
-            ];
-            i++;
-            if (i === msgs.length) {
-                i = 0;
-            }
-            return msgs[i];
-        };
-        var getMessageWithClearButton = function (msg) {
-            msg = msg ? msg : 'Clear itself?';
-            msg += '<br /><br /><button type="button" class="btn clear">Yes</button>';
-            return msg;
-        };
-        $('#closeButton').click(function() {
-            if($(this).is(':checked')) {
-                $('#addBehaviorOnToastCloseClick').prop('disabled', false);
-            } else {
-                $('#addBehaviorOnToastCloseClick').prop('disabled', true);
-                $('#addBehaviorOnToastCloseClick').prop('checked', false);
-            }
-        });
-        $('#showtoast').click(function () {
-            var shortCutFunction = $("#toastTypeGroup input:radio:checked").val();
-            var msg = $('#message').val();
-            var title = $('#title').val() || '';
-            var $showDuration = $('#showDuration');
-            var $hideDuration = $('#hideDuration');
-            var $timeOut = $('#timeOut');
-            var $extendedTimeOut = $('#extendedTimeOut');
-            var $showEasing = $('#showEasing');
-            var $hideEasing = $('#hideEasing');
-            var $showMethod = $('#showMethod');
-            var $hideMethod = $('#hideMethod');
-            var toastIndex = toastCount++;
-            var addClear = $('#addClear').prop('checked');
-            toastr.options = {
-                closeButton: $('#closeButton').prop('checked'),
-                debug: $('#debugInfo').prop('checked'),
-                newestOnTop: $('#newestOnTop').prop('checked'),
-                progressBar: $('#progressBar').prop('checked'),
-                rtl: $('#rtl').prop('checked'),
-                positionClass: $('#positionGroup input:radio:checked').val() || 'toast-top-right',
-                preventDuplicates: $('#preventDuplicates').prop('checked'),
-                onclick: null
-            };
-            if ($('#addBehaviorOnToastClick').prop('checked')) {
-                toastr.options.onclick = function () {
-                    alert('You can perform some custom action after a toast goes away');
-                };
-            }
-            if ($('#addBehaviorOnToastCloseClick').prop('checked')) {
-                toastr.options.onCloseClick = function () {
-                    alert('You can perform some custom action when the close button is clicked');
-                };
-            }
-            if ($showDuration.val().length) {
-                toastr.options.showDuration = parseInt($showDuration.val());
-            }
-            if ($hideDuration.val().length) {
-                toastr.options.hideDuration = parseInt($hideDuration.val());
-            }
-            if ($timeOut.val().length) {
-                toastr.options.timeOut = addClear ? 0 : parseInt($timeOut.val());
-            }
-            if ($extendedTimeOut.val().length) {
-                toastr.options.extendedTimeOut = addClear ? 0 : parseInt($extendedTimeOut.val());
-            }
-            if ($showEasing.val().length) {
-                toastr.options.showEasing = $showEasing.val();
-            }
-            if ($hideEasing.val().length) {
-                toastr.options.hideEasing = $hideEasing.val();
-            }
-            if ($showMethod.val().length) {
-                toastr.options.showMethod = $showMethod.val();
-            }
-            if ($hideMethod.val().length) {
-                toastr.options.hideMethod = $hideMethod.val();
-            }
-            if (addClear) {
-                msg = getMessageWithClearButton(msg);
-                toastr.options.tapToDismiss = false;
-            }
-            if (!msg) {
-                msg = getMessage();
-            }
-            $('#toastrOptions').text('Command: toastr["'
-                + shortCutFunction
-                + '"]("'
-                + msg
-                + (title ? '", "' + title : '')
-                + '")\n\ntoastr.options = '
-                + JSON.stringify(toastr.options, null, 2)
-            );
-            var $toast = toastr[shortCutFunction](msg, title); // Wire up an event handler to a button in the toast, if it exists
-            $toastlast = $toast;
-            if(typeof $toast === 'undefined'){
-                return;
-            }
-            if ($toast.find('#okBtn').length) {
-                $toast.delegate('#okBtn', 'click', function () {
-                    alert('you clicked me. i was toast #' + toastIndex + '. goodbye!');
-                    $toast.remove();
-                });
-            }
-            if ($toast.find('#surpriseBtn').length) {
-                $toast.delegate('#surpriseBtn', 'click', function () {
-                    alert('Surprise! you clicked me. i was toast #' + toastIndex + '. You could perform an action here.');
-                });
-            }
-            if ($toast.find('.clear').length) {
-                $toast.delegate('.clear', 'click', function () {
-                    toastr.clear($toast, { force: true });
-                });
-            }
-        });
-        function getLastToast(){
-            return $toastlast;
-        }
-        $('#clearlasttoast').click(function () {
-            toastr.clear(getLastToast());
-        });
-        $('#cleartoasts').click(function () {
-            toastr.clear();
-        });
-    });
+function settings() {
+  return {
+    title: document.getElementById("toastTitle").value.trim(),
+    message: document.getElementById("toastMessage").value.trim() || "Toast message",
+    color: value("toastColor"),
+    position: value("toastPosition"),
+    close: document.getElementById("toastClose").checked,
+    autohide: document.getElementById("toastAutohide").checked,
+    delay: Number(document.getElementById("toastDelay").value) || 5000,
+  };
+}
 
+function escapeHtml(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
 
-    $('.show-toastr-example').click(function(){
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": true,
-            "progressBar": true,
-            "positionClass": "toast-bottom-center",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
-        toastr["info"]("You don't have any new items in your calendar today!", "Example Toastr");
-    });
+function markup(s) {
+  const close = s.close ? '\n    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>' : "";
+  const header = s.title
+    ? `\n  <div class="toast-header">\n    <i data-lucide="bell" class="text-${s.color} me-2"></i>\n    <strong class="me-auto">${escapeHtml(s.title)}</strong>${close}\n  </div>`
+    : "";
+  return `<div class="toast border-start border-4 border-${s.color}" role="status" aria-live="polite" aria-atomic="true" data-bs-autohide="${s.autohide}" data-bs-delay="${s.delay}">${header}\n  <div class="toast-body">${escapeHtml(s.message)}</div>\n</div>`;
+}
 
+function container(position) {
+  const selector = `.toast-container[data-position="${position}"]`;
+  let element = document.querySelector(selector);
+  if (!element) {
+    element = document.createElement("div");
+    element.className = `toast-container position-fixed p-3 ${position}`;
+    element.dataset.position = position;
+    document.body.append(element);
+  }
+  return element;
+}
 
+function preview() {
+  code.textContent = markup(settings());
+}
 
+function show() {
+  const s = settings();
+  const target = container(s.position);
+  target.insertAdjacentHTML("beforeend", markup(s));
+  const toast = target.lastElementChild;
+  toast.addEventListener("hidden.bs.toast", () => toast.remove());
+  refresh(toast);
+  window.bootstrap.Toast.getOrCreateInstance(toast).show();
+}
+
+form.addEventListener("input", preview);
+document.getElementById("toastShow").addEventListener("click", show);
+document.getElementById("toastClear").addEventListener("click", () => {
+  document.querySelectorAll(".toast-container[data-position] .toast").forEach((toast) => {
+    window.bootstrap.Toast.getOrCreateInstance(toast).hide();
+  });
 });
+
+preview();

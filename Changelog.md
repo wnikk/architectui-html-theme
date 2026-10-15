@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.0.0] - 2026-10-15
+
+A rewrite on top of CDN Bootstrap 5.3 with the same look. This release is not backward compatible with 4.x markup.
+
+### Breaking changes
+- **Theme classes use the `aui-` prefix.** `widget-content` is now `aui-widget`, `btn-shadow` is `aui-btn-shadow`, `tabs-animated` is `aui-tabs-animated` and so on. Bootstrap 4 leftovers (`data-toggle`, `custom-control`, `dropdown-menu-right`, `dropright`) are replaced with Bootstrap 5 equivalents.
+- **New frame markup.** The sidebar is a responsive Bootstrap Offcanvas, submenus are Bootstrap Collapse, layout modes are attributes on `<html>` instead of classes on `.app-container`.
+- **Icons are Lucide** (`<i data-lucide="name">`). FontAwesome, Linearicons, Pe7 and Material Design Icons are removed.
+- **Release files changed.** `dist/` now contains `architectui.css`, `architectui.js`, the demo pages and one script per page that needs it. `app.css`, `main.js`, `demo.js`, `toastr.js`, `scrollbar.js`, `fullcalendar.js`, `maps.js` and `chart_js.js` are gone.
+- **Logo files.** `logo.png` is the logo for light backgrounds, `logo-on-dark.png` for dark ones (was `logo-inverse.png` and `logo.png`).
+
+### Added
+- Dark theme through `data-bs-theme="dark"`.
+- Settings panel: fixed header, sidebar and footer, dark theme, page tab style, header and sidebar color schemes. Choices persist in `localStorage`.
+- All theme values are CSS variables: recolor the theme without rebuilding.
+- Lucide icon catalog with search and copy on click.
+- Maps page on Leaflet and OpenStreetMap: world map, multiple markers, popups and controls. No API key needed.
+- Toast configurator built on Bootstrap Toast.
+- Logo of any shape fits the header without changes.
+
+### Changed
+- Build: Eleventy 3 for pages and the Sass CLI for styles instead of webpack, Babel and Handlebars. Two dev dependencies in total.
+- Bootstrap, Lucide, Chart.js, FullCalendar and Leaflet load from jsDelivr. All URLs live in `src/_data/cdn.json`.
+- Charts, calendar and notifications load only on their own pages.
+- The theme stylesheet shrank from 142 KB to about 72 KB; the theme script is under 150 lines.
+
+### Removed
+- jQuery, metisMenu, perfect-scrollbar, toastr, animate-sass, hamburgers, Google Maps and Mapbox.
+- The vendored Bootstrap 5.3.7 SCSS copy.
+
+### Fixed
+- Empty "Animate.css", "Solid Colors" and "Gradient Colors" sections on the Utilities page.
+- Empty pie and doughnut charts, collapsed dashboard line chart.
+- Invisible page-title and card-header icons that used FontAwesome 4 names or missing gradients.
+- Dropleft and dropright menus that opened downwards.
+- Logo path that only worked when the site lived under `/dist/`.
+
 ## [4.3.0] - 2025-09-17
 
 ### Major Updates

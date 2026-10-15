@@ -1,0 +1,210 @@
+// Шапка: логотип с кнопками слева, поиск и меню, блок пользователя справа
+@use "sass:map";
+@use "../config" as *;
+
+.aui-header {
+  grid-area: header;
+  position: relative;
+  z-index: 1030;
+  display: flex;
+  align-items: center;
+  height: var(--aui-header-height);
+  background: var(--aui-surface);
+  box-shadow: var(--aui-shadow);
+  border-bottom-left-radius: 10px;
+  transition: background .2s;
+}
+
+[data-aui-header="fixed"] .aui-header {
+  position: sticky;
+  top: 0;
+}
+
+.aui-header__brand {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: .75rem;
+  width: var(--aui-sidebar-col);
+  height: 100%;
+  padding: 0 var(--aui-gutter);
+  transition: width .3s ease;
+}
+
+.aui-header__collapse {
+  display: none;
+  margin-left: auto;
+}
+
+.aui-header__mobile-toggle,
+.aui-header__more {
+  display: none;
+}
+
+@include wide {
+  .aui-header__collapse {
+    display: inline-flex;
+  }
+
+  [data-aui-sidebar-collapsed] {
+    .aui-header__brand .aui-logo {
+      display: none;
+    }
+
+    .aui-header__collapse {
+      margin-left: 0;
+    }
+  }
+}
+
+@include rail-range {
+  .aui-header__brand {
+    width: auto;
+  }
+}
+
+.aui-header__content {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+  height: 100%;
+  padding: 0 var(--aui-gutter);
+}
+
+.aui-header__left,
+.aui-header__right {
+  display: flex;
+  align-items: center;
+}
+
+.aui-header__right {
+  margin-left: auto;
+}
+
+@include desktop {
+  .aui-header__content.collapse:not(.show) {
+    display: flex;
+  }
+}
+
+@include mobile {
+  .aui-header__brand {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .aui-header__mobile-toggle,
+  .aui-header__more {
+    display: inline-flex;
+  }
+
+  .aui-header__content {
+    position: absolute;
+    top: calc(var(--aui-header-height) + 20px);
+    left: 5%;
+    width: 90%;
+    height: var(--aui-header-height);
+    padding: 0 10px;
+    background: var(--aui-surface);
+    border-radius: 50px;
+    box-shadow: var(--aui-shadow);
+
+    &.collapsing {
+      height: 0;
+      overflow: hidden;
+    }
+  }
+
+  .aui-header-menu {
+    display: none;
+  }
+}
+
+// Меню шапки
+.aui-header-menu {
+  .nav-link {
+    color: var(--aui-header-link-color);
+
+    .aui-nav-icon {
+      color: var(--aui-header-link-icon);
+      opacity: 1;
+    }
+
+    &:hover {
+      color: var(--aui-header-link-hover);
+    }
+  }
+}
+
+// Блок пользователя
+.aui-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.aui-user__toggle {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+}
+
+.aui-user__name {
+  font-weight: 700;
+  opacity: .8;
+  white-space: nowrap;
+}
+
+.aui-user__role {
+  font-size: .8rem;
+  opacity: .5;
+  white-space: nowrap;
+}
+
+@media (max-width: #{$aui-bp-user - .02px}) {
+  .aui-user__info,
+  .aui-user__action {
+    display: none;
+  }
+}
+
+// Цветовые схемы шапки: data-aui-header-scheme="<цвет>" на <html>
+@each $name, $tone in $aui-schemes {
+  [data-aui-header-scheme="#{$name}"] .aui-header {
+    background-color: var(--bs-#{$name});
+    @if map.has-key($aui-gradients, $name) {
+      background-image: map.get($aui-gradients, $name);
+    }
+
+    @if $tone == light {
+      --aui-header-link-color: rgba(255, 255, 255, .7);
+      --aui-header-link-icon: rgba(255, 255, 255, .8);
+      --aui-header-link-hover: #fff;
+      --aui-burger-color: rgba(255, 255, 255, .8);
+      color: rgba(255, 255, 255, .8);
+
+      .aui-burger {
+        --aui-burger-color: rgba(255, 255, 255, .8);
+      }
+
+      .aui-search {
+        --aui-search-bg: rgba(255, 255, 255, .1);
+        --aui-search-color: rgba(255, 255, 255, .8);
+      }
+
+      .aui-logo__img--default {
+        display: none;
+      }
+
+      .aui-logo__img--on-dark {
+        display: block;
+      }
+    } @else {
+      color: rgba(0, 0, 0, .8);
+      --aui-header-link-color: rgba(0, 0, 0, .6);
+      --aui-header-link-icon: rgba(0, 0, 0, .4);
+      --aui-header-link-hover: #000;
+    }
+  }
+}

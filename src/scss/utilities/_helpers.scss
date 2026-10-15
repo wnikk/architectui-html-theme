@@ -1,0 +1,31 @@
+// Вспомогательные классы темы, которых нет в Bootstrap
+
+.aui-fs-1 { font-size: .95rem !important; }
+.aui-fs-lg { font-size: 1.1rem !important; }
+.aui-fs-2 { font-size: 1.3rem !important; }
+.aui-fs-3 { font-size: 1.6rem !important; }
+.aui-fs-4 { font-size: 2rem !important; }
+
+.aui-opacity-60 { opacity: .6 !important; }
+.aui-opacity-70 { opacity: .7 !important; }
+.aui-opacity-80 { opacity: .8 !important; }
+.aui-opacity-90 { opacity: .9 !important; }
+
+.aui-flex-2 {
+  flex: 2;
+}
+
+.aui-divider {
+  height: 1px;
+  margin: 1rem 0;
+  overflow: hidden;
+  border: 0;
+  background: var(--bs-secondary-bg);
+  opacity: 1;
+}
+
+// Блок кода с переносом длинных строк
+.aui-code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}

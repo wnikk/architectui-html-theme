@@ -9,22 +9,13 @@
     "imports": {
       "chart.js": "https://cdn.jsdelivr.net/npm/chart.js@4.5.1/+esm",
       "chart.js/auto": "https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm",
-      "@kurkle/color": "https://cdn.jsdelivr.net/npm/@kurkle/color@0.4.0/+esm",
-      "@fullcalendar/core": "https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.19/+esm",
-      "@fullcalendar/daygrid": "https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.19/+esm",
-      "@fullcalendar/timegrid": "https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.19/+esm",
-      "@fullcalendar/list": "https://cdn.jsdelivr.net/npm/@fullcalendar/list@6.1.19/+esm",
-      "@fullcalendar/interaction": "https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.19/+esm",
       "leaflet": "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/+esm"
     }
   },
-  "legacy": {
-    "_comment": "Переходный слой эпика 01. FontAwesome уходит на шаге 5, остальное на шаге 3.",
-    "fontawesome": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css",
-    "jquery": "https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js",
-    "perfectScrollbarCss": "https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/css/perfect-scrollbar.min.css",
-    "perfectScrollbarJs": "https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js",
-    "metismenuCss": "https://cdn.jsdelivr.net/npm/metismenu@3.1.0/dist/metisMenu.min.css",
-    "metismenuJs": "https://cdn.jsdelivr.net/npm/metismenu@3.1.0/dist/metisMenu.min.js"
+  "styles": {
+    "leaflet": "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"
+  },
+  "scripts": {
+    "fullcalendar": "https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js"
   }
 }

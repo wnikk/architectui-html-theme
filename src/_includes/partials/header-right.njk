@@ -1,35 +1,21 @@
-<div class="header-btn-lg pe-0">
-    <div class="widget-content p-0">
-        <div class="widget-content-wrapper">
-            <div class="widget-content-left">
-                <div class="btn-group">
-                    <a data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                        <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">
-                        <i class="fa fa-angle-down ms-2 opacity-8"></i>
-                    </a>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                        <button type="button" tabindex="0" class="dropdown-item">User Account</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Settings</button>
-                        <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Actions</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Dividers</button>
-                    </div>
-                </div>
-            </div>
-            <div class="widget-content-left  ms-3 header-user-info">
-                <div class="widget-heading">
-                    Alina Mclourd
-                </div>
-                <div class="widget-subheading">
-                    VP People Manager
-                </div>
-            </div>
-            <div class="widget-content-right header-user-info ms-3">
-                <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-                    <i class="fa text-white fa-calendar pe-1 ps-1"></i>
-                </button>
-            </div>
+<div class="aui-user">
+    <div class="dropdown">
+        <a class="aui-user__toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+            <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
+            <i data-lucide="chevron-down" class="ms-2 aui-opacity-80"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end">
+            <button type="button" class="dropdown-item">User Account</button>
+            <button type="button" class="dropdown-item">Settings</button>
+            <h6 class="dropdown-header">Header</h6>
+            <button type="button" class="dropdown-item">Actions</button>
+            <div class="dropdown-divider"></div>
+            <button type="button" class="dropdown-item">Dividers</button>
         </div>
     </div>
+    <div class="aui-user__info">
+        <div class="aui-user__name">Alina Mclourd</div>
+        <div class="aui-user__role">VP People Manager</div>
+    </div>
+    <button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 aui-user__action" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
 </div>

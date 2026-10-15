@@ -1,8 +1,6 @@
-.npm
-*.log
-npm-debug.log*
-node_modules
 .idea
 .DS_Store
-CLAUDE.md
-JQUERY_MIGRATION_PLAN.md
+.npm
+*.log
+/node_modules
+/_*

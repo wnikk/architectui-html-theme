@@ -1,49 +1,24 @@
-<div class="page-title-actions">
-    <button type="button" data-bs-toggle="tooltip" title="Example Tooltip" data-bs-placement="bottom" class="btn-shadow me-3 btn btn-dark">
-        <i class="fa fa-star"></i>
+<div class="aui-page-title__actions">
+    <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
+        <i data-lucide="star"></i>
     </button>
     <div class="d-inline-block dropdown">
-        <button type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
-            <span class="btn-icon-wrapper pe-2 opacity-7">
-                <i class="fa fa-business-time fa-w-20"></i>
-            </span>
-            Buttons
+        <button type="button" class="btn btn-info aui-btn-shadow aui-btn-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i data-lucide="briefcase-business" class="aui-opacity-70"></i>Buttons
         </button>
-        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+        <div class="dropdown-menu dropdown-menu-end">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
-                        <i class="nav-link-icon lnr-inbox"></i>
-                        <span>
-                            Inbox
-                        </span>
-                        <div class="ms-auto badge rounded-pill bg-secondary">86</div>
-                    </a>
+                    <a href="#" class="nav-link"><i data-lucide="inbox" class="aui-nav-icon"></i><span>Inbox</span><span class="ms-auto badge rounded-pill bg-secondary">86</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
-                        <i class="nav-link-icon lnr-book"></i>
-                        <span>
-                            Book
-                        </span>
-                        <div class="ms-auto badge rounded-pill bg-danger">5</div>
-                    </a>
+                    <a href="#" class="nav-link"><i data-lucide="book-open" class="aui-nav-icon"></i><span>Book</span><span class="ms-auto badge rounded-pill bg-danger">5</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
-                        <i class="nav-link-icon lnr-picture"></i>
-                        <span>
-                            Picture
-                        </span>
-                    </a>
+                    <a href="#" class="nav-link"><i data-lucide="image" class="aui-nav-icon"></i><span>Picture</span></a>
                 </li>
                 <li class="nav-item">
-                    <a disabled href="javascript:void(0);" class="nav-link disabled">
-                        <i class="nav-link-icon lnr-file-empty"></i>
-                        <span>
-                            File Disabled
-                        </span>
-                    </a>
+                    <a href="#" class="nav-link disabled" aria-disabled="true"><i data-lucide="file" class="aui-nav-icon"></i><span>File Disabled</span></a>
                 </li>
             </ul>
         </div>

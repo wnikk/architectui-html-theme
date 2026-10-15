@@ -1,88 +1,41 @@
-/**
- * @description Fullcalendar Plugin Init
- * @see https://fullcalendar.io/docs
- */
+// Страница календаря: глобальный пакет FullCalendar 6 с CDN (подключён в <head> через front matter).
+// События строятся от текущего месяца.
+const element = document.getElementById("calendar");
 
-import { Calendar } from '@fullcalendar/core';
-import interactionPlugin from '@fullcalendar/interaction';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import listPlugin from '@fullcalendar/list';
+if (element && window.FullCalendar) {
+  const today = new Date();
+  const day = (offset, time = "") => {
+    const date = new Date(today.getFullYear(), today.getMonth(), offset);
+    const iso = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+    return time ? `${iso}T${time}` : iso;
+  };
+  const current = today.getDate();
+  const color = (name) => getComputedStyle(document.documentElement).getPropertyValue(`--bs-${name}`).trim();
 
-document.addEventListener('DOMContentLoaded', function() {
-  const calendarEl = document.getElementById('calendar');
+  const calendar = new window.FullCalendar.Calendar(element, {
+    headerToolbar: {
+      left: "prev,next today",
+      center: "title",
+      right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+    },
+    navLinks: true,
+    editable: true,
+    dayMaxEvents: true,
+    events: [
+      { title: "All Day Event", start: day(1) },
+      { title: "Long Event", start: day(7), end: day(10), color: color("success") },
+      { groupId: "repeat", title: "Repeating Event", start: day(9, "16:00:00") },
+      { groupId: "repeat", title: "Repeating Event", start: day(16, "16:00:00") },
+      { title: "Conference", start: day(current - 1), end: day(current + 1), color: color("info") },
+      { title: "Meeting", start: day(current, "10:30:00"), end: day(current, "12:30:00"), color: color("focus") },
+      { title: "Lunch", start: day(current, "12:00:00") },
+      { title: "Meeting", start: day(current, "14:30:00"), color: color("focus") },
+      { title: "Happy Hour", start: day(current, "17:30:00"), color: color("warning") },
+      { title: "Dinner", start: day(current, "20:00:00") },
+      { title: "Birthday Party", start: day(current + 1, "07:00:00"), color: color("danger") },
+      { title: "Click for Bootstrap", url: "https://getbootstrap.com/", start: day(28), color: color("alternate") },
+    ],
+  });
 
- if (calendarEl != undefined) {
-   const calendar = new Calendar(calendarEl, {
-     themeSystem: 'bootstrap5',
-     plugins: [ interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin ],
-     headerToolbar: {
-       left: 'prev,next today',
-       center: 'title',
-       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-     },
-     initialDate: '2023-01-12',
-     navLinks: true, // can click day/week names to navigate views
-     editable: true,
-     dayMaxEvents: true, // allow "more" link when too many events
-     events: [
-       {
-         title: 'All Day Event',
-         start: '2023-01-01',
-       },
-       {
-         title: 'Long Event',
-         start: '2023-01-07',
-         end: '2023-01-10'
-       },
-       {
-         groupId: 999,
-         title: 'Repeating Event',
-         start: '2023-01-09T16:00:00'
-       },
-       {
-         groupId: 999,
-         title: 'Repeating Event',
-         start: '2023-01-16T16:00:00'
-       },
-       {
-         title: 'Conference',
-         start: '2023-01-11',
-         end: '2023-01-13'
-       },
-       {
-         title: 'Meeting',
-         start: '2023-01-12T10:30:00',
-         end: '2023-01-12T12:30:00'
-       },
-       {
-         title: 'Lunch',
-         start: '2023-01-12T12:00:00'
-       },
-       {
-         title: 'Meeting',
-         start: '2023-01-12T14:30:00'
-       },
-       {
-         title: 'Happy Hour',
-         start: '2023-01-12T17:30:00'
-       },
-       {
-         title: 'Dinner',
-         start: '2023-01-12T20:00:00'
-       },
-       {
-         title: 'Birthday Party',
-         start: '2023-01-13T07:00:00'
-       },
-       {
-         title: 'Click for Google',
-         url: 'http://google.com/',
-         start: '2023-01-28'
-       }
-     ]
-   });
-
-   calendar.render();
- }
-});
+  calendar.render();
+}

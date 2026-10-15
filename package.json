@@ -1,7 +1,7 @@
 {
   "name": "architectui-html-free",
-  "version": "4.3.0",
-  "description": "ArchitectUI - Free Bootstrap 5 Admin Dashboard Template",
+  "version": "5.0.0",
+  "description": "ArchitectUI - Bootstrap 5 admin dashboard theme: a CSS and ES module layer on top of CDN Bootstrap, Lucide icons",
   "author": "DashboardPack.com",
   "homepage": "https://dashboardpack.com",
   "private": false,
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DashboardPack/architectui-html-theme-free"
+    "url": "git+https://github.com/wnikk/architectui-html-theme.git"
   },
   "engines": {
     "node": ">=22"
@@ -25,5 +25,6 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
     "sass": "^1.105.1"
-  }
+  },
+  "license": "MIT"
 }

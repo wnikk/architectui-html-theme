@@ -1,0 +1,57 @@
+// Сетка каркаса: шапка сверху, меню слева, контент справа.
+// Режимы задаются атрибутами на <html>: data-aui-header, data-aui-sidebar, data-aui-footer,
+// data-aui-sidebar-collapsed, data-aui-tabs, data-aui-header-scheme, data-aui-sidebar-scheme.
+@use "../config" as *;
+
+.aui-app {
+  --aui-sidebar-col: var(--aui-sidebar-width);
+  --aui-header-offset: 0px;
+  display: grid;
+  grid-template-columns: var(--aui-sidebar-col) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "header header"
+    "sidebar main";
+  min-height: 100vh;
+  transition: grid-template-columns .3s ease;
+}
+
+[data-aui-header="fixed"] .aui-app {
+  --aui-header-offset: var(--aui-header-height);
+}
+
+@include rail-range {
+  .aui-app {
+    --aui-sidebar-col: var(--aui-sidebar-collapsed-width);
+  }
+}
+
+@include wide {
+  [data-aui-sidebar-collapsed] .aui-app {
+    --aui-sidebar-col: var(--aui-sidebar-collapsed-width);
+  }
+}
+
+@include mobile {
+  .aui-app {
+    --aui-sidebar-col: 0px;
+  }
+}
+
+.aui-main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.aui-main__inner {
+  flex: 1;
+  padding: var(--aui-gutter) var(--aui-gutter) 0;
+}
+
+@include phone {
+  .aui-app {
+    --aui-gutter: .9375rem;
+  }
+}

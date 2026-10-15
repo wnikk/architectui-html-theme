@@ -3,19 +3,22 @@
 <title>{{ title }} - {{ description }}</title>
 <meta name="description" content="{{ description }}">
 <link rel="icon" href="favicon.ico">
+{# Единственный встроенный скрипт: восстанавливает сохранённые настройки темы до отрисовки, чтобы не было мигания #}
+<script>try{var s=JSON.parse(localStorage.getItem("architectui"))||{},d=document.documentElement;for(var k in s)d.setAttribute(k=="theme"?"data-bs-theme":"data-aui-"+k,s[k])}catch(e){}</script>
 
 <link rel="stylesheet" href="{{ cdn.bootstrap.css }}" crossorigin="anonymous">
-{# LEGACY, эпик 01: FontAwesome уходит на шаге 5, perfect-scrollbar и metisMenu на шаге 3 #}
-<link rel="stylesheet" href="{{ cdn.legacy.fontawesome }}" crossorigin="anonymous" referrerpolicy="no-referrer">
-<link rel="stylesheet" href="{{ cdn.legacy.perfectScrollbarCss }}" crossorigin="anonymous">
-<link rel="stylesheet" href="{{ cdn.legacy.metismenuCss }}" crossorigin="anonymous">
+{%- for name in styles %}
+<link rel="stylesheet" href="{{ cdn.styles[name] }}" crossorigin="anonymous">
+{%- endfor %}
 <link rel="stylesheet" href="architectui.css">
 
 <script type="importmap">{{ cdn.importmap | dump | safe }}</script>
 <script defer src="{{ cdn.bootstrap.js }}" crossorigin="anonymous"></script>
-{# LEGACY, эпик 01: jQuery, perfect-scrollbar, metisMenu уходят на шаге 3 #}
-<script defer src="{{ cdn.legacy.jquery }}" crossorigin="anonymous"></script>
-<script defer src="{{ cdn.legacy.perfectScrollbarJs }}" crossorigin="anonymous"></script>
-<script defer src="{{ cdn.legacy.metismenuJs }}" crossorigin="anonymous"></script>
 <script defer src="{{ cdn.lucide }}" crossorigin="anonymous"></script>
-<script defer src="architectui.js"></script>
+{%- for name in scripts %}
+<script defer src="{{ cdn.scripts[name] }}" crossorigin="anonymous"></script>
+{%- endfor %}
+<script type="module" src="architectui.js"></script>
+{%- if module %}
+<script type="module" src="{{ module }}"></script>
+{%- endif %}

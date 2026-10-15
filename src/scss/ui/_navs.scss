@@ -1,0 +1,198 @@
+// Навигация и вкладки
+@use "../config" as *;
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  transition: background-color .3s ease, color .3s ease;
+  cursor: pointer;
+}
+
+.nav-item .nav-link {
+  font-weight: 400;
+}
+
+.nav-tabs,
+.nav-pills {
+  margin-bottom: 1rem;
+}
+
+.nav-tabs .nav-link {
+  &:hover,
+  &.active {
+    color: var(--bs-primary);
+  }
+}
+
+.nav-pills {
+  --bs-nav-pills-link-active-bg: var(--bs-primary);
+  --bs-nav-pills-link-active-color: #fff;
+
+  .nav-link:not(.active):hover {
+    color: var(--bs-gray-700);
+  }
+
+  .nav-link.active .aui-nav-icon {
+    color: #fff;
+    opacity: .8;
+  }
+}
+
+.nav .badge {
+  margin-left: 8px;
+}
+
+// Иконка в пункте навигации
+.aui-nav-icon {
+  width: 1rem;
+  height: 1rem;
+  margin: 0 7px 0 -3px;
+  color: var(--bs-primary);
+  opacity: .45;
+}
+
+.nav-link:hover .aui-nav-icon {
+  color: var(--bs-primary);
+  opacity: .9;
+}
+
+.nav-link.disabled .aui-nav-icon {
+  opacity: .3;
+}
+
+.aui-nav-header {
+  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+  color: var(--bs-gray-600);
+  font-size: .7333rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.aui-nav-btn {
+  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+}
+
+.aui-nav-divider {
+  height: 1px;
+  margin: var(--bs-nav-link-padding-y) 0;
+  overflow: hidden;
+  background: var(--bs-border-color);
+}
+
+// Анимированные вкладки: полоса под активной вкладкой
+.aui-tabs-animated {
+  .nav-item {
+    margin: 0 .75rem 0 0;
+  }
+
+  .nav-link {
+    position: relative;
+    margin: 0 .75rem 0 0;
+    padding: 1rem;
+    color: var(--bs-body-color);
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 4px;
+      border-radius: var(--bs-border-radius);
+      background: var(--bs-primary);
+      opacity: 1;
+      transform: scale(0);
+      transition: all .2s;
+    }
+
+    &.active,
+    &:hover {
+      color: var(--bs-primary);
+
+      &::before {
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+// Вкладки-таблетки с тенью
+@mixin tabs-shadow {
+  .nav-link {
+    span {
+      position: relative;
+      z-index: 5;
+    }
+
+    &::before {
+      z-index: 4;
+      bottom: auto;
+      border-radius: 100%;
+      box-shadow: 0 16px 26px -10px rgba(var(--bs-primary-rgb), .56), 0 4px 25px 0 rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(var(--bs-primary-rgb), .2);
+      opacity: .5;
+    }
+
+    &.active,
+    &:hover {
+      color: #fff;
+
+      &::before {
+        border-radius: var(--bs-border-radius);
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.aui-tabs-shadow {
+  @include tabs-shadow;
+
+  .nav-link {
+    margin-bottom: .75rem;
+    padding: .5rem .75rem;
+
+    span {
+      display: inline-block;
+      width: 100%;
+    }
+
+    &::before {
+      top: 0;
+      height: 100%;
+    }
+  }
+
+  .nav-item:last-child .nav-link {
+    margin-right: 0;
+  }
+}
+
+// Вкладки страницы под заголовком. Вид задаёт data-aui-tabs на <html>: shadow или line.
+[data-aui-tabs="shadow"] .aui-body-tabs {
+  padding: .75rem 0;
+  @include tabs-shadow;
+
+  .nav-link::before {
+    top: 15%;
+    height: 70%;
+  }
+}
+
+[data-aui-tabs="line"] .aui-body-tabs {
+  margin: 0 calc(var(--aui-gutter) * -1) var(--aui-gutter);
+  padding: 0 var(--aui-gutter);
+  border-bottom: 1px solid var(--bs-border-color);
+}
+
+@include phone {
+  .aui-body-tabs {
+    display: block;
+    padding: 0 .75rem;
+
+    .nav-link {
+      margin: 0;
+    }
+  }
+}

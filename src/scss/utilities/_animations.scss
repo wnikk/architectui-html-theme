@@ -1,0 +1,68 @@
+// Анимации темы. Классы aui-animate-* можно ставить на любой элемент.
+
+@keyframes aui-drop-in {
+  from {
+    margin-top: -50px;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  to {
+    margin-top: 0;
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes aui-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes aui-fade-in {
+  from { opacity: 0; transform: translate3d(0, var(--aui-animate-distance, 10px), 0); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes aui-pulse {
+  0% { transform: scale(1); }
+  16.5% { transform: scale(1.2); }
+  33% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes aui-flip {
+  from { transform: perspective(400px) rotate3d(0, 1, 0, -360deg); animation-timing-function: ease-out; }
+  40% { transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg); animation-timing-function: ease-out; }
+  50% { transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg); animation-timing-function: ease-in; }
+  80% { transform: perspective(400px) scale3d(.95, .95, .95); animation-timing-function: ease-in; }
+  to { transform: perspective(400px); animation-timing-function: ease-in; }
+}
+
+@keyframes aui-light-speed-in {
+  from { opacity: 0; transform: translate3d(100%, 0, 0) skewX(-30deg); }
+  60% { opacity: 1; transform: skewX(20deg); }
+  80% { transform: skewX(-5deg); }
+  to { transform: none; }
+}
+
+.aui-animate-fade-in { animation: aui-fade-in .4s both; }
+.aui-animate-pulse { animation: aui-pulse 2s ease-out infinite; }
+.aui-animate-flip { animation: aui-flip 1s both; backface-visibility: visible; }
+.aui-animate-light-speed-in { animation: aui-light-speed-in 1s ease-out both; }
+.aui-animate-spin { animation: aui-spin 2s linear infinite; }
+
+// Появление содержимого вкладок
+.tab-pane.active {
+  animation: aui-fade-in .2s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="aui-animate-"],
+  .tab-pane.active,
+  .dropdown-menu.show,
+  .aui-settings-toggle svg.lucide {
+    animation: none !important;
+  }
+}

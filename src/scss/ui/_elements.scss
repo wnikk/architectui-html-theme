@@ -1,0 +1,167 @@
+// Значки, формы, списки, модальные окна, пагинация, прогресс, аккордеон, уведомления
+
+.badge {
+  min-width: 19px;
+  padding: 5px 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.form-control,
+.form-select {
+  transition: all .2s;
+
+  &:focus {
+    border-color: color-mix(in srgb, var(--bs-primary), #fff 25%);
+    box-shadow: 0 0 0 .25rem rgba(var(--bs-primary-rgb), .25);
+  }
+}
+
+.form-check-input {
+  &:checked {
+    border-color: var(--bs-primary);
+    background-color: var(--bs-primary);
+  }
+
+  &:focus {
+    border-color: color-mix(in srgb, var(--bs-primary), #fff 25%);
+    box-shadow: 0 0 0 .25rem rgba(var(--bs-primary-rgb), .25);
+  }
+}
+
+.form-range::-webkit-slider-thumb {
+  background-color: var(--bs-primary);
+}
+
+.form-range::-moz-range-thumb {
+  background-color: var(--bs-primary);
+}
+
+.list-group {
+  --bs-list-group-bg: var(--aui-surface);
+  --bs-list-group-active-bg: var(--bs-primary);
+  --bs-list-group-active-border-color: var(--bs-primary);
+}
+
+.list-group-item {
+  border: 1px solid rgba(var(--bs-emphasis-color-rgb), .125);
+}
+
+.aui-list-borderless .list-group-item {
+  padding: .6667rem 0;
+  border: 0;
+}
+
+.aui-list-borderless.aui-scroll .list-group-item {
+  padding-right: 1.5rem;
+}
+
+.list-group-flush + .card-footer {
+  border-top: 0;
+}
+
+.modal {
+  --bs-modal-bg: var(--aui-surface);
+}
+
+.modal-header,
+.modal-footer {
+  background: var(--aui-heading-bg);
+}
+
+.modal-dialog {
+  border-radius: var(--bs-border-radius);
+  box-shadow: var(--aui-shadow-lg);
+}
+
+.pagination {
+  --bs-pagination-active-bg: var(--bs-primary);
+  --bs-pagination-active-border-color: var(--bs-primary);
+  --bs-pagination-focus-box-shadow: none;
+}
+
+.progress,
+.progress-stacked {
+  --bs-progress-bar-bg: var(--bs-primary);
+}
+
+.accordion {
+  --bs-accordion-bg: var(--aui-surface);
+  --bs-accordion-btn-focus-box-shadow: none;
+  --bs-accordion-active-bg: var(--aui-hover-bg);
+  --bs-accordion-active-color: var(--bs-primary);
+}
+
+.toast {
+  --bs-toast-bg: rgba(var(--bs-body-bg-rgb), .95);
+  box-shadow: var(--aui-shadow-soft);
+}
+
+.alert-dismissible .btn-close {
+  top: 0;
+  right: 5px;
+  padding: 5px;
+}
+
+// Прокручиваемые области: нативная прокрутка с тонкой полосой
+.aui-scroll {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, .2) transparent;
+}
+
+[data-bs-theme="dark"] .aui-scroll {
+  scrollbar-color: rgba(255, 255, 255, .2) transparent;
+}
+
+.aui-scroll-xs { height: 150px; }
+.aui-scroll-sm { height: 200px; }
+.aui-scroll-md { height: 300px; }
+.aui-scroll-lg { height: 400px; }
+
+// Каталог иконок
+.aui-icon-search {
+  max-width: 260px;
+}
+
+.aui-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: .5rem;
+}
+
+.aui-icon-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  min-width: 0;
+  padding: 1rem .5rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  background: transparent;
+  color: inherit;
+  font-size: .72rem;
+  transition: all .2s;
+
+  span {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  svg.lucide,
+  i[data-lucide] {
+    width: 24px;
+    height: 24px;
+  }
+
+  &:hover {
+    border-color: var(--bs-primary);
+    color: var(--bs-primary);
+    box-shadow: var(--aui-shadow-soft);
+  }
+}

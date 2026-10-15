@@ -1,0 +1,58 @@
+// Значения по умолчанию для токенов темы. В браузере всё читается из CSS-переменных,
+// эта карта нужна только чтобы один раз сгенерировать переменные и правила для каждого цвета.
+// Формат: имя => (цвет, цвет текста на нём, режим наведения кнопки)
+//   tint  — при наведении цвет светлеет (для светлых цветов)
+//   shade — при наведении цвет темнеет (для тёмных цветов)
+$aui-colors: (
+  "primary":   (#eeaa55, #000, tint),
+  "secondary": (#6c757d, #fff, shade),
+  "success":   (#50c366, #fff, tint),
+  "info":      (#33aaff, #fff, tint),
+  "warning":   (#f97316, #000, tint),
+  "danger":    (#cf3e2f, #fff, shade),
+  "light":     (#dee2e6, #000, shade),
+  "dark":      (#343a40, #fff, tint),
+  "focus":     (#444054, #fff, shade),
+  "alternate": (#794c8a, #fff, shade),
+  "tertiary":  (#3fb247, #000, tint),
+);
+
+// Цвета, которых нет в Bootstrap: для них генерируются утилиты bg-, text-, border-, text-bg-
+$aui-extra-colors: ("focus", "alternate", "tertiary");
+
+// Фирменные градиенты: класс bg-<имя> рисует градиент поверх цвета Bootstrap
+$aui-gradients: (
+  "primary":          linear-gradient(to right, #4facfe 0%, #00f2fe 100%),
+  "primary-subtle":   linear-gradient(120deg, #a6c0fe 0%, #f68084 100%),
+  "info":             linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%),
+  "info-subtle":      linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%),
+  "success":          linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%),
+  "success-subtle":   linear-gradient(to top, #0ba360 0%, #3cba92 100%),
+  "warning":          linear-gradient(120deg, #f6d365 0%, #fda085 100%),
+  "warning-subtle":   linear-gradient(120deg, #fccb90 0%, #d57eeb 100%),
+  "danger":           linear-gradient(120deg, #f093fb 0%, #f5576c 100%),
+  "danger-subtle":    linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%),
+  "light":            linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%),
+  "light-subtle":     linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%),
+  "secondary":        linear-gradient(60deg, #29323c 0%, #485563 100%),
+  "secondary-subtle": linear-gradient(-20deg, #2b5876 0%, #4e4376 100%),
+  "dark":             linear-gradient(to right, #434343 0%, #000 100%),
+  "dark-subtle":      linear-gradient(to right, #141e30, #243b55),
+);
+
+// Цветовые схемы шапки и меню из панели настроек: имя => тон текста
+$aui-schemes: (
+  "primary": dark, "secondary": light, "success": dark, "info": dark, "warning": dark,
+  "danger": light, "light": dark, "dark": light, "focus": light, "alternate": light,
+);
+
+// Пороги каркаса
+$aui-bp-mobile: 768px;   // ниже — меню в Offcanvas, шапка в мобильном виде
+$aui-bp-rail: 1250px;    // ниже — меню свёрнуто в полосу иконок
+$aui-bp-user: 1320px;    // ниже — в шапке скрыто имя пользователя
+
+@mixin mobile { @media (max-width: #{$aui-bp-mobile - .02px}) { @content; } }
+@mixin desktop { @media (min-width: $aui-bp-mobile) { @content; } }
+@mixin rail-range { @media (min-width: $aui-bp-mobile) and (max-width: #{$aui-bp-rail - .02px}) { @content; } }
+@mixin wide { @media (min-width: $aui-bp-rail) { @content; } }
+@mixin phone { @media (max-width: 575.98px) { @content; } }

@@ -1,0 +1,71 @@
+// Выпадающие меню, всплывающие подсказки
+.dropdown-menu {
+  --bs-dropdown-min-width: 15rem;
+  --bs-dropdown-padding-y: .65rem;
+  --bs-dropdown-font-size: var(--bs-body-font-size);
+  --bs-dropdown-bg: var(--aui-surface);
+  --bs-dropdown-border-color: var(--aui-card-border-color);
+  --bs-dropdown-item-padding-y: .4rem;
+  --bs-dropdown-link-hover-bg: var(--aui-hover-bg);
+  --bs-dropdown-link-active-bg: var(--bs-primary);
+  --bs-dropdown-header-color: var(--bs-primary);
+  box-shadow: var(--aui-shadow-soft);
+
+  &.show {
+    animation: aui-drop-in .2s cubic-bezier(.39, .575, .565, 1) both;
+  }
+
+  .dropdown-header {
+    font-size: .7333rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    transition: background-color .3s ease, color .3s ease;
+  }
+}
+
+.aui-dropdown-icon {
+  width: 30px;
+  margin-left: -10px;
+  margin-right: .3rem;
+  opacity: .3;
+}
+
+.dropdown-item:hover .aui-dropdown-icon {
+  opacity: .7;
+}
+
+.aui-dropdown-shadow {
+  box-shadow: 0 .66875rem 2.3875rem rgba(var(--aui-shadow-rgb), .03), 0 1.1375rem 1.60625rem rgba(var(--aui-shadow-rgb), .03), 0 .45rem .73125rem rgba(var(--aui-shadow-rgb), .05), 0 .325rem .3875rem rgba(var(--aui-shadow-rgb), .03);
+}
+
+.aui-dropdown-hover-link .dropdown-item:hover {
+  background: none;
+  color: var(--bs-primary);
+}
+
+.popover {
+  --bs-popover-max-width: 320px;
+  --bs-popover-bg: var(--aui-surface);
+  --bs-popover-border-color: var(--aui-card-border-color);
+  --bs-popover-header-bg: var(--aui-surface);
+  box-shadow: var(--aui-shadow);
+}
+
+.popover.show:not([data-popper-placement^="top"]) {
+  animation: aui-drop-in .2s cubic-bezier(.39, .575, .565, 1) both;
+}
+
+.tooltip-light {
+  --bs-tooltip-bg: var(--aui-surface);
+  --bs-tooltip-color: var(--bs-gray-800);
+
+  .tooltip-inner {
+    border: 1px solid var(--aui-card-border-color);
+    box-shadow: var(--aui-shadow);
+  }
+}

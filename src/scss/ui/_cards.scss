@@ -1,0 +1,187 @@
+// Карточки
+@use "../config" as *;
+
+.card {
+  --bs-card-bg: var(--aui-surface);
+  --bs-card-border-color: var(--aui-card-border-color);
+  border-width: 0;
+  box-shadow: var(--aui-shadow);
+  transition: all .2s;
+
+  &.text-white {
+    .card-header,
+    .card-footer {
+      background: rgba(255, 255, 255, .1);
+      color: rgba(255, 255, 255, .9);
+    }
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.card-header,
+.card-title {
+  color: var(--aui-title-color);
+  font-size: var(--bs-body-font-size);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  height: 3.5rem;
+  padding-top: 0;
+  padding-right: .5rem;
+  padding-bottom: 0;
+  border-bottom-width: 1px;
+
+  // Вкладки в заголовке карточки: полоса под активной вкладкой
+  > .nav {
+    width: 100%;
+    height: 100%;
+    margin-left: -.5rem;
+
+    .nav-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .nav-link {
+      display: block;
+      width: 100%;
+      color: var(--bs-body-color);
+      text-transform: none;
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        border-radius: 15px;
+        background: var(--bs-primary);
+        opacity: 0;
+        transition: all .2s;
+      }
+
+      &:hover,
+      &.active {
+        color: var(--bs-primary);
+      }
+
+      &.active::before {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// Кнопки и ссылки в заголовке карточки пишутся обычным регистром
+.card-header .btn,
+.card-header a {
+  text-transform: none;
+}
+
+.card-header.aui-card-tabs {
+  > .nav {
+    width: auto;
+    margin-left: auto;
+  }
+}
+
+.card-header.aui-card-tabs-animated > .nav .nav-link {
+  &::before {
+    left: 5%;
+    width: 90%;
+    opacity: 1;
+    transform: scale(0);
+  }
+
+  &.active::before,
+  &:hover::before {
+    transform: scale(1);
+  }
+}
+
+.aui-card-header-title {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.aui-card-icon {
+  width: 1.65rem;
+  height: 1.65rem;
+  margin-right: .5rem;
+  color: var(--bs-secondary-color);
+}
+
+.card-subtitle {
+  margin-bottom: var(--bs-card-spacer-y);
+  color: var(--aui-subtitle-color);
+  font-size: .968rem;
+}
+
+.aui-card-border {
+  border-width: var(--bs-card-border-width);
+  box-shadow: none;
+}
+
+@each $name, $def in $aui-colors {
+  .aui-card-shadow-#{$name} {
+    box-shadow: 0 .46875rem 2.1875rem rgba(var(--bs-#{$name}-rgb), .03), 0 .9375rem 1.40625rem rgba(var(--bs-#{$name}-rgb), .03), 0 .25rem .53125rem rgba(var(--bs-#{$name}-rgb), .05), 0 .125rem .1875rem rgba(var(--bs-#{$name}-rgb), .03);
+  }
+}
+
+// Кнопки действий в заголовке карточки
+.aui-card-actions .btn {
+  --bs-btn-padding-x: 0;
+  color: var(--bs-body-color);
+
+  &:hover {
+    color: var(--bs-primary);
+  }
+
+  svg.lucide {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+}
+
+@include phone {
+  .card.mb-3 {
+    margin-bottom: .75rem !important;
+  }
+
+  .card-header {
+    display: block;
+    height: auto;
+    padding: .75rem var(--aui-gutter);
+    text-align: center;
+
+    > .nav {
+      display: flex;
+      justify-content: center;
+      margin: .75rem 0 -.75rem;
+    }
+
+    .ms-auto {
+      padding: .75rem 0 0;
+    }
+  }
+
+  .card-header.aui-card-tabs > .nav {
+    width: 100%;
+  }
+
+  .aui-card-icon {
+    display: none;
+  }
+}

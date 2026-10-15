@@ -1,0 +1,66 @@
+// Сторонние компоненты страниц: FullCalendar и Leaflet. Их собственные стили приходят из библиотек.
+
+.fc {
+  --fc-border-color: var(--bs-border-color);
+  --fc-button-bg-color: var(--bs-primary);
+  --fc-button-border-color: var(--bs-primary);
+  --fc-button-text-color: var(--aui-primary-contrast);
+  --fc-button-hover-bg-color: color-mix(in srgb, var(--bs-primary), #fff 15%);
+  --fc-button-hover-border-color: color-mix(in srgb, var(--bs-primary), #fff 10%);
+  --fc-button-active-bg-color: color-mix(in srgb, var(--bs-primary), #fff 20%);
+  --fc-button-active-border-color: color-mix(in srgb, var(--bs-primary), #fff 10%);
+  --fc-event-bg-color: var(--bs-primary);
+  --fc-event-border-color: var(--bs-primary);
+  --fc-event-text-color: var(--aui-primary-contrast);
+  --fc-today-bg-color: var(--aui-hover-bg);
+  --fc-page-bg-color: var(--aui-surface);
+  --fc-neutral-bg-color: var(--aui-heading-bg);
+  --fc-list-event-hover-bg-color: var(--aui-hover-bg);
+
+  .fc-toolbar-title {
+    color: var(--aui-title-color);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .fc-button {
+    font-size: .8rem;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+
+  .fc-button:focus,
+  .fc-button-primary:not(:disabled):active:focus,
+  .fc-button-primary:not(:disabled).fc-button-active:focus {
+    box-shadow: none;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+.aui-map {
+  z-index: 0;
+  height: 300px;
+  border-radius: var(--bs-border-radius);
+}
+
+.aui-map-lg {
+  height: 400px;
+}
+
+// Контейнер графика Chart.js: высоту задаёт контейнер, график растягивается по нему
+.aui-chart {
+  position: relative;
+  height: 300px;
+}
+
+.aui-chart-sm {
+  height: 230px;
+}
+
+.aui-chart-lg {
+  height: 350px;
+}

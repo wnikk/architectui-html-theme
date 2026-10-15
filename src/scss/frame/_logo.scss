@@ -1,0 +1,43 @@
+// Логотип. Меняется заменой файлов:
+//   assets/images/logo.png         — для светлого фона
+//   assets/images/logo-on-dark.png — для тёмного фона
+// Любая форма (широкий или квадратный) вписывается в --aui-logo-max-height без правок.
+
+.aui-logo {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 100%;
+}
+
+.aui-logo__img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: var(--aui-logo-max-height);
+  object-fit: contain;
+}
+
+.aui-logo__img--on-dark {
+  display: none;
+}
+
+// Тёмный фон: тёмная тема или тёмная цветовая схема шапки
+@mixin logo-on-dark {
+  .aui-logo__img--default {
+    display: none;
+  }
+
+  .aui-logo__img--on-dark {
+    display: block;
+  }
+}
+
+[data-bs-theme="dark"] {
+  @include logo-on-dark;
+}
+
+.aui-on-dark {
+  @include logo-on-dark;
+}

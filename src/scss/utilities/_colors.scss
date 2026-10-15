@@ -1,0 +1,45 @@
+// Утилиты цвета: недостающие в Bootstrap цвета темы и фирменные градиенты
+@use "../config" as *;
+
+@each $name in $aui-extra-colors {
+  .bg-#{$name} {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-#{$name}-rgb), var(--bs-bg-opacity)) !important;
+  }
+
+  .text-#{$name} {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-#{$name}-rgb), var(--bs-text-opacity)) !important;
+  }
+
+  .border-#{$name} {
+    --bs-border-opacity: 1;
+    border-color: rgba(var(--bs-#{$name}-rgb), var(--bs-border-opacity)) !important;
+  }
+
+  .text-bg-#{$name} {
+    color: var(--aui-#{$name}-contrast) !important;
+    background-color: rgba(var(--bs-#{$name}-rgb), var(--bs-bg-opacity, 1)) !important;
+  }
+}
+
+// Классы bg-<цвет> рисуют фирменный градиент поверх цвета Bootstrap
+@each $name, $gradient in $aui-gradients {
+  .bg-#{$name} {
+    background-image: $gradient !important;
+  }
+}
+
+.bg-warning,
+.bg-light {
+  color: #212529;
+}
+
+// Образец цвета для страниц-демо
+.aui-swatch-lg {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  margin: 5px 5px 0 0;
+  border-radius: 30px;
+}

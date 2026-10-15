@@ -1,0 +1,68 @@
+// Кнопка-бургер с анимацией «elastic». Активное состояние — aria-expanded или aria-pressed.
+
+.aui-burger {
+  --aui-burger-color: var(--bs-primary);
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity .15s linear;
+
+  &:hover {
+    opacity: .7;
+  }
+
+  > span {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 14px;
+  }
+
+  > span::before,
+  > span::after,
+  > span > span {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    border-radius: 10px;
+    background: var(--aui-burger-color);
+  }
+
+  > span > span {
+    top: 1px;
+    transition: transform .275s cubic-bezier(.68, -.55, .265, 1.55);
+  }
+
+  > span::before {
+    top: 7px;
+    transition: opacity .125s .275s ease;
+  }
+
+  > span::after {
+    top: 13px;
+    transition: transform .275s cubic-bezier(.68, -.55, .265, 1.55);
+  }
+
+  &[aria-expanded="true"],
+  &[aria-pressed="true"] {
+    > span > span {
+      transform: translate3d(0, 6px, 0) rotate(135deg);
+      transition-delay: .075s;
+    }
+
+    > span::before {
+      opacity: 0;
+      transition-delay: 0s;
+    }
+
+    > span::after {
+      transform: translate3d(0, -6px, 0) rotate(-270deg);
+      transition-delay: .075s;
+    }
+  }
+}

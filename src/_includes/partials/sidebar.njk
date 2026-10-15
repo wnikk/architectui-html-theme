@@ -1,35 +1,35 @@
-<div class="app-sidebar sidebar-shadow">
-    {% include "partials/header-logo.njk" %}
-    <div class="scrollbar-sidebar">
-        <div class="app-sidebar__inner">
-            <ul class="vertical-nav-menu">
+<aside class="aui-sidebar">
+    <div class="offcanvas-md offcanvas-start aui-sidebar__panel aui-scrollbar" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
+        <div class="offcanvas-header">
+            {% include "partials/logo.njk" %}
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#auiSidebar" aria-label="Close menu"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="aui-nav" id="auiNav">
                 {%- for section in menu %}
-                <li class="app-sidebar__heading">{{ section.heading }}</li>
+                <li class="aui-nav__heading">{{ section.heading }}</li>
                 {%- for item in section.items %}
                 {%- if item.children %}
                 {%- set open = item.children | hasActive(page.filePathStem) %}
-                <li{% if open %} class="mm-active"{% endif %}>
-                    <a href="#">
-                        <i class="metismenu-icon {{ item.icon }}"></i>
-                        {{ item.title }}
-                        <i class="metismenu-state-icon fa fa-angle-down caret-left"></i>
+                {%- set groupId = "nav-" + (item.title | slugify) %}
+                <li>
+                    <a class="aui-nav__link{% if not open %} collapsed{% endif %}" href="#{{ groupId }}" role="button" data-bs-toggle="collapse" aria-expanded="{{ 'true' if open else 'false' }}" aria-controls="{{ groupId }}">
+                        <i data-lucide="{{ item.icon }}" class="aui-nav__icon"></i>{{ item.title }}<i data-lucide="chevron-down" class="aui-nav__caret"></i>
                     </a>
-                    <ul{% if open %} class="mm-show"{% endif %}>
-                        {%- for child in item.children %}
-                        <li>
-                            <a href="{{ child.href }}"{% if child.href | isActive(page.filePathStem) %} class="mm-active"{% endif %}>
-                                <i class="metismenu-icon"></i>{{ child.title }}
-                            </a>
-                        </li>
-                        {%- endfor %}
-                    </ul>
+                    <div class="collapse{% if open %} show{% endif %}" id="{{ groupId }}" data-bs-parent="#auiNav">
+                        <ul class="aui-nav__sub">
+                            {%- for child in item.children %}
+                            {%- set active = child.href | isActive(page.filePathStem) %}
+                            <li><a class="aui-nav__link{% if active %} active{% endif %}" href="{{ child.href }}"{% if active %} aria-current="page"{% endif %}>{{ child.title }}</a></li>
+                            {%- endfor %}
+                        </ul>
+                    </div>
                 </li>
                 {%- else %}
+                {%- set active = item.href | isActive(page.filePathStem) %}
                 <li>
-                    <a href="{{ item.href }}"{% if item.external %} target="_blank" rel="noopener"{% endif %}{% if item.href | isActive(page.filePathStem) %} class="mm-active"{% endif %}>
-                        <i class="metismenu-icon {{ item.icon }}"></i>
-                        {{ item.title }}
-                        {%- if item.iconAfter %} <i class="{{ item.iconAfter }}"></i>{% endif %}
+                    <a class="aui-nav__link{% if active %} active{% endif %}" href="{{ item.href }}"{% if active %} aria-current="page"{% endif %}{% if item.external %} target="_blank" rel="noopener"{% endif %}>
+                        <i data-lucide="{{ item.icon }}" class="aui-nav__icon"></i>{{ item.title }}{% if item.iconAfter %} <i data-lucide="{{ item.iconAfter }}" class="ms-1"></i>{% endif %}
                     </a>
                 </li>
                 {%- endif %}
@@ -38,4 +38,4 @@
             </ul>
         </div>
     </div>
-</div>
+</aside>

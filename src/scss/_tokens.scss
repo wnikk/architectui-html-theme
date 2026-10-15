@@ -1,0 +1,117 @@
+// Токены темы: все значения, которые можно менять без пересборки.
+// Bootstrap берёт цвета из --bs-*, тема — из --aui-*.
+@use "sass:color";
+@use "sass:list";
+@use "config" as *;
+
+@function rgb-triplet($c) {
+  @return round(color.channel($c, "red", $space: rgb)), round(color.channel($c, "green", $space: rgb)), round(color.channel($c, "blue", $space: rgb));
+}
+
+:root {
+  @each $name, $def in $aui-colors {
+    $value: list.nth($def, 1);
+    --bs-#{$name}: #{$value};
+    --bs-#{$name}-rgb: #{rgb-triplet($value)};
+    --aui-#{$name}-contrast: #{list.nth($def, 2)};
+  }
+
+  // Палитра Bootstrap, переопределённая темой
+  --bs-blue: #33aaff;
+  --bs-indigo: #444054;
+  --bs-purple: #794c8a;
+  --bs-pink: #f65ca2;
+  --bs-red: #d92550;
+  --bs-orange: #f97316;
+  --bs-yellow: #f7b924;
+  --bs-green: #50c366;
+  --bs-teal: #16e0bd;
+  --bs-cyan: #16aaff;
+
+  --bs-body-font-size: .88rem;
+  --bs-link-color: var(--bs-primary);
+  --bs-link-color-rgb: var(--bs-primary-rgb);
+  --bs-link-hover-color: color-mix(in srgb, var(--bs-primary), #000 20%);
+  --bs-link-hover-color-rgb: 190, 136, 68;
+  --bs-code-color: var(--bs-pink);
+  --bs-focus-ring-color: rgba(var(--bs-primary-rgb), .25);
+  --bs-form-valid-color: var(--bs-success);
+  --bs-form-valid-border-color: var(--bs-success);
+  --bs-form-invalid-color: var(--bs-danger);
+  --bs-form-invalid-border-color: var(--bs-danger);
+
+  // Каркас
+  --aui-header-height: 60px;
+  --aui-sidebar-width: 280px;
+  --aui-sidebar-collapsed-width: 80px;
+  --aui-logo-max-height: 2.25rem;   // логотип любой формы вписывается в эту высоту
+  --aui-gutter: 1.5rem;
+  --aui-transition: .2s ease;
+
+  // Поверхности, тени, служебные цвета
+  --aui-app-bg: #f3f4f6;
+  --aui-surface: #fff;
+  --aui-shadow-color: #e9ecef;
+  --aui-shadow: 0 1.3rem 1.7rem 0 var(--aui-shadow-color);
+  --aui-shadow-rgb: 119, 85, 43;
+  --aui-shadow-soft: 0 .46875rem 2.1875rem rgba(var(--aui-shadow-rgb), .03), 0 .9375rem 1.40625rem rgba(var(--aui-shadow-rgb), .03), 0 .25rem .53125rem rgba(var(--aui-shadow-rgb), .05), 0 .125rem .1875rem rgba(var(--aui-shadow-rgb), .03);
+  --aui-shadow-lg: 0 .76875rem 2.4875rem rgba(52, 58, 64, .3), 0 1.3375rem 1.70625rem rgba(52, 58, 64, .3), 0 .55rem .53125rem rgba(0, 0, 0, .05), 0 .225rem .4375rem rgba(52, 58, 64, .3);
+  --aui-hover-bg: rgba(var(--aui-shadow-rgb), .03);
+  --aui-title-color: rgba(143, 102, 51, .7);
+  --aui-subtitle-color: rgba(143, 102, 51, .55);
+  --aui-card-border-color: rgba(179, 128, 64, .125);
+  --aui-nav-icon-hover: var(--bs-info);
+}
+
+// Светлая тема: значения Bootstrap, которые тема меняет только в светлом режиме
+:root:not([data-bs-theme="dark"]) {
+  --bs-body-color: #495057;
+  --bs-body-color-rgb: 73, 80, 87;
+  --bs-secondary-color: rgba(73, 80, 87, .75);
+  --bs-tertiary-color: rgba(73, 80, 87, .5);
+  --bs-highlight-color: #495057;
+  --bs-highlight-bg: color-mix(in srgb, var(--bs-yellow) 20%, #fff);
+
+  @each $name, $def in $aui-colors {
+    --bs-#{$name}-bg-subtle: color-mix(in srgb, var(--bs-#{$name}) 20%, #fff);
+    --bs-#{$name}-border-subtle: color-mix(in srgb, var(--bs-#{$name}) 40%, #fff);
+    --bs-#{$name}-text-emphasis: color-mix(in srgb, var(--bs-#{$name}) 40%, #000);
+  }
+}
+
+// Тёмная тема: включается атрибутом data-bs-theme="dark" на <html>
+[data-bs-theme="dark"] {
+  --aui-app-bg: #16181b;
+  --aui-surface: #212529;
+  --aui-shadow-color: rgba(0, 0, 0, .35);
+  --aui-shadow-rgb: 0, 0, 0;
+  --aui-hover-bg: rgba(255, 255, 255, .05);
+  --aui-title-color: rgba(var(--bs-primary-rgb), .85);
+  --aui-subtitle-color: rgba(var(--bs-primary-rgb), .6);
+  --aui-card-border-color: var(--bs-border-color-translucent);
+
+  @each $name, $def in $aui-colors {
+    --bs-#{$name}-bg-subtle: color-mix(in srgb, var(--bs-#{$name}) 20%, #000);
+    --bs-#{$name}-border-subtle: color-mix(in srgb, var(--bs-#{$name}) 60%, #000);
+    --bs-#{$name}-text-emphasis: color-mix(in srgb, var(--bs-#{$name}) 60%, #fff);
+  }
+}
+
+// Цвета меню и шапки, зависящие от темы
+:root:not([data-bs-theme="dark"]) {
+  --aui-nav-color: #343a40;
+  --aui-nav-sub-color: #6c757d;
+  --aui-header-link-color: #6c757d;
+  --aui-header-link-icon: #adb5bd;
+  --aui-header-link-hover: #212529;
+  --aui-heading-bg: #f8f9fa;
+}
+
+[data-bs-theme="dark"] {
+  --aui-nav-color: #dee2e6;
+  --aui-nav-sub-color: #adb5bd;
+  --aui-header-link-color: #adb5bd;
+  --aui-header-link-icon: #6c757d;
+  --aui-header-link-hover: #f8f9fa;
+  --aui-heading-bg: rgba(255, 255, 255, .04);
+}

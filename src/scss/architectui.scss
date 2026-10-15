@@ -1,90 +1,32 @@
 /*!
- =========================================================
- * ArchitectUI HTML Theme Dashboard - v4.1.0
- =========================================================
- * Product Page: https://dashboardpack.com
- * Copyright 2025 DashboardPack (https://dashboardpack.com)
- * Licensed under MIT (https://github.com/DashboardPack/architectui-html-theme-free/blob/master/LICENSE)
- =========================================================
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * ArchitectUI HTML Theme v5.0.0 — слой поверх Bootstrap 5.3
+ * Copyright 2025 DashboardPack (https://dashboardpack.com), MIT
+ * Fork: https://github.com/wnikk/architectui-html-theme
  */
 
-// SASS MODULES (new syntax)
-@use "sass:map";
-@use "sass:math";
-@use "sass:color";
+// Порядок важен: токены → база → каркас → компоненты → утилиты
+@use "tokens";
+@use "base";
 
-// BOOTSTRAP 5 VARIABLES
+@use "frame/app";
+@use "frame/burger";
+@use "frame/logo";
+@use "frame/header";
+@use "frame/search";
+@use "frame/sidebar";
+@use "frame/page-title";
+@use "frame/footer";
+@use "frame/settings";
 
-// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
-@import "components/bootstrap537/functions";
+@use "ui/buttons";
+@use "ui/cards";
+@use "ui/dropdowns";
+@use "ui/navs";
+@use "ui/elements";
+@use "ui/widgets";
+@use "ui/vendors";
 
-// 2. Include any default variable overrides here
-@import "themes/layout-variables";
-
-// 3. Include remainder of required Bootstrap stylesheets
-//@import "components/bootstrap5/bootstrap";
-// Configuration
-//@import "components/bootstrap537/functions";
-@import "components/bootstrap537/variables";
-@import "components/bootstrap537/variables-dark";
-@import "components/bootstrap537/maps";
-@import "components/bootstrap537/mixins";
-@import "components/bootstrap537/utilities";
-@import "components/bootstrap537/root";
-
-// 4. Replace Bootstrap stylesheets
-@import "themes/default/bootstrap-variables";
-
-// LAYOUT
-
-@import "layout/layout";
-
-// UTILS
-
-@import "utils/helpers";
-@import "utils/backgrounds";
-//@import "utils/animate";
-@import "components/animate-sass/animate";
-@import "utils/comps-animations";
-
-// ELEMENTS
-
-@import "elements/buttons";
-@import "elements/dropdown";
-@import "elements/badges";
-@import "elements/cards";
-@import "elements/tabs";
-@import "elements/accordions";
-@import "elements/modals";
-@import "elements/navs";
-@import "elements/listgroup";
-@import "elements/forms";
-@import "elements/pagination";
-
-// DASHBOARD BOXES
-
-@import "widgets/content-boxes/content-boxes";
-
-// COMPONENTS
-// Perfect Scrollbar
-@import "components/perfect-scrollbar/perfect-scrollbar";
-
-// FontAwesome
-//@import "components/icons/fontawesome/fontawesome";
-// P7 Icons
-//@import "components/icons/p7icons";
-// Hamburger button
-@import "components/hamburgers/hamburgers";
-// Notifications
-@import "components/notifications/toastr";
-// Popovers & Tooltips
-@import "components/popovers-tooltips/popovers-tooltips";
-// Calendar
-@import "components/calendar/calendar";
-// Maps
-@import "components/maps/vector-maps";
-// Responsive
-@import "layout/responsive/responsive-base";
-// DEMO
-//@import "demo-ui/demo";
+@use "utilities/colors";
+@use "utilities/helpers";
+@use "utilities/animations";
+@use "utilities/icons";

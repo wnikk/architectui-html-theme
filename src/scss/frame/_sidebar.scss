@@ -1,0 +1,269 @@
+// Боковое меню.
+//   >= 1250 px  — полная ширина, кнопка в шапке сворачивает меню в полосу иконок
+//   768–1249 px — полоса иконок, при наведении меню раскрывается поверх контента
+//   < 768 px    — Offcanvas Bootstrap, открывается кнопкой в шапке
+@use "sass:map";
+@use "../config" as *;
+
+.aui-sidebar {
+  grid-area: sidebar;
+  position: relative;
+  z-index: 1020;
+  width: var(--aui-sidebar-col);
+  background: var(--aui-surface);
+  box-shadow: 7px 0 60px rgba(0, 0, 0, .05);
+  transition: width .3s ease, box-shadow .3s ease;
+}
+
+.aui-sidebar__panel {
+  --bs-offcanvas-width: var(--aui-sidebar-width);
+  --bs-offcanvas-bg: var(--aui-surface);
+  overflow-x: hidden;
+}
+
+.aui-sidebar .offcanvas-body {
+  display: block;
+  padding: 0;
+}
+
+@include desktop {
+  [data-aui-sidebar="fixed"] .aui-sidebar__panel {
+    position: sticky;
+    top: var(--aui-header-offset);
+    height: calc(100vh - var(--aui-header-offset));
+    overflow-y: auto;
+  }
+}
+
+@include mobile {
+  .aui-sidebar {
+    position: static;
+    z-index: auto;
+    width: 0;
+    background: none;
+    box-shadow: none;
+  }
+}
+
+// Навигация
+.aui-nav {
+  margin: 0;
+  padding: 2px var(--aui-gutter) var(--aui-gutter);
+  list-style: none;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .collapsing {
+    transition-duration: .25s;
+  }
+}
+
+.aui-nav__heading {
+  position: relative;
+  margin: .75rem 0;
+  color: var(--bs-primary);
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.aui-nav__link {
+  position: relative;
+  display: block;
+  height: 2.4rem;
+  margin: .1rem 0;
+  padding: 0 var(--aui-gutter) 0 45px;
+  border-radius: var(--bs-border-radius);
+  color: var(--aui-nav-color);
+  line-height: 2.4rem;
+  white-space: nowrap;
+  transition: all .2s;
+
+  &:hover {
+    background: var(--aui-hover-bg);
+    color: var(--aui-nav-color);
+  }
+
+  &.active {
+    background: var(--aui-surface);
+    box-shadow: 0 20px 27px 0 rgba(0, 0, 0, .05);
+    font-weight: 700;
+  }
+
+  &[aria-expanded="true"] {
+    font-weight: 700;
+  }
+}
+
+.aui-nav__icon,
+.aui-nav__caret {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  width: 24px;
+  height: 24px;
+  margin-top: -12px;
+  color: var(--aui-nav-color);
+  opacity: .45;
+  transition: color .3s, opacity .3s, transform .3s;
+}
+
+.aui-nav__caret {
+  right: 7px;
+  left: auto;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+}
+
+.aui-nav__link:hover {
+  .aui-nav__icon {
+    color: var(--aui-nav-icon-hover);
+    opacity: 1;
+  }
+
+  .aui-nav__caret {
+    opacity: 1;
+  }
+}
+
+.aui-nav__link[aria-expanded="true"] .aui-nav__caret {
+  transform: rotate(-180deg);
+}
+
+.aui-nav__sub {
+  position: relative;
+  padding: .5em 0 0 2rem !important;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 3px;
+    height: 100%;
+    border-radius: 15px;
+    background: var(--aui-hover-bg);
+  }
+
+  .aui-nav__link {
+    height: 2rem;
+    padding: 0 var(--aui-gutter);
+    color: var(--aui-nav-sub-color);
+    line-height: 2rem;
+
+    &:hover {
+      color: var(--bs-primary);
+    }
+
+    &.active {
+      background: var(--aui-hover-bg);
+      box-shadow: none;
+      color: var(--bs-primary);
+    }
+  }
+}
+
+// Полоса иконок: подписи скрыты, заголовки групп заменены линией
+@mixin rail-items {
+  .aui-nav__heading {
+    color: transparent;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--aui-hover-bg);
+    }
+  }
+
+  .aui-nav__link {
+    padding: 0;
+    color: transparent;
+  }
+
+  .aui-nav__icon {
+    left: 50%;
+    margin-left: -12px;
+  }
+
+  .aui-nav__caret {
+    visibility: hidden;
+  }
+
+  .aui-nav .collapse {
+    display: none;
+  }
+}
+
+@include rail-range {
+  .aui-sidebar:not(:hover) {
+    @include rail-items;
+  }
+
+  .aui-sidebar:hover {
+    width: var(--aui-sidebar-width);
+  }
+}
+
+@include wide {
+  [data-aui-sidebar-collapsed] {
+    .aui-sidebar:not(:hover) {
+      @include rail-items;
+    }
+
+    .aui-sidebar:hover {
+      width: var(--aui-sidebar-width);
+    }
+  }
+}
+
+// Цветовые схемы меню: data-aui-sidebar-scheme="<цвет>" на <html>
+@each $name, $tone in $aui-schemes {
+  [data-aui-sidebar-scheme="#{$name}"] {
+    .aui-sidebar,
+    .aui-sidebar__panel {
+      --bs-offcanvas-bg: var(--bs-#{$name});
+      background-color: var(--bs-#{$name});
+      @if map.has-key($aui-gradients, $name) {
+        background-image: map.get($aui-gradients, $name);
+      }
+    }
+
+    @if $tone == light {
+      .aui-sidebar {
+        --aui-nav-color: rgba(255, 255, 255, .7);
+        --aui-nav-sub-color: rgba(255, 255, 255, .6);
+        --aui-hover-bg: rgba(255, 255, 255, .15);
+        --aui-nav-icon-hover: #fff;
+
+        .aui-nav__heading {
+          color: rgba(255, 255, 255, .6);
+        }
+
+        .aui-nav__link.active {
+          background: rgba(255, 255, 255, .15);
+          box-shadow: none;
+        }
+
+        .aui-nav__sub .aui-nav__link:hover,
+        .aui-nav__sub .aui-nav__link.active {
+          color: #fff;
+        }
+
+        .aui-nav__icon,
+        .aui-nav__caret {
+          opacity: .5;
+        }
+      }
+    }
+  }
+}

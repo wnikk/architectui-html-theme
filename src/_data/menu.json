@@ -1,45 +1,162 @@
 [
-  { "heading": "Dashboards", "items": [
-    { "title": "Dashboard Example 1", "href": "index.html", "icon": "fa fa-rocket" }
-  ]},
-  { "heading": "UI Components", "items": [
-    { "title": "Elements", "icon": "fa fa-gem", "children": [
-      { "title": "Buttons", "href": "elements-buttons-standard.html" },
-      { "title": "Dropdowns", "href": "elements-dropdowns.html" },
-      { "title": "Icons", "href": "elements-icons.html" },
-      { "title": "Badges", "href": "elements-badges-labels.html" },
-      { "title": "Cards", "href": "elements-cards.html" },
-      { "title": "List Groups", "href": "elements-list-group.html" },
-      { "title": "Navigation Menus", "href": "elements-navigation.html" },
-      { "title": "Utilities", "href": "elements-utilities.html" }
-    ]},
-    { "title": "Components", "icon": "fa fa-car", "children": [
-      { "title": "Tabs", "href": "components-tabs.html" },
-      { "title": "Accordions", "href": "components-accordions.html" },
-      { "title": "Notifications", "href": "components-notifications.html" },
-      { "title": "Modals", "href": "components-modals.html" },
-      { "title": "Progress Bar", "href": "components-progress-bar.html" },
-      { "title": "Tooltips & Popovers", "href": "components-tooltips-popovers.html" },
-      { "title": "Carousel", "href": "components-carousel.html" },
-      { "title": "Calendar", "href": "components-calendar.html" },
-      { "title": "Pagination", "href": "components-pagination.html" },
-      { "title": "Scrollable", "href": "components-scrollable-elements.html" },
-      { "title": "Maps", "href": "components-maps.html" }
-    ]},
-    { "title": "Tables", "href": "tables-regular.html", "icon": "fa fa-computer" }
-  ]},
-  { "heading": "Widgets", "items": [
-    { "title": "Dashboard Boxes", "href": "dashboard-boxes.html", "icon": "fa fa-computer" }
-  ]},
-  { "heading": "Forms", "items": [
-    { "title": "Forms Controls", "href": "forms-controls.html", "icon": "fa fa-computer-mouse" },
-    { "title": "Forms Layouts", "href": "forms-layouts.html", "icon": "fa fa-eye-dropper" },
-    { "title": "Forms Validation", "href": "forms-validation.html", "icon": "fa fa-pen-clip" }
-  ]},
-  { "heading": "Charts", "items": [
-    { "title": "ChartJS", "href": "charts-chartjs.html", "icon": "fa fa-square-poll-vertical" }
-  ]},
-  { "heading": "PRO Version", "items": [
-    { "title": "Upgrade to PRO", "href": "https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/", "external": true, "icon": "fa fa-square-up-right", "iconAfter": "fa fa-arrow-trend-up" }
-  ]}
+  {
+    "heading": "Dashboards",
+    "items": [
+      {
+        "title": "Dashboard Example 1",
+        "href": "index.html",
+        "icon": "rocket"
+      }
+    ]
+  },
+  {
+    "heading": "UI Components",
+    "items": [
+      {
+        "title": "Elements",
+        "icon": "gem",
+        "children": [
+          {
+            "title": "Buttons",
+            "href": "elements-buttons-standard.html"
+          },
+          {
+            "title": "Dropdowns",
+            "href": "elements-dropdowns.html"
+          },
+          {
+            "title": "Icons",
+            "href": "elements-icons.html"
+          },
+          {
+            "title": "Badges",
+            "href": "elements-badges-labels.html"
+          },
+          {
+            "title": "Cards",
+            "href": "elements-cards.html"
+          },
+          {
+            "title": "List Groups",
+            "href": "elements-list-group.html"
+          },
+          {
+            "title": "Navigation Menus",
+            "href": "elements-navigation.html"
+          },
+          {
+            "title": "Utilities",
+            "href": "elements-utilities.html"
+          }
+        ]
+      },
+      {
+        "title": "Components",
+        "icon": "car",
+        "children": [
+          {
+            "title": "Tabs",
+            "href": "components-tabs.html"
+          },
+          {
+            "title": "Accordions",
+            "href": "components-accordions.html"
+          },
+          {
+            "title": "Notifications",
+            "href": "components-notifications.html"
+          },
+          {
+            "title": "Modals",
+            "href": "components-modals.html"
+          },
+          {
+            "title": "Progress Bar",
+            "href": "components-progress-bar.html"
+          },
+          {
+            "title": "Tooltips & Popovers",
+            "href": "components-tooltips-popovers.html"
+          },
+          {
+            "title": "Carousel",
+            "href": "components-carousel.html"
+          },
+          {
+            "title": "Calendar",
+            "href": "components-calendar.html"
+          },
+          {
+            "title": "Pagination",
+            "href": "components-pagination.html"
+          },
+          {
+            "title": "Scrollable",
+            "href": "components-scrollable-elements.html"
+          },
+          {
+            "title": "Maps",
+            "href": "components-maps.html"
+          }
+        ]
+      },
+      {
+        "title": "Tables",
+        "href": "tables-regular.html",
+        "icon": "monitor"
+      }
+    ]
+  },
+  {
+    "heading": "Widgets",
+    "items": [
+      {
+        "title": "Dashboard Boxes",
+        "href": "dashboard-boxes.html",
+        "icon": "monitor"
+      }
+    ]
+  },
+  {
+    "heading": "Forms",
+    "items": [
+      {
+        "title": "Forms Controls",
+        "href": "forms-controls.html",
+        "icon": "mouse"
+      },
+      {
+        "title": "Forms Layouts",
+        "href": "forms-layouts.html",
+        "icon": "pipette"
+      },
+      {
+        "title": "Forms Validation",
+        "href": "forms-validation.html",
+        "icon": "pen-line"
+      }
+    ]
+  },
+  {
+    "heading": "Charts",
+    "items": [
+      {
+        "title": "ChartJS",
+        "href": "charts-chartjs.html",
+        "icon": "chart-column"
+      }
+    ]
+  },
+  {
+    "heading": "PRO Version",
+    "items": [
+      {
+        "title": "Upgrade to PRO",
+        "href": "https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/",
+        "external": true,
+        "icon": "external-link",
+        "iconAfter": "trending-up"
+      }
+    ]
+  }
 ]

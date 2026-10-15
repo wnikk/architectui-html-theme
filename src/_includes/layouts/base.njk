@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-aui-header="fixed" data-aui-sidebar="fixed" data-aui-footer="static" data-aui-tabs="shadow">
 <head>
     {% include "partials/head.njk" %}
     <!--
     =========================================================
-    * ArchitectUI HTML Theme Dashboard - v4.1.0
+    * ArchitectUI HTML Theme Dashboard - v{{ pkg.version }}
     =========================================================
     * Product Page: https://dashboardpack.com
     * Copyright 2025 DashboardPack (https://dashboardpack.com)
@@ -14,18 +14,19 @@
     -->
 </head>
 <body>
-    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    {% include "partials/icon-gradients.njk" %}
+    <div class="aui-app">
         {% include "partials/header.njk" %}
-        <div class="app-main">
-            {% include "partials/sidebar.njk" %}
-            <div class="app-main__outer">
-                <div class="app-main__inner">
-                    {% include "partials/page-title.njk" %}
-                    {{ content | safe }}
-                </div>
-                {% include "partials/footer.njk" %}
+        {% include "partials/sidebar.njk" %}
+        <main class="aui-main" id="main">
+            <div class="aui-main__inner">
+                {% include "partials/page-title.njk" %}
+                {{ content | safe }}
             </div>
-        </div>
+            {% include "partials/footer.njk" %}
+        </main>
     </div>
+    {% include "partials/settings.njk" %}
+    {% include "partials/toasts.njk" %}
 </body>
 </html>

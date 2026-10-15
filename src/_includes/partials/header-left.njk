@@ -1,27 +1,18 @@
-<div class="search-wrapper">
-    <div class="input-holder">
-        <input type="text" class="search-input" placeholder="Type to search">
-        <button class="search-icon"><span></span></button>
+<div class="aui-search" data-aui-search>
+    <div class="aui-search__holder">
+        <input type="search" class="aui-search__input" placeholder="Type to search" aria-label="Search">
+        <button type="button" class="aui-search__toggle" data-aui-search-toggle aria-label="Search"><span></span></button>
     </div>
-    <button class="btn-close"></button>
+    <button type="button" class="btn-close aui-search__close" data-aui-search-close aria-label="Close search"></button>
 </div>
-<ul class="header-menu nav">
+<ul class="nav aui-header-menu">
     <li class="nav-item">
-        <a href="javascript:void(0);" class="nav-link">
-            <i class="nav-link-icon fa fa-database"> </i>
-            Statistics
-        </a>
+        <a href="#" class="nav-link"><i data-lucide="database" class="aui-nav-icon"></i>Statistics</a>
     </li>
-    <li class="btn-group nav-item">
-        <a href="javascript:void(0);" class="nav-link">
-            <i class="nav-link-icon fa fa-edit"></i>
-            Projects
-        </a>
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="square-pen" class="aui-nav-icon"></i>Projects</a>
     </li>
-    <li class="dropdown nav-item">
-        <a href="javascript:void(0);" class="nav-link">
-            <i class="nav-link-icon fa fa-cog"></i>
-            Settings
-        </a>
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="settings" class="aui-nav-icon"></i>Settings</a>
     </li>
 </ul>

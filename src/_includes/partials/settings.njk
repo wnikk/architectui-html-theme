@@ -1,0 +1,56 @@
+{# Панель настроек темы. Каждый элемент с data-aui-setting меняет атрибут на <html> и запоминается в localStorage. #}
+{%- set schemes = ["", "primary", "secondary", "success", "info", "warning", "danger", "light", "dark", "focus", "alternate"] %}
+<button type="button" class="btn btn-warning aui-settings-toggle" data-bs-toggle="offcanvas" data-bs-target="#auiSettings" aria-controls="auiSettings" aria-label="Theme settings">
+    <i data-lucide="settings"></i>
+</button>
+<div class="offcanvas offcanvas-end aui-settings" tabindex="-1" id="auiSettings" aria-labelledby="auiSettingsLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="auiSettingsLabel">Theme Settings</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+        <h3 class="aui-settings__heading">Layout Options</h3>
+        <ul class="list-group list-group-flush">
+            {%- for opt in [["header", "Fixed Header", "Makes the header top fixed, always visible!"], ["sidebar", "Fixed Sidebar", "Makes the sidebar left fixed, always visible!"], ["footer", "Fixed Footer", "Makes the app footer bottom fixed, always visible!"]] %}
+            <li class="list-group-item px-4">
+                <div class="form-check form-switch mb-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="aui-setting-{{ opt[0] }}" data-aui-setting="{{ opt[0] }}" value="fixed" data-aui-off="static">
+                    <label class="form-check-label ms-2" for="aui-setting-{{ opt[0] }}">
+                        <span class="aui-widget__heading d-block">{{ opt[1] }}</span>
+                        <span class="aui-settings__hint">{{ opt[2] }}</span>
+                    </label>
+                </div>
+            </li>
+            {%- endfor %}
+        </ul>
+        <h3 class="aui-settings__heading">Appearance</h3>
+        <div class="aui-settings__group">
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" role="switch" id="aui-setting-theme" data-aui-setting="theme" value="dark" data-aui-off="light">
+                <label class="form-check-label ms-2" for="aui-setting-theme"><span class="aui-widget__heading">Dark Theme</span></label>
+            </div>
+            <div class="mb-2 aui-settings__hint">Page Section Tabs</div>
+            <div class="btn-group btn-group-sm" role="group" aria-label="Page section tabs">
+                <input type="radio" class="btn-check" name="aui-tabs" id="aui-tabs-shadow" value="shadow" data-aui-setting="tabs">
+                <label class="btn btn-outline-primary" for="aui-tabs-shadow">Shadow</label>
+                <input type="radio" class="btn-check" name="aui-tabs" id="aui-tabs-line" value="line" data-aui-setting="tabs">
+                <label class="btn btn-outline-primary" for="aui-tabs-line">Line</label>
+            </div>
+        </div>
+        {%- for part in [["header-scheme", "Header Options", "Header color"], ["sidebar-scheme", "Sidebar Options", "Sidebar color"]] %}
+        <h3 class="aui-settings__heading">{{ part[1] }}</h3>
+        <div class="aui-settings__group">
+            <div class="mb-2 aui-settings__hint">Choose Color Scheme</div>
+            <div class="aui-swatches" role="radiogroup" aria-label="{{ part[2] }}">
+                {%- for name in schemes %}
+                <input type="radio" class="btn-check" name="aui-{{ part[0] }}" id="aui-{{ part[0] }}-{{ name or 'default' }}" value="{{ name }}" data-aui-setting="{{ part[0] }}">
+                <label class="aui-swatch aui-swatch--{{ name or 'default' }}" for="aui-{{ part[0] }}-{{ name or 'default' }}" title="{{ name or 'default' }}"><span class="visually-hidden">{{ name or "default" }}</span></label>
+                {%- endfor %}
+            </div>
+        </div>
+        {%- endfor %}
+        <div class="aui-settings__group border-top">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-aui-reset>Restore Default</button>
+        </div>
+    </div>
+</div>
