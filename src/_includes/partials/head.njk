@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }} - {{ description }}</title>
+<meta name="description" content="{{ description }}">
+<link rel="icon" href="favicon.ico">
+
+<link rel="stylesheet" href="{{ cdn.bootstrap.css }}" crossorigin="anonymous">
+{# LEGACY, эпик 01: FontAwesome уходит на шаге 5, perfect-scrollbar и metisMenu на шаге 3 #}
+<link rel="stylesheet" href="{{ cdn.legacy.fontawesome }}" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="{{ cdn.legacy.perfectScrollbarCss }}" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ cdn.legacy.metismenuCss }}" crossorigin="anonymous">
+<link rel="stylesheet" href="architectui.css">
+
+<script type="importmap">{{ cdn.importmap | dump | safe }}</script>
+<script defer src="{{ cdn.bootstrap.js }}" crossorigin="anonymous"></script>
+{# LEGACY, эпик 01: jQuery, perfect-scrollbar, metisMenu уходят на шаге 3 #}
+<script defer src="{{ cdn.legacy.jquery }}" crossorigin="anonymous"></script>
+<script defer src="{{ cdn.legacy.perfectScrollbarJs }}" crossorigin="anonymous"></script>
+<script defer src="{{ cdn.legacy.metismenuJs }}" crossorigin="anonymous"></script>
+<script defer src="{{ cdn.lucide }}" crossorigin="anonymous"></script>
+<script defer src="architectui.js"></script>

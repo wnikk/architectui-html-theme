@@ -1,0 +1,41 @@
+<div class="app-sidebar sidebar-shadow">
+    {% include "partials/header-logo.njk" %}
+    <div class="scrollbar-sidebar">
+        <div class="app-sidebar__inner">
+            <ul class="vertical-nav-menu">
+                {%- for section in menu %}
+                <li class="app-sidebar__heading">{{ section.heading }}</li>
+                {%- for item in section.items %}
+                {%- if item.children %}
+                {%- set open = item.children | hasActive(page.filePathStem) %}
+                <li{% if open %} class="mm-active"{% endif %}>
+                    <a href="#">
+                        <i class="metismenu-icon {{ item.icon }}"></i>
+                        {{ item.title }}
+                        <i class="metismenu-state-icon fa fa-angle-down caret-left"></i>
+                    </a>
+                    <ul{% if open %} class="mm-show"{% endif %}>
+                        {%- for child in item.children %}
+                        <li>
+                            <a href="{{ child.href }}"{% if child.href | isActive(page.filePathStem) %} class="mm-active"{% endif %}>
+                                <i class="metismenu-icon"></i>{{ child.title }}
+                            </a>
+                        </li>
+                        {%- endfor %}
+                    </ul>
+                </li>
+                {%- else %}
+                <li>
+                    <a href="{{ item.href }}"{% if item.external %} target="_blank" rel="noopener"{% endif %}{% if item.href | isActive(page.filePathStem) %} class="mm-active"{% endif %}>
+                        <i class="metismenu-icon {{ item.icon }}"></i>
+                        {{ item.title }}
+                        {%- if item.iconAfter %} <i class="{{ item.iconAfter }}"></i>{% endif %}
+                    </a>
+                </li>
+                {%- endif %}
+                {%- endfor %}
+                {%- endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

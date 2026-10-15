@@ -1,0 +1,30 @@
+{
+  "_comment": "Единственное место адресов внешних библиотек. Локальная копия: замените адреса на пути в vendor/ с той же структурой.",
+  "bootstrap": {
+    "css": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css",
+    "js": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+  },
+  "lucide": "https://cdn.jsdelivr.net/npm/lucide@1.49.0/dist/umd/lucide.min.js",
+  "importmap": {
+    "imports": {
+      "chart.js": "https://cdn.jsdelivr.net/npm/chart.js@4.5.1/+esm",
+      "chart.js/auto": "https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm",
+      "@kurkle/color": "https://cdn.jsdelivr.net/npm/@kurkle/color@0.4.0/+esm",
+      "@fullcalendar/core": "https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.19/+esm",
+      "@fullcalendar/daygrid": "https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.19/+esm",
+      "@fullcalendar/timegrid": "https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.19/+esm",
+      "@fullcalendar/list": "https://cdn.jsdelivr.net/npm/@fullcalendar/list@6.1.19/+esm",
+      "@fullcalendar/interaction": "https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.19/+esm",
+      "leaflet": "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/+esm"
+    }
+  },
+  "legacy": {
+    "_comment": "Переходный слой эпика 01. FontAwesome уходит на шаге 5, остальное на шаге 3.",
+    "fontawesome": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css",
+    "jquery": "https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js",
+    "perfectScrollbarCss": "https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/css/perfect-scrollbar.min.css",
+    "perfectScrollbarJs": "https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js",
+    "metismenuCss": "https://cdn.jsdelivr.net/npm/metismenu@3.1.0/dist/metisMenu.min.css",
+    "metismenuJs": "https://cdn.jsdelivr.net/npm/metismenu@3.1.0/dist/metisMenu.min.js"
+  }
+}

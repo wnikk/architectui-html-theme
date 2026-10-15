@@ -2,8 +2,7 @@
 *.log
 npm-debug.log*
 node_modules
-dist
 .idea
-architectui-html-free
+.DS_Store
 CLAUDE.md
 JQUERY_MIGRATION_PLAN.md
