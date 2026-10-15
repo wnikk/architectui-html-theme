@@ -1,0 +1,38 @@
+// Тема «Сад» (ask/02, 4.4). Для долгого чтения: крупнее кегль, шире строки, антиква в заголовках.
+// Тёмный режим намеренно менее зелёный: основа — графит.
+@use "theme" as t;
+
+@include t.base;
+@include t.palette(
+  (
+    bg: #f5f8f4, surface: #fff, surface-2: #eff4ee, surface-muted: #f3f7f2, border: #dfe8dc, fill: #e7ede5,
+    text: #1d2921, text-muted: #55665b, text-faint: #647366, text-dim: #728879, danger: #c0392b,
+    brand-solid: #2f6b45, brand-solid-hover: #245737, brand-soft: #e7f1e8, brand-veil: rgba(231, 241, 232, .55),
+    brand-text: #2f6b45, brand-text-hover: #245737, brand-ink: #245737, brand-faint: #5e886b,
+    brand-line: #2f6b45, brand-line-soft: #c5dcc9, brand-focus: #4e8e5d, brand-shadow: rgba(47, 107, 69, .18),
+    accent-solid: #6e8f5a, accent-soft: #edf3e7, accent-text: #4c6b3c, accent-ink: #3c5730, accent-line: #cfddc3,
+    shadow: "0 1px 2px 0 rgba(29, 41, 33, .05)",
+  ),
+  (
+    bg: #0b0f0d, surface: #151b17, surface-2: #1f2922, surface-muted: #101613, border: #2f3d34,
+    text: #eaf2ec, text-muted: #b4c6b9, text-faint: #8ca093, text-dim: #6a7b70, danger: #f08a7e,
+    brand-solid: #2f8f58, brand-solid-hover: #38a868, brand-soft: rgba(168, 220, 182, .14), brand-veil: rgba(168, 220, 182, .08),
+    brand-text: #a8dcb6, brand-text-hover: #c2e9cc, brand-ink: #a8dcb6, brand-faint: #7fb78e,
+    brand-line: rgba(168, 220, 182, .55), brand-line-soft: rgba(168, 220, 182, .3), brand-focus: #c2e9cc, brand-shadow: rgba(47, 143, 88, .35),
+    accent-solid: #7fa469, accent-soft: rgba(180, 214, 166, .13), accent-text: #b4d6a6, accent-ink: #b4d6a6, accent-line: rgba(180, 214, 166, .3),
+    shadow: "0 1px 2px 0 rgba(0, 0, 0, .5)",
+  )
+);
+
+:root {
+  --aui-root-size: 16.5px;
+  --bs-body-line-height: 1.6;
+  --aui-heading-font: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --aui-heading-weight: 600;
+  --aui-heading-tracking: -.005em;
+  --aui-cell-py: .85rem;
+  --aui-th-weight: 500;
+  --aui-radius-lg: 1.05rem;
+  --aui-radius: .8rem;
+  --aui-card-shadow: var(--aui-shadow-token);
+}

@@ -1,0 +1,12 @@
+[
+  { "id": "", "name": "Classic", "brand": "#eeaa55", "accent": "#4facfe" },
+  { "id": "indigo", "name": "Indigo", "brand": "#4f46e5", "accent": "#4f46e5" },
+  { "id": "indigo-img", "name": "Indigo Photo", "brand": "#4f46e5", "accent": "#c7d2fe" },
+  { "id": "coffee", "name": "Coffee", "brand": "#8b4513", "accent": "#d99235" },
+  { "id": "green", "name": "Garden", "brand": "#2f6b45", "accent": "#6e8f5a" },
+  { "id": "raspberry", "name": "Warm", "brand": "#a8446f", "accent": "#b98a5e" },
+  { "id": "blue", "name": "Business", "brand": "#2f5f9e", "accent": "#3c7185" },
+  { "id": "teal", "name": "Operations", "brand": "#0f6e77", "accent": "#96754f" },
+  { "id": "violet", "name": "Space", "brand": "#6b5ca0", "accent": "#327382" },
+  { "id": "cyberpunk", "name": "Cyberpunk", "brand": "#ff2d78", "accent": "#22e5ff", "darkOnly": true }
+]

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-aui-header="fixed" data-aui-sidebar="fixed" data-aui-footer="static" data-aui-tabs="shadow">
+<html lang="en" data-aui-header="fixed" data-aui-sidebar="fixed" data-aui-footer="static" data-aui-tabs="shadow" data-aui-dark-only="{% for theme in themes %}{% if theme.darkOnly %}{{ theme.id }} {% endif %}{% endfor %}">
 <head>
     {% include "partials/head.njk" %}
     <!--

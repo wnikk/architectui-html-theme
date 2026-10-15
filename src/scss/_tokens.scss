@@ -61,6 +61,11 @@
   --aui-subtitle-color: rgba(143, 102, 51, .55);
   --aui-card-border-color: rgba(179, 128, 64, .125);
   --aui-nav-icon-hover: var(--bs-info);
+
+  // Фирменные градиенты. Темы перекрашивают их своими цветами.
+  @each $name, $gradient in $aui-gradients {
+    --aui-gradient-#{$name}: #{$gradient};
+  }
 }
 
 // Светлая тема: значения Bootstrap, которые тема меняет только в светлом режиме

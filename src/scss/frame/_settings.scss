@@ -92,7 +92,7 @@
   .aui-swatch--#{$name} {
     background-color: var(--bs-#{$name});
     @if map.has-key($aui-gradients, $name) {
-      background-image: map.get($aui-gradients, $name);
+      background-image: var(--aui-gradient-#{$name});
     }
   }
 }
@@ -101,5 +101,74 @@
   .btn.aui-settings-toggle {
     right: 1rem;
     bottom: 1rem;
+  }
+}
+
+// Выбор темы: кружок с двумя акцентами темы и подпись
+.aui-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5.25rem, 1fr));
+  gap: 1rem .5rem;
+}
+
+.aui-theme-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  margin: 0;
+  color: var(--bs-secondary-color);
+  font-size: .72rem;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+}
+
+.aui-theme-option__dot {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--aui-dot-brand) 50%, var(--aui-dot-accent) 50%);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .08), 0 1px 2px rgba(0, 0, 0, .12);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.aui-theme-option:hover .aui-theme-option__dot {
+  transform: scale(1.06);
+}
+
+.btn-check:checked + .aui-theme-option {
+  color: var(--bs-body-color);
+  font-weight: 600;
+
+  .aui-theme-option__dot {
+    box-shadow: 0 0 0 2px var(--aui-surface), 0 0 0 4px var(--bs-primary);
+  }
+}
+
+.btn-check:focus-visible + .aui-theme-option .aui-theme-option__dot {
+  outline: 2px solid var(--bs-primary);
+  outline-offset: 4px;
+}
+
+// Сегменты режима
+.aui-segmented {
+  --bs-btn-color: var(--bs-secondary-color);
+  padding: .25rem;
+  gap: .25rem;
+  border-radius: .625rem;
+  background: var(--bs-secondary-bg);
+
+  > .btn {
+    --bs-btn-border-width: 0;
+    --bs-btn-hover-color: var(--bs-body-color);
+    border-radius: .5rem !important;
+    font-weight: 600;
+  }
+
+  > .btn-check:checked + .btn {
+    background: var(--aui-surface);
+    color: var(--bs-body-color);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .12);
   }
 }

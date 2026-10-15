@@ -3,16 +3,15 @@
 // Высоту задаёт контейнер .aui-chart (.aui-chart-sm, .aui-chart-lg).
 import Chart from "chart.js/auto";
 
-const css = getComputedStyle(document.documentElement);
-const token = (name) => css.getPropertyValue(`--bs-${name}`).trim();
+// Токены читаются при каждой отрисовке: после смены темы или режима графики пересоздаются
+const css = () => getComputedStyle(document.documentElement);
+const token = (name) => css().getPropertyValue(`--bs-${name}`).trim();
 const rgba = (name, alpha) => `rgba(${token(`${name}-rgb`)}, ${alpha})`;
 
 const COLORS = ["danger", "warning", "yellow", "success", "info"];
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July"];
 const random = (count) => Array.from({ length: count }, () => Math.round(Math.random() * 100));
 
-Chart.defaults.font.family = css.getPropertyValue("--bs-body-font-family").trim();
-Chart.defaults.color = css.getPropertyValue("--bs-secondary-color").trim();
 
 const segments = () => ({
   labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
@@ -56,15 +55,27 @@ const CHARTS = {
   "stacked-bars-chart": () => ({ type: "bar", data: bars(), options: { scales: { x: { stacked: true }, y: { stacked: true } } } }),
 };
 
-Object.entries(CHARTS).forEach(([id, config]) => {
-  const canvas = document.getElementById(id);
-  if (!canvas) {
-    return;
-  }
-  const { type, data, options = {} } = config();
-  new Chart(canvas, {
-    type,
-    data,
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "top" } }, ...options },
+const charts = [];
+
+function render() {
+  charts.splice(0).forEach((chart) => chart.destroy());
+  Chart.defaults.font.family = css().getPropertyValue("--bs-body-font-family").trim();
+  Chart.defaults.color = css().getPropertyValue("--bs-secondary-color").trim();
+  Chart.defaults.borderColor = css().getPropertyValue("--bs-border-color-translucent").trim();
+
+  Object.entries(CHARTS).forEach(([id, config]) => {
+    const canvas = document.getElementById(id);
+    if (!canvas) {
+      return;
+    }
+    const { type, data, options = {} } = config();
+    charts.push(new Chart(canvas, {
+      type,
+      data,
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "top" } }, ...options },
+    }));
   });
-});
+}
+
+render();
+document.addEventListener("aui:theme-change", render);

@@ -1,7 +1,7 @@
 {
   "name": "architectui-html-free",
-  "version": "5.0.0",
-  "description": "ArchitectUI - Bootstrap 5 admin dashboard theme: a CSS and ES module layer on top of CDN Bootstrap, Lucide icons",
+  "version": "5.1.0",
+  "description": "ArchitectUI - Bootstrap 5 admin dashboard theme: a CSS and ES module layer on top of CDN Bootstrap, Lucide icons, switchable visual themes",
   "author": "DashboardPack.com",
   "homepage": "https://dashboardpack.com",
   "private": false,
@@ -9,9 +9,9 @@
   "scripts": {
     "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
     "build:html": "eleventy",
-    "build:css": "sass src/scss/architectui.scss dist/architectui.css --no-source-map --style=compressed --silence-deprecation=import,global-builtin,color-functions,if-function",
+    "build:css": "sass src/scss/architectui.scss:dist/architectui.css src/scss/themes:dist/themes --no-source-map --style=compressed",
     "build": "npm run clean && npm run build:html && npm run build:css",
-    "watch:css": "sass --watch src/scss/architectui.scss dist/architectui.css --no-source-map --style=compressed --silence-deprecation=import,global-builtin,color-functions,if-function",
+    "watch:css": "sass --watch src/scss/architectui.scss:dist/architectui.css src/scss/themes:dist/themes --no-source-map --style=compressed",
     "dev": "npm run build:css && (npm run watch:css & eleventy --serve)",
     "start": "npm run dev"
   },

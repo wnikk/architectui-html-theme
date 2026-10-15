@@ -26,7 +26,7 @@
 // Классы bg-<цвет> рисуют фирменный градиент поверх цвета Bootstrap
 @each $name, $gradient in $aui-gradients {
   .bg-#{$name} {
-    background-image: $gradient !important;
+    background-image: var(--aui-gradient-#{$name}) !important;
   }
 }
 

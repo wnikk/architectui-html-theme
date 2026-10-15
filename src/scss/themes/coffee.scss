@@ -1,0 +1,25 @@
+// Тема «Кофейная» (ask/02, 4.3). Тёплые коричневые акценты на почти нейтральных поверхностях.
+// Кольцо фокуса — охра в обоих режимах.
+@use "theme" as t;
+
+@include t.base;
+@include t.palette(
+  (
+    bg: #f7f6f4, surface: #fff, surface-2: #fcfaf7, surface-muted: #faf7f2, border: #ddd9d4,
+    text: #2c1810, text-muted: #6b6661, text-faint: #76726d, text-dim: #8d8780, danger: #c0392b,
+    brand-solid: #8b4513, brand-solid-hover: #71360e, brand-soft: #f5ecd7, brand-veil: rgba(245, 236, 215, .5),
+    brand-text: #8b4513, brand-text-hover: #71360e, brand-ink: #71360e, brand-faint: #b17035,
+    brand-line: #8b4513, brand-line-soft: rgba(193, 122, 58, .4), brand-focus: #e8a857, brand-shadow: rgba(193, 122, 58, .35),
+    accent-solid: #d99235, accent-soft: #faf3e4, accent-text: #a95a1c, accent-ink: #71360e, accent-line: #e8a857,
+    shadow: "0 1px 2px 0 rgba(44, 24, 16, .06)",
+  ),
+  (
+    bg: #17100d, surface: #251c18, surface-2: #30241f, surface-muted: #1f130e, border: #493a32,
+    text: #f7f1e7, text-muted: #c9beb2, text-faint: #9d9187, text-dim: #7d7267, danger: #e88d7d,
+    brand-solid: #8b4513, brand-solid-hover: #a95a1c, brand-soft: rgba(232, 168, 87, .14), brand-veil: rgba(232, 168, 87, .08),
+    brand-text: #e8a857, brand-text-hover: #f0c48c, brand-ink: #e8a857, brand-faint: #c17a3a,
+    brand-line: #a95a1c, brand-line-soft: rgba(232, 168, 87, .4), brand-focus: #e8a857, brand-shadow: rgba(232, 168, 87, .3),
+    accent-solid: #d99235, accent-soft: rgba(232, 168, 87, .16), accent-text: #e8a857, accent-ink: #e8a857, accent-line: #e8a857,
+    shadow: "0 1px 2px 0 rgba(0, 0, 0, .4)",
+  )
+);

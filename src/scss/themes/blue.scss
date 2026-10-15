@@ -1,0 +1,48 @@
+// Тема «Деловая» (ask/02, 4.6). Для плотных экранов: мельче, резче, вместо теней — линии.
+@use "theme" as t;
+
+@include t.base;
+@include t.palette(
+  (
+    bg: #f3f6fa, surface: #fff, surface-2: #eaeff6, surface-muted: #f1f5fa, border: #d6dfea, fill: #e2e9f3,
+    text: #1b2430, text-muted: #4e5c70, text-faint: #616d7c, text-dim: #748499, danger: #c0392b,
+    brand-solid: #2f5f9e, brand-solid-hover: #234b80, brand-soft: #e7eff9, brand-veil: rgba(231, 239, 249, .6),
+    brand-text: #2f5f9e, brand-text-hover: #234b80, brand-ink: #234b80, brand-faint: #5980b4,
+    brand-line: #2f5f9e, brand-line-soft: #c2d4ea, brand-focus: #4e7fbd, brand-shadow: rgba(47, 95, 158, .18),
+    accent-solid: #3c7185, accent-soft: #e5eff3, accent-text: #295d6f, accent-ink: #1f4b5a, accent-line: #c3dae2,
+    shadow: "0 1px 1px 0 rgba(27, 36, 48, .06)",
+  ),
+  (
+    bg: #0e131a, surface: #151c25, surface-2: #1b2430, surface-muted: #121822, border: #2a3542,
+    text: #eaf0f7, text-muted: #afbece, text-faint: #8494a6, text-dim: #6a7988, danger: #f08a7e,
+    brand-solid: #2f5f9e, brand-solid-hover: #3e75bb, brand-soft: rgba(143, 180, 224, .12), brand-veil: rgba(143, 180, 224, .07),
+    brand-text: #8fb4e0, brand-text-hover: #afcbec, brand-ink: #8fb4e0, brand-faint: #6e8fb4,
+    brand-line: rgba(143, 180, 224, .5), brand-line-soft: rgba(143, 180, 224, .26), brand-focus: #afcbec, brand-shadow: rgba(143, 180, 224, .18),
+    accent-solid: #3c7185, accent-soft: rgba(164, 196, 209, .12), accent-text: #a4c4d1, accent-ink: #a4c4d1, accent-line: rgba(164, 196, 209, .3),
+    shadow: "0 1px 1px 0 rgba(0, 0, 0, .5)",
+  )
+);
+
+:root {
+  --aui-root-size: 14.5px;
+  --bs-body-line-height: 1.45;
+  --aui-heading-tracking: -.015em;
+  --aui-th-size: .68rem;
+  --aui-th-tracking: .08em;
+  --aui-th-weight: 700;
+  --aui-th-padding: .5rem;
+  --aui-cell-py: .5rem;
+  --aui-radius-lg: .55rem;
+  --aui-radius: .4rem;
+  --aui-radius-sm: .35rem;
+  // Тени выключены полностью: глубину дают линии
+  --aui-shadow-sm: none;
+  --aui-shadow-md: 0 0 0 1px var(--aui-border);
+  --aui-shadow-xl: 0 0 0 1px var(--aui-border);
+  --aui-card-shadow: 0 0 #0000;
+  --aui-btn-primary-shadow: none;
+}
+
+.table {
+  font-size: .92rem;
+}

@@ -1,0 +1,39 @@
+// Тема «Тёплая» (ask/02, 4.5). Для работы с людьми: всё круглее и теплее, кнопки-пилюли.
+@use "theme" as t;
+
+@include t.base;
+@include t.palette(
+  (
+    bg: #fbf6f8, surface: #fff, surface-2: #f7eef1, surface-muted: #faf3f6, border: #eedce3, fill: #f2e4e9,
+    text: #2a1f24, text-muted: #6b5a61, text-faint: #7b686f, text-dim: #947b85, danger: #c62828,
+    brand-solid: #a8446f, brand-solid-hover: #8c3459, brand-soft: #fbe7ef, brand-veil: rgba(251, 231, 239, .5),
+    brand-text: #a8446f, brand-text-hover: #8c3459, brand-ink: #8c3459, brand-faint: #be6086,
+    brand-line: #a8446f, brand-line-soft: #f0cbda, brand-focus: #c56b93, brand-shadow: rgba(168, 68, 111, .22),
+    accent-solid: #b98a5e, accent-soft: #f7eee4, accent-text: #8a6034, accent-ink: #6e4b27, accent-line: #e7d3bc,
+    shadow: "0 2px 6px -2px rgba(122, 58, 84, .12)",
+  ),
+  (
+    bg: #150f12, surface: #1e161a, surface-2: #271d22, surface-muted: #191216, border: #3a2b32,
+    text: #f6ecf0, text-muted: #c9b7bf, text-faint: #9c8891, text-dim: #857079, danger: #f08a7e,
+    brand-solid: #a8446f, brand-solid-hover: #c05a87, brand-soft: rgba(233, 160, 191, .13), brand-veil: rgba(233, 160, 191, .07),
+    brand-text: #e9a0bf, brand-text-hover: #f2bcd2, brand-ink: #e9a0bf, brand-faint: #b87e97,
+    brand-line: rgba(233, 160, 191, .5), brand-line-soft: rgba(233, 160, 191, .28), brand-focus: #f2bcd2, brand-shadow: rgba(233, 160, 191, .22),
+    accent-solid: #b98a5e, accent-soft: rgba(212, 184, 161, .12), accent-text: #d8b694, accent-ink: #d8b694, accent-line: rgba(216, 182, 148, .3),
+    shadow: "0 2px 8px -2px rgba(0, 0, 0, .5)",
+  )
+);
+
+:root {
+  --aui-font: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --aui-heading-weight: 800;
+  --aui-heading-tracking: -.022em;
+  --aui-th-size: .72rem;
+  --aui-th-tracking: .06em;
+  --aui-th-weight: 700;
+  --aui-cell-py: .8rem;
+  --aui-btn-radius: 999px;
+  --aui-input-radius: .95rem;
+  --aui-radius-lg: 1.35rem;
+  --aui-card-shadow: var(--aui-shadow-token);
+  --aui-btn-primary-shadow: 0 4px 10px -4px var(--aui-brand-shadow);
+}

@@ -1,0 +1,51 @@
+// Тема «Пространство» (ask/02, 4.8). Для коротких заходов: воздух, иерархия, большие радиусы,
+// мягкие фиолетовые тени, тяжёлые короткие заголовки.
+@use "theme" as t;
+
+@include t.base;
+@include t.palette(
+  (
+    bg: #f6f5fb, surface: #fff, surface-2: #f1effa, surface-muted: #f5f3fc, border: #e3dff3, fill: #eae6f7,
+    text: #201d31, text-muted: #565173, text-faint: #6d6988, text-dim: #847ea4, danger: #c0392b,
+    brand-solid: #6b5ca0, brand-solid-hover: #574988, brand-soft: #efebfb, brand-veil: rgba(239, 235, 251, .55),
+    brand-text: #6b5ca0, brand-text-hover: #574988, brand-ink: #574988, brand-faint: #8174bf,
+    brand-line: #6b5ca0, brand-line-soft: #d7d3f3, brand-focus: #9c92cd, brand-shadow: rgba(107, 92, 160, .28),
+    accent-solid: #327382, accent-soft: #e6f1f4, accent-text: #1e5f6d, accent-ink: #0f4753, accent-line: #c3dde4,
+    shadow: "0 8px 24px -12px rgba(87, 73, 136, .35)",
+  ),
+  (
+    bg: #110f19, surface: #191624, surface-2: #221e30, surface-muted: #151222, border: #302b44,
+    text: #efecf8, text-muted: #bcb6d0, text-faint: #918aa8, text-dim: #77708e, danger: #f08a7e,
+    brand-solid: #6b5ca0, brand-solid-hover: #8172be, brand-soft: rgba(190, 183, 228, .13), brand-veil: rgba(190, 183, 228, .07),
+    brand-text: #beb7e4, brand-text-hover: #d4cff0, brand-ink: #beb7e4, brand-faint: #9a92c4,
+    brand-line: rgba(190, 183, 228, .5), brand-line-soft: rgba(190, 183, 228, .28), brand-focus: #d4cff0, brand-shadow: rgba(107, 92, 160, .45),
+    accent-solid: #327382, accent-soft: rgba(160, 197, 207, .12), accent-text: #a0c5cf, accent-ink: #a0c5cf, accent-line: rgba(160, 197, 207, .3),
+    shadow: "0 10px 28px -14px rgba(0, 0, 0, .7)",
+  )
+);
+
+:root {
+  --bs-body-line-height: 1.55;
+  --aui-heading-weight: 800;
+  --aui-heading-tracking: -.02em;
+  --aui-th-size: .72rem;
+  --aui-th-tracking: .04em;
+  --aui-th-weight: 600;
+  --aui-cell-py: .95rem;
+  --aui-radius-lg: 1.4rem;
+  --aui-radius: 1rem;
+  --aui-radius-sm: .75rem;
+  --aui-btn-primary-shadow: 0 10px 22px -12px var(--aui-brand-shadow);
+}
+
+:root:not([data-bs-theme="dark"]) {
+  --aui-card-shadow: 0 8px 24px -14px rgba(87, 73, 136, .35), 0 1px 2px 0 rgba(32, 29, 49, .04);
+}
+
+[data-bs-theme="dark"] {
+  --aui-card-shadow: var(--aui-shadow-token);
+}
+
+.aui-page-title__heading {
+  letter-spacing: -.03em;
+}

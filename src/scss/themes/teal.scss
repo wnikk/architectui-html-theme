@@ -1,0 +1,53 @@
+// Тема «Операционная» (ask/02, 4.7). Для доски, за которой следят: строка важнее карточки,
+// зебра, моноширинные числа. Второй цвет — охра для графиков и декора.
+@use "theme" as t;
+
+@include t.base;
+@include t.palette(
+  (
+    bg: #f1f6f7, surface: #fff, surface-2: #e8f0f1, surface-muted: #eff6f6, border: #d2e1e3, fill: #dfebec,
+    text: #16262a, text-muted: #476066, text-faint: #5b6f74, text-dim: #6e878b, danger: #c0392b,
+    brand-solid: #0f6e77, brand-solid-hover: #0b565e, brand-soft: #e1f1f2, brand-veil: rgba(225, 241, 242, .6),
+    brand-text: #0f6e77, brand-text-hover: #0b565e, brand-ink: #0b565e, brand-faint: #4e888f,
+    brand-line: #0f6e77, brand-line-soft: #bbdce0, brand-focus: #308c95, brand-shadow: rgba(15, 110, 119, .18),
+    accent-solid: #96754f, accent-soft: #f4ede3, accent-text: #6c4f2d, accent-ink: #523a1e, accent-line: #e0d0bc,
+    shadow: "0 1px 2px 0 rgba(22, 38, 42, .06)",
+  ),
+  (
+    bg: #0b1416, surface: #121d20, surface-2: #17262a, surface-muted: #0f191c, border: #24373b,
+    text: #e7f1f2, text-muted: #a9c0c3, text-faint: #7f9599, text-dim: #667a7e, danger: #f08a7e,
+    brand-solid: #0f6e77, brand-solid-hover: #148b96, brand-soft: rgba(111, 195, 203, .12), brand-veil: rgba(111, 195, 203, .07),
+    brand-text: #6fc3cb, brand-text-hover: #93d6dc, brand-ink: #6fc3cb, brand-faint: #55969c,
+    brand-line: rgba(111, 195, 203, .5), brand-line-soft: rgba(111, 195, 203, .26), brand-focus: #93d6dc, brand-shadow: rgba(111, 195, 203, .2),
+    accent-solid: #96754f, accent-soft: rgba(206, 186, 163, .12), accent-text: #cebaa3, accent-ink: #cebaa3, accent-line: rgba(206, 186, 163, .3),
+    shadow: "0 1px 2px 0 rgba(0, 0, 0, .5)",
+  )
+);
+
+:root {
+  --aui-root-size: 15px;
+  --aui-th-size: .7rem;
+  --aui-th-tracking: .07em;
+  --aui-th-weight: 700;
+  --aui-cell-py: .62rem;
+  --aui-heading-tracking: -.012em;
+  --aui-radius-lg: .7rem;
+  --aui-radius: .55rem;
+  --aui-radius-sm: .45rem;
+  --aui-numbers-font: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+  --aui-card-shadow: var(--aui-shadow-token);
+}
+
+// Зебра во всех таблицах
+:root:not([data-bs-theme="dark"]) .table > tbody > tr:nth-child(even) > * {
+  --bs-table-bg-type: var(--aui-surface-muted);
+}
+
+[data-bs-theme="dark"] .table > tbody > tr:nth-child(even) > * {
+  --bs-table-bg-type: var(--aui-surface-2);
+}
+
+.aui-widget__numbers {
+  font-family: var(--aui-numbers-font);
+  font-variant-numeric: tabular-nums;
+}

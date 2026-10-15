@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-aui-header="fixed" data-aui-sidebar="fixed" data-aui-footer="static" data-aui-tabs="shadow">
+<html lang="en" data-aui-header="fixed" data-aui-sidebar="fixed" data-aui-footer="static" data-aui-tabs="shadow" data-aui-dark-only="cyberpunk ">
 <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,10 +7,26 @@
 <meta name="description" content="Wide selection of buttons that feature different styles for backgrounds, borders and hover options!">
 <link rel="icon" href="favicon.ico">
 
-<script>try{var s=JSON.parse(localStorage.getItem("architectui"))||{},d=document.documentElement;for(var k in s)d.setAttribute(k=="theme"?"data-bs-theme":"data-aui-"+k,s[k])}catch(e){}</script>
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="architectui.css">
+
+<script>
+(function () {
+  var d = document.documentElement, s = {}, m, t;
+  try { s = JSON.parse(localStorage.getItem("architectui")) || {}; } catch (e) {}
+  if (s.theme === "light" || s.theme === "dark") { s.mode = s.theme; delete s.theme; }
+  for (var k in s) d.setAttribute("data-aui-" + k, s[k]);
+  t = /^[a-z0-9-]+$/.test(s.theme || "") ? s.theme : "";
+  m = s.mode || "light";
+  if (t) {
+    var css = document.querySelector('link[href$="architectui.css"]').getAttribute("href");
+    document.write('<link rel="stylesheet" id="aui-theme" href="' + css.replace(/architectui\.css$/, "themes/" + t + ".css") + '">');
+    if ((" " + d.getAttribute("data-aui-dark-only") + " ").indexOf(" " + t + " ") > -1) m = "dark";
+  }
+  if (m === "system") m = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  d.setAttribute("data-bs-theme", m);
+})();
+</script>
 
 <script type="importmap">{"imports":{"chart.js":"https://cdn.jsdelivr.net/npm/chart.js@4.5.1/+esm","chart.js/auto":"https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm","leaflet":"https://cdn.jsdelivr.net/npm/leaflet@1.9.4/+esm"}}</script>
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -19,7 +35,7 @@
 
     <!--
     =========================================================
-    * ArchitectUI HTML Theme Dashboard - v5.0.0
+    * ArchitectUI HTML Theme Dashboard - v5.1.0
     =========================================================
     * Product Page: https://dashboardpack.com
     * Copyright 2025 DashboardPack (https://dashboardpack.com)
@@ -80,7 +96,11 @@
 
         </div>
         <div class="aui-header__right">
-            <div class="aui-user">
+            <button type="button" class="aui-mode-toggle me-3" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+    <i data-lucide="moon" class="aui-mode-toggle__dark"></i>
+    <i data-lucide="sun" class="aui-mode-toggle__light"></i>
+</button>
+<div class="aui-user">
     <div class="dropdown">
         <a class="aui-user__toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
             <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
@@ -563,13 +583,73 @@
                 </div>
             </li>
         </ul>
-        <h3 class="aui-settings__heading">Appearance</h3>
+        <h3 class="aui-settings__heading">Theme</h3>
         <div class="aui-settings__group">
-            <div class="form-check form-switch mb-3">
-                <input class="form-check-input" type="checkbox" role="switch" id="aui-setting-theme" data-aui-setting="theme" value="dark" data-aui-off="light">
-                <label class="form-check-label ms-2" for="aui-setting-theme"><span class="aui-widget__heading">Dark Theme</span></label>
+            <div class="mb-2 aui-settings__hint">Mode</div>
+            <div class="btn-group btn-group-sm mb-3 aui-segmented" role="radiogroup" aria-label="Color mode">
+                <input type="radio" class="btn-check" name="aui-mode" id="aui-mode-light" value="light" data-aui-setting="mode">
+                <label class="btn" for="aui-mode-light">Light</label>
+                <input type="radio" class="btn-check" name="aui-mode" id="aui-mode-dark" value="dark" data-aui-setting="mode">
+                <label class="btn" for="aui-mode-dark">Dark</label>
+                <input type="radio" class="btn-check" name="aui-mode" id="aui-mode-system" value="system" data-aui-setting="mode">
+                <label class="btn" for="aui-mode-system">System</label>
             </div>
-            <div class="mb-2 aui-settings__hint">Page Section Tabs</div>
+            <div class="mb-2 aui-settings__hint">Style</div>
+            <div class="aui-theme-grid" role="radiogroup" aria-label="Theme">
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-classic" value="" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-classic">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
+                    <span class="aui-theme-option__name">Classic</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-indigo" value="indigo" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-indigo">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
+                    <span class="aui-theme-option__name">Indigo</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-indigo-img" value="indigo-img" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-indigo-img">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
+                    <span class="aui-theme-option__name">Indigo Photo</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-coffee" value="coffee" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-coffee">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
+                    <span class="aui-theme-option__name">Coffee</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-green" value="green" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-green">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
+                    <span class="aui-theme-option__name">Garden</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-raspberry" value="raspberry" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-raspberry">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
+                    <span class="aui-theme-option__name">Warm</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-blue" value="blue" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-blue">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
+                    <span class="aui-theme-option__name">Business</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-teal" value="teal" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-teal">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
+                    <span class="aui-theme-option__name">Operations</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-violet" value="violet" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-violet">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
+                    <span class="aui-theme-option__name">Space</span>
+                </label>
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-cyberpunk" value="cyberpunk" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-cyberpunk">
+                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
+                    <span class="aui-theme-option__name">Cyberpunk<br><small>dark only</small></span>
+                </label>
+            </div>
+        </div>
+        <h3 class="aui-settings__heading">Page Section Tabs</h3>
+        <div class="aui-settings__group">
             <div class="btn-group btn-group-sm" role="group" aria-label="Page section tabs">
                 <input type="radio" class="btn-check" name="aui-tabs" id="aui-tabs-shadow" value="shadow" data-aui-setting="tabs">
                 <label class="btn btn-outline-primary" for="aui-tabs-shadow">Shadow</label>

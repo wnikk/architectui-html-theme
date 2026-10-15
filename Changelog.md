@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.1.0] - 2026-10-15
+
+### Added
+- **Visual themes.** Nine switchable themes on top of the classic look: Indigo, Indigo Photo, Coffee, Garden, Warm, Business, Operations, Space and Cyberpunk (dark only). Each theme is one stylesheet in `dist/themes/` and changes palette, typography, radii, shadows and table density.
+- **Mode "System"** next to Light and Dark. The page follows the operating system and reacts to its changes.
+- Light/dark toggle button in the header.
+- Theme picker in the settings panel: a grid of dots with the two accents of each theme.
+- `aui:theme-change` event on `document` after a theme or mode change. Charts re-render with the new colors.
+- Screenshot and console tools accept saved settings, so each theme can be checked in both modes.
+
+### Changed
+- Settings are applied before the first paint, including the theme stylesheet; switching at runtime swaps the stylesheet without a flash.
+- ArchitectUI gradients (`bg-primary` and friends) are CSS variables (`--aui-gradient-*`), so themes can recolor them.
+- The stored setting `theme: "light" | "dark"` from 5.0 is migrated to `mode` automatically.
+
 ## [5.0.0] - 2026-10-15
 
 A rewrite on top of CDN Bootstrap 5.3 with the same look. This release is not backward compatible with 4.x markup.
