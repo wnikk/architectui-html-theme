@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.3.2] - 2026-10-15
+
+### Changed
+- Toasts are filled with the status color again, with an icon per color; the header and the close button follow the text color.
+- `text-bg-<color>` takes its text color from the theme contrast token for every color, not only the extra ones.
+- The "PRO Version" menu section and all links to dashboardpack.com are removed. The page banner and `package.json` point to the GitHub repository; the MIT copyright notice stays.
+
+### Fixed
+- Large and Small modals open again.
+- Tab button groups ("Alternate Tabs", "Tabs Variations") are one capsule: only the outer ends are rounded.
+- Tabs in a card header stay on one line and no longer spill out of the header.
+
 ## [5.3.1] - 2026-10-15
 
 ### Fixed

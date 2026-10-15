@@ -146,17 +146,5 @@
         "icon": "chart-column"
       }
     ]
-  },
-  {
-    "heading": "PRO Version",
-    "items": [
-      {
-        "title": "Upgrade to PRO",
-        "href": "https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/",
-        "external": true,
-        "icon": "external-link",
-        "iconAfter": "trending-up"
-      }
-    ]
   }
 ]

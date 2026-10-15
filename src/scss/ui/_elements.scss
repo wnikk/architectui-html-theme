@@ -97,6 +97,26 @@
   box-shadow: var(--aui-shadow-soft);
 }
 
+// Filled toasts (text-bg-<color>): the header and the close button follow the text color
+.toast[class*="text-bg-"] {
+  --bs-toast-header-bg: transparent;
+  --bs-toast-header-color: inherit;
+  --bs-toast-header-border-color: color-mix(in srgb, currentColor 20%, transparent);
+  border: 0;
+
+  .btn-close {
+    color: inherit;
+    background: currentColor;
+    opacity: .75;
+    filter: none;
+    mask: var(--bs-btn-close-bg) center / .75em auto no-repeat;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
 .alert-dismissible .btn-close {
   top: 0;
   right: 5px;

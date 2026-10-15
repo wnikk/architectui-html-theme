@@ -39,6 +39,11 @@
   padding-bottom: 0;
   border-bottom-width: 1px;
 
+  // The header has a fixed height: tabs stay on one line and the title wraps instead
+  .nav {
+    flex-wrap: nowrap;
+  }
+
   // Tabs in a card header: a bar under the active tab
   > .nav {
     width: 100%;
