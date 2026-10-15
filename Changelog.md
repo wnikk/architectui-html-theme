@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.3.1] - 2026-10-15
+
+### Fixed
+- Card borders in themes stay visible above flush list groups; colored card shadows (`aui-card-shadow-*`) show in themes.
+- Dashboard Boxes: four-tile groups fill one row on wide screens, rows no longer stick out of their cards, gradient tiles keep white text readable.
+- Cards page: the active page tab is highlighted, text and buttons use Bootstrap 5 card markup.
+- List groups: badges sit at the right edge; link lists use valid markup.
+- Form checks use Bootstrap 5 markup (input next to label), so long labels wrap under the text.
+- Popovers have titles and use `data-bs-container`; accordion buttons point to their panels.
+- Content under shadow tabs keeps clear of the active tab shadow.
+
 ## [5.3.0] - 2026-10-15
 
 ### Changed
@@ -9,6 +20,11 @@ All notable changes to this project will be documented in this file.
 - **The classic look is the Orange theme** (`themes/orange.css`, id `orange`): orange accents, color gradients and soft shadows. Classic colors, gradients and shadows moved from `architectui.css` into this file.
 - `themes/blue.css` is removed. A stored choice of `blue` is dropped, and the page opens in the built-in Business look.
 - Fixed themes without the settings panel need `data-aui-theme="<id>"` on `<html>` next to the stylesheet link.
+
+### Fixed
+- The sidebar burger draws a proper cross when the menu is collapsed or open.
+- Sidebar icons are 20px (`--aui-nav-icon-size`) and centered in their row; the caret is centered too.
+- Icon names in the icon catalog wrap instead of being cut off.
 
 ## [5.2.0] - 2026-10-15
 

@@ -169,6 +169,11 @@
   }
 }
 
+// The active tab casts a shadow below; keep the content clear of it
+.aui-tabs-shadow + .tab-content {
+  margin-top: .5rem;
+}
+
 // Page section tabs under the title. Style set by data-aui-tabs on <html>: shadow or line.
 [data-aui-tabs="shadow"] .aui-body-tabs {
   padding: .75rem 0;
