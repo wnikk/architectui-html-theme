@@ -1,8 +1,8 @@
-// Значения по умолчанию для токенов темы. В браузере всё читается из CSS-переменных,
-// эта карта нужна только чтобы один раз сгенерировать переменные и правила для каждого цвета.
-// Формат: имя => (цвет, цвет текста на нём, режим наведения кнопки)
-//   tint  — при наведении цвет светлеет (для светлых цветов)
-//   shade — при наведении цвет темнеет (для тёмных цветов)
+// Default values for the theme tokens. At runtime everything is read from CSS variables;
+// this map only generates the variables and the per-color rules.
+// Format: name => (color, text color on it, button hover mode)
+//   tint  - lighter on hover (for light colors)
+//   shade - darker on hover (for dark colors)
 $aui-colors: (
   "primary":   (#eeaa55, #000, tint),
   "secondary": (#6c757d, #fff, shade),
@@ -17,10 +17,10 @@ $aui-colors: (
   "tertiary":  (#3fb247, #000, tint),
 );
 
-// Цвета, которых нет в Bootstrap: для них генерируются утилиты bg-, text-, border-, text-bg-
+// Colors missing in Bootstrap: bg-, text-, border- and text-bg- utilities are generated for them
 $aui-extra-colors: ("focus", "alternate", "tertiary");
 
-// Фирменные градиенты: класс bg-<имя> рисует градиент поверх цвета Bootstrap
+// Brand gradients: bg-<name> paints the gradient over the Bootstrap color
 $aui-gradients: (
   "primary":          linear-gradient(to right, #4facfe 0%, #00f2fe 100%),
   "primary-subtle":   linear-gradient(120deg, #a6c0fe 0%, #f68084 100%),
@@ -40,16 +40,16 @@ $aui-gradients: (
   "dark-subtle":      linear-gradient(to right, #141e30, #243b55),
 );
 
-// Цветовые схемы шапки и меню из панели настроек: имя => тон текста
+// Header and sidebar color schemes: name => text tone
 $aui-schemes: (
   "primary": dark, "secondary": light, "success": dark, "info": dark, "warning": dark,
   "danger": light, "light": dark, "dark": light, "focus": light, "alternate": light,
 );
 
-// Пороги каркаса
-$aui-bp-mobile: 768px;   // ниже — меню в Offcanvas, шапка в мобильном виде
-$aui-bp-rail: 1250px;    // ниже — меню свёрнуто в полосу иконок
-$aui-bp-user: 1320px;    // ниже — в шапке скрыто имя пользователя
+// Layout breakpoints
+$aui-bp-mobile: 768px;   // below: sidebar in an Offcanvas, mobile header
+$aui-bp-rail: 1250px;    // below: sidebar collapsed to an icon rail
+$aui-bp-user: 1320px;    // below: user name hidden in the header
 
 @mixin mobile { @media (max-width: #{$aui-bp-mobile - .02px}) { @content; } }
 @mixin desktop { @media (min-width: $aui-bp-mobile) { @content; } }

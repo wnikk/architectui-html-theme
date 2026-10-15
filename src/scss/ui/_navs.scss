@@ -1,4 +1,4 @@
-// Навигация и вкладки
+// Navs and tabs
 @use "../config" as *;
 
 .nav-link {
@@ -43,7 +43,7 @@
   margin-left: 8px;
 }
 
-// Иконка в пункте навигации
+// Icon in a nav link
 .aui-nav-icon {
   width: 1rem;
   height: 1rem;
@@ -80,7 +80,7 @@
   background: var(--bs-border-color);
 }
 
-// Анимированные вкладки: полоса под активной вкладкой
+// Animated tabs: a bar under the active tab
 .aui-tabs-animated {
   .nav-item {
     margin: 0 .75rem 0 0;
@@ -118,7 +118,7 @@
   }
 }
 
-// Вкладки-таблетки с тенью
+// Pill tabs with a shadow
 @mixin tabs-shadow {
   .nav-link {
     span {
@@ -169,7 +169,7 @@
   }
 }
 
-// Вкладки страницы под заголовком. Вид задаёт data-aui-tabs на <html>: shadow или line.
+// Page section tabs under the title. Style set by data-aui-tabs on <html>: shadow or line.
 [data-aui-tabs="shadow"] .aui-body-tabs {
   padding: .75rem 0;
   @include tabs-shadow;

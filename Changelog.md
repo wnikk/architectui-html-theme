@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.2.0] - 2026-10-15
+
+### Changed
+- **Classic scripts instead of ES modules.** `architectui.js` and the page scripts load with `<script defer>`, so the demo works from any folder of a local server and from disk (`file://`). `type="module"` still works for `architectui.js`.
+- `refresh()` is available as `window.ArchitectUI.refresh()`; this is the only global the theme script adds. The `import { refresh }` export is removed.
+- Chart.js and Leaflet load as UMD bundles from the CDN. The import map is removed.
+- Page front matter: the page script key is `script` (was `module`).
+
 ## [5.1.0] - 2026-10-15
 
 ### Added

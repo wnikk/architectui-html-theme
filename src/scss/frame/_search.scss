@@ -1,4 +1,4 @@
-// Поиск в шапке: круглая кнопка раскрывается в поле ввода. Открытие — класс is-open (модуль темы).
+// Header search: a round button that expands into an input. Opened with the is-open class.
 
 .aui-search {
   --aui-search-size: 42px;
@@ -47,7 +47,7 @@
   cursor: pointer;
   transition: all .3s ease-in-out;
 
-  // Лупа нарисована двумя псевдоэлементами и поворачивается при открытии
+  // The magnifier is drawn with two pseudo-elements and rotates when opened
   > span {
     position: relative;
     display: inline-block;

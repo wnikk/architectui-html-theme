@@ -1,5 +1,5 @@
-// Токены темы: все значения, которые можно менять без пересборки.
-// Bootstrap берёт цвета из --bs-*, тема — из --aui-*.
+// Theme tokens: every value that can change without a rebuild.
+// Bootstrap reads --bs-*, the theme reads --aui-*.
 @use "sass:color";
 @use "sass:list";
 @use "config" as *;
@@ -16,7 +16,7 @@
     --aui-#{$name}-contrast: #{list.nth($def, 2)};
   }
 
-  // Палитра Bootstrap, переопределённая темой
+  // Bootstrap palette overrides
   --bs-blue: #33aaff;
   --bs-indigo: #444054;
   --bs-purple: #794c8a;
@@ -40,15 +40,15 @@
   --bs-form-invalid-color: var(--bs-danger);
   --bs-form-invalid-border-color: var(--bs-danger);
 
-  // Каркас
+  // Layout
   --aui-header-height: 60px;
   --aui-sidebar-width: 280px;
   --aui-sidebar-collapsed-width: 80px;
-  --aui-logo-max-height: 2.25rem;   // логотип любой формы вписывается в эту высоту
+  --aui-logo-max-height: 2.25rem;   // logos of any shape fit into this height
   --aui-gutter: 1.5rem;
   --aui-transition: .2s ease;
 
-  // Поверхности, тени, служебные цвета
+  // Surfaces, shadows and helper colors
   --aui-app-bg: #f3f4f6;
   --aui-surface: #fff;
   --aui-shadow-color: #e9ecef;
@@ -62,13 +62,13 @@
   --aui-card-border-color: rgba(179, 128, 64, .125);
   --aui-nav-icon-hover: var(--bs-info);
 
-  // Фирменные градиенты. Темы перекрашивают их своими цветами.
+  // Brand gradients; visual themes override them
   @each $name, $gradient in $aui-gradients {
     --aui-gradient-#{$name}: #{$gradient};
   }
 }
 
-// Светлая тема: значения Bootstrap, которые тема меняет только в светлом режиме
+// Light mode: Bootstrap values that only change in light mode
 :root:not([data-bs-theme="dark"]) {
   --bs-body-color: #495057;
   --bs-body-color-rgb: 73, 80, 87;
@@ -84,7 +84,7 @@
   }
 }
 
-// Тёмная тема: включается атрибутом data-bs-theme="dark" на <html>
+// Dark mode: data-bs-theme="dark" on <html>
 [data-bs-theme="dark"] {
   --aui-app-bg: #16181b;
   --aui-surface: #212529;
@@ -102,7 +102,7 @@
   }
 }
 
-// Цвета меню и шапки, зависящие от темы
+// Sidebar and header colors per mode
 :root:not([data-bs-theme="dark"]) {
   --aui-nav-color: #343a40;
   --aui-nav-sub-color: #6c757d;

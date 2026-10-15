@@ -1,5 +1,5 @@
-// Тема «Сад» (ask/02, 4.4). Для долгого чтения: крупнее кегль, шире строки, антиква в заголовках.
-// Тёмный режим намеренно менее зелёный: основа — графит.
+// Garden theme for long reading: larger type, airy rows, serif headings.
+// Dark mode is deliberately less green, built on graphite.
 @use "theme" as t;
 
 @include t.base;

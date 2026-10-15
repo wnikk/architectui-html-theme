@@ -1,7 +1,7 @@
 # ArchitectUI Bootstrap 5 HTML Theme
 
 ArchitectUI is a clean, responsive admin dashboard theme. Version 5 is a thin layer on top of Bootstrap 5.3:
-one stylesheet and one dependency-free ES module. Bootstrap and the icons come from a CDN, so any markup written
+one stylesheet and one dependency-free script. Bootstrap and the icons come from a CDN, so any markup written
 for Bootstrap 5 works inside the theme without changes, and you never rebuild Bootstrap.
 
 ![ArchitectUI Bootstrap 5](https://github.com/wnikk/architectui-html-theme/blob/master/dist/assets/images/architectui-bootstrap-5-preview.png)
@@ -23,14 +23,18 @@ Copy `dist/architectui.css`, `dist/architectui.js`, `dist/themes/` and `dist/ass
 <link rel="stylesheet" href="architectui.css">
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/lucide@1.49.0/dist/umd/lucide.min.js"></script>
-<script type="module" src="architectui.js"></script>
+<script defer src="architectui.js"></script>
 ```
+
+All links are relative, and every script is a classic `defer` script. The demo works from any folder of a local
+server and from disk (`file://`). The theme script adds one global, `window.ArchitectUI`. Call
+`ArchitectUI.refresh(element)` after you insert markup with icons, tooltips or popovers.
 
 Use any demo page in `dist/` as the starting point for the frame markup: header, sidebar, page title and footer.
 
 ## Icons
 
-Write an element with the icon name. The theme module turns it into an inline SVG:
+Write an element with the icon name. The theme script turns it into an inline SVG:
 
 ```html
 <i data-lucide="rocket"></i>
@@ -125,9 +129,9 @@ npm run dev
 | `src/pages/*.js` | Scripts of individual pages (charts, calendar, maps, notifications, icons, validation). |
 | `src/_includes/` | The page layout and frame partials (Eleventy + Nunjucks). |
 | `src/_data/menu.json` | Sidebar menu. |
-| `src/_data/cdn.json` | Every external URL and the import map. Point them to a local `vendor/` folder to work offline. |
+| `src/_data/cdn.json` | Every external URL. Point them to a local `vendor/` folder to work offline. |
 | `src/scss/` | Theme styles. `architectui.scss` is the entry point. |
-| `src/js/architectui.js` | Theme module. |
+| `src/js/architectui.js` | Theme script. |
 
 The demo pages are built with [Eleventy 3](https://www.11ty.dev), the styles with [Sass](https://sass-lang.com). These are the only two dependencies.
 

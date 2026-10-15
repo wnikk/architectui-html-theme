@@ -1,14 +1,13 @@
-// Сборка демо-страниц (Eleventy 3). Стили собирает sass отдельной командой, Eleventy их не трогает.
-// Правила: _dev_instructions/architecture/05-target.md
+// Eleventy builds the demo pages. Styles are compiled separately by the sass CLI.
 
-// "elements-cards.html" -> "/elements-cards", сравнивается с page.filePathStem
+// "elements-cards.html" -> "/elements-cards", compared with page.filePathStem
 const stemOf = (href) => "/" + String(href).replace(/\.html$/, "");
 
 export default function (eleventyConfig) {
   eleventyConfig.addFilter("isActive", (href, stem) => Boolean(href) && stemOf(href) === stem);
   eleventyConfig.addFilter("hasActive", (items, stem) => items.some((item) => stemOf(item.href) === stem));
 
-  // Все страницы используют один макет и кладутся в корень dist/ под своим именем
+  // Every page uses the same layout and is written to the dist/ root under its own file name
   eleventyConfig.addGlobalData("layout", "base.njk");
   eleventyConfig.addGlobalData("permalink", () => (data) => `${data.page.filePathStem}.html`);
 
@@ -17,12 +16,12 @@ export default function (eleventyConfig) {
     "src/assets/favicon.ico": "favicon.ico",
     "src/js/architectui.js": "architectui.js",
   });
-  // Модули страниц лежат рядом со страницами и копируются в корень dist/
+  // Page scripts live next to their pages and are copied to the dist/ root
   eleventyConfig.addPassthroughCopy("src/pages/*.js");
 
   eleventyConfig.addWatchTarget("src/js/");
   eleventyConfig.addWatchTarget("src/pages/*.js");
-  // CSS пишет sass --watch прямо в dist/, dev-сервер перезагружает страницу по этому файлу
+  // sass --watch writes CSS straight into dist/; reload the page when it changes
   eleventyConfig.setServerOptions({ watch: ["dist/architectui.css"] });
 
   return {

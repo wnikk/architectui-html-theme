@@ -1,4 +1,4 @@
-// Базовые правила поверх Bootstrap
+// Base rules on top of Bootstrap
 
 html,
 body {
@@ -26,7 +26,7 @@ legend {
   font-weight: 700;
 }
 
-// Иконки Lucide: заглушка до отрисовки и размер по умолчанию
+// Lucide icons: placeholder size before rendering and default size
 i[data-lucide],
 svg.lucide {
   display: inline-block;
@@ -40,7 +40,7 @@ svg.lucide {
   stroke-width: 2;
 }
 
-// Тонкие системные полосы прокрутки
+// Thin native scrollbars
 .aui-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, .2) transparent;

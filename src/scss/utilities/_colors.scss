@@ -1,4 +1,4 @@
-// Утилиты цвета: недостающие в Bootstrap цвета темы и фирменные градиенты
+// Color utilities: theme colors missing in Bootstrap and brand gradients
 @use "../config" as *;
 
 @each $name in $aui-extra-colors {
@@ -23,7 +23,7 @@
   }
 }
 
-// Классы bg-<цвет> рисуют фирменный градиент поверх цвета Bootstrap
+// bg-<color> paints the brand gradient over the Bootstrap color
 @each $name, $gradient in $aui-gradients {
   .bg-#{$name} {
     background-image: var(--aui-gradient-#{$name}) !important;
@@ -35,7 +35,7 @@
   color: #212529;
 }
 
-// Образец цвета для страниц-демо
+// Color swatch
 .aui-swatch-lg {
   display: inline-block;
   width: 48px;

@@ -1,5 +1,5 @@
-// Тема «Киберпанк» (ask/02, 4.9). Только тёмная: токены одинаковы в обоих режимах, а модуль темы
-// держит data-bs-theme="dark", пока тема активна. Розовый — действие, жёлтый — чтение, циан — структура.
+// Cyberpunk theme, dark only: the same tokens apply in both modes and the theme module keeps
+// data-bs-theme="dark" while it is active. Pink is for actions, yellow for reading, cyan for structure.
 @use "theme" as t;
 
 $cyber: (
@@ -42,7 +42,7 @@ $cyber: (
   --aui-alternate-contrast: #000;
 }
 
-// Статусы: смысл тот же, жёлтый занят брендом, поэтому предупреждение оранжевое
+// Status colors: yellow is the brand color here, so warnings are orange
 :root:not([data-bs-theme="dark"]),
 [data-bs-theme="dark"] {
   --bs-success: #39ff88;
@@ -84,14 +84,14 @@ $cyber: (
   --bs-border-color-translucent: rgba(34, 229, 255, .14);
   color-scheme: dark;
 
-  // Неоновые градиенты притушены, чтобы на них читался светлый текст
+  // Neon gradients are dimmed so light text stays readable on them
   --aui-gradient-primary: linear-gradient(120deg, color-mix(in srgb, #ff2d78 45%, #000), color-mix(in srgb, #22e5ff 35%, #000));
   @each $name in (success, info, warning, danger) {
     --aui-gradient-#{$name}: linear-gradient(120deg, color-mix(in srgb, var(--bs-#{$name}) 25%, #000), color-mix(in srgb, var(--bs-#{$name}) 45%, #000));
   }
 }
 
-// Фактура фона: сетка и строки развёртки
+// Background texture: grid and scan lines
 html {
   background-color: #000;
   background-image:
@@ -134,7 +134,7 @@ h1, h2, h3, h4, h5, h6,
   border-radius: .12rem !important;
 }
 
-// Панель: циановая линия тенью, свечение и уголки внутри панели
+// Panels: cyan line drawn with a shadow, glow and corner brackets inside the panel
 .card {
   position: relative;
   box-shadow: inset 0 0 0 1px rgba(34, 229, 255, .22), var(--aui-card-shadow);
@@ -172,7 +172,7 @@ h1, h2, h3, h4, h5, h6,
   border-color: rgba(34, 229, 255, .18);
 }
 
-// Терминальные поля ввода
+// Terminal-style inputs
 .form-control,
 .form-select {
   border: 0;
@@ -187,7 +187,7 @@ h1, h2, h3, h4, h5, h6,
   }
 }
 
-// Таблица: циановая шапка, пунктир между строками, числа циан
+// Tables: cyan header, dashed row separators, cyan numbers
 .table {
   > thead th,
   > thead td {
@@ -214,7 +214,7 @@ h1, h2, h3, h4, h5, h6,
   backdrop-filter: none;
 }
 
-// Меню: «// » перед заголовками разделов, пункты капителью
+// Sidebar: "// " before section headings, uppercase items
 .aui-nav__heading::before {
   content: "// ";
   color: #22e5ff;

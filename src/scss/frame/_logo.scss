@@ -1,7 +1,7 @@
-// Логотип. Меняется заменой файлов:
-//   assets/images/logo.png         — для светлого фона
-//   assets/images/logo-on-dark.png — для тёмного фона
-// Любая форма (широкий или квадратный) вписывается в --aui-logo-max-height без правок.
+// Logo. Replace the files to change it:
+//   assets/images/logo.png         - for light backgrounds
+//   assets/images/logo-on-dark.png - for dark backgrounds
+// Any shape, wide or square, fits into --aui-logo-max-height.
 
 .aui-logo {
   display: flex;
@@ -23,7 +23,7 @@
   display: none;
 }
 
-// Тёмный фон: тёмная тема или тёмная цветовая схема шапки
+// Dark background: dark mode or a dark header scheme
 @mixin logo-on-dark {
   .aui-logo__img--default {
     display: none;

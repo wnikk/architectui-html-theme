@@ -1,5 +1,5 @@
-// Тема «Операционная» (ask/02, 4.7). Для доски, за которой следят: строка важнее карточки,
-// зебра, моноширинные числа. Второй цвет — охра для графиков и декора.
+// Operations theme for monitoring boards: rows over cards, zebra tables, monospace numbers.
+// Ochre is the secondary color for charts and decoration.
 @use "theme" as t;
 
 @include t.base;
@@ -38,7 +38,7 @@
   --aui-card-shadow: var(--aui-shadow-token);
 }
 
-// Зебра во всех таблицах
+// Zebra rows in every table
 :root:not([data-bs-theme="dark"]) .table > tbody > tr:nth-child(even) > * {
   --bs-table-bg-type: var(--aui-surface-muted);
 }

@@ -1,4 +1,4 @@
-// Цвет иконок Lucide. Градиентная обводка берёт градиент из <svg> в макете (partials/icon-gradients.njk).
+// Lucide icon colors. Gradient strokes reference the <svg> gradients in partials/icon-gradients.njk.
 
 @each $name in ("primary", "info", "success", "warning", "danger", "secondary", "dark", "focus", "alternate") {
   svg.aui-icon-gradient-#{$name} {

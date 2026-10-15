@@ -1,5 +1,5 @@
-// Сетка каркаса: шапка сверху, меню слева, контент справа.
-// Режимы задаются атрибутами на <html>: data-aui-header, data-aui-sidebar, data-aui-footer,
+// Layout grid: header on top, sidebar on the left, content on the right.
+// Modes are attributes on <html>: data-aui-header, data-aui-sidebar, data-aui-footer,
 // data-aui-sidebar-collapsed, data-aui-tabs, data-aui-header-scheme, data-aui-sidebar-scheme.
 @use "../config" as *;
 

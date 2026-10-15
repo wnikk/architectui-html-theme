@@ -1,4 +1,4 @@
-// Панель настроек темы (Offcanvas справа) и плавающая кнопка
+// Theme settings panel (right Offcanvas) and its floating button
 @use "sass:map";
 @use "../config" as *;
 
@@ -104,7 +104,7 @@
   }
 }
 
-// Выбор темы: кружок с двумя акцентами темы и подпись
+// Theme picker: a dot with the two theme accents and a caption
 .aui-theme-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(5.25rem, 1fr));
@@ -151,7 +151,7 @@
   outline-offset: 4px;
 }
 
-// Сегменты режима
+// Mode segments
 .aui-segmented {
   --bs-btn-color: var(--bs-secondary-color);
   padding: .25rem;

@@ -1,4 +1,4 @@
-// Тема «Деловая» (ask/02, 4.6). Для плотных экранов: мельче, резче, вместо теней — линии.
+// Business theme: dense screens, smaller type, lines instead of shadows.
 @use "theme" as t;
 
 @include t.base;
@@ -35,7 +35,7 @@
   --aui-radius-lg: .55rem;
   --aui-radius: .4rem;
   --aui-radius-sm: .35rem;
-  // Тени выключены полностью: глубину дают линии
+  // No shadows: depth comes from lines
   --aui-shadow-sm: none;
   --aui-shadow-md: 0 0 0 1px var(--aui-border);
   --aui-shadow-xl: 0 0 0 1px var(--aui-border);

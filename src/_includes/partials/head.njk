@@ -9,9 +9,8 @@
 <link rel="stylesheet" href="{{ cdn.styles[name] }}" crossorigin="anonymous">
 {%- endfor %}
 <link rel="stylesheet" href="architectui.css">
-{# Единственный встроенный скрипт. Применяет сохранённые настройки до отрисовки:
-   атрибуты режимов, режим light/dark/system и файл темы. Тема вписывается через document.write:
-   только такая ссылка блокирует отрисовку во всех браузерах, и нет вспышки чужой темы. #}
+{# Applies saved settings before the first paint: layout attributes, light/dark/system mode and the theme stylesheet.
+   The theme link is written with document.write so that it blocks rendering in every browser and the page never flashes in the wrong theme. #}
 <script>
 (function () {
   var d = document.documentElement, s = {}, m, t;
@@ -30,13 +29,12 @@
 })();
 </script>
 
-<script type="importmap">{{ cdn.importmap | dump | safe }}</script>
 <script defer src="{{ cdn.bootstrap.js }}" crossorigin="anonymous"></script>
 <script defer src="{{ cdn.lucide }}" crossorigin="anonymous"></script>
 {%- for name in scripts %}
 <script defer src="{{ cdn.scripts[name] }}" crossorigin="anonymous"></script>
 {%- endfor %}
-<script type="module" src="architectui.js"></script>
-{%- if module %}
-<script type="module" src="{{ module }}"></script>
+<script defer src="architectui.js"></script>
+{%- if script %}
+<script defer src="{{ script }}"></script>
 {%- endif %}

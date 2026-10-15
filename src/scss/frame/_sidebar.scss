@@ -1,7 +1,7 @@
-// Боковое меню.
-//   >= 1250 px  — полная ширина, кнопка в шапке сворачивает меню в полосу иконок
-//   768–1249 px — полоса иконок, при наведении меню раскрывается поверх контента
-//   < 768 px    — Offcanvas Bootstrap, открывается кнопкой в шапке
+// Sidebar.
+//   >= 1250px   - full width; the header button collapses it to an icon rail
+//   768-1249px  - icon rail that expands over the content on hover
+//   < 768px     - Bootstrap Offcanvas opened from the header
 @use "sass:map";
 @use "../config" as *;
 
@@ -45,7 +45,7 @@
   }
 }
 
-// Навигация
+// Navigation
 .aui-nav {
   margin: 0;
   padding: 2px var(--aui-gutter) var(--aui-gutter);
@@ -169,7 +169,7 @@
   }
 }
 
-// Полоса иконок: подписи скрыты, заголовки групп заменены линией
+// Icon rail: labels hidden, section headings replaced by a line
 @mixin rail-items {
   .aui-nav__heading {
     color: transparent;
@@ -226,7 +226,7 @@
   }
 }
 
-// Цветовые схемы меню: data-aui-sidebar-scheme="<цвет>" на <html>
+// Sidebar color schemes: data-aui-sidebar-scheme="<color>" on <html>
 @each $name, $tone in $aui-schemes {
   [data-aui-sidebar-scheme="#{$name}"] {
     .aui-sidebar,

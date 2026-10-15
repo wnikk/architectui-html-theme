@@ -1,4 +1,4 @@
-// Вспомогательные классы темы, которых нет в Bootstrap
+// Helper classes that Bootstrap does not provide
 
 .aui-fs-1 { font-size: .95rem !important; }
 .aui-fs-lg { font-size: 1.1rem !important; }
@@ -24,7 +24,7 @@
   opacity: 1;
 }
 
-// Блок кода с переносом длинных строк
+// Code block that wraps long lines
 .aui-code {
   white-space: pre-wrap;
   word-break: break-word;

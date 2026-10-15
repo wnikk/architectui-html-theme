@@ -1,21 +1,16 @@
 {
-  "_comment": "Единственное место адресов внешних библиотек. Локальная копия: замените адреса на пути в vendor/ с той же структурой.",
+  "_comment": "All external library URLs. To serve local copies, point them to a vendor/ folder with the same structure.",
   "bootstrap": {
     "css": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css",
     "js": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
   },
   "lucide": "https://cdn.jsdelivr.net/npm/lucide@1.49.0/dist/umd/lucide.min.js",
-  "importmap": {
-    "imports": {
-      "chart.js": "https://cdn.jsdelivr.net/npm/chart.js@4.5.1/+esm",
-      "chart.js/auto": "https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm",
-      "leaflet": "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/+esm"
-    }
-  },
   "styles": {
     "leaflet": "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"
   },
   "scripts": {
+    "chartjs": "https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js",
+    "leaflet": "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js",
     "fullcalendar": "https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js"
   }
 }

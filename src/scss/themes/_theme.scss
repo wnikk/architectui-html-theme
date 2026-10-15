@@ -1,6 +1,5 @@
-// Базовая тема из _dev_instructions/ask/02-visual-themes-export.md, раздел 3.
-// Каждый файл темы подключает этот партиал: палитра (mixin palette) + правила базовой темы (mixin base).
-// Компоненты здесь читают цвет только из токенов --aui-*. Значения токенов задаёт файл темы.
+// Shared base for the visual themes. A theme file includes `base` once and passes its palette to `palette`.
+// Components here read colors only from --aui-* tokens; each theme file sets their values.
 @use "sass:color";
 @use "sass:map";
 @use "sass:list";
@@ -13,7 +12,7 @@ $both: '#{$light}, #{$dark}';
   @return round(color.channel($c, "red", $space: rgb)), round(color.channel($c, "green", $space: rgb)), round(color.channel($c, "blue", $space: rgb));
 }
 
-// Значения одного режима. $p — карта с ключами раздела 2 ask/02.
+// Token values for one mode. $p is a map of palette keys (bg, surface, text, brand-*, accent-*, ...).
 @mixin tokens($p) {
   $accent: (
     accent-solid: map.get($p, brand-solid), accent-soft: map.get($p, brand-soft), accent-text: map.get($p, brand-text),
@@ -42,7 +41,7 @@ $both: '#{$light}, #{$dark}';
     --aui-#{$key}: #{map.get($p, $key)};
   }
 
-  // Перевод в токены Bootstrap: компоненты Bootstrap берут цвета отсюда
+  // Mapped to Bootstrap tokens so Bootstrap components follow the theme
   --bs-body-bg: #{map.get($p, surface)};
   --bs-body-bg-rgb: #{rgb(map.get($p, surface))};
   --bs-body-color: #{map.get($p, text)};
@@ -76,7 +75,7 @@ $both: '#{$light}, #{$dark}';
   --bs-focus-ring-color: color-mix(in srgb, #{map.get($p, brand-focus)} 35%, transparent);
 }
 
-// Палитра темы для двух режимов. $danger-solid — заливка кнопки «опасно» в обоих режимах.
+// Theme palette for both modes. The light danger color fills danger buttons in both modes.
 @mixin palette($light-values, $dark-values) {
   #{$light} {
     @include tokens($light-values);
@@ -92,7 +91,7 @@ $both: '#{$light}, #{$dark}';
   }
 }
 
-// Правила базовой темы. Подключаются один раз в каждом файле темы.
+// Base theme rules. Include once per theme file.
 @mixin base {
   :root {
     --aui-root-size: 16px;
@@ -132,7 +131,7 @@ $both: '#{$light}, #{$dark}';
     --bs-border-radius-xl: var(--aui-radius-lg);
     --bs-border-radius-pill: var(--aui-pill);
 
-    // Статусы (раздел 5): сплошные заливки одинаковы во всех темах
+    // Status colors: solid fills are the same in every theme
     --bs-success: #059669;
     --bs-success-rgb: 5, 150, 105;
     --bs-warning: #d97706;
@@ -152,7 +151,7 @@ $both: '#{$light}, #{$dark}';
     --aui-alternate-contrast: #fff;
     --aui-tertiary-contrast: #fff;
 
-    // Градиенты ArchitectUI перекрашиваются цветами темы
+    // ArchitectUI gradients in theme colors
     --aui-gradient-primary: linear-gradient(120deg, var(--aui-brand-solid), var(--aui-accent-solid));
     --aui-gradient-primary-subtle: linear-gradient(120deg, var(--aui-brand-soft), var(--aui-accent-soft));
     @each $name in (success, info, warning, danger, secondary) {
@@ -218,7 +217,7 @@ $both: '#{$light}, #{$dark}';
     color-scheme: dark;
   }
 
-  // Токены ArchitectUI в обоих режимах читают токены темы
+  // ArchitectUI tokens read the theme tokens in both modes
   #{$both} {
     --aui-shadow: var(--aui-card-shadow);
     --aui-shadow-soft: var(--aui-shadow-md);
@@ -253,7 +252,7 @@ $both: '#{$light}, #{$dark}';
     letter-spacing: var(--aui-heading-tracking);
   }
 
-  // Каркас: плоские поверхности, граница вместо тени
+  // Layout: flat surfaces, borders instead of shadows
   .aui-header {
     border-bottom: 1px solid var(--aui-border);
     border-radius: 0;
@@ -332,7 +331,7 @@ $both: '#{$light}, #{$dark}';
     box-shadow: inset 0 0 0 1px var(--aui-border), var(--aui-card-shadow);
   }
 
-  // Иконки с градиентом ArchitectUI в темах рисуются цветом темы
+  // Gradient icons use the theme color
   svg[class*="aui-icon-gradient-"] {
     stroke: currentColor;
   }
@@ -351,7 +350,7 @@ $both: '#{$light}, #{$dark}';
     color: var(--aui-text-faint);
   }
 
-  // Карточка: граница внутренней тенью, тихая тень
+  // Card: border drawn as an inset shadow, subtle drop shadow
   .card {
     --bs-card-spacer-y: var(--aui-card-padding);
     --bs-card-spacer-x: var(--aui-card-padding);
@@ -387,7 +386,7 @@ $both: '#{$light}, #{$dark}';
     box-shadow: inset 0 0 0 1px var(--aui-border);
   }
 
-  // Кнопки
+  // Buttons
   .btn {
     --bs-btn-font-size: .875rem;
     --bs-btn-font-weight: 600;
@@ -459,7 +458,7 @@ $both: '#{$light}, #{$dark}';
     --bs-btn-border-color: var(--aui-border);
   }
 
-  // Поля ввода
+  // Inputs
   .form-control,
   .form-select {
     border-color: var(--aui-border);
@@ -509,7 +508,7 @@ $both: '#{$light}, #{$dark}';
     }
   }
 
-  // Таблица
+  // Tables
   .table {
     --bs-table-color: var(--aui-text-muted);
     --bs-table-bg: transparent;
@@ -547,7 +546,7 @@ $both: '#{$light}, #{$dark}';
     }
   }
 
-  // Тёмная таблица остаётся тёмной в любой теме и режиме
+  // .table-dark stays dark in every theme and mode
   .table-dark {
     --bs-table-color: #e2e8f0;
     --bs-table-bg: var(--bs-dark);
@@ -572,7 +571,7 @@ $both: '#{$light}, #{$dark}';
     padding: calc(var(--aui-cell-py) / 2) calc(var(--aui-cell-px) / 2);
   }
 
-  // Бейджи, меню, модальные окна, прочее
+  // Badges, dropdowns, modals and other components
   .badge {
     --bs-badge-font-size: .75rem;
     --bs-badge-font-weight: 700;

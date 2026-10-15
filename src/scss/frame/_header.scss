@@ -1,4 +1,4 @@
-// Шапка: логотип с кнопками слева, поиск и меню, блок пользователя справа
+// Header: logo and toggles on the left, search and menu, user block on the right
 @use "sass:map";
 @use "../config" as *;
 
@@ -121,7 +121,7 @@
   }
 }
 
-// Меню шапки
+// Header menu
 .aui-header-menu {
   .nav-link {
     color: var(--aui-header-link-color);
@@ -137,7 +137,7 @@
   }
 }
 
-// Блок пользователя
+// User block
 .aui-user {
   display: flex;
   align-items: center;
@@ -169,7 +169,7 @@
   }
 }
 
-// Цветовые схемы шапки: data-aui-header-scheme="<цвет>" на <html>
+// Header color schemes: data-aui-header-scheme="<color>" on <html>
 @each $name, $tone in $aui-schemes {
   [data-aui-header-scheme="#{$name}"] .aui-header {
     background-color: var(--bs-#{$name});
@@ -209,7 +209,7 @@
   }
 }
 
-// Кнопка смены режима: в светлом режиме луна, в тёмном солнце
+// Mode toggle: moon in light mode, sun in dark mode
 .aui-mode-toggle {
   display: inline-flex;
   align-items: center;

@@ -1,4 +1,4 @@
-// Анимации темы. Классы aui-animate-* можно ставить на любой элемент.
+// Animations. The aui-animate-* classes work on any element.
 
 @keyframes aui-drop-in {
   from {
@@ -53,7 +53,7 @@
 .aui-animate-light-speed-in { animation: aui-light-speed-in 1s ease-out both; }
 .aui-animate-spin { animation: aui-spin 2s linear infinite; }
 
-// Появление содержимого вкладок
+// Tab content fade-in
 .tab-pane.active {
   animation: aui-fade-in .2s both;
 }

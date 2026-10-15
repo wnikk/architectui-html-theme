@@ -1,4 +1,4 @@
-// Сторонние компоненты страниц: FullCalendar и Leaflet. Их собственные стили приходят из библиотек.
+// Third-party page components: FullCalendar and Leaflet. Their own styles come from the libraries.
 
 .fc {
   --fc-border-color: var(--bs-border-color);
@@ -51,7 +51,7 @@
   height: 400px;
 }
 
-// Контейнер графика Chart.js: высоту задаёт контейнер, график растягивается по нему
+// Chart.js container: it sets the height and the chart fills it
 .aui-chart {
   position: relative;
   height: 300px;

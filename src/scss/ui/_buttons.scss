@@ -1,4 +1,4 @@
-// Кнопки. Варианты собраны на CSS-переменных Bootstrap: смена --bs-<цвет> перекрашивает кнопку без сборки.
+// Buttons. Variants use Bootstrap CSS variables, so changing --bs-<color> recolors them without a rebuild.
 @use "sass:list";
 @use "../config" as *;
 
@@ -55,7 +55,7 @@
   }
 }
 
-// В группах все кнопки .8rem, как в старой теме (Bootstrap увеличивает шрифт в .btn-group-lg)
+// Grouped buttons keep .8rem text, including .btn-group-lg
 .btn-group > .btn,
 .btn-group-lg > .btn,
 .btn-group-sm > .btn {
@@ -70,7 +70,7 @@
   --bs-btn-color: #939393;
 }
 
-// Тень в цвет кнопки
+// Shadow in the button color
 .aui-btn-shadow {
   --aui-btn-shadow-rgb: 0, 0, 0;
   box-shadow: 0 .125rem .625rem rgba(var(--aui-btn-shadow-rgb), .4), 0 .0625rem .125rem rgba(var(--aui-btn-shadow-rgb), .5);
@@ -84,7 +84,7 @@
   }
 }
 
-// Широкие кнопки
+// Wide buttons
 .aui-btn-wide {
   --bs-btn-padding-x: 1.5rem;
   --bs-btn-font-size: .8rem;
@@ -100,7 +100,7 @@
   }
 }
 
-// Кнопки «перехода»: серые в покое, цвет варианта при наведении
+// Transition buttons: gray at rest, variant color on hover
 .aui-btn-transition {
   --bs-btn-color: var(--bs-gray-600);
   --bs-btn-border-color: var(--bs-gray-200);
@@ -108,7 +108,7 @@
   --bs-btn-disabled-border-color: var(--bs-gray-200);
 }
 
-// Кнопки с иконкой
+// Icon buttons
 .aui-btn-icon {
   display: inline-flex;
   align-items: center;
