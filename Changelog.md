@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.3.4] - 2026-10-16
+
+### Changed
+- Until Lucide draws an icon, its place shows a rounded neutral gray block, the same in every theme and mode.
+
 ## [5.3.3] - 2026-10-16
 
 ### Fixed

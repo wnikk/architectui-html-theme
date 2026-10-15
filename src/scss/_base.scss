@@ -40,6 +40,12 @@ svg.lucide {
   stroke-width: 2;
 }
 
+// Until Lucide draws the icon, its place shows a neutral gray block, the same in every theme
+i[data-lucide] {
+  border-radius: .25em;
+  background-color: rgba(128, 128, 128, .25);
+}
+
 // Skip link: shown above the fixed header while it has keyboard focus
 .aui-skip-link:focus {
   position: fixed;
