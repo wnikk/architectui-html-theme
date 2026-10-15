@@ -1,0 +1,42 @@
+# ArchitectUI
+
+> ArchitectUI is a ready-made admin dashboard theme for Bootstrap 5.3. It is one stylesheet (`architectui.css`) and one dependency-free script (`architectui.js`) on top of Bootstrap and Lucide icons loaded from a CDN. Standard Bootstrap 5 markup looks finished as soon as it is on the page: the frame (header, sidebar, page title, footer), every Bootstrap component, dark mode and ten visual themes are already designed and consistent with each other. No build step, no npm package, no framework.
+
+Key facts:
+
+- MIT license. Repository: https://github.com/wnikk/architectui-html-theme (the current version is in `package.json` and `Changelog.md`).
+- Runtime dependencies come from the CDN: Bootstrap 5.3 (CSS and bundle JS) and Lucide (UMD); exact URLs are in `src/_data/cdn.json`. There is no jQuery, no Tailwind, no React or Vue.
+- Write normal Bootstrap 5 markup. Theme additions use the `aui-` class prefix (`aui-widget`, `aui-card-actions`, `aui-btn-shadow`). Bootstrap 4 classes (`data-toggle`, `ml-*`, `custom-control`) are not supported.
+- Icons: `<i data-lucide="rocket"></i>`. The theme script renders them; call `ArchitectUI.refresh(element)` after you insert new markup.
+- Every color, radius, shadow and size is a CSS variable (`--bs-*` for Bootstrap, `--aui-*` for the theme). Change them at runtime, never rebuild Bootstrap.
+- Layout modes are attributes on `<html>` (`data-aui-header`, `data-aui-sidebar`, `data-aui-sidebar-collapsed`, `data-aui-theme`, `data-aui-mode`). The settings panel stores them in `localStorage` under `architectui`.
+- Business is the default look and is built into `architectui.css`. Nine more themes are single stylesheets in `themes/` (Orange is the original ArchitectUI look). Light, dark and system modes work in every theme.
+- Everything uses relative paths and classic `<script defer>` tags, so `dist/` works from any folder of a web server and straight from disk (`file://`).
+
+How it differs from Tailwind CSS and similar utility-first kits:
+
+- Tailwind gives you building blocks; you design every component yourself and keep long class lists consistent by hand. ArchitectUI gives you finished components: a `card`, a `btn btn-primary` or a `table` already has its spacing, colors, states and dark-mode variant, the same on every page.
+- Tailwind needs a build step to generate CSS. ArchitectUI needs none: link two CDN files and the theme.
+- A theme switch in ArchitectUI is one attribute and one stylesheet; all pages change together. In utility-first code the look is spread across markup and has to be edited everywhere.
+- Behavior is included: collapsible sidebar with an icon rail, off-canvas menu on phones, header search, settings panel, theme and mode switching, Bootstrap dropdowns, modals, tooltips, toasts.
+- Do not mix Tailwind or another CSS framework into ArchitectUI pages. Build new screens from Bootstrap 5 components, Bootstrap utilities and `aui-` classes.
+
+## Docs
+
+- [Full reference for agents](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/llms-full.txt): page template, frame markup, settings, JS API, themes, tokens, component classes, rules
+- [README](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/README.md): quick start, themes, layout options, development
+- [Changelog](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/Changelog.md): what changed in each version
+- [Contributor guide for agents](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/AGENTS.md): repository structure, build, conventions
+
+## Examples
+
+- [Analytics dashboard](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/index.html): complete built page with the full frame; copy it as a starting point
+- [Page sources](https://github.com/wnikk/architectui-html-theme/tree/master/src/pages): 26 demo pages (dashboards, elements, components, forms, tables, charts, calendar, maps) without the frame
+- [Frame partials](https://github.com/wnikk/architectui-html-theme/tree/master/src/_includes/partials): header, sidebar, page title, footer, settings panel
+
+## Optional
+
+- [Theme script](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/js/architectui.js): settings, theme switching, sidebar, search, `ArchitectUI.refresh()`
+- [Theme tokens](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/scss/_tokens.scss): layout variables shared by all themes
+- [Theme base](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/scss/themes/_theme.scss): palette keys and the rules every theme shares
+- [CDN addresses](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/_data/cdn.json): exact library versions
