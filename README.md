@@ -114,6 +114,14 @@ All colors are CSS variables. Override them after `architectui.css`, no rebuild 
 
 The theme adds `focus`, `alternate` and `tertiary` to the Bootstrap color set (`btn-focus`, `bg-alternate`, `text-focus` and so on).
 
+## For AI agents
+
+- [`llms.txt`](llms.txt) — short description of the theme and links, in the [llms.txt](https://llmstxt.org) format.
+- [`llms-full.txt`](llms-full.txt) — complete usage reference: page template, frame markup, settings, script API, themes, tokens, component classes.
+- [`AGENTS.md`](AGENTS.md) — how to change this repository: structure, build, conventions, checks.
+
+Both `llms` files are also copied to `dist/`, so a deployed demo serves them at its root.
+
 ## Development
 
 Requires Node 22 or newer.

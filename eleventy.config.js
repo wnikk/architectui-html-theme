@@ -15,6 +15,8 @@ export default function (eleventyConfig) {
     "src/assets/images": "assets/images",
     "src/assets/favicon.ico": "favicon.ico",
     "src/js/architectui.js": "architectui.js",
+    "llms.txt": "llms.txt",
+    "llms-full.txt": "llms-full.txt",
   });
   // Page scripts live next to their pages and are copied to the dist/ root
   eleventyConfig.addPassthroughCopy("src/pages/*.js");

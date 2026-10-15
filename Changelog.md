@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [5.3.2] - 2026-10-15
 
+### Added
+- `llms.txt` and `llms-full.txt`: a description and a complete usage reference of the theme for AI agents; both are copied to `dist/`.
+- `AGENTS.md`: a guide for agents that change this repository.
+
 ### Changed
 - Toasts are filled with the status color again, with an icon per color; the header and the close button follow the text color.
 - `text-bg-<color>` takes its text color from the theme contrast token for every color, not only the extra ones.
