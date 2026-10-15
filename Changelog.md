@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.3.0] - 2026-10-15
+
+### Changed
+- **Business is the default look.** `architectui.css` draws it alone, without a theme stylesheet. Its rules switch off while `data-aui-theme` is set on `<html>`, so every other theme renders as before.
+- **The classic look is the Orange theme** (`themes/orange.css`, id `orange`): orange accents, color gradients and soft shadows. Classic colors, gradients and shadows moved from `architectui.css` into this file.
+- `themes/blue.css` is removed. A stored choice of `blue` is dropped, and the page opens in the built-in Business look.
+- Fixed themes without the settings panel need `data-aui-theme="<id>"` on `<html>` next to the stylesheet link.
+
 ## [5.2.0] - 2026-10-15
 
 ### Changed

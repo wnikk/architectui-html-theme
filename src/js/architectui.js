@@ -10,7 +10,6 @@
     header: "fixed", sidebar: "fixed", footer: "static", tabs: "shadow", mode: "light", theme: "",
     "header-scheme": "", "sidebar-scheme": "", "sidebar-collapsed": "",
   };
-
   const attrName = (key) => `data-aui-${key}`;
   const currentValue = (key) => root.getAttribute(attrName(key)) || DEFAULTS[key];
   const notify = () => document.dispatchEvent(new CustomEvent("aui:theme-change", { detail: { theme: currentValue("theme") } }));
@@ -21,6 +20,7 @@
       if (settings.theme === "light" || settings.theme === "dark") {
         [settings.mode, settings.theme] = [settings.theme, undefined]; // 5.0 stored the mode as "theme"
       }
+      if (settings.theme === "blue") settings.theme = undefined; // Business is built in since 5.3
       return settings;
     } catch {
       return {};

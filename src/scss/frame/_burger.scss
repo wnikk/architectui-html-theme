@@ -60,8 +60,9 @@
       transition-delay: 0s;
     }
 
+    // The lines are siblings, so each rotation is absolute: 135deg and -135deg cross at a right angle
     > span::after {
-      transform: translate3d(0, -6px, 0) rotate(-270deg);
+      transform: translate3d(0, -6px, 0) rotate(-135deg);
       transition-delay: .075s;
     }
   }

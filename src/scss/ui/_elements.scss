@@ -146,11 +146,12 @@
   font-size: .72rem;
   transition: all .2s;
 
+  // Long names wrap after hyphens instead of being cut off
   span {
     max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    line-height: 1.3;
+    text-align: center;
+    overflow-wrap: anywhere;
   }
 
   svg.lucide,

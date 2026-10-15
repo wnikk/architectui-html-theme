@@ -3,6 +3,8 @@
 // Format: name => (color, text color on it, button hover mode)
 //   tint  - lighter on hover (for light colors)
 //   shade - darker on hover (for dark colors)
+@use "sass:color";
+
 $aui-colors: (
   "primary":   (#eeaa55, #000, tint),
   "secondary": (#6c757d, #fff, shade),
@@ -16,6 +18,9 @@ $aui-colors: (
   "alternate": (#794c8a, #fff, shade),
   "tertiary":  (#3fb247, #000, tint),
 );
+
+// Colors that every theme sets itself; the classic values live in themes/orange.scss
+$aui-theme-colors: ("primary", "success", "info", "warning", "danger");
 
 // Colors missing in Bootstrap: bg-, text-, border- and text-bg- utilities are generated for them
 $aui-extra-colors: ("focus", "alternate", "tertiary");
@@ -56,3 +61,7 @@ $aui-bp-user: 1320px;    // below: user name hidden in the header
 @mixin rail-range { @media (min-width: $aui-bp-mobile) and (max-width: #{$aui-bp-rail - .02px}) { @content; } }
 @mixin wide { @media (min-width: $aui-bp-rail) { @content; } }
 @mixin phone { @media (max-width: 575.98px) { @content; } }
+
+@function rgb-triplet($c) {
+  @return round(color.channel($c, "red", $space: rgb)), round(color.channel($c, "green", $space: rgb)), round(color.channel($c, "blue", $space: rgb));
+}

@@ -100,14 +100,14 @@
   }
 }
 
+// Icons are centered with auto margins, so the row stays aligned at any icon size
 .aui-nav__icon,
 .aui-nav__caret {
   position: absolute;
-  top: 50%;
+  top: 0;
+  bottom: 0;
   left: 10px;
-  width: 24px;
-  height: 24px;
-  margin-top: -12px;
+  margin: auto 0;
   color: var(--aui-nav-color);
   opacity: .45;
   transition: color .3s, opacity .3s, transform .3s;
@@ -116,9 +116,17 @@
 .aui-nav__caret {
   right: 7px;
   left: auto;
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
+}
+
+// The link prefix outweighs the default Lucide size (svg.lucide)
+.aui-nav__link > .aui-nav__icon {
+  width: var(--aui-nav-icon-size);
+  height: var(--aui-nav-icon-size);
+}
+
+.aui-nav__link > .aui-nav__caret {
+  width: 16px;
+  height: 16px;
 }
 
 .aui-nav__link:hover {
@@ -191,8 +199,9 @@
   }
 
   .aui-nav__icon {
-    left: 50%;
-    margin-left: -12px;
+    right: 0;
+    left: 0;
+    margin: auto;
   }
 
   .aui-nav__caret {

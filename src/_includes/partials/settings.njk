@@ -35,8 +35,8 @@
             <div class="mb-2 aui-settings__hint">Style</div>
             <div class="aui-theme-grid" role="radiogroup" aria-label="Theme">
                 {%- for theme in themes %}
-                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-{{ theme.id or 'classic' }}" value="{{ theme.id }}" data-aui-setting="theme">
-                <label class="aui-theme-option" for="aui-theme-{{ theme.id or 'classic' }}">
+                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-{{ theme.id or 'business' }}" value="{{ theme.id }}" data-aui-setting="theme">
+                <label class="aui-theme-option" for="aui-theme-{{ theme.id or 'business' }}">
                     <span class="aui-theme-option__dot" style="--aui-dot-brand: {{ theme.brand }}; --aui-dot-accent: {{ theme.accent }}"></span>
                     <span class="aui-theme-option__name">{{ theme.name }}{% if theme.darkOnly %}<br><small>dark only</small>{% endif %}</span>
                 </label>

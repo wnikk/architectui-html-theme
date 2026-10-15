@@ -8,9 +8,9 @@ for Bootstrap 5 works inside the theme without changes, and you never rebuild Bo
 
 ## What you get
 
-- `dist/architectui.css` — the theme: layout, components, colors and dark mode, all driven by CSS variables.
+- `dist/architectui.css` — the theme: layout, components, colors and dark mode in the default Business look, all driven by CSS variables.
 - `dist/architectui.js` — the theme behavior: collapsible sidebar, settings panel, theme and mode switching, header search, icon rendering.
-- `dist/themes/*.css` — nine optional visual themes, loaded on top of `architectui.css`.
+- `dist/themes/*.css` — nine optional visual themes loaded on top of `architectui.css`, including Orange, the original ArchitectUI look.
 - `dist/*.html` — 26 demo pages: dashboards, elements, components, forms, tables, charts, calendar and maps.
 - No jQuery, no build step for your app. Icons are [Lucide](https://lucide.dev).
 
@@ -54,26 +54,28 @@ Wide and square logos both fit automatically. The maximum height is the `--aui-l
 
 ## Themes
 
-Besides the classic look, the theme ships nine visual themes. A theme is one extra stylesheet loaded after
-`architectui.css`; it changes palette, typography, radii, shadows and table density, not the markup.
+`architectui.css` alone draws the default look, Business. Nine more visual themes are optional. A theme is one extra
+stylesheet loaded after `architectui.css`; it changes palette, typography, radii, shadows and table density, not the markup.
 
 | Theme | File | Character |
 |-------|------|-----------|
+| Business (default) | none, built into `architectui.css` | Dense, smaller type, lines instead of shadows |
+| Orange | `themes/orange.css` | The original ArchitectUI look: orange accents, color gradients, soft shadows |
 | Indigo | `themes/indigo.css` | Neutral business palette |
 | Indigo Photo | `themes/indigo-img.css` | Indigo with a subtle photo behind the content |
 | Coffee | `themes/coffee.css` | Warm browns on neutral surfaces |
 | Garden | `themes/green.css` | Calm green, serif headings, airy rows for long reading |
 | Warm | `themes/raspberry.css` | Berry accent, pill buttons, rounder corners |
-| Business | `themes/blue.css` | Dense, smaller type, lines instead of shadows |
 | Operations | `themes/teal.css` | Zebra tables, monospace numbers |
 | Space | `themes/violet.css` | Large radii, soft violet shadows, heavy headings |
 | Cyberpunk | `themes/cyberpunk.css` | Neon on black, monospace; dark only |
 
 Pick a theme and a mode (Light, Dark, System) in the settings panel, or toggle light/dark with the header button.
 The choice is stored in `localStorage` and applied before the first paint. To ship a fixed theme without the panel,
-add the stylesheet yourself:
+add the stylesheet yourself and put the theme id on `<html>`. The attribute switches the built-in Business rules off:
 
 ```html
+<html data-aui-theme="coffee">
 <link rel="stylesheet" href="architectui.css">
 <link rel="stylesheet" href="themes/coffee.css">
 ```
@@ -94,7 +96,7 @@ Layout modes are attributes on `<html>`. The settings panel (cog button) changes
 | `data-aui-tabs` | `shadow`, `line` | `shadow` |
 | `data-aui-header-scheme`, `data-aui-sidebar-scheme` | `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, `dark`, `focus`, `alternate` | none |
 | `data-aui-mode` | `light`, `dark`, `system` | `light` |
-| `data-aui-theme` | theme id from the table above, or none for the classic look | none |
+| `data-aui-theme` | theme id from the table above, or none for Business | none |
 | `data-bs-theme` | `light`, `dark` — set by the theme script from the mode | `light` |
 
 The sidebar is full width from 1250 px, an icon rail from 768 px (it expands on hover) and an off-canvas panel below 768 px.

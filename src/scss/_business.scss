@@ -1,5 +1,6 @@
-// Business theme: dense screens, smaller type, lines instead of shadows.
-@use "theme" as t;
+// Business look, the default: dense screens, smaller type, lines instead of shadows.
+// Every rule applies only while no theme is selected (no data-aui-theme on <html>).
+@use "themes/theme" as t with ($scoped: true);
 
 @include t.base;
 @include t.palette(
@@ -23,7 +24,7 @@
   )
 );
 
-:root {
+#{t.$root} {
   --aui-root-size: 14.5px;
   --bs-body-line-height: 1.45;
   --aui-heading-tracking: -.015em;
@@ -43,6 +44,8 @@
   --aui-btn-primary-shadow: none;
 }
 
-.table {
-  font-size: .92rem;
+@include t.scope {
+  .table {
+    font-size: .92rem;
+  }
 }
