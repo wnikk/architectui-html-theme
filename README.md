@@ -11,7 +11,7 @@ for Bootstrap 5 works inside the theme without changes, and you never rebuild Bo
 - `dist/architectui.css` — the theme: layout, components, colors and dark mode in the default Business look, all driven by CSS variables.
 - `dist/architectui.js` — the theme behavior: collapsible sidebar, settings panel, theme and mode switching, header search, icon rendering.
 - `dist/themes/*.css` — nine optional visual themes loaded on top of `architectui.css`, including Orange, the original ArchitectUI look.
-- `dist/*.html` — 26 demo pages: dashboards, elements, components, forms, tables, charts, calendar and maps.
+- `dist/*.html` — demo pages: dashboards, elements, every Bootstrap component on one page, components, forms, tables, charts, calendar and maps.
 - No jQuery, no build step for your app. Icons are [Lucide](https://lucide.dev).
 
 ## Quick start

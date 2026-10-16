@@ -25,11 +25,13 @@ Work towards 6.0.0. The frame markup changes without backward compatibility.
 - **Removed classes.** `aui-widget`, `aui-widget__*`, `aui-btn-wide`, `aui-btn-icon`, `aui-btn-icon-only`, `aui-card-border`, `aui-card-icon`, `aui-card-header-title`, `aui-card-actions`, `aui-card-tabs`, `aui-card-tabs-animated`, `aui-tabs-animated`, `aui-nav-icon`, `aui-nav-header`, `aui-nav-divider`, `aui-nav-btn`, `aui-dropdown-icon`, `aui-dropdown-shadow`, `aui-dropdown-hover-link`, `aui-list-borderless`, `aui-scroll-xs`, `aui-swatch-lg`, `aui-divider`, `aui-code`, `aui-fs-*`, `aui-opacity-*`, `aui-flex-2`.
 
 ### Added
+- **Bootstrap Components page** (`components-bootstrap.html`): spinners, placeholders, floating labels, range, navbar, offcanvas, scrollspy, ratio, stacks, card group, dark dropdown and numbered list group on one page, to check a theme in both modes.
 - **Number font (`aui-number`).** Marks a widget number; themes can give it their own font.
 - **Expanding field (`aui-expand`).** The animated search is now a component for any place or form: header search, search above a table, a password field. It uses `data-aui-expand`, `data-aui-expand-toggle` and `data-aui-expand-close`. An empty toggle draws a magnifier, a toggle with an icon shows that icon.
 - **Status badge example** in the header.
 
 ### Fixed
+- Cyberpunk: outline secondary buttons were nearly invisible on black; they now use the muted text color.
 - The icon rail no longer shows a cut label next to the active menu item.
 
 ## [5.3.4] - 2026-10-16

@@ -31,7 +31,7 @@ How it differs from Tailwind CSS and similar utility-first kits:
 ## Examples
 
 - [Analytics dashboard](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/index.html): complete built page with the full frame; copy it as a starting point
-- [Page sources](https://github.com/wnikk/architectui-html-theme/tree/master/src/pages): 26 demo pages (dashboards, elements, components, forms, tables, charts, calendar, maps) without the frame
+- [Page sources](https://github.com/wnikk/architectui-html-theme/tree/master/src/pages): demo pages (dashboards, elements, Bootstrap components, forms, tables, charts, calendar, maps) without the frame
 - [Frame partials](https://github.com/wnikk/architectui-html-theme/tree/master/src/_includes/partials): header, sidebar, page title, footer, settings panel
 
 ## Optional

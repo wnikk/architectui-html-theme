@@ -55,6 +55,10 @@
         "icon": "car",
         "children": [
           {
+            "title": "Bootstrap Components",
+            "href": "components-bootstrap.html"
+          },
+          {
             "title": "Tabs",
             "href": "components-tabs.html"
           },

@@ -43,7 +43,7 @@ Release files in `dist/`:
 - `architectui.js` — the theme behavior. Classic script, no dependencies, about 150 lines.
 - `themes/<id>.css` — optional visual themes, loaded after `architectui.css`.
 - `assets/images/` — logos, avatars, theme background image.
-- `*.html` — 26 demo pages; `*.js` next to them — scripts of individual demo pages.
+- `*.html` — demo pages; `*.js` next to them — scripts of individual demo pages.
 
 CDN dependencies. The exact, tested URLs are in `src/_data/cdn.json` and in the `<head>` of `dist/index.html`:
 
@@ -281,7 +281,7 @@ A new theme is one Sass file in `src/scss/themes/` that passes a palette for bot
 );
 ```
 
-Optional palette keys: `fill` (defaults to `surface-2`) and `accent-solid`, `accent-soft`, `accent-text`, `accent-ink`, `accent-line` (default to the brand values). After the palette, set other variables in `:root` (`--aui-root-size`, `--aui-font`, `--aui-heading-font`, `--aui-radius*`, `--aui-card-shadow`, `--aui-cell-py`, `--aui-th-*`) and add rules that only this theme needs. Add the theme to `src/_data/themes.json` to list it in the settings panel.
+Optional palette keys: `fill` (defaults to `surface-2`) and `accent-solid`, `accent-soft`, `accent-text`, `accent-ink`, `accent-line` (default to the brand values). After the palette, set other variables in `:root` (`--aui-root-size`, `--aui-font`, `--aui-heading-font`, `--aui-radius*`, `--aui-card-shadow`, `--aui-cell-py`, `--aui-th-*`) and add rules that only this theme needs. Add the theme to `src/_data/themes.json` to list it in the settings panel. Check it on `components-bootstrap.html` in both modes: every Bootstrap component is on that page.
 
 ## 7. Tokens (CSS variables)
 
@@ -441,6 +441,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `elements-list-group.html` | List groups |
 | `elements-navigation.html` | Vertical and horizontal navs |
 | `elements-utilities.html` | Animations, colors, helpers |
+| `components-bootstrap.html` | Every Bootstrap 5.3 component on one page: spinners, placeholders, floating labels, range, navbar, offcanvas, scrollspy, ratio, stacks, card group, dark dropdown, numbered list group. The page to check a theme in both modes |
 | `components-tabs.html` | Card tabs, animated tabs, button tabs |
 | `components-accordions.html` | Collapse and accordion |
 | `components-notifications.html` | Toast configurator and alerts |

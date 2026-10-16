@@ -119,6 +119,16 @@ h1, h2, h3, h4, h5, h6,
   text-transform: uppercase;
 }
 
+// Secondary is near black here: outline buttons take the muted text color so they stay readable
+.btn-outline-secondary {
+  --bs-btn-color: var(--aui-text-muted);
+  --bs-btn-border-color: var(--aui-border);
+  --bs-btn-hover-color: var(--aui-text);
+  --bs-btn-active-color: var(--aui-text);
+  --bs-btn-disabled-color: var(--aui-text-faint);
+  --bs-btn-disabled-border-color: var(--aui-border);
+}
+
 .btn-primary:disabled,
 .btn-primary.disabled {
   --bs-btn-disabled-bg: #141417;
