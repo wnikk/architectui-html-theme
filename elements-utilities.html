@@ -182,9 +182,15 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="tables-regular.html">
-                        <i data-lucide="monitor"></i>Tables
+                    <a class="nav-link collapsed" href="#nav-tables" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-tables">
+                        <i data-lucide="table"></i>Tables<i data-lucide="chevron-down"></i>
                     </a>
+                    <div class="collapse" id="nav-tables" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="tables-regular.html">Regular Tables</a></li>
+                            <li class="nav-item"><a class="nav-link" href="tables-datatables.html">DataTables</a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item"><h6>Widgets</h6></li>
                 <li class="nav-item">
