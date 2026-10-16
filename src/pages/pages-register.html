@@ -1,0 +1,53 @@
+---
+title: "Sign Up"
+description: "Create an account for the dashboard."
+layout: "bare.njk"
+script: "forms-validation.js"
+---
+<div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100 py-4">
+        <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5">
+            <div class="card">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-center mb-4">{% include "partials/logo.njk" %}</div>
+                    <h1 class="h4 text-center mb-1">Create an account</h1>
+                    <p class="text-center text-body-secondary mb-4">A 14-day trial. No card is needed.</p>
+                    <form class="needs-validation" action="index.html" novalidate>
+                        <div class="row g-3 mb-3">
+                            <div class="col-sm-6">
+                                <label for="registerFirstName" class="form-label">First name</label>
+                                <input type="text" class="form-control" id="registerFirstName" autocomplete="given-name" required>
+                                <div class="invalid-feedback">Enter your first name.</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="registerLastName" class="form-label">Last name</label>
+                                <input type="text" class="form-control" id="registerLastName" autocomplete="family-name" required>
+                                <div class="invalid-feedback">Enter your last name.</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">Work email</label>
+                            <input type="email" class="form-control" id="registerEmail" autocomplete="email" placeholder="name@company.com" required>
+                            <div class="invalid-feedback">Enter a valid email address.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="registerPassword" autocomplete="new-password" minlength="8" aria-describedby="registerPasswordHelp" required>
+                            <div id="registerPasswordHelp" class="form-text">At least 8 characters.</div>
+                            <div class="invalid-feedback">Use at least 8 characters.</div>
+                        </div>
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="registerTerms" required>
+                            <label class="form-check-label" for="registerTerms">I accept the <a href="#">terms of service</a></label>
+                            <div class="invalid-feedback">Accept the terms to continue.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Create account</button>
+                    </form>
+                </div>
+                <div class="card-footer justify-content-center gap-1 py-3">
+                    <span class="text-body-secondary">Already have an account?</span> <a href="pages-login.html">Sign in</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

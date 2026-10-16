@@ -1,0 +1,42 @@
+---
+title: "Sign In"
+description: "Sign in to the dashboard."
+layout: "bare.njk"
+script: "forms-validation.js"
+---
+<div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100 py-4">
+        <div class="col-sm-9 col-md-7 col-lg-5 col-xl-4">
+            <div class="card">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-center mb-4">{% include "partials/logo.njk" %}</div>
+                    <h1 class="h4 text-center mb-1">Sign in</h1>
+                    <p class="text-center text-body-secondary mb-4">Welcome back. Enter your work email and password.</p>
+                    <form class="needs-validation" action="index.html" novalidate>
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" autocomplete="username" placeholder="name@company.com" required>
+                            <div class="invalid-feedback">Enter a valid email address.</div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <label for="loginPassword" class="form-label">Password</label>
+                                <a href="pages-forgot-password.html" class="small">Forgot password?</a>
+                            </div>
+                            <input type="password" class="form-control" id="loginPassword" autocomplete="current-password" required>
+                            <div class="invalid-feedback">Enter your password.</div>
+                        </div>
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="loginRemember">
+                            <label class="form-check-label" for="loginRemember">Keep me signed in</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                    </form>
+                </div>
+                <div class="card-footer justify-content-center gap-1 py-3">
+                    <span class="text-body-secondary">No account yet?</span> <a href="pages-register.html">Create one</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

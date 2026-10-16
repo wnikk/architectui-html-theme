@@ -103,7 +103,30 @@ The CDN URLs below follow the latest release of each major version; for pinned v
 </html>
 ```
 
-The fastest correct start is to copy `dist/index.html` and replace the content after the page title inside `main`. The inline script is optional when you do not use the settings panel or a stored theme; without it the page uses the attributes written in the HTML.
+The fastest correct start is to copy `dist/pages-starter.html` (an empty page with the frame) and replace the card after the page title inside `main`. The inline script is optional when you do not use the settings panel or a stored theme; without it the page uses the attributes written in the HTML.
+
+### Page without the frame
+
+Sign in, sign up, password reset and error pages use the same `<head>` and no frame: only Bootstrap container, grid and card. Copy `dist/pages-login.html` or `dist/pages-404.html`.
+
+```html
+<body>
+  <main id="main">
+    <div class="container">
+      <div class="row justify-content-center align-items-center min-vh-100 py-4">
+        <div class="col-sm-9 col-md-7 col-lg-5 col-xl-4">
+          <div class="card">
+            <div class="card-body p-4">...form...</div>
+            <div class="card-footer justify-content-center gap-1 py-3">...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+```
+
+The card footer is a flex row in the theme: center its content with `justify-content-center` and keep a gap with `gap-1`. The logo partial (`a.aui-logo`) works here too.
 
 ## 4. Page frame
 
@@ -418,7 +441,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 
 ## 10. Rules for agents building pages with ArchitectUI
 
-1. Start from `dist/index.html` or a demo page close to the task. Keep the frame and change the content.
+1. Start from `dist/pages-starter.html` (with the frame), `dist/pages-login.html` (without the frame) or a demo page close to the task. Keep the frame and change the content.
 2. Use Bootstrap 5.3 markup and utilities. Add `aui-` classes only from section 8. Do not invent new `aui-` classes in pages; put new styles in your own stylesheet after `architectui.css`.
 3. Style through tokens. Use `var(--aui-*)` and `var(--bs-*)` in custom CSS instead of fixed hex colors, so themes and dark mode keep working.
 4. Do not add Tailwind, jQuery, Font Awesome or another CSS framework.
@@ -458,3 +481,6 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `forms-validation.html` | Bootstrap validation |
 | `tables-regular.html` | Tables |
 | `charts-chartjs.html` | Chart.js charts colored by tokens |
+| `pages-starter.html` | An empty page with the frame: the start for a new screen |
+| `pages-login.html`, `pages-register.html`, `pages-forgot-password.html` | Sign in, sign up and password reset without the frame, with Bootstrap validation |
+| `pages-404.html`, `pages-500.html` | Error pages without the frame |

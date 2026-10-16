@@ -1,0 +1,85 @@
+<!doctype html>
+
+<html lang="en" data-aui-dark-only="cyberpunk ">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign In - Sign in to the dashboard.</title>
+<meta name="description" content="Sign in to the dashboard.">
+<link rel="icon" href="favicon.ico">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="architectui.css">
+
+<script>
+(function () {
+  var d = document.documentElement, s = {}, m, t;
+  try { s = JSON.parse(localStorage.getItem("architectui")) || {}; } catch (e) {}
+  if (s.theme === "light" || s.theme === "dark") { s.mode = s.theme; delete s.theme; }
+  if (s.theme === "blue") delete s.theme;
+  for (var k in s) d.setAttribute("data-aui-" + k, s[k]);
+  t = /^[a-z0-9-]+$/.test(s.theme || "") ? s.theme : "";
+  m = s.mode || "light";
+  if (t) {
+    var css = document.querySelector('link[href$="architectui.css"]').getAttribute("href");
+    document.write('<link rel="stylesheet" id="aui-theme" href="' + css.replace(/architectui\.css$/, "themes/" + t + ".css") + '">');
+    if ((" " + d.getAttribute("data-aui-dark-only") + " ").indexOf(" " + t + " ") > -1) m = "dark";
+  }
+  if (m === "system") m = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  d.setAttribute("data-bs-theme", m);
+})();
+</script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.49.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
+<script defer src="architectui.js"></script>
+<script defer src="forms-validation.js"></script>
+
+</head>
+<body>
+    <main id="main">
+        <div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100 py-4">
+        <div class="col-sm-9 col-md-7 col-lg-5 col-xl-4">
+            <div class="card">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-center mb-4">
+<a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
+    <img src="assets/images/logo.png" alt="ArchitectUI">
+    <img src="assets/images/logo-on-dark.png" alt="">
+</a>
+</div>
+                    <h1 class="h4 text-center mb-1">Sign in</h1>
+                    <p class="text-center text-body-secondary mb-4">Welcome back. Enter your work email and password.</p>
+                    <form class="needs-validation" action="index.html" novalidate>
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" autocomplete="username" placeholder="name@company.com" required>
+                            <div class="invalid-feedback">Enter a valid email address.</div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <label for="loginPassword" class="form-label">Password</label>
+                                <a href="pages-forgot-password.html" class="small">Forgot password?</a>
+                            </div>
+                            <input type="password" class="form-control" id="loginPassword" autocomplete="current-password" required>
+                            <div class="invalid-feedback">Enter your password.</div>
+                        </div>
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="loginRemember">
+                            <label class="form-check-label" for="loginRemember">Keep me signed in</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                    </form>
+                </div>
+                <div class="card-footer justify-content-center gap-1 py-3">
+                    <span class="text-body-secondary">No account yet?</span> <a href="pages-register.html">Create one</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </main>
+</body>
+</html>
