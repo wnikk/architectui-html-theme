@@ -1,0 +1,31 @@
+{# Demo carousel slide drawn in the theme colors. Set slide (1, 2 or 3) and withText before the include. #}
+{%- set labels = [["Revenue, October", "$48,290", "Revenue chart: growth through October"], ["Orders per day", "1,896", "Bar chart: orders per day this week"], ["Traffic sources", "62% organic", "Donut chart: traffic by source"]][slide - 1] %}
+<svg class="d-block w-100 h-auto" viewBox="0 0 800 400" role="img" aria-label="{{ labels[2] }}" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="400" style="fill: var(--bs-primary)"/>
+    <circle cx="700" cy="40" r="180" fill="#fff" fill-opacity=".07"/>
+    <circle cx="80" cy="380" r="140" fill="#000" fill-opacity=".08"/>
+    {%- if slide == 1 %}
+    <path d="M60 330 L160 290 L260 300 L360 240 L460 250 L560 180 L660 150 L740 110 L740 340 L60 340 Z" fill="#fff" fill-opacity=".18"/>
+    <path d="M60 330 L160 290 L260 300 L360 240 L460 250 L560 180 L660 150 L740 110" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="740" cy="110" r="9" fill="#fff"/>
+    {%- elif slide == 2 %}
+    {%- for h in [120, 160, 140, 210, 190, 250, 230] %}
+    <rect x="{{ 90 + loop.index0 * 92 }}" y="{{ 340 - h }}" width="56" height="{{ h }}" rx="8" fill="#fff" fill-opacity="{{ 0.85 if loop.last else 0.35 }}"/>
+    {%- endfor %}
+    {%- else %}
+    <g transform="translate(560 220)" fill="none" stroke-width="44">
+        <circle r="110" stroke="#fff" stroke-opacity=".9" stroke-dasharray="428 691"/>
+        <circle r="110" stroke="#fff" stroke-opacity=".45" stroke-dasharray="166 691" stroke-dashoffset="-428"/>
+        <circle r="110" stroke="#fff" stroke-opacity=".2" stroke-dasharray="97 691" stroke-dashoffset="-594"/>
+    </g>
+    {%- endif %}
+    {%- if not withText %}
+    {# A shade at the bottom keeps the carousel caption readable over the chart #}
+    <defs><linearGradient id="auiSlideShade{{ slide }}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></linearGradient></defs>
+    <rect y="180" width="800" height="220" fill="url(#auiSlideShade{{ slide }})"/>
+    {%- endif %}
+    {%- if withText %}
+    <text x="60" y="80" fill="#fff" fill-opacity=".8" font-family="system-ui, sans-serif" font-size="26">{{ labels[0] }}</text>
+    <text x="60" y="140" fill="#fff" font-family="system-ui, sans-serif" font-size="54" font-weight="700">{{ labels[1] }}</text>
+    {%- endif %}
+</svg>
