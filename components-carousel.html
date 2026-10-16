@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Carousels &amp; Slideshows - Create easy and beautiful slideshows with the Bootstrap 5 carousel.</title>
-<meta name="description" content="Create easy and beautiful slideshows with the Bootstrap 5 carousel.">
+<title>Carousels &amp; Slideshows - Bootstrap 5 carousels with slides drawn in the theme colors.</title>
+<meta name="description" content="Bootstrap 5 carousels with slides drawn in the theme colors.">
 <link rel="icon" href="favicon.ico">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
@@ -105,12 +105,13 @@
         <i data-lucide="chevron-down" class="ms-2 opacity-75"></i>
     </a>
     <div class="dropdown-menu dropdown-menu-end">
-        <button type="button" class="dropdown-item">User Account</button>
-        <button type="button" class="dropdown-item">Settings</button>
-        <h6 class="dropdown-header">Header</h6>
-        <button type="button" class="dropdown-item">Actions</button>
+        <a class="dropdown-item" href="#"><i data-lucide="user" class="me-2 opacity-50"></i>My profile</a>
+        <a class="dropdown-item" href="#"><i data-lucide="settings" class="me-2 opacity-50"></i>Account settings</a>
+        <h6 class="dropdown-header">Workspace</h6>
+        <a class="dropdown-item" href="#"><i data-lucide="users" class="me-2 opacity-50"></i>Team members</a>
+        <a class="dropdown-item" href="#"><i data-lucide="credit-card" class="me-2 opacity-50"></i>Billing</a>
         <div class="dropdown-divider"></div>
-        <button type="button" class="dropdown-item">Dividers</button>
+        <a class="dropdown-item" href="pages-login.html"><i data-lucide="log-out" class="me-2 opacity-50"></i>Sign out</a>
     </div>
 </div>
 <div class="d-none d-xxl-block lh-sm">
@@ -264,7 +265,7 @@
     </div>
     <div>
         <h1>Carousels &amp; Slideshows</h1>
-        <p>Create easy and beautiful slideshows with the Bootstrap 5 carousel.</p>
+        <p>Bootstrap 5 carousels with slides drawn in the theme colors.</p>
     </div>
     <div class="ms-md-auto mt-3 mt-md-0">
     <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
@@ -280,13 +281,13 @@
                     <a href="#" class="nav-link"><i data-lucide="inbox" class="me-2"></i><span>Inbox</span><span class="ms-auto badge rounded-pill bg-secondary">86</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="book-open" class="me-2"></i><span>Book</span><span class="ms-auto badge rounded-pill bg-danger">5</span></a>
+                    <a href="#" class="nav-link"><i data-lucide="book-open" class="me-2"></i><span>Reports</span><span class="ms-auto badge rounded-pill bg-danger">5</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="image" class="me-2"></i><span>Picture</span></a>
+                    <a href="#" class="nav-link"><i data-lucide="image" class="me-2"></i><span>Media</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link disabled" aria-disabled="true"><i data-lucide="file" class="me-2"></i><span>File Disabled</span></a>
+                    <a href="#" class="nav-link disabled" aria-disabled="true"><i data-lucide="file" class="me-2"></i><span>Archive</span></a>
                 </li>
             </ul>
         </div>
@@ -303,13 +304,52 @@
                 <div id="carouselExampleControls1" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="https://via.placeholder.com/800x400" alt="First slide">
+                            
+<svg class="d-block w-100 h-auto" viewBox="0 0 800 400" role="img" aria-label="Revenue chart: growth through October" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="400" style="fill: var(--bs-primary)"/>
+    <circle cx="700" cy="40" r="180" fill="#fff" fill-opacity=".07"/>
+    <circle cx="80" cy="380" r="140" fill="#000" fill-opacity=".08"/>
+    <path d="M60 330 L160 290 L260 300 L360 240 L460 250 L560 180 L660 150 L740 110 L740 340 L60 340 Z" fill="#fff" fill-opacity=".18"/>
+    <path d="M60 330 L160 290 L260 300 L360 240 L460 250 L560 180 L660 150 L740 110" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="740" cy="110" r="9" fill="#fff"/>
+    <text x="60" y="80" fill="#fff" fill-opacity=".8" font-family="system-ui, sans-serif" font-size="26">Revenue, October</text>
+    <text x="60" y="140" fill="#fff" font-family="system-ui, sans-serif" font-size="54" font-weight="700">$48,290</text>
+</svg>
+
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="https://via.placeholder.com/800x400" alt="Second slide">
+                            
+<svg class="d-block w-100 h-auto" viewBox="0 0 800 400" role="img" aria-label="Bar chart: orders per day this week" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="400" style="fill: var(--bs-primary)"/>
+    <circle cx="700" cy="40" r="180" fill="#fff" fill-opacity=".07"/>
+    <circle cx="80" cy="380" r="140" fill="#000" fill-opacity=".08"/>
+    <rect x="90" y="220" width="56" height="120" rx="8" fill="#fff" fill-opacity="0.35"/>
+    <rect x="182" y="180" width="56" height="160" rx="8" fill="#fff" fill-opacity="0.35"/>
+    <rect x="274" y="200" width="56" height="140" rx="8" fill="#fff" fill-opacity="0.35"/>
+    <rect x="366" y="130" width="56" height="210" rx="8" fill="#fff" fill-opacity="0.35"/>
+    <rect x="458" y="150" width="56" height="190" rx="8" fill="#fff" fill-opacity="0.35"/>
+    <rect x="550" y="90" width="56" height="250" rx="8" fill="#fff" fill-opacity="0.35"/>
+    <rect x="642" y="110" width="56" height="230" rx="8" fill="#fff" fill-opacity="0.85"/>
+    <text x="60" y="80" fill="#fff" fill-opacity=".8" font-family="system-ui, sans-serif" font-size="26">Orders per day</text>
+    <text x="60" y="140" fill="#fff" font-family="system-ui, sans-serif" font-size="54" font-weight="700">1,896</text>
+</svg>
+
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="https://via.placeholder.com/800x400" alt="Third slide">
+                            
+<svg class="d-block w-100 h-auto" viewBox="0 0 800 400" role="img" aria-label="Donut chart: traffic by source" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="400" style="fill: var(--bs-primary)"/>
+    <circle cx="700" cy="40" r="180" fill="#fff" fill-opacity=".07"/>
+    <circle cx="80" cy="380" r="140" fill="#000" fill-opacity=".08"/>
+    <g transform="translate(560 220)" fill="none" stroke-width="44">
+        <circle r="110" stroke="#fff" stroke-opacity=".9" stroke-dasharray="428 691"/>
+        <circle r="110" stroke="#fff" stroke-opacity=".45" stroke-dasharray="166 691" stroke-dashoffset="-428"/>
+        <circle r="110" stroke="#fff" stroke-opacity=".2" stroke-dasharray="97 691" stroke-dashoffset="-594"/>
+    </g>
+    <text x="60" y="80" fill="#fff" fill-opacity=".8" font-family="system-ui, sans-serif" font-size="26">Traffic sources</text>
+    <text x="60" y="140" fill="#fff" font-family="system-ui, sans-serif" font-size="54" font-weight="700">62% organic</text>
+</svg>
+
                         </div>
                     </div>
                     <a class="carousel-control-prev" data-bs-target="#carouselExampleControls1" role="button" data-bs-slide="prev">
@@ -331,24 +371,66 @@
                 <div id="carouselExampleControls2" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="https://via.placeholder.com/800x400" alt="First slide">
+                            
+<svg class="d-block w-100 h-auto" viewBox="0 0 800 400" role="img" aria-label="Revenue chart: growth through October" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="400" style="fill: var(--bs-primary)"/>
+    <circle cx="700" cy="40" r="180" fill="#fff" fill-opacity=".07"/>
+    <circle cx="80" cy="380" r="140" fill="#000" fill-opacity=".08"/>
+    <path d="M60 330 L160 290 L260 300 L360 240 L460 250 L560 180 L660 150 L740 110 L740 340 L60 340 Z" fill="#fff" fill-opacity=".18"/>
+    <path d="M60 330 L160 290 L260 300 L360 240 L460 250 L560 180 L660 150 L740 110" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="740" cy="110" r="9" fill="#fff"/>
+    
+    <defs><linearGradient id="auiSlideShade1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></linearGradient></defs>
+    <rect y="180" width="800" height="220" fill="url(#auiSlideShade1)"/>
+</svg>
+
                             <div class="carousel-caption d-none d-md-block">
-                                <h5>First Slide</h5>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                <h5>Revenue up 18%</h5>
+                                <p>Most of the growth came from repeat customers in the EU region.</p>
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="https://via.placeholder.com/800x400" alt="Second slide">
+                            
+<svg class="d-block w-100 h-auto" viewBox="0 0 800 400" role="img" aria-label="Bar chart: orders per day this week" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="400" style="fill: var(--bs-primary)"/>
+    <circle cx="700" cy="40" r="180" fill="#fff" fill-opacity=".07"/>
+    <circle cx="80" cy="380" r="140" fill="#000" fill-opacity=".08"/>
+    <rect x="90" y="220" width="56" height="120" rx="8" fill="#fff" fill-opacity="0.35"/>
+    <rect x="182" y="180" width="56" height="160" rx="8" fill="#fff" fill-opacity="0.35"/>
+    <rect x="274" y="200" width="56" height="140" rx="8" fill="#fff" fill-opacity="0.35"/>
+    <rect x="366" y="130" width="56" height="210" rx="8" fill="#fff" fill-opacity="0.35"/>
+    <rect x="458" y="150" width="56" height="190" rx="8" fill="#fff" fill-opacity="0.35"/>
+    <rect x="550" y="90" width="56" height="250" rx="8" fill="#fff" fill-opacity="0.35"/>
+    <rect x="642" y="110" width="56" height="230" rx="8" fill="#fff" fill-opacity="0.85"/>
+    
+    <defs><linearGradient id="auiSlideShade2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></linearGradient></defs>
+    <rect y="180" width="800" height="220" fill="url(#auiSlideShade2)"/>
+</svg>
+
                             <div class="carousel-caption d-none d-md-block">
-                                <h5>Second Slide</h5>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                <h5>Busiest week of the quarter</h5>
+                                <p>Saturday had 250 orders; the warehouse added a second shift.</p>
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="https://via.placeholder.com/800x400" alt="Third slide">
+                            
+<svg class="d-block w-100 h-auto" viewBox="0 0 800 400" role="img" aria-label="Donut chart: traffic by source" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="400" style="fill: var(--bs-primary)"/>
+    <circle cx="700" cy="40" r="180" fill="#fff" fill-opacity=".07"/>
+    <circle cx="80" cy="380" r="140" fill="#000" fill-opacity=".08"/>
+    <g transform="translate(560 220)" fill="none" stroke-width="44">
+        <circle r="110" stroke="#fff" stroke-opacity=".9" stroke-dasharray="428 691"/>
+        <circle r="110" stroke="#fff" stroke-opacity=".45" stroke-dasharray="166 691" stroke-dashoffset="-428"/>
+        <circle r="110" stroke="#fff" stroke-opacity=".2" stroke-dasharray="97 691" stroke-dashoffset="-594"/>
+    </g>
+    
+    <defs><linearGradient id="auiSlideShade3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></linearGradient></defs>
+    <rect y="180" width="800" height="220" fill="url(#auiSlideShade3)"/>
+</svg>
+
                             <div class="carousel-caption d-none d-md-block">
-                                <h5>Third Slide</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <h5>Organic search leads</h5>
+                                <p>62% of visitors come from search, 24% from email, 14% from ads.</p>
                             </div>
                         </div>
                     </div>
@@ -369,12 +451,12 @@
             </div>
             <footer class="aui-footer d-flex align-items-center">
     <ul class="nav">
-        <li class="nav-item"><a href="#" class="nav-link">Footer Link 1</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Footer Link 2</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Help Center</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">API Docs</a></li>
     </ul>
     <ul class="nav ms-auto d-none d-md-flex">
-        <li class="nav-item"><a href="#" class="nav-link">Footer Link 3</a></li>
-        <li class="nav-item"><a href="#" class="nav-link"><span class="badge bg-success me-1 ms-0"><small>NEW</small></span>Footer Link 4</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">System Status</a></li>
+        <li class="nav-item"><a href="#" class="nav-link"><span class="badge bg-success me-1 ms-0"><small>NEW</small></span>What's New</a></li>
     </ul>
 </footer>
 
