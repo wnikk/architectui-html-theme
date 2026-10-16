@@ -1,0 +1,132 @@
+// Expanding field: a round button that opens into a text field. Use it for search in the header,
+// above a table or inside a form. Markup: .aui-expand[data-aui-expand] holding input.form-control,
+// button.btn[data-aui-expand-toggle] and button.btn-close[data-aui-expand-close].
+// An empty toggle draws a magnifier; a toggle with an icon inside shows that icon.
+// The theme script adds .is-open. Size, width and colors are CSS variables.
+
+.aui-expand {
+  --aui-expand-size: 42px;
+  --aui-expand-width: 290px;
+  --aui-expand-bg: rgba(0, 0, 0, .06);
+  --aui-expand-open-bg: rgba(0, 0, 0, .05);
+  --aui-expand-color: var(--bs-primary);
+  position: relative;
+  flex-shrink: 0;
+  width: var(--aui-expand-size);
+  height: var(--aui-expand-size);
+  overflow: hidden;
+  transition: width .3s ease-in-out;
+
+  > .form-control,
+  > .form-control:focus {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 calc(var(--aui-expand-size) + .75rem) 0 1.25rem;
+    border: 0;
+    border-radius: 50px;
+    background: transparent;
+    box-shadow: none;
+    color: var(--bs-body-color);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(var(--aui-expand-size));
+    transition: all .3s cubic-bezier(0, .105, .035, 1.57) .3s;
+  }
+
+  > [data-aui-expand-toggle] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--aui-expand-size);
+    height: var(--aui-expand-size);
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--aui-expand-bg);
+    color: var(--aui-expand-color);
+    transition: all .4s cubic-bezier(.65, -.6, .24, 1.65);
+  }
+
+  // The default magnifier is drawn with two pseudo-elements and turns when the field opens
+  > [data-aui-expand-toggle]:empty {
+    transform: rotate(45deg);
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+    }
+
+    &::before {
+      top: calc(50% + 2px);
+      left: calc(50% - 2px);
+      width: 4px;
+      height: 11px;
+      border-radius: 2px;
+      background: currentColor;
+    }
+
+    &::after {
+      top: calc(50% - 11px);
+      left: calc(50% - 7px);
+      width: 14px;
+      height: 14px;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+    }
+  }
+
+  > [data-aui-expand-close] {
+    position: absolute;
+    top: 50%;
+    right: .5rem;
+    z-index: 1;
+    margin-top: -.5em;
+    opacity: 0 !important;
+    pointer-events: none;
+    transition: all .2s cubic-bezier(.285, -.45, .935, .11) .1s;
+  }
+}
+
+.aui-expand.is-open {
+  width: calc(var(--aui-expand-width) + 2.5rem);
+
+  > .form-control {
+    width: var(--aui-expand-width);
+    background: var(--aui-expand-open-bg);
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  > [data-aui-expand-toggle] {
+    right: 2.5rem;
+  }
+
+  > [data-aui-expand-toggle]:empty {
+    transform: rotate(-45deg);
+  }
+
+  > [data-aui-expand-close] {
+    opacity: .6 !important;
+    pointer-events: auto;
+    transition: all .6s cubic-bezier(0, .105, .035, 1.57) .5s;
+
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .aui-expand {
+    --aui-expand-width: 180px;
+  }
+}

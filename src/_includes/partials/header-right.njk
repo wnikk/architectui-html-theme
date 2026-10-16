@@ -1,25 +1,24 @@
-<button type="button" class="aui-mode-toggle me-3" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
-    <i data-lucide="moon" class="aui-mode-toggle__dark"></i>
-    <i data-lucide="sun" class="aui-mode-toggle__light"></i>
+<span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
+<button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+    <i data-lucide="moon"></i>
+    <i data-lucide="sun"></i>
 </button>
-<div class="aui-user">
-    <div class="dropdown">
-        <a class="aui-user__toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
-            <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
-            <i data-lucide="chevron-down" class="ms-2 aui-opacity-80"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-end">
-            <button type="button" class="dropdown-item">User Account</button>
-            <button type="button" class="dropdown-item">Settings</button>
-            <h6 class="dropdown-header">Header</h6>
-            <button type="button" class="dropdown-item">Actions</button>
-            <div class="dropdown-divider"></div>
-            <button type="button" class="dropdown-item">Dividers</button>
-        </div>
+<div class="dropdown">
+    <a class="d-inline-flex align-items-center text-reset text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+        <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
+        <i data-lucide="chevron-down" class="ms-2 opacity-75"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-end">
+        <button type="button" class="dropdown-item">User Account</button>
+        <button type="button" class="dropdown-item">Settings</button>
+        <h6 class="dropdown-header">Header</h6>
+        <button type="button" class="dropdown-item">Actions</button>
+        <div class="dropdown-divider"></div>
+        <button type="button" class="dropdown-item">Dividers</button>
     </div>
-    <div class="aui-user__info">
-        <div class="aui-user__name">Alina Mclourd</div>
-        <div class="aui-user__role">VP People Manager</div>
-    </div>
-    <button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 aui-user__action" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
 </div>
+<div class="d-none d-xxl-block lh-sm">
+    <div class="fw-bold opacity-75 text-nowrap">Alina Mclourd</div>
+    <div class="small opacity-50 text-nowrap">VP People Manager</div>
+</div>
+<button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 d-none d-xxl-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>

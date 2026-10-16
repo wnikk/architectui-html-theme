@@ -1,13 +1,16 @@
-// Header: logo and toggles on the left, search and menu, user block on the right
+// Header: Bootstrap navbar. The brand area (burgers and logo) follows the sidebar width,
+// the collapse holds the expanding search, the header menu and the right-hand group.
 @use "sass:map";
 @use "../config" as *;
 
 .aui-header {
+  --bs-navbar-padding-x: 0;
+  --bs-navbar-padding-y: 0;
+  --bs-navbar-nav-link-padding-x: 1rem;
   grid-area: header;
   position: relative;
   z-index: 1030;
-  display: flex;
-  align-items: center;
+  flex-wrap: nowrap;
   height: var(--aui-header-height);
   background: var(--aui-surface);
   box-shadow: var(--aui-shadow);
@@ -20,51 +23,43 @@
   top: 0;
 }
 
-.aui-header__brand {
+.aui-header > .navbar-brand {
   display: flex;
   flex-shrink: 0;
   align-items: center;
   gap: .75rem;
   width: var(--aui-sidebar-col);
   height: 100%;
+  margin: 0;
   padding: 0 var(--aui-gutter);
+  font-size: inherit;
   transition: width .3s ease;
 }
 
-.aui-header__collapse {
-  display: none;
+.aui-header [data-aui-toggle="sidebar"] {
   margin-left: auto;
 }
 
-.aui-header__mobile-toggle,
-.aui-header__more {
-  display: none;
-}
-
 @include wide {
-  .aui-header__collapse {
-    display: inline-flex;
-  }
-
-  [data-aui-sidebar-collapsed] {
-    .aui-header__brand .aui-logo {
+  [data-aui-sidebar-collapsed] .aui-header {
+    .aui-logo {
       display: none;
     }
 
-    .aui-header__collapse {
+    [data-aui-toggle="sidebar"] {
       margin-left: 0;
     }
   }
 }
 
 @include rail-range {
-  .aui-header__brand {
+  .aui-header > .navbar-brand {
     width: auto;
   }
 }
 
-.aui-header__content {
-  display: flex;
+// :where keeps Bootstrap's .collapse:not(.show) in charge of hiding it on phones
+.aui-header :where(.navbar-collapse) {
   flex: 1;
   align-items: center;
   min-width: 0;
@@ -72,34 +67,13 @@
   padding: 0 var(--aui-gutter);
 }
 
-.aui-header__left,
-.aui-header__right {
-  display: flex;
-  align-items: center;
-}
-
-.aui-header__right {
-  margin-left: auto;
-}
-
-@include desktop {
-  .aui-header__content.collapse:not(.show) {
-    display: flex;
-  }
-}
-
 @include mobile {
-  .aui-header__brand {
+  .aui-header > .navbar-brand {
     width: 100%;
     justify-content: space-between;
   }
 
-  .aui-header__mobile-toggle,
-  .aui-header__more {
-    display: inline-flex;
-  }
-
-  .aui-header__content {
+  .aui-header :where(.navbar-collapse) {
     position: absolute;
     top: calc(var(--aui-header-height) + 20px);
     left: 5%;
@@ -110,62 +84,30 @@
     border-radius: 50px;
     box-shadow: var(--aui-shadow);
 
+    &.show {
+      display: flex;
+    }
+
     &.collapsing {
+      display: flex;
       height: 0;
       overflow: hidden;
     }
   }
-
-  .aui-header-menu {
-    display: none;
-  }
 }
 
 // Header menu
-.aui-header-menu {
-  .nav-link {
-    color: var(--aui-header-link-color);
+.aui-header .navbar-nav .nav-link {
+  color: var(--aui-header-link-color);
 
-    .aui-nav-icon {
-      color: var(--aui-header-link-icon);
-      opacity: 1;
-    }
-
-    &:hover {
-      color: var(--aui-header-link-hover);
-    }
+  > [data-lucide] {
+    width: 1rem;
+    height: 1rem;
+    color: var(--aui-header-link-icon);
   }
-}
 
-// User block
-.aui-user {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.aui-user__toggle {
-  display: inline-flex;
-  align-items: center;
-  color: inherit;
-}
-
-.aui-user__name {
-  font-weight: 700;
-  opacity: .8;
-  white-space: nowrap;
-}
-
-.aui-user__role {
-  font-size: .8rem;
-  opacity: .5;
-  white-space: nowrap;
-}
-
-@media (max-width: #{$aui-bp-user - .02px}) {
-  .aui-user__info,
-  .aui-user__action {
-    display: none;
+  &:hover {
+    color: var(--aui-header-link-hover);
   }
 }
 
@@ -188,16 +130,16 @@
         --aui-burger-color: rgba(255, 255, 255, .8);
       }
 
-      .aui-search {
-        --aui-search-bg: rgba(255, 255, 255, .1);
-        --aui-search-color: rgba(255, 255, 255, .8);
+      .aui-expand {
+        --aui-expand-bg: rgba(255, 255, 255, .1);
+        --aui-expand-color: rgba(255, 255, 255, .8);
       }
 
-      .aui-logo__img--default {
+      .aui-logo > img:first-child {
         display: none;
       }
 
-      .aui-logo__img--on-dark {
+      .aui-logo > img:last-child {
         display: block;
       }
     } @else {
@@ -209,8 +151,8 @@
   }
 }
 
-// Mode toggle: moon in light mode, sun in dark mode
-.aui-mode-toggle {
+// Mode toggle: moon (first icon) in light mode, sun (second icon) in dark mode
+.btn.aui-mode-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -228,18 +170,18 @@
     color: var(--aui-header-link-hover);
   }
 
-  svg.lucide {
+  > [data-lucide] {
     width: 1.1rem;
     height: 1.1rem;
     vertical-align: 0;
   }
 }
 
-.aui-mode-toggle__light,
-[data-bs-theme="dark"] .aui-mode-toggle__dark {
+.aui-mode-toggle > :last-child,
+[data-bs-theme="dark"] .aui-mode-toggle > :first-child {
   display: none !important;
 }
 
-[data-bs-theme="dark"] .aui-mode-toggle__light {
+[data-bs-theme="dark"] .aui-mode-toggle > :last-child {
   display: inline-block !important;
 }

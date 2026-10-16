@@ -81,7 +81,7 @@
 }
 
 // Animated tabs: a bar under the active tab
-.aui-tabs-animated {
+@mixin tabs-animated {
   .nav-item {
     margin: 0 .75rem 0 0;
   }
@@ -116,6 +116,10 @@
       }
     }
   }
+}
+
+.aui-tabs-animated {
+  @include tabs-animated;
 }
 
 // Pill tabs with a shadow
@@ -174,7 +178,11 @@
   margin-top: .5rem;
 }
 
-// Page section tabs under the title. Style set by data-aui-tabs on <html>: shadow or line.
+// Page section tabs under the title (ul.nav.aui-body-tabs). Style set by data-aui-tabs on <html>: shadow or line.
+.aui-body-tabs {
+  @include tabs-animated;
+}
+
 [data-aui-tabs="shadow"] .aui-body-tabs {
   padding: .75rem 0;
   @include tabs-shadow;

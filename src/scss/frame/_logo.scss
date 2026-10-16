@@ -1,6 +1,6 @@
 // Logo. Replace the files to change it:
-//   assets/images/logo.png         - for light backgrounds
-//   assets/images/logo-on-dark.png - for dark backgrounds
+//   assets/images/logo.png         - first image, for light backgrounds
+//   assets/images/logo-on-dark.png - second image, for dark backgrounds
 // Any shape, wide or square, fits into --aui-logo-max-height.
 
 .aui-logo {
@@ -8,36 +8,28 @@
   align-items: center;
   min-width: 0;
   height: 100%;
+
+  > img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: var(--aui-logo-max-height);
+    object-fit: contain;
+  }
+
+  > img:last-child {
+    display: none;
+  }
 }
 
-.aui-logo__img {
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: var(--aui-logo-max-height);
-  object-fit: contain;
-}
-
-.aui-logo__img--on-dark {
-  display: none;
-}
-
-// Dark background: dark mode or a dark header scheme
-@mixin logo-on-dark {
-  .aui-logo__img--default {
+// Dark background: dark mode
+[data-bs-theme="dark"] .aui-logo {
+  > img:first-child {
     display: none;
   }
 
-  .aui-logo__img--on-dark {
+  > img:last-child {
     display: block;
   }
-}
-
-[data-bs-theme="dark"] {
-  @include logo-on-dark;
-}
-
-.aui-on-dark {
-  @include logo-on-dark;
 }

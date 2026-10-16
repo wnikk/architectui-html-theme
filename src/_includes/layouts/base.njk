@@ -19,8 +19,8 @@
     <div class="aui-app">
         {% include "partials/header.njk" %}
         {% include "partials/sidebar.njk" %}
-        <main class="aui-main" id="main" tabindex="-1">
-            <div class="aui-main__inner">
+        <main class="d-flex flex-column" id="main" tabindex="-1">
+            <div class="flex-grow-1 px-3 px-sm-4 pt-3 pt-sm-4">
                 {% include "partials/page-title.njk" %}
                 {{ content | safe }}
             </div>

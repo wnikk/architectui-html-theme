@@ -38,20 +38,14 @@
   }
 }
 
-.aui-main {
+// Content area: padding comes from Bootstrap utilities (p-3, p-sm-4) that match --aui-gutter
+.aui-app > main {
   grid-area: main;
-  display: flex;
-  flex-direction: column;
   min-width: 0;
-}
-
-.aui-main__inner {
-  flex: 1;
-  padding: var(--aui-gutter) var(--aui-gutter) 0;
 }
 
 @include phone {
   .aui-app {
-    --aui-gutter: .9375rem;
+    --aui-gutter: 1rem;
   }
 }

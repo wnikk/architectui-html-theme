@@ -62,159 +62,154 @@
 </svg>
 
     <div class="aui-app">
-        <header class="aui-header">
-    <div class="aui-header__brand">
-        <button type="button" class="aui-burger aui-header__mobile-toggle" data-bs-toggle="offcanvas" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
+        <header class="navbar navbar-expand-md aui-header">
+    <div class="navbar-brand">
+        <button type="button" class="btn aui-burger d-md-none" data-bs-toggle="offcanvas" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
         
 <a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
-    <img class="aui-logo__img aui-logo__img--default" src="assets/images/logo.png" alt="ArchitectUI">
-    <img class="aui-logo__img aui-logo__img--on-dark" src="assets/images/logo-on-dark.png" alt="ArchitectUI">
+    <img src="assets/images/logo.png" alt="ArchitectUI">
+    <img src="assets/images/logo-on-dark.png" alt="">
 </a>
 
-        <button type="button" class="aui-burger aui-header__collapse" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
-        <button type="button" class="btn btn-primary btn-sm aui-header__more" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
+        <button type="button" class="btn aui-burger d-none d-xl-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
+        <button type="button" class="btn btn-primary btn-sm d-md-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
     </div>
-    <div class="aui-header__content collapse" id="auiHeaderContent">
-        <div class="aui-header__left">
-            <div class="aui-search" data-aui-search>
-    <div class="aui-search__holder">
-        <input type="search" class="aui-search__input" placeholder="Type to search" aria-label="Search">
-        <button type="button" class="aui-search__toggle" data-aui-search-toggle aria-label="Search"><span></span></button>
-    </div>
-    <button type="button" class="btn-close aui-search__close" data-aui-search-close aria-label="Close search"></button>
+    <div class="collapse navbar-collapse" id="auiHeaderContent">
+        <div class="aui-expand me-3" role="search" data-aui-expand>
+    <input type="search" class="form-control" placeholder="Type to search" aria-label="Search">
+    <button type="button" class="btn" data-aui-expand-toggle aria-label="Search"></button>
+    <button type="button" class="btn-close" data-aui-expand-close aria-label="Close search"></button>
 </div>
-<ul class="nav aui-header-menu">
+<ul class="navbar-nav d-none d-md-flex">
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="database" class="aui-nav-icon"></i>Statistics</a>
+        <a href="#" class="nav-link"><i data-lucide="database" class="me-2"></i>Statistics</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="square-pen" class="aui-nav-icon"></i>Projects</a>
+        <a href="#" class="nav-link"><i data-lucide="square-pen" class="me-2"></i>Projects</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="settings" class="aui-nav-icon"></i>Settings</a>
+        <a href="#" class="nav-link"><i data-lucide="settings" class="me-2"></i>Settings</a>
     </li>
 </ul>
 
-        </div>
-        <div class="aui-header__right">
-            <button type="button" class="aui-mode-toggle me-3" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
-    <i data-lucide="moon" class="aui-mode-toggle__dark"></i>
-    <i data-lucide="sun" class="aui-mode-toggle__light"></i>
+        <div class="d-flex align-items-center gap-3 ms-auto">
+            <span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
+<button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+    <i data-lucide="moon"></i>
+    <i data-lucide="sun"></i>
 </button>
-<div class="aui-user">
-    <div class="dropdown">
-        <a class="aui-user__toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
-            <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
-            <i data-lucide="chevron-down" class="ms-2 aui-opacity-80"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-end">
-            <button type="button" class="dropdown-item">User Account</button>
-            <button type="button" class="dropdown-item">Settings</button>
-            <h6 class="dropdown-header">Header</h6>
-            <button type="button" class="dropdown-item">Actions</button>
-            <div class="dropdown-divider"></div>
-            <button type="button" class="dropdown-item">Dividers</button>
-        </div>
+<div class="dropdown">
+    <a class="d-inline-flex align-items-center text-reset text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+        <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
+        <i data-lucide="chevron-down" class="ms-2 opacity-75"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-end">
+        <button type="button" class="dropdown-item">User Account</button>
+        <button type="button" class="dropdown-item">Settings</button>
+        <h6 class="dropdown-header">Header</h6>
+        <button type="button" class="dropdown-item">Actions</button>
+        <div class="dropdown-divider"></div>
+        <button type="button" class="dropdown-item">Dividers</button>
     </div>
-    <div class="aui-user__info">
-        <div class="aui-user__name">Alina Mclourd</div>
-        <div class="aui-user__role">VP People Manager</div>
-    </div>
-    <button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 aui-user__action" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
 </div>
+<div class="d-none d-xxl-block lh-sm">
+    <div class="fw-bold opacity-75 text-nowrap">Alina Mclourd</div>
+    <div class="small opacity-50 text-nowrap">VP People Manager</div>
+</div>
+<button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 d-none d-xxl-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
 
         </div>
     </div>
 </header>
 
         <aside class="aui-sidebar">
-    <div class="offcanvas-md offcanvas-start aui-sidebar__panel aui-scrollbar" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
+    <div class="offcanvas-md offcanvas-start" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
         <div class="offcanvas-header">
             
 <a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
-    <img class="aui-logo__img aui-logo__img--default" src="assets/images/logo.png" alt="ArchitectUI">
-    <img class="aui-logo__img aui-logo__img--on-dark" src="assets/images/logo-on-dark.png" alt="ArchitectUI">
+    <img src="assets/images/logo.png" alt="ArchitectUI">
+    <img src="assets/images/logo-on-dark.png" alt="">
 </a>
 
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#auiSidebar" aria-label="Close menu"></button>
         </div>
         <div class="offcanvas-body">
-            <ul class="aui-nav" id="auiNav">
-                <li class="aui-nav__heading">Dashboards</li>
-                <li>
-                    <a class="aui-nav__link" href="index.html">
-                        <i data-lucide="rocket" class="aui-nav__icon"></i>Dashboard Example 1
+            <ul class="nav flex-column flex-nowrap" id="auiNav">
+                <li class="nav-item"><h6>Dashboards</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i data-lucide="rocket"></i>Dashboard Example 1
                     </a>
                 </li>
-                <li class="aui-nav__heading">UI Components</li>
-                <li>
-                    <a class="aui-nav__link collapsed" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
-                        <i data-lucide="gem" class="aui-nav__icon"></i>Elements<i data-lucide="chevron-down" class="aui-nav__caret"></i>
+                <li class="nav-item"><h6>UI Components</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
+                        <i data-lucide="gem"></i>Elements<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-elements" data-bs-parent="#auiNav">
-                        <ul class="aui-nav__sub">
-                            <li><a class="aui-nav__link" href="elements-buttons-standard.html">Buttons</a></li>
-                            <li><a class="aui-nav__link" href="elements-dropdowns.html">Dropdowns</a></li>
-                            <li><a class="aui-nav__link" href="elements-icons.html">Icons</a></li>
-                            <li><a class="aui-nav__link" href="elements-badges-labels.html">Badges</a></li>
-                            <li><a class="aui-nav__link" href="elements-cards.html">Cards</a></li>
-                            <li><a class="aui-nav__link" href="elements-list-group.html">List Groups</a></li>
-                            <li><a class="aui-nav__link" href="elements-navigation.html">Navigation Menus</a></li>
-                            <li><a class="aui-nav__link" href="elements-utilities.html">Utilities</a></li>
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="elements-buttons-standard.html">Buttons</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-dropdowns.html">Dropdowns</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-icons.html">Icons</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-badges-labels.html">Badges</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-cards.html">Cards</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-list-group.html">List Groups</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-navigation.html">Navigation Menus</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-utilities.html">Utilities</a></li>
                         </ul>
                     </div>
                 </li>
-                <li>
-                    <a class="aui-nav__link" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nav-components">
-                        <i data-lucide="car" class="aui-nav__icon"></i>Components<i data-lucide="chevron-down" class="aui-nav__caret"></i>
+                <li class="nav-item">
+                    <a class="nav-link" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nav-components">
+                        <i data-lucide="car"></i>Components<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse show" id="nav-components" data-bs-parent="#auiNav">
-                        <ul class="aui-nav__sub">
-                            <li><a class="aui-nav__link" href="components-tabs.html">Tabs</a></li>
-                            <li><a class="aui-nav__link" href="components-accordions.html">Accordions</a></li>
-                            <li><a class="aui-nav__link" href="components-notifications.html">Notifications</a></li>
-                            <li><a class="aui-nav__link active" href="components-modals.html" aria-current="page">Modals</a></li>
-                            <li><a class="aui-nav__link" href="components-progress-bar.html">Progress Bar</a></li>
-                            <li><a class="aui-nav__link" href="components-tooltips-popovers.html">Tooltips &amp; Popovers</a></li>
-                            <li><a class="aui-nav__link" href="components-carousel.html">Carousel</a></li>
-                            <li><a class="aui-nav__link" href="components-calendar.html">Calendar</a></li>
-                            <li><a class="aui-nav__link" href="components-pagination.html">Pagination</a></li>
-                            <li><a class="aui-nav__link" href="components-scrollable-elements.html">Scrollable</a></li>
-                            <li><a class="aui-nav__link" href="components-maps.html">Maps</a></li>
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="components-tabs.html">Tabs</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-accordions.html">Accordions</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-notifications.html">Notifications</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="components-modals.html" aria-current="page">Modals</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-progress-bar.html">Progress Bar</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-tooltips-popovers.html">Tooltips &amp; Popovers</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-carousel.html">Carousel</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-calendar.html">Calendar</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-pagination.html">Pagination</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-scrollable-elements.html">Scrollable</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-maps.html">Maps</a></li>
                         </ul>
                     </div>
                 </li>
-                <li>
-                    <a class="aui-nav__link" href="tables-regular.html">
-                        <i data-lucide="monitor" class="aui-nav__icon"></i>Tables
+                <li class="nav-item">
+                    <a class="nav-link" href="tables-regular.html">
+                        <i data-lucide="monitor"></i>Tables
                     </a>
                 </li>
-                <li class="aui-nav__heading">Widgets</li>
-                <li>
-                    <a class="aui-nav__link" href="dashboard-boxes.html">
-                        <i data-lucide="monitor" class="aui-nav__icon"></i>Dashboard Boxes
+                <li class="nav-item"><h6>Widgets</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard-boxes.html">
+                        <i data-lucide="monitor"></i>Dashboard Boxes
                     </a>
                 </li>
-                <li class="aui-nav__heading">Forms</li>
-                <li>
-                    <a class="aui-nav__link" href="forms-controls.html">
-                        <i data-lucide="mouse" class="aui-nav__icon"></i>Forms Controls
+                <li class="nav-item"><h6>Forms</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-controls.html">
+                        <i data-lucide="mouse"></i>Forms Controls
                     </a>
                 </li>
-                <li>
-                    <a class="aui-nav__link" href="forms-layouts.html">
-                        <i data-lucide="pipette" class="aui-nav__icon"></i>Forms Layouts
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-layouts.html">
+                        <i data-lucide="pipette"></i>Forms Layouts
                     </a>
                 </li>
-                <li>
-                    <a class="aui-nav__link" href="forms-validation.html">
-                        <i data-lucide="pen-line" class="aui-nav__icon"></i>Forms Validation
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-validation.html">
+                        <i data-lucide="pen-line"></i>Forms Validation
                     </a>
                 </li>
-                <li class="aui-nav__heading">Charts</li>
-                <li>
-                    <a class="aui-nav__link" href="charts-chartjs.html">
-                        <i data-lucide="chart-column" class="aui-nav__icon"></i>ChartJS
+                <li class="nav-item"><h6>Charts</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="charts-chartjs.html">
+                        <i data-lucide="chart-column"></i>ChartJS
                     </a>
                 </li>
             </ul>
@@ -222,20 +217,17 @@
     </div>
 </aside>
 
-        <main class="aui-main" id="main" tabindex="-1">
-            <div class="aui-main__inner">
-                <div class="aui-page-title">
-    <div class="aui-page-title__wrapper">
-        <div class="aui-page-title__heading">
-            <div class="aui-page-title__icon">
-                <i data-lucide="phone" class="aui-icon-gradient-primary"></i>
-            </div>
-            <div>
-                Modals
-                <div class="aui-page-title__subheading">Wide selection of modal dialogs styles and animations available.</div>
-            </div>
-        </div>
-        <div class="aui-page-title__actions">
+        <main class="d-flex flex-column" id="main" tabindex="-1">
+            <div class="flex-grow-1 px-3 px-sm-4 pt-3 pt-sm-4">
+                <div class="aui-page-title d-md-flex align-items-center text-center text-md-start">
+    <div class="d-none d-md-flex align-items-center justify-content-center flex-shrink-0 me-4">
+        <i data-lucide="phone" class="aui-icon-gradient-primary"></i>
+    </div>
+    <div>
+        <h1>Modals</h1>
+        <p>Wide selection of modal dialogs styles and animations available.</p>
+    </div>
+    <div class="ms-md-auto mt-3 mt-md-0">
     <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
         <i data-lucide="star"></i>
     </button>
@@ -262,7 +254,6 @@
     </div>
 </div>
 
-    </div>
 </div>
 
                             <div class="row">
@@ -386,21 +377,15 @@
 </div>
 
             </div>
-            <footer class="aui-footer">
-    <div class="aui-footer__inner">
-        <div class="aui-footer__left">
-            <ul class="nav">
-                <li class="nav-item"><a href="#" class="nav-link">Footer Link 1</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Footer Link 2</a></li>
-            </ul>
-        </div>
-        <div class="aui-footer__right">
-            <ul class="nav">
-                <li class="nav-item"><a href="#" class="nav-link">Footer Link 3</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><span class="badge bg-success me-1 ms-0"><small>NEW</small></span>Footer Link 4</a></li>
-            </ul>
-        </div>
-    </div>
+            <footer class="aui-footer d-flex align-items-center">
+    <ul class="nav">
+        <li class="nav-item"><a href="#" class="nav-link">Footer Link 1</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Footer Link 2</a></li>
+    </ul>
+    <ul class="nav ms-auto d-none d-md-flex">
+        <li class="nav-item"><a href="#" class="nav-link">Footer Link 3</a></li>
+        <li class="nav-item"><a href="#" class="nav-link"><span class="badge bg-success me-1 ms-0"><small>NEW</small></span>Footer Link 4</a></li>
+    </ul>
 </footer>
 
         </main>
@@ -415,14 +400,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body p-0">
-        <h3 class="aui-settings__heading">Layout Options</h3>
+        <h6>Layout Options</h6>
         <ul class="list-group list-group-flush">
             <li class="list-group-item px-4">
                 <div class="form-check form-switch mb-0">
                     <input class="form-check-input" type="checkbox" role="switch" id="aui-setting-header" data-aui-setting="header" value="fixed" data-aui-off="static">
                     <label class="form-check-label ms-2" for="aui-setting-header">
-                        <span class="aui-widget__heading d-block">Fixed Header</span>
-                        <span class="aui-settings__hint">Makes the header top fixed, always visible!</span>
+                        <span class="d-block fw-bold opacity-75">Fixed Header</span>
+                        <span class="small opacity-50">Makes the header top fixed, always visible!</span>
                     </label>
                 </div>
             </li>
@@ -430,8 +415,8 @@
                 <div class="form-check form-switch mb-0">
                     <input class="form-check-input" type="checkbox" role="switch" id="aui-setting-sidebar" data-aui-setting="sidebar" value="fixed" data-aui-off="static">
                     <label class="form-check-label ms-2" for="aui-setting-sidebar">
-                        <span class="aui-widget__heading d-block">Fixed Sidebar</span>
-                        <span class="aui-settings__hint">Makes the sidebar left fixed, always visible!</span>
+                        <span class="d-block fw-bold opacity-75">Fixed Sidebar</span>
+                        <span class="small opacity-50">Makes the sidebar left fixed, always visible!</span>
                     </label>
                 </div>
             </li>
@@ -439,16 +424,16 @@
                 <div class="form-check form-switch mb-0">
                     <input class="form-check-input" type="checkbox" role="switch" id="aui-setting-footer" data-aui-setting="footer" value="fixed" data-aui-off="static">
                     <label class="form-check-label ms-2" for="aui-setting-footer">
-                        <span class="aui-widget__heading d-block">Fixed Footer</span>
-                        <span class="aui-settings__hint">Makes the app footer bottom fixed, always visible!</span>
+                        <span class="d-block fw-bold opacity-75">Fixed Footer</span>
+                        <span class="small opacity-50">Makes the app footer bottom fixed, always visible!</span>
                     </label>
                 </div>
             </li>
         </ul>
-        <h3 class="aui-settings__heading">Theme</h3>
-        <div class="aui-settings__group">
-            <div class="mb-2 aui-settings__hint">Mode</div>
-            <div class="btn-group btn-group-sm mb-3 aui-segmented" role="radiogroup" aria-label="Color mode">
+        <h6>Theme</h6>
+        <div class="px-4 py-3">
+            <div class="mb-2 small opacity-50">Mode</div>
+            <div class="btn-group btn-group-sm mb-3" role="radiogroup" aria-label="Color mode">
                 <input type="radio" class="btn-check" name="aui-mode" id="aui-mode-light" value="light" data-aui-setting="mode">
                 <label class="btn" for="aui-mode-light">Light</label>
                 <input type="radio" class="btn-check" name="aui-mode" id="aui-mode-dark" value="dark" data-aui-setting="mode">
@@ -456,73 +441,93 @@
                 <input type="radio" class="btn-check" name="aui-mode" id="aui-mode-system" value="system" data-aui-setting="mode">
                 <label class="btn" for="aui-mode-system">System</label>
             </div>
-            <div class="mb-2 aui-settings__hint">Style</div>
-            <div class="aui-theme-grid" role="radiogroup" aria-label="Theme">
-                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-business" value="" data-aui-setting="theme">
-                <label class="aui-theme-option" for="aui-theme-business">
-                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
-                    <span class="aui-theme-option__name">Business</span>
-                </label>
-                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-orange" value="orange" data-aui-setting="theme">
-                <label class="aui-theme-option" for="aui-theme-orange">
-                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
-                    <span class="aui-theme-option__name">Orange</span>
-                </label>
-                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-indigo" value="indigo" data-aui-setting="theme">
-                <label class="aui-theme-option" for="aui-theme-indigo">
-                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
-                    <span class="aui-theme-option__name">Indigo</span>
-                </label>
-                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-indigo-img" value="indigo-img" data-aui-setting="theme">
-                <label class="aui-theme-option" for="aui-theme-indigo-img">
-                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
-                    <span class="aui-theme-option__name">Indigo Photo</span>
-                </label>
-                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-coffee" value="coffee" data-aui-setting="theme">
-                <label class="aui-theme-option" for="aui-theme-coffee">
-                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
-                    <span class="aui-theme-option__name">Coffee</span>
-                </label>
-                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-green" value="green" data-aui-setting="theme">
-                <label class="aui-theme-option" for="aui-theme-green">
-                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
-                    <span class="aui-theme-option__name">Garden</span>
-                </label>
-                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-raspberry" value="raspberry" data-aui-setting="theme">
-                <label class="aui-theme-option" for="aui-theme-raspberry">
-                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
-                    <span class="aui-theme-option__name">Warm</span>
-                </label>
-                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-teal" value="teal" data-aui-setting="theme">
-                <label class="aui-theme-option" for="aui-theme-teal">
-                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
-                    <span class="aui-theme-option__name">Operations</span>
-                </label>
-                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-violet" value="violet" data-aui-setting="theme">
-                <label class="aui-theme-option" for="aui-theme-violet">
-                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
-                    <span class="aui-theme-option__name">Space</span>
-                </label>
-                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-cyberpunk" value="cyberpunk" data-aui-setting="theme">
-                <label class="aui-theme-option" for="aui-theme-cyberpunk">
-                    <span class="aui-theme-option__dot" style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
-                    <span class="aui-theme-option__name">Cyberpunk<br><small>dark only</small></span>
-                </label>
+            <div class="mb-2 small opacity-50">Style</div>
+            <div class="row row-cols-4 row-cols-sm-5 g-2" role="radiogroup" aria-label="Theme">
+                <div class="col">
+                    <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-business" value="" data-aui-setting="theme">
+                    <label class="aui-theme-option" for="aui-theme-business">
+                        <span style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
+                        <span>Business</span>
+                    </label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-orange" value="orange" data-aui-setting="theme">
+                    <label class="aui-theme-option" for="aui-theme-orange">
+                        <span style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
+                        <span>Orange</span>
+                    </label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-indigo" value="indigo" data-aui-setting="theme">
+                    <label class="aui-theme-option" for="aui-theme-indigo">
+                        <span style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
+                        <span>Indigo</span>
+                    </label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-indigo-img" value="indigo-img" data-aui-setting="theme">
+                    <label class="aui-theme-option" for="aui-theme-indigo-img">
+                        <span style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
+                        <span>Indigo Photo</span>
+                    </label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-coffee" value="coffee" data-aui-setting="theme">
+                    <label class="aui-theme-option" for="aui-theme-coffee">
+                        <span style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
+                        <span>Coffee</span>
+                    </label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-green" value="green" data-aui-setting="theme">
+                    <label class="aui-theme-option" for="aui-theme-green">
+                        <span style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
+                        <span>Garden</span>
+                    </label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-raspberry" value="raspberry" data-aui-setting="theme">
+                    <label class="aui-theme-option" for="aui-theme-raspberry">
+                        <span style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
+                        <span>Warm</span>
+                    </label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-teal" value="teal" data-aui-setting="theme">
+                    <label class="aui-theme-option" for="aui-theme-teal">
+                        <span style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
+                        <span>Operations</span>
+                    </label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-violet" value="violet" data-aui-setting="theme">
+                    <label class="aui-theme-option" for="aui-theme-violet">
+                        <span style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
+                        <span>Space</span>
+                    </label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-cyberpunk" value="cyberpunk" data-aui-setting="theme">
+                    <label class="aui-theme-option" for="aui-theme-cyberpunk">
+                        <span style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
+                        <span>Cyberpunk<br><small>dark only</small></span>
+                    </label>
+                </div>
             </div>
         </div>
-        <h3 class="aui-settings__heading">Page Section Tabs</h3>
-        <div class="aui-settings__group">
-            <div class="btn-group btn-group-sm" role="group" aria-label="Page section tabs">
+        <h6>Page Section Tabs</h6>
+        <div class="px-4 py-3">
+            <div class="btn-group btn-group-sm" role="radiogroup" aria-label="Page section tabs">
                 <input type="radio" class="btn-check" name="aui-tabs" id="aui-tabs-shadow" value="shadow" data-aui-setting="tabs">
-                <label class="btn btn-outline-primary" for="aui-tabs-shadow">Shadow</label>
+                <label class="btn" for="aui-tabs-shadow">Shadow</label>
                 <input type="radio" class="btn-check" name="aui-tabs" id="aui-tabs-line" value="line" data-aui-setting="tabs">
-                <label class="btn btn-outline-primary" for="aui-tabs-line">Line</label>
+                <label class="btn" for="aui-tabs-line">Line</label>
             </div>
         </div>
-        <h3 class="aui-settings__heading">Header Options</h3>
-        <div class="aui-settings__group">
-            <div class="mb-2 aui-settings__hint">Choose Color Scheme</div>
-            <div class="aui-swatches" role="radiogroup" aria-label="Header color">
+        <h6>Header Options</h6>
+        <div class="px-4 py-3">
+            <div class="mb-2 small opacity-50">Choose Color Scheme</div>
+            <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-label="Header color">
                 <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-default" value="" data-aui-setting="header-scheme">
                 <label class="aui-swatch aui-swatch--default" for="aui-header-scheme-default" title="default"><span class="visually-hidden">default</span></label>
                 <input type="radio" class="btn-check" name="aui-header-scheme" id="aui-header-scheme-primary" value="primary" data-aui-setting="header-scheme">
@@ -547,10 +552,10 @@
                 <label class="aui-swatch aui-swatch--alternate" for="aui-header-scheme-alternate" title="alternate"><span class="visually-hidden">alternate</span></label>
             </div>
         </div>
-        <h3 class="aui-settings__heading">Sidebar Options</h3>
-        <div class="aui-settings__group">
-            <div class="mb-2 aui-settings__hint">Choose Color Scheme</div>
-            <div class="aui-swatches" role="radiogroup" aria-label="Sidebar color">
+        <h6>Sidebar Options</h6>
+        <div class="px-4 py-3">
+            <div class="mb-2 small opacity-50">Choose Color Scheme</div>
+            <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-label="Sidebar color">
                 <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-default" value="" data-aui-setting="sidebar-scheme">
                 <label class="aui-swatch aui-swatch--default" for="aui-sidebar-scheme-default" title="default"><span class="visually-hidden">default</span></label>
                 <input type="radio" class="btn-check" name="aui-sidebar-scheme" id="aui-sidebar-scheme-primary" value="primary" data-aui-setting="sidebar-scheme">
@@ -575,7 +580,7 @@
                 <label class="aui-swatch aui-swatch--alternate" for="aui-sidebar-scheme-alternate" title="alternate"><span class="visually-hidden">alternate</span></label>
             </div>
         </div>
-        <div class="aui-settings__group border-top">
+        <div class="px-4 py-3 border-top">
             <button type="button" class="btn btn-outline-secondary btn-sm" data-aui-reset>Restore Default</button>
         </div>
     </div>

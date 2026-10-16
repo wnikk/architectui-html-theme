@@ -54,16 +54,16 @@ i[data-lucide] {
   z-index: 1090;
 }
 
-.aui-main:focus {
+.aui-app > main:focus {
   outline: 0;
 }
 
-// Thin native scrollbars
-.aui-scrollbar {
+// Thin native scrollbars in the sidebar
+.aui-sidebar > .offcanvas-md {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, .2) transparent;
 }
 
-[data-bs-theme="dark"] .aui-scrollbar {
+[data-bs-theme="dark"] .aui-sidebar > .offcanvas-md {
   scrollbar-color: rgba(255, 255, 255, .2) transparent;
 }

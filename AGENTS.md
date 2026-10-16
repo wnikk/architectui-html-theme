@@ -22,7 +22,7 @@ Bootstrap 5.3 (CSS and bundle JS) and Lucide come from a CDN; the exact URLs are
 
 ## Build a page
 
-1. Copy `dist/index.html`. Keep the `<head>` and the frame; replace the content inside `.aui-main__inner` after the page title.
+1. Copy `dist/index.html`. Keep the `<head>` and the frame; replace the content after the page title inside `main`.
 2. Write standard Bootstrap 5.3 markup: grid, cards, tables, forms, navs, modals, toasts. The theme already styles them.
 3. Add `aui-` classes only for what Bootstrap does not have (number widgets, card actions, animated tabs). The list is in `llms-full.txt`, section 8.
 4. Icons: `<i data-lucide="name"></i>`. After inserting markup dynamically, call `ArchitectUI.refresh(element)`.

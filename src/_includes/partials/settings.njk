@@ -9,54 +9,56 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body p-0">
-        <h3 class="aui-settings__heading">Layout Options</h3>
+        <h6>Layout Options</h6>
         <ul class="list-group list-group-flush">
             {%- for opt in [["header", "Fixed Header", "Makes the header top fixed, always visible!"], ["sidebar", "Fixed Sidebar", "Makes the sidebar left fixed, always visible!"], ["footer", "Fixed Footer", "Makes the app footer bottom fixed, always visible!"]] %}
             <li class="list-group-item px-4">
                 <div class="form-check form-switch mb-0">
                     <input class="form-check-input" type="checkbox" role="switch" id="aui-setting-{{ opt[0] }}" data-aui-setting="{{ opt[0] }}" value="fixed" data-aui-off="static">
                     <label class="form-check-label ms-2" for="aui-setting-{{ opt[0] }}">
-                        <span class="aui-widget__heading d-block">{{ opt[1] }}</span>
-                        <span class="aui-settings__hint">{{ opt[2] }}</span>
+                        <span class="d-block fw-bold opacity-75">{{ opt[1] }}</span>
+                        <span class="small opacity-50">{{ opt[2] }}</span>
                     </label>
                 </div>
             </li>
             {%- endfor %}
         </ul>
-        <h3 class="aui-settings__heading">Theme</h3>
-        <div class="aui-settings__group">
-            <div class="mb-2 aui-settings__hint">Mode</div>
-            <div class="btn-group btn-group-sm mb-3 aui-segmented" role="radiogroup" aria-label="Color mode">
+        <h6>Theme</h6>
+        <div class="px-4 py-3">
+            <div class="mb-2 small opacity-50">Mode</div>
+            <div class="btn-group btn-group-sm mb-3" role="radiogroup" aria-label="Color mode">
                 {%- for mode in [["light", "Light"], ["dark", "Dark"], ["system", "System"]] %}
                 <input type="radio" class="btn-check" name="aui-mode" id="aui-mode-{{ mode[0] }}" value="{{ mode[0] }}" data-aui-setting="mode">
                 <label class="btn" for="aui-mode-{{ mode[0] }}">{{ mode[1] }}</label>
                 {%- endfor %}
             </div>
-            <div class="mb-2 aui-settings__hint">Style</div>
-            <div class="aui-theme-grid" role="radiogroup" aria-label="Theme">
+            <div class="mb-2 small opacity-50">Style</div>
+            <div class="row row-cols-4 row-cols-sm-5 g-2" role="radiogroup" aria-label="Theme">
                 {%- for theme in themes %}
-                <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-{{ theme.id or 'business' }}" value="{{ theme.id }}" data-aui-setting="theme">
-                <label class="aui-theme-option" for="aui-theme-{{ theme.id or 'business' }}">
-                    <span class="aui-theme-option__dot" style="--aui-dot-brand: {{ theme.brand }}; --aui-dot-accent: {{ theme.accent }}"></span>
-                    <span class="aui-theme-option__name">{{ theme.name }}{% if theme.darkOnly %}<br><small>dark only</small>{% endif %}</span>
-                </label>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="aui-theme" id="aui-theme-{{ theme.id or 'business' }}" value="{{ theme.id }}" data-aui-setting="theme">
+                    <label class="aui-theme-option" for="aui-theme-{{ theme.id or 'business' }}">
+                        <span style="--aui-dot-brand: {{ theme.brand }}; --aui-dot-accent: {{ theme.accent }}"></span>
+                        <span>{{ theme.name }}{% if theme.darkOnly %}<br><small>dark only</small>{% endif %}</span>
+                    </label>
+                </div>
                 {%- endfor %}
             </div>
         </div>
-        <h3 class="aui-settings__heading">Page Section Tabs</h3>
-        <div class="aui-settings__group">
-            <div class="btn-group btn-group-sm" role="group" aria-label="Page section tabs">
+        <h6>Page Section Tabs</h6>
+        <div class="px-4 py-3">
+            <div class="btn-group btn-group-sm" role="radiogroup" aria-label="Page section tabs">
                 <input type="radio" class="btn-check" name="aui-tabs" id="aui-tabs-shadow" value="shadow" data-aui-setting="tabs">
-                <label class="btn btn-outline-primary" for="aui-tabs-shadow">Shadow</label>
+                <label class="btn" for="aui-tabs-shadow">Shadow</label>
                 <input type="radio" class="btn-check" name="aui-tabs" id="aui-tabs-line" value="line" data-aui-setting="tabs">
-                <label class="btn btn-outline-primary" for="aui-tabs-line">Line</label>
+                <label class="btn" for="aui-tabs-line">Line</label>
             </div>
         </div>
         {%- for part in [["header-scheme", "Header Options", "Header color"], ["sidebar-scheme", "Sidebar Options", "Sidebar color"]] %}
-        <h3 class="aui-settings__heading">{{ part[1] }}</h3>
-        <div class="aui-settings__group">
-            <div class="mb-2 aui-settings__hint">Choose Color Scheme</div>
-            <div class="aui-swatches" role="radiogroup" aria-label="{{ part[2] }}">
+        <h6>{{ part[1] }}</h6>
+        <div class="px-4 py-3">
+            <div class="mb-2 small opacity-50">Choose Color Scheme</div>
+            <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-label="{{ part[2] }}">
                 {%- for name in schemes %}
                 <input type="radio" class="btn-check" name="aui-{{ part[0] }}" id="aui-{{ part[0] }}-{{ name or 'default' }}" value="{{ name }}" data-aui-setting="{{ part[0] }}">
                 <label class="aui-swatch aui-swatch--{{ name or 'default' }}" for="aui-{{ part[0] }}-{{ name or 'default' }}" title="{{ name or 'default' }}"><span class="visually-hidden">{{ name or "default" }}</span></label>
@@ -64,7 +66,7 @@
             </div>
         </div>
         {%- endfor %}
-        <div class="aui-settings__group border-top">
+        <div class="px-4 py-3 border-top">
             <button type="button" class="btn btn-outline-secondary btn-sm" data-aui-reset>Restore Default</button>
         </div>
     </div>

@@ -1,35 +1,35 @@
 <aside class="aui-sidebar">
-    <div class="offcanvas-md offcanvas-start aui-sidebar__panel aui-scrollbar" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
+    <div class="offcanvas-md offcanvas-start" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
         <div class="offcanvas-header">
             {% include "partials/logo.njk" %}
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#auiSidebar" aria-label="Close menu"></button>
         </div>
         <div class="offcanvas-body">
-            <ul class="aui-nav" id="auiNav">
+            <ul class="nav flex-column flex-nowrap" id="auiNav">
                 {%- for section in menu %}
-                <li class="aui-nav__heading">{{ section.heading }}</li>
+                <li class="nav-item"><h6>{{ section.heading }}</h6></li>
                 {%- for item in section.items %}
                 {%- if item.children %}
                 {%- set open = item.children | hasActive(page.filePathStem) %}
                 {%- set groupId = "nav-" + (item.title | slugify) %}
-                <li>
-                    <a class="aui-nav__link{% if not open %} collapsed{% endif %}" href="#{{ groupId }}" role="button" data-bs-toggle="collapse" aria-expanded="{{ 'true' if open else 'false' }}" aria-controls="{{ groupId }}">
-                        <i data-lucide="{{ item.icon }}" class="aui-nav__icon"></i>{{ item.title }}<i data-lucide="chevron-down" class="aui-nav__caret"></i>
+                <li class="nav-item">
+                    <a class="nav-link{% if not open %} collapsed{% endif %}" href="#{{ groupId }}" role="button" data-bs-toggle="collapse" aria-expanded="{{ 'true' if open else 'false' }}" aria-controls="{{ groupId }}">
+                        <i data-lucide="{{ item.icon }}"></i>{{ item.title }}<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse{% if open %} show{% endif %}" id="{{ groupId }}" data-bs-parent="#auiNav">
-                        <ul class="aui-nav__sub">
+                        <ul class="nav flex-column flex-nowrap">
                             {%- for child in item.children %}
                             {%- set active = child.href | isActive(page.filePathStem) %}
-                            <li><a class="aui-nav__link{% if active %} active{% endif %}" href="{{ child.href }}"{% if active %} aria-current="page"{% endif %}>{{ child.title }}</a></li>
+                            <li class="nav-item"><a class="nav-link{% if active %} active{% endif %}" href="{{ child.href }}"{% if active %} aria-current="page"{% endif %}>{{ child.title }}</a></li>
                             {%- endfor %}
                         </ul>
                     </div>
                 </li>
                 {%- else %}
                 {%- set active = item.href | isActive(page.filePathStem) %}
-                <li>
-                    <a class="aui-nav__link{% if active %} active{% endif %}" href="{{ item.href }}"{% if active %} aria-current="page"{% endif %}{% if item.external %} target="_blank" rel="noopener"{% endif %}>
-                        <i data-lucide="{{ item.icon }}" class="aui-nav__icon"></i>{{ item.title }}{% if item.iconAfter %} <i data-lucide="{{ item.iconAfter }}" class="ms-1"></i>{% endif %}
+                <li class="nav-item">
+                    <a class="nav-link{% if active %} active{% endif %}" href="{{ item.href }}"{% if active %} aria-current="page"{% endif %}{% if item.external %} target="_blank" rel="noopener"{% endif %}>
+                        <i data-lucide="{{ item.icon }}"></i>{{ item.title }}{% if item.iconAfter %} <i data-lucide="{{ item.iconAfter }}" class="ms-1"></i>{% endif %}
                     </a>
                 </li>
                 {%- endif %}

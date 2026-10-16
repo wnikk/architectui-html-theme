@@ -3,7 +3,7 @@ title: "Form Controls"
 description: "Wide selection of form controls, using the Bootstrap 5 code base with the theme on top."
 icon: "monitor"
 ---
-<ul class="aui-body-tabs aui-tabs-animated nav">
+<ul class="nav aui-body-tabs">
     <li class="nav-item">
         <a role="tab" class="nav-link active" id="tab-0" data-bs-toggle="tab" href="#tab-content-0">
             <span>Basic</span>
@@ -96,6 +96,24 @@ icon: "monitor"
                             </fieldset>
                             <div class="form-check"><input id="forms-controls-checkbox-1" type="checkbox" class="form-check-input"><label class="form-check-label" for="forms-controls-checkbox-1">Check me out</label></div>
                         </form>
+                    </div>
+                </div>
+                <div class="mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Expanding Fields</h5>
+                        <p class="text-body-secondary">A round button that opens into a field. Use it for search above a table or for a field in a form.</p>
+                        <div class="d-flex flex-column gap-3">
+                            <div class="aui-expand" role="search" data-aui-expand>
+                                <input type="search" class="form-control" placeholder="Search orders" aria-label="Search orders">
+                                <button type="button" class="btn" data-aui-expand-toggle aria-label="Search orders"></button>
+                                <button type="button" class="btn-close" data-aui-expand-close aria-label="Close"></button>
+                            </div>
+                            <div class="aui-expand" data-aui-expand>
+                                <input type="password" class="form-control" placeholder="New password" aria-label="New password" autocomplete="new-password">
+                                <button type="button" class="btn" data-aui-expand-toggle aria-label="Change password"><i data-lucide="key-round"></i></button>
+                                <button type="button" class="btn-close" data-aui-expand-close aria-label="Close"></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

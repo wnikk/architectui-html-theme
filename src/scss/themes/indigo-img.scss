@@ -2,19 +2,19 @@
 // Replace assets/images/themes/indigo-bg.jpg to change the photo.
 @use "indigo";
 
-.aui-main {
+.aui-app > main {
   background-image: url("../assets/images/themes/indigo-bg.jpg");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
 }
 
-:root:not([data-bs-theme="dark"]) .aui-main {
+:root:not([data-bs-theme="dark"]) .aui-app > main {
   background-color: rgba(248, 250, 252, .99);
   background-blend-mode: lighten;
 }
 
-[data-bs-theme="dark"] .aui-main {
+[data-bs-theme="dark"] .aui-app > main {
   background-color: rgba(11, 18, 32, .99);
   background-blend-mode: darken;
 }

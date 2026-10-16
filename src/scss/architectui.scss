@@ -12,7 +12,6 @@
 @use "frame/burger";
 @use "frame/logo";
 @use "frame/header";
-@use "frame/search";
 @use "frame/sidebar";
 @use "frame/page-title";
 @use "frame/footer";
@@ -23,6 +22,7 @@
 @use "ui/dropdowns";
 @use "ui/navs";
 @use "ui/elements";
+@use "ui/expand";
 @use "ui/widgets";
 @use "ui/vendors";
 

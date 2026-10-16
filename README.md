@@ -99,7 +99,7 @@ Layout modes are attributes on `<html>`. The settings panel (cog button) changes
 | `data-aui-theme` | theme id from the table above, or none for Business | none |
 | `data-bs-theme` | `light`, `dark` — set by the theme script from the mode | `light` |
 
-The sidebar is full width from 1250 px, an icon rail from 768 px (it expands on hover) and an off-canvas panel below 768 px.
+The sidebar is full width from 1200 px, an icon rail from 768 px (it expands on hover or keyboard focus) and an off-canvas panel below 768 px.
 
 ## Theme colors
 

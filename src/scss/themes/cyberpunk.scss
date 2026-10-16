@@ -110,7 +110,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6,
-.aui-page-title__heading,
+.aui-page-title h1,
 .card-title {
   text-transform: uppercase;
 }
@@ -168,7 +168,7 @@ h1, h2, h3, h4, h5, h6,
 
 .aui-header,
 .aui-sidebar,
-.aui-footer__inner {
+.aui-footer {
   border-color: rgba(34, 229, 255, .18);
 }
 
@@ -215,17 +215,17 @@ h1, h2, h3, h4, h5, h6,
 }
 
 // Sidebar: "// " before section headings, uppercase items
-.aui-nav__heading::before {
+.aui-sidebar h6::before {
   content: "// ";
   color: #22e5ff;
 }
 
-.aui-nav__link {
+.aui-sidebar .nav-link {
   font-size: .8rem;
   letter-spacing: .04em;
   text-transform: uppercase;
 }
 
-.aui-page-title__subheading {
+.aui-page-title p {
   text-transform: none;
 }

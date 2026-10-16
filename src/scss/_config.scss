@@ -53,8 +53,7 @@ $aui-schemes: (
 
 // Layout breakpoints
 $aui-bp-mobile: 768px;   // below: sidebar in an Offcanvas, mobile header
-$aui-bp-rail: 1250px;    // below: sidebar collapsed to an icon rail
-$aui-bp-user: 1320px;    // below: user name hidden in the header
+$aui-bp-rail: 1200px;    // below: sidebar collapsed to an icon rail (Bootstrap xl)
 
 @mixin mobile { @media (max-width: #{$aui-bp-mobile - .02px}) { @content; } }
 @mixin desktop { @media (min-width: $aui-bp-mobile) { @content; } }

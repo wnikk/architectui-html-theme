@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+Work towards 6.0.0. The frame markup changes without backward compatibility.
+
+### Changed
+- **Frame on Bootstrap markup.** Every frame part is Bootstrap markup with one root `aui-` class:
+  - header — `navbar navbar-expand-md aui-header` with `navbar-brand` and `navbar-collapse`;
+  - sidebar — `offcanvas-md` with `nav flex-column`;
+  - page title, footer and settings panel — Bootstrap utilities.
+- **Removed classes.** `aui-header__*`, `aui-nav__*`, `aui-page-title__*`, `aui-footer__*`, `aui-user*`, `aui-logo__img*`, `aui-sidebar__panel`, `aui-scrollbar`, `aui-main`, `aui-main__inner`, `aui-settings__*`, `aui-segmented`, `aui-theme-grid`, `aui-swatches`.
+- **Sidebar breakpoint.** The icon rail now starts below 1200 px (Bootstrap `xl`) instead of 1250 px. The user name in the header shows from 1400 px (`xxl`), so the right-hand group has room for status badges and other items.
+- **Logo markup.** The logo is `a.aui-logo` with two images: the first for light backgrounds, the second for dark ones.
+- **Page section tabs.** Page tabs are `ul.nav.aui-body-tabs`; `aui-tabs-animated` is no longer needed on them.
+
+### Added
+- **Expanding field (`aui-expand`).** The animated search is now a component for any place or form: header search, search above a table, a password field. It uses `data-aui-expand`, `data-aui-expand-toggle` and `data-aui-expand-close`. An empty toggle draws a magnifier, a toggle with an icon shows that icon.
+- **Status badge example** in the header.
+
 ## [5.3.4] - 2026-10-16
 
 ### Changed

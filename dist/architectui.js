@@ -112,8 +112,8 @@
   });
 
   document.addEventListener("click", (event) => {
-    const target = event.target.closest("[data-aui-toggle], [data-aui-reset], [data-aui-search-toggle], [data-aui-search-close], [data-aui-toast]");
-    const search = target?.closest("[data-aui-search]");
+    const target = event.target.closest("[data-aui-toggle], [data-aui-reset], [data-aui-expand-toggle], [data-aui-expand-close], [data-aui-toast]");
+    const field = target?.closest("[data-aui-expand]");
     if (target?.matches('[data-aui-toggle="sidebar"]')) {
       setSetting("sidebar-collapsed", root.hasAttribute(attrName("sidebar-collapsed")) ? "" : "true");
     } else if (target?.matches('[data-aui-toggle="mode"]')) {
@@ -121,9 +121,9 @@
     } else if (target?.matches("[data-aui-reset]")) {
       writeSettings({});
       Object.entries(DEFAULTS).forEach(([key, value]) => setSetting(key, value, false));
-    } else if (target?.matches("[data-aui-search-toggle], [data-aui-search-close]")) {
-      const open = search.classList.toggle("is-open", target.matches("[data-aui-search-toggle]"));
-      if (open) search.querySelector("input")?.focus();
+    } else if (target?.matches("[data-aui-expand-toggle], [data-aui-expand-close]")) {
+      const open = field.classList.toggle("is-open", target.matches("[data-aui-expand-toggle]"));
+      if (open) field.querySelector("input")?.focus();
     } else if (target?.matches("[data-aui-toast]")) {
       const toast = document.querySelector(target.dataset.auiToast);
       if (toast) window.bootstrap?.Toast.getOrCreateInstance(toast).show();
@@ -131,7 +131,7 @@
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") document.querySelectorAll("[data-aui-search].is-open").forEach((el) => el.classList.remove("is-open"));
+    if (event.key === "Escape") document.querySelectorAll("[data-aui-expand].is-open").forEach((el) => el.classList.remove("is-open"));
   });
 
   // Offcanvas does not set aria-expanded on its toggle; the burger animation relies on it

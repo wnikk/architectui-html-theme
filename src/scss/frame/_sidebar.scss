@@ -15,7 +15,7 @@
   transition: width .3s ease, box-shadow .3s ease;
 }
 
-.aui-sidebar__panel {
+.aui-sidebar > .offcanvas-md {
   --bs-offcanvas-width: var(--aui-sidebar-width);
   --bs-offcanvas-bg: var(--aui-surface);
   overflow-x: hidden;
@@ -27,7 +27,7 @@
 }
 
 @include desktop {
-  [data-aui-sidebar="fixed"] .aui-sidebar__panel {
+  [data-aui-sidebar="fixed"] .aui-sidebar > .offcanvas-md {
     position: sticky;
     top: var(--aui-header-offset);
     height: calc(100vh - var(--aui-header-offset));
@@ -45,8 +45,8 @@
   }
 }
 
-// Navigation
-.aui-nav {
+// Navigation: a Bootstrap nav; nested navs are submenus
+.aui-sidebar .offcanvas-body > .nav {
   margin: 0;
   padding: 2px var(--aui-gutter) var(--aui-gutter);
   list-style: none;
@@ -62,9 +62,10 @@
   }
 }
 
-.aui-nav__heading {
+.aui-sidebar h6 {
   position: relative;
   margin: .75rem 0;
+  line-height: inherit;
   color: var(--bs-primary);
   font-size: .8rem;
   font-weight: 700;
@@ -72,7 +73,7 @@
   white-space: nowrap;
 }
 
-.aui-nav__link {
+.aui-sidebar .nav-link {
   position: relative;
   display: block;
   height: 2.4rem;
@@ -101,8 +102,8 @@
 }
 
 // Icons are centered with auto margins, so the row stays aligned at any icon size
-.aui-nav__icon,
-.aui-nav__caret {
+.aui-sidebar .nav-link > [data-lucide]:first-child,
+.aui-sidebar .nav-link > [data-lucide="chevron-down"] {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -113,38 +114,38 @@
   transition: color .3s, opacity .3s, transform .3s;
 }
 
-.aui-nav__caret {
+.aui-sidebar .nav-link > [data-lucide="chevron-down"] {
   right: 7px;
   left: auto;
 }
 
 // The link prefix outweighs the default Lucide size (svg.lucide)
-.aui-nav__link > .aui-nav__icon {
+.aui-sidebar .nav-link > [data-lucide]:first-child {
   width: var(--aui-nav-icon-size);
   height: var(--aui-nav-icon-size);
 }
 
-.aui-nav__link > .aui-nav__caret {
+.aui-sidebar .nav-link > [data-lucide="chevron-down"] {
   width: 16px;
   height: 16px;
 }
 
-.aui-nav__link:hover {
-  .aui-nav__icon {
+.aui-sidebar .nav-link:hover {
+  > [data-lucide]:first-child {
     color: var(--aui-nav-icon-hover);
     opacity: 1;
   }
 
-  .aui-nav__caret {
+  > [data-lucide="chevron-down"] {
     opacity: 1;
   }
 }
 
-.aui-nav__link[aria-expanded="true"] .aui-nav__caret {
+.aui-sidebar .nav-link[aria-expanded="true"] > [data-lucide="chevron-down"] {
   transform: rotate(-180deg);
 }
 
-.aui-nav__sub {
+.aui-sidebar .nav .nav {
   position: relative;
   padding: .5em 0 0 2rem !important;
 
@@ -159,7 +160,7 @@
     background: var(--aui-hover-bg);
   }
 
-  .aui-nav__link {
+  .nav-link {
     height: 2rem;
     padding: 0 var(--aui-gutter);
     color: var(--aui-nav-sub-color);
@@ -179,7 +180,7 @@
 
 // Icon rail: labels hidden, section headings replaced by a line
 @mixin rail-items {
-  .aui-nav__heading {
+  h6 {
     color: transparent;
 
     &::before {
@@ -193,22 +194,22 @@
     }
   }
 
-  .aui-nav__link {
+  .nav-link {
     padding: 0;
     color: transparent;
   }
 
-  .aui-nav__icon {
+  .nav-link > [data-lucide]:first-child {
     right: 0;
     left: 0;
     margin: auto;
   }
 
-  .aui-nav__caret {
+  .nav-link > [data-lucide="chevron-down"] {
     visibility: hidden;
   }
 
-  .aui-nav .collapse {
+  .nav .collapse {
     display: none;
   }
 }
@@ -240,7 +241,7 @@
 @each $name, $tone in $aui-schemes {
   [data-aui-sidebar-scheme="#{$name}"] {
     .aui-sidebar,
-    .aui-sidebar__panel {
+    .aui-sidebar > .offcanvas-md {
       --bs-offcanvas-bg: var(--bs-#{$name});
       background-color: var(--bs-#{$name});
       @if map.has-key($aui-gradients, $name) {
@@ -255,22 +256,22 @@
         --aui-hover-bg: rgba(255, 255, 255, .15);
         --aui-nav-icon-hover: #fff;
 
-        .aui-nav__heading {
+        h6 {
           color: rgba(255, 255, 255, .6);
         }
 
-        .aui-nav__link.active {
+        .nav-link.active {
           background: rgba(255, 255, 255, .15);
           box-shadow: none;
         }
 
-        .aui-nav__sub .aui-nav__link:hover,
-        .aui-nav__sub .aui-nav__link.active {
+        .nav .nav .nav-link:hover,
+        .nav .nav .nav-link.active {
           color: #fff;
         }
 
-        .aui-nav__icon,
-        .aui-nav__caret {
+        .nav-link > [data-lucide]:first-child,
+        .nav-link > [data-lucide="chevron-down"] {
           opacity: .5;
         }
       }

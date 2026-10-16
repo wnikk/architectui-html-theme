@@ -1,14 +1,10 @@
-<div class="aui-page-title">
-    <div class="aui-page-title__wrapper">
-        <div class="aui-page-title__heading">
-            <div class="aui-page-title__icon">
-                <i data-lucide="{{ icon }}" class="{{ iconClass or 'aui-icon-gradient-primary' }}"></i>
-            </div>
-            <div>
-                {{ title }}
-                <div class="aui-page-title__subheading">{{ description }}</div>
-            </div>
-        </div>
-        {% include "partials/page-title-actions.njk" %}
+<div class="aui-page-title d-md-flex align-items-center text-center text-md-start">
+    <div class="d-none d-md-flex align-items-center justify-content-center flex-shrink-0 me-4">
+        <i data-lucide="{{ icon }}" class="{{ iconClass or 'aui-icon-gradient-primary' }}"></i>
     </div>
+    <div>
+        <h1>{{ title }}</h1>
+        <p>{{ description }}</p>
+    </div>
+    {% include "partials/page-title-actions.njk" %}
 </div>
