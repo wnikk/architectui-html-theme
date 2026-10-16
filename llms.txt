@@ -6,7 +6,7 @@ Key facts:
 
 - MIT license. Repository: https://github.com/wnikk/architectui-html-theme (the current version is in `package.json` and `Changelog.md`).
 - Runtime dependencies come from the CDN: Bootstrap 5.3 (CSS and bundle JS) and Lucide (UMD); exact URLs are in `src/_data/cdn.json`. There is no jQuery, no Tailwind, no React or Vue.
-- Write normal Bootstrap 5 markup. Theme additions use the `aui-` class prefix (`aui-widget`, `aui-card-actions`, `aui-btn-shadow`). Bootstrap 4 classes (`data-toggle`, `ml-*`, `custom-control`) are not supported.
+- Write normal Bootstrap 5 markup. Bootstrap utilities cover layout, spacing and text; the few theme additions use the `aui-` class prefix (`aui-number`, `aui-btn-shadow`, `aui-scroll`). Bootstrap 4 classes (`data-toggle`, `ml-*`, `custom-control`) are not supported.
 - Icons: `<i data-lucide="rocket"></i>`. The theme script renders them; call `ArchitectUI.refresh(element)` after you insert new markup.
 - Every color, radius, shadow and size is a CSS variable (`--bs-*` for Bootstrap, `--aui-*` for the theme). Change them at runtime, never rebuild Bootstrap.
 - Layout modes are attributes on `<html>` (`data-aui-header`, `data-aui-sidebar`, `data-aui-sidebar-collapsed`, `data-aui-theme`, `data-aui-mode`). The settings panel stores them in `localStorage` under `architectui`.

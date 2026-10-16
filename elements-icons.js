@@ -10,7 +10,7 @@
     let visible = 0;
     tiles.forEach((tile) => {
       const match = !query || tile.dataset.icon.includes(query);
-      tile.hidden = !match;
+      tile.classList.toggle("d-none", !match);
       visible += match ? 1 : 0;
     });
     count.textContent = visible;

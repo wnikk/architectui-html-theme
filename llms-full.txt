@@ -314,51 +314,62 @@ Use Bootstrap 5.3 components as documented by Bootstrap. The theme already style
 
 ### Number widget
 
+A card with Bootstrap flex utilities. The theme adds only `aui-number` (the number font of the theme).
+
 ```html
-<div class="card mb-3 aui-widget">
-  <div class="aui-widget__wrapper">
-    <div class="aui-widget__left">
-      <div class="aui-widget__heading">Total Orders</div>
-      <div class="aui-widget__subheading">Last year expenses</div>
+<div class="card mb-3 d-flex flex-row align-items-center p-3">
+  <div class="d-flex flex-grow-1 align-items-center">
+    <div>
+      <div class="fw-bold opacity-75">Total Orders</div>
+      <div class="opacity-50">Last year expenses</div>
     </div>
-    <div class="aui-widget__right">
-      <div class="aui-widget__numbers text-success"><span>1896</span></div>
+    <div class="ms-auto">
+      <div class="aui-number fs-3 fw-bold lh-1 text-success">1896</div>
     </div>
   </div>
 </div>
 ```
 
-Filled variant: add `bg-primary` (or another color) to the card and `text-white` to `.aui-widget__wrapper`. Choose a dark color (`bg-primary`, `bg-success`, `bg-danger`, `bg-dark`) for white text; `-subtle` gradients are light. Add `.aui-widget__outer` around the wrapper and `.aui-widget__progress` with a Bootstrap `.progress` and `.aui-widget__progress-label` for a progress row.
+Filled variant: add `bg-primary` (or another color) to the card and `text-white` to the inner row. Choose a dark color (`bg-primary`, `bg-success`, `bg-danger`, `bg-dark`) for white text; `-subtle` gradients are light. Progress row: wrap the inner row in `div.d-flex.flex-column.flex-grow-1` and add after it:
+
+```html
+<div class="mt-3">
+  <div class="progress"><div class="progress-bar bg-primary" style="width: 65%"></div></div>
+  <div class="d-flex align-items-center mt-1 opacity-50"><div>YoY Growth</div><div class="ms-auto">100%</div></div>
+</div>
+```
 
 ### Card header with icon and actions
 
 ```html
 <div class="card mb-3">
   <div class="card-header">
-    <i data-lucide="laptop" class="aui-card-icon"></i>Header Menu
-    <div class="ms-auto text-nowrap aui-card-actions">
-      <button class="aui-btn-icon aui-btn-icon-only btn btn-link" aria-label="Download"><i data-lucide="download"></i></button>
+    <i data-lucide="laptop" class="me-2"></i>Header Menu
+    <div class="ms-auto text-nowrap">
+      <button type="button" class="btn btn-link text-body px-1" aria-label="Download"><i data-lucide="download"></i></button>
     </div>
   </div>
   <div class="card-body">...</div>
 </div>
 ```
 
-The card header has a fixed height; tabs inside it stay on one line. Header tabs: put `ul.nav` directly in `.card-header` (add `aui-card-tabs-animated` for the moving bar) or a `.btn-group.nav` / `.nav` of buttons in a `.ms-auto` wrapper.
+The first icon in the card header gets the muted color. The card header has a fixed height; tabs inside it stay on one line. Header tabs: put `ul.nav` directly in `.card-header`; add `ms-auto` to move it to the right and `nav-underline` for the moving bar. A `.btn-group.nav` of buttons in a `.ms-auto` wrapper also works.
+
+An icon directly inside a `.btn` is drawn larger than the button text. Use `d-inline-flex align-items-center gap-2` on a button with an icon and text.
 
 ### Other theme classes
 
-- Cards: `aui-card-border` (a real border instead of the shadow; pair with `border border-<color>`), `aui-card-shadow-<color>` (colored shadow), `aui-card-header-title`.
-- Buttons: `aui-btn-shadow`, `aui-btn-wide`, `aui-btn-icon` (aligns an icon and the text with a gap), `aui-btn-icon-only`, `aui-btn-transition` (gray at rest, color on hover).
+- Cards: `aui-card-shadow-<color>` (colored shadow). For a colored border instead of the shadow use Bootstrap `border border-<color> shadow-none`.
+- Buttons: `aui-btn-shadow`, `aui-btn-transition` (gray at rest, color on hover).
 - Button groups as tabs: `.btn-group.nav` with `rounded-start-pill` on the first and `rounded-end-pill` on the last button for a capsule.
-- Navs: `aui-tabs-shadow`, `aui-tabs-animated` (tabs with a moving bar), `aui-nav-icon` (icon in a nav link), `aui-nav-header`, `aui-nav-divider`, `aui-nav-btn`.
-- Dropdowns: `aui-dropdown-shadow`, `aui-dropdown-hover-link`, `aui-dropdown-icon`.
-- Lists: `aui-list-borderless`.
-- Scroll areas: `aui-scroll` with a height class `aui-scroll-xs`, `-sm`, `-md`, `-lg`.
+- Navs: `aui-tabs-shadow`; Bootstrap `nav-underline` gets the moving bar of the theme. The first icon in a `.nav-link` is the link icon: add `me-2`.
+- Numbers: `aui-number`.
+- Scroll areas: `aui-scroll` with a height class `aui-scroll-sm`, `-md`, `-lg`.
 - Charts and maps: `aui-chart` (`aui-chart-sm`, `aui-chart-lg`) sets the chart height; `aui-map` (`aui-map-lg`) for Leaflet maps.
-- Helpers: `aui-divider`, `aui-code`, `aui-fs-1` … `aui-fs-4`, `aui-fs-lg`, `aui-opacity-60` … `aui-opacity-90`, `aui-flex-2`.
 - Animations: `aui-animate-fade-in`, `aui-animate-flip`, `aui-animate-light-speed-in`, `aui-animate-pulse`, `aui-animate-spin`.
 - Icon color: `aui-icon-gradient-<color>` strokes a Lucide icon with a theme gradient (needs the SVG gradient definitions from `partials/icon-gradients.njk` in the page).
+
+Everything else is Bootstrap: `hr` for a divider, `fs-*` and `opacity-*` for text, `list-group-flush` for a list without borders, `dropdown-header` and `dropdown-divider` in menus.
 
 ### Expanding field
 
