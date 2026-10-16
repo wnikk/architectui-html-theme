@@ -35,7 +35,8 @@
 {%- for name in scripts %}
 <script defer src="{{ cdn.scripts[name] }}" crossorigin="anonymous"></script>
 {%- endfor %}
-<script defer src="architectui.js"></script>
+{# The guest frame sets themeScript to architectui-auth.js; the admin pages load architectui.js #}
+<script defer src="{{ themeScript or "architectui.js" }}"></script>
 {%- if script %}
 <script defer src="{{ script }}"></script>
 {%- endif %}

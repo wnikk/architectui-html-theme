@@ -40,7 +40,8 @@ Same markup and JavaScript API. ArchitectUI adds the admin frame, a designed def
 Release files in `dist/`:
 
 - `architectui.css` — the theme: layout, components, tokens, the default Business look.
-- `architectui.js` — the theme behavior. Classic script, no dependencies, about 150 lines.
+- `architectui.js` — the theme behavior of the admin pages. Classic script, no dependencies, about 150 lines.
+- `architectui-auth.js` — the script of the guest pages (sign in, sign up, password reset, errors): mode toggle, icons and the form flow. Load it instead of `architectui.js`.
 - `themes/<id>.css` — optional visual themes, loaded after `architectui.css`.
 - `assets/images/` — logos, avatars, theme background image.
 - `*.html` — demo pages; `*.js` next to them — scripts of individual demo pages.
@@ -105,28 +106,45 @@ The CDN URLs below follow the latest release of each major version; for pinned v
 
 The fastest correct start is to copy `dist/pages-starter.html` (an empty page with the frame) and replace the card after the page title inside `main`. The inline script is optional when you do not use the settings panel or a stored theme; without it the page uses the attributes written in the HTML.
 
-### Page without the frame
+### Guest frame (sign in, sign up, errors)
 
-Sign in, sign up, password reset and error pages use the same `<head>` and no frame: only Bootstrap container, grid and card. Copy `dist/pages-login.html` or `dist/pages-404.html`.
+Pages for a visitor who is not signed in use the guest frame: the same `<head>`, themes and modes, a top row (logo, help link, mode toggle), the content and a bottom row. There is no menu and no settings panel. These pages load `architectui-auth.js` instead of `architectui.js`: the guest script has the form flow and no admin features, the admin script has no form flow. Copy `dist/pages-login.html`, `dist/pages-register.html`, `dist/pages-forgot-password.html` or `dist/pages-404.html`.
 
 ```html
-<body>
-  <main id="main">
-    <div class="container">
-      <div class="row justify-content-center align-items-center min-vh-100 py-4">
-        <div class="col-sm-9 col-md-7 col-lg-5 col-xl-4">
-          <div class="card">
-            <div class="card-body p-4">...form...</div>
-            <div class="card-footer justify-content-center gap-1 py-3">...</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+<body class="aui-guest">
+  <div class="d-flex flex-column min-vh-100">
+    <header class="d-flex align-items-center gap-3 px-3 px-sm-4 py-3">logo, help link, button.btn.aui-mode-toggle[data-aui-toggle="mode"]</header>
+    <main id="main" class="flex-grow-1 d-flex align-items-center py-3" tabindex="-1">
+      <div class="container"><div class="row justify-content-center"><div class="col-sm-10 col-md-8 col-lg-11 col-xl-10 col-xxl-9">
+        <div class="card aui-guest-card overflow-hidden"><div class="row g-0">
+          <div class="col-lg-5 d-none d-lg-flex flex-column text-white p-5 aui-guest-brand">brand panel</div>
+          <div class="col-lg-7 p-4 p-sm-5" data-aui-auth>steps</div>
+        </div></div>
+      </div></div></div>
+    </main>
+    <footer class="d-flex flex-wrap justify-content-center gap-3 px-3 px-sm-4 py-3 small text-body-secondary">links</footer>
+  </div>
 </body>
 ```
 
-The card footer is a flex row in the theme: center its content with `justify-content-center` and keep a gap with `gap-1`. The logo partial (`a.aui-logo`) works here too.
+Form flow (attributes read by `architectui-auth.js`):
+
+| Attribute | Meaning |
+|-----------|---------|
+| `data-aui-auth` | Flow container with steps |
+| `data-aui-auth-step="name"` | One step; every step except the first has `hidden` |
+| `form[data-aui-auth-form]` | Checks the fields; when they are valid, locks the form for the request and opens the next step |
+| `data-aui-auth-next="name"` | The step that opens after the request |
+| `data-aui-auth-delay="2000"` | Request time in ms (the demo has no server) |
+| `data-aui-auth-reject="000000"` | A code that the demo request refuses |
+| `data-aui-otp` | Group of one-digit inputs; a typed digit moves the focus on, Backspace goes back, a pasted or filled-in code is spread over the inputs, a full code sends the form |
+| `data-aui-auth-error` | Message shown when the code is refused; `data-aui-auth-message` holds its text |
+| `data-aui-auth-back="name"` | Button that returns to a step |
+| `data-aui-auth-resend` | Button that sends the code again; `data-aui-auth-timer="30"` seconds, `[data-aui-auth-countdown]` inside shows the seconds left |
+| `data-aui-auth-echo="#id"` | Shows the value of a field from an earlier step |
+| `data-aui-auth-redirect="url"` | On a step: opens the address after a short pause |
+
+While a request runs, the form has `aria-busy="true"`, its `fieldset` is disabled and the `.spinner-border` with `hidden` inside the submit button is shown. To send real requests, replace the demo timer in your copy of the script with `fetch`; the markup does not change. Wrap form fields in one `fieldset`. Step headings have `tabindex="-1"`: the focus moves to the new step. Animations stop with `prefers-reduced-motion: reduce`.
 
 ## 4. Page frame
 
@@ -441,7 +459,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 
 ## 10. Rules for agents building pages with ArchitectUI
 
-1. Start from `dist/pages-starter.html` (with the frame), `dist/pages-login.html` (without the frame) or a demo page close to the task. Keep the frame and change the content.
+1. Start from `dist/pages-starter.html` (admin frame), `dist/pages-login.html` (guest frame) or a demo page close to the task. Keep the frame and change the content.
 2. Use Bootstrap 5.3 markup and utilities. Add `aui-` classes only from section 8. Do not invent new `aui-` classes in pages; put new styles in your own stylesheet after `architectui.css`.
 3. Style through tokens. Use `var(--aui-*)` and `var(--bs-*)` in custom CSS instead of fixed hex colors, so themes and dark mode keep working.
 4. Do not add Tailwind, jQuery, Font Awesome or another CSS framework.
@@ -482,5 +500,5 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `tables-regular.html` | Tables |
 | `charts-chartjs.html` | Chart.js charts colored by tokens |
 | `pages-starter.html` | An empty page with the frame: the start for a new screen |
-| `pages-login.html`, `pages-register.html`, `pages-forgot-password.html` | Sign in, sign up and password reset without the frame, with Bootstrap validation |
-| `pages-404.html`, `pages-500.html` | Error pages without the frame |
+| `pages-login.html`, `pages-register.html`, `pages-forgot-password.html` | Guest frame: sign in with a code from an authenticator app, sign up with a code from the email, password reset; demo requests lock the form for 2 s |
+| `pages-404.html`, `pages-500.html` | Error pages on the guest frame |

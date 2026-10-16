@@ -1,0 +1,6 @@
+{# Verification code: six one-digit inputs handled by architectui-auth.js. Set otpId before the include. #}
+<div class="d-flex justify-content-center gap-2" data-aui-otp role="group" aria-label="Verification code">
+    {%- for n in range(1, 7) %}
+    <input type="text" class="form-control" id="{{ otpId }}{{ n }}" inputmode="numeric" pattern="[0-9]*" {% if n == 1 %}autocomplete="one-time-code" {% else %}autocomplete="off" {% endif %}aria-label="Digit {{ n }}">
+    {%- endfor %}
+</div>

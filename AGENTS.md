@@ -13,7 +13,8 @@ Take them from `dist/`:
 | File | Purpose |
 |------|---------|
 | `architectui.css` | The theme with the default look (Business) |
-| `architectui.js` | Sidebar collapse, settings panel, theme and mode switching, header search, icon rendering |
+| `architectui.js` | Admin pages: sidebar collapse, settings panel, theme and mode switching, header search, icon rendering |
+| `architectui-auth.js` | Guest pages (sign in, sign up, errors) instead of `architectui.js`: mode toggle, icons, form steps with a code |
 | `themes/<id>.css` | Optional visual themes, loaded after `architectui.css` |
 | `assets/images/` | Logos and images used by the frame |
 | `index.html` and other pages | Complete demo pages to copy markup from |
@@ -22,7 +23,7 @@ Bootstrap 5.3 (CSS and bundle JS) and Lucide come from a CDN; the exact URLs are
 
 ## Build a page
 
-1. Copy `dist/pages-starter.html`. Keep the `<head>` and the frame; replace the content after the page title inside `main`. For a page without the frame (sign in, errors), copy `dist/pages-login.html` or `dist/pages-404.html`.
+1. Copy `dist/pages-starter.html`. Keep the `<head>` and the frame; replace the content after the page title inside `main`. For a guest page (sign in, sign up, errors), copy `dist/pages-login.html` or `dist/pages-404.html`: it loads `architectui-auth.js` instead of `architectui.js`.
 2. Write standard Bootstrap 5.3 markup: grid, cards, tables, forms, navs, modals, toasts. The theme already styles them.
 3. Build layout with Bootstrap utilities. Add `aui-` classes only for what Bootstrap does not have (number font, colored card shadows, scroll areas, chart heights). The list is in `llms-full.txt`, section 8.
 4. Icons: `<i data-lucide="name"></i>`. After inserting markup dynamically, call `ArchitectUI.refresh(element)`.

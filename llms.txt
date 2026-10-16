@@ -1,6 +1,6 @@
 # ArchitectUI
 
-> ArchitectUI is a ready-made admin dashboard theme for Bootstrap 5.3. It is one stylesheet (`architectui.css`) and one dependency-free script (`architectui.js`) on top of Bootstrap and Lucide icons loaded from a CDN. Standard Bootstrap 5 markup looks finished as soon as it is on the page: the frame (header, sidebar, page title, footer), every Bootstrap component, dark mode and ten visual themes are already designed and consistent with each other. No build step, no npm package, no framework.
+> ArchitectUI is a ready-made admin dashboard theme for Bootstrap 5.3. It is one stylesheet (`architectui.css`) and one dependency-free script (`architectui.js`; guest pages such as sign in use `architectui-auth.js` instead) on top of Bootstrap and Lucide icons loaded from a CDN. Standard Bootstrap 5 markup looks finished as soon as it is on the page: the frame (header, sidebar, page title, footer), every Bootstrap component, dark mode and ten visual themes are already designed and consistent with each other. No build step, no npm package, no framework.
 
 Key facts:
 
@@ -37,6 +37,7 @@ How it differs from Tailwind CSS and similar utility-first kits:
 ## Optional
 
 - [Theme script](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/js/architectui.js): settings, theme switching, sidebar, search, `ArchitectUI.refresh()`
+- [Guest script](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/js/architectui-auth.js): sign in, sign up and password reset steps with a verification code, mode toggle, icons; for pages without the admin frame
 - [Theme tokens](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/scss/_tokens.scss): layout variables shared by all themes
 - [Theme base](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/scss/themes/_theme.scss): palette keys and the rules every theme shares
 - [CDN addresses](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/_data/cdn.json): exact library versions

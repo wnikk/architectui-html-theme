@@ -9,9 +9,10 @@ for Bootstrap 5 works inside the theme without changes, and you never rebuild Bo
 ## What you get
 
 - `dist/architectui.css` — the theme: layout, components, colors and dark mode in the default Business look, all driven by CSS variables.
-- `dist/architectui.js` — the theme behavior: collapsible sidebar, settings panel, theme and mode switching, header search, icon rendering.
+- `dist/architectui.js` — the theme behavior of the admin pages: collapsible sidebar, settings panel, theme and mode switching, header search, icon rendering.
+- `dist/architectui-auth.js` — the script of the guest pages (sign in, sign up, errors) instead of `architectui.js`: mode toggle, icons, form steps with a verification code.
 - `dist/themes/*.css` — nine optional visual themes loaded on top of `architectui.css`, including Orange, the original ArchitectUI look.
-- `dist/*.html` — demo pages: dashboards, elements, every Bootstrap component on one page, a starter page, sign in, sign up, password reset and error pages, components, forms, tables, charts, calendar and maps.
+- `dist/*.html` — demo pages: dashboards, elements, every Bootstrap component on one page, a starter page, guest pages (sign in, sign up, password reset, errors), components, forms, tables, charts, calendar and maps.
 - No jQuery, no build step for your app. Icons are [Lucide](https://lucide.dev).
 
 ## Quick start
@@ -142,7 +143,8 @@ npm run dev
 | `src/_data/menu.json` | Sidebar menu. |
 | `src/_data/cdn.json` | Every external URL. Point them to a local `vendor/` folder to work offline. |
 | `src/scss/` | Theme styles. `architectui.scss` is the entry point. |
-| `src/js/architectui.js` | Theme script. |
+| `src/js/architectui.js` | Theme script of the admin pages. |
+| `src/js/architectui-auth.js` | Script of the guest pages. |
 
 The demo pages are built with [Eleventy 3](https://www.11ty.dev), the styles with [Sass](https://sass-lang.com). These are the only two dependencies.
 

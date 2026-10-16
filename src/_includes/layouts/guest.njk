@@ -1,0 +1,32 @@
+<!doctype html>
+{# Guest frame: pages for a visitor who is not signed in (sign in, sign up, password reset, errors).
+   The same head, themes and modes as the admin pages, without the menu and the settings panel.
+   It loads architectui-auth.js instead of architectui.js. #}
+{%- set themeScript = "architectui-auth.js" %}
+<html lang="en" data-aui-dark-only="{% for theme in themes %}{% if theme.darkOnly %}{{ theme.id }} {% endif %}{% endfor %}">
+<head>
+    {% include "partials/head.njk" %}
+</head>
+<body class="aui-guest">
+    <a class="visually-hidden-focusable btn btn-primary aui-skip-link" href="#main">Skip to content</a>
+    <div class="d-flex flex-column min-vh-100">
+        <header class="d-flex align-items-center gap-3 px-3 px-sm-4 py-3">
+            {% include "partials/logo.njk" %}
+            <a href="#" class="ms-auto small text-body-secondary d-inline-flex align-items-center gap-1"><i data-lucide="life-buoy"></i>Help</a>
+            <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+                <i data-lucide="moon"></i>
+                <i data-lucide="sun"></i>
+            </button>
+        </header>
+        <main id="main" class="flex-grow-1 d-flex align-items-center py-3" tabindex="-1">
+            {{ content | safe }}
+        </main>
+        <footer class="d-flex flex-wrap justify-content-center gap-3 px-3 px-sm-4 py-3 small text-body-secondary">
+            <span>© 2026 ArchitectUI</span>
+            <a href="#" class="text-reset">Privacy</a>
+            <a href="#" class="text-reset">Terms</a>
+            <a href="#" class="text-reset">Status</a>
+        </footer>
+    </div>
+</body>
+</html>

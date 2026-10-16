@@ -1,40 +1,71 @@
 ---
 title: "Sign In"
 description: "Sign in to the dashboard."
-layout: "bare.njk"
-script: "forms-validation.js"
+layout: "guest.njk"
 ---
 <div class="container">
-    <div class="row justify-content-center align-items-center min-vh-100 py-4">
-        <div class="col-sm-9 col-md-7 col-lg-5 col-xl-4">
-            <div class="card">
-                <div class="card-body p-4">
-                    <div class="d-flex justify-content-center mb-4">{% include "partials/logo.njk" %}</div>
-                    <h1 class="h4 text-center mb-1">Sign in</h1>
-                    <p class="text-center text-body-secondary mb-4">Welcome back. Enter your work email and password.</p>
-                    <form class="needs-validation" action="index.html" novalidate>
-                        <div class="mb-3">
-                            <label for="loginEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="loginEmail" autocomplete="username" placeholder="name@company.com" required>
-                            <div class="invalid-feedback">Enter a valid email address.</div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="d-flex justify-content-between">
-                                <label for="loginPassword" class="form-label">Password</label>
-                                <a href="pages-forgot-password.html" class="small">Forgot password?</a>
-                            </div>
-                            <input type="password" class="form-control" id="loginPassword" autocomplete="current-password" required>
-                            <div class="invalid-feedback">Enter your password.</div>
-                        </div>
-                        <div class="form-check mb-4">
-                            <input class="form-check-input" type="checkbox" id="loginRemember">
-                            <label class="form-check-label" for="loginRemember">Keep me signed in</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Sign in</button>
-                    </form>
-                </div>
-                <div class="card-footer justify-content-center gap-1 py-3">
-                    <span class="text-body-secondary">No account yet?</span> <a href="pages-register.html">Create one</a>
+    <div class="row justify-content-center">
+        <div class="col-sm-10 col-md-8 col-lg-11 col-xl-10 col-xxl-9">
+            <div class="card aui-guest-card overflow-hidden">
+                <div class="row g-0">
+                    {% include "partials/guest-brand.njk" %}
+                    <div class="col-lg-7 p-4 p-sm-5" data-aui-auth>
+                        <section data-aui-auth-step="credentials">
+                            <h1 class="h4 mb-1" tabindex="-1">Sign in</h1>
+                            <p class="text-body-secondary mb-4">Welcome back. Enter your work email and password.</p>
+                            <form data-aui-auth-form data-aui-auth-next="code" novalidate>
+                                <fieldset>
+                                    <div class="mb-3">
+                                        <label for="loginEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="loginEmail" autocomplete="username" placeholder="name@company.com" required>
+                                        <div class="invalid-feedback">Enter a valid email address.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between">
+                                            <label for="loginPassword" class="form-label">Password</label>
+                                            <a href="pages-forgot-password.html" class="small">Forgot password?</a>
+                                        </div>
+                                        <input type="password" class="form-control" id="loginPassword" autocomplete="current-password" required>
+                                        <div class="invalid-feedback">Enter your password.</div>
+                                    </div>
+                                    <div class="form-check mb-4">
+                                        <input class="form-check-input" type="checkbox" id="loginRemember">
+                                        <label class="form-check-label" for="loginRemember">Keep me signed in for 30 days</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100 d-inline-flex align-items-center justify-content-center gap-2">
+                                        <span class="spinner-border spinner-border-sm" aria-hidden="true" hidden></span>
+                                        <span>Sign in</span>
+                                    </button>
+                                </fieldset>
+                            </form>
+                            <p class="text-center text-body-secondary mt-4 mb-0">No account yet? <a href="pages-register.html">Create one</a></p>
+                        </section>
+                        <section data-aui-auth-step="code" hidden>
+                            <div class="aui-auth-icon mb-3"><i data-lucide="smartphone"></i></div>
+                            <h1 class="h4 mb-1" tabindex="-1">Two-step verification</h1>
+                            <p class="text-body-secondary mb-4">Enter the 6-digit code from your authenticator app for <strong data-aui-auth-echo="#loginEmail"></strong>.</p>
+                            <form data-aui-auth-form data-aui-auth-next="done" data-aui-auth-reject="000000" novalidate>
+                                <fieldset>
+                                    {% set otpId = "loginCode" %}{% include "partials/otp.njk" %}
+                                    <div class="invalid-feedback text-center mt-2" data-aui-auth-error data-aui-auth-message="The code is wrong or expired. Enter the new code from the app.">The code is wrong or expired.</div>
+                                    <button type="submit" class="btn btn-primary w-100 mt-4 d-inline-flex align-items-center justify-content-center gap-2">
+                                        <span class="spinner-border spinner-border-sm" aria-hidden="true" hidden></span>
+                                        <span>Verify</span>
+                                    </button>
+                                    <div class="d-flex justify-content-between mt-3 small">
+                                        <button type="button" class="btn btn-link btn-sm p-0" data-aui-auth-back="credentials">Back</button>
+                                        <a href="#">Use a recovery code</a>
+                                    </div>
+                                </fieldset>
+                            </form>
+                            <p class="form-text text-center mt-4 mb-0">Demo: any 6 digits sign you in; 000000 shows an error.</p>
+                        </section>
+                        <section class="text-center py-lg-5" data-aui-auth-step="done" data-aui-auth-redirect="index.html" hidden>
+                            <div class="aui-auth-success mb-4"><i data-lucide="check"></i></div>
+                            <h1 class="h4 mb-1" tabindex="-1">You are signed in</h1>
+                            <p class="text-body-secondary mb-0">Opening the dashboard…</p>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
