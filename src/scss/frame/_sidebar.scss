@@ -199,6 +199,11 @@
     color: transparent;
   }
 
+  // The active link keeps its background; its label stays hidden over the theme color
+  .nav-link.active {
+    color: transparent;
+  }
+
   .nav-link > [data-lucide]:first-child {
     right: 0;
     left: 0;

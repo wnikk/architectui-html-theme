@@ -1,0 +1,5 @@
+// Shared base of the visual themes: component rules on the theme tokens, included once for all themes.
+// Orange keeps the classic component rules of the core, so the base skips it.
+@use "themes/theme" as t;
+
+@include t.base(':not([data-aui-theme="orange"])');

@@ -1,7 +1,6 @@
 // Indigo theme: a neutral business palette on the unchanged base rules.
 @use "theme" as t;
 
-@include t.base;
 @include t.palette(
   (
     bg: #f8fafc, surface: #fff, surface-2: #f1f5f9, surface-muted: #f8fafc, border: #e2e8f0,

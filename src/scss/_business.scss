@@ -1,8 +1,9 @@
 // Business look, the default: dense screens, smaller type, lines instead of shadows.
 // Every rule applies only while no theme is selected (no data-aui-theme on <html>).
-@use "themes/theme" as t with ($scoped: true);
+@use "themes/theme" as t;
 
-@include t.base;
+$when: ":not([data-aui-theme])";
+
 @include t.palette(
   (
     bg: #f3f6fa, surface: #fff, surface-2: #eaeff6, surface-muted: #f1f5fa, border: #d6dfea, fill: #e2e9f3,
@@ -21,10 +22,11 @@
     brand-line: rgba(143, 180, 224, .5), brand-line-soft: rgba(143, 180, 224, .26), brand-focus: #afcbec, brand-shadow: rgba(143, 180, 224, .18),
     accent-solid: #3c7185, accent-soft: rgba(164, 196, 209, .12), accent-text: #a4c4d1, accent-ink: #a4c4d1, accent-line: rgba(164, 196, 209, .3),
     shadow: "0 1px 1px 0 rgba(0, 0, 0, .5)",
-  )
+  ),
+  $when
 );
 
-#{t.$root} {
+#{t.root($when)} {
   --aui-root-size: 14.5px;
   --bs-body-line-height: 1.45;
   --aui-heading-tracking: -.015em;
@@ -44,7 +46,7 @@
   --aui-btn-primary-shadow: none;
 }
 
-@include t.scope {
+@include t.scope($when) {
   .table {
     font-size: .92rem;
   }

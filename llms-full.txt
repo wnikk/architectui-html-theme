@@ -252,8 +252,9 @@ The settings panel (`#auiSettings`, cog button) is built from these controls. Co
 
 How it works:
 
-- Business rules live in `architectui.css` and apply only while `<html>` has no `data-aui-theme`.
-- Any other theme is one stylesheet in `themes/`. Selecting it sets `data-aui-theme="<id>"` (this switches the Business rules off) and adds `<link id="aui-theme" href="themes/<id>.css">` after `architectui.css`. The switch at runtime loads the new link before it removes the old one, so there is no flash.
+- `architectui.css` holds the shared component rules of all themes. They read colors, fonts, radii, shadows and table density from CSS variables.
+- Business values of these variables apply only while `<html>` has no `data-aui-theme`.
+- Any other theme is one small stylesheet in `themes/`: the variable values for both modes and the rules only this theme needs. Orange keeps the classic component rules instead of the shared ones. Selecting a theme sets `data-aui-theme="<id>"` (this switches the Business values off) and adds `<link id="aui-theme" href="themes/<id>.css">` after `architectui.css`. The switch at runtime loads the new link before it removes the old one, so there is no flash.
 - Modes: `light`, `dark`, `system`. The mode becomes `data-bs-theme` on `<html>`, so Bootstrap's own dark mode and all theme tokens follow it.
 
 A fixed theme without the settings panel:
@@ -264,12 +265,11 @@ A fixed theme without the settings panel:
 <link rel="stylesheet" href="themes/coffee.css">
 ```
 
-A new theme is one Sass file in `src/scss/themes/` that includes the shared base and passes a palette for both modes:
+A new theme is one Sass file in `src/scss/themes/` that passes a palette for both modes; the shared rules are already in `architectui.css`:
 
 ```scss
 @use "theme" as t;
 
-@include t.base;
 @include t.palette(
   (bg: #f8fafc, surface: #fff, surface-2: #f1f5f9, surface-muted: #f8fafc, border: #e2e8f0,
    text: #0f172a, text-muted: #475569, text-faint: #617087, text-dim: #778aa5, danger: #e11d48,
@@ -281,7 +281,7 @@ A new theme is one Sass file in `src/scss/themes/` that includes the shared base
 );
 ```
 
-Optional palette keys: `fill` (defaults to `surface-2`) and `accent-solid`, `accent-soft`, `accent-text`, `accent-ink`, `accent-line` (default to the brand values). Add the theme to `src/_data/themes.json` to list it in the settings panel.
+Optional palette keys: `fill` (defaults to `surface-2`) and `accent-solid`, `accent-soft`, `accent-text`, `accent-ink`, `accent-line` (default to the brand values). After the palette, set other variables in `:root` (`--aui-root-size`, `--aui-font`, `--aui-heading-font`, `--aui-radius*`, `--aui-card-shadow`, `--aui-cell-py`, `--aui-th-*`) and add rules that only this theme needs. Add the theme to `src/_data/themes.json` to list it in the settings panel.
 
 ## 7. Tokens (CSS variables)
 

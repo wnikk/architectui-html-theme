@@ -4,7 +4,7 @@ ArchitectUI is a clean, responsive admin dashboard theme. Version 5 is a thin la
 one stylesheet and one dependency-free script. Bootstrap and the icons come from a CDN, so any markup written
 for Bootstrap 5 works inside the theme without changes, and you never rebuild Bootstrap.
 
-![ArchitectUI Bootstrap 5](https://github.com/wnikk/architectui-html-theme/blob/master/dist/assets/images/architectui-bootstrap-5-preview.png)
+![ArchitectUI Bootstrap 5](preview.png)
 
 ## What you get
 
@@ -80,8 +80,9 @@ add the stylesheet yourself and put the theme id on `<html>`. The attribute swit
 <link rel="stylesheet" href="themes/coffee.css">
 ```
 
-Theme sources live in `src/scss/themes/`. A new theme is one file: its palette for both modes plus optional rhythm
-rules; the shared base-theme rules come from `_theme.scss`. Add it to `src/_data/themes.json` to list it in the panel.
+Theme sources live in `src/scss/themes/`. A new theme is one file: its palette for both modes, other variable values
+and the rules only this theme needs. The shared rules of all themes come from `_theme.scss` and are part of
+`architectui.css`. Add the theme to `src/_data/themes.json` to list it in the panel.
 
 ## Layout options
 

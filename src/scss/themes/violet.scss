@@ -1,7 +1,6 @@
 // Space theme: air and hierarchy, large radii, soft violet shadows, heavy short headings.
 @use "theme" as t;
 
-@include t.base;
 @include t.palette(
   (
     bg: #f6f5fb, surface: #fff, surface-2: #f1effa, surface-muted: #f5f3fc, border: #e3dff3, fill: #eae6f7,

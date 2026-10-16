@@ -1,7 +1,6 @@
 // Coffee theme: warm brown accents on near-neutral surfaces. Ochre focus ring in both modes.
 @use "theme" as t;
 
-@include t.base;
 @include t.palette(
   (
     bg: #f7f6f4, surface: #fff, surface-2: #fcfaf7, surface-muted: #faf7f2, border: #ddd9d4,

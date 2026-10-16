@@ -1,7 +1,6 @@
 // Warm theme: rounder and warmer, with pill buttons and a berry accent.
 @use "theme" as t;
 
-@include t.base;
 @include t.palette(
   (
     bg: #fbf6f8, surface: #fff, surface-2: #f7eef1, surface-muted: #faf3f6, border: #eedce3, fill: #f2e4e9,

@@ -2,7 +2,6 @@
 // Ochre is the secondary color for charts and decoration.
 @use "theme" as t;
 
-@include t.base;
 @include t.palette(
   (
     bg: #f1f6f7, surface: #fff, surface-2: #e8f0f1, surface-muted: #eff6f6, border: #d2e1e3, fill: #dfebec,
@@ -47,7 +46,7 @@
   --bs-table-bg-type: var(--aui-surface-2);
 }
 
+// Widget numbers take --aui-numbers-font from the core; here the digits also get equal widths
 .aui-number {
-  font-family: var(--aui-numbers-font);
   font-variant-numeric: tabular-nums;
 }

@@ -1,31 +1,47 @@
-// Shared base for the visual themes. A theme file includes `base` once and passes its palette to `palette`.
-// Components here read colors only from --aui-* tokens; each theme file sets their values.
-// With $scoped: true (used by architectui.css for the default Business look) every rule applies only while
-// <html> has no data-aui-theme attribute. Specificity stays the same as in an unscoped theme file.
+// Shared base for the visual themes. architectui.css includes `base` once for every theme;
+// a theme file only passes its palette to `palette` and adds the rules that only this theme needs.
+// Components here read colors only from --aui-* tokens; each theme sets their values.
+//
+// $when limits rules to a state of <html>, for example ':not([data-aui-theme])'. The condition sits
+// inside :where(), so the specificity is the same as without it. Theme files load after architectui.css
+// and override the base with selectors of equal weight.
 @use "sass:color";
 @use "sass:map";
 @use "sass:list";
 
-$scoped: false !default;
-
-$root: ":root";
-$html: "html";
-$scope: null;
-$light: ':root:not([data-bs-theme="dark"])';
-$dark: '[data-bs-theme="dark"]';
-@if $scoped {
-  $scope: ":root:not([data-aui-theme])";
-  $root: ":root:where(:not([data-aui-theme]))";
-  $html: "html:where(:not([data-aui-theme]))";
-  $light: '#{$root}:not([data-bs-theme="dark"])';
-  $dark: '[data-bs-theme="dark"]:where(#{$scope}, #{$scope} *)';
+@function root($when: null) {
+  @if $when {
+    @return ":root:where(#{$when})";
+  }
+  @return ":root";
 }
-$both: '#{$light}, #{$dark}';
 
-// Component rules: wrapped in a zero-specificity scope when $scoped is true
-@mixin scope {
-  @if $scope {
-    :where(#{$scope}) {
+@function html($when: null) {
+  @if $when {
+    @return "html:where(#{$when})";
+  }
+  @return "html";
+}
+
+@function light($when: null) {
+  @return '#{root($when)}:not([data-bs-theme="dark"])';
+}
+
+@function dark($when: null) {
+  @if $when {
+    @return '[data-bs-theme="dark"]:where(:root#{$when}, :root#{$when} *)';
+  }
+  @return '[data-bs-theme="dark"]';
+}
+
+@function both($when: null) {
+  @return '#{light($when)}, #{dark($when)}';
+}
+
+// Component rules, limited by $when without extra specificity
+@mixin scope($when: null) {
+  @if $when {
+    :where(:root#{$when}) {
       @content;
     }
   } @else {
@@ -101,24 +117,24 @@ $both: '#{$light}, #{$dark}';
 }
 
 // Theme palette for both modes. The light danger color fills danger buttons in both modes.
-@mixin palette($light-values, $dark-values) {
-  #{$light} {
+@mixin palette($light-values, $dark-values, $when: null) {
+  #{light($when)} {
     @include tokens($light-values);
   }
 
-  #{$dark} {
+  #{dark($when)} {
     @include tokens($dark-values);
   }
 
-  #{$both} {
+  #{both($when)} {
     --bs-danger: #{map.get($light-values, danger)};
     --bs-danger-rgb: #{rgb(map.get($light-values, danger))};
   }
 }
 
-// Base theme rules. Include once per theme file.
-@mixin base {
-  #{$root} {
+// Base theme rules. architectui.css includes them once.
+@mixin base($when: null) {
+  #{root($when)} {
     --aui-root-size: 16px;
     --aui-font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --aui-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -189,7 +205,7 @@ $both: '#{$light}, #{$dark}';
     --aui-gradient-light-subtle: var(--aui-gradient-light);
   }
 
-  #{$light} {
+  #{light($when)} {
     --bs-success-bg-subtle: #ecfdf5;
     --bs-success-text-emphasis: #047857;
     --bs-success-border-subtle: #a7f3d0;
@@ -215,7 +231,7 @@ $both: '#{$light}, #{$dark}';
     --aui-toast-shadow: var(--aui-shadow-xl);
   }
 
-  #{$dark} {
+  #{dark($when)} {
     --bs-success-bg-subtle: rgba(16, 185, 129, .14);
     --bs-success-text-emphasis: #6ee7b7;
     --bs-success-border-subtle: rgba(52, 211, 153, .4);
@@ -243,7 +259,7 @@ $both: '#{$light}, #{$dark}';
   }
 
   // ArchitectUI tokens read the theme tokens in both modes
-  #{$both} {
+  #{both($when)} {
     --aui-shadow: var(--aui-card-shadow);
     --aui-shadow-soft: var(--aui-shadow-md);
     --aui-shadow-lg: var(--aui-shadow-xl);
@@ -261,11 +277,11 @@ $both: '#{$light}, #{$dark}';
     --aui-header-link-hover: var(--aui-text);
   }
 
-  #{$html} {
+  #{html($when)} {
     font-size: var(--aui-root-size);
   }
 
-  @include scope {
+  @include scope($when) {
     ::selection {
       background: var(--aui-brand-soft);
       color: var(--aui-brand-ink);

@@ -12,7 +12,6 @@ $cyber: (
   shadow: "0 0 0 1px rgba(34, 229, 255, .06)",
 );
 
-@include t.base;
 @include t.palette($cyber, $cyber);
 
 :root {

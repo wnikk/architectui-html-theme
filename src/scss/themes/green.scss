@@ -2,7 +2,6 @@
 // Dark mode is deliberately less green, built on graphite.
 @use "theme" as t;
 
-@include t.base;
 @include t.palette(
   (
     bg: #f5f8f4, surface: #fff, surface-2: #eff4ee, surface-muted: #f3f7f2, border: #dfe8dc, fill: #e7ede5,
