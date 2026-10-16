@@ -94,37 +94,32 @@
   text-transform: none;
 }
 
-.card-header.aui-card-tabs {
-  > .nav {
-    width: auto;
-    margin-left: auto;
+// Tabs aligned to the right of the header title
+.card-header > .nav.ms-auto {
+  width: auto;
+}
+
+// nav-underline in a card header keeps the header spacing; the bar grows from the middle on hover and when active
+.card-header > .nav-underline {
+  .nav-item {
+    margin: 0;
+  }
+
+  .nav-link {
+    margin: 0;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+
+    &::before {
+      left: 5%;
+      width: 90%;
+      opacity: 1;
+    }
   }
 }
 
-.card-header.aui-card-tabs-animated > .nav .nav-link {
-  &::before {
-    left: 5%;
-    width: 90%;
-    opacity: 1;
-    transform: scale(0);
-  }
-
-  &.active::before,
-  &:hover::before {
-    transform: scale(1);
-  }
-}
-
-.aui-card-header-title {
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-}
-
-.aui-card-icon {
-  width: 1.65rem;
-  height: 1.65rem;
-  margin-right: .5rem;
+// Header icon: the first icon in the header or in its first block
+.card-header > [data-lucide]:first-child,
+.card-header > :first-child > [data-lucide]:first-child {
   color: var(--bs-secondary-color);
 }
 
@@ -134,29 +129,9 @@
   font-size: .968rem;
 }
 
-.aui-card-border {
-  border-width: var(--bs-card-border-width);
-  box-shadow: none;
-}
-
 @each $name, $def in $aui-colors {
   .aui-card-shadow-#{$name} {
     box-shadow: 0 .46875rem 2.1875rem rgba(var(--bs-#{$name}-rgb), .03), 0 .9375rem 1.40625rem rgba(var(--bs-#{$name}-rgb), .03), 0 .25rem .53125rem rgba(var(--bs-#{$name}-rgb), .05), 0 .125rem .1875rem rgba(var(--bs-#{$name}-rgb), .03);
-  }
-}
-
-// Action buttons in a card header
-.aui-card-actions .btn {
-  --bs-btn-padding-x: 0;
-  color: var(--bs-body-color);
-
-  &:hover {
-    color: var(--bs-primary);
-  }
-
-  svg.lucide {
-    width: 1.3rem;
-    height: 1.3rem;
   }
 }
 
@@ -182,11 +157,12 @@
     }
   }
 
-  .card-header.aui-card-tabs > .nav {
+  .card-header > .nav.ms-auto {
     width: 100%;
   }
 
-  .aui-card-icon {
+  .card-header > [data-lucide]:first-child,
+  .card-header > :first-child > [data-lucide]:first-child {
     display: none;
   }
 }

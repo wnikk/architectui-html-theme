@@ -33,7 +33,7 @@
     color: var(--bs-gray-700);
   }
 
-  .nav-link.active .aui-nav-icon {
+  .nav-link.active > [data-lucide]:first-child {
     color: #fff;
     opacity: .8;
   }
@@ -43,41 +43,21 @@
   margin-left: 8px;
 }
 
-// Icon in a nav link
-.aui-nav-icon {
+// Icon at the start of a nav link
+.nav-link > [data-lucide]:first-child {
   width: 1rem;
   height: 1rem;
-  margin: 0 7px 0 -3px;
+  margin-left: -3px;
   color: var(--bs-primary);
   opacity: .45;
 }
 
-.nav-link:hover .aui-nav-icon {
-  color: var(--bs-primary);
+.nav-link:hover > [data-lucide]:first-child {
   opacity: .9;
 }
 
-.nav-link.disabled .aui-nav-icon {
+.nav-link.disabled > [data-lucide]:first-child {
   opacity: .3;
-}
-
-.aui-nav-header {
-  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-  color: var(--bs-gray-600);
-  font-size: .7333rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.aui-nav-btn {
-  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-}
-
-.aui-nav-divider {
-  height: 1px;
-  margin: var(--bs-nav-link-padding-y) 0;
-  overflow: hidden;
-  background: var(--bs-border-color);
 }
 
 // Animated tabs: a bar under the active tab
@@ -118,8 +98,15 @@
   }
 }
 
-.aui-tabs-animated {
+// Bootstrap nav-underline: the theme draws an animated bar instead of a border
+.nav-underline {
+  --bs-nav-underline-gap: 0;
+  --bs-nav-underline-border-width: 0;
   @include tabs-animated;
+
+  .nav-link.active {
+    font-weight: inherit;
+  }
 }
 
 // Pill tabs with a shadow

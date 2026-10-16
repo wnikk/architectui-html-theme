@@ -26,6 +26,12 @@ legend {
   font-weight: 700;
 }
 
+// Light divider line in every mode and theme
+hr {
+  color: var(--bs-secondary-bg);
+  opacity: 1;
+}
+
 // Lucide icons: placeholder size before rendering and default size
 i[data-lucide],
 svg.lucide {

@@ -15,8 +15,14 @@ Work towards 6.0.0. The frame markup changes without backward compatibility.
 - **Sidebar breakpoint.** The icon rail now starts below 1200 px (Bootstrap `xl`) instead of 1250 px. The user name in the header shows from 1400 px (`xxl`), so the right-hand group has room for status badges and other items.
 - **Logo markup.** The logo is `a.aui-logo` with two images: the first for light backgrounds, the second for dark ones.
 - **Page section tabs.** Page tabs are `ul.nav.aui-body-tabs`; `aui-tabs-animated` is no longer needed on them.
+- **Demo pages on Bootstrap utilities.** Number widgets, card headers, button icons, nav and dropdown icons, dividers, font sizes and opacity use Bootstrap classes. The look stays the same.
+- **Animated tabs.** Bootstrap `nav-underline` gets the moving bar of the theme; it replaces `aui-tabs-animated` and `aui-card-tabs-animated`.
+- **Icons in buttons.** An icon directly inside a `.btn` is drawn larger than the button text, without an extra class.
+- **Divider.** `hr` uses the light theme line color.
+- **Removed classes.** `aui-widget`, `aui-widget__*`, `aui-btn-wide`, `aui-btn-icon`, `aui-btn-icon-only`, `aui-card-border`, `aui-card-icon`, `aui-card-header-title`, `aui-card-actions`, `aui-card-tabs`, `aui-card-tabs-animated`, `aui-tabs-animated`, `aui-nav-icon`, `aui-nav-header`, `aui-nav-divider`, `aui-nav-btn`, `aui-dropdown-icon`, `aui-dropdown-shadow`, `aui-dropdown-hover-link`, `aui-list-borderless`, `aui-scroll-xs`, `aui-swatch-lg`, `aui-divider`, `aui-code`, `aui-fs-*`, `aui-opacity-*`, `aui-flex-2`.
 
 ### Added
+- **Number font (`aui-number`).** Marks a widget number; themes can give it their own font.
 - **Expanding field (`aui-expand`).** The animated search is now a component for any place or form: header search, search above a table, a password field. It uses `data-aui-expand`, `data-aui-expand-toggle` and `data-aui-expand-close`. An empty toggle draws a magnifier, a toggle with an icon shows that icon.
 - **Status badge example** in the header.
 

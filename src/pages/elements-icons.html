@@ -19,12 +19,12 @@ script: "elements-icons.js"
                 <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
                     <h5 class="card-title mb-0">All Icons</h5>
                     <span class="badge bg-secondary" id="iconCount">{{ lucideIcons.names.length }}</span>
-                    <input type="search" class="form-control ms-auto aui-icon-search" id="iconSearch" placeholder="Search icons ..." aria-label="Search icons">
+                    <input type="search" class="form-control ms-auto w-auto" id="iconSearch" placeholder="Search icons ..." aria-label="Search icons">
                 </div>
                 <p class="text-body-secondary small">Click an icon to copy its markup.</p>
-                <div class="aui-icon-grid" id="iconGrid">
+                <div class="d-grid gap-2" id="iconGrid" style="grid-template-columns: repeat(auto-fill, minmax(110px, 1fr))">
                     {%- for name in lucideIcons.names %}
-                    <button type="button" class="aui-icon-tile" data-icon="{{ name }}"><i data-lucide="{{ name }}"></i><span>{{ name }}</span></button>
+                    <button type="button" class="btn btn-sm border rounded d-flex flex-column align-items-center gap-2 py-3 px-2" data-icon="{{ name }}"><i data-lucide="{{ name }}" class="fs-4"></i><span class="small text-break lh-sm">{{ name }}</span></button>
                     {%- endfor %}
                 </div>
             </div>
@@ -37,13 +37,13 @@ script: "elements-icons.js"
                     <div class="card-body">
                         <h5 class="card-title">Usage</h5>
                         <p>Add an element with the icon name. The theme module renders it into an inline SVG.</p>
-                        <pre class="p-3 rounded bg-body-tertiary small aui-code"><code>&lt;i data-lucide="rocket"&gt;&lt;/i&gt;</code></pre>
+                        <pre class="p-3 rounded bg-body-tertiary small text-wrap text-break"><code>&lt;i data-lucide="rocket"&gt;&lt;/i&gt;</code></pre>
                         <p class="mb-2">Icons take the text color and scale with the font size:</p>
                         <div class="d-flex flex-wrap align-items-end gap-3">
                             <i data-lucide="rocket"></i>
-                            <i data-lucide="rocket" class="aui-fs-2"></i>
-                            <i data-lucide="rocket" class="aui-fs-3 text-primary"></i>
-                            <i data-lucide="rocket" class="aui-fs-4 text-success"></i>
+                            <i data-lucide="rocket" class="fs-5"></i>
+                            <i data-lucide="rocket" class="fs-4 text-primary"></i>
+                            <i data-lucide="rocket" class="fs-2 text-success"></i>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@ script: "elements-icons.js"
                     <div class="card-body">
                         <h5 class="card-title">Gradient Icons</h5>
                         <p>Add <code>aui-icon-gradient-&lt;color&gt;</code> to stroke an icon with the theme gradient.</p>
-                        <div class="d-flex flex-wrap gap-4 aui-fs-4">
+                        <div class="d-flex flex-wrap gap-4 fs-2">
                             {%- for color in ["primary", "info", "success", "warning", "danger", "secondary", "dark", "focus", "alternate"] %}
                             <i data-lucide="gem" class="aui-icon-gradient-{{ color }}" data-bs-toggle="tooltip" title="aui-icon-gradient-{{ color }}"></i>
                             {%- endfor %}

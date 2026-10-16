@@ -372,7 +372,8 @@ $both: '#{$light}, #{$dark}';
       }
     }
 
-    .aui-card-icon {
+    .card-header > [data-lucide]:first-child,
+    .card-header > :first-child > [data-lucide]:first-child {
       color: var(--aui-text-faint);
     }
 
@@ -406,10 +407,6 @@ $both: '#{$light}, #{$dark}';
 
     .card-footer {
       background: var(--aui-surface-2);
-    }
-
-    .aui-card-border {
-      box-shadow: inset 0 0 0 1px var(--aui-border);
     }
 
     // Colored card shadows stay visible over the card rule above
