@@ -510,7 +510,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `components-modals.html` | Modal sizes |
 | `components-progress-bar.html` | Progress bars |
 | `components-tooltips-popovers.html` | Tooltips and popovers |
-| `components-carousel.html` | Carousel |
+| `components-carousel.html` | Carousel with slides drawn as SVG in the theme colors, with and without captions |
 | `components-pagination.html` | Pagination |
 | `components-scrollable-elements.html` | Scroll areas and card actions |
 | `components-maps.html` | Leaflet with OpenStreetMap |

@@ -79,6 +79,11 @@
   border: 1px solid rgba(var(--bs-emphasis-color-rgb), .125);
 }
 
+// Carousel caption: headings take the white caption color, not the theme heading color
+.carousel-caption {
+  --bs-heading-color: currentColor;
+}
+
 // The scroll box is the containing block of its content: a .visually-hidden label in a header cell
 // stays inside the box and does not widen the page on a phone
 .table-responsive {

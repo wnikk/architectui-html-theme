@@ -22,6 +22,7 @@ Work towards 6.0.0. The frame markup changes without backward compatibility.
 - **Theme base in the core.** The shared rules of all themes are compiled into `architectui.css` once. A theme file holds only its variable values for both modes and the rules this theme alone needs: 4–5 KB instead of about 22 KB (Cyberpunk 9 KB instead of 27 KB). The look of every theme stays the same.
 - **Classic look in Orange.** The classic component rules (soft shadows, uppercase card titles and badges, small button text, brand-colored menus and focus rings) moved from `architectui.css` to `themes/orange.css`. The core keeps only rules shared by every theme; Orange looks the same.
 - **Files in `dist/`.** `llms.txt` and `llms-full.txt` stay in the repository root only; the README preview image moved to the root as `preview.png`.
+- **Realistic demo content.** Lorem ipsum, "Footer Link", "Tab 1", "Value 1", Bootstrap docs texts and generic menu items are replaced with plausible admin data: orders, invoices, support, team roles. The user menu leads to profile, settings, billing and sign out. Carousel slides are charts drawn in the theme colors instead of external placeholder images.
 - **Removed classes.** `aui-widget`, `aui-widget__*`, `aui-btn-wide`, `aui-btn-icon`, `aui-btn-icon-only`, `aui-card-border`, `aui-card-icon`, `aui-card-header-title`, `aui-card-actions`, `aui-card-tabs`, `aui-card-tabs-animated`, `aui-tabs-animated`, `aui-nav-icon`, `aui-nav-header`, `aui-nav-divider`, `aui-nav-btn`, `aui-dropdown-icon`, `aui-dropdown-shadow`, `aui-dropdown-hover-link`, `aui-list-borderless`, `aui-scroll-xs`, `aui-swatch-lg`, `aui-divider`, `aui-code`, `aui-fs-*`, `aui-opacity-*`, `aui-flex-2`.
 
 ### Added
@@ -35,6 +36,7 @@ Work towards 6.0.0. The frame markup changes without backward compatibility.
 - **Status badge example** in the header.
 
 ### Fixed
+- Headings in a carousel caption are white like the caption text, not the theme heading color.
 - A `.visually-hidden` label in a header of a table inside `.table-responsive` no longer widens the page on a phone: the scroll box is the containing block of its content.
 - The validation icon in a form field no longer slides across the field when it appears; fields animate only border, shadow and background colors.
 - Cyberpunk: outline secondary buttons were nearly invisible on black; they now use the muted text color.
