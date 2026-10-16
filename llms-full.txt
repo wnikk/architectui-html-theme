@@ -40,7 +40,7 @@ Same markup and JavaScript API. ArchitectUI adds the admin frame, a designed def
 Release files in `dist/`:
 
 - `architectui.css` — the theme: layout, components, tokens, the default Business look.
-- `architectui.js` — the theme behavior of the admin pages. Classic script, no dependencies, about 150 lines.
+- `architectui.js` — the theme behavior of the admin pages. Classic script, no dependencies.
 - `architectui-auth.js` — the script of the guest pages (sign in, sign up, password reset, errors): mode toggle, icons and the form flow. Load it instead of `architectui.js`.
 - `themes/<id>.css` — optional visual themes, loaded after `architectui.css`.
 - `assets/images/` — logos, avatars, theme background image.
@@ -266,6 +266,7 @@ The settings are one JSON object in `localStorage` under the key `architectui`, 
 - `data-aui-reset`: restores all defaults and clears storage.
 - `data-aui-expand`, `data-aui-expand-toggle`, `data-aui-expand-close`: the expanding field (section 8); Escape closes it.
 - `data-aui-toast="#id"`: shows that Bootstrap toast.
+- `data-aui-dropzone="#list"` on `.aui-dropzone`: marks the area while files are dragged over it and lists the chosen files in that element (name, size, icon).
 
 The settings panel (`#auiSettings`, cog button) is built from these controls. Copy it from `dist/index.html` or leave it out.
 
@@ -405,6 +406,7 @@ An icon directly inside a `.btn` is drawn larger than the button text. Use `d-in
 - Button groups as tabs: `.btn-group.nav` with `rounded-start-pill` on the first and `rounded-end-pill` on the last button for a capsule.
 - Navs: `aui-tabs-shadow`; Bootstrap `nav-underline` gets the moving bar of the theme. The first icon in a `.nav-link` is the link icon: add `me-2`.
 - Numbers: `aui-number`.
+- Forms: `aui-dropzone` (file drop zone, see Forms).
 - Scroll areas: `aui-scroll` with a height class `aui-scroll-sm`, `-md`, `-lg`.
 - Charts and maps: `aui-chart` (`aui-chart-sm`, `aui-chart-lg`) sets the chart height; `aui-map` (`aui-map-lg`) for Leaflet maps.
 - Animations: `aui-animate-fade-in`, `aui-animate-flip`, `aui-animate-light-speed-in`, `aui-animate-pulse`, `aui-animate-spin`.
@@ -449,6 +451,20 @@ Filled toasts use `text-bg-<color>`; the header and the close button follow the 
 ### Forms
 
 Use Bootstrap 5 form markup. A check or radio is an `input.form-check-input` followed by `label.form-check-label` with `for`; never put the input inside the label. Validation uses Bootstrap's `needs-validation` and `was-validated`.
+
+Native fields need no library: `type="date"`, `time`, `datetime-local`, `month` and `week` with `.form-control`; a text field with `list` and a `datalist` for suggestions; `type="color"` with `.form-control-color`; `type="file"` with `.form-control`. The theme keeps the picker icon quiet until the pointer is on it and follows dark mode.
+
+File drop zone: a native file input covers the whole area, so a click and a drop both work.
+
+```html
+<div class="aui-dropzone" data-aui-dropzone="#uploadList">
+  <input type="file" id="upload" multiple accept="image/*,.pdf" aria-describedby="uploadHelp">
+  <i data-lucide="cloud-upload"></i>
+  <div class="fw-bold mt-2">Drop files here or <span class="text-primary">browse</span></div>
+  <div class="small text-body-secondary" id="uploadHelp">PNG, JPG or PDF, up to 10 MB each</div>
+</div>
+<ul class="list-group" id="uploadList"></ul>
+```
 
 ### Icons
 
@@ -499,7 +515,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `components-scrollable-elements.html` | Scroll areas and card actions |
 | `components-maps.html` | Leaflet with OpenStreetMap |
 | `components-calendar.html` | FullCalendar |
-| `forms-controls.html` | Inputs, selects, checks, input groups |
+| `forms-controls.html` | Inputs, selects, checks, input groups; native date, time, suggestions, color and file fields with a drop zone |
 | `forms-layouts.html` | Grid and inline forms |
 | `forms-validation.html` | Bootstrap validation |
 | `tables-regular.html` | A Bootstrap list of orders with search, filters, sorting links in the header, selection, row actions and pages; an empty state; table variants |

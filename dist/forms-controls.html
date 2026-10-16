@@ -311,6 +311,11 @@
             <span>Custom Controls</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a role="tab" class="nav-link" id="tab-3" data-bs-toggle="tab" href="#tab-content-3">
+            <span>Dates &amp; Files</span>
+        </a>
+    </li>
 </ul>
 <div class="tab-content">
     <div class="tab-pane fade show active" id="tab-content-0" role="tabpanel">
@@ -719,6 +724,127 @@
                 </div>
             </div>
         </form>
+    </div>
+    <div class="tab-pane fade" id="tab-content-3" role="tabpanel">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Date and Time</h5>
+                        <p class="card-subtitle">Native pickers of the browser: no library, the keyboard and the phone keypad work.</p>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label for="nativeDate" class="form-label">Delivery date</label>
+                                <input type="date" class="form-control" id="nativeDate" value="2026-10-20" min="2026-10-16">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="nativeTime" class="form-label">Time slot</label>
+                                <input type="time" class="form-control" id="nativeTime" value="14:30" step="900">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="nativeDateTime" class="form-label">Publish at</label>
+                                <input type="datetime-local" class="form-control" id="nativeDateTime" value="2026-10-21T09:00">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="nativeMonth" class="form-label">Billing month</label>
+                                <input type="month" class="form-control" id="nativeMonth" value="2026-10">
+                            </div>
+                            <div class="col-12">
+                                <label for="nativeFrom" class="form-label">Report period</label>
+                                <div class="input-group">
+                                    <input type="date" class="form-control" id="nativeFrom" value="2026-10-01" aria-label="From">
+                                    <span class="input-group-text">to</span>
+                                    <input type="date" class="form-control" value="2026-10-16" aria-label="To">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="nativeDateSmall" class="form-label">Small</label>
+                                <input type="date" class="form-control form-control-sm" id="nativeDateSmall" value="2026-10-16">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="nativeDateDisabled" class="form-label">Disabled</label>
+                                <input type="date" class="form-control" id="nativeDateDisabled" value="2026-10-16" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Lists with Suggestions</h5>
+                        <p class="card-subtitle">A text field with <code>datalist</code>: the browser suggests values, any other value is allowed.</p>
+                        <div class="mb-3">
+                            <label for="nativeCity" class="form-label">Warehouse city</label>
+                            <input class="form-control" list="nativeCityList" id="nativeCity" placeholder="Start typing a city" autocomplete="off">
+                            <datalist id="nativeCityList">
+                                <option value="Amsterdam"></option>
+                                <option value="Berlin"></option>
+                                <option value="Lisbon"></option>
+                                <option value="Madrid"></option>
+                                <option value="Prague"></option>
+                                <option value="Vienna"></option>
+                                <option value="Warsaw"></option>
+                            </datalist>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nativeAssignee" class="form-label">Assignee</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i data-lucide="users"></i></span>
+                                <input class="form-control" list="nativeAssigneeList" id="nativeAssignee" placeholder="Name or email" autocomplete="off">
+                            </div>
+                            <datalist id="nativeAssigneeList">
+                                <option value="Maria Chen">maria.chen@northwind.test</option>
+                                <option value="James Patel">james@brightlabs.test</option>
+                                <option value="Sofia Rossi">s.rossi@lumen.test</option>
+                                <option value="Omar Haddad">omar@cedar.test</option>
+                            </datalist>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label for="nativeQuantity" class="form-label">Quantity</label>
+                                <input type="number" class="form-control" id="nativeQuantity" value="12" min="1" max="500" step="1">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="nativeColor" class="form-label">Label color</label>
+                                <input type="color" class="form-control form-control-color w-100" id="nativeColor" value="#2f5f9e" title="Choose a color">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">File Upload</h5>
+                        <p class="card-subtitle">Drop files on the area or click it. The area is a native file input, so both ways work without a library.</p>
+                        <div class="aui-dropzone mb-3" data-aui-dropzone="#nativeDropList">
+                            <input type="file" id="nativeDrop" multiple accept="image/*,.pdf,.csv" aria-describedby="nativeDropHelp">
+                            <i data-lucide="cloud-upload"></i>
+                            <div class="fw-bold mt-2">Drop files here or <span class="text-primary">browse</span></div>
+                            <div class="small text-body-secondary" id="nativeDropHelp">PNG, JPG, PDF or CSV, up to 10 MB each</div>
+                        </div>
+                        <ul class="list-group mb-4" id="nativeDropList"></ul>
+                        <div class="mb-3">
+                            <label for="nativeFile" class="form-label">Contract</label>
+                            <input class="form-control" type="file" id="nativeFile" accept=".pdf">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nativeFiles" class="form-label">Attachments</label>
+                            <input class="form-control" type="file" id="nativeFiles" multiple>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label for="nativeFileSmall" class="form-label">Small</label>
+                                <input class="form-control form-control-sm" type="file" id="nativeFileSmall">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="nativeFileDisabled" class="form-label">Disabled</label>
+                                <input class="form-control" type="file" id="nativeFileDisabled" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

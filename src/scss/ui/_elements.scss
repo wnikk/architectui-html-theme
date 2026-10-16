@@ -12,6 +12,61 @@
   transition: border-color .2s, box-shadow .2s, background-color .2s;
 }
 
+// Native date, time and suggestion pickers: the browser icon is quiet until the pointer is on it
+.form-control::-webkit-calendar-picker-indicator {
+  opacity: .55;
+  cursor: pointer;
+}
+
+.form-control:hover::-webkit-calendar-picker-indicator {
+  opacity: 1;
+}
+
+// File drop zone: a native file input covers the whole area, so a click and a drop both reach it.
+// architectui.js marks the area while files are dragged over it and lists the chosen files.
+.aui-dropzone {
+  position: relative;
+  padding: 2rem 1rem;
+  border: 2px dashed var(--bs-border-color);
+  border-radius: var(--bs-border-radius-lg);
+  background: var(--bs-tertiary-bg);
+  color: var(--bs-body-color);
+  text-align: center;
+  transition: border-color .2s, background-color .2s;
+
+  > input[type="file"] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  > svg.lucide,
+  > i[data-lucide] {
+    width: 2.25rem;
+    height: 2.25rem;
+    color: var(--bs-primary);
+  }
+
+  &:hover,
+  &.is-dragover {
+    border-color: var(--bs-primary);
+    background: var(--bs-primary-bg-subtle);
+  }
+
+  &:has(> input:focus-visible) {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 .25rem var(--bs-focus-ring-color);
+  }
+
+  &:has(> input:disabled) {
+    opacity: .6;
+    pointer-events: none;
+  }
+}
+
 .form-range::-webkit-slider-thumb {
   background-color: var(--bs-primary);
 }

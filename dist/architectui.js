@@ -103,12 +103,39 @@
     scope.querySelectorAll('[data-bs-toggle="popover"]').forEach((el) => Popover?.getOrCreateInstance(el));
   }
 
+  // File drop zone: data-aui-dropzone="#list" on the area; the chosen files appear in the list
+  function listFiles(zone, files) {
+    const list = document.querySelector(zone.dataset.auiDropzone);
+    if (!list) return;
+    const size = (bytes) => (bytes < 1048576 ? `${Math.max(1, Math.round(bytes / 1024))} KB` : `${(bytes / 1048576).toFixed(1)} MB`);
+    list.replaceChildren(...[...files].map((file) => {
+      const item = document.createElement("li");
+      item.className = "list-group-item d-flex align-items-center gap-2";
+      const icon = document.createElement("i");
+      icon.dataset.lucide = file.type.startsWith("image/") ? "image" : "file";
+      const name = Object.assign(document.createElement("span"), { className: "text-truncate", textContent: file.name });
+      const note = Object.assign(document.createElement("span"), { className: "ms-auto small text-body-secondary text-nowrap", textContent: size(file.size) });
+      item.append(icon, name, note);
+      return item;
+    }));
+    refresh(list);
+  }
+
+  ["dragenter", "dragover"].forEach((type) => document.addEventListener(type, (event) => {
+    event.target.closest?.("[data-aui-dropzone]")?.classList.add("is-dragover");
+  }));
+  ["dragleave", "drop"].forEach((type) => document.addEventListener(type, (event) => {
+    event.target.closest?.("[data-aui-dropzone]")?.classList.remove("is-dragover");
+  }));
+
   document.addEventListener("change", (event) => {
     const input = event.target.closest("[data-aui-setting]");
     if (input) {
       const value = input.type === "checkbox" ? (input.checked ? input.value : input.dataset.auiOff) : input.value;
       setSetting(input.dataset.auiSetting, value ?? "");
     }
+    const zone = event.target.closest("[data-aui-dropzone]");
+    if (zone && event.target.type === "file") listFiles(zone, event.target.files);
   });
 
   document.addEventListener("click", (event) => {

@@ -13,7 +13,7 @@ Take them from `dist/`:
 | File | Purpose |
 |------|---------|
 | `architectui.css` | The theme with the default look (Business) |
-| `architectui.js` | Admin pages: sidebar collapse, settings panel, theme and mode switching, header search, icon rendering |
+| `architectui.js` | Admin pages: sidebar collapse, settings panel, theme and mode switching, header search, file drop zone, icon rendering |
 | `architectui-auth.js` | Guest pages (sign in, sign up, errors) instead of `architectui.js`: mode toggle, icons, form steps with a code |
 | `themes/<id>.css` | Optional visual themes, loaded after `architectui.css` |
 | `assets/images/` | Logos and images used by the frame |

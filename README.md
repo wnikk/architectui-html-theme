@@ -9,7 +9,7 @@ for Bootstrap 5 works inside the theme without changes, and you never rebuild Bo
 ## What you get
 
 - `dist/architectui.css` — the theme: layout, components, colors and dark mode in the default Business look, all driven by CSS variables.
-- `dist/architectui.js` — the theme behavior of the admin pages: collapsible sidebar, settings panel, theme and mode switching, header search, icon rendering.
+- `dist/architectui.js` — the theme behavior of the admin pages: collapsible sidebar, settings panel, theme and mode switching, header search, file drop zone, icon rendering.
 - `dist/architectui-auth.js` — the script of the guest pages (sign in, sign up, errors) instead of `architectui.js`: mode toggle, icons, form steps with a verification code.
 - `dist/themes/*.css` — nine optional visual themes loaded on top of `architectui.css`, including Orange, the original ArchitectUI look.
 - `dist/*.html` — demo pages: dashboards, elements, every Bootstrap component on one page, a starter page, guest pages (sign in, sign up, password reset, errors), Bootstrap tables and DataTables, components, forms, tables, charts, calendar and maps.
