@@ -1,8 +1,118 @@
 ---
 title: "Regular Tables"
-description: "Tables are the backbone of almost all web applications."
+description: "Bootstrap tables: a list with search, sorting and pages, an empty state and the table variants."
 icon: "archive"
 ---
+<div class="mb-3 card">
+    <div class="card-header">
+        <i data-lucide="shopping-cart" class="me-2"></i>Recent orders
+        <div class="ms-auto d-flex gap-2">
+            <button type="button" class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2"><i data-lucide="download"></i>Export</button>
+            <button type="button" class="btn btn-primary btn-sm d-inline-flex align-items-center gap-2"><i data-lucide="plus"></i>New order</button>
+        </div>
+    </div>
+    <div class="card-body pb-3">
+        <form class="row g-2 align-items-center" role="search">
+            <div class="col-md">
+                <div class="input-group">
+                    <span class="input-group-text"><i data-lucide="search"></i></span>
+                    <input type="search" class="form-control" placeholder="Search by order or customer" aria-label="Search orders">
+                </div>
+            </div>
+            <div class="col-6 col-md-auto">
+                <select class="form-select" aria-label="Status">
+                    <option selected>All statuses</option>
+                    <option>Paid</option>
+                    <option>Shipped</option>
+                    <option>Pending</option>
+                    <option>Refunded</option>
+                    <option>Failed</option>
+                </select>
+            </div>
+            <div class="col-6 col-md-auto">
+                <select class="form-select" aria-label="Period">
+                    <option>Last 7 days</option>
+                    <option selected>Last 30 days</option>
+                    <option>This year</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead>
+            <tr>
+                <th scope="col"><input class="form-check-input" type="checkbox" id="selectAllOrders" aria-label="Select all orders"></th>
+                <th scope="col" aria-sort="none"><a href="#" class="d-inline-flex align-items-center gap-1 text-reset">Order<i data-lucide="chevrons-up-down" class="opacity-50"></i></a></th>
+                <th scope="col" aria-sort="none"><a href="#" class="d-inline-flex align-items-center gap-1 text-reset">Customer<i data-lucide="chevrons-up-down" class="opacity-50"></i></a></th>
+                <th scope="col">Status</th>
+                <th scope="col" aria-sort="descending"><a href="#" class="d-inline-flex align-items-center gap-1 text-reset">Date<i data-lucide="arrow-down" class="text-primary"></i></a></th>
+                <th scope="col" class="text-end" aria-sort="none"><a href="#" class="d-inline-flex align-items-center gap-1 text-reset">Amount<i data-lucide="chevrons-up-down" class="opacity-50"></i></a></th>
+                <th scope="col"><span class="visually-hidden">Actions</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            {%- set withSelect = true %}
+            {%- for order in orders | batch(8) | first %}
+            {% include "partials/order-row.njk" %}
+            {%- endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer flex-wrap gap-3 py-3">
+        <span class="text-body-secondary small">Showing 1–8 of {{ orders.length }} orders</span>
+        <div class="ms-md-auto d-flex align-items-center gap-2">
+            <label for="ordersPerPage" class="small text-body-secondary text-nowrap">Rows per page</label>
+            <select class="form-select form-select-sm w-auto" id="ordersPerPage">
+                <option selected>8</option>
+                <option>25</option>
+                <option>50</option>
+            </select>
+        </div>
+        <nav aria-label="Orders pages">
+            <ul class="pagination pagination-sm mb-0">
+                <li class="page-item disabled"><a class="page-link" aria-label="Previous"><i data-lucide="chevron-left"></i></a></li>
+                <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i data-lucide="chevron-right"></i></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="mb-3 card">
+    <div class="card-header"><i data-lucide="funnel" class="me-2"></i>Empty state</div>
+    <div class="card-body pb-3">
+        <div class="input-group">
+            <span class="input-group-text"><i data-lucide="search"></i></span>
+            <input type="search" class="form-control" value="ORD-9999" aria-label="Search orders">
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table align-middle mb-0">
+            <thead>
+            <tr>
+                <th scope="col">Order</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date</th>
+                <th scope="col" class="text-end">Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="5" class="text-center py-5">
+                    <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-body-tertiary text-body-secondary mb-3 p-3"><i data-lucide="search-x" class="fs-3"></i></div>
+                    <div class="fw-bold text-body">No orders match the filters</div>
+                    <p class="text-body-secondary mb-3">Check the order number or reset the filters.</p>
+                    <button type="button" class="btn btn-outline-primary btn-sm">Reset filters</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 <div class="row">
     <div class="col-lg-6">
         <div class="mb-3 card">

@@ -1,4 +1,5 @@
-// Third-party page components: FullCalendar and Leaflet. Their own styles come from the libraries.
+// Third-party page components: FullCalendar, Leaflet and DataTables. Their own styles come from the libraries.
+@use "../config" as *;
 
 .fc {
   --fc-button-bg-color: var(--bs-primary);
@@ -62,4 +63,22 @@
 
 .aui-chart-lg {
   height: 350px;
+}
+
+// DataTables 3 with the Bootstrap 5 integration: the search field gets room, the empty result is a quiet message.
+// The selectors repeat the library ones, so these rules win by order.
+div.dt-container div.dt-search input {
+  width: 16rem;
+  margin-left: 0;
+}
+
+table.dataTable td.dt-empty {
+  padding: 3rem 1rem;
+  color: var(--bs-secondary-color);
+}
+
+@include phone {
+  div.dt-container div.dt-search input {
+    width: 100%;
+  }
 }

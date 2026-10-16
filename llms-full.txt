@@ -50,7 +50,7 @@ CDN dependencies. The exact, tested URLs are in `src/_data/cdn.json` and in the 
 
 - Bootstrap 5.3: `bootstrap.min.css` and `bootstrap.bundle.min.js`
 - Lucide: the UMD bundle `lucide.min.js`, global `lucide`
-- Optional, per page: Chart.js 4 (`chart.umd.min.js`, global `Chart`), Leaflet 1.9 (`leaflet.js` + `leaflet.css`, global `L`), FullCalendar 6 (`index.global.min.js`, global `FullCalendar`).
+- Optional, per page: Chart.js 4 (`chart.umd.min.js`, global `Chart`), Leaflet 1.9 (`leaflet.js` + `leaflet.css`, global `L`), FullCalendar 6 (`index.global.min.js`, global `FullCalendar`), DataTables 3 with the Bootstrap 5 integration and Responsive (`dataTables.min.js`, `dataTables.bootstrap5.min.js`, `dataTables.responsive.min.js`, `responsive.bootstrap5.min.js` + two CSS files, global `DataTable`, no jQuery).
 
 All paths are relative and all scripts are classic `defer` scripts. The demo works from any folder of a web server and from disk (`file://`). To work offline, copy the CDN files to a local folder and change the URLs; the markup does not change.
 
@@ -412,6 +412,10 @@ An icon directly inside a `.btn` is drawn larger than the button text. Use `d-in
 
 Everything else is Bootstrap: `hr` for a divider, `fs-*` and `opacity-*` for text, `list-group-flush` for a list without borders, `dropdown-header` and `dropdown-divider` in menus.
 
+### Tables
+
+A regular Bootstrap table. For a list with tools, put a search `input-group` and `form-select` filters in the `card-body` above, the table in `.table-responsive`, the counter, rows per page and `pagination` in the `card-footer`. A sortable header is a link inside the `th`: `aria-sort` on the `th`, `chevrons-up-down` icon (`opacity-50`) when not sorted, `arrow-up` or `arrow-down` (`text-primary`) when sorted. An empty result is one row with `colspan` and a centered message. `.table-responsive` keeps its content inside: a `.visually-hidden` header label does not widen the page.
+
 ### Expanding field
 
 A round button that opens into a field: search in the header, search above a table, a field in a form. An empty toggle draws a magnifier; put an icon inside the toggle to show it instead.
@@ -455,6 +459,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 - Chart.js: load the UMD bundle before the page script. Read colors from CSS variables (`getComputedStyle(document.documentElement).getPropertyValue("--bs-primary")`) and re-render on `aui:theme-change`. Put the canvas in `.aui-chart`.
 - FullCalendar: load the global bundle; it follows the theme without extra styles.
 - Leaflet: load `leaflet.css` and `leaflet.js`; put the map in `.aui-map`.
+- DataTables 3: load the CSS of `datatables.net-bs5` and `datatables.net-responsive-bs5`, then `dataTables.min.js`, `dataTables.bootstrap5.min.js`, `dataTables.responsive.min.js`, `responsive.bootstrap5.min.js`. Put rows in a regular `table.table` and call `new DataTable(table, { responsive: true })`. The theme styles the toolbar, sorting, empty result and pagination. Put `data-order` on cells whose text does not sort well (dates, amounts). DataTables right-aligns date columns; add `className: "dt-left"` to keep them left. Set `responsivePriority` so the key columns stay on a phone.
 - Wrap page scripts in an IIFE and read libraries from `window` so nothing leaks into the global scope.
 
 ## 10. Rules for agents building pages with ArchitectUI
@@ -497,7 +502,8 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `forms-controls.html` | Inputs, selects, checks, input groups |
 | `forms-layouts.html` | Grid and inline forms |
 | `forms-validation.html` | Bootstrap validation |
-| `tables-regular.html` | Tables |
+| `tables-regular.html` | A Bootstrap list of orders with search, filters, sorting links in the header, selection, row actions and pages; an empty state; table variants |
+| `tables-datatables.html` | The same orders in DataTables 3: search, sorting, pages, rows per page, responsive rows on a phone |
 | `charts-chartjs.html` | Chart.js charts colored by tokens |
 | `pages-starter.html` | An empty page with the frame: the start for a new screen |
 | `pages-login.html`, `pages-register.html`, `pages-forgot-password.html` | Guest frame: sign in with a code from an authenticator app, sign up with a code from the email, password reset; demo requests lock the form for 2 s |

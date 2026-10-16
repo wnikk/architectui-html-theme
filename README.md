@@ -12,7 +12,7 @@ for Bootstrap 5 works inside the theme without changes, and you never rebuild Bo
 - `dist/architectui.js` — the theme behavior of the admin pages: collapsible sidebar, settings panel, theme and mode switching, header search, icon rendering.
 - `dist/architectui-auth.js` — the script of the guest pages (sign in, sign up, errors) instead of `architectui.js`: mode toggle, icons, form steps with a verification code.
 - `dist/themes/*.css` — nine optional visual themes loaded on top of `architectui.css`, including Orange, the original ArchitectUI look.
-- `dist/*.html` — demo pages: dashboards, elements, every Bootstrap component on one page, a starter page, guest pages (sign in, sign up, password reset, errors), components, forms, tables, charts, calendar and maps.
+- `dist/*.html` — demo pages: dashboards, elements, every Bootstrap component on one page, a starter page, guest pages (sign in, sign up, password reset, errors), Bootstrap tables and DataTables, components, forms, tables, charts, calendar and maps.
 - No jQuery, no build step for your app. Icons are [Lucide](https://lucide.dev).
 
 ## Quick start

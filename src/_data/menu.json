@@ -106,8 +106,17 @@
       },
       {
         "title": "Tables",
-        "href": "tables-regular.html",
-        "icon": "monitor"
+        "icon": "table",
+        "children": [
+          {
+            "title": "Regular Tables",
+            "href": "tables-regular.html"
+          },
+          {
+            "title": "DataTables",
+            "href": "tables-datatables.html"
+          }
+        ]
       }
     ]
   },

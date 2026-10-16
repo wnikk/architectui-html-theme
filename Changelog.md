@@ -25,6 +25,7 @@ Work towards 6.0.0. The frame markup changes without backward compatibility.
 - **Removed classes.** `aui-widget`, `aui-widget__*`, `aui-btn-wide`, `aui-btn-icon`, `aui-btn-icon-only`, `aui-card-border`, `aui-card-icon`, `aui-card-header-title`, `aui-card-actions`, `aui-card-tabs`, `aui-card-tabs-animated`, `aui-tabs-animated`, `aui-nav-icon`, `aui-nav-header`, `aui-nav-divider`, `aui-nav-btn`, `aui-dropdown-icon`, `aui-dropdown-shadow`, `aui-dropdown-hover-link`, `aui-list-borderless`, `aui-scroll-xs`, `aui-swatch-lg`, `aui-divider`, `aui-code`, `aui-fs-*`, `aui-opacity-*`, `aui-flex-2`.
 
 ### Added
+- **Tables.** `tables-regular.html` starts with a list of orders: search, filters, sorting links in the header, selection, row actions, rows per page and pages, and an empty state. New `tables-datatables.html` shows the same orders in DataTables 3 with the Bootstrap 5 integration and Responsive from the CDN, without jQuery, styled by the theme. "Tables" in the menu is a group with both pages.
 - **Guest frame and `architectui-auth.js`.** Sign in, sign up, password reset and error pages have their own frame without the menu: logo, mode toggle, a brand panel from `lg`, the theme look. Their own script runs the form steps: a demo request locks the form for 2 s, then a 6-digit code from an authenticator app (sign in) or from the email (sign up), with paste, auto-fill, Backspace, a resend timer and an error state. The admin script has none of this, the guest script has no admin features.
 - **Starter, sign-in and error pages.** `pages-starter.html` is an empty page with the frame. `pages-login.html`, `pages-register.html`, `pages-forgot-password.html`, `pages-404.html` and `pages-500.html` are on the guest frame, linked from the new "Pages" menu group.
 - **Bootstrap Components page** (`components-bootstrap.html`): spinners, placeholders, floating labels, range, navbar, offcanvas, scrollspy, ratio, stacks, card group, dark dropdown and numbered list group on one page, to check a theme in both modes.
@@ -33,6 +34,7 @@ Work towards 6.0.0. The frame markup changes without backward compatibility.
 - **Status badge example** in the header.
 
 ### Fixed
+- A `.visually-hidden` label in a header of a table inside `.table-responsive` no longer widens the page on a phone: the scroll box is the containing block of its content.
 - The validation icon in a form field no longer slides across the field when it appears; fields animate only border, shadow and background colors.
 - Cyberpunk: outline secondary buttons were nearly invisible on black; they now use the muted text color.
 - The icon rail no longer shows a cut label next to the active menu item.

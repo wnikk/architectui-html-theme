@@ -6,11 +6,17 @@
   },
   "lucide": "https://cdn.jsdelivr.net/npm/lucide@1.49.0/dist/umd/lucide.min.js",
   "styles": {
-    "leaflet": "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"
+    "leaflet": "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css",
+    "datatables": "https://cdn.jsdelivr.net/npm/datatables.net-bs5@3.1.4/css/dataTables.bootstrap5.min.css",
+    "datatables-responsive": "https://cdn.jsdelivr.net/npm/datatables.net-responsive-bs5@4.1.1/css/responsive.bootstrap5.min.css"
   },
   "scripts": {
     "chartjs": "https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js",
     "leaflet": "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js",
-    "fullcalendar": "https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js"
+    "fullcalendar": "https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js",
+    "datatables": "https://cdn.jsdelivr.net/npm/datatables.net@3.1.4/js/dataTables.min.js",
+    "datatables-bs5": "https://cdn.jsdelivr.net/npm/datatables.net-bs5@3.1.4/js/dataTables.bootstrap5.min.js",
+    "datatables-responsive": "https://cdn.jsdelivr.net/npm/datatables.net-responsive@4.1.1/js/dataTables.responsive.min.js",
+    "datatables-responsive-bs5": "https://cdn.jsdelivr.net/npm/datatables.net-responsive-bs5@4.1.1/js/responsive.bootstrap5.min.js"
   }
 }

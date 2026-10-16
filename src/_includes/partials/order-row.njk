@@ -1,0 +1,30 @@
+{# One demo order row. Set order before the include; withSelect adds the selection checkbox. #}
+<tr>
+    {%- if withSelect %}
+    <td><input class="form-check-input" type="checkbox" id="select-{{ order.id }}" aria-label="Select {{ order.id }}"></td>
+    {%- endif %}
+    <td class="text-nowrap"><a href="#" class="fw-bold">{{ order.id }}</a></td>
+    <td>
+        <div class="d-flex align-items-center gap-2">
+            <img src="assets/images/avatars/{{ order.avatar }}.jpg" width="32" height="32" class="rounded-circle" alt="">
+            <div class="lh-sm">
+                <div class="fw-bold text-body">{{ order.name }}</div>
+                <div class="small text-body-secondary">{{ order.email }}</div>
+            </div>
+        </div>
+    </td>
+    <td><span class="badge text-bg-{{ order.color }}">{{ order.status }}</span></td>
+    <td data-order="{{ order.isoDate }}" class="text-nowrap">{{ order.date }}</td>
+    <td data-order="{{ order.cents }}" class="text-end text-nowrap aui-number">{{ order.amount }}</td>
+    <td class="text-end">
+        <div class="dropdown">
+            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for {{ order.id }}"><i data-lucide="ellipsis"></i></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
+                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
+            </ul>
+        </div>
+    </td>
+</tr>

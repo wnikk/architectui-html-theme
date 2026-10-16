@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Regular Tables - Tables are the backbone of almost all web applications.</title>
-<meta name="description" content="Tables are the backbone of almost all web applications.">
+<title>Regular Tables - Bootstrap tables: a list with search, sorting and pages, an empty state and the table variants.</title>
+<meta name="description" content="Bootstrap tables: a list with search, sorting and pages, an empty state and the table variants.">
 <link rel="icon" href="favicon.ico">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
@@ -182,9 +182,15 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="tables-regular.html" aria-current="page">
-                        <i data-lucide="monitor"></i>Tables
+                    <a class="nav-link" href="#nav-tables" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nav-tables">
+                        <i data-lucide="table"></i>Tables<i data-lucide="chevron-down"></i>
                     </a>
+                    <div class="collapse show" id="nav-tables" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link active" href="tables-regular.html" aria-current="page">Regular Tables</a></li>
+                            <li class="nav-item"><a class="nav-link" href="tables-datatables.html">DataTables</a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item"><h6>Widgets</h6></li>
                 <li class="nav-item">
@@ -258,7 +264,7 @@
     </div>
     <div>
         <h1>Regular Tables</h1>
-        <p>Tables are the backbone of almost all web applications.</p>
+        <p>Bootstrap tables: a list with search, sorting and pages, an empty state and the table variants.</p>
     </div>
     <div class="ms-md-auto mt-3 mt-md-0">
     <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
@@ -289,7 +295,345 @@
 
 </div>
 
-                <div class="row">
+                <div class="mb-3 card">
+    <div class="card-header">
+        <i data-lucide="shopping-cart" class="me-2"></i>Recent orders
+        <div class="ms-auto d-flex gap-2">
+            <button type="button" class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2"><i data-lucide="download"></i>Export</button>
+            <button type="button" class="btn btn-primary btn-sm d-inline-flex align-items-center gap-2"><i data-lucide="plus"></i>New order</button>
+        </div>
+    </div>
+    <div class="card-body pb-3">
+        <form class="row g-2 align-items-center" role="search">
+            <div class="col-md">
+                <div class="input-group">
+                    <span class="input-group-text"><i data-lucide="search"></i></span>
+                    <input type="search" class="form-control" placeholder="Search by order or customer" aria-label="Search orders">
+                </div>
+            </div>
+            <div class="col-6 col-md-auto">
+                <select class="form-select" aria-label="Status">
+                    <option selected>All statuses</option>
+                    <option>Paid</option>
+                    <option>Shipped</option>
+                    <option>Pending</option>
+                    <option>Refunded</option>
+                    <option>Failed</option>
+                </select>
+            </div>
+            <div class="col-6 col-md-auto">
+                <select class="form-select" aria-label="Period">
+                    <option>Last 7 days</option>
+                    <option selected>Last 30 days</option>
+                    <option>This year</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead>
+            <tr>
+                <th scope="col"><input class="form-check-input" type="checkbox" id="selectAllOrders" aria-label="Select all orders"></th>
+                <th scope="col" aria-sort="none"><a href="#" class="d-inline-flex align-items-center gap-1 text-reset">Order<i data-lucide="chevrons-up-down" class="opacity-50"></i></a></th>
+                <th scope="col" aria-sort="none"><a href="#" class="d-inline-flex align-items-center gap-1 text-reset">Customer<i data-lucide="chevrons-up-down" class="opacity-50"></i></a></th>
+                <th scope="col">Status</th>
+                <th scope="col" aria-sort="descending"><a href="#" class="d-inline-flex align-items-center gap-1 text-reset">Date<i data-lucide="arrow-down" class="text-primary"></i></a></th>
+                <th scope="col" class="text-end" aria-sort="none"><a href="#" class="d-inline-flex align-items-center gap-1 text-reset">Amount<i data-lucide="chevrons-up-down" class="opacity-50"></i></a></th>
+                <th scope="col"><span class="visually-hidden">Actions</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            
+<tr>
+    <td><input class="form-check-input" type="checkbox" id="select-ORD-1048" aria-label="Select ORD-1048"></td>
+    <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1048</a></td>
+    <td>
+        <div class="d-flex align-items-center gap-2">
+            <img src="assets/images/avatars/1.jpg" width="32" height="32" class="rounded-circle" alt="">
+            <div class="lh-sm">
+                <div class="fw-bold text-body">Maria Chen</div>
+                <div class="small text-body-secondary">maria.chen@northwind.test</div>
+            </div>
+        </div>
+    </td>
+    <td><span class="badge text-bg-success">Paid</span></td>
+    <td data-order="2026-10-16" class="text-nowrap">Oct 16, 2026</td>
+    <td data-order="1900" class="text-end text-nowrap aui-number">$19.00</td>
+    <td class="text-end">
+        <div class="dropdown">
+            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1048"><i data-lucide="ellipsis"></i></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
+                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
+            </ul>
+        </div>
+    </td>
+</tr>
+
+            
+<tr>
+    <td><input class="form-check-input" type="checkbox" id="select-ORD-1047" aria-label="Select ORD-1047"></td>
+    <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1047</a></td>
+    <td>
+        <div class="d-flex align-items-center gap-2">
+            <img src="assets/images/avatars/10.jpg" width="32" height="32" class="rounded-circle" alt="">
+            <div class="lh-sm">
+                <div class="fw-bold text-body">Omar Haddad</div>
+                <div class="small text-body-secondary">omar@cedar.test</div>
+            </div>
+        </div>
+    </td>
+    <td><span class="badge text-bg-success">Paid</span></td>
+    <td data-order="2026-10-16" class="text-nowrap">Oct 16, 2026</td>
+    <td data-order="9819" class="text-end text-nowrap aui-number">$98.19</td>
+    <td class="text-end">
+        <div class="dropdown">
+            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1047"><i data-lucide="ellipsis"></i></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
+                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
+            </ul>
+        </div>
+    </td>
+</tr>
+
+            
+<tr>
+    <td><input class="form-check-input" type="checkbox" id="select-ORD-1046" aria-label="Select ORD-1046"></td>
+    <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1046</a></td>
+    <td>
+        <div class="d-flex align-items-center gap-2">
+            <img src="assets/images/avatars/5.jpg" width="32" height="32" class="rounded-circle" alt="">
+            <div class="lh-sm">
+                <div class="fw-bold text-body">Amara Okafor</div>
+                <div class="small text-body-secondary">amara@harbor.test</div>
+            </div>
+        </div>
+    </td>
+    <td><span class="badge text-bg-warning">Pending</span></td>
+    <td data-order="2026-10-15" class="text-nowrap">Oct 15, 2026</td>
+    <td data-order="17738" class="text-end text-nowrap aui-number">$177.38</td>
+    <td class="text-end">
+        <div class="dropdown">
+            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1046"><i data-lucide="ellipsis"></i></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
+                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
+            </ul>
+        </div>
+    </td>
+</tr>
+
+            
+<tr>
+    <td><input class="form-check-input" type="checkbox" id="select-ORD-1045" aria-label="Select ORD-1045"></td>
+    <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1045</a></td>
+    <td>
+        <div class="d-flex align-items-center gap-2">
+            <img src="assets/images/avatars/2.jpg" width="32" height="32" class="rounded-circle" alt="">
+            <div class="lh-sm">
+                <div class="fw-bold text-body">James Patel</div>
+                <div class="small text-body-secondary">james@brightlabs.test</div>
+            </div>
+        </div>
+    </td>
+    <td><span class="badge text-bg-info">Shipped</span></td>
+    <td data-order="2026-10-15" class="text-nowrap">Oct 15, 2026</td>
+    <td data-order="25657" class="text-end text-nowrap aui-number">$256.57</td>
+    <td class="text-end">
+        <div class="dropdown">
+            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1045"><i data-lucide="ellipsis"></i></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
+                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
+            </ul>
+        </div>
+    </td>
+</tr>
+
+            
+<tr>
+    <td><input class="form-check-input" type="checkbox" id="select-ORD-1044" aria-label="Select ORD-1044"></td>
+    <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1044</a></td>
+    <td>
+        <div class="d-flex align-items-center gap-2">
+            <img src="assets/images/avatars/11.jpg" width="32" height="32" class="rounded-circle" alt="">
+            <div class="lh-sm">
+                <div class="fw-bold text-body">Elena Petrova</div>
+                <div class="small text-body-secondary">elena.p@vector.test</div>
+            </div>
+        </div>
+    </td>
+    <td><span class="badge text-bg-secondary">Refunded</span></td>
+    <td data-order="2026-10-14" class="text-nowrap">Oct 14, 2026</td>
+    <td data-order="33576" class="text-end text-nowrap aui-number">$335.76</td>
+    <td class="text-end">
+        <div class="dropdown">
+            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1044"><i data-lucide="ellipsis"></i></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
+                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
+            </ul>
+        </div>
+    </td>
+</tr>
+
+            
+<tr>
+    <td><input class="form-check-input" type="checkbox" id="select-ORD-1043" aria-label="Select ORD-1043"></td>
+    <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1043</a></td>
+    <td>
+        <div class="d-flex align-items-center gap-2">
+            <img src="assets/images/avatars/8.jpg" width="32" height="32" class="rounded-circle" alt="">
+            <div class="lh-sm">
+                <div class="fw-bold text-body">Lucas Meyer</div>
+                <div class="small text-body-secondary">lucas.meyer@tandem.test</div>
+            </div>
+        </div>
+    </td>
+    <td><span class="badge text-bg-info">Shipped</span></td>
+    <td data-order="2026-10-13" class="text-nowrap">Oct 13, 2026</td>
+    <td data-order="41495" class="text-end text-nowrap aui-number">$414.95</td>
+    <td class="text-end">
+        <div class="dropdown">
+            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1043"><i data-lucide="ellipsis"></i></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
+                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
+            </ul>
+        </div>
+    </td>
+</tr>
+
+            
+<tr>
+    <td><input class="form-check-input" type="checkbox" id="select-ORD-1042" aria-label="Select ORD-1042"></td>
+    <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1042</a></td>
+    <td>
+        <div class="d-flex align-items-center gap-2">
+            <img src="assets/images/avatars/3.jpg" width="32" height="32" class="rounded-circle" alt="">
+            <div class="lh-sm">
+                <div class="fw-bold text-body">Sofia Rossi</div>
+                <div class="small text-body-secondary">s.rossi@lumen.test</div>
+            </div>
+        </div>
+    </td>
+    <td><span class="badge text-bg-danger">Failed</span></td>
+    <td data-order="2026-10-13" class="text-nowrap">Oct 13, 2026</td>
+    <td data-order="49414" class="text-end text-nowrap aui-number">$494.14</td>
+    <td class="text-end">
+        <div class="dropdown">
+            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1042"><i data-lucide="ellipsis"></i></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
+                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
+            </ul>
+        </div>
+    </td>
+</tr>
+
+            
+<tr>
+    <td><input class="form-check-input" type="checkbox" id="select-ORD-1041" aria-label="Select ORD-1041"></td>
+    <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1041</a></td>
+    <td>
+        <div class="d-flex align-items-center gap-2">
+            <img src="assets/images/avatars/12.jpg" width="32" height="32" class="rounded-circle" alt="">
+            <div class="lh-sm">
+                <div class="fw-bold text-body">Noah Williams</div>
+                <div class="small text-body-secondary">noah.w@summit.test</div>
+            </div>
+        </div>
+    </td>
+    <td><span class="badge text-bg-success">Paid</span></td>
+    <td data-order="2026-10-12" class="text-nowrap">Oct 12, 2026</td>
+    <td data-order="57333" class="text-end text-nowrap aui-number">$573.33</td>
+    <td class="text-end">
+        <div class="dropdown">
+            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1041"><i data-lucide="ellipsis"></i></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
+                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
+            </ul>
+        </div>
+    </td>
+</tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer flex-wrap gap-3 py-3">
+        <span class="text-body-secondary small">Showing 1–8 of 48 orders</span>
+        <div class="ms-md-auto d-flex align-items-center gap-2">
+            <label for="ordersPerPage" class="small text-body-secondary text-nowrap">Rows per page</label>
+            <select class="form-select form-select-sm w-auto" id="ordersPerPage">
+                <option selected>8</option>
+                <option>25</option>
+                <option>50</option>
+            </select>
+        </div>
+        <nav aria-label="Orders pages">
+            <ul class="pagination pagination-sm mb-0">
+                <li class="page-item disabled"><a class="page-link" aria-label="Previous"><i data-lucide="chevron-left"></i></a></li>
+                <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i data-lucide="chevron-right"></i></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="mb-3 card">
+    <div class="card-header"><i data-lucide="funnel" class="me-2"></i>Empty state</div>
+    <div class="card-body pb-3">
+        <div class="input-group">
+            <span class="input-group-text"><i data-lucide="search"></i></span>
+            <input type="search" class="form-control" value="ORD-9999" aria-label="Search orders">
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table align-middle mb-0">
+            <thead>
+            <tr>
+                <th scope="col">Order</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date</th>
+                <th scope="col" class="text-end">Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="5" class="text-center py-5">
+                    <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-body-tertiary text-body-secondary mb-3 p-3"><i data-lucide="search-x" class="fs-3"></i></div>
+                    <div class="fw-bold text-body">No orders match the filters</div>
+                    <p class="text-body-secondary mb-3">Check the order number or reset the filters.</p>
+                    <button type="button" class="btn btn-outline-primary btn-sm">Reset filters</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
     <div class="col-lg-6">
         <div class="mb-3 card">
             <div class="card-body"><h5 class="card-title">Simple table</h5>

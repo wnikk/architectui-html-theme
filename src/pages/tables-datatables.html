@@ -1,0 +1,37 @@
+---
+title: "DataTables"
+description: "DataTables 3 with the Bootstrap 5 integration: search, sorting, pages and responsive rows, without jQuery."
+icon: "table"
+styles: ["datatables", "datatables-responsive"]
+scripts: ["datatables", "datatables-bs5", "datatables-responsive", "datatables-responsive-bs5"]
+script: "tables-datatables.js"
+---
+<div class="mb-3 card">
+    <div class="card-header">
+        <i data-lucide="shopping-cart" class="me-2"></i>All orders
+        <div class="ms-auto d-flex gap-2">
+            <button type="button" class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2"><i data-lucide="download"></i>Export</button>
+            <button type="button" class="btn btn-primary btn-sm d-inline-flex align-items-center gap-2"><i data-lucide="plus"></i>New order</button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover align-middle w-100" id="ordersTable">
+            <thead>
+            <tr>
+                <th scope="col">Order</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date</th>
+                <th scope="col" class="text-end">Amount</th>
+                <th scope="col"><span class="visually-hidden">Actions</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            {%- set withSelect = false %}
+            {%- for order in orders %}
+            {% include "partials/order-row.njk" %}
+            {%- endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
