@@ -5,11 +5,6 @@ body {
   background: var(--aui-app-bg);
 }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  font-weight: 400;
-}
-
 a,
 a:hover,
 .btn-link,
@@ -67,7 +62,6 @@ i[data-lucide] {
 // Thin native scrollbars in the sidebar
 .aui-sidebar > .offcanvas-md {
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, .2) transparent;
 }
 
 [data-bs-theme="dark"] .aui-sidebar > .offcanvas-md {

@@ -1,5 +1,5 @@
 // Orange theme: the original ArchitectUI look with orange accents, color gradients and soft warm shadows.
-// While a theme is selected, architectui.css turns its Business rules off; this file sets the classic colors.
+// The shared theme base of architectui.css skips Orange; this file holds the classic colors and component rules.
 @use "sass:list";
 @use "../config" as *;
 
@@ -22,6 +22,7 @@
   --bs-focus-ring-color: rgba(var(--bs-primary-rgb), .25);
 
   // Surfaces and shadows
+  --aui-shadow-color: #e9ecef;
   --aui-app-bg: #f3f4f6;
   --aui-surface: #fff;
   --aui-shadow: 0 1.3rem 1.7rem 0 var(--aui-shadow-color);
@@ -56,6 +57,7 @@
 }
 
 [data-bs-theme="dark"] {
+  --aui-shadow-color: rgba(0, 0, 0, .35);
   --aui-app-bg: #16181b;
   --aui-surface: #212529;
   --aui-shadow-rgb: 0, 0, 0;
@@ -88,4 +90,212 @@
   --aui-header-link-icon: #6c757d;
   --aui-header-link-hover: #f8f9fa;
   --aui-heading-bg: rgba(255, 255, 255, .04);
+}
+
+// Classic component rules. Other themes get these properties from the shared theme base in architectui.css.
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 400;
+}
+
+// Frame: header and sidebar float on soft shadows
+.aui-header {
+  box-shadow: var(--aui-shadow);
+  border-bottom-left-radius: 10px;
+}
+
+.aui-footer {
+  border-bottom-left-radius: 10px;
+}
+
+.aui-sidebar {
+  box-shadow: 7px 0 60px rgba(0, 0, 0, .05);
+}
+
+@include mobile {
+  .aui-sidebar {
+    box-shadow: none;
+  }
+}
+
+.aui-sidebar > .offcanvas-md {
+  scrollbar-color: rgba(0, 0, 0, .2) transparent;
+}
+
+.aui-sidebar h6 {
+  color: var(--bs-primary);
+  font-size: .8rem;
+}
+
+.aui-sidebar .nav-link.active {
+  background: var(--aui-surface);
+  box-shadow: 0 20px 27px 0 rgba(0, 0, 0, .05);
+}
+
+.aui-sidebar .nav-link > [data-lucide]:first-child,
+.aui-sidebar .nav-link > [data-lucide="chevron-down"] {
+  color: var(--aui-nav-color);
+  opacity: .45;
+}
+
+.aui-sidebar .nav .nav::before {
+  background: var(--aui-hover-bg);
+}
+
+.aui-sidebar .nav .nav .nav-link.active {
+  background: var(--aui-hover-bg);
+  box-shadow: none;
+  color: var(--bs-primary);
+}
+
+.aui-page-title h1 {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.aui-page-title p {
+  font-size: var(--bs-body-font-size);
+  opacity: .6;
+}
+
+.aui-page-title > :has(> [data-lucide]) {
+  border-radius: var(--bs-border-radius);
+  box-shadow: var(--aui-shadow);
+}
+
+.aui-expand {
+  --aui-expand-bg: rgba(0, 0, 0, .06);
+  --aui-expand-color: var(--bs-primary);
+}
+
+// Buttons: small medium-weight text
+.btn {
+  --bs-btn-font-size: .8rem;
+  --bs-btn-font-weight: 500;
+}
+
+.btn-group > .btn,
+.btn-group-lg > .btn,
+.btn-group-sm > .btn {
+  --bs-btn-font-size: .8rem;
+}
+
+.btn-light {
+  --bs-btn-border-color: #dcdcdc;
+}
+
+.aui-btn-transition {
+  --bs-btn-color: var(--bs-gray-600);
+  --bs-btn-border-color: var(--bs-gray-200);
+}
+
+// Cards: shadow instead of a border, uppercase titles in the brand-tinted title color
+.card {
+  box-shadow: var(--aui-shadow);
+}
+
+.card-header,
+.card-title {
+  font-size: var(--bs-body-font-size);
+}
+
+.card-title {
+  color: var(--aui-title-color);
+  text-transform: uppercase;
+}
+
+.card-header > [data-lucide]:first-child,
+.card-header > :first-child > [data-lucide]:first-child {
+  color: var(--bs-secondary-color);
+}
+
+.card-subtitle {
+  color: var(--aui-subtitle-color);
+}
+
+@each $name, $def in $aui-colors {
+  .aui-card-shadow-#{$name} {
+    box-shadow: 0 .46875rem 2.1875rem rgba(var(--bs-#{$name}-rgb), .03), 0 .9375rem 1.40625rem rgba(var(--bs-#{$name}-rgb), .03), 0 .25rem .53125rem rgba(var(--bs-#{$name}-rgb), .05), 0 .125rem .1875rem rgba(var(--bs-#{$name}-rgb), .03);
+  }
+}
+
+// Menus and overlays on soft shadows
+.dropdown-menu {
+  --bs-dropdown-bg: var(--aui-surface);
+  --bs-dropdown-border-color: var(--aui-card-border-color);
+  --bs-dropdown-link-hover-bg: var(--aui-hover-bg);
+  --bs-dropdown-link-active-bg: var(--bs-primary);
+  --bs-dropdown-header-color: var(--bs-primary);
+  box-shadow: var(--aui-shadow-soft);
+}
+
+.popover {
+  --bs-popover-bg: var(--aui-surface);
+  --bs-popover-border-color: var(--aui-card-border-color);
+  --bs-popover-header-bg: var(--aui-surface);
+  box-shadow: var(--aui-shadow);
+}
+
+.modal {
+  --bs-modal-bg: var(--aui-surface);
+}
+
+.modal-header,
+.modal-footer {
+  background: var(--aui-heading-bg);
+}
+
+.modal-dialog {
+  box-shadow: var(--aui-shadow-lg);
+}
+
+.toast {
+  --bs-toast-bg: rgba(var(--bs-body-bg-rgb), .95);
+  box-shadow: var(--aui-shadow-soft);
+}
+
+// Other components in the brand color
+.badge {
+  text-transform: uppercase;
+}
+
+.form-control,
+.form-select {
+  &:focus {
+    border-color: color-mix(in srgb, var(--bs-primary), #fff 25%);
+    box-shadow: 0 0 0 .25rem rgba(var(--bs-primary-rgb), .25);
+  }
+}
+
+.form-check-input {
+  &:checked {
+    border-color: var(--bs-primary);
+    background-color: var(--bs-primary);
+  }
+
+  &:focus {
+    border-color: color-mix(in srgb, var(--bs-primary), #fff 25%);
+    box-shadow: 0 0 0 .25rem rgba(var(--bs-primary-rgb), .25);
+  }
+}
+
+.list-group {
+  --bs-list-group-bg: var(--aui-surface);
+  --bs-list-group-active-bg: var(--bs-primary);
+  --bs-list-group-active-border-color: var(--bs-primary);
+}
+
+.pagination {
+  --bs-pagination-active-bg: var(--bs-primary);
+  --bs-pagination-active-border-color: var(--bs-primary);
+}
+
+.accordion {
+  --bs-accordion-bg: var(--aui-surface);
+  --bs-accordion-active-bg: var(--aui-hover-bg);
+  --bs-accordion-active-color: var(--bs-primary);
+}
+
+.fc {
+  --fc-border-color: var(--bs-border-color);
 }

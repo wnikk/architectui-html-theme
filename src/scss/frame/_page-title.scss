@@ -13,24 +13,18 @@
 
   h1 {
     margin: 0;
-    font-size: 1.1rem;
-    font-weight: 400;
     line-height: var(--bs-body-line-height);
   }
 
   p {
     margin: 0;
     padding: 3px 0 0;
-    font-size: var(--bs-body-font-size);
-    opacity: .6;
   }
 
   > :has(> [data-lucide]) {
     width: 60px;
     height: 60px;
     background: var(--aui-surface);
-    border-radius: var(--bs-border-radius);
-    box-shadow: var(--aui-shadow);
 
     > [data-lucide] {
       width: 2rem;

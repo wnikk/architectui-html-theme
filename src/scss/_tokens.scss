@@ -33,7 +33,6 @@
   --aui-nav-icon-size: 20px;
   --aui-gutter: 1.5rem;
   --aui-transition: .2s ease;
-  --aui-shadow-color: #e9ecef;
 }
 
 // Subtle variants of the colors that themes do not set themselves
@@ -48,8 +47,6 @@
 }
 
 [data-bs-theme="dark"] {
-  --aui-shadow-color: rgba(0, 0, 0, .35);
-
   @each $name, $def in $aui-colors {
     @if not list.index($aui-theme-colors, $name) {
       --bs-#{$name}-bg-subtle: color-mix(in srgb, var(--bs-#{$name}) 20%, #000);

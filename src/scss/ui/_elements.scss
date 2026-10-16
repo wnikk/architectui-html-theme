@@ -4,29 +4,11 @@
   min-width: 19px;
   padding: 5px 10px;
   font-weight: 700;
-  text-transform: uppercase;
 }
 
 .form-control,
 .form-select {
   transition: all .2s;
-
-  &:focus {
-    border-color: color-mix(in srgb, var(--bs-primary), #fff 25%);
-    box-shadow: 0 0 0 .25rem rgba(var(--bs-primary-rgb), .25);
-  }
-}
-
-.form-check-input {
-  &:checked {
-    border-color: var(--bs-primary);
-    background-color: var(--bs-primary);
-  }
-
-  &:focus {
-    border-color: color-mix(in srgb, var(--bs-primary), #fff 25%);
-    box-shadow: 0 0 0 .25rem rgba(var(--bs-primary-rgb), .25);
-  }
 }
 
 .form-range::-webkit-slider-thumb {
@@ -37,12 +19,6 @@
   background-color: var(--bs-primary);
 }
 
-.list-group {
-  --bs-list-group-bg: var(--aui-surface);
-  --bs-list-group-active-bg: var(--bs-primary);
-  --bs-list-group-active-border-color: var(--bs-primary);
-}
-
 .list-group-item {
   border: 1px solid rgba(var(--bs-emphasis-color-rgb), .125);
 }
@@ -51,23 +27,11 @@
   border-top: 0;
 }
 
-.modal {
-  --bs-modal-bg: var(--aui-surface);
-}
-
-.modal-header,
-.modal-footer {
-  background: var(--aui-heading-bg);
-}
-
 .modal-dialog {
   border-radius: var(--bs-border-radius);
-  box-shadow: var(--aui-shadow-lg);
 }
 
 .pagination {
-  --bs-pagination-active-bg: var(--bs-primary);
-  --bs-pagination-active-border-color: var(--bs-primary);
   --bs-pagination-focus-box-shadow: none;
 }
 
@@ -77,15 +41,7 @@
 }
 
 .accordion {
-  --bs-accordion-bg: var(--aui-surface);
   --bs-accordion-btn-focus-box-shadow: none;
-  --bs-accordion-active-bg: var(--aui-hover-bg);
-  --bs-accordion-active-color: var(--bs-primary);
-}
-
-.toast {
-  --bs-toast-bg: rgba(var(--bs-body-bg-rgb), .95);
-  box-shadow: var(--aui-shadow-soft);
 }
 
 // Filled toasts (text-bg-<color>): the header and the close button follow the text color

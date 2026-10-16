@@ -5,7 +5,6 @@
   --bs-card-bg: var(--aui-surface);
   --bs-card-border-color: var(--aui-card-border-color);
   border-width: 0;
-  box-shadow: var(--aui-shadow);
   transition: all .2s;
 
   &.text-white {
@@ -24,9 +23,11 @@
 
 .card-header,
 .card-title {
-  color: var(--aui-title-color);
-  font-size: var(--bs-body-font-size);
   font-weight: 700;
+}
+
+.card-header {
+  color: var(--aui-title-color);
   text-transform: uppercase;
 }
 
@@ -117,22 +118,9 @@
   }
 }
 
-// Header icon: the first icon in the header or in its first block
-.card-header > [data-lucide]:first-child,
-.card-header > :first-child > [data-lucide]:first-child {
-  color: var(--bs-secondary-color);
-}
-
 .card-subtitle {
   margin-bottom: var(--bs-card-spacer-y);
-  color: var(--aui-subtitle-color);
   font-size: .968rem;
-}
-
-@each $name, $def in $aui-colors {
-  .aui-card-shadow-#{$name} {
-    box-shadow: 0 .46875rem 2.1875rem rgba(var(--bs-#{$name}-rgb), .03), 0 .9375rem 1.40625rem rgba(var(--bs-#{$name}-rgb), .03), 0 .25rem .53125rem rgba(var(--bs-#{$name}-rgb), .05), 0 .125rem .1875rem rgba(var(--bs-#{$name}-rgb), .03);
-  }
 }
 
 @include phone {

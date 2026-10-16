@@ -3,13 +3,7 @@
   --bs-dropdown-min-width: 15rem;
   --bs-dropdown-padding-y: .65rem;
   --bs-dropdown-font-size: var(--bs-body-font-size);
-  --bs-dropdown-bg: var(--aui-surface);
-  --bs-dropdown-border-color: var(--aui-card-border-color);
   --bs-dropdown-item-padding-y: .4rem;
-  --bs-dropdown-link-hover-bg: var(--aui-hover-bg);
-  --bs-dropdown-link-active-bg: var(--bs-primary);
-  --bs-dropdown-header-color: var(--bs-primary);
-  box-shadow: var(--aui-shadow-soft);
 
   &.show {
     animation: aui-drop-in .2s cubic-bezier(.39, .575, .565, 1) both;
@@ -30,10 +24,6 @@
 
 .popover {
   --bs-popover-max-width: 320px;
-  --bs-popover-bg: var(--aui-surface);
-  --bs-popover-border-color: var(--aui-card-border-color);
-  --bs-popover-header-bg: var(--aui-surface);
-  box-shadow: var(--aui-shadow);
 }
 
 .popover.show:not([data-popper-placement^="top"]) {

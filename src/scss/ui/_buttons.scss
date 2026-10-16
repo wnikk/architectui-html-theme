@@ -3,8 +3,6 @@
 @use "../config" as *;
 
 .btn {
-  --bs-btn-font-size: .8rem;
-  --bs-btn-font-weight: 500;
   --bs-btn-focus-box-shadow: none;
   position: relative;
   transition: color .15s, background-color .15s, border-color .15s, box-shadow .15s;
@@ -55,17 +53,6 @@
   }
 }
 
-// Grouped buttons keep .8rem text, including .btn-group-lg
-.btn-group > .btn,
-.btn-group-lg > .btn,
-.btn-group-sm > .btn {
-  --bs-btn-font-size: .8rem;
-}
-
-.btn-light {
-  --bs-btn-border-color: #dcdcdc;
-}
-
 .btn-outline-light {
   --bs-btn-color: #939393;
 }
@@ -86,8 +73,6 @@
 
 // Transition buttons: gray at rest, variant color on hover
 .aui-btn-transition {
-  --bs-btn-color: var(--bs-gray-600);
-  --bs-btn-border-color: var(--bs-gray-200);
   --bs-btn-disabled-color: var(--bs-gray-600);
   --bs-btn-disabled-border-color: var(--bs-gray-200);
 }

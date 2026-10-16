@@ -7,9 +7,7 @@
 .aui-expand {
   --aui-expand-size: 42px;
   --aui-expand-width: 290px;
-  --aui-expand-bg: rgba(0, 0, 0, .06);
   --aui-expand-open-bg: rgba(0, 0, 0, .05);
-  --aui-expand-color: var(--bs-primary);
   position: relative;
   flex-shrink: 0;
   width: var(--aui-expand-size);
