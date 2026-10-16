@@ -89,40 +89,43 @@ The CDN URLs below follow the latest release of each major version; for pinned v
 </head>
 <body>
   <div class="aui-app">
-    <header class="aui-header">...</header>
+    <header class="navbar navbar-expand-md aui-header">...</header>
     <aside class="aui-sidebar">...</aside>
-    <main class="aui-main" id="main">
-      <div class="aui-main__inner">
+    <main class="d-flex flex-column" id="main" tabindex="-1">
+      <div class="flex-grow-1 px-3 px-sm-4 pt-3 pt-sm-4">
         <div class="aui-page-title">...</div>
         <!-- page content: Bootstrap rows, cards, forms, tables -->
       </div>
-      <footer class="aui-footer">...</footer>
+      <footer class="aui-footer d-flex align-items-center">...</footer>
     </main>
   </div>
 </body>
 </html>
 ```
 
-The fastest correct start is to copy `dist/index.html` and replace the content inside `.aui-main__inner` after the page title. The inline script is optional when you do not use the settings panel or a stored theme; without it the page uses the attributes written in the HTML.
+The fastest correct start is to copy `dist/index.html` and replace the content after the page title inside `main`. The inline script is optional when you do not use the settings panel or a stored theme; without it the page uses the attributes written in the HTML.
 
 ## 4. Page frame
 
 ### Structure
 
+Each frame part is Bootstrap markup with one root `aui-` class. Inside a part there are only Bootstrap classes.
+
 ```text
 body
+├── a.aui-skip-link (skip to content)
 ├── svg (gradient definitions for aui-icon-gradient-*; optional)
 ├── .aui-app
-│   ├── header.aui-header
-│   │   ├── .aui-header__brand: mobile burger, .aui-logo, collapse burger, "more" button (phones)
-│   │   └── .aui-header__content.collapse#auiHeaderContent
-│   │       ├── .aui-header__left: .aui-search, ul.nav.aui-header-menu
-│   │       └── .aui-header__right: .aui-mode-toggle, .aui-user
+│   ├── header.navbar.navbar-expand-md.aui-header
+│   │   ├── .navbar-brand: mobile burger (btn.aui-burger.d-md-none), a.aui-logo, collapse burger (btn.aui-burger, from 1200 px), "more" button (phones)
+│   │   └── .collapse.navbar-collapse#auiHeaderContent
+│   │       ├── .aui-expand (search), ul.navbar-nav (header menu)
+│   │       └── .d-flex.ms-auto: status badges, btn.aui-mode-toggle, user dropdown, user name (from 1400 px)
 │   ├── aside.aui-sidebar
-│   │   └── .offcanvas-md.offcanvas-start.aui-sidebar__panel#auiSidebar
-│   │       └── .offcanvas-body > ul.aui-nav#auiNav
-│   └── main.aui-main#main
-│       ├── .aui-main__inner
+│   │   └── .offcanvas-md.offcanvas-start#auiSidebar
+│   │       └── .offcanvas-body > ul.nav.flex-column.flex-nowrap#auiNav
+│   └── main#main.d-flex.flex-column
+│       ├── div.flex-grow-1 (padding utilities)
 │       │   ├── .aui-page-title
 │       │   └── page content
 │       └── footer.aui-footer
@@ -130,54 +133,54 @@ body
 └── .toast-container (optional)
 ```
 
+The logo is `a.aui-logo` with two images: the first for light backgrounds, the second for dark ones. Put status badges, alerts or extra forms into the right-hand group of the header; give each a `d-none d-*-flex` breakpoint by importance.
+
 ### Responsive behavior
 
-- 1250 px and wider: full sidebar; the collapse burger (`data-aui-toggle="sidebar"`) collapses it to an icon rail.
-- 768–1249 px: icon rail; it expands over the content on hover.
+- 1200 px (Bootstrap `xl`) and wider: full sidebar; the collapse burger (`data-aui-toggle="sidebar"`) collapses it to an icon rail.
+- 768–1199 px: icon rail; it expands over the content on hover and while a menu item has keyboard focus.
 - Below 768 px: the sidebar is a Bootstrap Offcanvas opened by the mobile burger; header items fold into `#auiHeaderContent`.
 
 ### Sidebar menu
 
 ```html
-<ul class="aui-nav" id="auiNav">
-  <li class="aui-nav__heading">Dashboards</li>
-  <li><a class="aui-nav__link active" href="index.html" aria-current="page"><i data-lucide="rocket" class="aui-nav__icon"></i>Analytics</a></li>
-  <li>
-    <a class="aui-nav__link collapsed" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
-      <i data-lucide="gem" class="aui-nav__icon"></i>Elements<i data-lucide="chevron-down" class="aui-nav__caret"></i>
+<ul class="nav flex-column flex-nowrap" id="auiNav">
+  <li class="nav-item"><h6>Dashboards</h6></li>
+  <li class="nav-item"><a class="nav-link active" href="index.html" aria-current="page"><i data-lucide="rocket"></i>Analytics</a></li>
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
+      <i data-lucide="gem"></i>Elements<i data-lucide="chevron-down"></i>
     </a>
     <div class="collapse" id="nav-elements" data-bs-parent="#auiNav">
-      <ul class="aui-nav__sub">
-        <li><a class="aui-nav__link" href="elements-buttons-standard.html">Buttons</a></li>
+      <ul class="nav flex-column flex-nowrap">
+        <li class="nav-item"><a class="nav-link" href="elements-buttons-standard.html">Buttons</a></li>
       </ul>
     </div>
   </li>
 </ul>
 ```
 
-Icons are 20 px (`--aui-nav-icon-size`) and centered in the row. Mark the current page with `active` and `aria-current="page"`; open its group with `show` on the `.collapse` and `aria-expanded="true"` on the toggle.
+The first icon of a link is its menu icon (20 px, `--aui-nav-icon-size`); `chevron-down` is the group caret. A nested `nav` is a submenu. Mark the current page with `active` and `aria-current="page"`; open its group with `show` on the `.collapse` and `aria-expanded="true"` on the toggle.
 
 ### Page title
 
 ```html
-<div class="aui-page-title">
-  <div class="aui-page-title__wrapper">
-    <div class="aui-page-title__heading">
-      <div class="aui-page-title__icon"><i data-lucide="archive" class="aui-icon-gradient-primary"></i></div>
-      <div>
-        Page name
-        <div class="aui-page-title__subheading">One sentence about the page.</div>
-      </div>
-    </div>
-    <div class="aui-page-title__actions"><!-- buttons, dropdowns --></div>
+<div class="aui-page-title d-md-flex align-items-center text-center text-md-start">
+  <div class="d-none d-md-flex align-items-center justify-content-center flex-shrink-0 me-4">
+    <i data-lucide="archive" class="aui-icon-gradient-primary"></i>
   </div>
+  <div>
+    <h1>Page name</h1>
+    <p>One sentence about the page.</p>
+  </div>
+  <div class="ms-md-auto mt-3 mt-md-0"><!-- buttons, dropdowns --></div>
 </div>
 ```
 
 ### Section tabs under the title
 
 ```html
-<ul class="aui-body-tabs aui-tabs-animated nav">
+<ul class="nav aui-body-tabs">
   <li class="nav-item"><a role="tab" class="nav-link active" data-bs-toggle="tab" href="#tab-1"><span>Overview</span></a></li>
   <li class="nav-item"><a role="tab" class="nav-link" data-bs-toggle="tab" href="#tab-2"><span>Details</span></a></li>
 </ul>
@@ -220,7 +223,7 @@ The settings are one JSON object in `localStorage` under the key `architectui`, 
 - `data-aui-toggle="sidebar"`: collapses or expands the sidebar (sets `aria-pressed`).
 - `data-aui-toggle="mode"`: switches light and dark.
 - `data-aui-reset`: restores all defaults and clears storage.
-- `data-aui-search`, `data-aui-search-toggle`, `data-aui-search-close`: the header search box; Escape closes it.
+- `data-aui-expand`, `data-aui-expand-toggle`, `data-aui-expand-close`: the expanding field (section 8); Escape closes it.
 - `data-aui-toast="#id"`: shows that Bootstrap toast.
 
 The settings panel (`#auiSettings`, cog button) is built from these controls. Copy it from `dist/index.html` or leave it out.
@@ -351,11 +354,25 @@ The card header has a fixed height; tabs inside it stay on one line. Header tabs
 - Navs: `aui-tabs-shadow`, `aui-tabs-animated` (tabs with a moving bar), `aui-nav-icon` (icon in a nav link), `aui-nav-header`, `aui-nav-divider`, `aui-nav-btn`.
 - Dropdowns: `aui-dropdown-shadow`, `aui-dropdown-hover-link`, `aui-dropdown-icon`.
 - Lists: `aui-list-borderless`.
-- Scroll areas: `aui-scroll` with a height class `aui-scroll-xs`, `-sm`, `-md`, `-lg`; `aui-scrollbar` for thin native scrollbars.
+- Scroll areas: `aui-scroll` with a height class `aui-scroll-xs`, `-sm`, `-md`, `-lg`.
 - Charts and maps: `aui-chart` (`aui-chart-sm`, `aui-chart-lg`) sets the chart height; `aui-map` (`aui-map-lg`) for Leaflet maps.
 - Helpers: `aui-divider`, `aui-code`, `aui-fs-1` … `aui-fs-4`, `aui-fs-lg`, `aui-opacity-60` … `aui-opacity-90`, `aui-flex-2`.
 - Animations: `aui-animate-fade-in`, `aui-animate-flip`, `aui-animate-light-speed-in`, `aui-animate-pulse`, `aui-animate-spin`.
 - Icon color: `aui-icon-gradient-<color>` strokes a Lucide icon with a theme gradient (needs the SVG gradient definitions from `partials/icon-gradients.njk` in the page).
+
+### Expanding field
+
+A round button that opens into a field: search in the header, search above a table, a field in a form. An empty toggle draws a magnifier; put an icon inside the toggle to show it instead.
+
+```html
+<div class="aui-expand" role="search" data-aui-expand>
+  <input type="search" class="form-control" placeholder="Search" aria-label="Search">
+  <button type="button" class="btn" data-aui-expand-toggle aria-label="Search"></button>
+  <button type="button" class="btn-close" data-aui-expand-close aria-label="Close"></button>
+</div>
+```
+
+The script adds `is-open`. Size, open width and colors are CSS variables: `--aui-expand-size`, `--aui-expand-width`, `--aui-expand-bg`, `--aui-expand-color`.
 
 ### Toasts
 
