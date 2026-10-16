@@ -6,6 +6,8 @@ for Bootstrap 5 works inside the theme without changes, and you never rebuild Bo
 
 ![ArchitectUI Bootstrap 5](preview.png)
 
+**Demo:** https://wnikk.github.io/architectui-html-theme/
+
 ## What you get
 
 - `dist/architectui.css` — the theme: layout, components, colors and dark mode in the default Business look, all driven by CSS variables.

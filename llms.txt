@@ -31,6 +31,7 @@ How it differs from Tailwind CSS and similar utility-first kits:
 
 ## Examples
 
+- [Live demo](https://wnikk.github.io/architectui-html-theme/): every demo page with the settings panel, themes and modes
 - [Starter page](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/pages-starter.html): empty built page with the full frame; copy it as a starting point
 - [Sign-in page](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/pages-login.html): built guest page without the admin frame
 - [Analytics dashboard](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/index.html): complete built dashboard
