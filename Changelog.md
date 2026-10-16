@@ -2,45 +2,45 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [6.0.0] - 2026-10-16
 
-Work towards 6.0.0. The frame markup changes without backward compatibility.
+The markup of the frame and the demo pages is now standard Bootstrap 5.3 with a few `aui-` classes. It is not compatible with 5.x markup: take the frame from `dist/pages-starter.html` and the components from the demo pages.
 
-### Changed
+### Breaking changes
 - **Frame on Bootstrap markup.** Every frame part is Bootstrap markup with one root `aui-` class:
   - header — `navbar navbar-expand-md aui-header` with `navbar-brand` and `navbar-collapse`;
   - sidebar — `offcanvas-md` with `nav flex-column`;
-  - page title, footer and settings panel — Bootstrap utilities.
-- **Removed classes.** `aui-header__*`, `aui-nav__*`, `aui-page-title__*`, `aui-footer__*`, `aui-user*`, `aui-logo__img*`, `aui-sidebar__panel`, `aui-scrollbar`, `aui-main`, `aui-main__inner`, `aui-settings__*`, `aui-segmented`, `aui-theme-grid`, `aui-swatches`.
-- **Sidebar breakpoint.** The icon rail now starts below 1200 px (Bootstrap `xl`) instead of 1250 px. The user name in the header shows from 1400 px (`xxl`), so the right-hand group has room for status badges and other items.
-- **Logo markup.** The logo is `a.aui-logo` with two images: the first for light backgrounds, the second for dark ones.
-- **Page section tabs.** Page tabs are `ul.nav.aui-body-tabs`; `aui-tabs-animated` is no longer needed on them.
-- **Demo pages on Bootstrap utilities.** Number widgets, card headers, button icons, nav and dropdown icons, dividers, font sizes and opacity use Bootstrap classes. The look stays the same.
-- **Animated tabs.** Bootstrap `nav-underline` gets the moving bar of the theme; it replaces `aui-tabs-animated` and `aui-card-tabs-animated`.
+  - page title, footer and settings panel — Bootstrap utilities;
+  - logo — `a.aui-logo` with two images: the first for light backgrounds, the second for dark ones;
+  - page section tabs — `ul.nav.aui-body-tabs`.
+- **Pages on Bootstrap utilities.** Number widgets, card headers, button icons, nav and dropdown icons, dividers, font sizes and opacity use Bootstrap classes. Animated tabs are Bootstrap `nav-underline`.
+- **Removed classes.**
+  - Frame: `aui-header__*`, `aui-nav__*`, `aui-page-title__*`, `aui-footer__*`, `aui-user*`, `aui-logo__img*`, `aui-sidebar__panel`, `aui-scrollbar`, `aui-main`, `aui-main__inner`, `aui-settings__*`, `aui-segmented`, `aui-theme-grid`, `aui-swatches`.
+  - Components: `aui-widget`, `aui-widget__*`, `aui-btn-wide`, `aui-btn-icon`, `aui-btn-icon-only`, `aui-card-border`, `aui-card-icon`, `aui-card-header-title`, `aui-card-actions`, `aui-card-tabs`, `aui-card-tabs-animated`, `aui-tabs-animated`, `aui-nav-icon`, `aui-nav-header`, `aui-nav-divider`, `aui-nav-btn`, `aui-dropdown-icon`, `aui-dropdown-shadow`, `aui-dropdown-hover-link`, `aui-list-borderless`, `aui-scroll-xs`, `aui-swatch-lg`, `aui-divider`, `aui-code`, `aui-fs-*`, `aui-opacity-*`, `aui-flex-2`.
+- **Sidebar breakpoint.** The icon rail starts below 1200 px (Bootstrap `xl`) instead of 1250 px. The user name in the header shows from 1400 px (`xxl`).
+
+### Changed
+- **Theme files are small.** The shared rules of all themes are in `architectui.css` once. A theme file holds its variable values for both modes and the rules this theme alone needs: 4–5 KB instead of about 22 KB (Cyberpunk 9 KB instead of 27 KB).
+- **Classic look in Orange.** The classic component rules (soft shadows, uppercase card titles and badges, small button text, brand-colored menus and focus rings) are in `themes/orange.css`. The look of every theme stays the same.
 - **Icons in buttons.** An icon directly inside a `.btn` is drawn larger than the button text, without an extra class.
 - **Divider.** `hr` uses the light theme line color.
-- **Theme base in the core.** The shared rules of all themes are compiled into `architectui.css` once. A theme file holds only its variable values for both modes and the rules this theme alone needs: 4–5 KB instead of about 22 KB (Cyberpunk 9 KB instead of 27 KB). The look of every theme stays the same.
-- **Classic look in Orange.** The classic component rules (soft shadows, uppercase card titles and badges, small button text, brand-colored menus and focus rings) moved from `architectui.css` to `themes/orange.css`. The core keeps only rules shared by every theme; Orange looks the same.
-- **Getting the files.** README, `llms.txt`, `llms-full.txt` and `AGENTS.md` describe the two ways to get ArchitectUI: the `dist` archive of a GitHub release or jsDelivr by tag (`cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@vX.Y.Z/dist/...`). Themes load from the CDN folder too.
-- **Files in `dist/`.** `llms.txt` and `llms-full.txt` stay in the repository root only; the README preview image moved to the root as `preview.png`.
-- **Realistic demo content.** Lorem ipsum, "Footer Link", "Tab 1", "Value 1", Bootstrap docs texts and generic menu items are replaced with plausible admin data: orders, invoices, support, team roles. The user menu leads to profile, settings, billing and sign out. Carousel slides are charts drawn in the theme colors instead of external placeholder images.
-- **Removed classes.** `aui-widget`, `aui-widget__*`, `aui-btn-wide`, `aui-btn-icon`, `aui-btn-icon-only`, `aui-card-border`, `aui-card-icon`, `aui-card-header-title`, `aui-card-actions`, `aui-card-tabs`, `aui-card-tabs-animated`, `aui-tabs-animated`, `aui-nav-icon`, `aui-nav-header`, `aui-nav-divider`, `aui-nav-btn`, `aui-dropdown-icon`, `aui-dropdown-shadow`, `aui-dropdown-hover-link`, `aui-list-borderless`, `aui-scroll-xs`, `aui-swatch-lg`, `aui-divider`, `aui-code`, `aui-fs-*`, `aui-opacity-*`, `aui-flex-2`.
+- **Realistic demo content.** Orders, invoices, support and team data instead of lorem ipsum and generic labels. The user menu leads to profile, settings, billing and sign out. Carousel slides are charts drawn in the theme colors.
+- **Getting the files.** README, `llms.txt`, `llms-full.txt` and `AGENTS.md` describe the `dist` archive of a GitHub release and jsDelivr by tag. `llms.txt` and `llms-full.txt` stay in the repository root; the README image is `preview.png`.
+- Lucide 1.58.0, Sass 1.105.2.
 
 ### Added
-- **Native form fields.** A "Dates & Files" tab on Form Controls: date, time, date and time, month, a date range, suggestions with `datalist`, number and color fields, file inputs and a file drop zone (`aui-dropzone`, `data-aui-dropzone`) that lists the chosen files. No library: the browser pickers are styled by the theme.
-- **Tables.** `tables-regular.html` starts with a list of orders: search, filters, sorting links in the header, selection, row actions, rows per page and pages, and an empty state. New `tables-datatables.html` shows the same orders in DataTables 3 with the Bootstrap 5 integration and Responsive from the CDN, without jQuery, styled by the theme. "Tables" in the menu is a group with both pages.
-- **Guest frame and `architectui-auth.js`.** Sign in, sign up, password reset and error pages have their own frame without the menu: logo, mode toggle, a brand panel from `lg`, the theme look. Their own script runs the form steps: a demo request locks the form for 2 s, then a 6-digit code from an authenticator app (sign in) or from the email (sign up), with paste, auto-fill, Backspace, a resend timer and an error state. The admin script has none of this, the guest script has no admin features.
-- **Starter, sign-in and error pages.** `pages-starter.html` is an empty page with the frame. `pages-login.html`, `pages-register.html`, `pages-forgot-password.html`, `pages-404.html` and `pages-500.html` are on the guest frame, linked from the new "Pages" menu group.
-- **Bootstrap Components page** (`components-bootstrap.html`): spinners, placeholders, floating labels, range, navbar, offcanvas, scrollspy, ratio, stacks, card group, dark dropdown and numbered list group on one page, to check a theme in both modes.
+- **Guest frame and `architectui-auth.js`.** Sign in, sign up, password reset and error pages have their own frame without the menu: logo, mode toggle, a brand panel from `lg`. Their own script runs the form steps: a demo request locks the form, then a 6-digit code from an authenticator app (sign in) or from the email (sign up), with paste, auto-fill, Backspace, a resend timer and an error state.
+- **New pages.** `pages-starter.html` (empty page with the frame), `pages-login.html`, `pages-register.html`, `pages-forgot-password.html`, `pages-404.html`, `pages-500.html` in the "Pages" menu group; `components-bootstrap.html` with every Bootstrap 5.3 component on one page; `tables-datatables.html` with DataTables 3, Bootstrap 5 integration and Responsive from the CDN.
+- **Tables.** A list of orders with search, filters, sorting links, selection, row actions and pages, and an empty state.
+- **Native form fields.** Date, time, month, a date range, suggestions with `datalist`, number, color and file fields, and a file drop zone (`aui-dropzone`, `data-aui-dropzone`) that lists the chosen files.
+- **Expanding field (`aui-expand`).** The animated search is a component for any place or form, with `data-aui-expand`, `data-aui-expand-toggle` and `data-aui-expand-close`.
 - **Number font (`aui-number`).** Marks a widget number; themes can give it their own font.
-- **Expanding field (`aui-expand`).** The animated search is now a component for any place or form: header search, search above a table, a password field. It uses `data-aui-expand`, `data-aui-expand-toggle` and `data-aui-expand-close`. An empty toggle draws a magnifier, a toggle with an icon shows that icon.
-- **Status badge example** in the header.
 
 ### Fixed
-- Headings in a carousel caption are white like the caption text, not the theme heading color.
-- A `.visually-hidden` label in a header of a table inside `.table-responsive` no longer widens the page on a phone: the scroll box is the containing block of its content.
-- The validation icon in a form field no longer slides across the field when it appears; fields animate only border, shadow and background colors.
-- Cyberpunk: outline secondary buttons were nearly invisible on black; they now use the muted text color.
+- Headings in a carousel caption are white like the caption text.
+- A `.visually-hidden` label in a table header inside `.table-responsive` no longer widens the page on a phone.
+- The validation icon in a form field no longer slides across the field when it appears.
+- Cyberpunk: outline secondary buttons are readable on black.
 - The icon rail no longer shows a cut label next to the active menu item.
 
 ## [5.3.4] - 2026-10-16

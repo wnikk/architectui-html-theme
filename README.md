@@ -1,6 +1,6 @@
 # ArchitectUI Bootstrap 5 HTML Theme
 
-ArchitectUI is a clean, responsive admin dashboard theme. Version 5 is a thin layer on top of Bootstrap 5.3:
+ArchitectUI is a clean, responsive admin dashboard theme. It is a thin layer on top of Bootstrap 5.3:
 one stylesheet and one dependency-free script. Bootstrap and the icons come from a CDN, so any markup written
 for Bootstrap 5 works inside the theme without changes, and you never rebuild Bootstrap.
 
@@ -27,7 +27,7 @@ to your project, then add to `<head>`:
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="architectui.css">
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.49.0/dist/umd/lucide.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.58.0/dist/umd/lucide.min.js"></script>
 <script defer src="architectui.js"></script>
 ```
 
@@ -89,7 +89,7 @@ stylesheet loaded after `architectui.css`; it changes palette, typography, radii
 
 Pick a theme and a mode (Light, Dark, System) in the settings panel, or toggle light/dark with the header button.
 The choice is stored in `localStorage` and applied before the first paint. To ship a fixed theme without the panel,
-add the stylesheet yourself and put the theme id on `<html>`. The attribute switches the built-in Business rules off:
+add the stylesheet yourself and put the theme id on `<html>`. The attribute switches the built-in Business values off:
 
 ```html
 <html data-aui-theme="coffee">
@@ -138,8 +138,6 @@ The theme adds `focus`, `alternate` and `tertiary` to the Bootstrap color set (`
 - [`llms-full.txt`](llms-full.txt) — complete usage reference: page template, frame markup, settings, script API, themes, tokens, component classes.
 - [`AGENTS.md`](AGENTS.md) — short how-to for agents: which files to take, how to build a page, settings, customizing, rules.
 
-Both `llms` files are also copied to `dist/`, so a deployed demo serves them at its root.
-
 ## Development
 
 Requires Node 22 or newer.
@@ -154,9 +152,10 @@ npm run dev
 | Path | Purpose |
 |------|---------|
 | `src/pages/*.html` | Demo pages. Front matter holds the title, description and icon. |
-| `src/pages/*.js` | Scripts of individual pages (charts, calendar, maps, notifications, icons, validation). |
-| `src/_includes/` | The page layout and frame partials (Eleventy + Nunjucks). |
+| `src/pages/*.js` | Scripts of individual pages (charts, calendar, maps, notifications, icons, validation, DataTables). |
+| `src/_includes/` | Page layouts (`base.njk` with the admin frame, `guest.njk` for sign-in and error pages) and partials (Eleventy + Nunjucks). |
 | `src/_data/menu.json` | Sidebar menu. |
+| `src/_data/orders.js` | Demo orders for the table pages. |
 | `src/_data/cdn.json` | Every external URL. Point them to a local `vendor/` folder to work offline. |
 | `src/scss/` | Theme styles. `architectui.scss` is the entry point. |
 | `src/js/architectui.js` | Theme script of the admin pages. |
