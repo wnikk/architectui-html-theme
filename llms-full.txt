@@ -46,6 +46,11 @@ Release files in `dist/`:
 - `assets/images/` — logos, avatars, theme background image.
 - `*.html` — demo pages; `*.js` next to them — scripts of individual demo pages.
 
+Getting the files:
+
+- Release: the `dist` archive of a GitHub release (https://github.com/wnikk/architectui-html-theme/releases). Copy the files into the project.
+- CDN: jsDelivr serves the files of a release tag straight from the repository: `https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@vX.Y.Z/dist/architectui.css`, `.../dist/architectui.js`, `.../dist/architectui-auth.js`, `.../dist/themes/<id>.css`, `.../dist/assets/...`. Replace `vX.Y.Z` with a real tag; a tag never changes. Themes load from the folder next to `architectui.css`, so the settings panel works from the CDN. Images in the markup (logo, avatars) need their own path: a local copy of `assets/` or the CDN folder.
+
 CDN dependencies. The exact, tested URLs are in `src/_data/cdn.json` and in the `<head>` of `dist/index.html`:
 
 - Bootstrap 5.3: `bootstrap.min.css` and `bootstrap.bundle.min.js`

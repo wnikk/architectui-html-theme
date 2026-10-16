@@ -17,7 +17,11 @@ for Bootstrap 5 works inside the theme without changes, and you never rebuild Bo
 
 ## Quick start
 
-Copy `dist/architectui.css`, `dist/architectui.js`, `dist/themes/` and `dist/assets/` to your project, then add to `<head>`:
+Take the files in one of two ways.
+
+**From a release.** Download the `dist` archive from [Releases](https://github.com/wnikk/architectui-html-theme/releases),
+copy `architectui.css`, `architectui.js` (and `architectui-auth.js` for sign-in pages), `themes/` and `assets/`
+to your project, then add to `<head>`:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
@@ -27,11 +31,23 @@ Copy `dist/architectui.css`, `dist/architectui.js`, `dist/themes/` and `dist/ass
 <script defer src="architectui.js"></script>
 ```
 
+**From jsDelivr.** Link the files of a release tag straight from this repository. Replace `vX.Y.Z` with a tag from
+Releases; a tag never changes, so the files stay the same:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@vX.Y.Z/dist/architectui.css">
+<script defer src="https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@vX.Y.Z/dist/architectui.js"></script>
+```
+
+Themes load from the folder next to `architectui.css`, so the settings panel and `data-aui-theme` work from the CDN too.
+Logos, avatars and other images are part of your markup: copy `assets/` or point the `src` to the same CDN folder.
+
 All links are relative, and every script is a classic `defer` script. The demo works from any folder of a local
 server and from disk (`file://`). The theme script adds one global, `window.ArchitectUI`. Call
 `ArchitectUI.refresh(element)` after you insert markup with icons, tooltips or popovers.
 
-Use any demo page in `dist/` as the starting point for the frame markup: header, sidebar, page title and footer.
+Start from `dist/pages-starter.html` for a page with the frame (header, sidebar, page title, footer) and from
+`dist/pages-login.html` for a page without it.
 
 ## Icons
 

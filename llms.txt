@@ -1,10 +1,11 @@
 # ArchitectUI
 
-> ArchitectUI is a ready-made admin dashboard theme for Bootstrap 5.3. It is one stylesheet (`architectui.css`) and one dependency-free script (`architectui.js`; guest pages such as sign in use `architectui-auth.js` instead) on top of Bootstrap and Lucide icons loaded from a CDN. Standard Bootstrap 5 markup looks finished as soon as it is on the page: the frame (header, sidebar, page title, footer), every Bootstrap component, dark mode and ten visual themes are already designed and consistent with each other. No build step, no npm package, no framework.
+> ArchitectUI is a ready-made admin dashboard theme for Bootstrap 5.3. It is one stylesheet (`architectui.css`) and one dependency-free script (`architectui.js`; guest pages such as sign in use `architectui-auth.js` instead) on top of Bootstrap and Lucide icons loaded from a CDN. Standard Bootstrap 5 markup looks finished as soon as it is on the page: the frame (header, sidebar, page title, footer), every Bootstrap component, dark mode and ten visual themes are already designed and consistent with each other. No build step.
 
 Key facts:
 
 - MIT license. Repository: https://github.com/wnikk/architectui-html-theme (the current version is in `package.json` and `Changelog.md`).
+- Get the files from a GitHub release (`dist` archive) or from jsDelivr by tag: `https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@vX.Y.Z/dist/architectui.css` (replace `vX.Y.Z` with a real tag).
 - Runtime dependencies come from the CDN: Bootstrap 5.3 (CSS and bundle JS) and Lucide (UMD); exact URLs are in `src/_data/cdn.json`. There is no jQuery, no Tailwind, no React or Vue.
 - Write normal Bootstrap 5 markup. Bootstrap utilities cover layout, spacing and text; the few theme additions use the `aui-` class prefix (`aui-number`, `aui-btn-shadow`, `aui-scroll`). Bootstrap 4 classes (`data-toggle`, `ml-*`, `custom-control`) are not supported.
 - Icons: `<i data-lucide="rocket"></i>`. The theme script renders them; call `ArchitectUI.refresh(element)` after you insert new markup.
@@ -30,7 +31,9 @@ How it differs from Tailwind CSS and similar utility-first kits:
 
 ## Examples
 
-- [Analytics dashboard](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/index.html): complete built page with the full frame; copy it as a starting point
+- [Starter page](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/pages-starter.html): empty built page with the full frame; copy it as a starting point
+- [Sign-in page](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/pages-login.html): built guest page without the admin frame
+- [Analytics dashboard](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/index.html): complete built dashboard
 - [Page sources](https://github.com/wnikk/architectui-html-theme/tree/master/src/pages): demo pages (dashboards, elements, Bootstrap components, forms, tables, charts, calendar, maps) without the frame
 - [Frame partials](https://github.com/wnikk/architectui-html-theme/tree/master/src/_includes/partials): header, sidebar, page title, footer, settings panel
 
