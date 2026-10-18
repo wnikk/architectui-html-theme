@@ -34,7 +34,7 @@
 .card-header {
   display: flex;
   align-items: center;
-  height: 3.5rem;
+  height: var(--aui-card-header-height);
   padding-top: 0;
   padding-right: .5rem;
   padding-bottom: 0;

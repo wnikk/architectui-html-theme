@@ -189,9 +189,22 @@ h1, h2, h3, h4, h5, h6,
   --bs-btn-border-color: var(--bs-gray-200);
 }
 
-// Cards: shadow instead of a border, uppercase titles in the brand-tinted title color
+// Cards: shadow instead of a border, uppercase titles in the brand-tinted title color.
+// The Bootstrap padding is scaled by the density factor.
 .card {
+  --bs-card-spacer-y: calc(1rem * var(--aui-density));
+  --bs-card-spacer-x: calc(1rem * var(--aui-density));
+  --bs-card-cap-padding-x: calc(1rem * var(--aui-density));
   box-shadow: var(--aui-shadow);
+}
+
+// Tables: the Bootstrap cell padding, scaled by the density factor
+.table > :not(caption) > * > * {
+  padding: calc(.5rem * var(--aui-density));
+}
+
+.table-sm > :not(caption) > * > * {
+  padding: calc(.25rem * var(--aui-density));
 }
 
 .card-header,

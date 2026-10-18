@@ -32,7 +32,22 @@
   --aui-logo-max-height: 2.25rem;   // logos of any shape fit into this height
   --aui-nav-icon-size: 20px;
   --aui-gutter: 1.5rem;
+  --aui-card-header-height: 3.5rem;
+  --aui-density: 1;                 // factor for card and table cell padding
   --aui-transition: .2s ease;
+}
+
+// Compact density: smaller frame gutter, card header, card and cell padding, default row gutter.
+// Themes keep their own padding values; the factor scales them the same way in every theme.
+:root[data-aui-density="compact"] {
+  --aui-density: calc(2 / 3);
+  --aui-gutter: 1rem;
+  --aui-card-header-height: 2.75rem;
+
+  // Rows with their own g-* or gx-* class keep it
+  .row:not([class^="g-"], [class*=" g-"], [class^="gx-"], [class*=" gx-"]) {
+    --bs-gutter-x: 1rem;
+  }
 }
 
 // Subtle variants of the colors that themes do not set themselves

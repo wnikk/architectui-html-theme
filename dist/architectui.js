@@ -8,7 +8,7 @@
   const systemDark = matchMedia("(prefers-color-scheme: dark)");
   const DEFAULTS = {
     header: "fixed", sidebar: "fixed", footer: "static", tabs: "shadow", mode: "light", theme: "",
-    "header-scheme": "", "sidebar-scheme": "", "sidebar-collapsed": "",
+    density: "", "header-scheme": "", "sidebar-scheme": "", "sidebar-collapsed": "",
   };
   const attrName = (key) => `data-aui-${key}`;
   const currentValue = (key) => root.getAttribute(attrName(key)) || DEFAULTS[key];

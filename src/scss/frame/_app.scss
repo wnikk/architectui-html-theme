@@ -38,10 +38,14 @@
   }
 }
 
-// Content area: padding comes from Bootstrap utilities (p-3, p-sm-4) that match --aui-gutter
 .aui-app > main {
   grid-area: main;
   min-width: 0;
+}
+
+// Content area: the page title and the page content. The padding follows --aui-gutter.
+.aui-content {
+  padding: var(--aui-gutter) var(--aui-gutter) 0;
 }
 
 @include phone {

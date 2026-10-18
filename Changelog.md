@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - **Wide-screen breakpoints.** `3xl` from 1560 px and `4xl` from 1860 px continue the Bootstrap row after `xxl` for monitors 1600 and 1920 px wide; the thresholds allow for the scrollbar. Classes: `col-<bp>`, `col-<bp>-auto`, `col-<bp>-1…12`, `offset-<bp>-0…11`, `row-cols-<bp>-auto`, `row-cols-<bp>-1…8`, `g-`, `gx-`, `gy-<bp>-0…5`, `d-<bp>-none/block/flex/grid/inline-flex`.
+- **Compact density.** `data-aui-density="compact"` on `<html>` and the "Density" group (Comfortable, Compact) in the settings panel: smaller frame gutter, card header, card and table cell padding, default row gutter, in every theme. Tokens `--aui-density` and `--aui-card-header-height`.
+
+### Changed
+- **Content area padding.** The content `div` inside `main` is `div.flex-grow-1.aui-content` instead of `px-3 px-sm-4 pt-3 pt-sm-4`; the padding follows `--aui-gutter` and looks the same. Pages copied from 6.0.0 keep working with the old utilities, but follow the density only with the new class.
 
 ## [6.0.0] - 2026-10-16
 

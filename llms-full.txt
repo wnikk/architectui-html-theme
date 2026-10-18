@@ -98,7 +98,7 @@ The CDN URLs below follow the latest release of each major version; for pinned v
     <header class="navbar navbar-expand-md aui-header">...</header>
     <aside class="aui-sidebar">...</aside>
     <main class="d-flex flex-column" id="main" tabindex="-1">
-      <div class="flex-grow-1 px-3 px-sm-4 pt-3 pt-sm-4">
+      <div class="flex-grow-1 aui-content">
         <div class="aui-page-title">...</div>
         <!-- page content: Bootstrap rows, cards, forms, tables -->
       </div>
@@ -253,6 +253,7 @@ Replace the files, nothing else: `assets/images/logo.png` for light backgrounds 
 | `data-aui-footer` | `fixed`, `static` | `static` |
 | `data-aui-sidebar-collapsed` | present or absent | absent |
 | `data-aui-tabs` | `shadow`, `line` | `shadow` |
+| `data-aui-density` | `compact`; absent means the normal density | absent |
 | `data-aui-header-scheme`, `data-aui-sidebar-scheme` | `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, `dark`, `focus`, `alternate` | none |
 | `data-aui-mode` | `light`, `dark`, `system` | `light` |
 | `data-aui-theme` | theme id (see section 6); absent means Business | absent |
@@ -337,7 +338,17 @@ Override tokens after `architectui.css` (or after the theme stylesheet). No rebu
 Layout, shared by all themes:
 
 - `--aui-header-height` (60px), `--aui-sidebar-width` (280px), `--aui-sidebar-collapsed-width` (80px)
-- `--aui-logo-max-height` (2.25rem), `--aui-nav-icon-size` (20px), `--aui-gutter` (1.5rem), `--aui-transition`
+- `--aui-logo-max-height` (2.25rem), `--aui-nav-icon-size` (20px), `--aui-gutter` (1.5rem, 1rem on phones), `--aui-card-header-height` (3.5rem), `--aui-transition`
+- `--aui-density` (1): factor for card and table cell padding
+
+Compact density: `data-aui-density="compact"` on `<html>`, or the "Density" group in the settings panel. It makes the content denser on every page and in every theme:
+
+- `--aui-gutter` is 1rem: the content area, page title, header, sidebar and footer padding;
+- `--aui-card-header-height` is 2.75rem;
+- `--aui-density` is 2/3: the card padding and the table cell padding of the theme are two thirds of the normal values;
+- a `.row` without its own `g-*` or `gx-*` class gets a 1rem gutter.
+
+On phones the content padding is 1rem in both densities. A page made for both densities uses Bootstrap utilities for its own spacing (`g-3`, `mb-3`), and the theme variables for custom CSS: `padding: calc(1rem * var(--aui-density))`.
 
 Theme palette (set per mode by every theme and by Business):
 

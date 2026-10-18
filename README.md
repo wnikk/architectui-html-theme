@@ -114,6 +114,7 @@ Layout modes are attributes on `<html>`. The settings panel (cog button) changes
 | `data-aui-footer` | `fixed`, `static` | `static` |
 | `data-aui-sidebar-collapsed` | present or absent | absent |
 | `data-aui-tabs` | `shadow`, `line` | `shadow` |
+| `data-aui-density` | `compact`, or none for the normal density | none |
 | `data-aui-header-scheme`, `data-aui-sidebar-scheme` | `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, `dark`, `focus`, `alternate` | none |
 | `data-aui-mode` | `light`, `dark`, `system` | `light` |
 | `data-aui-theme` | theme id from the table above, or none for Business | none |

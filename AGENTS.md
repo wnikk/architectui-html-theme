@@ -32,7 +32,7 @@ Bootstrap 5.3 (CSS and bundle JS) and Lucide come from a CDN; the exact URLs are
 
 ## Settings, themes, modes
 
-- Layout modes are attributes on `<html>`: `data-aui-header`, `data-aui-sidebar`, `data-aui-footer`, `data-aui-sidebar-collapsed`, `data-aui-tabs`, `data-aui-header-scheme`, `data-aui-sidebar-scheme`.
+- Layout modes are attributes on `<html>`: `data-aui-header`, `data-aui-sidebar`, `data-aui-footer`, `data-aui-sidebar-collapsed`, `data-aui-tabs`, `data-aui-density`, `data-aui-header-scheme`, `data-aui-sidebar-scheme`.
 - Theme: `data-aui-theme="<id>"` plus `themes/<id>.css`. No attribute means the default Business look.
 - Mode: `data-aui-mode` (`light`, `dark`, `system`) becomes `data-bs-theme`.
 - The settings panel stores choices in `localStorage` under `architectui`; the inline script in `<head>` applies them before the first paint.

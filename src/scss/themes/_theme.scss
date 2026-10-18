@@ -395,9 +395,9 @@
 
     // Card: border drawn as an inset shadow, subtle drop shadow
     .card {
-      --bs-card-spacer-y: var(--aui-card-padding);
-      --bs-card-spacer-x: var(--aui-card-padding);
-      --bs-card-cap-padding-x: var(--aui-card-padding);
+      --bs-card-spacer-y: calc(var(--aui-card-padding) * var(--aui-density));
+      --bs-card-spacer-x: calc(var(--aui-card-padding) * var(--aui-density));
+      --bs-card-cap-padding-x: calc(var(--aui-card-padding) * var(--aui-density));
       --bs-card-border-radius: var(--aui-radius-lg);
       --bs-card-inner-border-radius: calc(var(--aui-radius-lg) - 1px);
       --bs-card-cap-bg: transparent;
@@ -567,13 +567,13 @@
       font-size: .875rem;
 
       > :not(caption) > * > * {
-        padding: var(--aui-cell-py) var(--aui-cell-px);
+        padding: calc(var(--aui-cell-py) * var(--aui-density)) calc(var(--aui-cell-px) * var(--aui-density));
       }
 
       > thead th,
       > thead td {
-        padding-top: var(--aui-th-padding);
-        padding-bottom: var(--aui-th-padding);
+        padding-top: calc(var(--aui-th-padding) * var(--aui-density));
+        padding-bottom: calc(var(--aui-th-padding) * var(--aui-density));
         background: var(--aui-app-bg);
         color: var(--aui-text-faint);
         font-size: var(--aui-th-size);
@@ -614,7 +614,7 @@
     }
 
     .table-sm > :not(caption) > * > * {
-      padding: calc(var(--aui-cell-py) / 2) calc(var(--aui-cell-px) / 2);
+      padding: calc(var(--aui-cell-py) * var(--aui-density) / 2) calc(var(--aui-cell-px) * var(--aui-density) / 2);
     }
 
     // Badges, dropdowns, modals and other components
