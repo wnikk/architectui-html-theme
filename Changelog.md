@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - **Content area padding.** The content `div` inside `main` is `div.flex-grow-1.aui-content` instead of `px-3 px-sm-4 pt-3 pt-sm-4`; the padding follows `--aui-gutter` and looks the same. Pages copied from 6.0.0 keep working with the old utilities, but follow the density only with the new class.
 
 ### Fixed
+- **`bg-<color>-subtle` in Orange.** The utilities are the pale Bootstrap background in the theme palette in every theme, so `badge bg-success-subtle text-success-emphasis` is readable in Orange. They no longer paint the `-subtle` gradients (in Orange the classic bright ones, in `dark-subtle` a dark one); the `--aui-gradient-<color>-subtle` tokens stay for custom CSS.
 - **Badge in a card header on phones.** A `.badge.ms-auto` in `.card-header` keeps its shape below 576 px; only action blocks move to their own line.
 
 ## [6.0.0] - 2026-10-16

@@ -364,7 +364,7 @@ Bootstrap tokens (`--bs-primary`, `--bs-primary-rgb`, `--bs-body-bg` and so on) 
 :root { --bs-primary: #3f6ad8; --bs-primary-rgb: 63, 106, 216; }
 ```
 
-Colors: Bootstrap's `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, `dark` plus `focus`, `alternate`, `tertiary`. Every color has `btn-*`, `btn-outline-*`, `bg-*`, `text-*`, `border-*`, `text-bg-*`. `bg-<color>` paints the theme gradient for the Bootstrap colors and a solid fill for `focus`, `alternate`, `tertiary`; `text-bg-<color>` is a solid fill with the theme's contrast text color.
+Colors: Bootstrap's `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, `dark` plus `focus`, `alternate`, `tertiary`. Every color has `btn-*`, `btn-outline-*`, `bg-*`, `text-*`, `border-*`, `text-bg-*`. `bg-<color>` paints the theme gradient for the Bootstrap colors and a solid fill for `focus`, `alternate`, `tertiary`; `text-bg-<color>` is a solid fill with the theme's contrast text color. `bg-<color>-subtle` is the pale Bootstrap background in the theme palette, in every theme and mode; pair it with `text-<color>-emphasis`, for example `badge bg-success-subtle text-success-emphasis`. The `--aui-gradient-<color>-subtle` tokens are for custom CSS.
 
 ## 8. Component reference
 
@@ -388,7 +388,7 @@ A card with Bootstrap flex utilities. The theme adds only `aui-number` (the numb
 </div>
 ```
 
-Filled variant: add `bg-primary` (or another color) to the card and `text-white` to the inner row. Choose a dark color (`bg-primary`, `bg-success`, `bg-danger`, `bg-dark`) for white text; `-subtle` gradients are light. Progress row: wrap the inner row in `div.d-flex.flex-column.flex-grow-1` and add after it:
+Filled variant: add `bg-primary` (or another color) to the card and `text-white` to the inner row. Choose a dark color (`bg-primary`, `bg-success`, `bg-danger`, `bg-dark`) for white text. For a pale card use `bg-<color>-subtle` with `text-<color>-emphasis` instead of `text-white`. Progress row: wrap the inner row in `div.d-flex.flex-column.flex-grow-1` and add after it:
 
 ```html
 <div class="mt-3">

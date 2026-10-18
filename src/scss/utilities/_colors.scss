@@ -1,4 +1,5 @@
 // Color utilities: theme colors missing in Bootstrap and brand gradients
+@use "sass:string";
 @use "../config" as *;
 
 @each $name in $aui-extra-colors {
@@ -26,10 +27,13 @@
   }
 }
 
-// bg-<color> paints the brand gradient over the Bootstrap color
+// bg-<color> paints the brand gradient over the Bootstrap color. bg-<color>-subtle stays the pale
+// Bootstrap background in every theme; the -subtle gradients are tokens for custom CSS.
 @each $name, $gradient in $aui-gradients {
-  .bg-#{$name} {
-    background-image: var(--aui-gradient-#{$name}) !important;
+  @if not string.index($name, "-subtle") {
+    .bg-#{$name} {
+      background-image: var(--aui-gradient-#{$name}) !important;
+    }
   }
 }
 
