@@ -35,6 +35,7 @@
   --aui-card-header-height: 3.5rem;
   --aui-density: 1;                 // factor for card and table cell padding
   --aui-transition: .2s ease;
+  --aui-page-animation: aui-page-in .3s ease-out backwards;   // content on page load; none turns it off
 }
 
 // Compact density: smaller frame gutter, card header, card and cell padding, default row gutter.

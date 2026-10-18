@@ -14,6 +14,13 @@
   }
 }
 
+// Page content: from transparent and 8px lower. The end state is not kept (backwards fill),
+// so no transform stays on the content after the animation.
+@keyframes aui-page-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
 @keyframes aui-spin {
   to {
     transform: rotate(360deg);
@@ -53,16 +60,26 @@
 .aui-animate-light-speed-in { animation: aui-light-speed-in 1s ease-out both; }
 .aui-animate-spin { animation: aui-spin 2s linear infinite; }
 
-// Tab content fade-in
-.tab-pane.active {
+// Tab content fades in when a tab is switched: architectui.js marks the pane with aui-tab-in.
+// The pane that is active on load appears together with the page content.
+.tab-pane.aui-tab-in.active {
   animation: aui-fade-in .2s both;
 }
 
 @media (prefers-reduced-motion: reduce) {
   [class*="aui-animate-"],
-  .tab-pane.active,
+  .aui-content,
+  .tab-pane.aui-tab-in.active,
   .dropdown-menu.show,
   .aui-settings-toggle svg.lucide {
+    animation: none !important;
+  }
+}
+
+// Print: everything is visible at once
+@media print {
+  .aui-content,
+  .tab-pane.aui-tab-in.active {
     animation: none !important;
   }
 }

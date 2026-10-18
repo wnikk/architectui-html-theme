@@ -340,6 +340,7 @@ Layout, shared by all themes:
 - `--aui-header-height` (60px), `--aui-sidebar-width` (280px), `--aui-sidebar-collapsed-width` (80px)
 - `--aui-logo-max-height` (2.25rem), `--aui-nav-icon-size` (20px), `--aui-gutter` (1.5rem, 1rem on phones), `--aui-card-header-height` (3.5rem), `--aui-transition`
 - `--aui-density` (1): factor for card and table cell padding
+- `--aui-page-animation` (`aui-page-in .3s ease-out backwards`): the content area (`.aui-content`) appears on every page load, from transparent and 8px lower; the header, sidebar and footer stay still. Set it to `none` to turn the animation off. It is off with `prefers-reduced-motion: reduce` and in print. A modal or an offcanvas opened during the animation ends it first.
 
 Compact density: `data-aui-density="compact"` on `<html>`, or the "Density" group in the settings panel. It makes the content denser on every page and in every theme:
 

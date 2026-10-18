@@ -44,8 +44,10 @@
 }
 
 // Content area: the page title and the page content. The padding follows --aui-gutter.
+// It appears on every page load (--aui-page-animation); the header, sidebar and footer stay still.
 .aui-content {
   padding: var(--aui-gutter) var(--aui-gutter) 0;
+  animation: var(--aui-page-animation);
 }
 
 @include phone {

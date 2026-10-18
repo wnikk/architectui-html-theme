@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - **Wide-screen breakpoints.** `3xl` from 1560 px and `4xl` from 1860 px continue the Bootstrap row after `xxl` for monitors 1600 and 1920 px wide; the thresholds allow for the scrollbar. Classes: `col-<bp>`, `col-<bp>-auto`, `col-<bp>-1…12`, `offset-<bp>-0…11`, `row-cols-<bp>-auto`, `row-cols-<bp>-1…8`, `g-`, `gx-`, `gy-<bp>-0…5`, `d-<bp>-none/block/flex/grid/inline-flex`.
 - **Operations Wall page** (`dashboard-operations.html`, menu Dashboards): a dense overview for 1600 and 1920 px monitors with the `3xl` and `4xl` columns, one column on phones. Key figures with sparklines, requests by region, regions, capacity, six service charts, an event table and the activity feed; period, region filter and auto-refresh.
 - **Chart sizes.** `aui-chart-xs` (150px) and `aui-sparkline` (2.5rem trend line under a number).
+- **Page appear animation.** The content area (`.aui-content`) appears on every page load: from transparent and 8px lower, 0.3 s, `ease-out`; token `--aui-page-animation` (`none` turns it off). Off with `prefers-reduced-motion` and in print. Tab panes fade in when a tab is switched, not on load, so the first tab appears together with the page.
 - **Compact density.** `data-aui-density="compact"` on `<html>` and the "Density" group (Comfortable, Compact) in the settings panel: smaller frame gutter, card header, card and table cell padding, default row gutter, in every theme. Tokens `--aui-density` and `--aui-card-header-height`.
 
 ### Changed
