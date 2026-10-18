@@ -55,7 +55,7 @@ CDN dependencies. The exact, tested URLs are in `src/_data/cdn.json` and in the 
 
 - Bootstrap 5.3: `bootstrap.min.css` and `bootstrap.bundle.min.js`
 - Lucide: the UMD bundle `lucide.min.js`, global `lucide`
-- Optional, per page: Chart.js 4 (`chart.umd.min.js`, global `Chart`), Leaflet 1.9 (`leaflet.js` + `leaflet.css`, global `L`), FullCalendar 6 (`index.global.min.js`, global `FullCalendar`), DataTables 3 with the Bootstrap 5 integration and Responsive (`dataTables.min.js`, `dataTables.bootstrap5.min.js`, `dataTables.responsive.min.js`, `responsive.bootstrap5.min.js` + two CSS files, global `DataTable`, no jQuery).
+- Optional, per page: Chart.js 4 (`chart.umd.min.js`, global `Chart`), Leaflet 1.9 (`leaflet.js` + `leaflet.css`, global `L`), FullCalendar 7 with the Bootstrap 5 theme plugin (`all/global.min.js` + `@fullcalendar/bootstrap5/global.min.js`, `skeleton.css` + `@fullcalendar/bootstrap5/theme.css`, global `FullCalendar`), DataTables 3 with the Bootstrap 5 integration and Responsive (`dataTables.min.js`, `dataTables.bootstrap5.min.js`, `dataTables.responsive.min.js`, `responsive.bootstrap5.min.js` + two CSS files, global `DataTable`, no jQuery).
 
 All paths are relative and all scripts are classic `defer` scripts. The demo works from any folder of a web server and from disk (`file://`). To work offline, copy the CDN files to a local folder and change the URLs; the markup does not change.
 
@@ -523,7 +523,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 ## 9. Third-party libraries on a page
 
 - Chart.js: load the UMD bundle before the page script. Read colors from CSS variables (`getComputedStyle(document.documentElement).getPropertyValue("--bs-primary")`) and re-render on `aui:theme-change`. Put the canvas in `.aui-chart`.
-- FullCalendar: load the global bundle; it follows the theme without extra styles.
+- FullCalendar 7: load `skeleton.css` and the Bootstrap 5 theme `theme.css` of `@fullcalendar/bootstrap5`, then `all/global.min.js` and the plugin `global.min.js`; the plugin registers itself. Set `headerToolbar` (it is off by default in 7). The plugin uses Bootstrap classes and colors, so the calendar follows the theme and the mode; the theme draws the plugin icons, so Bootstrap Icons are not needed. Event colors: `color` and `contrastColor` (for example `--bs-success` and `--aui-success-contrast`); repaint them on `aui:theme-change` with `event.setProp()`.
 - Leaflet: load `leaflet.css` and `leaflet.js`; put the map in `.aui-map`.
 - DataTables 3: load the CSS of `datatables.net-bs5` and `datatables.net-responsive-bs5`, then `dataTables.min.js`, `dataTables.bootstrap5.min.js`, `dataTables.responsive.min.js`, `responsive.bootstrap5.min.js`. Put rows in a regular `table.table` and call `new DataTable(table, { responsive: true })`. The theme styles the toolbar, sorting, empty result and pagination. Put `data-order` on cells whose text does not sort well (dates, amounts). DataTables right-aligns date columns; add `className: "dt-left"` to keep them left. Set `responsivePriority` so the key columns stay on a phone.
 - Wrap page scripts in an IIFE and read libraries from `window` so nothing leaks into the global scope.

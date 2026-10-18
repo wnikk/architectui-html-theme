@@ -309,10 +309,6 @@ h1, h2, h3, h4, h5, h6,
   --bs-accordion-active-color: var(--bs-primary);
 }
 
-.fc {
-  --fc-border-color: var(--bs-border-color);
-}
-
 // Guest frame: the classic primary gradient is too light for white text; the brand panel takes a deep one
 .aui-guest-brand {
   background-image: var(--aui-gradient-secondary-subtle);

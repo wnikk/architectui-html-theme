@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - **Compact density.** `data-aui-density="compact"` on `<html>` and the "Density" group (Comfortable, Compact) in the settings panel: smaller frame gutter, card header, card and table cell padding, default row gutter, in every theme. Tokens `--aui-density` and `--aui-card-header-height`.
 
 ### Changed
+- **FullCalendar 7.** The Calendar demo uses FullCalendar 7.1.3 with its Bootstrap 5 theme plugin (`all/global.min.js`, `@fullcalendar/bootstrap5`, `skeleton.css`, `theme.css`) instead of 6.1.19. The plugin gives the calendar Bootstrap buttons and colors, so it follows every theme and mode; the theme draws the five plugin icons without Bootstrap Icons and keeps its gradients off the calendar tints. Event colors use `color` and `contrastColor` and follow theme changes. The theme rules for the FullCalendar 6 classes (`.fc`, `--fc-*`) are removed.
 - **Content area padding.** The content `div` inside `main` is `div.flex-grow-1.aui-content` instead of `px-3 px-sm-4 pt-3 pt-sm-4`; the padding follows `--aui-gutter` and looks the same. Pages copied from 6.0.0 keep working with the old utilities, but follow the density only with the new class.
 
 ### Fixed
