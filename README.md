@@ -20,11 +20,12 @@ for Bootstrap 5 works inside the theme without changes, and you never rebuild Bo
 
 ## Quick start
 
-Take the files in one of two ways.
+The built files are in the `dist/` folder of this repository, always the latest version
+(its number is in `package.json` and `Changelog.md`). Take them in one of two ways.
 
-**From a release.** Download the `dist` archive from [Releases](https://github.com/wnikk/architectui-html-theme/releases),
-copy `architectui.css`, `architectui.js` (and `architectui-auth.js` for sign-in pages), `themes/` and `assets/`
-to your project, then add to `<head>`:
+**Download.** Download the repository as a [ZIP of the `master` branch](https://github.com/wnikk/architectui-html-theme/archive/refs/heads/master.zip)
+or clone it. Copy from `dist/` the files `architectui.css`, `architectui.js` (and `architectui-auth.js` for sign-in pages),
+the folders `themes/` and `assets/` to your project, then add to `<head>`:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
@@ -34,12 +35,12 @@ to your project, then add to `<head>`:
 <script defer src="architectui.js"></script>
 ```
 
-**From jsDelivr.** Link the files of a release tag straight from this repository. Replace `vX.Y.Z` with a tag from
-Releases; a tag never changes, so the files stay the same:
+**From jsDelivr.** Link the latest files straight from the `master` branch of this repository.
+A new version reaches the CDN within about 12 hours:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@vX.Y.Z/dist/architectui.css">
-<script defer src="https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@vX.Y.Z/dist/architectui.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@master/dist/architectui.css">
+<script defer src="https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@master/dist/architectui.js"></script>
 ```
 
 Themes load from the folder next to `architectui.css`, so the settings panel and `data-aui-theme` work from the CDN too.
@@ -153,7 +154,7 @@ npm install
 npm run dev
 ```
 
-`npm run dev` serves the demo at http://localhost:8080 and rebuilds pages and styles on change. `npm run build` writes the release into `dist/`.
+`npm run dev` serves the demo at http://localhost:8080 and rebuilds pages and styles on change. `npm run build` writes the built files into `dist/`.
 
 | Path | Purpose |
 |------|---------|

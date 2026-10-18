@@ -37,7 +37,7 @@ Same markup and JavaScript API. ArchitectUI adds the admin frame, a designed def
 
 ## 2. Files and dependencies
 
-Release files in `dist/`:
+Built files in `dist/`:
 
 - `architectui.css` — the theme: layout, components, tokens, the default Business look.
 - `architectui.js` — the theme behavior of the admin pages. Classic script, no dependencies.
@@ -48,8 +48,8 @@ Release files in `dist/`:
 
 Getting the files:
 
-- Release: the `dist` archive of a GitHub release (https://github.com/wnikk/architectui-html-theme/releases). Copy the files into the project.
-- CDN: jsDelivr serves the files of a release tag straight from the repository: `https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@vX.Y.Z/dist/architectui.css`, `.../dist/architectui.js`, `.../dist/architectui-auth.js`, `.../dist/themes/<id>.css`, `.../dist/assets/...`. Replace `vX.Y.Z` with a real tag; a tag never changes. Themes load from the folder next to `architectui.css`, so the settings panel works from the CDN. Images in the markup (logo, avatars) need their own path: a local copy of `assets/` or the CDN folder.
+- Download: the `dist/` folder of the repository holds the latest built files (version in `package.json` and `Changelog.md`). Take a ZIP of the `master` branch (https://github.com/wnikk/architectui-html-theme/archive/refs/heads/master.zip) or clone the repository, and copy the files from `dist/` into the project.
+- CDN: jsDelivr serves the latest files from the `master` branch: `https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@master/dist/architectui.css`, `.../dist/architectui.js`, `.../dist/architectui-auth.js`, `.../dist/themes/<id>.css`, `.../dist/assets/...`. A new version reaches the CDN within about 12 hours. Themes load from the folder next to `architectui.css`, so the settings panel works from the CDN. Images in the markup (logo, avatars) need their own path: a local copy of `assets/` or the CDN folder.
 
 CDN dependencies. The exact, tested URLs are in `src/_data/cdn.json` and in the `<head>` of `dist/index.html`:
 
