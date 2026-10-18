@@ -6,10 +6,15 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - **Wide-screen breakpoints.** `3xl` from 1560 px and `4xl` from 1860 px continue the Bootstrap row after `xxl` for monitors 1600 and 1920 px wide; the thresholds allow for the scrollbar. Classes: `col-<bp>`, `col-<bp>-auto`, `col-<bp>-1…12`, `offset-<bp>-0…11`, `row-cols-<bp>-auto`, `row-cols-<bp>-1…8`, `g-`, `gx-`, `gy-<bp>-0…5`, `d-<bp>-none/block/flex/grid/inline-flex`.
+- **Operations Wall page** (`dashboard-operations.html`, menu Dashboards): a dense overview for 1600 and 1920 px monitors with the `3xl` and `4xl` columns, one column on phones. Key figures with sparklines, requests by region, regions, capacity, six service charts, an event table and the activity feed; period, region filter and auto-refresh.
+- **Chart sizes.** `aui-chart-xs` (150px) and `aui-sparkline` (2.5rem trend line under a number).
 - **Compact density.** `data-aui-density="compact"` on `<html>` and the "Density" group (Comfortable, Compact) in the settings panel: smaller frame gutter, card header, card and table cell padding, default row gutter, in every theme. Tokens `--aui-density` and `--aui-card-header-height`.
 
 ### Changed
 - **Content area padding.** The content `div` inside `main` is `div.flex-grow-1.aui-content` instead of `px-3 px-sm-4 pt-3 pt-sm-4`; the padding follows `--aui-gutter` and looks the same. Pages copied from 6.0.0 keep working with the old utilities, but follow the density only with the new class.
+
+### Fixed
+- **Badge in a card header on phones.** A `.badge.ms-auto` in `.card-header` keeps its shape below 576 px; only action blocks move to their own line.
 
 ## [6.0.0] - 2026-10-16
 

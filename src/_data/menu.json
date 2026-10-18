@@ -6,6 +6,11 @@
         "title": "Dashboard Example 1",
         "href": "index.html",
         "icon": "rocket"
+      },
+      {
+        "title": "Operations Wall",
+        "href": "dashboard-operations.html",
+        "icon": "monitor"
       }
     ]
   },

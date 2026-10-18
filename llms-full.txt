@@ -458,7 +458,7 @@ Other Bootstrap utilities (spacing, text, order) stop at `xxl`.
 - Numbers: `aui-number`.
 - Forms: `aui-dropzone` (file drop zone, see Forms).
 - Scroll areas: `aui-scroll` with a height class `aui-scroll-sm`, `-md`, `-lg`.
-- Charts and maps: `aui-chart` (`aui-chart-sm`, `aui-chart-lg`) sets the chart height; `aui-map` (`aui-map-lg`) for Leaflet maps.
+- Charts and maps: `aui-chart` (`aui-chart-xs`, `aui-chart-sm`, `aui-chart-lg`) sets the chart height; `aui-sparkline` is a 2.5rem trend line under a number (a Chart.js line without axes); `aui-map` (`aui-map-lg`) for Leaflet maps.
 - Animations: `aui-animate-fade-in`, `aui-animate-flip`, `aui-animate-light-speed-in`, `aui-animate-pulse`, `aui-animate-spin`.
 - Icon color: `aui-icon-gradient-<color>` strokes a Lucide icon with a theme gradient (needs the SVG gradient definitions from `partials/icon-gradients.njk` in the page).
 
@@ -545,6 +545,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 |------|-------|
 | `index.html` | Analytics dashboard: widgets, charts, table, progress widgets |
 | `dashboard-boxes.html` | Number widgets in every variant |
+| `dashboard-operations.html` | Operations Wall for wide screens: filter bar, key figures with sparklines, requests by region, regions, capacity, service charts, event table, activity; `3xl` and `4xl` columns, auto-refresh, works in both densities |
 | `elements-buttons-standard.html` | Buttons, groups, states |
 | `elements-dropdowns.html` | Dropdowns, split buttons, sizes, positions |
 | `elements-badges-labels.html` | Badges on buttons and alone |

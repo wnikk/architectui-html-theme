@@ -65,6 +65,16 @@
   height: 350px;
 }
 
+.aui-chart-xs {
+  height: 150px;
+}
+
+// Sparkline: a small trend line under a number, without axes
+.aui-sparkline {
+  position: relative;
+  height: 2.5rem;
+}
+
 // DataTables 3 with the Bootstrap 5 integration: the search field gets room, the empty result is a quiet message.
 // The selectors repeat the library ones, so these rules win by order.
 div.dt-container div.dt-search input {

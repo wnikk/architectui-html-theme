@@ -1,0 +1,194 @@
+---
+title: "Operations Wall"
+description: "Live overview for wide screens: key figures, traffic, regions, services, events and activity on one page."
+icon: "monitor"
+scripts: ["chartjs"]
+script: "dashboard-operations.js"
+---
+{#- Layout: one column on phones, two on tablets, Bootstrap xl and xxl for laptops, 3xl and 4xl for 1600 and 1920 px monitors -#}
+<div class="card mb-3">
+    <div class="card-body d-flex flex-wrap align-items-center gap-2 gap-md-3 py-2">
+        <div class="btn-group btn-group-sm" role="radiogroup" aria-label="Period">
+            {%- for period in [["1h", "1 h"], ["24h", "24 h"], ["7d", "7 days"], ["30d", "30 days"]] %}
+            <input type="radio" class="btn-check" name="ops-period" id="ops-period-{{ period[0] }}" value="{{ period[0] }}"{% if loop.first %} checked{% endif %}>
+            <label class="btn btn-outline-primary" for="ops-period-{{ period[0] }}">{{ period[1] }}</label>
+            {%- endfor %}
+        </div>
+        <label class="visually-hidden" for="ops-region">Region</label>
+        <select class="form-select form-select-sm w-auto" id="ops-region">
+            <option value="">All regions</option>
+            {%- for region in operations.regions %}
+            <option value="{{ region.id }}">{{ region.name }}</option>
+            {%- endfor %}
+        </select>
+        <div class="form-check form-switch mb-0">
+            <input class="form-check-input" type="checkbox" role="switch" id="ops-refresh" checked>
+            <label class="form-check-label" for="ops-refresh">Auto-refresh</label>
+        </div>
+        <div class="ms-auto d-flex align-items-center gap-2 small text-body-secondary">
+            <i data-lucide="clock"></i><span>Updated <time id="ops-updated">14:32:05</time></span>
+            <button type="button" class="btn btn-outline-secondary btn-sm" id="ops-reload" aria-label="Refresh now"><i data-lucide="refresh-cw"></i></button>
+        </div>
+    </div>
+</div>
+
+{#- Key figures: four per row on tablets and laptops, eight in one row on 1920 px monitors #}
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-4xl-8 g-3 mb-3">
+    {%- for kpi in operations.kpis %}
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body pb-2">
+                <div class="d-flex align-items-center justify-content-between gap-2 small text-body-secondary">
+                    <span class="text-truncate">{{ kpi.label }}</span>
+                    <span class="d-inline-flex align-items-center text-nowrap text-{{ kpi.tone }}"><i data-lucide="{{ 'arrow-up-right' if kpi.up else 'arrow-down-right' }}"></i>{{ kpi.delta }}</span>
+                </div>
+                <div class="aui-number fs-4 fw-bold lh-sm mt-1">{{ kpi.value }}</div>
+                <div class="aui-sparkline mt-2">
+                    <canvas data-ops-chart="spark" data-ops-key="{{ kpi.key }}" data-ops-color="{{ kpi.color }}" role="img" aria-label="{{ kpi.label }} trend"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    {%- endfor %}
+</div>
+
+<div class="row g-3 mb-3">
+    <div class="col-12 col-xl-8 col-3xl-6">
+        <div class="card h-100">
+            <div class="card-header"><i data-lucide="chart-line" class="me-2"></i>Requests by region</div>
+            <div class="card-body">
+                <div class="aui-chart aui-chart-lg">
+                    <canvas data-ops-chart="traffic" role="img" aria-label="Requests per minute by region"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-4 col-3xl-3">
+        <div class="card h-100">
+            <div class="card-header"><i data-lucide="map-pin" class="me-2"></i>Regions</div>
+            <ul class="list-group list-group-flush">
+                {%- for region in operations.regions %}
+                <li class="list-group-item">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="fw-bold">{{ region.name }}</span>
+                        <span class="badge text-bg-{{ region.status[0] }} ms-auto">{{ region.status[1] }}</span>
+                    </div>
+                    <div class="d-flex flex-wrap column-gap-3 small text-body-secondary mt-1">
+                        <span>Traffic <span class="aui-number text-body">{{ region.share }}%</span></span>
+                        <span>p95 <span class="aui-number text-body">{{ region.latency }}</span></span>
+                        <span>Errors <span class="aui-number text-body">{{ region.errors }}</span></span>
+                    </div>
+                    <div class="progress mt-2" role="progressbar" aria-label="{{ region.name }} traffic share" aria-valuenow="{{ region.share }}" aria-valuemin="0" aria-valuemax="100" style="height: .25rem">
+                        <div class="progress-bar bg-{{ region.color }}" style="width: {{ region.share }}%"></div>
+                    </div>
+                </li>
+                {%- endfor %}
+            </ul>
+        </div>
+    </div>
+    {#- Full width under the chart on laptops: the meters go into three columns. From 3xl one row: chart, regions, capacity #}
+    <div class="col-12 col-md-6 col-xl-12 col-3xl-3">
+        <div class="card h-100">
+            <div class="card-header"><i data-lucide="gauge" class="me-2"></i>Capacity</div>
+            <div class="card-body">
+                <div class="row row-cols-1 row-cols-xl-3 row-cols-3xl-1 g-3">
+                    {%- for item in operations.capacity %}
+                    <div class="col">
+                        <div class="d-flex justify-content-between small mb-1">
+                            <span class="text-body-secondary">{{ item[0] }}</span>
+                            <span class="aui-number fw-bold">{{ item[1] }}%</span>
+                        </div>
+                        <div class="progress" role="progressbar" aria-label="{{ item[0] }}" aria-valuenow="{{ item[1] }}" aria-valuemin="0" aria-valuemax="100" style="height: .5rem">
+                            <div class="progress-bar bg-{{ item[2] }}" style="width: {{ item[1] }}%"></div>
+                        </div>
+                    </div>
+                    {%- endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#- Services: small charts of one type, six in one row on 1920 px monitors #}
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-4xl-6 g-3 mb-3">
+    {%- for service in operations.services %}
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-header">
+                <i data-lucide="{{ service.icon }}" class="me-2"></i><span class="text-truncate">{{ service.name }}</span>
+                <span class="badge text-bg-{{ service.status[0] }} ms-auto">{{ service.status[1] }}</span>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-baseline gap-2 mb-2">
+                    <span class="aui-number fs-5 fw-bold">{{ service.rpm }}</span>
+                    <span class="small text-body-secondary">req/min</span>
+                    <span class="ms-auto small text-body-secondary text-nowrap">p95 <span class="aui-number text-body">{{ service.latency }}</span></span>
+                </div>
+                <div class="aui-chart aui-chart-xs">
+                    <canvas data-ops-chart="service" data-ops-key="{{ service.key }}" data-ops-color="{{ service.status[0] }}" role="img" aria-label="{{ service.name }} requests per minute"></canvas>
+                </div>
+                <div class="small text-body-secondary mt-2">Uptime 30 days <span class="aui-number text-body">{{ service.uptime }}</span></div>
+            </div>
+        </div>
+    </div>
+    {%- endfor %}
+</div>
+
+<div class="row g-3 mb-3">
+    <div class="col-12 col-xxl-8 col-4xl-9">
+        <div class="card h-100">
+            <div class="card-header">
+                <i data-lucide="scroll-text" class="me-2"></i>Events
+                <span class="badge rounded-pill text-bg-secondary ms-auto" id="ops-events-count">{{ operations.events.length }}</span>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-sm table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">Time</th>
+                            <th scope="col">Severity</th>
+                            <th scope="col" class="d-none d-sm-table-cell">Service</th>
+                            <th scope="col" class="d-none d-md-table-cell">Region</th>
+                            <th scope="col">Event</th>
+                            <th scope="col" class="d-none d-xl-table-cell">Owner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%- for event in operations.events %}
+                        <tr data-region="{{ event.region }}">
+                            <td class="text-nowrap aui-number">{{ event.time }}</td>
+                            <td><span class="badge text-bg-{{ event.color }}">{{ event.severity }}</span></td>
+                            <td class="d-none d-sm-table-cell">{{ event.service }}</td>
+                            <td class="d-none d-md-table-cell text-nowrap">{{ event.regionName }}</td>
+                            <td class="text-body"><div class="d-sm-none small text-body-secondary">{{ event.service }}</div>{{ event.message }}</td>
+                            <td class="d-none d-xl-table-cell text-nowrap text-body-secondary">{{ event.owner }}</td>
+                        </tr>
+                        {%- endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-xxl-4 col-4xl-3">
+        <div class="card h-100">
+            <div class="card-header"><i data-lucide="activity" class="me-2"></i>Activity</div>
+            <div class="aui-scroll aui-scroll-lg">
+                <ul class="list-group list-group-flush">
+                    {%- for item in operations.activity %}
+                    <li class="list-group-item d-flex gap-3" data-region="{{ item.region }}">
+                        {%- if item.avatar %}
+                        <img src="assets/images/avatars/{{ item.avatar }}.jpg" width="32" height="32" class="rounded-circle flex-shrink-0" alt="">
+                        {%- else %}
+                        <span class="d-inline-flex p-2 rounded-circle text-bg-secondary flex-shrink-0"><i data-lucide="bot"></i></span>
+                        {%- endif %}
+                        <div class="lh-sm">
+                            <div><span class="fw-bold">{{ item.name }}</span> {{ item.text }}</div>
+                            <div class="small text-body-secondary mt-1">{{ item.time }}</div>
+                        </div>
+                    </li>
+                    {%- endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

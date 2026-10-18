@@ -36,6 +36,7 @@ How it differs from Tailwind CSS and similar utility-first kits:
 - [Starter page](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/pages-starter.html): empty built page with the full frame; copy it as a starting point
 - [Sign-in page](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/pages-login.html): built guest page without the admin frame
 - [Analytics dashboard](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/index.html): complete built dashboard
+- [Operations Wall](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/dashboard-operations.html): dense dashboard for 1600 and 1920 px monitors with the `3xl` and `4xl` columns, one column on phones
 - [Page sources](https://github.com/wnikk/architectui-html-theme/tree/master/src/pages): demo pages (dashboards, elements, Bootstrap components, forms, tables, charts, calendar, maps) without the frame
 - [Frame partials](https://github.com/wnikk/architectui-html-theme/tree/master/src/_includes/partials): header, sidebar, page title, footer, settings panel
 

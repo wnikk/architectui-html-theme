@@ -140,7 +140,8 @@
       margin: .75rem 0 -.75rem;
     }
 
-    .ms-auto {
+    // Actions move to their own line; a badge stays next to the title
+    .ms-auto:not(.badge) {
       padding: .75rem 0 0;
     }
   }
