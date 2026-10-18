@@ -14,7 +14,8 @@ for Bootstrap 5 works inside the theme without changes, and you never rebuild Bo
 - `dist/architectui.js` — the theme behavior of the admin pages: collapsible sidebar, settings panel, theme and mode switching, header search, file drop zone, icon rendering.
 - `dist/architectui-auth.js` — the script of the guest pages (sign in, sign up, errors) instead of `architectui.js`: mode toggle, icons, form steps with a verification code.
 - `dist/themes/*.css` — nine optional visual themes loaded on top of `architectui.css`, including Orange, the original ArchitectUI look.
-- `dist/*.html` — demo pages: dashboards, elements, every Bootstrap component on one page, a starter page, guest pages (sign in, sign up, password reset, errors), Bootstrap tables and DataTables, components, forms, tables, charts, calendar and maps.
+- Wide screens and dense pages: grid and display classes `3xl` (from 1560 px) and `4xl` (from 1860 px) after Bootstrap `xxl` for 1600 and 1920 px monitors, a compact density in the settings panel, the Operations Wall demo page.
+- `dist/*.html` — demo pages: dashboards (including the Operations Wall for wide screens), elements, every Bootstrap component on one page, a starter page, guest pages (sign in, sign up, password reset, errors), Bootstrap tables and DataTables, components, forms, tables, charts, calendar and maps.
 - No jQuery, no build step for your app. Icons are [Lucide](https://lucide.dev).
 
 ## Quick start
@@ -29,7 +30,7 @@ to your project, then add to `<head>`:
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="architectui.css">
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.58.0/dist/umd/lucide.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.59.0/dist/umd/lucide.min.js"></script>
 <script defer src="architectui.js"></script>
 ```
 
@@ -122,6 +123,8 @@ Layout modes are attributes on `<html>`. The settings panel (cog button) changes
 
 The sidebar is full width from 1200 px, an icon rail from 768 px (it expands on hover or keyboard focus) and an off-canvas panel below 768 px.
 
+For monitors 1600 and 1920 px wide, the grid continues after `xxl`: `col-3xl-*`, `row-cols-3xl-*`, `g-3xl-*`, `d-3xl-*` from 1560 px and the same `4xl` classes from 1860 px. The compact density (`data-aui-density="compact"`) makes the frame gutter, cards and tables denser in every theme.
+
 ## Theme colors
 
 All colors are CSS variables. Override them after `architectui.css`, no rebuild needed:
@@ -155,10 +158,11 @@ npm run dev
 | Path | Purpose |
 |------|---------|
 | `src/pages/*.html` | Demo pages. Front matter holds the title, description and icon. |
-| `src/pages/*.js` | Scripts of individual pages (charts, calendar, maps, notifications, icons, validation, DataTables). |
+| `src/pages/*.js` | Scripts of individual pages (charts, Operations Wall, calendar, maps, notifications, icons, validation, DataTables). |
 | `src/_includes/` | Page layouts (`base.njk` with the admin frame, `guest.njk` for sign-in and error pages) and partials (Eleventy + Nunjucks). |
 | `src/_data/menu.json` | Sidebar menu. |
 | `src/_data/orders.js` | Demo orders for the table pages. |
+| `src/_data/operations.js` | Demo data of the Operations Wall page. |
 | `src/_data/cdn.json` | Every external URL. Point them to a local `vendor/` folder to work offline. |
 | `src/scss/` | Theme styles. `architectui.scss` is the entry point. |
 | `src/js/architectui.js` | Theme script of the admin pages. |

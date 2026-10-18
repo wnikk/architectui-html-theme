@@ -11,7 +11,7 @@ Key facts:
 - Wide screens: grid and display classes continue after Bootstrap `xxl` with `3xl` (from 1560 px, 1600 px monitors) and `4xl` (from 1860 px, 1920 px monitors): `col-4xl-3`, `row-cols-3xl-6`, `g-4xl-4`, `d-3xl-none`.
 - Icons: `<i data-lucide="rocket"></i>`. The theme script renders them; call `ArchitectUI.refresh(element)` after you insert new markup.
 - Every color, radius, shadow and size is a CSS variable (`--bs-*` for Bootstrap, `--aui-*` for the theme). Change them at runtime, never rebuild Bootstrap.
-- Layout modes are attributes on `<html>` (`data-aui-header`, `data-aui-sidebar`, `data-aui-sidebar-collapsed`, `data-aui-theme`, `data-aui-mode`). The settings panel stores them in `localStorage` under `architectui`.
+- Layout modes are attributes on `<html>` (`data-aui-header`, `data-aui-sidebar`, `data-aui-sidebar-collapsed`, `data-aui-density`, `data-aui-theme`, `data-aui-mode`). The settings panel stores them in `localStorage` under `architectui`.
 - Business is the default look and is built into `architectui.css`. Nine more themes are single stylesheets in `themes/` (Orange is the original ArchitectUI look). Light, dark and system modes work in every theme.
 - Everything uses relative paths and classic `<script defer>` tags, so `dist/` works from any folder of a web server and straight from disk (`file://`).
 
