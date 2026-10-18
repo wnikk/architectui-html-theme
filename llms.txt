@@ -8,6 +8,7 @@ Key facts:
 - Get the files from a GitHub release (`dist` archive) or from jsDelivr by tag: `https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@vX.Y.Z/dist/architectui.css` (replace `vX.Y.Z` with a real tag).
 - Runtime dependencies come from the CDN: Bootstrap 5.3 (CSS and bundle JS) and Lucide (UMD); exact URLs are in `src/_data/cdn.json`. There is no jQuery, no Tailwind, no React or Vue.
 - Write normal Bootstrap 5 markup. Bootstrap utilities cover layout, spacing and text; the few theme additions use the `aui-` class prefix (`aui-number`, `aui-btn-shadow`, `aui-scroll`). Bootstrap 4 classes (`data-toggle`, `ml-*`, `custom-control`) are not supported.
+- Wide screens: grid and display classes continue after Bootstrap `xxl` with `3xl` (from 1560 px, 1600 px monitors) and `4xl` (from 1860 px, 1920 px monitors): `col-4xl-3`, `row-cols-3xl-6`, `g-4xl-4`, `d-3xl-none`.
 - Icons: `<i data-lucide="rocket"></i>`. The theme script renders them; call `ArchitectUI.refresh(element)` after you insert new markup.
 - Every color, radius, shadow and size is a CSS variable (`--bs-*` for Bootstrap, `--aui-*` for the theme). Change them at runtime, never rebuild Bootstrap.
 - Layout modes are attributes on `<html>` (`data-aui-header`, `data-aui-sidebar`, `data-aui-sidebar-collapsed`, `data-aui-theme`, `data-aui-mode`). The settings panel stores them in `localStorage` under `architectui`.

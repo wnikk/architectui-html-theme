@@ -1,0 +1,62 @@
+// Grid and display utilities for the wide breakpoints 3xl and 4xl (see $aui-breakpoints-wide).
+// Names and rules copy Bootstrap's xxl set, so the same markup continues past 1400px.
+@use "sass:math";
+@use "../config" as *;
+
+$aui-gutters: (0: 0, 1: .25rem, 2: .5rem, 3: 1rem, 4: 1.5rem, 5: 3rem);
+
+@each $bp, $width in $aui-breakpoints-wide {
+  @include media-up($bp) {
+    .col-#{$bp} {
+      flex: 1 0 0;
+    }
+
+    .row-cols-#{$bp}-auto > * {
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+    @for $n from 1 through 8 {
+      .row-cols-#{$bp}-#{$n} > * {
+        flex: 0 0 auto;
+        width: math.percentage(math.div(1, $n));
+      }
+    }
+
+    .col-#{$bp}-auto {
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+    @for $n from 1 through 12 {
+      .col-#{$bp}-#{$n} {
+        flex: 0 0 auto;
+        width: math.percentage(math.div($n, 12));
+      }
+    }
+
+    @for $n from 0 through 11 {
+      .offset-#{$bp}-#{$n} {
+        margin-left: math.percentage(math.div($n, 12));
+      }
+    }
+
+    @each $n, $size in $aui-gutters {
+      .g-#{$bp}-#{$n},
+      .gx-#{$bp}-#{$n} {
+        --bs-gutter-x: #{$size};
+      }
+
+      .g-#{$bp}-#{$n},
+      .gy-#{$bp}-#{$n} {
+        --bs-gutter-y: #{$size};
+      }
+    }
+
+    @each $value in (none, block, flex, grid, inline-flex) {
+      .d-#{$bp}-#{$value} {
+        display: $value !important;
+      }
+    }
+  }
+}

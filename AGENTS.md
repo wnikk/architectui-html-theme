@@ -26,6 +26,7 @@ Bootstrap 5.3 (CSS and bundle JS) and Lucide come from a CDN; the exact URLs are
 1. Copy `dist/pages-starter.html`. Keep the `<head>` and the frame; replace the content after the page title inside `main`. For a guest page (sign in, sign up, errors), copy `dist/pages-login.html` or `dist/pages-404.html`: it loads `architectui-auth.js` instead of `architectui.js`.
 2. Write standard Bootstrap 5.3 markup: grid, cards, tables, forms, navs, modals, toasts. The theme already styles them.
 3. Build layout with Bootstrap utilities. Add `aui-` classes only for what Bootstrap does not have (number font, colored card shadows, scroll areas, chart heights). The list is in `llms-full.txt`, section 8.
+   For monitors 1600 and 1920 px wide, grid and display classes continue after `xxl` with `3xl` (from 1560 px) and `4xl` (from 1860 px): `col-4xl-3`, `row-cols-3xl-6`, `g-4xl-4`, `d-4xl-block`.
 4. Icons: `<i data-lucide="name"></i>`. After inserting markup dynamically, call `ArchitectUI.refresh(element)`.
 5. Keep paths relative and scripts as classic `<script defer>`: the pages then work from any folder and from disk.
 

@@ -404,6 +404,40 @@ The first icon in the card header gets the muted color. The card header has a fi
 
 An icon directly inside a `.btn` is drawn larger than the button text. Use `d-inline-flex align-items-center gap-2` on a button with an icon and text.
 
+### Wide-screen breakpoints
+
+Two breakpoints continue the Bootstrap row after `xxl` (1400 px) for monitors 1600 and 1920 px wide:
+
+| Name | From | For |
+|------|------|-----|
+| `3xl` | 1560 px | monitors 1600 px wide |
+| `4xl` | 1860 px | monitors 1920 px wide (Full HD) |
+
+The thresholds are lower than the monitor width: a media query counts the scrollbar, and the window frame takes a few pixels. So the breakpoint applies in a full-screen browser window with a scrollbar.
+
+Classes for `3xl` and `4xl`, with the same rules as the Bootstrap `xxl` classes:
+
+- Columns: `col-<bp>`, `col-<bp>-auto`, `col-<bp>-1` … `col-<bp>-12`.
+- Offsets: `offset-<bp>-0` … `offset-<bp>-11`.
+- Columns per row: `row-cols-<bp>-auto`, `row-cols-<bp>-1` … `row-cols-<bp>-8`.
+- Gutters: `g-<bp>-0` … `g-<bp>-5`, `gx-<bp>-*`, `gy-<bp>-*`.
+- Display: `d-<bp>-none`, `d-<bp>-block`, `d-<bp>-flex`, `d-<bp>-grid`, `d-<bp>-inline-flex`.
+
+Add them after the Bootstrap classes of the same element, from small to large:
+
+```html
+<div class="row row-cols-1 row-cols-md-2 row-cols-xxl-4 row-cols-3xl-6 row-cols-4xl-8 g-3">
+  <div class="col"><div class="card">…</div></div>
+</div>
+<div class="row">
+  <div class="col-12 col-xxl-8 col-4xl-6">…</div>
+  <div class="col-12 col-xxl-4 col-4xl-3">…</div>
+  <div class="d-none d-4xl-block col-4xl-3">…</div>
+</div>
+```
+
+Other Bootstrap utilities (spacing, text, order) stop at `xxl`.
+
 ### Other theme classes
 
 - Cards: `aui-card-shadow-<color>` (colored shadow). For a colored border instead of the shadow use Bootstrap `border border-<color> shadow-none`.

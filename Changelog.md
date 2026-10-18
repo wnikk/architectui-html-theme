@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+- **Wide-screen breakpoints.** `3xl` from 1560 px and `4xl` from 1860 px continue the Bootstrap row after `xxl` for monitors 1600 and 1920 px wide; the thresholds allow for the scrollbar. Classes: `col-<bp>`, `col-<bp>-auto`, `col-<bp>-1…12`, `offset-<bp>-0…11`, `row-cols-<bp>-auto`, `row-cols-<bp>-1…8`, `g-`, `gx-`, `gy-<bp>-0…5`, `d-<bp>-none/block/flex/grid/inline-flex`.
+
 ## [6.0.0] - 2026-10-16
 
 The markup of the frame and the demo pages is now standard Bootstrap 5.3 with a few `aui-` classes. It is not compatible with 5.x markup: take the frame from `dist/pages-starter.html` and the components from the demo pages.

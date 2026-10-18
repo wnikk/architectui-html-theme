@@ -4,6 +4,7 @@
 //   tint  - lighter on hover (for light colors)
 //   shade - darker on hover (for dark colors)
 @use "sass:color";
+@use "sass:map";
 
 $aui-colors: (
   "primary":   (#eeaa55, #000, tint),
@@ -60,6 +61,12 @@ $aui-bp-rail: 1200px;    // below: sidebar collapsed to an icon rail (Bootstrap 
 @mixin rail-range { @media (min-width: $aui-bp-mobile) and (max-width: #{$aui-bp-rail - .02px}) { @content; } }
 @mixin wide { @media (min-width: $aui-bp-rail) { @content; } }
 @mixin phone { @media (max-width: 575.98px) { @content; } }
+
+// Wide-screen breakpoints after Bootstrap xxl (1400px). Thresholds sit below 1600 and 1920 px:
+// the window width in a media query includes the scrollbar, and the window frame takes a few pixels.
+$aui-breakpoints-wide: ("3xl": 1560px, "4xl": 1860px);
+
+@mixin media-up($bp) { @media (min-width: map.get($aui-breakpoints-wide, $bp)) { @content; } }
 
 @function rgb-triplet($c) {
   @return round(color.channel($c, "red", $space: rgb)), round(color.channel($c, "green", $space: rgb)), round(color.channel($c, "blue", $space: rgb));
