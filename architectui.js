@@ -223,6 +223,12 @@
   });
 
   document.addEventListener("click", (event) => {
+    // A Back link returns to the previous page of this site; without one it follows its href
+    const back = event.target.closest("a[data-aui-back]");
+    if (back && history.length > 1 && document.referrer.startsWith(location.origin + "/")) {
+      event.preventDefault();
+      history.back();
+    }
     const option = event.target.closest("button[data-aui-setting]");
     if (option) setSetting(option.dataset.auiSetting, option.value);
     const target = event.target.closest("[data-aui-toggle], [data-aui-reset], [data-aui-expand-toggle], [data-aui-expand-close], [data-aui-toast]");
