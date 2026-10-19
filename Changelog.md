@@ -23,6 +23,7 @@ All notable changes to this project will be documented in this file.
 - **Map tiles note.** The Maps page says under the maps that the public OpenStreetMap tiles suit a demo and a working project sets its own tile server in `components-maps.js`.
 
 ### Changed
+- **New preview image.** `preview.png` in the README shows the current Analytics Dashboard in the default Business look (1600 × 1000).
 - **Indigo Calathea.** The Indigo Photo theme is now Indigo Calathea with a new photo of Calathea orbifolia leaves (`assets/images/themes/indigo-calathea.jpg`, 1920 × 1280; `indigo-bg.jpg` is removed). The id stays `indigo-img`: stored settings and links to `themes/indigo-img.css` keep working.
 - **Page head spacing.** One rule on every page: the content padding (`--aui-gutter`) above the first line, one gutter between the page title and the content or the section tabs, one gutter between the tabs and the content, half a gutter between the path line and the title. Before, the title stood two gutters above the content, and the shadow-style section tabs had 0.75rem above and below instead. The title no longer has negative margins and its own padding.
 - **Sidebar 250px.** `--aui-sidebar-width` is 250px instead of 280px: more room for the content. Sub-items have narrower side padding, and a label longer than the sidebar wraps to a second line instead of running past the highlight.
