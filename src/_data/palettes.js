@@ -8,22 +8,23 @@ import { readFileSync } from "node:fs";
 
 const themes = JSON.parse(readFileSync(new URL("./themes.json", import.meta.url), "utf8"));
 
-// Colors shown on the page: group, label, custom property, a class that uses it
+// Colors shown on the page: group, label, custom property, a class that uses it. A solid color is text-bg-<color>:
+// in the theme bg-<color> paints the gradient over the color.
 const tokens = [
-  ["Brand", "Primary", "--bs-primary", "bg-primary"],
+  ["Brand", "Primary", "--bs-primary", "text-bg-primary"],
   ["Brand", "Primary subtle", "--bs-primary-bg-subtle", "bg-primary-subtle"],
   ["Brand", "Primary emphasis", "--bs-primary-text-emphasis", "text-primary-emphasis"],
   ["Brand", "Link", "--bs-link-color", "link-primary"],
-  ["Brand", "Alternate", "--bs-alternate", "bg-alternate"],
-  ["Status", "Secondary", "--bs-secondary", "bg-secondary"],
-  ["Status", "Success", "--bs-success", "bg-success"],
-  ["Status", "Info", "--bs-info", "bg-info"],
-  ["Status", "Warning", "--bs-warning", "bg-warning"],
-  ["Status", "Danger", "--bs-danger", "bg-danger"],
-  ["Status", "Light", "--bs-light", "bg-light"],
-  ["Status", "Dark", "--bs-dark", "bg-dark"],
-  ["Status", "Focus", "--bs-focus", "bg-focus"],
-  ["Status", "Tertiary", "--bs-tertiary", "bg-tertiary"],
+  ["Brand", "Alternate", "--bs-alternate", "text-bg-alternate"],
+  ["Status", "Secondary", "--bs-secondary", "text-bg-secondary"],
+  ["Status", "Success", "--bs-success", "text-bg-success"],
+  ["Status", "Info", "--bs-info", "text-bg-info"],
+  ["Status", "Warning", "--bs-warning", "text-bg-warning"],
+  ["Status", "Danger", "--bs-danger", "text-bg-danger"],
+  ["Status", "Light", "--bs-light", "text-bg-light"],
+  ["Status", "Dark", "--bs-dark", "text-bg-dark"],
+  ["Status", "Focus", "--bs-focus", "text-bg-focus"],
+  ["Status", "Tertiary", "--bs-tertiary", "text-bg-tertiary"],
   ["Surfaces", "Page", "--aui-app-bg", ""],
   ["Surfaces", "Surface", "--aui-surface", "bg-body"],
   ["Surfaces", "Secondary surface", "--bs-secondary-bg", "bg-body-secondary"],

@@ -1,0 +1,247 @@
+---
+title: "Theme Palettes"
+description: "The colors of every theme in both modes, and how to use them: classes, CSS variables and scripts."
+icon: "palette"
+script: "elements-palettes.js"
+---
+{#- Three parts: the palette of the current theme (read live from the page), the palettes of all themes
+    (collected at build, src/_data/palettes.js) and the usage guide. A click on a value copies it. #}
+<div class="card mb-3" id="paletteCurrent">
+    <div class="card-header">
+        <i data-lucide="pipette" class="me-2"></i>Current theme
+        <span class="ms-auto d-flex align-items-center gap-2 text-body-secondary small">
+            <span data-current-theme>Business</span><span class="badge bg-secondary-subtle text-secondary-emphasis" data-current-mode>light</span>
+        </span>
+    </div>
+    <div class="card-body">
+        <p class="text-body-secondary mb-3">The colors of the theme and mode chosen in the header. Change the theme or the mode there, and the swatches follow. Click a name, a class or a HEX value to copy it.</p>
+        {%- for group in palettes.groups %}
+        <h6 class="small text-uppercase text-body-secondary mt-3 mb-2">{{ group }}</h6>
+        <div class="row row-cols-2 row-cols-md-3 row-cols-xl-5 row-cols-4xl-7 g-2">
+            {%- for token in palettes.tokens %}{% if token.group == group %}
+            <div class="col">
+                <div class="border rounded-3 overflow-hidden h-100">
+                    <div class="border-bottom" style="height: 2.25rem; background: var({{ token.name }})" data-swatch="{{ token.name }}"{% if token.gradient %} data-gradient{% endif %}></div>
+                    <div class="p-2 small">
+                        <div class="fw-bold mb-1">{{ token.label }}</div>
+                        <button type="button" class="btn btn-link btn-sm p-0 d-block text-start text-decoration-none font-monospace small" data-copy="var({{ token.name }})">{{ token.name }}</button>
+                        {%- if token.cls %}
+                        <button type="button" class="btn btn-link btn-sm p-0 d-block text-start text-decoration-none font-monospace small text-body-secondary" data-copy="{{ token.cls }}">.{{ token.cls }}</button>
+                        {%- endif %}
+                        {%- if not token.gradient %}
+                        <button type="button" class="btn btn-link btn-sm p-0 d-block text-start text-decoration-none font-monospace small text-body-secondary" data-hex-for="{{ token.name }}" data-copy="">&nbsp;</button>
+                        {%- endif %}
+                    </div>
+                </div>
+            </div>
+            {%- endif %}{% endfor %}
+        </div>
+        {%- endfor %}
+    </div>
+</div>
+
+<div class="card mb-3" id="paletteAll">
+    <div class="card-header">
+        <i data-lucide="swatch-book" class="me-2"></i>All themes
+        <div class="btn-group btn-group-sm ms-auto" role="group" aria-label="Mode of the table">
+            <input type="radio" class="btn-check" name="paletteMode" id="paletteModeLight" value="light" checked>
+            <label class="btn btn-outline-secondary" for="paletteModeLight">Light</label>
+            <input type="radio" class="btn-check" name="paletteMode" id="paletteModeDark" value="dark">
+            <label class="btn btn-outline-secondary" for="paletteModeDark">Dark</label>
+        </div>
+    </div>
+    <div class="card-body pb-0">
+        <p class="text-body-secondary mb-3">Every theme side by side, collected from the theme sources. Each swatch stands on the surface of its own theme, so translucent colors look as they do there. Click a swatch to copy its HEX value.</p>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-sm align-middle mb-0 text-nowrap">
+            <thead>
+                <tr>
+                    <th scope="col" class="position-sticky start-0 bg-body">Color</th>
+                    {%- for theme in palettes.themes %}
+                    <th scope="col" class="text-center">{{ theme.name }}{% if theme.darkOnly %}<span class="d-block fw-normal text-lowercase">dark only</span>{% endif %}</th>
+                    {%- endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {%- for group in palettes.groups %}
+                <tr>
+                    <th scope="rowgroup" colspan="{{ palettes.themes.length + 1 }}" class="position-sticky start-0 bg-body-tertiary small text-uppercase text-body-secondary">{{ group }}</th>
+                </tr>
+                {%- for token in palettes.tokens %}{% if token.group == group %}
+                <tr>
+                    <th scope="row" class="position-sticky start-0 bg-body fw-normal">
+                        <span class="d-block fw-bold">{{ token.label }}</span>
+                        <code class="small">{{ token.name }}</code>
+                    </th>
+                    {%- for theme in palettes.themes %}
+                    <td>
+                        <span class="d-block rounded-2 p-1" data-surface-light="{{ theme.light['--aui-surface'] }}" data-surface-dark="{{ theme.dark['--aui-surface'] }}" style="background: {{ theme.light['--aui-surface'] }}">
+                            <button type="button" class="d-block w-100 border rounded-2" style="height: 2rem; min-width: 5.5rem; background: {{ theme.light[token.name] }}" data-light="{{ theme.light[token.name] }}" data-dark="{{ theme.dark[token.name] }}"{% if token.gradient %} data-gradient{% endif %} data-copy="" aria-label="{{ theme.name }}, {{ token.label }}"></button>
+                        </span>
+                        <span class="d-block text-center font-monospace small text-body-secondary mt-1" data-cell-hex>&nbsp;</span>
+                    </td>
+                    {%- endfor %}
+                </tr>
+                {%- endif %}{% endfor %}
+                {%- endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i data-lucide="book-open" class="me-2"></i>How to use the colors
+        <ul class="nav nav-underline ms-auto" role="tablist">
+            <li class="nav-item" role="presentation"><button type="button" class="nav-link active" data-bs-toggle="tab" data-bs-target="#useClasses" role="tab" aria-controls="useClasses" aria-selected="true">Classes</button></li>
+            <li class="nav-item" role="presentation"><button type="button" class="nav-link" data-bs-toggle="tab" data-bs-target="#useVariables" role="tab" aria-controls="useVariables" aria-selected="false">CSS variables</button></li>
+            <li class="nav-item" role="presentation"><button type="button" class="nav-link" data-bs-toggle="tab" data-bs-target="#useScripts" role="tab" aria-controls="useScripts" aria-selected="false">JavaScript</button></li>
+        </ul>
+    </div>
+    <div class="card-body tab-content">
+        <div class="tab-pane fade show active" id="useClasses" role="tabpanel">
+            <p>Use the Bootstrap color classes. Every theme gives them its own values, in both modes, so the markup stays the same when the theme changes.</p>
+            <div class="row g-4">
+                <div class="col-xl-6">
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge text-bg-primary">text-bg-primary</span>
+                        <span class="badge bg-primary">bg-primary</span>
+                        <span class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle">bg-primary-subtle</span>
+                        <span class="badge text-bg-success">text-bg-success</span>
+                        <span class="badge text-bg-warning">text-bg-warning</span>
+                        <span class="badge text-bg-danger">text-bg-danger</span>
+                        <span class="badge text-bg-focus">text-bg-focus</span>
+                        <span class="badge text-bg-alternate">text-bg-alternate</span>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <button type="button" class="btn btn-primary btn-sm">btn-primary</button>
+                        <button type="button" class="btn btn-outline-primary btn-sm">btn-outline-primary</button>
+                        <button type="button" class="btn btn-alternate btn-sm">btn-alternate</button>
+                        <a href="#useClasses" class="link-primary align-self-center small">link-primary</a>
+                        <span class="text-danger align-self-center small">text-danger</span>
+                        <span class="text-body-secondary align-self-center small">text-body-secondary</span>
+                    </div>
+                    <ul class="small mb-0">
+                        <li><code>text-bg-&lt;color&gt;</code> — the solid color with a readable text color of the theme.</li>
+                        <li><code>bg-&lt;color&gt;</code> — the theme gradient over the color (widgets, progress bars).</li>
+                        <li><code>bg-&lt;color&gt;-subtle</code>, <code>text-&lt;color&gt;-emphasis</code>, <code>border-&lt;color&gt;-subtle</code> — pale backgrounds with dark text, for notes and statuses.</li>
+                        <li><code>text-&lt;color&gt;</code>, <code>link-&lt;color&gt;</code>, <code>border-&lt;color&gt;</code>, <code>btn-&lt;color&gt;</code>, <code>btn-outline-&lt;color&gt;</code>, <code>alert-&lt;color&gt;</code>.</li>
+                        <li>Surfaces and text: <code>bg-body</code>, <code>bg-body-secondary</code>, <code>bg-body-tertiary</code>, <code>text-body</code>, <code>text-body-secondary</code>, <code>text-body-tertiary</code>, <code>border</code>.</li>
+                        <li>Colors: <code>primary</code>, <code>secondary</code>, <code>success</code>, <code>info</code>, <code>warning</code>, <code>danger</code>, <code>light</code>, <code>dark</code> from Bootstrap; <code>focus</code>, <code>alternate</code>, <code>tertiary</code> from the theme.</li>
+                    </ul>
+                </div>
+                <div class="col-xl-6">
+                    <div class="position-relative">
+                        <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2" data-copy-from="codeClasses">Copy</button>
+                        <pre class="p-3 rounded bg-body-tertiary small mb-0"><code id="codeClasses">&lt;span class="badge text-bg-primary"&gt;New&lt;/span&gt;
+&lt;div class="card bg-primary text-white"&gt;...&lt;/div&gt;
+&lt;div class="alert alert-warning"&gt;...&lt;/div&gt;
+&lt;p class="bg-success-subtle text-success-emphasis p-2"&gt;Saved&lt;/p&gt;
+&lt;button class="btn btn-outline-primary"&gt;Edit&lt;/button&gt;
+&lt;a class="link-primary" href="#"&gt;Details&lt;/a&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="useVariables" role="tabpanel">
+            <p>For your own styles, read the colors from CSS variables instead of writing HEX values: a variable follows the theme and the dark mode, a fixed value does not.</p>
+            <div class="row g-4">
+                <div class="col-xl-6">
+                    <div class="p-3 rounded-3 mb-3" style="background: var(--aui-surface); color: var(--bs-body-color); border: 1px solid var(--bs-border-color); box-shadow: 0 .5rem 1rem rgba(var(--bs-primary-rgb), .15)">
+                        <div class="fw-bold mb-1" style="color: var(--bs-primary-text-emphasis)">A panel on theme variables</div>
+                        <div class="small" style="color: var(--bs-secondary-color)">Its surface, border, text and shadow come from the current theme. Switch the theme in the header to see it change.</div>
+                        <div class="mt-2 rounded-2" style="height: .5rem; background: var(--aui-gradient-primary)"></div>
+                    </div>
+                    <ul class="small mb-0">
+                        <li><code>var(--bs-&lt;color&gt;)</code> and <code>rgba(var(--bs-&lt;color&gt;-rgb), .5)</code> for any color with transparency.</li>
+                        <li><code>--bs-&lt;color&gt;-bg-subtle</code>, <code>--bs-&lt;color&gt;-text-emphasis</code>, <code>--bs-&lt;color&gt;-border-subtle</code>.</li>
+                        <li>Surfaces: <code>--aui-app-bg</code> (page), <code>--aui-surface</code> (cards), <code>--bs-secondary-bg</code>, <code>--bs-tertiary-bg</code>, <code>--bs-border-color</code>.</li>
+                        <li>Text: <code>--bs-body-color</code>, <code>--bs-secondary-color</code>, <code>--bs-tertiary-color</code>, <code>--bs-link-color</code>.</li>
+                        <li>Gradients: <code>--aui-gradient-&lt;color&gt;</code>.</li>
+                        <li>Override a value in your stylesheet loaded after the theme: for every theme in <code>:root</code>, for one theme in <code>[data-aui-theme="&lt;id&gt;"]</code>, for the dark mode in <code>[data-bs-theme="dark"]</code>. Change the <code>-rgb</code> pair together with the color.</li>
+                    </ul>
+                </div>
+                <div class="col-xl-6">
+                    <div class="position-relative">
+                        <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2" data-copy-from="codeVariables">Copy</button>
+                        <pre class="p-3 rounded bg-body-tertiary small mb-0"><code id="codeVariables">.order-panel {
+  background: var(--aui-surface);
+  color: var(--bs-body-color);
+  border: 1px solid var(--bs-border-color);
+  box-shadow: 0 .5rem 1rem rgba(var(--bs-primary-rgb), .15);
+}
+
+.order-panel h3 {
+  color: var(--bs-primary-text-emphasis);
+}
+
+/* Your brand color in every theme */
+:root {
+  --bs-primary: #3f6ad8;
+  --bs-primary-rgb: 63, 106, 216;
+}
+
+/* Only in Coffee, only in the dark mode */
+[data-aui-theme="coffee"][data-bs-theme="dark"] {
+  --aui-surface: #2b201b;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="useScripts" role="tabpanel">
+            <p>Scripts read the same variables through <code>ArchitectUI</code>. Read them when you draw, and again after <code>aui:theme-change</code>: the theme or the mode may change while the page is open.</p>
+            <div class="row g-4">
+                <div class="col-xl-6">
+                    <dl class="row small mb-3 font-monospace" id="scriptOutput">
+                        <dt class="col-sm-6 fw-normal">token("primary")</dt><dd class="col-sm-6" data-script="token-primary">&nbsp;</dd>
+                        <dt class="col-sm-6 fw-normal">token("--aui-surface")</dt><dd class="col-sm-6" data-script="token-surface">&nbsp;</dd>
+                        <dt class="col-sm-6 fw-normal">rgba("primary", .25)</dt><dd class="col-sm-6" data-script="rgba-primary">&nbsp;</dd>
+                        <dt class="col-sm-6 fw-normal">theme-change events</dt><dd class="col-sm-6" data-script="events">0</dd>
+                    </dl>
+                    <ul class="small mb-0">
+                        <li><code>ArchitectUI.token(name)</code> — the value of <code>--bs-&lt;name&gt;</code>; a name that starts with <code>--</code> is read as is.</li>
+                        <li><code>ArchitectUI.rgba(name, alpha)</code> — the color with transparency, from the <code>-rgb</code> pair.</li>
+                        <li><code>ArchitectUI.chartDefaults(Chart)</code> — fonts, text and grid colors of the theme for Chart.js.</li>
+                        <li>The event <code>aui:theme-change</code> on <code>document</code> fires after a theme or mode change.</li>
+                    </ul>
+                </div>
+                <div class="col-xl-6">
+                    <div class="position-relative">
+                        <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2" data-copy-from="codeScripts">Copy</button>
+                        <pre class="p-3 rounded bg-body-tertiary small mb-0"><code id="codeScripts">const { token, rgba, chartDefaults } = window.ArchitectUI;
+
+chartDefaults(Chart);
+const chart = new Chart(canvas, {
+  type: "line",
+  data: { labels, datasets: [{
+    data: values,
+    borderColor: token("primary"),
+    backgroundColor: rgba("primary", .15),
+  }] },
+});
+
+document.addEventListener("aui:theme-change", () =&gt; {
+  chartDefaults(Chart);
+  chart.data.datasets[0].borderColor = token("primary");
+  chart.data.datasets[0].backgroundColor = rgba("primary", .15);
+  chart.update();
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast align-items-center text-bg-dark border-0" id="paletteCopied" role="status" aria-live="polite" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body" id="paletteCopiedText">Copied</div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
