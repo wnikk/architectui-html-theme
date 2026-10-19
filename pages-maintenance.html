@@ -1,0 +1,108 @@
+<!doctype html>
+
+<html lang="en" data-aui-dark-only="cyberpunk ">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maintenance - Scheduled maintenance: the site is temporarily unavailable.</title>
+<meta name="description" content="Scheduled maintenance: the site is temporarily unavailable.">
+<link rel="icon" href="favicon.ico">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="architectui.css?v=6.1.0">
+
+<script>
+(function () {
+  var d = document.documentElement, s = {}, m, t;
+  try { s = JSON.parse(localStorage.getItem("architectui")) || {}; } catch (e) {}
+  if (s.theme === "light" || s.theme === "dark") { s.mode = s.theme; delete s.theme; }
+  if (s.theme === "blue") delete s.theme;
+  for (var k in s) d.setAttribute("data-aui-" + k, s[k]);
+  t = /^[a-z0-9-]+$/.test(s.theme || "") ? s.theme : "";
+  m = s.mode || "light";
+  if (t) {
+    var base = document.querySelector('link[href*="architectui.css"]'), link = document.createElement("link");
+    var shown = function () { d.removeAttribute("data-aui-loading"); };
+    link.rel = "stylesheet";
+    link.id = "aui-theme";
+    link.href = base.getAttribute("href").replace(/architectui\.css(\?|$)/, "themes/" + t + ".css$1");
+    link.setAttribute("blocking", "render");
+    link.onload = link.onerror = shown;
+    setTimeout(shown, 3000);
+    d.setAttribute("data-aui-loading", "");
+    base.parentNode.insertBefore(link, base.nextSibling);
+    if ((" " + d.getAttribute("data-aui-dark-only") + " ").indexOf(" " + t + " ") > -1) m = "dark";
+  }
+  if (m === "system") m = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  d.setAttribute("data-bs-theme", m);
+})();
+</script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.59.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
+
+<script defer src="architectui-auth.js?v=6.1.0"></script>
+
+</head>
+<body class="aui-guest">
+    <a class="visually-hidden-focusable btn btn-primary aui-skip-link" href="#main">Skip to content</a>
+    <div class="d-flex flex-column min-vh-100">
+        <header class="d-flex align-items-center gap-3 px-3 px-sm-4 py-3">
+            
+<a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
+    <img src="assets/images/logo.png" alt="ArchitectUI">
+    <img src="assets/images/logo-on-dark.png" alt="">
+</a>
+
+            <a href="#" class="ms-auto small text-body-secondary d-inline-flex align-items-center gap-1"><i data-lucide="life-buoy"></i>Help</a>
+            <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+                <i data-lucide="moon"></i>
+                <i data-lucide="sun"></i>
+            </button>
+        </header>
+        <main id="main" class="flex-grow-1 d-flex align-items-center py-3" tabindex="-1">
+            
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-9 col-lg-7 col-xl-6 aui-guest-card">
+            <div class="text-center">
+                <div class="d-inline-flex p-3 rounded-circle bg-warning-subtle text-warning-emphasis mb-3"><i data-lucide="wrench" class="fs-1"></i></div>
+                <h1 class="h3">We are improving the store</h1>
+                <p class="text-body-secondary mb-4">Scheduled maintenance: the site is temporarily unavailable. Your orders, carts and accounts are safe. We will be back soon.</p>
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                        <i data-lucide="clock" class="text-body-secondary"></i>
+                        <span class="fw-bold">Today, 02:00–03:00 UTC</span>
+                        <span class="badge bg-warning-subtle text-warning-emphasis ms-auto">In progress</span>
+                    </div>
+                    <div class="progress mb-3" role="progressbar" aria-label="Maintenance progress" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="height: .5rem">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 60%"></div>
+                    </div>
+                    <ul class="list-unstyled mb-0 small">
+                        <li class="d-flex align-items-center gap-2 py-1"><i data-lucide="circle-check" class="text-success"></i>Database upgrade<span class="ms-auto text-body-secondary">Done</span></li>
+                        <li class="d-flex align-items-center gap-2 py-1"><i data-lucide="circle-check" class="text-success"></i>Payment service update<span class="ms-auto text-body-secondary">Done</span></li>
+                        <li class="d-flex align-items-center gap-2 py-1 fw-bold"><i data-lucide="loader" class="text-primary aui-animate-spin"></i>Search index rebuild<span class="ms-auto text-body-secondary fw-normal">About 20 min</span></li>
+                        <li class="d-flex align-items-center gap-2 py-1 text-body-secondary"><i data-lucide="circle-dashed"></i>Final checks<span class="ms-auto">Next</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <a href="#" class="btn btn-primary d-inline-flex align-items-center gap-2"><i data-lucide="activity"></i>Status page</a>
+                <a href="mailto:support@northwind.test" class="btn btn-outline-secondary d-inline-flex align-items-center gap-2"><i data-lucide="mail"></i>Contact support</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </main>
+        <footer class="d-flex flex-wrap justify-content-center gap-3 px-3 px-sm-4 py-3 small text-body-secondary">
+            <span>© 2026 ArchitectUI</span>
+            <a href="#" class="text-reset">Privacy</a>
+            <a href="#" class="text-reset">Terms</a>
+            <a href="#" class="text-reset">Status</a>
+        </footer>
+    </div>
+</body>
+</html>
