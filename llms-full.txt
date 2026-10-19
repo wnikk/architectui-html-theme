@@ -189,6 +189,18 @@ body
 
 The logo is `a.aui-logo` with two images: the first for light backgrounds, the second for dark ones. Put status badges, alerts or extra forms into the right-hand group of the header; give each a `d-none d-*-flex` breakpoint by importance.
 
+The left part of the header holds the search field and quick links (`ul.navbar-nav`). A page can show its path there instead: a Bootstrap breadcrumb takes the header link colors, so it follows the header color schemes. The demo does this on `components-bootstrap.html` (front matter `breadcrumbs` in `src/pages`).
+
+```html
+<nav class="d-none d-md-block" aria-label="breadcrumb">
+  <ol class="breadcrumb mb-0">
+    <li class="breadcrumb-item"><a href="index.html" aria-label="Home"><i data-lucide="house"></i></a></li>
+    <li class="breadcrumb-item">UI Components</li>
+    <li class="breadcrumb-item active" aria-current="page">Bootstrap Components</li>
+  </ol>
+</nav>
+```
+
 ### Responsive behavior
 
 - 1200 px (Bootstrap `xl`) and wider: full sidebar; the collapse burger (`data-aui-toggle="sidebar"`) collapses it to an icon rail.

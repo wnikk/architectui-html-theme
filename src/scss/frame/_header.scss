@@ -109,6 +109,30 @@
   }
 }
 
+// Breadcrumbs in the header (pages with "breadcrumbs" in the front matter): the header link colors,
+// so they follow the header color schemes
+.aui-header .breadcrumb {
+  --bs-breadcrumb-divider-color: var(--aui-header-link-icon);
+  --bs-breadcrumb-item-active-color: var(--aui-header-link-hover);
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  color: var(--aui-header-link-color);
+
+  a {
+    color: var(--aui-header-link-color);
+
+    &:hover {
+      color: var(--aui-header-link-hover);
+    }
+  }
+
+  [data-lucide] {
+    width: 1rem;
+    height: 1rem;
+    color: var(--aui-header-link-icon);
+  }
+}
+
 // Header color schemes: data-aui-header-scheme="<color>" on <html>
 @each $name, $tone in $aui-schemes {
   [data-aui-header-scheme="#{$name}"] .aui-header {
