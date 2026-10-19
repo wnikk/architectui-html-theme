@@ -100,10 +100,69 @@
 
         <div class="d-flex align-items-center gap-3 ms-auto">
             <span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
-<button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
-    <i data-lucide="moon"></i>
-    <i data-lucide="sun"></i>
-</button>
+<div class="btn-group aui-theme-switch">
+    <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+        <i data-lucide="moon"></i>
+        <i data-lucide="sun"></i>
+    </button>
+    <button type="button" class="btn aui-mode-toggle dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Choose a theme"></button>
+    <div class="dropdown-menu dropdown-menu-end">
+        <h6 class="dropdown-header">Theme</h6>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
+            <span>Business</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="orange">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
+            <span>Orange</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
+            <span>Indigo</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo-img">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
+            <span>Indigo Photo</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="coffee">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
+            <span>Coffee</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="green">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
+            <span>Garden</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="raspberry">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
+            <span>Warm</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="teal">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
+            <span>Operations</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="violet">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
+            <span>Space</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="cyberpunk">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
+            <span>Cyberpunk</span>
+            <small class="opacity-75">dark only</small>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal" class="me-2 opacity-50"></i>All interface settings</a>
+    </div>
+</div>
 <div class="dropdown">
     <a class="d-inline-flex align-items-center text-reset text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
         <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">

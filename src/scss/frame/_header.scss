@@ -183,3 +183,18 @@
 [data-bs-theme="dark"] .aui-mode-toggle > :last-child {
   display: inline-block !important;
 }
+
+// Mode toggle with the theme list: the split button is narrower and keeps the toggle border
+.aui-theme-switch > .dropdown-toggle-split {
+  width: 1.5rem;
+  border-left: 1px solid var(--bs-border-color);
+
+  &::after {
+    top: 0;
+  }
+}
+
+// The check mark shows the current theme
+.aui-theme-switch .dropdown-item:not(.active) .aui-theme-check {
+  visibility: hidden;
+}

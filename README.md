@@ -91,8 +91,8 @@ stylesheet loaded after `architectui.css`; it changes palette, typography, radii
 | Space | `themes/violet.css` | Large radii, soft violet shadows, heavy headings |
 | Cyberpunk | `themes/cyberpunk.css` | Neon on black, monospace; dark only |
 
-Pick a theme and a mode (Light, Dark, System) in the Interface section of the profile page (`pages-profile.html`),
-or toggle light/dark with the header button. The choice is stored in `localStorage` and applied before the first paint.
+Pick a theme in the list next to the light/dark button in the header, or a theme and a mode (Light, Dark, System)
+in the Interface section of the profile page (`pages-profile.html`). The choice is stored in `localStorage` and applied before the first paint.
 To ship a fixed theme without the settings,
 add the stylesheet yourself and put the theme id on `<html>`. The attribute switches the built-in Business values off:
 

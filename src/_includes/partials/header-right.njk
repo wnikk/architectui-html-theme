@@ -1,8 +1,27 @@
 <span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
-<button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
-    <i data-lucide="moon"></i>
-    <i data-lucide="sun"></i>
-</button>
+{#- Mode toggle and the theme list: one button group. Each theme is a button with data-aui-setting="theme". #}
+<div class="btn-group aui-theme-switch">
+    <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+        <i data-lucide="moon"></i>
+        <i data-lucide="sun"></i>
+    </button>
+    <button type="button" class="btn aui-mode-toggle dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Choose a theme"></button>
+    <div class="dropdown-menu dropdown-menu-end">
+        <h6 class="dropdown-header">Theme</h6>
+        {%- for theme in themes %}
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="{{ theme.id }}">
+            <span class="aui-theme-dot" style="--aui-dot-brand: {{ theme.brand }}; --aui-dot-accent: {{ theme.accent }}"></span>
+            <span>{{ theme.name }}</span>
+            {%- if theme.darkOnly %}
+            <small class="opacity-75">dark only</small>
+            {%- endif %}
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        {%- endfor %}
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal" class="me-2 opacity-50"></i>All interface settings</a>
+    </div>
+</div>
 <div class="dropdown">
     <a class="d-inline-flex align-items-center text-reset text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
         <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">

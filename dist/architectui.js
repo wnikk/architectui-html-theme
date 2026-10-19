@@ -66,9 +66,17 @@
     (current ?? base).after(link);
   }
 
+  // Inputs show the setting as checked; buttons (a theme in the header list) as .active with aria-current
   function syncControls() {
-    document.querySelectorAll("[data-aui-setting]").forEach((input) => {
-      input.checked = currentValue(input.dataset.auiSetting) === input.value;
+    document.querySelectorAll("[data-aui-setting]").forEach((control) => {
+      const on = currentValue(control.dataset.auiSetting) === control.value;
+      if (control.matches("input")) {
+        control.checked = on;
+      } else {
+        control.classList.toggle("active", on);
+        if (on) control.setAttribute("aria-current", "true");
+        else control.removeAttribute("aria-current");
+      }
     });
     const collapsed = String(root.hasAttribute(attrName("sidebar-collapsed")));
     document.querySelectorAll('[data-aui-toggle="sidebar"]').forEach((button) => button.setAttribute("aria-pressed", collapsed));
@@ -139,6 +147,8 @@
   });
 
   document.addEventListener("click", (event) => {
+    const option = event.target.closest("button[data-aui-setting]");
+    if (option) setSetting(option.dataset.auiSetting, option.value);
     const target = event.target.closest("[data-aui-toggle], [data-aui-reset], [data-aui-expand-toggle], [data-aui-expand-close], [data-aui-toast]");
     const field = target?.closest("[data-aui-expand]");
     if (target?.matches('[data-aui-toggle="sidebar"]')) {

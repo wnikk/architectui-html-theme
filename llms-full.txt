@@ -166,7 +166,7 @@ body
 │   │   ├── .navbar-brand: mobile burger (btn.aui-burger.d-md-none), a.aui-logo, collapse burger (btn.aui-burger, from 1200 px), "more" button (phones)
 │   │   └── .collapse.navbar-collapse#auiHeaderContent
 │   │       ├── .aui-expand (search), ul.navbar-nav (header menu)
-│   │       └── .d-flex.ms-auto: status badges, btn.aui-mode-toggle, user dropdown, user name (from 1400 px)
+│   │       └── .d-flex.ms-auto: status badges, .btn-group.aui-theme-switch (btn.aui-mode-toggle + theme dropdown), user dropdown, user name (from 1400 px)
 │   ├── aside.aui-sidebar
 │   │   └── .offcanvas-md.offcanvas-start#auiSidebar
 │   │       └── .offcanvas-body > ul.nav.flex-column.flex-nowrap#auiNav
@@ -266,6 +266,23 @@ The settings are one JSON object in `localStorage` under the key `architectui`, 
 ### Declarative controls (handled by `architectui.js`)
 
 - `data-aui-setting="<key>"` on a radio or checkbox: sets the attribute and stores it. Checkboxes use `value` when checked and `data-aui-off` when not.
+- `data-aui-setting="<key>"` with `value` on a `button` (for example a `.dropdown-item`): a click sets that value; the button of the current value gets `.active` and `aria-current="true"`. The header theme list is built this way:
+
+```html
+<div class="btn-group aui-theme-switch">
+  <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+    <i data-lucide="moon"></i><i data-lucide="sun"></i>
+  </button>
+  <button type="button" class="btn aui-mode-toggle dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Choose a theme"></button>
+  <div class="dropdown-menu dropdown-menu-end">
+    <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="">
+      <span class="aui-theme-dot" style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span><span>Business</span>
+      <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+    </button>
+    <!-- one button per theme: value="orange", value="teal" ... -->
+  </div>
+</div>
+```
 - `data-aui-toggle="sidebar"`: collapses or expands the sidebar (sets `aria-pressed`).
 - `data-aui-toggle="mode"`: switches light and dark.
 - `data-aui-reset`: restores all defaults and clears storage.
@@ -457,6 +474,7 @@ Other Bootstrap utilities (spacing, text, order) stop at `xxl`.
 - Navs: `aui-tabs-shadow`; Bootstrap `nav-underline` gets the moving bar of the theme. The first icon in a `.nav-link` is the link icon: add `me-2`.
 - Numbers: `aui-number`.
 - Forms: `aui-dropzone` (file drop zone, see Forms).
+- Settings controls: `aui-theme-option` (theme picker label with a dot), `aui-theme-dot` (small theme dot for a list), `aui-swatch aui-swatch--<scheme>` (color swatch label), `aui-theme-switch` (header group of the mode toggle and the theme list; `aui-theme-check` marks the current theme).
 - Scroll areas: `aui-scroll` with a height class `aui-scroll-sm`, `-md`, `-lg`.
 - Charts and maps: `aui-chart` (`aui-chart-xs`, `aui-chart-sm`, `aui-chart-lg`) sets the chart height; `aui-sparkline` is a 2.5rem trend line under a number (a Chart.js line without axes); `aui-map` (`aui-map-lg`) for Leaflet maps.
 - Animations: `aui-animate-fade-in`, `aui-animate-flip`, `aui-animate-light-speed-in`, `aui-animate-pulse`, `aui-animate-spin`.
