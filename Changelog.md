@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **Error 403 and maintenance pages** (`pages-403.html`, `pages-maintenance.html`, menu Pages → Errors) on the guest frame: access denied with the signed-in account, Request access and Switch account; scheduled maintenance with the time window, progress of the work and status and support links. The maintenance menu label is long on purpose and wraps in the sidebar.
 - **Inbox page** (`apps-inbox.html`, menu Apps): customer conversations of a store support desk — folders with an unread counter, labels, search, the conversation as a chat, star, archive and a reply box (Enter sends). Three panes on wide screens; on phones the list and the conversation take turns. New classes `aui-chat`, `aui-chat-message` (`.is-own`), `aui-chat-bubble`.
 - **Kanban Board page** (`apps-kanban.html`, new menu group Apps): five columns of release tasks with labels, due dates, checklists and people. Cards move by drag and drop or with a "Move to" menu (keyboard, touch screens); new cards, search, a label filter, column limits, a live region for screen readers. New classes `aui-kanban` (board, columns, list, card) and `aui-avatars` (overlapping photos).
 - **Forms Wizard page** (`forms-wizard.html`, menu Forms): a workspace form in four steps — check of each step with Bootstrap validation, plan cards, an optional step with Skip, a review of all answers and a result screen. New component `aui-stepper` (numbered steps joined by a line; on phones only the current label).

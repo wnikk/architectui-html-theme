@@ -1,0 +1,92 @@
+<!doctype html>
+
+<html lang="en" data-aui-dark-only="cyberpunk ">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Access Denied - Error 403: the account has no access to this page.</title>
+<meta name="description" content="Error 403: the account has no access to this page.">
+<link rel="icon" href="favicon.ico">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="architectui.css?v=6.1.0">
+
+<script>
+(function () {
+  var d = document.documentElement, s = {}, m, t;
+  try { s = JSON.parse(localStorage.getItem("architectui")) || {}; } catch (e) {}
+  if (s.theme === "light" || s.theme === "dark") { s.mode = s.theme; delete s.theme; }
+  if (s.theme === "blue") delete s.theme;
+  for (var k in s) d.setAttribute("data-aui-" + k, s[k]);
+  t = /^[a-z0-9-]+$/.test(s.theme || "") ? s.theme : "";
+  m = s.mode || "light";
+  if (t) {
+    var base = document.querySelector('link[href*="architectui.css"]'), link = document.createElement("link");
+    var shown = function () { d.removeAttribute("data-aui-loading"); };
+    link.rel = "stylesheet";
+    link.id = "aui-theme";
+    link.href = base.getAttribute("href").replace(/architectui\.css(\?|$)/, "themes/" + t + ".css$1");
+    link.setAttribute("blocking", "render");
+    link.onload = link.onerror = shown;
+    setTimeout(shown, 3000);
+    d.setAttribute("data-aui-loading", "");
+    base.parentNode.insertBefore(link, base.nextSibling);
+    if ((" " + d.getAttribute("data-aui-dark-only") + " ").indexOf(" " + t + " ") > -1) m = "dark";
+  }
+  if (m === "system") m = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  d.setAttribute("data-bs-theme", m);
+})();
+</script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.59.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
+
+<script defer src="architectui-auth.js?v=6.1.0"></script>
+
+</head>
+<body class="aui-guest">
+    <a class="visually-hidden-focusable btn btn-primary aui-skip-link" href="#main">Skip to content</a>
+    <div class="d-flex flex-column min-vh-100">
+        <header class="d-flex align-items-center gap-3 px-3 px-sm-4 py-3">
+            
+<a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
+    <img src="assets/images/logo.png" alt="ArchitectUI">
+    <img src="assets/images/logo-on-dark.png" alt="">
+</a>
+
+            <a href="#" class="ms-auto small text-body-secondary d-inline-flex align-items-center gap-1"><i data-lucide="life-buoy"></i>Help</a>
+            <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+                <i data-lucide="moon"></i>
+                <i data-lucide="sun"></i>
+            </button>
+        </header>
+        <main id="main" class="flex-grow-1 d-flex align-items-center py-3" tabindex="-1">
+            <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 text-center aui-guest-card">
+            <div class="display-1 fw-bold text-warning aui-number">403</div>
+            <h1 class="h3 mt-3">You have no access to this page</h1>
+            <p class="text-body-secondary mb-4">The page is open to the Billing team only. Ask a workspace admin for access, or sign in with another account.</p>
+            <div class="d-inline-flex align-items-center gap-2 border rounded-pill py-1 ps-1 pe-3 mb-4 small text-start">
+                <img src="assets/images/avatars/1.jpg" width="32" height="32" class="rounded-circle" alt="">
+                <span>Signed in as <strong>Alina Mclourd</strong> · Member</span>
+            </div>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <a href="mailto:admin@northwind.test?subject=Access%20to%20the%20Billing%20pages" class="btn btn-primary d-inline-flex align-items-center gap-2"><i data-lucide="mail"></i>Request access</a>
+                <a href="pages-login.html" class="btn btn-outline-secondary d-inline-flex align-items-center gap-2"><i data-lucide="log-in"></i>Switch account</a>
+                <a href="index.html" class="btn btn-link">Back to dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </main>
+        <footer class="d-flex flex-wrap justify-content-center gap-3 px-3 px-sm-4 py-3 small text-body-secondary">
+            <span>© 2026 ArchitectUI</span>
+            <a href="#" class="text-reset">Privacy</a>
+            <a href="#" class="text-reset">Terms</a>
+            <a href="#" class="text-reset">Status</a>
+        </footer>
+    </div>
+</body>
+</html>

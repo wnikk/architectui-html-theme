@@ -122,7 +122,7 @@ The fastest correct start is to copy `dist/pages-starter.html` (an empty page wi
 
 ### Guest frame (sign in, sign up, errors)
 
-Pages for a visitor who is not signed in use the guest frame: the same `<head>`, themes and modes, a top row (logo, help link, mode toggle), the content and a bottom row. There is no menu. These pages load `architectui-auth.js` instead of `architectui.js`: the guest script has the form flow and no admin features, the admin script has no form flow. Copy `dist/pages-login.html`, `dist/pages-register.html`, `dist/pages-forgot-password.html` or `dist/pages-404.html`.
+Pages for a visitor who is not signed in use the guest frame: the same `<head>`, themes and modes, a top row (logo, help link, mode toggle), the content and a bottom row. There is no menu. These pages load `architectui-auth.js` instead of `architectui.js`: the guest script has the form flow and no admin features, the admin script has no form flow. Copy `dist/pages-login.html`, `dist/pages-register.html`, `dist/pages-forgot-password.html`, an error page (`dist/pages-403.html`, `pages-404.html`, `pages-500.html`) or `dist/pages-maintenance.html`.
 
 ```html
 <body class="aui-guest">
@@ -650,4 +650,5 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `pages-starter.html` | An empty page with the frame: the start for a new screen |
 | `pages-profile.html` | My Profile: profile card, personal information form, and the Interface section with every setting (layout, mode, density, tabs, theme, header and sidebar colors, restore default). The user menu links to it |
 | `pages-login.html`, `pages-register.html`, `pages-forgot-password.html` | Guest frame: sign in with a code from an authenticator app, sign up with a code from the email, password reset; demo requests lock the form for 2 s |
-| `pages-404.html`, `pages-500.html` | Error pages on the guest frame |
+| `pages-403.html`, `pages-404.html`, `pages-500.html` | Error pages on the guest frame: access denied (with the signed-in account and Switch account), not found, server error |
+| `pages-maintenance.html` | Scheduled maintenance (HTTP 503) on the guest frame: time window, progress of the work, status and support links. Its menu label is long on purpose: it shows how a long sub-item wraps in the sidebar |

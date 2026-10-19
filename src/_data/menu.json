@@ -216,12 +216,20 @@
         "icon": "triangle-alert",
         "children": [
           {
+            "title": "Error 403",
+            "href": "pages-403.html"
+          },
+          {
             "title": "Error 404",
             "href": "pages-404.html"
           },
           {
             "title": "Error 500",
             "href": "pages-500.html"
+          },
+          {
+            "title": "Scheduled maintenance: the site is temporarily unavailable",
+            "href": "pages-maintenance.html"
           }
         ]
       },

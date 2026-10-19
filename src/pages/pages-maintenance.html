@@ -1,0 +1,39 @@
+---
+title: "Maintenance"
+description: "Scheduled maintenance: the site is temporarily unavailable."
+layout: "guest.njk"
+---
+{#- A page to show while the site is down for planned work (HTTP 503). Static: the server sends it as is. #}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-9 col-lg-7 col-xl-6 aui-guest-card">
+            <div class="text-center">
+                <div class="d-inline-flex p-3 rounded-circle bg-warning-subtle text-warning-emphasis mb-3"><i data-lucide="wrench" class="fs-1"></i></div>
+                <h1 class="h3">We are improving the store</h1>
+                <p class="text-body-secondary mb-4">Scheduled maintenance: the site is temporarily unavailable. Your orders, carts and accounts are safe. We will be back soon.</p>
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                        <i data-lucide="clock" class="text-body-secondary"></i>
+                        <span class="fw-bold">Today, 02:00–03:00 UTC</span>
+                        <span class="badge bg-warning-subtle text-warning-emphasis ms-auto">In progress</span>
+                    </div>
+                    <div class="progress mb-3" role="progressbar" aria-label="Maintenance progress" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="height: .5rem">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 60%"></div>
+                    </div>
+                    <ul class="list-unstyled mb-0 small">
+                        <li class="d-flex align-items-center gap-2 py-1"><i data-lucide="circle-check" class="text-success"></i>Database upgrade<span class="ms-auto text-body-secondary">Done</span></li>
+                        <li class="d-flex align-items-center gap-2 py-1"><i data-lucide="circle-check" class="text-success"></i>Payment service update<span class="ms-auto text-body-secondary">Done</span></li>
+                        <li class="d-flex align-items-center gap-2 py-1 fw-bold"><i data-lucide="loader" class="text-primary aui-animate-spin"></i>Search index rebuild<span class="ms-auto text-body-secondary fw-normal">About 20 min</span></li>
+                        <li class="d-flex align-items-center gap-2 py-1 text-body-secondary"><i data-lucide="circle-dashed"></i>Final checks<span class="ms-auto">Next</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <a href="#" class="btn btn-primary d-inline-flex align-items-center gap-2"><i data-lucide="activity"></i>Status page</a>
+                <a href="mailto:support@northwind.test" class="btn btn-outline-secondary d-inline-flex align-items-center gap-2"><i data-lucide="mail"></i>Contact support</a>
+            </div>
+        </div>
+    </div>
+</div>
