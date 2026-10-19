@@ -3,22 +3,12 @@
     <button type="button" class="btn" data-aui-expand-toggle aria-label="Search"></button>
     <button type="button" class="btn-close" data-aui-expand-close aria-label="Close search"></button>
 </div>
-{#- A page with "breadcrumbs" in its front matter shows its path here; other pages show the quick links.
-    Each item: { title, href }; an item without href is plain text, the last one is the current page. #}
-{%- if breadcrumbs %}
+{#- A page with "breadcrumbs: header" in its front matter shows its path in the menu here; other pages show the quick links. #}
+{%- from "partials/breadcrumbs.njk" import trail %}
+{%- set crumbs = (menu | breadcrumbsFor(page.filePathStem)) if breadcrumbs == "header" else [] %}
+{%- if crumbs.length %}
 <nav class="d-none d-md-block" aria-label="breadcrumb">
-    <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><a href="index.html" aria-label="Home"><i data-lucide="house"></i></a></li>
-        {%- for item in breadcrumbs %}
-        {%- if loop.last %}
-        <li class="breadcrumb-item active" aria-current="page">{{ item.title }}</li>
-        {%- elif item.href %}
-        <li class="breadcrumb-item"><a href="{{ item.href }}">{{ item.title }}</a></li>
-        {%- else %}
-        <li class="breadcrumb-item">{{ item.title }}</li>
-        {%- endif %}
-        {%- endfor %}
-    </ol>
+    {{- trail(crumbs, page.filePathStem) }}
 </nav>
 {%- else %}
 <ul class="navbar-nav d-none d-md-flex">

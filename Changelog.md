@@ -5,7 +5,8 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
-- **Breadcrumbs in the header.** A page can show its path in the left part of the header instead of the quick links (front matter `breadcrumbs` in the demo sources); the breadcrumb takes the header link colors and follows the header color schemes. The Bootstrap Components page shows it.
+- **Breadcrumbs in the header.** A page can show its path in the left part of the header instead of the quick links; the breadcrumb takes the header link colors and follows the header color schemes. The group and the parent item are dropdowns with the pages of their level, built from the menu (front matter `breadcrumbs: "header"` in the demo sources). The Bootstrap Components page shows it.
+- **Path and Back link in the page title.** `.aui-page-title-path` above the title: a Back link and the breadcrumb (with the same dropdowns) in small, quiet text; on phones only the Back link. New attribute `data-aui-back`: the link returns to the previous page of the same site or follows its `href`. The My Profile page shows it (front matter `breadcrumbs: "title"`).
 - **Error 403 and maintenance pages** (`pages-403.html`, `pages-maintenance.html`, menu Pages → Errors) on the guest frame: access denied with the signed-in account, Request access and Switch account; scheduled maintenance with the time window, progress of the work and status and support links. The maintenance menu label is long on purpose and wraps in the sidebar.
 - **Inbox page** (`apps-inbox.html`, menu Apps): customer conversations of a store support desk — folders with an unread counter, labels, search, the conversation as a chat, star, archive and a reply box (Enter sends). Three panes on wide screens; on phones the list and the conversation take turns. New classes `aui-chat`, `aui-chat-message` (`.is-own`), `aui-chat-bubble`.
 - **Kanban Board page** (`apps-kanban.html`, new menu group Apps): five columns of release tasks with labels, due dates, checklists and people. Cards move by drag and drop or with a "Move to" menu (keyboard, touch screens); new cards, search, a label filter, column limits, a live region for screen readers. New classes `aui-kanban` (board, columns, list, card) and `aui-avatars` (overlapping photos).
@@ -26,6 +27,7 @@ All notable changes to this project will be documented in this file.
 - **Pages menu in groups.** Starter Page, "Authentication" (Sign In, Sign Up, Forgot Password), "Errors" (404, 500), My Profile.
 
 ### Fixed
+- **Header with the search open.** The right part of the header (status badge, mode and theme buttons, user menu) keeps its place: the left part gives way. The current crumb shortens with an ellipsis; while the search is open and below 992 px only the home link and the current page stay; below 1400 px the open search hides the quick links. Before, the left part ran under the status badge.
 - **Expanding field.** The open `aui-expand` field keeps its rounded shape: the field gets focus without scrolling its box (`focus({ preventScroll: true })`), and the box clips with `overflow: clip`. Before, the focus moved the field up by about 8px and its top edge was cut off.
 - **Page animation and offcanvas.** During the page appear animation a hidden offcanvas inside the content no longer widens the page: the content clips its overflow while the animation runs.
 

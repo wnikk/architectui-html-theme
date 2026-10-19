@@ -189,13 +189,19 @@ body
 
 The logo is `a.aui-logo` with two images: the first for light backgrounds, the second for dark ones. Put status badges, alerts or extra forms into the right-hand group of the header; give each a `d-none d-*-flex` breakpoint by importance.
 
-The left part of the header holds the search field and quick links (`ul.navbar-nav`). A page can show its path there instead: a Bootstrap breadcrumb takes the header link colors, so it follows the header color schemes. The demo does this on `components-bootstrap.html` (front matter `breadcrumbs` in `src/pages`).
+The left part of the header holds the search field and quick links (`ul.navbar-nav`). A page can show its path there instead: a Bootstrap breadcrumb takes the header link colors, so it follows the header color schemes. A crumb above the page can be a Bootstrap dropdown with the pages of its level. When the header runs out of room, the current page shortens with an ellipsis; while the search field is open and below 992 px, only the home link and the current page stay, and below 1400 px the open search hides the quick links. The demo does this on `components-bootstrap.html` (front matter `breadcrumbs: "header"` in `src/pages`; the path comes from the menu).
 
 ```html
 <nav class="d-none d-md-block" aria-label="breadcrumb">
   <ol class="breadcrumb mb-0">
     <li class="breadcrumb-item"><a href="index.html" aria-label="Home"><i data-lucide="house"></i></a></li>
-    <li class="breadcrumb-item">UI Components</li>
+    <li class="breadcrumb-item dropdown">
+      <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Components</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item active" href="components-bootstrap.html" aria-current="page">Bootstrap Components</a></li>
+        <li><a class="dropdown-item" href="components-tabs.html">Tabs</a></li>
+      </ul>
+    </li>
     <li class="breadcrumb-item active" aria-current="page">Bootstrap Components</li>
   </ol>
 </nav>
@@ -240,6 +246,24 @@ The first icon of a link is its menu icon (20 px, `--aui-nav-icon-size`); `chevr
     <p>One sentence about the page.</p>
   </div>
   <div class="ms-md-auto mt-3 mt-md-0"><!-- buttons, dropdowns --></div>
+</div>
+```
+
+A Back link and the path can stand above the title in small, quiet text: `.aui-page-title-path` as the first child of the title block. The same breadcrumb (with dropdowns) fits in it. Below 576 px only the Back link stays. `data-aui-back` on the link returns to the previous page of the same site; without one, the link follows its `href`. The demo does this on `pages-profile.html` (front matter `breadcrumbs: "title"`).
+
+```html
+<div>
+  <div class="aui-page-title-path">
+    <a href="index.html" data-aui-back><i data-lucide="arrow-left"></i>Back</a>
+    <nav class="d-none d-sm-block" aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="index.html" aria-label="Home"><i data-lucide="house"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+      </ol>
+    </nav>
+  </div>
+  <h1>Page name</h1>
+  <p>One sentence about the page.</p>
 </div>
 ```
 
@@ -309,6 +333,7 @@ The settings are one JSON object in `localStorage` under the key `architectui`, 
 - `data-aui-reset`: restores all defaults and clears storage.
 - `data-aui-expand`, `data-aui-expand-toggle`, `data-aui-expand-close`: the expanding field (section 8); Escape closes it.
 - `data-aui-toast="#id"`: shows that Bootstrap toast.
+- `data-aui-back` on a link: returns to the previous page when the visitor came from the same site; otherwise follows the `href`.
 - `data-aui-dropzone="#list"` on `.aui-dropzone`: marks the area while files are dragged over it and lists the chosen files in that element (name, size, icon).
 
 The controls work on any page. The Interface section of `dist/pages-profile.html` (template `partials/interface-settings.njk`) holds all of them: layout switches, mode, density, page section tabs, theme, header and sidebar colors, and a `data-aui-reset` button; copy it into an account or settings page.

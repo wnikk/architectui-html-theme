@@ -1,8 +1,19 @@
+{#- A page with "breadcrumbs: title" in its front matter shows a Back link and its path in the menu above the title. #}
+{%- from "partials/breadcrumbs.njk" import trail %}
+{%- set crumbs = (menu | breadcrumbsFor(page.filePathStem)) if breadcrumbs == "title" else [] -%}
 <div class="aui-page-title d-md-flex align-items-center text-center text-md-start">
     <div class="d-none d-md-flex align-items-center justify-content-center flex-shrink-0 me-4">
         <i data-lucide="{{ icon }}" class="{{ iconClass or 'aui-icon-gradient-primary' }}"></i>
     </div>
     <div>
+        {%- if crumbs.length %}
+        <div class="aui-page-title-path">
+            <a href="index.html" data-aui-back><i data-lucide="arrow-left"></i>Back</a>
+            <nav class="d-none d-sm-block" aria-label="breadcrumb">
+                {{- trail(crumbs, page.filePathStem) }}
+            </nav>
+        </div>
+        {%- endif %}
         <h1>{{ title }}</h1>
         <p>{{ description }}</p>
     </div>

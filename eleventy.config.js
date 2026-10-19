@@ -7,6 +7,24 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("isActive", (href, stem) => Boolean(href) && stemOf(href) === stem);
   eleventyConfig.addFilter("hasActive", (items, stem) => items.some((item) => stemOf(item.href) === stem));
 
+  // Path of a page in the menu for the header breadcrumbs: the heading and the parent item each with the links
+  // of their level (for a dropdown), then the page itself. Empty when the page is not in the menu.
+  eleventyConfig.addFilter("breadcrumbsFor", (menu, stem) => {
+    for (const group of menu) {
+      const level = group.items.map((item) => ({ title: item.title, href: item.href ?? item.children?.[0]?.href }));
+      for (const item of group.items) {
+        if (item.href && stemOf(item.href) === stem) {
+          return [{ title: group.heading, links: level }, { title: item.title }];
+        }
+        const child = item.children?.find((entry) => stemOf(entry.href) === stem);
+        if (child) {
+          return [{ title: group.heading, links: level }, { title: item.title, links: item.children }, { title: child.title }];
+        }
+      }
+    }
+    return [];
+  });
+
   // Every page uses the same layout and is written to the dist/ root under its own file name
   eleventyConfig.addGlobalData("layout", "base.njk");
   eleventyConfig.addGlobalData("permalink", () => (data) => `${data.page.filePathStem}.html`);

@@ -109,8 +109,8 @@
   }
 }
 
-// Breadcrumbs in the header (pages with "breadcrumbs" in the front matter): the header link colors,
-// so they follow the header color schemes
+// Breadcrumbs in the header (pages with "breadcrumbs: true" in the front matter): the header link colors,
+// so they follow the header color schemes. The current page shrinks with an ellipsis when room runs out.
 .aui-header .breadcrumb {
   --bs-breadcrumb-divider-color: var(--aui-header-link-icon);
   --bs-breadcrumb-item-active-color: var(--aui-header-link-hover);
@@ -121,7 +121,8 @@
   a {
     color: var(--aui-header-link-color);
 
-    &:hover {
+    &:hover,
+    &[aria-expanded="true"] {
       color: var(--aui-header-link-hover);
     }
   }
@@ -130,6 +131,44 @@
     width: 1rem;
     height: 1rem;
     color: var(--aui-header-link-icon);
+  }
+
+  > .breadcrumb-item {
+    flex-shrink: 0;
+  }
+
+  > .active {
+    flex-shrink: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+// The right part of the header keeps its place; the left part gives way
+.aui-header .navbar-collapse > .ms-auto {
+  flex-shrink: 0;
+}
+
+.aui-header .navbar-collapse > nav {
+  min-width: 0;
+}
+
+// While the header search is open, and in a narrow header: the path keeps the home link and the current page,
+// and the quick links step aside where the header has no room for them
+.aui-header:has(.aui-expand.is-open) .breadcrumb > .breadcrumb-item:not(:first-child, .active) {
+  display: none;
+}
+
+@media (max-width: 991.98px) {
+  .aui-header .breadcrumb > .breadcrumb-item:not(:first-child, .active) {
+    display: none;
+  }
+}
+
+@media (max-width: 1399.98px) {
+  .aui-header:has(.aui-expand.is-open) .navbar-collapse > .navbar-nav {
+    display: none !important;
   }
 }
 

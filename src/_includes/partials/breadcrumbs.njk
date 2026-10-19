@@ -1,0 +1,21 @@
+{#- Path of a page in the menu (the breadcrumbsFor filter): the home link, the heading and the parent item
+    as dropdowns with the pages of their level, then the current page. The header and the page title use it. #}
+{%- macro trail(crumbs, stem) %}
+<ol class="breadcrumb mb-0">
+    <li class="breadcrumb-item"><a href="index.html" aria-label="Home"><i data-lucide="house"></i></a></li>
+    {%- for crumb in crumbs %}
+    {%- if loop.last %}
+    <li class="breadcrumb-item active" aria-current="page">{{ crumb.title }}</li>
+    {%- else %}
+    <li class="breadcrumb-item dropdown">
+        <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ crumb.title }}</a>
+        <ul class="dropdown-menu">
+            {%- for link in crumb.links %}
+            <li><a class="dropdown-item{% if link.href | isActive(stem) %} active{% endif %}" href="{{ link.href }}"{% if link.href | isActive(stem) %} aria-current="page"{% endif %}>{{ link.title }}</a></li>
+            {%- endfor %}
+        </ul>
+    </li>
+    {%- endif %}
+    {%- endfor %}
+</ol>
+{%- endmacro %}
