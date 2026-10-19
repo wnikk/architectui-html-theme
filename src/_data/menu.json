@@ -194,6 +194,11 @@
         "icon": "file"
       },
       {
+        "title": "Invoice",
+        "href": "pages-invoice.html",
+        "icon": "receipt-text"
+      },
+      {
         "title": "Authentication",
         "icon": "log-in",
         "children": [

@@ -37,3 +37,6 @@
 
 @use "theme-base";
 @use "business";
+
+// Print rules come last: they override the frame and the look
+@use "utilities/print";

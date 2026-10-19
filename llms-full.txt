@@ -288,6 +288,16 @@ Always give the first tab `active`. The style (`shadow` or `line`) comes from `d
 
 Replace the files, nothing else: `assets/images/logo.png` for light backgrounds and `assets/images/logo-on-dark.png` for dark backgrounds. Wide and square logos both fit into `--aui-logo-max-height` (2.25rem).
 
+### Print
+
+The browser print shows only the page content: the header, sidebar, footer, path line and toasts stay off paper, and the page title prints on the left without its icon. The print uses the light mode of the theme (a dark-only theme keeps its colors); the screen mode returns after it. Cards get a thin border instead of the shadow, scroll areas and wide tables print in full, colors print as on the screen, and a card, a table row or a chart does not break across pages. Page margins are 12 mm.
+
+- `d-print-none` (Bootstrap) keeps an element off paper: put it on the title actions and other buttons. `d-print-block` shows an element only on paper.
+- `data-aui-print` on a button opens the print dialog.
+- An A4 page is about 700px wide, narrower than `md`: a document that must keep its columns on paper uses `sm` columns.
+
+`dist/pages-invoice.html` is a complete example: the invoice card is the whole document, its title has `d-print-none`, and the Print button has `data-aui-print`.
+
 ## 5. Settings, attributes and JavaScript API
 
 ### Attributes on `<html>`
@@ -335,6 +345,7 @@ The settings are one JSON object in `localStorage` under the key `architectui`, 
 - `data-aui-reset`: restores all defaults and clears storage.
 - `data-aui-expand`, `data-aui-expand-toggle`, `data-aui-expand-close`: the expanding field (section 8); Escape closes it.
 - `data-aui-toast="#id"`: shows that Bootstrap toast.
+- `data-aui-print` on a button: opens the print dialog (see Print).
 - `data-aui-back` on a link: returns to the previous page when the visitor came from the same site; otherwise follows the `href`.
 - `data-aui-dropzone="#list"` on `.aui-dropzone`: marks the area while files are dragged over it and lists the chosen files in that element (name, size, icon).
 
@@ -688,6 +699,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `tables-datatables.html` | The same orders in DataTables 3: search, sorting, pages, rows per page, responsive rows on a phone |
 | `charts-chartjs.html` | Chart.js charts colored by tokens |
 | `pages-starter.html` | An empty page with the frame: the start for a new screen |
+| `pages-invoice.html` | Invoice ready for print: seller, bill to, ship to, details, items, totals with discount and VAT, bank details; Send and Print buttons. The print shows only the invoice on one A4 page |
 | `pages-profile.html` | My Profile: profile card, personal information form, and the Interface section with every setting (layout, mode, density, tabs, theme, header and sidebar colors, restore default). The user menu links to it |
 | `pages-login.html`, `pages-register.html`, `pages-forgot-password.html` | Guest frame: sign in with a code from an authenticator app, sign up with a code from the email, password reset; demo requests lock the form for 2 s |
 | `pages-403.html`, `pages-404.html`, `pages-500.html` | Error pages on the guest frame: access denied (with the signed-in account and Switch account), not found, server error |

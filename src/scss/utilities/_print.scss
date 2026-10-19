@@ -1,0 +1,89 @@
+// Print: only the page content, on a plain page. The header, sidebar, footer and the page path stay off paper;
+// the page title prints without its icon. architectui.js switches to the light mode for the print.
+// Cards get a thin border instead of the shadow, scroll areas print in full, and what fits on a page
+// (a card, a table row, a chart) does not break across pages. Colors print as on the screen.
+// In the markup: d-print-none hides an element on paper, d-print-block shows one only there (Bootstrap).
+
+@media print {
+  @page {
+    margin: 12mm;
+  }
+
+  html,
+  body {
+    background: var(--bs-body-bg) !important;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  // The switch to the light mode applies at once, without a color transition
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+
+  .aui-header,
+  .aui-sidebar,
+  .aui-footer,
+  .aui-skip-link,
+  .aui-page-path,
+  .aui-page-title > :has(> [data-lucide]),
+  .toast-container,
+  .tooltip,
+  .popover,
+  .dropdown-menu,
+  .modal-backdrop,
+  .offcanvas-backdrop {
+    display: none !important;
+  }
+
+  .aui-app {
+    display: block;
+    min-height: 0;
+  }
+
+  // Half of the widest row gutter: the negative margins of .row stay on the paper
+  .aui-content {
+    padding: 0 .75rem;
+  }
+
+  // Paper is narrower than the md breakpoint: the title stays on the left as on a wide screen
+  .aui-page-title {
+    text-align: start !important;
+  }
+
+  .card {
+    border: var(--bs-border-width) solid var(--bs-border-color) !important;
+    box-shadow: none !important;
+  }
+
+  .card,
+  tr,
+  img,
+  canvas,
+  .aui-chat-message {
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .card-header {
+    break-after: avoid;
+  }
+
+  .aui-scroll,
+  .aui-chat,
+  .table-responsive {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}

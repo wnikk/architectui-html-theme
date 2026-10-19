@@ -1,5 +1,6 @@
 {#- A page with "breadcrumbs: title" in its front matter shows a Back link and its path in the menu
-    as a line of its own above the title. #}
+    as a line of its own above the title. "titleActions" names the partial with the title buttons;
+    "printTitle: false" keeps the title off paper (the page content is a complete document). #}
 {%- from "partials/breadcrumbs.njk" import trail %}
 {%- set crumbs = (menu | breadcrumbsFor(page.filePathStem)) if breadcrumbs == "title" else [] -%}
 {%- if crumbs.length %}
@@ -10,7 +11,7 @@
     </nav>
 </div>
 {% endif -%}
-<div class="aui-page-title d-md-flex align-items-center text-center text-md-start">
+<div class="aui-page-title d-md-flex align-items-center text-center text-md-start{% if printTitle === false %} d-print-none{% endif %}">
     <div class="d-none d-md-flex align-items-center justify-content-center flex-shrink-0 me-4">
         <i data-lucide="{{ icon }}" class="{{ iconClass or 'aui-icon-gradient-primary' }}"></i>
     </div>
@@ -18,5 +19,5 @@
         <h1>{{ title }}</h1>
         <p>{{ description }}</p>
     </div>
-    {% include "partials/page-title-actions.njk" %}
+    {% include titleActions or "partials/page-title-actions.njk" %}
 </div>
