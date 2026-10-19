@@ -1,0 +1,76 @@
+---
+title: "Kanban Board"
+description: "Tasks in columns: drag a card or use its menu to move it, add cards, filter by text and label."
+icon: "square-kanban"
+iconClass: "text-primary"
+script: "apps-kanban.js"
+---
+<div class="card mb-3">
+    <div class="card-body d-flex flex-wrap align-items-center gap-2 gap-md-3 py-2">
+        <div class="fw-bold">Spring release</div>
+        <span class="aui-avatars">
+            {%- for avatar in [1, 3, 5, 8, 10] %}
+            <img src="assets/images/avatars/{{ avatar }}.jpg" width="32" height="32" alt="">
+            {%- endfor %}
+        </span>
+        <span class="small text-body-secondary d-none d-sm-inline">8 members</span>
+        <div class="d-flex flex-wrap align-items-center gap-2 ms-md-auto">
+            <label class="visually-hidden" for="kanban-search">Search cards</label>
+            <input type="search" class="form-control form-control-sm w-auto" id="kanban-search" placeholder="Search cards ...">
+            <label class="visually-hidden" for="kanban-label">Label</label>
+            <select class="form-select form-select-sm w-auto" id="kanban-label">
+                <option value="">All labels</option>
+                {%- for label in kanban.labels %}
+                <option>{{ label.text }}</option>
+                {%- endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="aui-kanban mb-3" id="kanban">
+    {%- for column in kanban.columns %}
+    <section class="card aui-kanban-column" data-column="{{ column.id }}"{% if column.limit %} data-limit="{{ column.limit }}"{% endif %} aria-labelledby="kanban-{{ column.id }}">
+        <div class="card-header">
+            <span class="d-inline-block p-1 rounded-circle bg-{{ column.color }} me-2" aria-hidden="true"></span>
+            <span id="kanban-{{ column.id }}">{{ column.title }}</span>
+            <span class="badge rounded-pill text-bg-secondary ms-2" data-count>{{ column.cards.length }}</span>
+            {%- if column.limit %}
+            <span class="small text-body-secondary ms-auto" title="Work in progress limit">max {{ column.limit }}</span>
+            {%- endif %}
+        </div>
+        <div class="card-body p-2">
+            <div class="aui-kanban-list p-1" data-kanban-list>
+                {%- for card in column.cards %}
+                {%- set columns = kanban.columns %}
+                {% include "partials/kanban-card.njk" %}
+                {%- endfor %}
+            </div>
+        </div>
+        <div class="card-footer p-2">
+            <button type="button" class="btn btn-sm btn-link text-body-secondary d-inline-flex align-items-center gap-2 w-100" data-add-card><i data-lucide="plus"></i>Add a card</button>
+            <form class="d-none" data-add-form>
+                <label class="visually-hidden" for="kanban-new-{{ column.id }}">Card title</label>
+                <textarea class="form-control form-control-sm mb-2" id="kanban-new-{{ column.id }}" rows="2" placeholder="What needs to be done?" required></textarea>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary btn-sm">Add card</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-add-cancel>Cancel</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    {%- endfor %}
+</div>
+
+<div class="visually-hidden" role="status" aria-live="polite" id="kanban-status"></div>
+<p class="small text-body-secondary d-flex gap-2">
+    <i data-lucide="info" class="flex-shrink-0 mt-1"></i>
+    <span>Drag a card with the mouse, or open its menu (<i data-lucide="ellipsis"></i>) to move it with the keyboard or on a touch screen. Columns with a limit mark the counter red when they hold more cards. The board is a demo: the changes stay until the page reloads.</span>
+</p>
+
+{#- A new card: the page script copies it, sets the id and the title #}
+<template id="kanban-card-template">
+    {%- set card = { id: "", column: "", title: "", labels: [], avatars: [1], due: null, overdue: false, checklist: null, comments: 0, files: 0 } %}
+    {%- set columns = kanban.columns %}
+    {% include "partials/kanban-card.njk" %}
+</template>

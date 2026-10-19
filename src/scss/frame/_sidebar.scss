@@ -151,11 +151,16 @@
     border-radius: 15px;
   }
 
+  // Narrower side padding than the top level; a label longer than the sidebar wraps to a second line
   .nav-link {
-    height: 2rem;
-    padding: 0 var(--aui-gutter);
+    display: flex;
+    align-items: center;
+    height: auto;
+    min-height: 2rem;
+    padding: .3rem .75rem .3rem 1rem;
     color: var(--aui-nav-sub-color);
-    line-height: 2rem;
+    line-height: 1.25;
+    white-space: normal;
 
     &:hover {
       color: var(--bs-primary);

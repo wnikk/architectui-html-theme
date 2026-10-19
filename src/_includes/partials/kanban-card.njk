@@ -1,0 +1,47 @@
+{#- One Kanban card. Set card and columns before the include. The "Move to" menu is the way to move a card
+    with the keyboard or on a touch screen; with a mouse the card is dragged. #}
+<article class="card aui-kanban-card" draggable="true" tabindex="0" data-card="{{ card.id }}" data-labels="{% for label in card.labels %}{{ label[0] }} {% endfor %}" aria-label="{{ card.title }}">
+    <div class="card-body p-3">
+        <div class="d-flex align-items-start gap-2 mb-2">
+            <div class="d-flex flex-wrap gap-1 flex-grow-1">
+                {%- for label in card.labels %}
+                <span class="badge bg-{{ label[1] }}-subtle text-{{ label[1] }}-emphasis">{{ label[0] }}</span>
+                {%- endfor %}
+            </div>
+            <div class="dropdown">
+                <button type="button" class="btn btn-sm btn-link text-body-secondary p-0" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Card actions"><i data-lucide="ellipsis"></i></button>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <h6 class="dropdown-header">Move to</h6>
+                    {%- for column in columns %}
+                    <button type="button" class="dropdown-item" data-move-to="{{ column.id }}"{% if column.id == card.column %} disabled{% endif %}>{{ column.title }}</button>
+                    {%- endfor %}
+                </div>
+            </div>
+        </div>
+        <h6 class="mb-2 text-body lh-sm" data-card-title>{{ card.title }}</h6>
+        {%- if card.checklist %}
+        <div class="d-flex align-items-center gap-2 small text-body-secondary mb-2">
+            <i data-lucide="list-checks"></i><span class="aui-number">{{ card.checklist[0] }}/{{ card.checklist[1] }}</span>
+            <div class="progress flex-grow-1" role="progressbar" aria-label="Checklist" aria-valuenow="{{ card.checklist[0] }}" aria-valuemin="0" aria-valuemax="{{ card.checklist[1] }}" style="height: .25rem">
+                <div class="progress-bar{% if card.checklist[0] == card.checklist[1] %} bg-success{% endif %}" style="width: {{ (card.checklist[0] / card.checklist[1] * 100) | round }}%"></div>
+            </div>
+        </div>
+        {%- endif %}
+        <div class="d-flex align-items-center gap-3 small text-body-secondary">
+            {%- if card.due %}
+            <span class="d-inline-flex align-items-center gap-1{% if card.overdue %} text-danger fw-bold{% endif %}"><i data-lucide="calendar"></i>{{ card.due }}</span>
+            {%- endif %}
+            {%- if card.comments %}
+            <span class="d-inline-flex align-items-center gap-1"><i data-lucide="message-square"></i>{{ card.comments }}</span>
+            {%- endif %}
+            {%- if card.files %}
+            <span class="d-inline-flex align-items-center gap-1"><i data-lucide="paperclip"></i>{{ card.files }}</span>
+            {%- endif %}
+            <span class="aui-avatars ms-auto">
+                {%- for avatar in card.avatars %}
+                <img src="assets/images/avatars/{{ avatar }}.jpg" width="24" height="24" alt="">
+                {%- endfor %}
+            </span>
+        </div>
+    </div>
+</article>

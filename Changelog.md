@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **Kanban Board page** (`apps-kanban.html`, new menu group Apps): five columns of release tasks with labels, due dates, checklists and people. Cards move by drag and drop or with a "Move to" menu (keyboard, touch screens); new cards, search, a label filter, column limits, a live region for screen readers. New classes `aui-kanban` (board, columns, list, card) and `aui-avatars` (overlapping photos).
 - **Forms Wizard page** (`forms-wizard.html`, menu Forms): a workspace form in four steps — check of each step with Bootstrap validation, plan cards, an optional step with Skip, a review of all answers and a result screen. New component `aui-stepper` (numbered steps joined by a line; on phones only the current label).
 - **Markup inserted later renders by itself.** `architectui.js` watches the page: new `i[data-lucide]` icons are rendered and new Bootstrap tooltips and popovers are initialised without `ArchitectUI.refresh()` (it stays for code that needs the SVG at once). `architectui-auth.js` renders new icons the same way.
 - **Theme colors for scripts.** `ArchitectUI.token(name)`, `ArchitectUI.rgba(name, alpha)` and `ArchitectUI.chartDefaults(Chart)`; the Charts, Operations Wall and Calendar pages use them.
@@ -16,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - **Map tiles note.** The Maps page says under the maps that the public OpenStreetMap tiles suit a demo and a working project sets its own tile server in `components-maps.js`.
 
 ### Changed
+- **Sidebar 250px.** `--aui-sidebar-width` is 250px instead of 280px: more room for the content. Sub-items have narrower side padding, and a label longer than the sidebar wraps to a second line instead of running past the highlight.
 - **Theme loading and switching.** The inline `<head>` script adds the stored theme stylesheet with `blocking="render"` instead of `document.write`; until it loads, `data-aui-loading` on `<html>` keeps the page hidden (at most 3 s) and the page then fades in. A theme change loads the new stylesheet first and then cross-fades the page to the new colors with the View Transitions API; a light/dark change cross-fades too (also on guest pages). With `prefers-reduced-motion` or without View Transitions the change applies at once. Copy the new inline script from `dist/pages-starter.html`.
 - **Settings on the profile page.** The frame has no floating cog button and no settings Offcanvas: every setting is in the Interface section of `pages-profile.html` (user menu → Interface settings). The classes `aui-settings` and `aui-settings-toggle` and the partial `settings.njk` are removed; `aui-swatch` and `aui-theme-option` stay for the settings controls. Pages with the old panel markup lose its styles: take the Interface section from `partials/interface-settings.njk`.
 - **Pages menu in groups.** Starter Page, "Authentication" (Sign In, Sign Up, Forgot Password), "Errors" (404, 500), My Profile.

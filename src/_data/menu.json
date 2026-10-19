@@ -171,6 +171,16 @@
     ]
   },
   {
+    "heading": "Apps",
+    "items": [
+      {
+        "title": "Kanban Board",
+        "href": "apps-kanban.html",
+        "icon": "square-kanban"
+      }
+    ]
+  },
+  {
     "heading": "Pages",
     "items": [
       {

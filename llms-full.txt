@@ -367,7 +367,7 @@ Override tokens after `architectui.css` (or after the theme stylesheet). No rebu
 
 Layout, shared by all themes:
 
-- `--aui-header-height` (60px), `--aui-sidebar-width` (280px), `--aui-sidebar-collapsed-width` (80px)
+- `--aui-header-height` (60px), `--aui-sidebar-width` (250px), `--aui-sidebar-collapsed-width` (80px)
 - `--aui-logo-max-height` (2.25rem), `--aui-nav-icon-size` (20px), `--aui-gutter` (1.5rem, 1rem on phones), `--aui-card-header-height` (3.5rem), `--aui-transition`
 - `--aui-density` (1): factor for card and table cell padding
 - `--aui-page-animation` (`aui-page-in .3s ease-out backwards`): the content area (`.aui-content`) appears on every page load, from transparent and 8px lower; the header, sidebar and footer stay still. Set it to `none` to turn the animation off. It is off with `prefers-reduced-motion: reduce` and in print. A modal or an offcanvas opened during the animation ends it first.
@@ -488,6 +488,7 @@ Other Bootstrap utilities (spacing, text, order) stop at `xxl`.
 - Navs: `aui-tabs-shadow`; Bootstrap `nav-underline` gets the moving bar of the theme. The first icon in a `.nav-link` is the link icon: add `me-2`.
 - Numbers: `aui-number`.
 - Forms: `aui-dropzone` (file drop zone, see Forms), `aui-stepper` (steps of a form in several steps, see Stepper).
+- Apps: `aui-kanban`, `aui-kanban-column`, `aui-kanban-list`, `aui-kanban-card` (see Kanban board), `aui-avatars` (overlapping photos).
 - Settings controls: `aui-theme-option` (theme picker label with a dot), `aui-theme-dot` (small theme dot for a list), `aui-swatch aui-swatch--<scheme>` (color swatch label), `aui-theme-switch` (header group of the mode toggle and the theme list; `aui-theme-check` marks the current theme).
 - Scroll areas: `aui-scroll` with a height class `aui-scroll-sm`, `-md`, `-lg`.
 - Charts and maps: `aui-chart` (`aui-chart-xs`, `aui-chart-sm`, `aui-chart-lg`) sets the chart height; `aui-sparkline` is a 2.5rem trend line under a number (a Chart.js line without axes); `aui-map` (`aui-map-lg`) for Leaflet maps.
@@ -499,6 +500,12 @@ Everything else is Bootstrap: `hr` for a divider, `fs-*` and `opacity-*` for tex
 ### Tables
 
 A regular Bootstrap table. For a list with tools, put a search `input-group` and `form-select` filters in the `card-body` above, the table in `.table-responsive`, the counter, rows per page and `pagination` in the `card-footer`. A sortable header is a link inside the `th`: `aria-sort` on the `th`, `chevrons-up-down` icon (`opacity-50`) when not sorted, `arrow-up` or `arrow-down` (`text-primary`) when sorted. An empty result is one row with `colspan` and a centered message. `.table-responsive` keeps its content inside: a `.visually-hidden` header label does not widen the page.
+
+### Kanban board
+
+`.aui-kanban`: columns side by side; when they do not fit, the board scrolls sideways inside itself (the page does not). Each column is a `.card.aui-kanban-column` with a `.card-header`, a `.card-body` holding `.aui-kanban-list` and a `.card-footer`. Cards are `.card.aui-kanban-card` (`draggable="true"`, `tabindex="0"`). A page script moves the cards: `.is-over` marks the list under a dragged card, `.is-dragging` the card. Column width: `--aui-kanban-column-width` (17rem). Give every card a "Move to" dropdown as well: HTML drag and drop works with a mouse only. `dist/apps-kanban.html` and `apps-kanban.js` are a complete example (drag, Move to, add a card, filters, column limits, a live region for screen readers).
+
+`.aui-avatars`: overlapping round photos, for example the people on a card: `<span class="aui-avatars"><img src="..." width="24" height="24" alt=""><img ...></span>`.
 
 ### Stepper (form in several steps)
 
@@ -614,6 +621,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `components-calendar.html` | FullCalendar |
 | `forms-controls.html` | Inputs, selects, checks, input groups; native date, time, suggestions, color and file fields with a drop zone |
 | `forms-layouts.html` | Grid and inline forms |
+| `apps-kanban.html` | Kanban board: five columns, cards with labels, due dates, checklists and people; drag and drop, a "Move to" menu, new cards, search and label filter, column limits |
 | `forms-wizard.html` | Form in four steps with `aui-stepper`: check of each step, plan cards, optional step with Skip, review of all answers, result screen |
 | `forms-validation.html` | Bootstrap validation |
 | `tables-regular.html` | A Bootstrap list of orders with search, filters, sorting links in the header, selection, row actions and pages; an empty state; table variants |
