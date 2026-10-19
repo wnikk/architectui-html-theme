@@ -1,0 +1,87 @@
+// Stepper: numbered steps joined by a line, for a form in several steps (a wizard).
+// Markup: ol.aui-stepper > li (one per step) with span.aui-stepper-dot (number) and span.aui-stepper-label.
+// The current step has .active and aria-current="step"; finished steps have .done.
+
+.aui-stepper {
+  --aui-stepper-size: 2rem;
+  --aui-stepper-line: var(--bs-border-color);
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    position: relative;
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    min-width: 0;
+    color: var(--bs-secondary-color);
+    font-size: .875rem;
+    text-align: center;
+
+    // The line to the previous step
+    &:not(:first-child)::before {
+      content: "";
+      position: absolute;
+      top: calc(var(--aui-stepper-size) / 2);
+      right: calc(50% + var(--aui-stepper-size) / 2 + .5rem);
+      left: calc(-50% + var(--aui-stepper-size) / 2 + .5rem);
+      height: 2px;
+      border-radius: 1px;
+      background: var(--aui-stepper-line);
+    }
+  }
+
+  > li.done:not(:first-child)::before,
+  > li.active:not(:first-child)::before {
+    background: var(--bs-primary);
+  }
+}
+
+.aui-stepper-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--aui-stepper-size);
+  height: var(--aui-stepper-size);
+  border: 2px solid var(--aui-stepper-line);
+  border-radius: 50%;
+  background: var(--bs-body-bg);
+  font-weight: 700;
+  line-height: 1;
+  transition: background-color .2s, border-color .2s, color .2s;
+
+  .active > & {
+    border-color: var(--bs-primary);
+    color: var(--bs-primary);
+  }
+
+  .done > & {
+    border-color: var(--bs-primary);
+    background: var(--bs-primary);
+    color: var(--aui-primary-contrast, #fff);
+  }
+}
+
+.aui-stepper-label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  .active > & {
+    color: var(--bs-body-color);
+    font-weight: 600;
+  }
+}
+
+// Phones: only the current step keeps its label
+@media (max-width: 575.98px) {
+  .aui-stepper > li:not(.active) > .aui-stepper-label {
+    display: none;
+  }
+}

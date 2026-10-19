@@ -152,6 +152,11 @@
         "title": "Forms Validation",
         "href": "forms-validation.html",
         "icon": "pen-line"
+      },
+      {
+        "title": "Forms Wizard",
+        "href": "forms-wizard.html",
+        "icon": "list-ordered"
       }
     ]
   },

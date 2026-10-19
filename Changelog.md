@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **Forms Wizard page** (`forms-wizard.html`, menu Forms): a workspace form in four steps — check of each step with Bootstrap validation, plan cards, an optional step with Skip, a review of all answers and a result screen. New component `aui-stepper` (numbered steps joined by a line; on phones only the current label).
 - **Markup inserted later renders by itself.** `architectui.js` watches the page: new `i[data-lucide]` icons are rendered and new Bootstrap tooltips and popovers are initialised without `ArchitectUI.refresh()` (it stays for code that needs the SVG at once). `architectui-auth.js` renders new icons the same way.
 - **Theme colors for scripts.** `ArchitectUI.token(name)`, `ArchitectUI.rgba(name, alpha)` and `ArchitectUI.chartDefaults(Chart)`; the Charts, Operations Wall and Calendar pages use them.
 - **Cache busting.** The demo pages link `architectui.css`, `architectui.js`, `architectui-auth.js` and the page scripts with `?v=<version>`; the theme stylesheet link keeps the same query.

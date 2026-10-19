@@ -1,0 +1,140 @@
+---
+title: "Forms Wizard"
+description: "A form in several steps: a stepper, a check of each step before the next one, a review and a result."
+icon: "list-ordered"
+iconClass: "text-primary"
+script: "forms-wizard.js"
+---
+{#- One form, one section per step. forms-wizard.js shows one section, checks it with Bootstrap validation and fills the review. #}
+<div class="row justify-content-center">
+    <div class="col-12 col-xl-10 col-xxl-8">
+        <div class="card mb-3">
+            <div class="card-body p-lg-4">
+                <ol class="aui-stepper mb-4" id="wizard-stepper">
+                    {%- for step in ["Workspace", "Plan", "Team", "Review"] %}
+                    <li{% if loop.first %} class="active" aria-current="step"{% endif %}><span class="aui-stepper-dot">{{ loop.index }}</span><span class="aui-stepper-label">{{ step }}</span></li>
+                    {%- endfor %}
+                </ol>
+
+                <form id="wizard" novalidate>
+                    <section data-wizard-step aria-labelledby="wizard-title-1">
+                        <h5 id="wizard-title-1" tabindex="-1">Name your workspace</h5>
+                        <p class="text-body-secondary">The workspace holds your projects, people and billing.</p>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="ws-name" class="form-label">Workspace name</label>
+                                <input type="text" class="form-control" id="ws-name" name="name" required minlength="3" placeholder="Northwind Studio">
+                                <div class="invalid-feedback">Enter at least 3 characters.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ws-url" class="form-label">Address</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text">app.example.test/</span>
+                                    <input type="text" class="form-control" id="ws-url" name="url" required pattern="[a-z0-9\-]{3,30}" placeholder="northwind">
+                                    <div class="invalid-feedback">3–30 characters: lowercase letters, digits and hyphens.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ws-region" class="form-label">Data region</label>
+                                <select class="form-select" id="ws-region" name="region" required>
+                                    <option value="">Choose a region</option>
+                                    <option>EU West (Frankfurt)</option>
+                                    <option>US East (Virginia)</option>
+                                    <option>US West (Oregon)</option>
+                                    <option>Asia Pacific (Singapore)</option>
+                                </select>
+                                <div class="invalid-feedback">Choose where your data is stored.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ws-size" class="form-label">Team size</label>
+                                <select class="form-select" id="ws-size" name="size">
+                                    <option>1–10 people</option>
+                                    <option>11–50 people</option>
+                                    <option>51–200 people</option>
+                                    <option>More than 200 people</option>
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section data-wizard-step aria-labelledby="wizard-title-2" hidden>
+                        <h5 id="wizard-title-2" tabindex="-1">Choose a plan</h5>
+                        <p class="text-body-secondary">You can change the plan at any time. Every plan starts with a 14-day trial.</p>
+                        <div class="btn-group btn-group-sm mb-3" role="radiogroup" aria-label="Billing period">
+                            <input type="radio" class="btn-check" name="period" id="period-month" value="Monthly" checked>
+                            <label class="btn btn-outline-primary" for="period-month">Monthly</label>
+                            <input type="radio" class="btn-check" name="period" id="period-year" value="Yearly (2 months free)">
+                            <label class="btn btn-outline-primary" for="period-year">Yearly · 2 months free</label>
+                        </div>
+                        <div class="row row-cols-1 row-cols-md-3 g-3" role="radiogroup" aria-label="Plan">
+                            {%- for plan in [["starter", "Starter", "$9", "Up to 5 people, 10 projects, email support"], ["team", "Team", "$29", "Up to 50 people, unlimited projects, priority support"], ["business", "Business", "$79", "Unlimited people, SSO, audit log, a personal manager"]] %}
+                            <div class="col">
+                                <input type="radio" class="btn-check" name="plan" id="plan-{{ plan[0] }}" value="{{ plan[1] }}" required{% if plan[0] == "team" %} checked{% endif %}>
+                                <label class="btn btn-outline-primary w-100 h-100 text-start p-3" for="plan-{{ plan[0] }}">
+                                    <span class="d-block fw-bold">{{ plan[1] }}</span>
+                                    <span class="d-block aui-number fs-4 fw-bold my-1">{{ plan[2] }}<span class="fs-6 fw-normal opacity-75"> / person / month</span></span>
+                                    <span class="d-block small opacity-75">{{ plan[3] }}</span>
+                                </label>
+                            </div>
+                            {%- endfor %}
+                        </div>
+                    </section>
+
+                    <section data-wizard-step aria-labelledby="wizard-title-3" hidden>
+                        <h5 id="wizard-title-3" tabindex="-1">Invite your team</h5>
+                        <p class="text-body-secondary">The invited people get an email with a link. You can skip this step and invite them later.</p>
+                        <div class="row g-3">
+                            <div class="col-md-8">
+                                <label for="ws-invites" class="form-label">Email addresses</label>
+                                <textarea class="form-control" id="ws-invites" name="invites" rows="4" placeholder="maria.chen@northwind.test, james@brightlabs.test"></textarea>
+                                <div class="form-text">Separate the addresses with commas or new lines.</div>
+                                <div class="invalid-feedback">Check the addresses: one of them is not an email address.</div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="ws-role" class="form-label">Role</label>
+                                <select class="form-select" id="ws-role" name="role">
+                                    <option>Member</option>
+                                    <option>Admin</option>
+                                    <option>Viewer</option>
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section data-wizard-step aria-labelledby="wizard-title-4" hidden>
+                        <h5 id="wizard-title-4" tabindex="-1">Review and create</h5>
+                        <p class="text-body-secondary">Check the details. Go back to change a step.</p>
+                        <dl class="row mb-3" id="wizard-review">
+                            {%- for item in [["name", "Workspace"], ["url", "Address"], ["region", "Data region"], ["size", "Team size"], ["plan", "Plan"], ["period", "Billing"], ["invites", "Invitations"], ["role", "Role"]] %}
+                            <dt class="col-sm-4 text-body-secondary fw-normal">{{ item[1] }}</dt>
+                            <dd class="col-sm-8 fw-bold" data-review="{{ item[0] }}">—</dd>
+                            {%- endfor %}
+                        </dl>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="ws-terms" required>
+                            <label class="form-check-label" for="ws-terms">I agree to the terms of service and the data processing agreement</label>
+                            <div class="invalid-feedback">Accept the terms to create the workspace.</div>
+                        </div>
+                    </section>
+
+                    <section data-wizard-done class="text-center py-4" aria-labelledby="wizard-done-title" hidden>
+                        <div class="d-inline-flex p-3 rounded-circle text-bg-success mb-3"><i data-lucide="check" class="fs-2"></i></div>
+                        <h5 id="wizard-done-title" tabindex="-1">Workspace created</h5>
+                        <p class="text-body-secondary mb-4"><span data-review="name">Your workspace</span> is ready. The invitations are on their way.</p>
+                        <div class="d-flex flex-wrap justify-content-center gap-2">
+                            <a href="index.html" class="btn btn-primary d-inline-flex align-items-center gap-2">Open the workspace<i data-lucide="arrow-right"></i></a>
+                            <button type="button" class="btn btn-outline-secondary" data-wizard-restart>Create another</button>
+                        </div>
+                    </section>
+
+                    <div class="d-flex align-items-center gap-2 border-top pt-3 mt-4" data-wizard-nav>
+                        <button type="button" class="btn btn-outline-secondary d-inline-flex align-items-center gap-2 d-none" data-wizard-back><i data-lucide="arrow-left"></i>Back</button>
+                        <span class="small text-body-secondary ms-auto" data-wizard-counter>Step 1 of 4</span>
+                        <button type="button" class="btn btn-link d-none" data-wizard-skip>Skip</button>
+                        <button type="submit" class="btn btn-primary d-inline-flex align-items-center gap-2" data-wizard-next><span data-wizard-next-label>Next</span><i data-lucide="arrow-right"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
