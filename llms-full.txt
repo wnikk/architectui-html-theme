@@ -409,7 +409,22 @@ A new theme is one Sass file in `src/scss/themes/` that passes a palette for bot
 );
 ```
 
-Optional palette keys: `fill` (defaults to `surface-2`) and `accent-solid`, `accent-soft`, `accent-text`, `accent-ink`, `accent-line` (default to the brand values). After the palette, set other variables in `:root` (`--aui-root-size`, `--aui-font`, `--aui-heading-font`, `--aui-radius*`, `--aui-card-shadow`, `--aui-cell-py`, `--aui-th-*`) and add rules that only this theme needs. Add the theme to `src/_data/themes.json` to list it in the interface settings. Check it on `components-bootstrap.html` in both modes: every Bootstrap component is on that page.
+Optional palette keys: `fill` (defaults to `surface-2`) and `accent-solid`, `accent-soft`, `accent-text`, `accent-ink`, `accent-line` (default to the brand values). After the palette, set other variables in `:root` (`--aui-root-size`, `--aui-font`, `--aui-heading-font`, `--aui-radius*`, `--aui-card-shadow`, `--aui-cell-py`, `--aui-th-*`) and add rules that only this theme needs.
+
+Two optional looks come as mixins of the theme base; include them after the palette:
+
+- `@include t.depth($tint, $gradients)`: the depth of Orange on the theme tokens. Soft shadows instead of border lines (colored by `$tint` in light mode, black in dark mode), a floating header and sidebar, a lifted active menu link, cards without a border line, uppercase card titles in the brand color, layered shadows on menus and overlays, uppercase badges. `$gradients` is a map of `--aui-gradient-<name>` values (keys `primary`, `success`, `info`, `warning`, `danger`, `secondary`, `dark`, `light` and their `-subtle`) that `bg-<color>` paints. Indigo and Coffee use it.
+- `@include t.compact`: the compact sizes of Business: 14.5px root type, line height 1.45, denser table headers and cells, a smaller table font. Radii and shadows stay with the theme. Coffee uses it.
+
+```scss
+@include t.compact;
+@include t.depth(#77552b, (
+  primary: linear-gradient(120deg, #8b4513 0%, #d99235 100%),
+  danger: linear-gradient(120deg, #a63a2b 0%, #d9694f 100%),
+));
+```
+
+Add the theme to `src/_data/themes.json` to list it in the interface settings. Check it on `components-bootstrap.html` in both modes: every Bootstrap component is on that page.
 
 ## 7. Tokens (CSS variables)
 

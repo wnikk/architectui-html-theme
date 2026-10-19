@@ -109,7 +109,9 @@ add the stylesheet yourself and put the theme id on `<html>`. The attribute swit
 
 Theme sources live in `src/scss/themes/`. A new theme is one file: its palette for both modes, other variable values
 and the rules only this theme needs. The shared rules of all themes come from `_theme.scss` and are part of
-`architectui.css`. Add the theme to `src/_data/themes.json` to list it in the settings.
+`architectui.css`. Two optional looks are mixins of the theme base: `t.depth()` gives a theme the soft shadows and
+gradients of Orange in its own colors (Indigo, Coffee), `t.compact` gives it the compact sizes of Business (Coffee).
+Add the theme to `src/_data/themes.json` to list it in the settings.
 
 ## Layout options
 

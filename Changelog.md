@@ -2,7 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [6.2.19] - 2026-10-19
+
+Indigo and Coffee take the depth of Orange in their own colors; Coffee is compact. Markup does not change. A custom theme can use the same look with the new `depth()` and `compact()` mixins of the theme base.
 
 ### Changed
 - **Indigo with depth.** Indigo (and Indigo Calathea on top of it) takes the look of Orange in its own colors: soft indigo-tinted shadows instead of border lines, a floating header and sidebar, a lifted active menu link, cards without a border line, uppercase card titles in the brand color, layered shadows on menus and overlays, vivid two-color gradients for `bg-primary`, `bg-success`, `bg-info`, `bg-warning`, `bg-danger`, `bg-secondary`, `bg-dark` (widgets, progress bars, badges). The rules come from the new `depth()` mixin of the theme base (`src/scss/themes/_theme.scss`), which any theme can include.
