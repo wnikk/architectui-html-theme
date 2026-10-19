@@ -54,14 +54,24 @@
     }
   }
 
+  const isDarkOnly = () => {
+    const theme = currentValue("theme");
+    return Boolean(theme) && (root.dataset.auiDarkOnly || "").split(" ").includes(theme);
+  };
+
   // Resolves the light/dark/system mode into data-bs-theme. Dark-only themes are always dark.
   function applyMode() {
-    const theme = currentValue("theme");
-    const darkOnly = theme && (root.dataset.auiDarkOnly || "").split(" ").includes(theme);
     const mode = currentValue("mode");
-    const dark = darkOnly || mode === "dark" || (mode === "system" && systemDark.matches);
+    const dark = isDarkOnly() || mode === "dark" || (mode === "system" && systemDark.matches);
     root.setAttribute("data-bs-theme", dark ? "dark" : "light");
   }
+
+  // Paper is light: the print uses the light mode of the theme, then the screen mode returns.
+  // A dark-only theme prints in its own colors.
+  addEventListener("beforeprint", () => {
+    if (!isDarkOnly()) root.setAttribute("data-bs-theme", "light");
+  });
+  addEventListener("afterprint", applyMode);
 
   // Theme and mode changes cross-fade the whole page with the View Transitions API.
   // Without it, with reduced motion or on a hidden tab the change applies at once.
@@ -229,6 +239,7 @@
       event.preventDefault();
       history.back();
     }
+    if (event.target.closest("[data-aui-print]")) window.print();
     const option = event.target.closest("button[data-aui-setting]");
     if (option) setSetting(option.dataset.auiSetting, option.value);
     const target = event.target.closest("[data-aui-toggle], [data-aui-reset], [data-aui-expand-toggle], [data-aui-expand-close], [data-aui-toast]");
