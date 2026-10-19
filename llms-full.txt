@@ -274,7 +274,7 @@ The settings are one JSON object in `localStorage` under the key `architectui`, 
 - `data-aui-toast="#id"`: shows that Bootstrap toast.
 - `data-aui-dropzone="#list"` on `.aui-dropzone`: marks the area while files are dragged over it and lists the chosen files in that element (name, size, icon).
 
-The settings panel (`#auiSettings`, cog button) is built from these controls. Copy it from `dist/index.html` or leave it out.
+The controls work on any page. The Interface section of `dist/pages-profile.html` (template `partials/interface-settings.njk`) holds all of them: layout switches, mode, density, page section tabs, theme, header and sidebar colors, and a `data-aui-reset` button; copy it into an account or settings page. The settings panel (`#auiSettings`, cog button) is built from the same controls.
 
 ### Script API
 
@@ -574,5 +574,6 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `tables-datatables.html` | The same orders in DataTables 3: search, sorting, pages, rows per page, responsive rows on a phone |
 | `charts-chartjs.html` | Chart.js charts colored by tokens |
 | `pages-starter.html` | An empty page with the frame: the start for a new screen |
+| `pages-profile.html` | My Profile: profile card, personal information form, and the Interface section with every setting (layout, mode, density, tabs, theme, header and sidebar colors, restore default). The user menu links to it |
 | `pages-login.html`, `pages-register.html`, `pages-forgot-password.html` | Guest frame: sign in with a code from an authenticator app, sign up with a code from the email, password reset; demo requests lock the form for 2 s |
 | `pages-404.html`, `pages-500.html` | Error pages on the guest frame |

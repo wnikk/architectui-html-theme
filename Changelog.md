@@ -5,7 +5,14 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **My Profile page** (`pages-profile.html`): profile card, personal information form, and the Interface section with every setting of the settings panel (template `partials/interface-settings.njk`). The user menu links to it: "My profile" and "Interface settings" (`#interface`). A link to an anchor stops below the fixed header.
 - **Map tiles note.** The Maps page says under the maps that the public OpenStreetMap tiles suit a demo and a working project sets its own tile server in `components-maps.js`.
+
+### Changed
+- **Pages menu in groups.** Starter Page, "Authentication" (Sign In, Sign Up, Forgot Password), "Errors" (404, 500), My Profile.
+
+### Fixed
+- **Page animation and offcanvas.** During the page appear animation a hidden offcanvas inside the content no longer widens the page: the content clips its overflow while the animation runs.
 
 ## [6.1.0] - 2026-10-19
 

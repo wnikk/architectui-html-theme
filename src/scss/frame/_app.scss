@@ -43,6 +43,11 @@
   min-width: 0;
 }
 
+// A link to an anchor (#interface) stops below the fixed header
+[data-aui-header="fixed"] {
+  scroll-padding-top: calc(var(--aui-header-height) + 1rem);
+}
+
 // Content area: the page title and the page content. The padding follows --aui-gutter.
 // It appears on every page load (--aui-page-animation); the header, sidebar and footer stay still.
 .aui-content {

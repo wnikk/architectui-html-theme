@@ -15,10 +15,11 @@
 }
 
 // Page content: from transparent and 8px lower. The end state is not kept (backwards fill),
-// so no transform stays on the content after the animation.
+// so no transform stays on the content after the animation. While the transform is on, the content is
+// the frame of position: fixed children: overflow: clip keeps a hidden offcanvas from widening the page.
 @keyframes aui-page-in {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; transform: translateY(8px); overflow: clip; }
+  to { opacity: 1; transform: none; overflow: clip; }
 }
 
 @keyframes aui-spin {

@@ -107,8 +107,8 @@
         <i data-lucide="chevron-down" class="ms-2 opacity-75"></i>
     </a>
     <div class="dropdown-menu dropdown-menu-end">
-        <a class="dropdown-item" href="#"><i data-lucide="user" class="me-2 opacity-50"></i>My profile</a>
-        <a class="dropdown-item" href="#"><i data-lucide="settings" class="me-2 opacity-50"></i>Account settings</a>
+        <a class="dropdown-item" href="pages-profile.html"><i data-lucide="user" class="me-2 opacity-50"></i>My profile</a>
+        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="settings" class="me-2 opacity-50"></i>Interface settings</a>
         <h6 class="dropdown-header">Workspace</h6>
         <a class="dropdown-item" href="#"><i data-lucide="users" class="me-2 opacity-50"></i>Team members</a>
         <a class="dropdown-item" href="#"><i data-lucide="credit-card" class="me-2 opacity-50"></i>Billing</a>
@@ -235,28 +235,31 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pages-login.html">
-                        <i data-lucide="log-in"></i>Sign In
+                    <a class="nav-link collapsed" href="#nav-authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-authentication">
+                        <i data-lucide="log-in"></i>Authentication<i data-lucide="chevron-down"></i>
                     </a>
+                    <div class="collapse" id="nav-authentication" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="pages-login.html">Sign In</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-register.html">Sign Up</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-forgot-password.html">Forgot Password</a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pages-register.html">
-                        <i data-lucide="user-plus"></i>Sign Up
+                    <a class="nav-link collapsed" href="#nav-errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-errors">
+                        <i data-lucide="triangle-alert"></i>Errors<i data-lucide="chevron-down"></i>
                     </a>
+                    <div class="collapse" id="nav-errors" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="pages-404.html">Error 404</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-500.html">Error 500</a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pages-forgot-password.html">
-                        <i data-lucide="key-round"></i>Forgot Password
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages-404.html">
-                        <i data-lucide="file-question-mark"></i>Error 404
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages-500.html">
-                        <i data-lucide="server-crash"></i>Error 500
+                    <a class="nav-link" href="pages-profile.html">
+                        <i data-lucide="user-round"></i>My Profile
                     </a>
                 </li>
             </ul>

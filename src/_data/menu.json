@@ -174,29 +174,41 @@
         "icon": "file"
       },
       {
-        "title": "Sign In",
-        "href": "pages-login.html",
-        "icon": "log-in"
+        "title": "Authentication",
+        "icon": "log-in",
+        "children": [
+          {
+            "title": "Sign In",
+            "href": "pages-login.html"
+          },
+          {
+            "title": "Sign Up",
+            "href": "pages-register.html"
+          },
+          {
+            "title": "Forgot Password",
+            "href": "pages-forgot-password.html"
+          }
+        ]
       },
       {
-        "title": "Sign Up",
-        "href": "pages-register.html",
-        "icon": "user-plus"
+        "title": "Errors",
+        "icon": "triangle-alert",
+        "children": [
+          {
+            "title": "Error 404",
+            "href": "pages-404.html"
+          },
+          {
+            "title": "Error 500",
+            "href": "pages-500.html"
+          }
+        ]
       },
       {
-        "title": "Forgot Password",
-        "href": "pages-forgot-password.html",
-        "icon": "key-round"
-      },
-      {
-        "title": "Error 404",
-        "href": "pages-404.html",
-        "icon": "file-question-mark"
-      },
-      {
-        "title": "Error 500",
-        "href": "pages-500.html",
-        "icon": "server-crash"
+        "title": "My Profile",
+        "href": "pages-profile.html",
+        "icon": "user-round"
       }
     ]
   }

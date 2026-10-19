@@ -1,0 +1,66 @@
+{# Interface settings: every control with data-aui-setting sets an attribute on <html> and is stored in localStorage (architectui.js).
+   Put it in a card or a section of a page; "prefix" keeps the ids and radio names unique on the page. #}
+{%- set prefix = prefix or "ui" %}
+{%- set schemes = ["", "primary", "secondary", "success", "info", "warning", "danger", "light", "dark", "focus", "alternate"] %}
+<div class="row g-4">
+    <div class="col-lg-6">
+        <h6 class="mb-3">Layout</h6>
+        {%- for opt in [["header", "Fixed header", "The header stays at the top while the page scrolls."], ["sidebar", "Fixed sidebar", "The sidebar stays on the left while the page scrolls."], ["footer", "Fixed footer", "The footer stays at the bottom of the window."]] %}
+        <div class="form-check form-switch mb-3">
+            <input class="form-check-input" type="checkbox" role="switch" id="{{ prefix }}-setting-{{ opt[0] }}" data-aui-setting="{{ opt[0] }}" value="fixed" data-aui-off="static">
+            <label class="form-check-label" for="{{ prefix }}-setting-{{ opt[0] }}">
+                <span class="d-block fw-bold">{{ opt[1] }}</span>
+                <span class="small text-body-secondary">{{ opt[2] }}</span>
+            </label>
+        </div>
+        {%- endfor %}
+    </div>
+    <div class="col-lg-6">
+        <h6 class="mb-3">Mode</h6>
+        <div class="btn-group btn-group-sm mb-4" role="radiogroup" aria-label="Color mode">
+            {%- for mode in [["light", "Light"], ["dark", "Dark"], ["system", "System"]] %}
+            <input type="radio" class="btn-check" name="{{ prefix }}-mode" id="{{ prefix }}-mode-{{ mode[0] }}" value="{{ mode[0] }}" data-aui-setting="mode">
+            <label class="btn btn-outline-primary" for="{{ prefix }}-mode-{{ mode[0] }}">{{ mode[1] }}</label>
+            {%- endfor %}
+        </div>
+        <h6 class="mb-3">Density</h6>
+        <div class="btn-group btn-group-sm mb-4" role="radiogroup" aria-label="Density">
+            <input type="radio" class="btn-check" name="{{ prefix }}-density" id="{{ prefix }}-density-comfortable" value="" data-aui-setting="density">
+            <label class="btn btn-outline-primary" for="{{ prefix }}-density-comfortable">Comfortable</label>
+            <input type="radio" class="btn-check" name="{{ prefix }}-density" id="{{ prefix }}-density-compact" value="compact" data-aui-setting="density">
+            <label class="btn btn-outline-primary" for="{{ prefix }}-density-compact">Compact</label>
+        </div>
+        <h6 class="mb-3">Page section tabs</h6>
+        <div class="btn-group btn-group-sm" role="radiogroup" aria-label="Page section tabs">
+            <input type="radio" class="btn-check" name="{{ prefix }}-tabs" id="{{ prefix }}-tabs-shadow" value="shadow" data-aui-setting="tabs">
+            <label class="btn btn-outline-primary" for="{{ prefix }}-tabs-shadow">Shadow</label>
+            <input type="radio" class="btn-check" name="{{ prefix }}-tabs" id="{{ prefix }}-tabs-line" value="line" data-aui-setting="tabs">
+            <label class="btn btn-outline-primary" for="{{ prefix }}-tabs-line">Line</label>
+        </div>
+    </div>
+    <div class="col-12">
+        <h6 class="mb-3">Theme</h6>
+        <div class="d-flex flex-wrap gap-4" role="radiogroup" aria-label="Theme">
+            {%- for theme in themes %}
+            <div>
+                <input type="radio" class="btn-check" name="{{ prefix }}-theme" id="{{ prefix }}-theme-{{ theme.id or 'business' }}" value="{{ theme.id }}" data-aui-setting="theme">
+                <label class="aui-theme-option" for="{{ prefix }}-theme-{{ theme.id or 'business' }}">
+                    <span style="--aui-dot-brand: {{ theme.brand }}; --aui-dot-accent: {{ theme.accent }}"></span>
+                    <span>{{ theme.name }}{% if theme.darkOnly %}<br><small>dark only</small>{% endif %}</span>
+                </label>
+            </div>
+            {%- endfor %}
+        </div>
+    </div>
+    {%- for part in [["header-scheme", "Header color"], ["sidebar-scheme", "Sidebar color"]] %}
+    <div class="col-lg-6">
+        <h6 class="mb-3">{{ part[1] }}</h6>
+        <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-label="{{ part[1] }}">
+            {%- for name in schemes %}
+            <input type="radio" class="btn-check" name="{{ prefix }}-{{ part[0] }}" id="{{ prefix }}-{{ part[0] }}-{{ name or 'default' }}" value="{{ name }}" data-aui-setting="{{ part[0] }}">
+            <label class="aui-swatch aui-swatch--{{ name or 'default' }}" for="{{ prefix }}-{{ part[0] }}-{{ name or 'default' }}" title="{{ name or 'default' }}"><span class="visually-hidden">{{ name or "default" }}</span></label>
+            {%- endfor %}
+        </div>
+    </div>
+    {%- endfor %}
+</div>
