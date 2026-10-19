@@ -3,10 +3,7 @@
 // The series come from a fixed seed, so a period always starts with the same values. Auto-refresh adds a point every 5 s.
 (() => {
   const { Chart } = window;
-  const root = document.documentElement;
-  const css = () => getComputedStyle(root);
-  const token = (name) => css().getPropertyValue(`--bs-${name}`).trim();
-  const rgba = (name, alpha) => `rgba(${token(`${name}-rgb`)}, ${alpha})`;
+  const { token, rgba, chartDefaults } = window.ArchitectUI;
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
   // Number of points and time between two points for each period
@@ -115,9 +112,7 @@
 
   function render() {
     charts.splice(0).forEach((chart) => chart.destroy());
-    Chart.defaults.font.family = css().getPropertyValue("--bs-body-font-family").trim();
-    Chart.defaults.color = css().getPropertyValue("--bs-secondary-color").trim();
-    Chart.defaults.borderColor = css().getPropertyValue("--bs-border-color-translucent").trim();
+    chartDefaults(Chart);
 
     document.querySelectorAll("canvas[data-ops-chart]").forEach((canvas) => {
       const { type, data, options } = CHARTS[canvas.dataset.opsChart](canvas);

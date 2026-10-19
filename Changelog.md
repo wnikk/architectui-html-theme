@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **Markup inserted later renders by itself.** `architectui.js` watches the page: new `i[data-lucide]` icons are rendered and new Bootstrap tooltips and popovers are initialised without `ArchitectUI.refresh()` (it stays for code that needs the SVG at once). `architectui-auth.js` renders new icons the same way.
+- **Theme colors for scripts.** `ArchitectUI.token(name)`, `ArchitectUI.rgba(name, alpha)` and `ArchitectUI.chartDefaults(Chart)`; the Charts, Operations Wall and Calendar pages use them.
+- **Cache busting.** The demo pages link `architectui.css`, `architectui.js`, `architectui-auth.js` and the page scripts with `?v=<version>`; the theme stylesheet link keeps the same query.
 - **Bootstrap Icons tab on the Icons page.** The tab loads Bootstrap Icons 1.13.2 (stylesheet and icon list) from jsDelivr the first time it opens and shows all 2078 icons with search and copy (`<i class="bi bi-name"></i>`). Only this page loads the set; the theme uses Lucide. URLs in `cdn.json` (`bootstrapIcons`).
 - **Theme list in the header.** The light/dark button is a button group with a dropdown of all themes (`aui-theme-switch`): a dot in the theme colors, the name, a check mark at the current theme, a link to all interface settings. Works with the keyboard (arrows, Enter, Escape) and in the folded header on phones.
 - **Buttons as setting controls.** `button[data-aui-setting][value]` sets the value on click; the current one gets `.active` and `aria-current`. New class `aui-theme-dot`.

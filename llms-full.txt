@@ -82,11 +82,11 @@ The CDN URLs below follow the latest release of each major version; for pinned v
     m = s.mode || "light";
     if (t) {
       // The theme link goes right after architectui.css; until it loads the page stays hidden (data-aui-loading)
-      var base = document.querySelector('link[href$="architectui.css"]'), link = document.createElement("link");
+      var base = document.querySelector('link[href*="architectui.css"]'), link = document.createElement("link");
       var shown = function () { d.removeAttribute("data-aui-loading"); };
       link.rel = "stylesheet";
       link.id = "aui-theme";
-      link.href = base.getAttribute("href").replace(/architectui\.css$/, "themes/" + t + ".css");
+      link.href = base.getAttribute("href").replace(/architectui\.css(\?|$)/, "themes/" + t + ".css$1");
       link.setAttribute("blocking", "render");
       link.onload = link.onerror = shown;
       setTimeout(shown, 3000);
@@ -303,7 +303,11 @@ The controls work on any page. The Interface section of `dist/pages-profile.html
 
 ### Script API
 
-- `window.ArchitectUI.refresh(scope = document)`: renders Lucide icons and initialises Bootstrap tooltips and popovers inside `scope`. Call it after you insert markup with icons, tooltips or popovers.
+- Markup added later (by a page script, DataTables, `fetch`) renders by itself: the script watches the page and renders new `i[data-lucide]` icons and initialises new Bootstrap tooltips and popovers.
+- `window.ArchitectUI.refresh(scope = document)`: does the same at once for `scope`. Use it only when code needs the rendered SVG before its next step.
+- `ArchitectUI.token(name)`: the current value of a theme variable: `token("primary")` reads `--bs-primary`, `token("--aui-surface")` reads that variable.
+- `ArchitectUI.rgba(name, alpha)`: a color with opacity from the `-rgb` triplet: `rgba("primary", .5)`.
+- `ArchitectUI.chartDefaults(Chart)`: sets Chart.js defaults (font, text color, grid color) from the theme. Call it before you create charts and again on `aui:theme-change`.
 - Event `aui:theme-change` on `document`, `event.detail.theme` = the theme id. It fires after a theme or mode change. Re-read CSS variables there (charts do this).
 - `ArchitectUI` is the only global the script adds. Bootstrap adds `bootstrap`, Lucide adds `lucide`.
 - `architectui.js` also works with `type="module"`, but keep it a classic `defer` script so pages open from disk.
@@ -550,7 +554,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 
 ## 9. Third-party libraries on a page
 
-- Chart.js: load the UMD bundle before the page script. Read colors from CSS variables (`getComputedStyle(document.documentElement).getPropertyValue("--bs-primary")`) and re-render on `aui:theme-change`. Put the canvas in `.aui-chart`.
+- Chart.js: load the UMD bundle before the page script. Call `ArchitectUI.chartDefaults(Chart)`, take series colors from `ArchitectUI.token("success")` and `ArchitectUI.rgba("success", .5)`, and re-render on `aui:theme-change` (call `chartDefaults` again first). Put the canvas in `.aui-chart`.
 - FullCalendar 7: load `skeleton.css` and the Bootstrap 5 theme `theme.css` of `@fullcalendar/bootstrap5`, then `all/global.min.js` and the plugin `global.min.js`; the plugin registers itself. Set `headerToolbar` (it is off by default in 7). The plugin uses Bootstrap classes and colors, so the calendar follows the theme and the mode; the theme draws the plugin icons, so Bootstrap Icons are not needed. Event colors: `color` and `contrastColor` (for example `--bs-success` and `--aui-success-contrast`); repaint them on `aui:theme-change` with `event.setProp()`.
 - Leaflet: load `leaflet.css` and `leaflet.js`; put the map in `.aui-map`.
 - DataTables 3: load the CSS of `datatables.net-bs5` and `datatables.net-responsive-bs5`, then `dataTables.min.js`, `dataTables.bootstrap5.min.js`, `dataTables.responsive.min.js`, `responsive.bootstrap5.min.js`. Put rows in a regular `table.table` and call `new DataTable(table, { responsive: true })`. The theme styles the toolbar, sorting, empty result and pagination. Put `data-order` on cells whose text does not sort well (dates, amounts). DataTables right-aligns date columns; add `className: "dt-left"` to keep them left. Set `responsivePriority` so the key columns stay on a phone.
@@ -564,7 +568,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 4. Do not add Tailwind, jQuery, Font Awesome or another CSS framework.
 5. Keep relative paths and classic `defer` scripts. Do not use import maps or root-absolute URLs.
 6. Give every tab list an `active` first tab, every modal trigger a `data-bs-target="#id"` that exists, and every form check a label with `for`.
-7. After dynamic inserts call `ArchitectUI.refresh(element)`.
+7. Markup inserted later renders its icons, tooltips and popovers by itself; call `ArchitectUI.refresh(element)` only when the next line needs the rendered SVG.
 8. Check the page in light and dark mode and at least in Business and Orange.
 
 ## 11. Demo pages

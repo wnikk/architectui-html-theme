@@ -47,8 +47,12 @@ Themes load from the folder next to `architectui.css`, so the theme setting and 
 Logos, avatars and other images are part of your markup: copy `assets/` or point the `src` to the same CDN folder.
 
 All links are relative, and every script is a classic `defer` script. The demo works from any folder of a local
-server and from disk (`file://`). The theme script adds one global, `window.ArchitectUI`. Call
-`ArchitectUI.refresh(element)` after you insert markup with icons, tooltips or popovers.
+server and from disk (`file://`). The theme script adds one global, `window.ArchitectUI`. Markup that a script inserts
+later renders its icons, tooltips and popovers by itself. `ArchitectUI.token("primary")`, `ArchitectUI.rgba("primary", .5)`
+and `ArchitectUI.chartDefaults(Chart)` give page scripts the colors of the current theme.
+
+The demo pages link the theme files with `?v=<version>` (for example `architectui.css?v=6.2.0`), so a new release reaches
+visitors past their browser cache. Do the same on your pages; the theme stylesheets keep the query.
 
 Start from `dist/pages-starter.html` for a page with the frame (header, sidebar, page title, footer) and from
 `dist/pages-login.html` for a page without it.

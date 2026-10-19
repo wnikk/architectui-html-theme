@@ -2,11 +2,8 @@
 // Chart height is set by the .aui-chart container (.aui-chart-sm, .aui-chart-lg).
 (() => {
   const { Chart } = window;
-
-  // Tokens are read on every render, so charts pick up theme and mode changes
-  const css = () => getComputedStyle(document.documentElement);
-  const token = (name) => css().getPropertyValue(`--bs-${name}`).trim();
-  const rgba = (name, alpha) => `rgba(${token(`${name}-rgb`)}, ${alpha})`;
+  // Theme colors from architectui.js; they are read on every render, so charts pick up theme and mode changes
+  const { token, rgba, chartDefaults } = window.ArchitectUI;
 
   const COLORS = ["danger", "warning", "yellow", "success", "info"];
   const MONTHS = ["January", "February", "March", "April", "May", "June", "July"];
@@ -58,9 +55,7 @@
 
   function render() {
     charts.splice(0).forEach((chart) => chart.destroy());
-    Chart.defaults.font.family = css().getPropertyValue("--bs-body-font-family").trim();
-    Chart.defaults.color = css().getPropertyValue("--bs-secondary-color").trim();
-    Chart.defaults.borderColor = css().getPropertyValue("--bs-border-color-translucent").trim();
+    chartDefaults(Chart);
 
     Object.entries(CHARTS).forEach(([id, config]) => {
       const canvas = document.getElementById(id);

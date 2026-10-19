@@ -11,7 +11,7 @@
       return time ? `${iso}T${time}` : iso;
     };
     const current = today.getDate();
-    const token = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    const { token } = window.ArchitectUI;
     // An event with "tone" takes that theme color and the text color the theme uses on it.
     // Other events use the primary color of the Bootstrap theme plugin.
     const paint = (event) => {

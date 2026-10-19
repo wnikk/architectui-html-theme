@@ -9,7 +9,7 @@ Key facts:
 - Runtime dependencies come from the CDN: Bootstrap 5.3 (CSS and bundle JS) and Lucide (UMD); exact URLs are in `src/_data/cdn.json`. There is no jQuery, no Tailwind, no React or Vue.
 - Write normal Bootstrap 5 markup. Bootstrap utilities cover layout, spacing and text; the few theme additions use the `aui-` class prefix (`aui-number`, `aui-btn-shadow`, `aui-scroll`). Bootstrap 4 classes (`data-toggle`, `ml-*`, `custom-control`) are not supported.
 - Wide screens: grid and display classes continue after Bootstrap `xxl` with `3xl` (from 1560 px, 1600 px monitors) and `4xl` (from 1860 px, 1920 px monitors): `col-4xl-3`, `row-cols-3xl-6`, `g-4xl-4`, `d-3xl-none`.
-- Icons: `<i data-lucide="rocket"></i>`. The theme script renders them; call `ArchitectUI.refresh(element)` after you insert new markup.
+- Icons: `<i data-lucide="rocket"></i>`. The theme script renders them, also in markup inserted later. Theme colors for charts: `ArchitectUI.token("primary")`, `ArchitectUI.rgba("primary", .5)`, `ArchitectUI.chartDefaults(Chart)`.
 - Every color, radius, shadow and size is a CSS variable (`--bs-*` for Bootstrap, `--aui-*` for the theme). Change them at runtime, never rebuild Bootstrap.
 - Layout modes are attributes on `<html>` (`data-aui-header`, `data-aui-sidebar`, `data-aui-sidebar-collapsed`, `data-aui-density`, `data-aui-theme`, `data-aui-mode`). The interface settings (Interface section of `pages-profile.html`) store them in `localStorage` under `architectui`.
 - Business is the default look and is built into `architectui.css`. Nine more themes are single stylesheets in `themes/` (Orange is the original ArchitectUI look). Light, dark and system modes work in every theme.
@@ -42,7 +42,7 @@ How it differs from Tailwind CSS and similar utility-first kits:
 
 ## Optional
 
-- [Theme script](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/js/architectui.js): settings, theme switching, sidebar, search, `ArchitectUI.refresh()`
+- [Theme script](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/js/architectui.js): settings, theme switching, sidebar, search, `ArchitectUI.refresh()`, theme colors for charts
 - [Guest script](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/js/architectui-auth.js): sign in, sign up and password reset steps with a verification code, mode toggle, icons; for pages without the admin frame
 - [Theme tokens](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/scss/_tokens.scss): layout variables shared by all themes
 - [Theme base](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/scss/themes/_theme.scss): palette keys and the rules every theme shares
