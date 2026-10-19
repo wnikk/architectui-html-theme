@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+- **Map tiles note.** The Maps page says under the maps that the public OpenStreetMap tiles suit a demo and a working project sets its own tile server in `components-maps.js`.
+
 ## [6.1.0] - 2026-10-19
 
 Wide screens and dense pages. The 6.0.0 markup keeps working; to follow the compact density, the content `div` of the frame takes the `aui-content` class.
