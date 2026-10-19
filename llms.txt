@@ -13,6 +13,7 @@ Key facts:
 - Every color, radius, shadow and size is a CSS variable (`--bs-*` for Bootstrap, `--aui-*` for the theme). Change them at runtime, never rebuild Bootstrap.
 - Layout modes are attributes on `<html>` (`data-aui-header`, `data-aui-sidebar`, `data-aui-sidebar-collapsed`, `data-aui-density`, `data-aui-theme`, `data-aui-mode`). The interface settings (Interface section of `pages-profile.html`) store them in `localStorage` under `architectui`.
 - Business is the default look and is built into `architectui.css`. Nine more themes are single stylesheets in `themes/` (Orange is the original ArchitectUI look). Light, dark and system modes work in every theme.
+- Print: the browser print shows only the page content in the light mode; `d-print-none` keeps an element off paper, `data-aui-print` on a button opens the print dialog.
 - Everything uses relative paths and classic `<script defer>` tags, so `dist/` works from any folder of a web server and straight from disk (`file://`).
 
 How it differs from Tailwind CSS and similar utility-first kits:
@@ -37,8 +38,9 @@ How it differs from Tailwind CSS and similar utility-first kits:
 - [Sign-in page](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/pages-login.html): built guest page without the admin frame
 - [Analytics dashboard](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/index.html): complete built dashboard
 - [Operations Wall](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/dashboard-operations.html): dense dashboard for 1600 and 1920 px monitors with the `3xl` and `4xl` columns, one column on phones
-- [Page sources](https://github.com/wnikk/architectui-html-theme/tree/master/src/pages): demo pages (dashboards, elements, Bootstrap components, forms, tables, charts, calendar, maps) without the frame
-- [Frame partials](https://github.com/wnikk/architectui-html-theme/tree/master/src/_includes/partials): header, sidebar, page title, footer, interface settings
+- [Invoice](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/pages-invoice.html): a document page that prints on one A4 page, with a path line and a Back link above the title
+- [Page sources](https://github.com/wnikk/architectui-html-theme/tree/master/src/pages): demo pages (dashboards, elements, Bootstrap components, forms and a wizard, tables, charts, calendar, maps, Kanban, inbox, invoice, profile) without the frame
+- [Frame partials](https://github.com/wnikk/architectui-html-theme/tree/master/src/_includes/partials): header, sidebar, page title with the path line, footer, interface settings
 
 ## Optional
 

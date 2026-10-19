@@ -15,7 +15,8 @@ for Bootstrap 5 works inside the theme without changes, and you never rebuild Bo
 - `dist/architectui-auth.js` — the script of the guest pages (sign in, sign up, errors) instead of `architectui.js`: mode toggle, icons, form steps with a verification code.
 - `dist/themes/*.css` — nine optional visual themes loaded on top of `architectui.css`, including Orange, the original ArchitectUI look.
 - Wide screens and dense pages: grid and display classes `3xl` (from 1560 px) and `4xl` (from 1860 px) after Bootstrap `xxl` for 1600 and 1920 px monitors, a compact density setting, the Operations Wall demo page.
-- `dist/*.html` — demo pages: dashboards (including the Operations Wall for wide screens), elements, every Bootstrap component on one page, a starter page, a profile page with the interface settings, guest pages (sign in, sign up, password reset, errors 403, 404 and 500, maintenance), Bootstrap tables and DataTables, components, forms (including a wizard in several steps), a Kanban board, an inbox, tables, charts, calendar and maps.
+- `dist/*.html` — demo pages: dashboards (including the Operations Wall for wide screens), elements, every Bootstrap component on one page, a starter page, a profile page with the interface settings, guest pages (sign in, sign up, password reset, errors 403, 404 and 500, maintenance), Bootstrap tables and DataTables, components, forms (including a wizard in several steps), a Kanban board, an inbox, an invoice ready for print, tables, charts, calendar and maps.
+- Page path and print: breadcrumbs in the header or a path line with a Back link above the page title (`aui-page-path`, `data-aui-back`); print styles that put only the page content on paper in the light mode (`data-aui-print` opens the print dialog).
 - No jQuery, no build step for your app. Icons are [Lucide](https://lucide.dev).
 
 ## Quick start
@@ -163,12 +164,13 @@ npm run dev
 
 | Path | Purpose |
 |------|---------|
-| `src/pages/*.html` | Demo pages. Front matter holds the title, description and icon. |
-| `src/pages/*.js` | Scripts of individual pages (charts, Operations Wall, calendar, maps, notifications, icons, validation, DataTables). |
+| `src/pages/*.html` | Demo pages. Front matter holds the title, description and icon; `breadcrumbs` (`header` or `title`) shows the page path, `titleActions` names the partial with the title buttons, `printTitle: false` keeps the title off paper. |
+| `src/pages/*.js` | Scripts of individual pages (charts, Operations Wall, calendar, maps, notifications, icons, validation, forms wizard, Kanban, inbox, profile, DataTables). |
 | `src/_includes/` | Page layouts (`base.njk` with the admin frame, `guest.njk` for sign-in and error pages) and partials (Eleventy + Nunjucks). |
-| `src/_data/menu.json` | Sidebar menu. |
+| `src/_data/menu.json` | Sidebar menu; the page path (breadcrumbs) is built from it. |
+| `src/_data/themes.json` | Theme list of the header and the profile page. |
 | `src/_data/orders.js` | Demo orders for the table pages. |
-| `src/_data/operations.js` | Demo data of the Operations Wall page. |
+| `src/_data/operations.js`, `kanban.js`, `inbox.js`, `invoice.js` | Demo data of the Operations Wall, Kanban, Inbox and Invoice pages. |
 | `src/_data/cdn.json` | Every external URL. Point them to a local `vendor/` folder to work offline. |
 | `src/scss/` | Theme styles. `architectui.scss` is the entry point. |
 | `src/js/architectui.js` | Theme script of the admin pages. |

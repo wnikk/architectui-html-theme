@@ -29,6 +29,8 @@ Bootstrap 5.3 (CSS and bundle JS) and Lucide come from a CDN; the exact URLs are
    For monitors 1600 and 1920 px wide, grid and display classes continue after `xxl` with `3xl` (from 1560 px) and `4xl` (from 1860 px): `col-4xl-3`, `row-cols-3xl-6`, `g-4xl-4`, `d-4xl-block`.
 4. Icons: `<i data-lucide="name"></i>`. Markup inserted later renders its icons, tooltips and popovers by itself. For theme colors in scripts (charts) use `ArchitectUI.token("primary")`, `ArchitectUI.rgba("primary", .5)` and `ArchitectUI.chartDefaults(Chart)`.
 5. Keep paths relative and scripts as classic `<script defer>`: the pages then work from any folder and from disk.
+6. The page head: an optional path line (`.aui-page-path` with a `data-aui-back` link and a breadcrumb) before `.aui-page-title`. Do not add margins around them: the spacing comes from `--aui-gutter`.
+7. Print: the browser print shows only the page content. Put `d-print-none` on buttons that make no sense on paper; `data-aui-print` on a button opens the print dialog. A document that must keep its columns on A4 uses `sm` columns (`dist/pages-invoice.html`).
 
 ## Settings, themes, modes
 
