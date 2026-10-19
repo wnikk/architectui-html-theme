@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@7.1.3/skeleton.css" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@7.1.3/theme.css" crossorigin="anonymous">
-<link rel="stylesheet" href="architectui.css">
+<link rel="stylesheet" href="architectui.css?v=6.1.0">
 
 <script>
 (function () {
@@ -22,11 +22,11 @@
   t = /^[a-z0-9-]+$/.test(s.theme || "") ? s.theme : "";
   m = s.mode || "light";
   if (t) {
-    var base = document.querySelector('link[href$="architectui.css"]'), link = document.createElement("link");
+    var base = document.querySelector('link[href*="architectui.css"]'), link = document.createElement("link");
     var shown = function () { d.removeAttribute("data-aui-loading"); };
     link.rel = "stylesheet";
     link.id = "aui-theme";
-    link.href = base.getAttribute("href").replace(/architectui\.css$/, "themes/" + t + ".css");
+    link.href = base.getAttribute("href").replace(/architectui\.css(\?|$)/, "themes/" + t + ".css$1");
     link.setAttribute("blocking", "render");
     link.onload = link.onerror = shown;
     setTimeout(shown, 3000);
@@ -44,8 +44,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/fullcalendar@7.1.3/all/global.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@7.1.3/global.min.js" crossorigin="anonymous"></script>
 
-<script defer src="architectui.js"></script>
-<script defer src="components-calendar.js"></script>
+<script defer src="architectui.js?v=6.1.0"></script>
+<script defer src="components-calendar.js?v=6.1.0"></script>
 
     <!--
     =========================================================

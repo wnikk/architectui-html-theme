@@ -56,6 +56,11 @@
   }
 
   const refresh = () => window.lucide?.createIcons();
+  // Icons in markup added later render by themselves
+  const watch = () => new MutationObserver((records) => {
+    if (records.some((record) => [...record.addedNodes].some((node) => node.nodeType === 1
+      && (node.matches("i[data-lucide]") || node.querySelector("i[data-lucide]"))))) refresh();
+  }).observe(document.body, { childList: true, subtree: true });
 
   // Steps
   const replay = (el, name) => {
@@ -232,4 +237,5 @@
 
   window.ArchitectUI = Object.freeze({ refresh });
   refresh();
+  watch();
 })();

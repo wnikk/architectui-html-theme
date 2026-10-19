@@ -13,6 +13,24 @@
   };
   const attrName = (key) => `data-aui-${key}`;
   const currentValue = (key) => root.getAttribute(attrName(key)) || DEFAULTS[key];
+  // Theme colors for page scripts (charts, calendars). Read on every call, so they follow theme and mode changes.
+  // token("primary") is the value of --bs-primary; a name with "--" is read as is: token("--aui-surface").
+  function token(name) {
+    return getComputedStyle(root).getPropertyValue(name.startsWith("--") ? name : `--bs-${name}`).trim();
+  }
+
+  // rgba("primary", .5) uses the --bs-primary-rgb triplet
+  const rgba = (name, alpha) => `rgba(${token(`${name}-rgb`)}, ${alpha})`;
+
+  // Chart.js defaults from the theme: font, text and grid colors. Call it before charts are created
+  // and again on aui:theme-change, then redraw the charts.
+  function chartDefaults(Chart = window.Chart) {
+    if (!Chart) return;
+    Chart.defaults.font.family = token("body-font-family");
+    Chart.defaults.color = token("secondary-color");
+    Chart.defaults.borderColor = token("border-color-translucent");
+  }
+
   const notify = () => document.dispatchEvent(new CustomEvent("aui:theme-change", { detail: { theme: currentValue("theme") } }));
 
   function readSettings() {
@@ -56,7 +74,8 @@
     }
   }
 
-  // A theme is a stylesheet next to architectui.css: themes/<name>.css. The new link loads with media="not all",
+  // A theme is a stylesheet next to architectui.css: themes/<name>.css, with the same ?v= query if there is one.
+  // The new link loads with media="not all",
   // so the page keeps the old colors; then the attribute, the link and the mode change in one step.
   let pendingTheme = null;
 
@@ -80,11 +99,11 @@
       swap(null);
       return;
     }
-    const base = document.querySelector('link[href$="architectui.css"]');
+    const base = document.querySelector('link[href*="architectui.css"]');
     const link = Object.assign(document.createElement("link"), {
       rel: "stylesheet",
       media: "not all",
-      href: base.getAttribute("href").replace(/architectui\.css$/, `themes/${theme}.css`),
+      href: base.getAttribute("href").replace(/architectui\.css(\?|$)/, `themes/${theme}.css$1`),
     });
     pendingTheme = link;
     link.addEventListener("load", () => {
@@ -141,13 +160,31 @@
     }
   }
 
-  // Renders Lucide icons and initialises Bootstrap components that need it.
-  // Page scripts call ArchitectUI.refresh() after adding markup.
+  // Renders Lucide icons and initialises Bootstrap tooltips and popovers in scope (the scope element included).
+  // New markup gets this by itself (see the observer below); refresh() is for code that needs it at once.
   function refresh(scope = document) {
     window.lucide?.createIcons();
     const { Tooltip, Popover } = window.bootstrap ?? {};
-    scope.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => Tooltip?.getOrCreateInstance(el));
-    scope.querySelectorAll('[data-bs-toggle="popover"]').forEach((el) => Popover?.getOrCreateInstance(el));
+    const within = (selector) => [...(scope.matches?.(selector) ? [scope] : []), ...scope.querySelectorAll(selector)];
+    within('[data-bs-toggle="tooltip"]').forEach((el) => Tooltip?.getOrCreateInstance(el));
+    within('[data-bs-toggle="popover"]').forEach((el) => Popover?.getOrCreateInstance(el));
+  }
+
+  // Markup added later (page scripts, DataTables, fetch) renders its icons, tooltips and popovers without a call
+  const NEEDS_REFRESH = 'i[data-lucide], [data-bs-toggle="tooltip"], [data-bs-toggle="popover"]';
+  function watch() {
+    new MutationObserver((records) => {
+      const added = records.flatMap((record) => [...record.addedNodes])
+        .filter((node) => node.nodeType === 1 && (node.matches(NEEDS_REFRESH) || node.querySelector(NEEDS_REFRESH)));
+      if (!added.length) return;
+      window.lucide?.createIcons();
+      const { Tooltip, Popover } = window.bootstrap ?? {};
+      added.forEach((node) => {
+        const within = (selector) => [...(node.matches(selector) ? [node] : []), ...node.querySelectorAll(selector)];
+        within('[data-bs-toggle="tooltip"]').forEach((el) => Tooltip?.getOrCreateInstance(el));
+        within('[data-bs-toggle="popover"]').forEach((el) => Popover?.getOrCreateInstance(el));
+      });
+    }).observe(document.body, { childList: true, subtree: true });
   }
 
   // File drop zone: data-aui-dropzone="#list" on the area; the chosen files appear in the list
@@ -233,7 +270,8 @@
     if (currentValue("mode") === "system") setSetting("mode", "system", false);
   });
 
-  window.ArchitectUI = Object.freeze({ refresh });
+  window.ArchitectUI = Object.freeze({ refresh, token, rgba, chartDefaults });
   refresh();
+  watch();
   syncControls();
 })();
