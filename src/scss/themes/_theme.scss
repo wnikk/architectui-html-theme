@@ -818,7 +818,8 @@
     }
   }
 
-  .aui-sidebar h6 {
+  // Group headings in the brand color on the plain sidebar; a color scheme keeps its own heading color
+  :where(:root:not([data-aui-sidebar-scheme])) .aui-sidebar h6 {
     color: var(--aui-brand-text);
   }
 

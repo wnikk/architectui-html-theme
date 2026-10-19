@@ -1,4 +1,5 @@
-// Indigo theme: a neutral business palette on the unchanged base rules.
+// Indigo theme: a neutral business palette with the depth of Orange: soft indigo-tinted shadows instead of lines,
+// a floating header and sidebar, vivid two-color gradients in the indigo range.
 @use "theme" as t;
 
 @include t.palette(
@@ -19,3 +20,13 @@
     shadow: "0 1px 2px 0 rgba(0, 0, 0, .4)",
   )
 );
+
+@include t.depth(#3730a3, (
+  primary: linear-gradient(120deg, #4f46e5 0%, #0ea5e9 100%),
+  success: linear-gradient(120deg, #059669 0%, #14b8a6 100%),
+  info: linear-gradient(120deg, #0284c7 0%, #06b6d4 100%),
+  warning: linear-gradient(120deg, #d97706 0%, #f59e0b 100%),
+  danger: linear-gradient(120deg, #e11d48 0%, #ec4899 100%),
+  secondary: linear-gradient(120deg, #475569 0%, #64748b 100%),
+  dark: linear-gradient(120deg, #1e1b4b 0%, #312e81 100%),
+));
