@@ -369,7 +369,7 @@ The controls work on any page. The Interface section of `dist/pages-profile.html
 | none | Business (default) | Built into `architectui.css`. Dense, smaller type, lines instead of shadows |
 | `orange` | Orange | The original ArchitectUI look: orange accents, color gradients, soft shadows |
 | `indigo` | Indigo | Neutral business palette |
-| `indigo-img` | Indigo Photo | Indigo with a subtle photo behind the content |
+| `indigo-img` | Indigo Calathea | Indigo with a subtle photo of Calathea leaves behind the content |
 | `coffee` | Coffee | Warm browns on neutral surfaces |
 | `green` | Garden | Calm green, serif headings, airy rows |
 | `raspberry` | Warm | Berry accent, pill buttons, rounder corners |

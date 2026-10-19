@@ -1,9 +1,10 @@
-// Indigo Photo theme: the Indigo palette with a subtle photo behind the main area.
-// Replace assets/images/themes/indigo-bg.jpg to change the photo.
+// Indigo Calathea theme: the Indigo palette with a subtle photo of Calathea orbifolia leaves behind the main area.
+// Replace assets/images/themes/indigo-calathea.jpg to change the photo. The id stays indigo-img:
+// stored settings and links to themes/indigo-img.css keep working.
 @use "indigo";
 
 .aui-app > main {
-  background-image: url("../assets/images/themes/indigo-bg.jpg");
+  background-image: url("../assets/images/themes/indigo-calathea.jpg");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
