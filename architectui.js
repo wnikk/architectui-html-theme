@@ -199,7 +199,7 @@
       Object.entries(DEFAULTS).forEach(([key, value]) => setSetting(key, value, false));
     } else if (target?.matches("[data-aui-expand-toggle], [data-aui-expand-close]")) {
       const open = field.classList.toggle("is-open", target.matches("[data-aui-expand-toggle]"));
-      if (open) field.querySelector("input")?.focus();
+      if (open) field.querySelector("input")?.focus({ preventScroll: true });
     } else if (target?.matches("[data-aui-toast]")) {
       const toast = document.querySelector(target.dataset.auiToast);
       if (toast) window.bootstrap?.Toast.getOrCreateInstance(toast).show();
