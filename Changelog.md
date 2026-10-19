@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.2.21] - 2026-10-19
+
+A reference page for the colors of every theme. Markup and styles do not change.
+
+### Added
+- **Theme Palettes page** (`elements-palettes.html`, menu Elements): the palette of the current theme, read live from the page and updated on a theme or mode change; all 10 themes side by side in the light or the dark mode, each swatch on the surface of its own theme; a guide to the colors in classes (`text-bg-<color>` for the solid color, `bg-<color>` for the theme gradient, `-subtle` and `-emphasis`), CSS variables (`var(--bs-<color>)`, `rgba(var(--bs-<color>-rgb), a)`, overrides for all themes, one theme or the dark mode) and scripts (`ArchitectUI.token`, `rgba`, `chartDefaults`, `aui:theme-change`). A click copies a variable, a class, a HEX value or a code block. The values of all themes are collected at build from the theme sources (`src/_data/palettes.js`).
+
 ## [6.2.19] - 2026-10-19
 
 Indigo and Coffee take the depth of Orange in their own colors; Coffee is compact. Markup does not change. A custom theme can use the same look with the new `depth()` and `compact()` mixins of the theme base.

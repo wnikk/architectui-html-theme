@@ -43,7 +43,7 @@ Bootstrap 5.3 (CSS and bundle JS) and Lucide come from a CDN; the exact URLs are
 ## Customize
 
 - Colors, radii, shadows and sizes are CSS variables (`--bs-*`, `--aui-*`). Override them in your own stylesheet loaded after `architectui.css`; no rebuild is needed.
-- For your own styles, use the variables instead of fixed colors, so themes and dark mode keep working.
+- For your own styles, use the variables instead of fixed colors, so themes and dark mode keep working. `dist/elements-palettes.html` lists every color with its class and variable in every theme.
 - A new visual theme is one Sass file in `src/scss/themes/`: a palette for both modes and the rules only this theme needs. For soft shadows and gradients like Orange include `t.depth($tint, $gradients)`; for the compact sizes of Business include `t.compact` (`llms-full.txt`, section 6). Build it with `npm install` and `npm run build` (Node 22 or newer). Check it on `components-bootstrap.html`: every Bootstrap component is on that page.
 
 ## Rules

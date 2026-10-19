@@ -430,6 +430,12 @@ Add the theme to `src/_data/themes.json` to list it in the interface settings. C
 
 Override tokens after `architectui.css` (or after the theme stylesheet). No rebuild is needed.
 
+Colors: `dist/elements-palettes.html` shows the values of every color token in every theme and mode, with the class and the variable for each. Rules for colors:
+
+- In markup, use the Bootstrap color classes. `text-bg-<color>` is the solid color with a readable text color; in the theme `bg-<color>` paints the theme gradient over the color; `bg-<color>-subtle` with `text-<color>-emphasis` is a pale note. Extra colors: `focus`, `alternate`, `tertiary`.
+- In CSS, read `var(--bs-<color>)`, `rgba(var(--bs-<color>-rgb), <alpha>)`, `--bs-body-color`, `--bs-secondary-color`, `--bs-border-color`, `--aui-surface` (cards), `--aui-app-bg` (page), `--aui-gradient-<color>`. These exist in every theme, Orange included; never write fixed HEX values for theme colors.
+- Override for every theme in `:root`, for one theme in `[data-aui-theme="<id>"]`, for the dark mode in `[data-bs-theme="dark"]`. Change the `-rgb` pair together with the color.
+
 Layout, shared by all themes:
 
 - `--aui-header-height` (60px), `--aui-sidebar-width` (250px), `--aui-sidebar-collapsed-width` (80px)
@@ -692,6 +698,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `elements-list-group.html` | List groups |
 | `elements-navigation.html` | Vertical and horizontal navs |
 | `elements-utilities.html` | Animations, colors, helpers |
+| `elements-palettes.html` | Theme Palettes: the current theme live, all 10 themes side by side in light or dark mode, a guide to colors in classes, CSS variables and scripts, copy on click |
 | `components-bootstrap.html` | Every Bootstrap 5.3 component on one page: spinners, placeholders, floating labels, range, navbar, offcanvas, scrollspy, ratio, stacks, card group, dark dropdown, numbered list group. The page to check a theme in both modes |
 | `components-tabs.html` | Card tabs, animated tabs, button tabs |
 | `components-accordions.html` | Collapse and accordion |
