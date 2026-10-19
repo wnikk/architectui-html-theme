@@ -15,7 +15,6 @@
 @use "frame/sidebar";
 @use "frame/page-title";
 @use "frame/footer";
-@use "frame/settings";
 @use "frame/guest";
 
 @use "ui/buttons";
@@ -24,6 +23,7 @@
 @use "ui/navs";
 @use "ui/elements";
 @use "ui/expand";
+@use "ui/interface-settings";
 @use "ui/widgets";
 @use "ui/vendors";
 

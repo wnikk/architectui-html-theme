@@ -1,6 +1,6 @@
 // ArchitectUI guest script: pages for a visitor who is not signed in (sign in, sign up, password reset, errors).
 // Load it instead of architectui.js: <script defer src="architectui-auth.js"></script>. It has no admin features
-// (sidebar, settings panel), and architectui.js has none of these. Its only global is window.ArchitectUI.
+// (sidebar, header search, drop zone), and architectui.js has none of these. Its only global is window.ArchitectUI.
 //
 // Form flow, set with attributes:
 //   [data-aui-auth]                    flow container with steps
@@ -20,7 +20,7 @@
   const STORAGE_KEY = "architectui";
   const systemDark = matchMedia("(prefers-color-scheme: dark)");
 
-  // Mode: the same storage and rules as architectui.js, without the settings panel
+  // Mode: the same storage and rules as architectui.js
   function readSettings() {
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};

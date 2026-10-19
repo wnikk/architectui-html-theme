@@ -71,8 +71,7 @@
   [class*="aui-animate-"],
   .aui-content,
   .tab-pane.aui-tab-in.active,
-  .dropdown-menu.show,
-  .aui-settings-toggle svg.lucide {
+  .dropdown-menu.show {
     animation: none !important;
   }
 }

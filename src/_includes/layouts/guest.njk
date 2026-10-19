@@ -1,6 +1,6 @@
 <!doctype html>
 {# Guest frame: pages for a visitor who is not signed in (sign in, sign up, password reset, errors).
-   The same head, themes and modes as the admin pages, without the menu and the settings panel.
+   The same head, themes and modes as the admin pages, without the menu.
    It loads architectui-auth.js instead of architectui.js. #}
 {%- set themeScript = "architectui-auth.js" %}
 <html lang="en" data-aui-dark-only="{% for theme in themes %}{% if theme.darkOnly %}{{ theme.id }} {% endif %}{% endfor %}">

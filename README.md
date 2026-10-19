@@ -11,10 +11,10 @@ for Bootstrap 5 works inside the theme without changes, and you never rebuild Bo
 ## What you get
 
 - `dist/architectui.css` — the theme: layout, components, colors and dark mode in the default Business look, all driven by CSS variables.
-- `dist/architectui.js` — the theme behavior of the admin pages: collapsible sidebar, settings panel, theme and mode switching, header search, file drop zone, icon rendering.
+- `dist/architectui.js` — the theme behavior of the admin pages: collapsible sidebar, interface settings, theme and mode switching, header search, file drop zone, icon rendering.
 - `dist/architectui-auth.js` — the script of the guest pages (sign in, sign up, errors) instead of `architectui.js`: mode toggle, icons, form steps with a verification code.
 - `dist/themes/*.css` — nine optional visual themes loaded on top of `architectui.css`, including Orange, the original ArchitectUI look.
-- Wide screens and dense pages: grid and display classes `3xl` (from 1560 px) and `4xl` (from 1860 px) after Bootstrap `xxl` for 1600 and 1920 px monitors, a compact density in the settings panel, the Operations Wall demo page.
+- Wide screens and dense pages: grid and display classes `3xl` (from 1560 px) and `4xl` (from 1860 px) after Bootstrap `xxl` for 1600 and 1920 px monitors, a compact density setting, the Operations Wall demo page.
 - `dist/*.html` — demo pages: dashboards (including the Operations Wall for wide screens), elements, every Bootstrap component on one page, a starter page, a profile page with the interface settings, guest pages (sign in, sign up, password reset, errors), Bootstrap tables and DataTables, components, forms, tables, charts, calendar and maps.
 - No jQuery, no build step for your app. Icons are [Lucide](https://lucide.dev).
 
@@ -43,7 +43,7 @@ A new version reaches the CDN within about 12 hours:
 <script defer src="https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@master/dist/architectui.js"></script>
 ```
 
-Themes load from the folder next to `architectui.css`, so the settings panel and `data-aui-theme` work from the CDN too.
+Themes load from the folder next to `architectui.css`, so the theme setting and `data-aui-theme` work from the CDN too.
 Logos, avatars and other images are part of your markup: copy `assets/` or point the `src` to the same CDN folder.
 
 All links are relative, and every script is a classic `defer` script. The demo works from any folder of a local
@@ -91,8 +91,9 @@ stylesheet loaded after `architectui.css`; it changes palette, typography, radii
 | Space | `themes/violet.css` | Large radii, soft violet shadows, heavy headings |
 | Cyberpunk | `themes/cyberpunk.css` | Neon on black, monospace; dark only |
 
-Pick a theme and a mode (Light, Dark, System) in the settings panel, or toggle light/dark with the header button.
-The choice is stored in `localStorage` and applied before the first paint. To ship a fixed theme without the panel,
+Pick a theme and a mode (Light, Dark, System) in the Interface section of the profile page (`pages-profile.html`),
+or toggle light/dark with the header button. The choice is stored in `localStorage` and applied before the first paint.
+To ship a fixed theme without the settings,
 add the stylesheet yourself and put the theme id on `<html>`. The attribute switches the built-in Business values off:
 
 ```html
@@ -103,11 +104,11 @@ add the stylesheet yourself and put the theme id on `<html>`. The attribute swit
 
 Theme sources live in `src/scss/themes/`. A new theme is one file: its palette for both modes, other variable values
 and the rules only this theme needs. The shared rules of all themes come from `_theme.scss` and are part of
-`architectui.css`. Add the theme to `src/_data/themes.json` to list it in the panel.
+`architectui.css`. Add the theme to `src/_data/themes.json` to list it in the settings.
 
 ## Layout options
 
-Layout modes are attributes on `<html>`. The settings panel (cog button) changes them and remembers the choice in `localStorage`.
+Layout modes are attributes on `<html>`. The Interface section of the profile page (`pages-profile.html`, user menu → Interface settings) changes them and remembers the choice in `localStorage`.
 
 | Attribute | Values | Default |
 |-----------|--------|---------|

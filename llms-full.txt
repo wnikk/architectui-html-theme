@@ -26,7 +26,7 @@ It is a poor fit when you need a marketing site with a unique visual identity, o
 | Build step | None: link CDN files and the theme | Required to generate CSS |
 | Theme switch | One attribute plus one stylesheet; every page changes together | Markup changes in many places |
 | Dark mode | Every component and every theme has it | Each component needs `dark:` variants |
-| Behavior | Sidebar collapse, icon rail, off-canvas menu, search, settings panel, theme switching, Bootstrap JS components | Not included |
+| Behavior | Sidebar collapse, icon rail, off-canvas menu, search, interface settings, theme switching, Bootstrap JS components | Not included |
 | Markup | Standard, documented Bootstrap 5 | Project-specific class combinations |
 
 Do not add Tailwind, Bulma, Foundation or another CSS framework to ArchitectUI pages. They fight over base styles and break the consistent look.
@@ -49,7 +49,7 @@ Built files in `dist/`:
 Getting the files:
 
 - Download: the `dist/` folder of the repository holds the latest built files (version in `package.json` and `Changelog.md`). Take a ZIP of the `master` branch (https://github.com/wnikk/architectui-html-theme/archive/refs/heads/master.zip) or clone the repository, and copy the files from `dist/` into the project.
-- CDN: jsDelivr serves the latest files from the `master` branch: `https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@master/dist/architectui.css`, `.../dist/architectui.js`, `.../dist/architectui-auth.js`, `.../dist/themes/<id>.css`, `.../dist/assets/...`. A new version reaches the CDN within about 12 hours. Themes load from the folder next to `architectui.css`, so the settings panel works from the CDN. Images in the markup (logo, avatars) need their own path: a local copy of `assets/` or the CDN folder.
+- CDN: jsDelivr serves the latest files from the `master` branch: `https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@master/dist/architectui.css`, `.../dist/architectui.js`, `.../dist/architectui-auth.js`, `.../dist/themes/<id>.css`, `.../dist/assets/...`. A new version reaches the CDN within about 12 hours. Themes load from the folder next to `architectui.css`, so the theme setting works from the CDN. Images in the markup (logo, avatars) need their own path: a local copy of `assets/` or the CDN folder.
 
 CDN dependencies. The exact, tested URLs are in `src/_data/cdn.json` and in the `<head>` of `dist/index.html`:
 
@@ -109,11 +109,11 @@ The CDN URLs below follow the latest release of each major version; for pinned v
 </html>
 ```
 
-The fastest correct start is to copy `dist/pages-starter.html` (an empty page with the frame) and replace the card after the page title inside `main`. The inline script is optional when you do not use the settings panel or a stored theme; without it the page uses the attributes written in the HTML.
+The fastest correct start is to copy `dist/pages-starter.html` (an empty page with the frame) and replace the card after the page title inside `main`. The inline script is optional when you do not use the interface settings or a stored theme; without it the page uses the attributes written in the HTML.
 
 ### Guest frame (sign in, sign up, errors)
 
-Pages for a visitor who is not signed in use the guest frame: the same `<head>`, themes and modes, a top row (logo, help link, mode toggle), the content and a bottom row. There is no menu and no settings panel. These pages load `architectui-auth.js` instead of `architectui.js`: the guest script has the form flow and no admin features, the admin script has no form flow. Copy `dist/pages-login.html`, `dist/pages-register.html`, `dist/pages-forgot-password.html` or `dist/pages-404.html`.
+Pages for a visitor who is not signed in use the guest frame: the same `<head>`, themes and modes, a top row (logo, help link, mode toggle), the content and a bottom row. There is no menu. These pages load `architectui-auth.js` instead of `architectui.js`: the guest script has the form flow and no admin features, the admin script has no form flow. Copy `dist/pages-login.html`, `dist/pages-register.html`, `dist/pages-forgot-password.html` or `dist/pages-404.html`.
 
 ```html
 <body class="aui-guest">
@@ -171,11 +171,10 @@ body
 │   │   └── .offcanvas-md.offcanvas-start#auiSidebar
 │   │       └── .offcanvas-body > ul.nav.flex-column.flex-nowrap#auiNav
 │   └── main#main.d-flex.flex-column
-│       ├── div.flex-grow-1 (padding utilities)
+│       ├── div.flex-grow-1.aui-content
 │       │   ├── .aui-page-title
 │       │   └── page content
 │       └── footer.aui-footer
-├── .offcanvas.aui-settings#auiSettings (settings panel; optional)
 └── .toast-container (optional)
 ```
 
@@ -274,7 +273,7 @@ The settings are one JSON object in `localStorage` under the key `architectui`, 
 - `data-aui-toast="#id"`: shows that Bootstrap toast.
 - `data-aui-dropzone="#list"` on `.aui-dropzone`: marks the area while files are dragged over it and lists the chosen files in that element (name, size, icon).
 
-The controls work on any page. The Interface section of `dist/pages-profile.html` (template `partials/interface-settings.njk`) holds all of them: layout switches, mode, density, page section tabs, theme, header and sidebar colors, and a `data-aui-reset` button; copy it into an account or settings page. The settings panel (`#auiSettings`, cog button) is built from the same controls.
+The controls work on any page. The Interface section of `dist/pages-profile.html` (template `partials/interface-settings.njk`) holds all of them: layout switches, mode, density, page section tabs, theme, header and sidebar colors, and a `data-aui-reset` button; copy it into an account or settings page.
 
 ### Script API
 
@@ -305,7 +304,7 @@ How it works:
 - Any other theme is one small stylesheet in `themes/`: the variable values for both modes and the rules only this theme needs. Orange keeps the classic component rules instead of the shared ones. Selecting a theme sets `data-aui-theme="<id>"` (this switches the Business values off) and adds `<link id="aui-theme" href="themes/<id>.css">` after `architectui.css`. The switch at runtime loads the new link before it removes the old one, so there is no flash.
 - Modes: `light`, `dark`, `system`. The mode becomes `data-bs-theme` on `<html>`, so Bootstrap's own dark mode and all theme tokens follow it.
 
-A fixed theme without the settings panel:
+A fixed theme without the interface settings:
 
 ```html
 <html data-aui-theme="coffee">
@@ -329,7 +328,7 @@ A new theme is one Sass file in `src/scss/themes/` that passes a palette for bot
 );
 ```
 
-Optional palette keys: `fill` (defaults to `surface-2`) and `accent-solid`, `accent-soft`, `accent-text`, `accent-ink`, `accent-line` (default to the brand values). After the palette, set other variables in `:root` (`--aui-root-size`, `--aui-font`, `--aui-heading-font`, `--aui-radius*`, `--aui-card-shadow`, `--aui-cell-py`, `--aui-th-*`) and add rules that only this theme needs. Add the theme to `src/_data/themes.json` to list it in the settings panel. Check it on `components-bootstrap.html` in both modes: every Bootstrap component is on that page.
+Optional palette keys: `fill` (defaults to `surface-2`) and `accent-solid`, `accent-soft`, `accent-text`, `accent-ink`, `accent-line` (default to the brand values). After the palette, set other variables in `:root` (`--aui-root-size`, `--aui-font`, `--aui-heading-font`, `--aui-radius*`, `--aui-card-shadow`, `--aui-cell-py`, `--aui-th-*`) and add rules that only this theme needs. Add the theme to `src/_data/themes.json` to list it in the interface settings. Check it on `components-bootstrap.html` in both modes: every Bootstrap component is on that page.
 
 ## 7. Tokens (CSS variables)
 
@@ -342,7 +341,7 @@ Layout, shared by all themes:
 - `--aui-density` (1): factor for card and table cell padding
 - `--aui-page-animation` (`aui-page-in .3s ease-out backwards`): the content area (`.aui-content`) appears on every page load, from transparent and 8px lower; the header, sidebar and footer stay still. Set it to `none` to turn the animation off. It is off with `prefers-reduced-motion: reduce` and in print. A modal or an offcanvas opened during the animation ends it first.
 
-Compact density: `data-aui-density="compact"` on `<html>`, or the "Density" group in the settings panel. It makes the content denser on every page and in every theme:
+Compact density: `data-aui-density="compact"` on `<html>`, or the "Density" group in the interface settings (`pages-profile.html#interface`). It makes the content denser on every page and in every theme:
 
 - `--aui-gutter` is 1rem: the content area, page title, header, sidebar and footer padding;
 - `--aui-card-header-height` is 2.75rem;

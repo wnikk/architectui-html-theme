@@ -13,7 +13,7 @@ Take them from `dist/`:
 | File | Purpose |
 |------|---------|
 | `architectui.css` | The theme with the default look (Business) |
-| `architectui.js` | Admin pages: sidebar collapse, settings panel, theme and mode switching, header search, file drop zone, icon rendering |
+| `architectui.js` | Admin pages: sidebar collapse, interface settings, theme and mode switching, header search, file drop zone, icon rendering |
 | `architectui-auth.js` | Guest pages (sign in, sign up, errors) instead of `architectui.js`: mode toggle, icons, form steps with a code |
 | `themes/<id>.css` | Optional visual themes, loaded after `architectui.css` |
 | `assets/images/` | Logos and images used by the frame |
@@ -35,7 +35,7 @@ Bootstrap 5.3 (CSS and bundle JS) and Lucide come from a CDN; the exact URLs are
 - Layout modes are attributes on `<html>`: `data-aui-header`, `data-aui-sidebar`, `data-aui-footer`, `data-aui-sidebar-collapsed`, `data-aui-tabs`, `data-aui-density`, `data-aui-header-scheme`, `data-aui-sidebar-scheme`.
 - Theme: `data-aui-theme="<id>"` plus `themes/<id>.css`. No attribute means the default Business look.
 - Mode: `data-aui-mode` (`light`, `dark`, `system`) becomes `data-bs-theme`.
-- The settings panel stores choices in `localStorage` under `architectui`; the inline script in `<head>` applies them before the first paint.
+- The interface settings (any `data-aui-setting` control; all of them are on `pages-profile.html#interface`) store choices in `localStorage` under `architectui`; the inline script in `<head>` applies them before the first paint.
 - Event `aui:theme-change` on `document` fires after a theme or mode change.
 
 ## Customize

@@ -11,7 +11,7 @@ Key facts:
 - Wide screens: grid and display classes continue after Bootstrap `xxl` with `3xl` (from 1560 px, 1600 px monitors) and `4xl` (from 1860 px, 1920 px monitors): `col-4xl-3`, `row-cols-3xl-6`, `g-4xl-4`, `d-3xl-none`.
 - Icons: `<i data-lucide="rocket"></i>`. The theme script renders them; call `ArchitectUI.refresh(element)` after you insert new markup.
 - Every color, radius, shadow and size is a CSS variable (`--bs-*` for Bootstrap, `--aui-*` for the theme). Change them at runtime, never rebuild Bootstrap.
-- Layout modes are attributes on `<html>` (`data-aui-header`, `data-aui-sidebar`, `data-aui-sidebar-collapsed`, `data-aui-density`, `data-aui-theme`, `data-aui-mode`). The settings panel stores them in `localStorage` under `architectui`.
+- Layout modes are attributes on `<html>` (`data-aui-header`, `data-aui-sidebar`, `data-aui-sidebar-collapsed`, `data-aui-density`, `data-aui-theme`, `data-aui-mode`). The interface settings (Interface section of `pages-profile.html`) store them in `localStorage` under `architectui`.
 - Business is the default look and is built into `architectui.css`. Nine more themes are single stylesheets in `themes/` (Orange is the original ArchitectUI look). Light, dark and system modes work in every theme.
 - Everything uses relative paths and classic `<script defer>` tags, so `dist/` works from any folder of a web server and straight from disk (`file://`).
 
@@ -20,7 +20,7 @@ How it differs from Tailwind CSS and similar utility-first kits:
 - Tailwind gives you building blocks; you design every component yourself and keep long class lists consistent by hand. ArchitectUI gives you finished components: a `card`, a `btn btn-primary` or a `table` already has its spacing, colors, states and dark-mode variant, the same on every page.
 - Tailwind needs a build step to generate CSS. ArchitectUI needs none: link two CDN files and the theme.
 - A theme switch in ArchitectUI is one attribute and one stylesheet; all pages change together. In utility-first code the look is spread across markup and has to be edited everywhere.
-- Behavior is included: collapsible sidebar with an icon rail, off-canvas menu on phones, header search, settings panel, theme and mode switching, Bootstrap dropdowns, modals, tooltips, toasts.
+- Behavior is included: collapsible sidebar with an icon rail, off-canvas menu on phones, header search, interface settings, theme and mode switching, Bootstrap dropdowns, modals, tooltips, toasts.
 - Do not mix Tailwind or another CSS framework into ArchitectUI pages. Build new screens from Bootstrap 5 components, Bootstrap utilities and `aui-` classes.
 
 ## Docs
@@ -32,13 +32,13 @@ How it differs from Tailwind CSS and similar utility-first kits:
 
 ## Examples
 
-- [Live demo](https://wnikk.github.io/architectui-html-theme/): every demo page with the settings panel, themes and modes
+- [Live demo](https://wnikk.github.io/architectui-html-theme/): every demo page with the interface settings, themes and modes
 - [Starter page](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/pages-starter.html): empty built page with the full frame; copy it as a starting point
 - [Sign-in page](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/pages-login.html): built guest page without the admin frame
 - [Analytics dashboard](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/index.html): complete built dashboard
 - [Operations Wall](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/dashboard-operations.html): dense dashboard for 1600 and 1920 px monitors with the `3xl` and `4xl` columns, one column on phones
 - [Page sources](https://github.com/wnikk/architectui-html-theme/tree/master/src/pages): demo pages (dashboards, elements, Bootstrap components, forms, tables, charts, calendar, maps) without the frame
-- [Frame partials](https://github.com/wnikk/architectui-html-theme/tree/master/src/_includes/partials): header, sidebar, page title, footer, settings panel
+- [Frame partials](https://github.com/wnikk/architectui-html-theme/tree/master/src/_includes/partials): header, sidebar, page title, footer, interface settings
 
 ## Optional
 
