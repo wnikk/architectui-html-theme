@@ -12,7 +12,10 @@
   flex-shrink: 0;
   width: var(--aui-expand-size);
   height: var(--aui-expand-size);
+  // clip, not hidden: a hidden box can still scroll, and focus on the field while it slides in
+  // would scroll it and leave the open field shifted up
   overflow: hidden;
+  overflow: clip;
   transition: width .3s ease-in-out;
 
   > .form-control,

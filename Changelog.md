@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 - **Pages menu in groups.** Starter Page, "Authentication" (Sign In, Sign Up, Forgot Password), "Errors" (404, 500), My Profile.
 
 ### Fixed
+- **Expanding field.** The open `aui-expand` field keeps its rounded shape: the field gets focus without scrolling its box (`focus({ preventScroll: true })`), and the box clips with `overflow: clip`. Before, the focus moved the field up by about 8px and its top edge was cut off.
 - **Page animation and offcanvas.** During the page appear animation a hidden offcanvas inside the content no longer widens the page: the content clips its overflow while the animation runs.
 
 ## [6.1.0] - 2026-10-19
