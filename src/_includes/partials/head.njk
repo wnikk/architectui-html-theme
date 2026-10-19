@@ -10,7 +10,8 @@
 {%- endfor %}
 <link rel="stylesheet" href="architectui.css">
 {# Applies saved settings before the first paint: layout attributes, light/dark/system mode and the theme stylesheet.
-   The theme link is written with document.write so that it blocks rendering in every browser and the page never flashes in the wrong theme. #}
+   The theme link goes right after architectui.css with blocking="render"; where that attribute is unknown, data-aui-loading
+   keeps the page hidden until the link loads (at most 3 s), and the page then fades in. #}
 <script>
 (function () {
   var d = document.documentElement, s = {}, m, t;
@@ -21,8 +22,16 @@
   t = /^[a-z0-9-]+$/.test(s.theme || "") ? s.theme : "";
   m = s.mode || "light";
   if (t) {
-    var css = document.querySelector('link[href$="architectui.css"]').getAttribute("href");
-    document.write('<link rel="stylesheet" id="aui-theme" href="' + css.replace(/architectui\.css$/, "themes/" + t + ".css") + '">');
+    var base = document.querySelector('link[href$="architectui.css"]'), link = document.createElement("link");
+    var shown = function () { d.removeAttribute("data-aui-loading"); };
+    link.rel = "stylesheet";
+    link.id = "aui-theme";
+    link.href = base.getAttribute("href").replace(/architectui\.css$/, "themes/" + t + ".css");
+    link.setAttribute("blocking", "render");
+    link.onload = link.onerror = shown;
+    setTimeout(shown, 3000);
+    d.setAttribute("data-aui-loading", "");
+    base.parentNode.insertBefore(link, base.nextSibling);
     if ((" " + d.getAttribute("data-aui-dark-only") + " ").indexOf(" " + t + " ") > -1) m = "dark";
   }
   if (m === "system") m = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";

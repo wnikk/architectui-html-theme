@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - **Map tiles note.** The Maps page says under the maps that the public OpenStreetMap tiles suit a demo and a working project sets its own tile server in `components-maps.js`.
 
 ### Changed
+- **Theme loading and switching.** The inline `<head>` script adds the stored theme stylesheet with `blocking="render"` instead of `document.write`; until it loads, `data-aui-loading` on `<html>` keeps the page hidden (at most 3 s) and the page then fades in. A theme change loads the new stylesheet first and then cross-fades the page to the new colors with the View Transitions API; a light/dark change cross-fades too (also on guest pages). With `prefers-reduced-motion` or without View Transitions the change applies at once. Copy the new inline script from `dist/pages-starter.html`.
 - **Settings on the profile page.** The frame has no floating cog button and no settings Offcanvas: every setting is in the Interface section of `pages-profile.html` (user menu → Interface settings). The classes `aui-settings` and `aui-settings-toggle` and the partial `settings.njk` are removed; `aui-swatch` and `aui-theme-option` stay for the settings controls. Pages with the old panel markup lose its styles: take the Interface section from `partials/interface-settings.njk`.
 - **Pages menu in groups.** Starter Page, "Authentication" (Sign In, Sign Up, Forgot Password), "Errors" (404, 500), My Profile.
 

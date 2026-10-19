@@ -6,6 +6,7 @@
   const root = document.documentElement;
   const STORAGE_KEY = "architectui";
   const systemDark = matchMedia("(prefers-color-scheme: dark)");
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const DEFAULTS = {
     header: "fixed", sidebar: "fixed", footer: "static", tabs: "shadow", mode: "light", theme: "",
     density: "", "header-scheme": "", "sidebar-scheme": "", "sidebar-collapsed": "",
@@ -44,26 +45,55 @@
     root.setAttribute("data-bs-theme", dark ? "dark" : "light");
   }
 
-  // A theme is a stylesheet next to architectui.css: themes/<name>.css.
-  // The new link loads before the old one is removed, so switching does not flash.
+  // Theme and mode changes cross-fade the whole page with the View Transitions API.
+  // Without it, with reduced motion or on a hidden tab the change applies at once.
+  function smoothly(update) {
+    if (!document.startViewTransition || reducedMotion.matches || document.hidden) {
+      update();
+    } else {
+      // A transition is skipped when the next change comes before it starts; the change itself still applies
+      document.startViewTransition(update).ready.catch(() => {});
+    }
+  }
+
+  // A theme is a stylesheet next to architectui.css: themes/<name>.css. The new link loads with media="not all",
+  // so the page keeps the old colors; then the attribute, the link and the mode change in one step.
+  let pendingTheme = null;
+
   function applyTheme(theme) {
-    const current = document.getElementById("aui-theme");
-    const done = () => (applyMode(), notify());
+    pendingTheme?.remove();
+    pendingTheme = null;
+    const swap = (link) => smoothly(() => {
+      document.querySelectorAll("#aui-theme").forEach((old) => old !== link && old.remove());
+      if (link) {
+        link.media = "all";
+        link.id = "aui-theme";
+        root.setAttribute(attrName("theme"), theme);
+      } else {
+        root.removeAttribute(attrName("theme"));
+      }
+      applyMode();
+      syncControls();
+      notify();
+    });
     if (!/^[a-z0-9-]+$/.test(theme)) {
-      current?.remove();
-      return done();
+      swap(null);
+      return;
     }
     const base = document.querySelector('link[href$="architectui.css"]');
     const link = Object.assign(document.createElement("link"), {
       rel: "stylesheet",
+      media: "not all",
       href: base.getAttribute("href").replace(/architectui\.css$/, `themes/${theme}.css`),
     });
+    pendingTheme = link;
     link.addEventListener("load", () => {
-      current?.remove();
-      link.id = "aui-theme";
-      done();
+      if (pendingTheme !== link) return;
+      pendingTheme = null;
+      swap(link);
     }, { once: true });
-    (current ?? base).after(link);
+    link.addEventListener("error", () => link.remove(), { once: true });
+    (document.getElementById("aui-theme") ?? base).after(link);
   }
 
   // Inputs show the setting as checked; buttons (a theme in the header list) as .active with aria-current
@@ -88,18 +118,27 @@
       settings[key] = value === DEFAULTS[key] ? undefined : value;
       writeSettings(settings);
     }
-    if (value) {
-      root.setAttribute(attrName(key), value);
-    } else {
-      root.removeAttribute(attrName(key));
-    }
     if (key === "theme") {
       applyTheme(value);
-    } else if (key === "mode") {
-      applyMode();
-      notify();
+      return;
     }
-    syncControls();
+    const update = () => {
+      if (value) {
+        root.setAttribute(attrName(key), value);
+      } else {
+        root.removeAttribute(attrName(key));
+      }
+      if (key === "mode") {
+        applyMode();
+        notify();
+      }
+      syncControls();
+    };
+    if (key === "mode") {
+      smoothly(update);
+    } else {
+      update();
+    }
   }
 
   // Renders Lucide icons and initialises Bootstrap components that need it.

@@ -81,8 +81,17 @@ The CDN URLs below follow the latest release of each major version; for pinned v
     t = /^[a-z0-9-]+$/.test(s.theme || "") ? s.theme : "";
     m = s.mode || "light";
     if (t) {
-      var css = document.querySelector('link[href$="architectui.css"]').getAttribute("href");
-      document.write('<link rel="stylesheet" id="aui-theme" href="' + css.replace(/architectui\.css$/, "themes/" + t + ".css") + '">');
+      // The theme link goes right after architectui.css; until it loads the page stays hidden (data-aui-loading)
+      var base = document.querySelector('link[href$="architectui.css"]'), link = document.createElement("link");
+      var shown = function () { d.removeAttribute("data-aui-loading"); };
+      link.rel = "stylesheet";
+      link.id = "aui-theme";
+      link.href = base.getAttribute("href").replace(/architectui\.css$/, "themes/" + t + ".css");
+      link.setAttribute("blocking", "render");
+      link.onload = link.onerror = shown;
+      setTimeout(shown, 3000);
+      d.setAttribute("data-aui-loading", "");
+      base.parentNode.insertBefore(link, base.nextSibling);
       if ((" " + d.getAttribute("data-aui-dark-only") + " ").indexOf(" " + t + " ") > -1) m = "dark";
     }
     if (m === "system") m = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -318,7 +327,8 @@ How it works:
 
 - `architectui.css` holds the shared component rules of all themes. They read colors, fonts, radii, shadows and table density from CSS variables.
 - Business values of these variables apply only while `<html>` has no `data-aui-theme`.
-- Any other theme is one small stylesheet in `themes/`: the variable values for both modes and the rules only this theme needs. Orange keeps the classic component rules instead of the shared ones. Selecting a theme sets `data-aui-theme="<id>"` (this switches the Business values off) and adds `<link id="aui-theme" href="themes/<id>.css">` after `architectui.css`. The switch at runtime loads the new link before it removes the old one, so there is no flash.
+- Any other theme is one small stylesheet in `themes/`: the variable values for both modes and the rules only this theme needs. Orange keeps the classic component rules instead of the shared ones. Selecting a theme sets `data-aui-theme="<id>"` (this switches the Business values off) and adds `<link id="aui-theme" href="themes/<id>.css">` after `architectui.css`. At runtime the new link loads with `media="not all"`, so the page keeps the old colors; then the attribute, the link and the mode change in one step, and the page cross-fades to the new colors (View Transitions API, 0.3 s; at once where the browser has no View Transitions or with `prefers-reduced-motion`). A light/dark switch cross-fades the same way.
+- On page load the inline script in `<head>` adds the stored theme link right after `architectui.css` with `blocking="render"`. Until it loads, `data-aui-loading` on `<html>` keeps the page hidden (at most 3 s), then the page fades in (0.2 s). Business needs no extra file and shows at once.
 - Modes: `light`, `dark`, `system`. The mode becomes `data-bs-theme` on `<html>`, so Bootstrap's own dark mode and all theme tokens follow it.
 
 A fixed theme without the interface settings:

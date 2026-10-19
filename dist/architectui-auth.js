@@ -19,6 +19,7 @@
   const root = document.documentElement;
   const STORAGE_KEY = "architectui";
   const systemDark = matchMedia("(prefers-color-scheme: dark)");
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
   // Mode: the same storage and rules as architectui.js
   function readSettings() {
@@ -46,7 +47,12 @@
     } catch {
       // Storage is unavailable (private mode): the mode lasts until the page reloads
     }
-    applyMode();
+    // The page cross-fades to the new mode (View Transitions API) where the browser has it
+    if (document.startViewTransition && !reducedMotion.matches) {
+      document.startViewTransition(applyMode).ready.catch(() => {});
+    } else {
+      applyMode();
+    }
   }
 
   const refresh = () => window.lucide?.createIcons();

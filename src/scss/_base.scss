@@ -5,6 +5,27 @@ body {
   background: var(--aui-app-bg);
 }
 
+// While the stored theme stylesheet loads (head.njk sets data-aui-loading), the page is hidden; then it fades in
+html[data-aui-loading] body {
+  opacity: 0;
+}
+
+body {
+  transition: opacity .2s ease-out;
+}
+
+// Theme and mode changes cross-fade the whole page (View Transitions API in architectui.js)
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: .3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
+}
+
 a,
 a:hover,
 .btn-link,
