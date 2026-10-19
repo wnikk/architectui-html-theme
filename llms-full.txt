@@ -181,6 +181,7 @@ body
 │   │       └── .offcanvas-body > ul.nav.flex-column.flex-nowrap#auiNav
 │   └── main#main.d-flex.flex-column
 │       ├── div.flex-grow-1.aui-content
+│       │   ├── .aui-page-path (optional)
 │       │   ├── .aui-page-title
 │       │   └── page content
 │       └── footer.aui-footer
@@ -249,22 +250,23 @@ The first icon of a link is its menu icon (20 px, `--aui-nav-icon-size`); `chevr
 </div>
 ```
 
-A Back link and the path can stand above the title in small, quiet text: `.aui-page-title-path` as the first child of the title block. The same breadcrumb (with dropdowns) fits in it. Below 576 px only the Back link stays. `data-aui-back` on the link returns to the previous page of the same site; without one, the link follows its `href`. The demo does this on `pages-profile.html` (front matter `breadcrumbs: "title"`).
+Spacing of the page head follows `--aui-gutter`: the content padding above the first line, one gutter between the title and the content or the section tabs, one gutter between the tabs and the content. Do not add margins to these blocks.
+
+### Path line
+
+A Back link and the path in small, quiet text, as a line of its own: `.aui-page-path`. Put it before `.aui-page-title`, or at the top of a page without a title. Half a gutter separates it from the title. From 768 px the Back link is as wide as the title icon box and stands centered over it, so the breadcrumb starts where the title text starts; without a Back link the breadcrumb starts at the left edge, over the icon. The same breadcrumb (with dropdowns) fits in it. Below 576 px only the Back link stays. `data-aui-back` on the link returns to the previous page of the same site; without one, the link follows its `href`. The demo does this on `pages-profile.html` (front matter `breadcrumbs: "title"`).
 
 ```html
-<div>
-  <div class="aui-page-title-path">
-    <a href="index.html" data-aui-back><i data-lucide="arrow-left"></i>Back</a>
-    <nav class="d-none d-sm-block" aria-label="breadcrumb">
-      <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><a href="index.html" aria-label="Home"><i data-lucide="house"></i></a></li>
-        <li class="breadcrumb-item active" aria-current="page">My Profile</li>
-      </ol>
-    </nav>
-  </div>
-  <h1>Page name</h1>
-  <p>One sentence about the page.</p>
+<div class="aui-page-path">
+  <a href="index.html" data-aui-back><i data-lucide="arrow-left"></i>Back</a>
+  <nav class="d-none d-sm-block" aria-label="breadcrumb">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a href="index.html" aria-label="Home"><i data-lucide="house"></i></a></li>
+      <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+    </ol>
+  </nav>
 </div>
+<div class="aui-page-title d-md-flex align-items-center text-center text-md-start">...</div>
 ```
 
 ### Section tabs under the title
@@ -524,6 +526,7 @@ Other Bootstrap utilities (spacing, text, order) stop at `xxl`.
 - Button groups as tabs: `.btn-group.nav` with `rounded-start-pill` on the first and `rounded-end-pill` on the last button for a capsule.
 - Navs: `aui-tabs-shadow`; Bootstrap `nav-underline` gets the moving bar of the theme. The first icon in a `.nav-link` is the link icon: add `me-2`.
 - Numbers: `aui-number`.
+- Page head: `aui-page-path` (Back link and breadcrumb line before the page title, see Path line).
 - Forms: `aui-dropzone` (file drop zone, see Forms), `aui-stepper` (steps of a form in several steps, see Stepper).
 - Apps: `aui-kanban`, `aui-kanban-column`, `aui-kanban-list`, `aui-kanban-card` (see Kanban board), `aui-avatars` (overlapping photos), `aui-chat`, `aui-chat-message`, `aui-chat-bubble` (see Chat).
 - Settings controls: `aui-theme-option` (theme picker label with a dot), `aui-theme-dot` (small theme dot for a list), `aui-swatch aui-swatch--<scheme>` (color swatch label), `aui-theme-switch` (header group of the mode toggle and the theme list; `aui-theme-check` marks the current theme).

@@ -170,8 +170,9 @@
   @include tabs-animated;
 }
 
+// Like every block of the page head, the tabs stand one --aui-gutter from the title and from the content
 [data-aui-tabs="shadow"] .aui-body-tabs {
-  padding: .75rem 0;
+  margin-bottom: var(--aui-gutter);
   @include tabs-shadow;
 
   .nav-link::before {

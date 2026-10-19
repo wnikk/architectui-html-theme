@@ -1,15 +1,16 @@
 // Page title: a band above the content. Inside: an icon box (the child that holds the icon),
 // the title (h1) with a description (p) and the actions. Layout comes from Bootstrap utilities.
+// Spacing of the page head: the content padding (--aui-gutter) above it, one --aui-gutter between the title
+// and the content (or the section tabs), half of it between the path line and the title.
 @use "../config" as *;
+
+// Icon box of the title and its gap to the title text (me-4 in the markup); the path line follows them
+$page-icon-size: 60px;
+$page-icon-gap: 1.5rem;
 
 .aui-page-title {
   position: relative;
-  margin: calc(var(--aui-gutter) * -1) calc(var(--aui-gutter) * -1) var(--aui-gutter);
-  padding: var(--aui-gutter);
-
-  + .aui-body-tabs {
-    margin-top: calc(var(--aui-gutter) * -1) !important;
-  }
+  margin-bottom: var(--aui-gutter);
 
   h1 {
     margin: 0;
@@ -22,8 +23,8 @@
   }
 
   > :has(> [data-lucide]) {
-    width: 60px;
-    height: 60px;
+    width: $page-icon-size;
+    height: $page-icon-size;
     background: var(--aui-surface);
 
     > [data-lucide] {
@@ -34,19 +35,29 @@
   }
 }
 
-// Path above the title (front matter "breadcrumbs: title"): a Back link and the breadcrumbs in small, quiet text,
+// Path line above the title (.aui-page-path, front matter "breadcrumbs: title" in the demo): a line of its own
+// before .aui-page-title or at the top of any page. A Back link and the breadcrumbs in small, quiet text,
 // so the title stays the main line. The links take the brand color only on hover.
-.aui-page-title-path {
+// From 768 px, next to the title icon: the Back link is as wide as the icon box and centered over it, and the
+// breadcrumb starts where the title text starts. Without a Back link the breadcrumb starts at the left edge.
+.aui-page-path {
+  --aui-page-path-gap: .75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: .75rem;
-  margin-bottom: .25rem;
+  min-height: 1.25rem;
+  margin-bottom: calc(var(--aui-gutter) / 2);
   font-size: .8125rem;
   color: var(--bs-secondary-color);
 
   @media (min-width: 768px) {
+    --aui-page-path-gap: #{$page-icon-gap * .5};
     justify-content: flex-start;
+
+    > [data-aui-back] {
+      justify-content: center;
+      width: $page-icon-size;
+    }
   }
 
   a {
@@ -74,7 +85,12 @@
 
   > nav {
     min-width: 0;
-    padding-left: .75rem;
+  }
+
+  // The divider stands halfway between the Back link and the breadcrumb
+  > [data-aui-back] + nav {
+    margin-left: var(--aui-page-path-gap);
+    padding-left: calc(var(--aui-page-path-gap) - var(--bs-border-width));
     border-left: var(--bs-border-width) solid var(--bs-border-color);
   }
 
