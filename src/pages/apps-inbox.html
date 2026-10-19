@@ -1,0 +1,103 @@
+---
+title: "Inbox"
+description: "Customer conversations: folders, search, a conversation as a chat and a reply box."
+icon: "inbox"
+iconClass: "text-primary"
+script: "apps-inbox.js"
+---
+{#- Three panes: folders (from xl), the list, the conversation. On phones the list and the conversation take turns. #}
+<div class="card mb-3 overflow-hidden">
+    <div class="row g-0" id="inbox">
+        <div class="col-xl-2 border-end d-none d-xl-block">
+            <div class="p-3">
+                <button type="button" class="btn btn-primary w-100 d-inline-flex align-items-center justify-content-center gap-2" data-bs-toggle="tooltip" title="A demo: the message stays unsent"><i data-lucide="pencil"></i>Compose</button>
+            </div>
+            <div class="list-group list-group-flush" role="tablist" aria-label="Folders">
+                {%- for folder in inbox.folders %}
+                <button type="button" class="list-group-item list-group-item-action d-flex align-items-center gap-2 border-0{% if loop.first %} active{% endif %}" data-folder-link="{{ folder.id }}" role="tab" aria-selected="{{ 'true' if loop.first else 'false' }}">
+                    <i data-lucide="{{ folder.icon }}"></i><span>{{ folder.title }}</span>
+                    {%- if folder.unread %}
+                    <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis ms-auto" data-unread-count>{{ folder.unread }}</span>
+                    {%- endif %}
+                </button>
+                {%- endfor %}
+            </div>
+            <h6 class="small text-uppercase text-body-secondary px-3 mt-4 mb-2">Labels</h6>
+            <ul class="list-unstyled px-3 mb-3">
+                {%- for label in inbox.labels %}
+                <li class="d-flex align-items-center gap-2 py-1 small"><span class="d-inline-block p-1 rounded-circle bg-{{ label.color }}" aria-hidden="true"></span>{{ label.title }}</li>
+                {%- endfor %}
+            </ul>
+        </div>
+
+        <div class="col-md-5 col-xl-4 border-end" data-list-pane>
+            <div class="p-3 border-bottom d-flex flex-column gap-2">
+                <label class="visually-hidden" for="inbox-folder">Folder</label>
+                <select class="form-select form-select-sm d-xl-none" id="inbox-folder">
+                    {%- for folder in inbox.folders %}
+                    <option value="{{ folder.id }}">{{ folder.title }}</option>
+                    {%- endfor %}
+                </select>
+                <label class="visually-hidden" for="inbox-search">Search conversations</label>
+                <input type="search" class="form-control form-control-sm" id="inbox-search" placeholder="Search conversations ...">
+            </div>
+            <div class="list-group list-group-flush aui-scroll aui-scroll-lg" data-conversations>
+                {%- for c in inbox.conversations %}
+                <button type="button" class="list-group-item list-group-item-action d-flex gap-3 py-3{% if loop.first %} active{% endif %}" data-conversation="{{ c.id }}" data-folder="{{ c.folder }}" data-starred="{{ c.starred }}" data-unread="{{ c.unread }}" aria-current="{{ 'true' if loop.first else 'false' }}">
+                    <img src="assets/images/avatars/{{ c.avatar }}.jpg" width="40" height="40" class="rounded-circle flex-shrink-0" alt="">
+                    <span class="d-block flex-grow-1 overflow-hidden text-start">
+                        <span class="d-flex align-items-center gap-2">
+                            <span class="fw-bold text-truncate">{{ c.name }}</span>
+                            <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0{% if not c.unread %} d-none{% endif %}" data-unread-dot aria-label="Unread"></span>
+                            <small class="ms-auto text-nowrap opacity-75">{{ c.time }}</small>
+                        </span>
+                        <span class="d-block text-truncate small{% if c.unread %} fw-bold{% endif %}" data-subject>{{ c.subject }}</span>
+                        <span class="d-block text-truncate small opacity-75">{{ c.preview }}</span>
+                        {%- if c.label %}
+                        <span class="badge bg-{{ c.label.color }}-subtle text-{{ c.label.color }}-emphasis mt-1">{{ c.label.title }}</span>
+                        {%- endif %}
+                    </span>
+                </button>
+                {%- endfor %}
+                <div class="text-center text-body-secondary small p-4 d-none" data-empty>No conversations here.</div>
+            </div>
+        </div>
+
+        <div class="col-md-7 col-xl-6 d-none d-md-flex flex-column" data-thread-pane>
+            {%- for c in inbox.conversations %}
+            <section class="flex-column flex-grow-1{% if loop.first %} d-flex{% else %} d-none{% endif %}" data-thread="{{ c.id }}" aria-label="Conversation with {{ c.name }}">
+                <div class="d-flex align-items-center gap-2 p-3 border-bottom">
+                    <button type="button" class="btn btn-sm btn-outline-secondary d-md-none" data-back aria-label="Back to the list"><i data-lucide="arrow-left"></i></button>
+                    <img src="assets/images/avatars/{{ c.avatar }}.jpg" width="40" height="40" class="rounded-circle" alt="">
+                    <div class="overflow-hidden">
+                        <div class="fw-bold text-truncate">{{ c.subject }}</div>
+                        <div class="small text-body-secondary text-truncate">{{ c.name }} · {{ c.email }}</div>
+                    </div>
+                    <div class="ms-auto d-flex gap-1">
+                        <button type="button" class="btn btn-sm btn-link{% if c.starred %} text-warning{% else %} text-body-secondary{% endif %}" data-star aria-pressed="{{ c.starred }}" aria-label="Star"><i data-lucide="star"></i></button>
+                        <button type="button" class="btn btn-sm btn-link text-body-secondary" data-archive aria-label="Archive"><i data-lucide="archive"></i></button>
+                    </div>
+                </div>
+                <div class="aui-chat p-3 flex-grow-1" data-chat role="log" aria-label="Messages">
+                    {%- for m in c.messages %}
+                    <div class="aui-chat-message{% if m.own %} is-own{% endif %}">
+                        <img src="assets/images/avatars/{{ inbox.me.avatar if m.own else c.avatar }}.jpg" width="32" height="32" alt="">
+                        <div>
+                            <div class="aui-chat-bubble">{{ m.text }}</div>
+                            <div class="small text-body-secondary mt-1">{{ m.time }}</div>
+                        </div>
+                    </div>
+                    {%- endfor %}
+                </div>
+            </section>
+            {%- endfor %}
+            <form class="border-top p-3 d-flex align-items-end gap-2" data-reply>
+                <label class="visually-hidden" for="inbox-reply">Reply</label>
+                <textarea class="form-control" id="inbox-reply" rows="2" placeholder="Write a reply ..." title="Enter sends, Shift+Enter makes a new line" required></textarea>
+                <button type="button" class="btn btn-outline-secondary" aria-label="Attach a file"><i data-lucide="paperclip"></i></button>
+                <button type="submit" class="btn btn-primary d-inline-flex align-items-center gap-2"><i data-lucide="send-horizontal"></i><span class="d-none d-lg-inline">Send</span></button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="visually-hidden" role="status" aria-live="polite" id="inbox-status"></div>

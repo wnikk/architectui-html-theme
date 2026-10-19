@@ -488,7 +488,7 @@ Other Bootstrap utilities (spacing, text, order) stop at `xxl`.
 - Navs: `aui-tabs-shadow`; Bootstrap `nav-underline` gets the moving bar of the theme. The first icon in a `.nav-link` is the link icon: add `me-2`.
 - Numbers: `aui-number`.
 - Forms: `aui-dropzone` (file drop zone, see Forms), `aui-stepper` (steps of a form in several steps, see Stepper).
-- Apps: `aui-kanban`, `aui-kanban-column`, `aui-kanban-list`, `aui-kanban-card` (see Kanban board), `aui-avatars` (overlapping photos).
+- Apps: `aui-kanban`, `aui-kanban-column`, `aui-kanban-list`, `aui-kanban-card` (see Kanban board), `aui-avatars` (overlapping photos), `aui-chat`, `aui-chat-message`, `aui-chat-bubble` (see Chat).
 - Settings controls: `aui-theme-option` (theme picker label with a dot), `aui-theme-dot` (small theme dot for a list), `aui-swatch aui-swatch--<scheme>` (color swatch label), `aui-theme-switch` (header group of the mode toggle and the theme list; `aui-theme-check` marks the current theme).
 - Scroll areas: `aui-scroll` with a height class `aui-scroll-sm`, `-md`, `-lg`.
 - Charts and maps: `aui-chart` (`aui-chart-xs`, `aui-chart-sm`, `aui-chart-lg`) sets the chart height; `aui-sparkline` is a 2.5rem trend line under a number (a Chart.js line without axes); `aui-map` (`aui-map-lg`) for Leaflet maps.
@@ -500,6 +500,25 @@ Everything else is Bootstrap: `hr` for a divider, `fs-*` and `opacity-*` for tex
 ### Tables
 
 A regular Bootstrap table. For a list with tools, put a search `input-group` and `form-select` filters in the `card-body` above, the table in `.table-responsive`, the counter, rows per page and `pagination` in the `card-footer`. A sortable header is a link inside the `th`: `aria-sort` on the `th`, `chevrons-up-down` icon (`opacity-50`) when not sorted, `arrow-up` or `arrow-down` (`text-primary`) when sorted. An empty result is one row with `colspan` and a centered message. `.table-responsive` keeps its content inside: a `.visually-hidden` header label does not widen the page.
+
+### Chat
+
+`.aui-chat`: messages as bubbles in a scroll area (height `--aui-chat-height`, 26rem). A message is `.aui-chat-message` with an avatar `img` and a `div` holding `.aui-chat-bubble` and a time; `.is-own` puts it on the right in the brand color with the theme's contrast text. Give the area `role="log"`.
+
+```html
+<div class="aui-chat p-3" role="log" aria-label="Messages">
+  <div class="aui-chat-message">
+    <img src="assets/images/avatars/11.jpg" width="32" height="32" alt="">
+    <div><div class="aui-chat-bubble">Will it arrive before Friday?</div><div class="small text-body-secondary mt-1">10:31</div></div>
+  </div>
+  <div class="aui-chat-message is-own">
+    <img src="assets/images/avatars/1.jpg" width="32" height="32" alt="">
+    <div><div class="aui-chat-bubble">Yes, on Thursday.</div><div class="small text-body-secondary mt-1">10:38</div></div>
+  </div>
+</div>
+```
+
+`dist/apps-inbox.html` uses it in a three-pane inbox (folders, list, conversation; on phones the list and the conversation take turns).
 
 ### Kanban board
 
@@ -621,6 +640,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `components-calendar.html` | FullCalendar |
 | `forms-controls.html` | Inputs, selects, checks, input groups; native date, time, suggestions, color and file fields with a drop zone |
 | `forms-layouts.html` | Grid and inline forms |
+| `apps-inbox.html` | Inbox: folders with an unread counter, labels, search, a conversation list, the conversation as a chat (`aui-chat`), star, archive, a reply box; on phones the list and the conversation take turns |
 | `apps-kanban.html` | Kanban board: five columns, cards with labels, due dates, checklists and people; drag and drop, a "Move to" menu, new cards, search and label filter, column limits |
 | `forms-wizard.html` | Form in four steps with `aui-stepper`: check of each step, plan cards, optional step with Skip, review of all answers, result screen |
 | `forms-validation.html` | Bootstrap validation |

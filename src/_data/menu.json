@@ -177,6 +177,11 @@
         "title": "Kanban Board",
         "href": "apps-kanban.html",
         "icon": "square-kanban"
+      },
+      {
+        "title": "Inbox",
+        "href": "apps-inbox.html",
+        "icon": "inbox"
       }
     ]
   },
