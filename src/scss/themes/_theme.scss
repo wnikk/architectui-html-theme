@@ -759,3 +759,119 @@
     }
   }
 }
+
+// Depth layer: the look of the Orange theme on the theme tokens. Soft shadows instead of lines, a floating header
+// and sidebar, a lifted active menu link, cards without a border line, uppercase card titles in the brand color,
+// layered shadows on menus and overlays. A theme file includes it after its palette:
+//   @include t.depth(#4338ca, (primary: linear-gradient(...), success: ...));
+// $tint colors the light-mode shadows (dark mode uses black). $gradients replaces --aui-gradient-<name>
+// (the keys of $aui-gradients: primary, success, info, warning, danger, secondary, dark, light and their -subtle);
+// the bg-<color> utilities paint them over the color.
+@mixin depth($tint, $gradients: ()) {
+  :root {
+    @each $name, $gradient in $gradients {
+      --aui-gradient-#{$name}: #{$gradient};
+    }
+  }
+
+  #{light()} {
+    --aui-depth-rgb: #{rgb($tint)};
+    --aui-shadow-color: rgba(#{rgb($tint)}, .09);
+  }
+
+  #{dark()} {
+    --aui-depth-rgb: 0, 0, 0;
+    --aui-shadow-color: rgba(0, 0, 0, .35);
+  }
+
+  #{both()} {
+    --aui-shadow-rgb: var(--aui-depth-rgb);
+    --aui-shadow: 0 1.3rem 1.7rem 0 var(--aui-shadow-color);
+    --aui-shadow-soft: 0 .46875rem 2.1875rem rgba(var(--aui-depth-rgb), .03), 0 .9375rem 1.40625rem rgba(var(--aui-depth-rgb), .03), 0 .25rem .53125rem rgba(var(--aui-depth-rgb), .05), 0 .125rem .1875rem rgba(var(--aui-depth-rgb), .03);
+    --aui-shadow-lg: 0 .76875rem 2.4875rem rgba(var(--aui-depth-rgb), .3), 0 1.3375rem 1.70625rem rgba(var(--aui-depth-rgb), .3), 0 .55rem .53125rem rgba(0, 0, 0, .05), 0 .225rem .4375rem rgba(var(--aui-depth-rgb), .3);
+    --aui-card-shadow: var(--aui-shadow);
+    --aui-toast-shadow: var(--aui-shadow-soft);
+    --aui-title-color: color-mix(in srgb, var(--aui-brand-text) 75%, transparent);
+    --aui-card-border-color: rgba(var(--aui-depth-rgb), .12);
+  }
+
+  // Frame: the header and the sidebar float on soft shadows
+  .aui-header {
+    border-bottom: 0;
+    border-bottom-left-radius: var(--aui-radius-lg);
+    box-shadow: var(--aui-shadow);
+  }
+
+  .aui-footer {
+    border-top: 0;
+    border-bottom-left-radius: var(--aui-radius-lg);
+  }
+
+  .aui-sidebar {
+    border-right: 0;
+    box-shadow: 7px 0 60px rgba(var(--aui-depth-rgb), .07);
+  }
+
+  @media (max-width: 767.98px) {
+    .aui-sidebar {
+      box-shadow: none;
+    }
+  }
+
+  .aui-sidebar h6 {
+    color: var(--aui-brand-text);
+  }
+
+  .aui-sidebar .nav-link.active {
+    background: var(--aui-surface);
+    box-shadow: 0 20px 27px 0 rgba(var(--aui-depth-rgb), .08);
+    color: var(--aui-text);
+  }
+
+  .aui-sidebar .nav .nav .nav-link.active {
+    background: var(--aui-brand-soft);
+    box-shadow: none;
+    color: var(--aui-brand-ink);
+  }
+
+  .aui-page-title > :has(> [data-lucide]) {
+    box-shadow: var(--aui-shadow);
+  }
+
+  // Cards: a shadow without a border line, uppercase titles in the brand color
+  .card {
+    box-shadow: var(--aui-shadow);
+  }
+
+  .card-title {
+    color: var(--aui-title-color);
+    font-size: var(--bs-body-font-size);
+    letter-spacing: .02em;
+    text-transform: uppercase;
+  }
+
+  @each $name in (primary, secondary, success, info, warning, danger, light, dark, focus, alternate) {
+    .aui-card-shadow-#{$name} {
+      box-shadow: 0 .46875rem 2.1875rem rgba(var(--bs-#{$name}-rgb), .03), 0 .9375rem 1.40625rem rgba(var(--bs-#{$name}-rgb), .03), 0 .25rem .53125rem rgba(var(--bs-#{$name}-rgb), .05), 0 .125rem .1875rem rgba(var(--bs-#{$name}-rgb), .03);
+    }
+  }
+
+  // Menus and overlays on layered soft shadows
+  .dropdown-menu {
+    --bs-dropdown-border-color: var(--aui-card-border-color);
+    box-shadow: var(--aui-shadow-soft);
+  }
+
+  .popover {
+    --bs-popover-border-color: var(--aui-card-border-color);
+    box-shadow: var(--aui-shadow);
+  }
+
+  .modal-content {
+    box-shadow: var(--aui-shadow-lg);
+  }
+
+  .badge {
+    text-transform: uppercase;
+  }
+}
