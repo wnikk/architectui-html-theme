@@ -760,6 +760,27 @@
   }
 }
 
+// Compact sizes of the Business look: smaller root type and line height, denser table headers and cells,
+// a smaller table font. Radii and shadows stay with each theme. Business and Coffee include it.
+@mixin compact($when: null) {
+  #{root($when)} {
+    --aui-root-size: 14.5px;
+    --bs-body-line-height: 1.45;
+    --aui-heading-tracking: -.015em;
+    --aui-th-size: .68rem;
+    --aui-th-tracking: .08em;
+    --aui-th-weight: 700;
+    --aui-th-padding: .5rem;
+    --aui-cell-py: .5rem;
+  }
+
+  @include scope($when) {
+    .table {
+      font-size: .92rem;
+    }
+  }
+}
+
 // Depth layer: the look of the Orange theme on the theme tokens. Soft shadows instead of lines, a floating header
 // and sidebar, a lifted active menu link, cards without a border line, uppercase card titles in the brand color,
 // layered shadows on menus and overlays. A theme file includes it after its palette:

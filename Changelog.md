@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - **Indigo with depth.** Indigo (and Indigo Calathea on top of it) takes the look of Orange in its own colors: soft indigo-tinted shadows instead of border lines, a floating header and sidebar, a lifted active menu link, cards without a border line, uppercase card titles in the brand color, layered shadows on menus and overlays, vivid two-color gradients for `bg-primary`, `bg-success`, `bg-info`, `bg-warning`, `bg-danger`, `bg-secondary`, `bg-dark` (widgets, progress bars, badges). The rules come from the new `depth()` mixin of the theme base (`src/scss/themes/_theme.scss`), which any theme can include.
+- **Coffee with depth, compact.** Coffee takes the same depth in coffee tones (warm brown shadows; caramel, olive, honey and terracotta gradients; an espresso `bg-dark`) and the compact sizes of Business: 14.5px root type, line height 1.45, denser table headers and cells, a smaller table font. Its radii stay larger than in Business. The sizes come from the new `compact()` mixin of the theme base; Business includes the same mixin and looks as before.
 
 ## [6.2.0] - 2026-10-19
 

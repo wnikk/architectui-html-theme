@@ -89,7 +89,7 @@ stylesheet loaded after `architectui.css`; it changes palette, typography, radii
 | Orange | `themes/orange.css` | The original ArchitectUI look: orange accents, color gradients, soft shadows |
 | Indigo | `themes/indigo.css` | Indigo palette with the depth of Orange: soft shadows instead of lines, a floating header and sidebar, vivid two-color gradients |
 | Indigo Calathea | `themes/indigo-img.css` | Indigo with a subtle photo of Calathea leaves behind the content |
-| Coffee | `themes/coffee.css` | Warm browns on neutral surfaces |
+| Coffee | `themes/coffee.css` | Warm browns with the depth of Orange (warm shadows, caramel and honey gradients) at the compact sizes of Business |
 | Garden | `themes/green.css` | Calm green, serif headings, airy rows for long reading |
 | Warm | `themes/raspberry.css` | Berry accent, pill buttons, rounder corners |
 | Operations | `themes/teal.css` | Zebra tables, monospace numbers |

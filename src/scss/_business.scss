@@ -26,15 +26,9 @@ $when: ":not([data-aui-theme])";
   $when
 );
 
+@include t.compact($when);
+
 #{t.root($when)} {
-  --aui-root-size: 14.5px;
-  --bs-body-line-height: 1.45;
-  --aui-heading-tracking: -.015em;
-  --aui-th-size: .68rem;
-  --aui-th-tracking: .08em;
-  --aui-th-weight: 700;
-  --aui-th-padding: .5rem;
-  --aui-cell-py: .5rem;
   --aui-radius-lg: .55rem;
   --aui-radius: .4rem;
   --aui-radius-sm: .35rem;
@@ -44,10 +38,4 @@ $when: ":not([data-aui-theme])";
   --aui-shadow-xl: 0 0 0 1px var(--aui-border);
   --aui-card-shadow: 0 0 #0000;
   --aui-btn-primary-shadow: none;
-}
-
-@include t.scope($when) {
-  .table {
-    font-size: .92rem;
-  }
 }

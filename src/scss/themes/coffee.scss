@@ -1,4 +1,6 @@
-// Coffee theme: warm brown accents on near-neutral surfaces. Ochre focus ring in both modes.
+// Coffee theme: warm brown accents on near-neutral surfaces, ochre focus ring in both modes.
+// The depth of Orange in coffee tones (warm brown shadows, caramel and honey gradients) at the compact sizes
+// of Business; the radii stay larger than in Business.
 @use "theme" as t;
 
 @include t.palette(
@@ -21,3 +23,15 @@
     shadow: "0 1px 2px 0 rgba(0, 0, 0, .4)",
   )
 );
+
+@include t.compact;
+
+@include t.depth(#77552b, (
+  primary: linear-gradient(120deg, #8b4513 0%, #d99235 100%),
+  success: linear-gradient(120deg, #4d7c3a 0%, #8aa84b 100%),
+  info: linear-gradient(120deg, #2f6f80 0%, #5fa3b3 100%),
+  warning: linear-gradient(120deg, #c2741a 0%, #e0a24a 100%),
+  danger: linear-gradient(120deg, #a63a2b 0%, #d9694f 100%),
+  secondary: linear-gradient(120deg, #6b6661 0%, #8d8780 100%),
+  dark: linear-gradient(120deg, #2c1810 0%, #4a2c1d 100%),
+));

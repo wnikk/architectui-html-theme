@@ -370,7 +370,7 @@ The controls work on any page. The Interface section of `dist/pages-profile.html
 | `orange` | Orange | The original ArchitectUI look: orange accents, color gradients, soft shadows |
 | `indigo` | Indigo | Indigo palette with the depth of Orange: soft shadows instead of lines, a floating header and sidebar, vivid two-color gradients |
 | `indigo-img` | Indigo Calathea | Indigo with a subtle photo of Calathea leaves behind the content |
-| `coffee` | Coffee | Warm browns on neutral surfaces |
+| `coffee` | Coffee | Warm browns with the depth of Orange (warm shadows, caramel and honey gradients) at the compact sizes of Business |
 | `green` | Garden | Calm green, serif headings, airy rows |
 | `raspberry` | Warm | Berry accent, pill buttons, rounder corners |
 | `teal` | Operations | Zebra tables, monospace numbers |
