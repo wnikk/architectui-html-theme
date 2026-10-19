@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **Bootstrap Icons tab on the Icons page.** The tab loads Bootstrap Icons 1.13.2 (stylesheet and icon list) from jsDelivr the first time it opens and shows all 2078 icons with search and copy (`<i class="bi bi-name"></i>`). Only this page loads the set; the theme uses Lucide. URLs in `cdn.json` (`bootstrapIcons`).
 - **Theme list in the header.** The light/dark button is a button group with a dropdown of all themes (`aui-theme-switch`): a dot in the theme colors, the name, a check mark at the current theme, a link to all interface settings. Works with the keyboard (arrows, Enter, Escape) and in the folded header on phones.
 - **Buttons as setting controls.** `button[data-aui-setting][value]` sets the value on click; the current one gets `.active` and `aria-current`. New class `aui-theme-dot`.
 - **My Profile page** (`pages-profile.html`): profile card, personal information form, and the Interface section with every setting of the settings panel (template `partials/interface-settings.njk`). The user menu links to it: "My profile" and "Interface settings" (`#interface`). A link to an anchor stops below the fixed header.

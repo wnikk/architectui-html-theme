@@ -1,6 +1,6 @@
 ---
 title: "Icons"
-description: "Lucide icon set: consistent stroke icons loaded from the CDN, rendered with one attribute."
+description: "Lucide icon set: consistent stroke icons loaded from the CDN, rendered with one attribute. Bootstrap Icons for comparison."
 icon: "phone"
 script: "elements-icons.js"
 ---
@@ -9,7 +9,10 @@ script: "elements-icons.js"
         <a role="tab" class="nav-link active" id="tab-0" data-bs-toggle="tab" href="#tab-content-0"><span>Lucide {{ lucideIcons.version }}</span></a>
     </li>
     <li class="nav-item">
-        <a role="tab" class="nav-link" id="tab-1" data-bs-toggle="tab" href="#tab-content-1"><span>Usage &amp; Colors</span></a>
+        <a role="tab" class="nav-link" id="tab-1" data-bs-toggle="tab" href="#tab-content-1"><span>Bootstrap Icons {{ cdn.bootstrapIcons.version }}</span></a>
+    </li>
+    <li class="nav-item">
+        <a role="tab" class="nav-link" id="tab-2" data-bs-toggle="tab" href="#tab-content-2"><span>Usage &amp; Colors</span></a>
     </li>
 </ul>
 <div class="tab-content">
@@ -30,7 +33,29 @@ script: "elements-icons.js"
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="tab-content-1" role="tabpanel">
+    {#- Bootstrap Icons: the stylesheet and the icon list come from the CDN when this tab opens (elements-icons.js) #}
+    <div class="tab-pane fade" id="tab-content-1" role="tabpanel" data-icons-css="{{ cdn.bootstrapIcons.css }}" data-icons-list="{{ cdn.bootstrapIcons.list }}">
+        <div class="alert alert-info d-flex gap-2 mb-3" role="note">
+            <i data-lucide="info" class="flex-shrink-0 mt-1"></i>
+            <div>This icon set is added dynamically from the CDN: when this tab opens, the page loads the Bootstrap Icons {{ cdn.bootstrapIcons.version }} stylesheet and the icon list from jsDelivr. The theme and the other pages use Lucide and do not load Bootstrap Icons. Markup: <code>&lt;i class="bi bi-rocket"&gt;&lt;/i&gt;</code>.</div>
+        </div>
+        <div class="mb-3 card">
+            <div class="card-body">
+                <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                    <h5 class="card-title mb-0">All Icons</h5>
+                    <span class="badge bg-secondary" id="biCount">…</span>
+                    <input type="search" class="form-control ms-auto w-auto" id="biSearch" placeholder="Search icons ..." aria-label="Search Bootstrap Icons" disabled>
+                </div>
+                <p class="text-body-secondary small">Click an icon to copy its markup.</p>
+                <div class="d-flex align-items-center gap-2 text-body-secondary" id="biStatus" role="status">
+                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                    <span>Loading Bootstrap Icons from the CDN…</span>
+                </div>
+                <div class="d-grid gap-2" id="biGrid" style="grid-template-columns: repeat(auto-fill, minmax(110px, 1fr))"></div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="tab-content-2" role="tabpanel">
         <div class="row">
             <div class="col-lg-6">
                 <div class="mb-3 card">

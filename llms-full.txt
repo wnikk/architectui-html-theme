@@ -577,7 +577,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `elements-buttons-standard.html` | Buttons, groups, states |
 | `elements-dropdowns.html` | Dropdowns, split buttons, sizes, positions |
 | `elements-badges-labels.html` | Badges on buttons and alone |
-| `elements-icons.html` | Lucide icon catalog with search and copy |
+| `elements-icons.html` | Lucide icon catalog with search and copy; a Bootstrap Icons tab that loads that set from the CDN on first open, with its own catalog and search (for comparison; the theme uses Lucide) |
 | `elements-cards.html` | Cards, headers, footers, colored borders and shadows |
 | `elements-list-group.html` | List groups |
 | `elements-navigation.html` | Vertical and horizontal navs |
