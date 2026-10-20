@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="en" data-aui-header="fixed" data-aui-sidebar="fixed" data-aui-footer="static" data-aui-tabs="shadow" data-aui-dark-only="cyberpunk ">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Users - Team members: search, filter by role and status, add, edit and remove users in a modal form.</title>
+<meta name="description" content="Team members: search, filter by role and status, add, edit and remove users in a modal form.">
+<link rel="icon" href="favicon.ico">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="architectui.css?v=6.2.26">
+
+<script>
+(function () {
+  var d = document.documentElement, s = {}, m, t;
+  try { s = JSON.parse(localStorage.getItem("architectui")) || {}; } catch (e) {}
+  if (s.theme === "light" || s.theme === "dark") { s.mode = s.theme; delete s.theme; }
+  if (s.theme === "blue") delete s.theme;
+  t = /^[a-z0-9-]+$/.test(s.theme || "") ? s.theme : "";
+  // An empty or unknown value sets no attribute: data-aui-theme="" would switch the built-in Business look off
+  for (var k in s) if (s[k] && k !== "theme") d.setAttribute("data-aui-" + k, s[k]);
+  if (t) d.setAttribute("data-aui-theme", t);
+  m = s.mode || "light";
+  if (t) {
+    var base = document.querySelector('link[href*="architectui.css"]'), link = document.createElement("link");
+    var shown = function () { d.removeAttribute("data-aui-loading"); };
+    link.rel = "stylesheet";
+    link.id = "aui-theme";
+    link.href = base.getAttribute("href").replace(/architectui\.css(\?|$)/, "themes/" + t + ".css$1");
+    link.setAttribute("blocking", "render");
+    link.onload = link.onerror = shown;
+    setTimeout(shown, 3000);
+    d.setAttribute("data-aui-loading", "");
+    base.parentNode.insertBefore(link, base.nextSibling);
+    if ((" " + d.getAttribute("data-aui-dark-only") + " ").indexOf(" " + t + " ") > -1) m = "dark";
+  }
+  if (m === "system") m = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  d.setAttribute("data-bs-theme", m);
+})();
+</script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.59.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
+
+<script defer src="architectui.js?v=6.2.26"></script>
+<script defer src="apps-users.js?v=6.2.26"></script>
+
+    <!--
+    =========================================================
+    * ArchitectUI HTML Theme Dashboard - v6.2.26
+    =========================================================
+    * Source: https://github.com/wnikk/architectui-html-theme
+    * Copyright 2025 DashboardPack
+    * Licensed under MIT (https://github.com/wnikk/architectui-html-theme/blob/master/LICENSE)
+    =========================================================
+    * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+    -->
+</head>
+<body>
+    <a class="visually-hidden-focusable btn btn-primary aui-skip-link" href="#main">Skip to content</a>
+    
+<svg class="position-absolute" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+        <linearGradient id="aui-gradient-primary" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#4facfe"/><stop offset="1" stop-color="#00f2fe"/></linearGradient>
+        <linearGradient id="aui-gradient-info" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#a18cd1"/><stop offset="1" stop-color="#8ec5fc"/></linearGradient>
+        <linearGradient id="aui-gradient-success" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3cba92"/><stop offset="1" stop-color="#8fd3f4"/></linearGradient>
+        <linearGradient id="aui-gradient-warning" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f6d365"/><stop offset="1" stop-color="#fda085"/></linearGradient>
+        <linearGradient id="aui-gradient-danger" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f093fb"/><stop offset="1" stop-color="#f5576c"/></linearGradient>
+        <linearGradient id="aui-gradient-secondary" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#29323c"/><stop offset="1" stop-color="#485563"/></linearGradient>
+        <linearGradient id="aui-gradient-dark" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
+        <linearGradient id="aui-gradient-focus" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3a3648"/><stop offset="1" stop-color="#5d5873"/></linearGradient>
+        <linearGradient id="aui-gradient-alternate" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
+    </defs>
+</svg>
+
+    <div class="aui-app">
+        <header class="navbar navbar-expand-md aui-header">
+    <div class="navbar-brand">
+        <button type="button" class="btn aui-burger d-md-none" data-bs-toggle="offcanvas" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
+        
+<a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
+    <img src="assets/images/logo.png" alt="ArchitectUI">
+    <img src="assets/images/logo-on-dark.png" alt="">
+</a>
+
+        <button type="button" class="btn aui-burger d-none d-xl-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
+        <button type="button" class="btn btn-primary btn-sm d-md-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
+    </div>
+    <div class="collapse navbar-collapse" id="auiHeaderContent">
+        <div class="aui-expand me-3" role="search" data-aui-expand>
+    <input type="search" class="form-control" placeholder="Type to search" aria-label="Search">
+    <button type="button" class="btn" data-aui-expand-toggle aria-label="Search"></button>
+    <button type="button" class="btn-close" data-aui-expand-close aria-label="Close search"></button>
+</div>
+<ul class="navbar-nav d-none d-md-flex">
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="database" class="me-2"></i>Statistics</a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="square-pen" class="me-2"></i>Projects</a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="settings" class="me-2"></i>Settings</a>
+    </li>
+</ul>
+
+        <div class="d-flex align-items-center gap-3 ms-auto">
+            <span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
+<div class="btn-group aui-theme-switch">
+    <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+        <i data-lucide="moon"></i>
+        <i data-lucide="sun"></i>
+    </button>
+    <button type="button" class="btn aui-mode-toggle dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Choose a theme"></button>
+    <div class="dropdown-menu dropdown-menu-end">
+        <h6 class="dropdown-header">Theme</h6>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
+            <span>Business</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="orange">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
+            <span>Orange</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
+            <span>Indigo</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo-img">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
+            <span>Indigo Calathea</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="coffee">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
+            <span>Coffee</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="green">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
+            <span>Garden</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="raspberry">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
+            <span>Warm</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="teal">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
+            <span>Operations</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="violet">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
+            <span>Space</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="cyberpunk">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
+            <span>Cyberpunk</span>
+            <small class="opacity-75">dark only</small>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal" class="me-2 opacity-50"></i>All interface settings</a>
+    </div>
+</div>
+<div class="dropdown">
+    <a class="d-inline-flex align-items-center text-reset text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+        <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
+        <i data-lucide="chevron-down" class="ms-2 opacity-75"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-end">
+        <a class="dropdown-item" href="pages-profile.html"><i data-lucide="user" class="me-2 opacity-50"></i>My profile</a>
+        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="settings" class="me-2 opacity-50"></i>Interface settings</a>
+        <h6 class="dropdown-header">Workspace</h6>
+        <a class="dropdown-item" href="#"><i data-lucide="users" class="me-2 opacity-50"></i>Team members</a>
+        <a class="dropdown-item" href="#"><i data-lucide="credit-card" class="me-2 opacity-50"></i>Billing</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="pages-login.html"><i data-lucide="log-out" class="me-2 opacity-50"></i>Sign out</a>
+    </div>
+</div>
+<div class="d-none d-xxl-block lh-sm">
+    <div class="fw-bold opacity-75 text-nowrap">Alina Mclourd</div>
+    <div class="small opacity-50 text-nowrap">VP People Manager</div>
+</div>
+<button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 d-none d-xxl-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
+
+        </div>
+    </div>
+</header>
+
+        <aside class="aui-sidebar">
+    <div class="offcanvas-md offcanvas-start" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
+        <div class="offcanvas-header">
+            
+<a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
+    <img src="assets/images/logo.png" alt="ArchitectUI">
+    <img src="assets/images/logo-on-dark.png" alt="">
+</a>
+
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#auiSidebar" aria-label="Close menu"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav flex-column flex-nowrap" id="auiNav">
+                <li class="nav-item"><h6>Dashboards</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i data-lucide="rocket"></i>Dashboard Example 1
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard-operations.html">
+                        <i data-lucide="monitor"></i>Operations Wall
+                    </a>
+                </li>
+                <li class="nav-item"><h6>UI Components</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
+                        <i data-lucide="gem"></i>Elements<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-elements" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="elements-buttons-standard.html">Buttons</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-dropdowns.html">Dropdowns</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-icons.html">Icons</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-badges-labels.html">Badges</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-cards.html">Cards</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-list-group.html">List Groups</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-navigation.html">Navigation Menus</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-utilities.html">Utilities</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-palettes.html">Theme Palettes</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-components">
+                        <i data-lucide="car"></i>Components<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-components" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="components-bootstrap.html">Bootstrap Components</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-tabs.html">Tabs</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-accordions.html">Accordions</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-notifications.html">Notifications</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-modals.html">Modals</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-progress-bar.html">Progress Bar</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-tooltips-popovers.html">Tooltips &amp; Popovers</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-carousel.html">Carousel</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-calendar.html">Calendar</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-pagination.html">Pagination</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-scrollable-elements.html">Scrollable</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-maps.html">Maps</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-tables" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-tables">
+                        <i data-lucide="table"></i>Tables<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-tables" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="tables-regular.html">Regular Tables</a></li>
+                            <li class="nav-item"><a class="nav-link" href="tables-datatables.html">DataTables</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item"><h6>Widgets</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard-boxes.html">
+                        <i data-lucide="monitor"></i>Dashboard Boxes
+                    </a>
+                </li>
+                <li class="nav-item"><h6>Forms</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-controls.html">
+                        <i data-lucide="mouse"></i>Forms Controls
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-layouts.html">
+                        <i data-lucide="pipette"></i>Forms Layouts
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-validation.html">
+                        <i data-lucide="pen-line"></i>Forms Validation
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-wizard.html">
+                        <i data-lucide="list-ordered"></i>Forms Wizard
+                    </a>
+                </li>
+                <li class="nav-item"><h6>Charts</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="charts-chartjs.html">
+                        <i data-lucide="chart-column"></i>ChartJS
+                    </a>
+                </li>
+                <li class="nav-item"><h6>Apps</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="apps-kanban.html">
+                        <i data-lucide="square-kanban"></i>Kanban Board
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="apps-inbox.html">
+                        <i data-lucide="inbox"></i>Inbox
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="apps-users.html" aria-current="page">
+                        <i data-lucide="users"></i>Users
+                    </a>
+                </li>
+                <li class="nav-item"><h6>Pages</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages-starter.html">
+                        <i data-lucide="file"></i>Starter Page
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages-invoice.html">
+                        <i data-lucide="receipt-text"></i>Invoice
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-authentication">
+                        <i data-lucide="log-in"></i>Authentication<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-authentication" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="pages-login.html">Sign In</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-register.html">Sign Up</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-forgot-password.html">Forgot Password</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-errors">
+                        <i data-lucide="triangle-alert"></i>Errors<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-errors" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="pages-403.html">Error 403</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-404.html">Error 404</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-500.html">Error 500</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-maintenance.html">Scheduled maintenance: the site is temporarily unavailable</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages-profile.html">
+                        <i data-lucide="user-round"></i>My Profile
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</aside>
+
+        <main class="d-flex flex-column" id="main" tabindex="-1">
+            <div class="flex-grow-1 aui-content">
+                <div class="aui-page-title d-md-flex align-items-center text-center text-md-start">
+    <div class="d-none d-md-flex align-items-center justify-content-center flex-shrink-0 me-4">
+        <i data-lucide="users" class="text-primary"></i>
+    </div>
+    <div>
+        <h1>Users</h1>
+        <p>Team members: search, filter by role and status, add, edit and remove users in a modal form.</p>
+    </div>
+    <div class="ms-md-auto mt-3 mt-md-0 d-print-none">
+    <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
+        <i data-lucide="star"></i>
+    </button>
+    <div class="d-inline-block dropdown">
+        <button type="button" class="btn btn-info aui-btn-shadow d-inline-flex align-items-center gap-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons
+        </button>
+        <div class="dropdown-menu dropdown-menu-end">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i data-lucide="inbox" class="me-2"></i><span>Inbox</span><span class="ms-auto badge rounded-pill bg-secondary">86</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i data-lucide="book-open" class="me-2"></i><span>Reports</span><span class="ms-auto badge rounded-pill bg-danger">5</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i data-lucide="image" class="me-2"></i><span>Media</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link disabled" aria-disabled="true"><i data-lucide="file" class="me-2"></i><span>Archive</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</div>
+
+                
+<div class="row row-cols-2 row-cols-lg-4 g-3 mb-3" id="userStats">
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body d-flex align-items-center gap-3">
+                <span class="d-inline-flex p-2 rounded-3 bg-primary-subtle text-primary-emphasis"><i data-lucide="users"></i></span>
+                <div>
+                    <div class="small text-body-secondary">Total users</div>
+                    <div class="fs-4 fw-bold aui-number lh-1" data-stat="all">26</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body d-flex align-items-center gap-3">
+                <span class="d-inline-flex p-2 rounded-3 bg-success-subtle text-success-emphasis"><i data-lucide="user-check"></i></span>
+                <div>
+                    <div class="small text-body-secondary">Active</div>
+                    <div class="fs-4 fw-bold aui-number lh-1" data-stat="active">20</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body d-flex align-items-center gap-3">
+                <span class="d-inline-flex p-2 rounded-3 bg-warning-subtle text-warning-emphasis"><i data-lucide="mail"></i></span>
+                <div>
+                    <div class="small text-body-secondary">Invited</div>
+                    <div class="fs-4 fw-bold aui-number lh-1" data-stat="invited">3</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body d-flex align-items-center gap-3">
+                <span class="d-inline-flex p-2 rounded-3 bg-danger-subtle text-danger-emphasis"><i data-lucide="user-x"></i></span>
+                <div>
+                    <div class="small text-body-secondary">Suspended</div>
+                    <div class="fs-4 fw-bold aui-number lh-1" data-stat="suspended">3</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-3" id="users">
+    <div class="card-header">
+        <i data-lucide="users" class="me-2"></i>Team members
+        <div class="ms-auto">
+            <button type="button" class="btn btn-primary btn-sm d-inline-flex align-items-center gap-2" data-action="add"><i data-lucide="user-plus"></i>Add user</button>
+        </div>
+    </div>
+    <div class="card-body pb-3">
+        <form class="row g-2 align-items-center" role="search" data-filters>
+            <div class="col-md">
+                <div class="input-group">
+                    <span class="input-group-text"><i data-lucide="search"></i></span>
+                    <input type="search" class="form-control" name="query" placeholder="Search by name or email" aria-label="Search users">
+                </div>
+            </div>
+            <div class="col-6 col-md-auto">
+                <select class="form-select" name="role" aria-label="Role">
+                    <option value="">All roles</option>
+                    <option value="owner">Owner</option>
+                    <option value="admin">Admin</option>
+                    <option value="editor">Editor</option>
+                    <option value="viewer">Viewer</option>
+                </select>
+            </div>
+            <div class="col-6 col-md-auto">
+                <select class="form-select" name="status" aria-label="Status">
+                    <option value="">All statuses</option>
+                    <option value="active">Active</option>
+                    <option value="invited">Invited</option>
+                    <option value="suspended">Suspended</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th scope="col" class="w-100">User</th>
+                    <th scope="col" class="d-none d-sm-table-cell">Role</th>
+                    <th scope="col" class="d-none d-lg-table-cell">Team</th>
+                    <th scope="col">Status</th>
+                    <th scope="col" class="d-none d-xl-table-cell">Two-step</th>
+                    <th scope="col" class="d-none d-md-table-cell">Last active</th>
+                    <th scope="col"><span class="visually-hidden">Actions</span></th>
+                </tr>
+            </thead>
+            <tbody data-rows>
+                
+<tr data-user="u1">
+    <td style="max-width: 0">
+        <div class="d-flex align-items-center gap-3">
+            <img src="assets/images/avatars/1.jpg" width="36" height="36" class="rounded-circle flex-shrink-0" alt="" data-field="photo">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary-emphasis fw-bold small flex-shrink-0 d-none" style="width: 36px; height: 36px" aria-hidden="true" data-field="initials">AM</span>
+            <div class="overflow-hidden">
+                <div class="fw-bold text-truncate" data-field="name">Alina Mclourd</div>
+                <div class="small text-body-secondary text-truncate" data-field="email">alina.mclourd@northwind.test</div>
+            </div>
+        </div>
+    </td>
+    <td class="d-none d-sm-table-cell"><span class="badge bg-primary-subtle text-primary-emphasis" data-field="role">Owner</span></td>
+    <td class="d-none d-lg-table-cell" data-field="team">Management</td>
+    <td>
+        <span class="d-inline-flex align-items-center gap-2 small text-nowrap"><span class="d-inline-block p-1 rounded-circle bg-success" aria-hidden="true" data-field="status-dot"></span><span data-field="status">Active</span></span>
+    </td>
+    <td class="d-none d-xl-table-cell">
+        <span class="d-inline-flex align-items-center gap-1 small text-success-emphasis" data-field="two-step"><i data-lucide="shield-check"></i><span>On</span></span>
+    </td>
+    <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">Online now</td>
+    <td class="text-end text-nowrap">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Alina Mclourd"><i data-lucide="pencil"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Alina Mclourd" disabled title="An owner cannot be deleted"><i data-lucide="trash-2"></i></button>
+    </td>
+</tr>
+
+                
+<tr data-user="u2">
+    <td style="max-width: 0">
+        <div class="d-flex align-items-center gap-3">
+            <img src="assets/images/avatars/2.jpg" width="36" height="36" class="rounded-circle flex-shrink-0" alt="" data-field="photo">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary-emphasis fw-bold small flex-shrink-0 d-none" style="width: 36px; height: 36px" aria-hidden="true" data-field="initials">EH</span>
+            <div class="overflow-hidden">
+                <div class="fw-bold text-truncate" data-field="name">Ella-Rose Henry</div>
+                <div class="small text-body-secondary text-truncate" data-field="email">ella.henry@northwind.test</div>
+            </div>
+        </div>
+    </td>
+    <td class="d-none d-sm-table-cell"><span class="badge bg-info-subtle text-info-emphasis" data-field="role">Admin</span></td>
+    <td class="d-none d-lg-table-cell" data-field="team">Engineering</td>
+    <td>
+        <span class="d-inline-flex align-items-center gap-2 small text-nowrap"><span class="d-inline-block p-1 rounded-circle bg-success" aria-hidden="true" data-field="status-dot"></span><span data-field="status">Active</span></span>
+    </td>
+    <td class="d-none d-xl-table-cell">
+        <span class="d-inline-flex align-items-center gap-1 small text-success-emphasis" data-field="two-step"><i data-lucide="shield-check"></i><span>On</span></span>
+    </td>
+    <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">5 min ago</td>
+    <td class="text-end text-nowrap">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Ella-Rose Henry"><i data-lucide="pencil"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Ella-Rose Henry"><i data-lucide="trash-2"></i></button>
+    </td>
+</tr>
+
+                
+<tr data-user="u3">
+    <td style="max-width: 0">
+        <div class="d-flex align-items-center gap-3">
+            <img src="assets/images/avatars/3.jpg" width="36" height="36" class="rounded-circle flex-shrink-0" alt="" data-field="photo">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary-emphasis fw-bold small flex-shrink-0 d-none" style="width: 36px; height: 36px" aria-hidden="true" data-field="initials">RT</span>
+            <div class="overflow-hidden">
+                <div class="fw-bold text-truncate" data-field="name">Ruben Tillman</div>
+                <div class="small text-body-secondary text-truncate" data-field="email">ruben.tillman@northwind.test</div>
+            </div>
+        </div>
+    </td>
+    <td class="d-none d-sm-table-cell"><span class="badge bg-success-subtle text-success-emphasis" data-field="role">Editor</span></td>
+    <td class="d-none d-lg-table-cell" data-field="team">Product</td>
+    <td>
+        <span class="d-inline-flex align-items-center gap-2 small text-nowrap"><span class="d-inline-block p-1 rounded-circle bg-success" aria-hidden="true" data-field="status-dot"></span><span data-field="status">Active</span></span>
+    </td>
+    <td class="d-none d-xl-table-cell">
+        <span class="d-inline-flex align-items-center gap-1 small text-success-emphasis" data-field="two-step"><i data-lucide="shield-check"></i><span>On</span></span>
+    </td>
+    <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">1 hour ago</td>
+    <td class="text-end text-nowrap">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Ruben Tillman"><i data-lucide="pencil"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Ruben Tillman"><i data-lucide="trash-2"></i></button>
+    </td>
+</tr>
+
+                
+<tr data-user="u4">
+    <td style="max-width: 0">
+        <div class="d-flex align-items-center gap-3">
+            <img src="assets/images/avatars/4.jpg" width="36" height="36" class="rounded-circle flex-shrink-0" alt="" data-field="photo">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary-emphasis fw-bold small flex-shrink-0 d-none" style="width: 36px; height: 36px" aria-hidden="true" data-field="initials">VW</span>
+            <div class="overflow-hidden">
+                <div class="fw-bold text-truncate" data-field="name">Vinnie Wagstaff</div>
+                <div class="small text-body-secondary text-truncate" data-field="email">vinnie.wagstaff@northwind.test</div>
+            </div>
+        </div>
+    </td>
+    <td class="d-none d-sm-table-cell"><span class="badge bg-success-subtle text-success-emphasis" data-field="role">Editor</span></td>
+    <td class="d-none d-lg-table-cell" data-field="team">Engineering</td>
+    <td>
+        <span class="d-inline-flex align-items-center gap-2 small text-nowrap"><span class="d-inline-block p-1 rounded-circle bg-success" aria-hidden="true" data-field="status-dot"></span><span data-field="status">Active</span></span>
+    </td>
+    <td class="d-none d-xl-table-cell">
+        <span class="d-inline-flex align-items-center gap-1 small text-body-secondary" data-field="two-step"><i data-lucide="shield-off"></i><span>Off</span></span>
+    </td>
+    <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">2 hours ago</td>
+    <td class="text-end text-nowrap">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Vinnie Wagstaff"><i data-lucide="pencil"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Vinnie Wagstaff"><i data-lucide="trash-2"></i></button>
+    </td>
+</tr>
+
+                
+<tr data-user="u5">
+    <td style="max-width: 0">
+        <div class="d-flex align-items-center gap-3">
+            <img src="assets/images/avatars/11.jpg" width="36" height="36" class="rounded-circle flex-shrink-0" alt="" data-field="photo">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary-emphasis fw-bold small flex-shrink-0 d-none" style="width: 36px; height: 36px" aria-hidden="true" data-field="initials">MC</span>
+            <div class="overflow-hidden">
+                <div class="fw-bold text-truncate" data-field="name">Maria Chen</div>
+                <div class="small text-body-secondary text-truncate" data-field="email">maria.chen@northwind.test</div>
+            </div>
+        </div>
+    </td>
+    <td class="d-none d-sm-table-cell"><span class="badge bg-info-subtle text-info-emphasis" data-field="role">Admin</span></td>
+    <td class="d-none d-lg-table-cell" data-field="team">Support</td>
+    <td>
+        <span class="d-inline-flex align-items-center gap-2 small text-nowrap"><span class="d-inline-block p-1 rounded-circle bg-success" aria-hidden="true" data-field="status-dot"></span><span data-field="status">Active</span></span>
+    </td>
+    <td class="d-none d-xl-table-cell">
+        <span class="d-inline-flex align-items-center gap-1 small text-success-emphasis" data-field="two-step"><i data-lucide="shield-check"></i><span>On</span></span>
+    </td>
+    <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">Today, 09:12</td>
+    <td class="text-end text-nowrap">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Maria Chen"><i data-lucide="pencil"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Maria Chen"><i data-lucide="trash-2"></i></button>
+    </td>
+</tr>
+
+                
+<tr data-user="u6">
+    <td style="max-width: 0">
+        <div class="d-flex align-items-center gap-3">
+            <img width="36" height="36" class="rounded-circle flex-shrink-0 d-none" alt="" data-field="photo">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary-emphasis fw-bold small flex-shrink-0" style="width: 36px; height: 36px" aria-hidden="true" data-field="initials">JP</span>
+            <div class="overflow-hidden">
+                <div class="fw-bold text-truncate" data-field="name">James Patel</div>
+                <div class="small text-body-secondary text-truncate" data-field="email">james.patel@northwind.test</div>
+            </div>
+        </div>
+    </td>
+    <td class="d-none d-sm-table-cell"><span class="badge bg-secondary-subtle text-secondary-emphasis" data-field="role">Viewer</span></td>
+    <td class="d-none d-lg-table-cell" data-field="team">Finance</td>
+    <td>
+        <span class="d-inline-flex align-items-center gap-2 small text-nowrap"><span class="d-inline-block p-1 rounded-circle bg-warning" aria-hidden="true" data-field="status-dot"></span><span data-field="status">Invited</span></span>
+    </td>
+    <td class="d-none d-xl-table-cell">
+        <span class="d-inline-flex align-items-center gap-1 small text-body-secondary" data-field="two-step"><i data-lucide="shield-off"></i><span>Off</span></span>
+    </td>
+    <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">Never</td>
+    <td class="text-end text-nowrap">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit James Patel"><i data-lucide="pencil"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete James Patel"><i data-lucide="trash-2"></i></button>
+    </td>
+</tr>
+
+                
+<tr data-user="u7">
+    <td style="max-width: 0">
+        <div class="d-flex align-items-center gap-3">
+            <img src="assets/images/avatars/5.jpg" width="36" height="36" class="rounded-circle flex-shrink-0" alt="" data-field="photo">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary-emphasis fw-bold small flex-shrink-0 d-none" style="width: 36px; height: 36px" aria-hidden="true" data-field="initials">SR</span>
+            <div class="overflow-hidden">
+                <div class="fw-bold text-truncate" data-field="name">Sofia Rossi</div>
+                <div class="small text-body-secondary text-truncate" data-field="email">sofia.rossi@northwind.test</div>
+            </div>
+        </div>
+    </td>
+    <td class="d-none d-sm-table-cell"><span class="badge bg-success-subtle text-success-emphasis" data-field="role">Editor</span></td>
+    <td class="d-none d-lg-table-cell" data-field="team">Marketing</td>
+    <td>
+        <span class="d-inline-flex align-items-center gap-2 small text-nowrap"><span class="d-inline-block p-1 rounded-circle bg-success" aria-hidden="true" data-field="status-dot"></span><span data-field="status">Active</span></span>
+    </td>
+    <td class="d-none d-xl-table-cell">
+        <span class="d-inline-flex align-items-center gap-1 small text-success-emphasis" data-field="two-step"><i data-lucide="shield-check"></i><span>On</span></span>
+    </td>
+    <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">Yesterday</td>
+    <td class="text-end text-nowrap">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Sofia Rossi"><i data-lucide="pencil"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Sofia Rossi"><i data-lucide="trash-2"></i></button>
+    </td>
+</tr>
+
+                
+<tr data-user="u8">
+    <td style="max-width: 0">
+        <div class="d-flex align-items-center gap-3">
+            <img src="assets/images/avatars/8.jpg" width="36" height="36" class="rounded-circle flex-shrink-0" alt="" data-field="photo">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary-emphasis fw-bold small flex-shrink-0 d-none" style="width: 36px; height: 36px" aria-hidden="true" data-field="initials">DN</span>
+            <div class="overflow-hidden">
+                <div class="fw-bold text-truncate" data-field="name">Daniel Novak</div>
+                <div class="small text-body-secondary text-truncate" data-field="email">daniel.novak@northwind.test</div>
+            </div>
+        </div>
+    </td>
+    <td class="d-none d-sm-table-cell"><span class="badge bg-success-subtle text-success-emphasis" data-field="role">Editor</span></td>
+    <td class="d-none d-lg-table-cell" data-field="team">Sales</td>
+    <td>
+        <span class="d-inline-flex align-items-center gap-2 small text-nowrap"><span class="d-inline-block p-1 rounded-circle bg-success" aria-hidden="true" data-field="status-dot"></span><span data-field="status">Active</span></span>
+    </td>
+    <td class="d-none d-xl-table-cell">
+        <span class="d-inline-flex align-items-center gap-1 small text-body-secondary" data-field="two-step"><i data-lucide="shield-off"></i><span>Off</span></span>
+    </td>
+    <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">Yesterday</td>
+    <td class="text-end text-nowrap">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Daniel Novak"><i data-lucide="pencil"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Daniel Novak"><i data-lucide="trash-2"></i></button>
+    </td>
+</tr>
+
+                
+<tr data-user="u9">
+    <td style="max-width: 0">
+        <div class="d-flex align-items-center gap-3">
+            <img src="assets/images/avatars/9.jpg" width="36" height="36" class="rounded-circle flex-shrink-0" alt="" data-field="photo">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary-emphasis fw-bold small flex-shrink-0 d-none" style="width: 36px; height: 36px" aria-hidden="true" data-field="initials">AO</span>
+            <div class="overflow-hidden">
+                <div class="fw-bold text-truncate" data-field="name">Amara Okafor</div>
+                <div class="small text-body-secondary text-truncate" data-field="email">amara.okafor@northwind.test</div>
+            </div>
+        </div>
+    </td>
+    <td class="d-none d-sm-table-cell"><span class="badge bg-secondary-subtle text-secondary-emphasis" data-field="role">Viewer</span></td>
+    <td class="d-none d-lg-table-cell" data-field="team">Sales</td>
+    <td>
+        <span class="d-inline-flex align-items-center gap-2 small text-nowrap"><span class="d-inline-block p-1 rounded-circle bg-success" aria-hidden="true" data-field="status-dot"></span><span data-field="status">Active</span></span>
+    </td>
+    <td class="d-none d-xl-table-cell">
+        <span class="d-inline-flex align-items-center gap-1 small text-success-emphasis" data-field="two-step"><i data-lucide="shield-check"></i><span>On</span></span>
+    </td>
+    <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">Oct 18</td>
+    <td class="text-end text-nowrap">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Amara Okafor"><i data-lucide="pencil"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Amara Okafor"><i data-lucide="trash-2"></i></button>
+    </td>
+</tr>
+
+                
+<tr data-user="u10">
+    <td style="max-width: 0">
+        <div class="d-flex align-items-center gap-3">
+            <img src="assets/images/avatars/10.jpg" width="36" height="36" class="rounded-circle flex-shrink-0" alt="" data-field="photo">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary-emphasis fw-bold small flex-shrink-0 d-none" style="width: 36px; height: 36px" aria-hidden="true" data-field="initials">LM</span>
+            <div class="overflow-hidden">
+                <div class="fw-bold text-truncate" data-field="name">Lucas Meyer</div>
+                <div class="small text-body-secondary text-truncate" data-field="email">lucas.meyer@northwind.test</div>
+            </div>
+        </div>
+    </td>
+    <td class="d-none d-sm-table-cell"><span class="badge bg-info-subtle text-info-emphasis" data-field="role">Admin</span></td>
+    <td class="d-none d-lg-table-cell" data-field="team">Finance</td>
+    <td>
+        <span class="d-inline-flex align-items-center gap-2 small text-nowrap"><span class="d-inline-block p-1 rounded-circle bg-success" aria-hidden="true" data-field="status-dot"></span><span data-field="status">Active</span></span>
+    </td>
+    <td class="d-none d-xl-table-cell">
+        <span class="d-inline-flex align-items-center gap-1 small text-success-emphasis" data-field="two-step"><i data-lucide="shield-check"></i><span>On</span></span>
+    </td>
+    <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">Oct 18</td>
+    <td class="text-end text-nowrap">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Lucas Meyer"><i data-lucide="pencil"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Lucas Meyer"><i data-lucide="trash-2"></i></button>
+    </td>
+</tr>
+
+            </tbody>
+        </table>
+        <div class="text-center py-5 d-none" data-empty>
+            <div class="d-inline-flex p-3 rounded-circle bg-body-tertiary text-body-secondary mb-3"><i data-lucide="search-x"></i></div>
+            <p class="fw-bold mb-1">No users match the filters</p>
+            <p class="small text-body-secondary mb-3">Change the search or the filters, or show everyone again.</p>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-action="reset">Show all users</button>
+        </div>
+    </div>
+    <div class="card-footer flex-wrap gap-3 py-3">
+        <span class="text-body-secondary small" data-summary>Showing 1–10 of 26 users</span>
+        <nav class="ms-md-auto" aria-label="User pages">
+            <ul class="pagination pagination-sm mb-0" data-pager></ul>
+        </nav>
+    </div>
+</div>
+
+<template id="userRowTemplate">
+    
+<tr data-user="">
+    <td style="max-width: 0">
+        <div class="d-flex align-items-center gap-3">
+            <img width="36" height="36" class="rounded-circle flex-shrink-0 d-none" alt="" data-field="photo">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary-emphasis fw-bold small flex-shrink-0" style="width: 36px; height: 36px" aria-hidden="true" data-field="initials"></span>
+            <div class="overflow-hidden">
+                <div class="fw-bold text-truncate" data-field="name"></div>
+                <div class="small text-body-secondary text-truncate" data-field="email"></div>
+            </div>
+        </div>
+    </td>
+    <td class="d-none d-sm-table-cell"><span class="badge bg-secondary-subtle text-secondary-emphasis" data-field="role"></span></td>
+    <td class="d-none d-lg-table-cell" data-field="team"></td>
+    <td>
+        <span class="d-inline-flex align-items-center gap-2 small text-nowrap"><span class="d-inline-block p-1 rounded-circle bg-secondary" aria-hidden="true" data-field="status-dot"></span><span data-field="status"></span></span>
+    </td>
+    <td class="d-none d-xl-table-cell">
+        <span class="d-inline-flex align-items-center gap-1 small text-body-secondary" data-field="two-step"><i data-lucide="shield-off"></i><span>Off</span></span>
+    </td>
+    <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active"></td>
+    <td class="text-end text-nowrap">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit "><i data-lucide="pencil"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete "><i data-lucide="trash-2"></i></button>
+    </td>
+</tr>
+
+</template>
+<script type="application/json" id="usersData">{"roles":[{"id":"owner","title":"Owner","color":"primary"},{"id":"admin","title":"Admin","color":"info"},{"id":"editor","title":"Editor","color":"success"},{"id":"viewer","title":"Viewer","color":"secondary"}],"statuses":[{"id":"active","title":"Active","color":"success"},{"id":"invited","title":"Invited","color":"warning"},{"id":"suspended","title":"Suspended","color":"danger"}],"teams":["Management","Sales","Support","Finance","Product","Engineering","Marketing"],"users":[{"id":"u1","name":"Alina Mclourd","email":"alina.mclourd@northwind.test","avatar":1,"role":"owner","team":"Management","status":"active","twoStep":true,"lastActive":"Online now","roleTitle":"Owner","roleColor":"primary","statusTitle":"Active","statusColor":"success"},{"id":"u2","name":"Ella-Rose Henry","email":"ella.henry@northwind.test","avatar":2,"role":"admin","team":"Engineering","status":"active","twoStep":true,"lastActive":"5 min ago","roleTitle":"Admin","roleColor":"info","statusTitle":"Active","statusColor":"success"},{"id":"u3","name":"Ruben Tillman","email":"ruben.tillman@northwind.test","avatar":3,"role":"editor","team":"Product","status":"active","twoStep":true,"lastActive":"1 hour ago","roleTitle":"Editor","roleColor":"success","statusTitle":"Active","statusColor":"success"},{"id":"u4","name":"Vinnie Wagstaff","email":"vinnie.wagstaff@northwind.test","avatar":4,"role":"editor","team":"Engineering","status":"active","twoStep":false,"lastActive":"2 hours ago","roleTitle":"Editor","roleColor":"success","statusTitle":"Active","statusColor":"success"},{"id":"u5","name":"Maria Chen","email":"maria.chen@northwind.test","avatar":11,"role":"admin","team":"Support","status":"active","twoStep":true,"lastActive":"Today, 09:12","roleTitle":"Admin","roleColor":"info","statusTitle":"Active","statusColor":"success"},{"id":"u6","name":"James Patel","email":"james.patel@northwind.test","avatar":0,"role":"viewer","team":"Finance","status":"invited","twoStep":false,"lastActive":"Never","roleTitle":"Viewer","roleColor":"secondary","statusTitle":"Invited","statusColor":"warning"},{"id":"u7","name":"Sofia Rossi","email":"sofia.rossi@northwind.test","avatar":5,"role":"editor","team":"Marketing","status":"active","twoStep":true,"lastActive":"Yesterday","roleTitle":"Editor","roleColor":"success","statusTitle":"Active","statusColor":"success"},{"id":"u8","name":"Daniel Novak","email":"daniel.novak@northwind.test","avatar":8,"role":"editor","team":"Sales","status":"active","twoStep":false,"lastActive":"Yesterday","roleTitle":"Editor","roleColor":"success","statusTitle":"Active","statusColor":"success"},{"id":"u9","name":"Amara Okafor","email":"amara.okafor@northwind.test","avatar":9,"role":"viewer","team":"Sales","status":"active","twoStep":true,"lastActive":"Oct 18","roleTitle":"Viewer","roleColor":"secondary","statusTitle":"Active","statusColor":"success"},{"id":"u10","name":"Lucas Meyer","email":"lucas.meyer@northwind.test","avatar":10,"role":"admin","team":"Finance","status":"active","twoStep":true,"lastActive":"Oct 18","roleTitle":"Admin","roleColor":"info","statusTitle":"Active","statusColor":"success"},{"id":"u11","name":"Hana Sato","email":"hana.sato@northwind.test","avatar":12,"role":"editor","team":"Marketing","status":"suspended","twoStep":false,"lastActive":"Sep 30","roleTitle":"Editor","roleColor":"success","statusTitle":"Suspended","statusColor":"danger"},{"id":"u12","name":"Omar Haddad","email":"omar.haddad@northwind.test","avatar":0,"role":"viewer","team":"Support","status":"active","twoStep":false,"lastActive":"Oct 17","roleTitle":"Viewer","roleColor":"secondary","statusTitle":"Active","statusColor":"success"},{"id":"u13","name":"Priya Nair","email":"priya.nair@northwind.test","avatar":0,"role":"editor","team":"Product","status":"active","twoStep":true,"lastActive":"Oct 17","roleTitle":"Editor","roleColor":"success","statusTitle":"Active","statusColor":"success"},{"id":"u14","name":"Tom Becker","email":"tom.becker@northwind.test","avatar":0,"role":"viewer","team":"Engineering","status":"invited","twoStep":false,"lastActive":"Never","roleTitle":"Viewer","roleColor":"secondary","statusTitle":"Invited","statusColor":"warning"},{"id":"u15","name":"Lea Moreau","email":"lea.moreau@northwind.test","avatar":0,"role":"editor","team":"Support","status":"active","twoStep":true,"lastActive":"Oct 16","roleTitle":"Editor","roleColor":"success","statusTitle":"Active","statusColor":"success"},{"id":"u16","name":"Kenji Watanabe","email":"kenji.watanabe@northwind.test","avatar":0,"role":"admin","team":"Engineering","status":"active","twoStep":true,"lastActive":"Oct 16","roleTitle":"Admin","roleColor":"info","statusTitle":"Active","statusColor":"success"},{"id":"u17","name":"Grace Kim","email":"grace.kim@northwind.test","avatar":0,"role":"viewer","team":"Marketing","status":"active","twoStep":false,"lastActive":"Oct 15","roleTitle":"Viewer","roleColor":"secondary","statusTitle":"Active","statusColor":"success"},{"id":"u18","name":"Mateo Silva","email":"mateo.silva@northwind.test","avatar":0,"role":"editor","team":"Sales","status":"suspended","twoStep":false,"lastActive":"Aug 22","roleTitle":"Editor","roleColor":"success","statusTitle":"Suspended","statusColor":"danger"},{"id":"u19","name":"Nora Lindqvist","email":"nora.lindqvist@northwind.test","avatar":0,"role":"viewer","team":"Finance","status":"active","twoStep":true,"lastActive":"Oct 14","roleTitle":"Viewer","roleColor":"secondary","statusTitle":"Active","statusColor":"success"},{"id":"u20","name":"Ahmed Karim","email":"ahmed.karim@northwind.test","avatar":0,"role":"editor","team":"Engineering","status":"active","twoStep":true,"lastActive":"Oct 14","roleTitle":"Editor","roleColor":"success","statusTitle":"Active","statusColor":"success"},{"id":"u21","name":"Chloe Martin","email":"chloe.martin@northwind.test","avatar":0,"role":"viewer","team":"Support","status":"invited","twoStep":false,"lastActive":"Never","roleTitle":"Viewer","roleColor":"secondary","statusTitle":"Invited","statusColor":"warning"},{"id":"u22","name":"Ivan Petrov","email":"ivan.petrov@northwind.test","avatar":0,"role":"editor","team":"Product","status":"active","twoStep":false,"lastActive":"Oct 12","roleTitle":"Editor","roleColor":"success","statusTitle":"Active","statusColor":"success"},{"id":"u23","name":"Zara Ahmed","email":"zara.ahmed@northwind.test","avatar":0,"role":"owner","team":"Management","status":"active","twoStep":true,"lastActive":"Oct 12","roleTitle":"Owner","roleColor":"primary","statusTitle":"Active","statusColor":"success"},{"id":"u24","name":"Felix Wagner","email":"felix.wagner@northwind.test","avatar":0,"role":"viewer","team":"Sales","status":"active","twoStep":false,"lastActive":"Oct 10","roleTitle":"Viewer","roleColor":"secondary","statusTitle":"Active","statusColor":"success"},{"id":"u25","name":"Mia Johansson","email":"mia.johansson@northwind.test","avatar":0,"role":"editor","team":"Marketing","status":"active","twoStep":true,"lastActive":"Oct 9","roleTitle":"Editor","roleColor":"success","statusTitle":"Active","statusColor":"success"},{"id":"u26","name":"Leo Rossi","email":"leo.rossi@northwind.test","avatar":0,"role":"viewer","team":"Engineering","status":"suspended","twoStep":false,"lastActive":"Jul 3","roleTitle":"Viewer","roleColor":"secondary","statusTitle":"Suspended","statusColor":"danger"}],"stats":[{"id":"all","title":"Total users","icon":"users","color":"primary","value":26},{"id":"active","title":"Active","icon":"user-check","color":"success","value":20},{"id":"invited","title":"Invited","icon":"mail","color":"warning","value":3},{"id":"suspended","title":"Suspended","icon":"user-x","color":"danger","value":3}]}</script>
+
+<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content needs-validation" novalidate data-user-form>
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="userModalTitle">Add user</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="userName" class="form-label">Full name</label>
+                    <input type="text" class="form-control" id="userName" name="name" minlength="2" maxlength="60" autocomplete="off" required>
+                    <div class="invalid-feedback">Enter the name, at least 2 characters.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="userEmail" class="form-label">Work email</label>
+                    <input type="email" class="form-control" id="userEmail" name="email" autocomplete="off" required>
+                    <div class="invalid-feedback" data-email-feedback>Enter a valid email.</div>
+                </div>
+                <div class="row g-3 mb-3">
+                    <div class="col-sm-6">
+                        <label for="userRole" class="form-label">Role</label>
+                        <select class="form-select" id="userRole" name="role" required>
+                            <option value="owner">Owner</option>
+                            <option value="admin">Admin</option>
+                            <option value="editor">Editor</option>
+                            <option value="viewer" selected>Viewer</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="userTeam" class="form-label">Team</label>
+                        <select class="form-select" id="userTeam" name="team">
+                            <option>Management</option>
+                            <option>Sales</option>
+                            <option>Support</option>
+                            <option>Finance</option>
+                            <option>Product</option>
+                            <option>Engineering</option>
+                            <option>Marketing</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="userStatus" class="form-label">Status</label>
+                    <select class="form-select" id="userStatus" name="status">
+                        <option value="active">Active</option>
+                        <option value="invited" selected>Invited</option>
+                        <option value="suspended">Suspended</option>
+                    </select>
+                </div>
+                <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" role="switch" id="userTwoStep" name="twoStep">
+                    <label class="form-check-label" for="userTwoStep">Require two-step sign-in</label>
+                </div>
+                <div class="form-check" data-new-only>
+                    <input class="form-check-input" type="checkbox" id="userInvite" name="invite" checked>
+                    <label class="form-check-label" for="userInvite">Send an invitation email</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" data-submit>Add user</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="userDeleteModal" tabindex="-1" aria-labelledby="userDeleteTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-body text-center pt-4">
+                <div class="d-inline-flex p-3 rounded-circle bg-danger-subtle text-danger-emphasis mb-3"><i data-lucide="user-x"></i></div>
+                <h2 class="fs-5" id="userDeleteTitle">Delete <span data-delete-name>the user</span>?</h2>
+                <p class="small text-body-secondary mb-0">The user loses access at once. Their projects and comments stay with the team.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-confirm-delete>Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast align-items-center text-bg-dark border-0" id="userToast" role="status" aria-live="polite" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body" data-toast-text>Saved</div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+            </div>
+            <footer class="aui-footer d-flex align-items-center">
+    <ul class="nav">
+        <li class="nav-item"><a href="#" class="nav-link">Help Center</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">API Docs</a></li>
+    </ul>
+    <ul class="nav ms-auto d-none d-md-flex">
+        <li class="nav-item"><a href="#" class="nav-link">System Status</a></li>
+        <li class="nav-item"><a href="#" class="nav-link"><span class="badge bg-success me-1 ms-0"><small>NEW</small></span>What's New</a></li>
+    </ul>
+</footer>
+
+        </main>
+    </div>
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+    <div class="toast text-bg-primary" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
+        <div class="toast-header">
+            <i data-lucide="calendar" class="me-2"></i>
+            <strong class="me-auto">Example Toast</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">You don't have any new items in your calendar today!</div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -186,6 +186,11 @@
         "title": "Inbox",
         "href": "apps-inbox.html",
         "icon": "inbox"
+      },
+      {
+        "title": "Users",
+        "href": "apps-users.html",
+        "icon": "users"
       }
     ]
   },

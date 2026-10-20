@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- **Users page** (`apps-users.html`, menu Apps): the team of the store — counters by status, search, role and status filters, a table with photos or initials, roles, teams, two-step sign-in and last activity, pages of 10. Add and Edit open one modal form with Bootstrap validation (the email must be unique); Delete asks in a confirmation modal; an owner cannot be deleted. Changes stay until the page reloads. One row template (`partials/user-row.njk`) renders the first page at build and serves the script.
+
 ### Fixed
+- **Card titles in Indigo and Coffee.** The depth layer colors card titles with the full brand text color; at 75% it read at 3.8:1 in Indigo.
 - **Readable header and sidebar color schemes (K36).** A scheme took its text tone from a fixed table made for Orange, so in most themes the text was dark on a dark background or white on a light end of the gradient (about 25 texts below WCAG AA per scheme). Now each theme gives every scheme a background, a text color and a logo: tokens `--aui-scheme-<color>-bg`, `-ink`, `-logo`, `-logo-dark`. The theme base computes them from the theme colors at build: it picks white or black text and moves both ends of the gradient until the text reads at 5.8:1 or more. Orange keeps its classic gradients and tones (danger now takes dark text); Cyberpunk keeps its dimmed neon gradients with light text. All 10 schemes pass in all themes and modes. The active menu link takes a lighter veil. On phones the folded header panel keeps the theme colors. The scheme swatches on the profile page show the scheme background. The `$aui-schemes` map of `_config.scss` is replaced by the list `$aui-scheme-colors`; `t.depth()` also takes a gradient as a pair of colors.
 
 ## [6.2.26] - 2026-10-20

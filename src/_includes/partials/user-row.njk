@@ -1,0 +1,28 @@
+{#- One row of the Users table. The page renders the first page with it, and once more empty inside <template>:
+    apps-users.js clones that copy and fills the [data-field] elements. Expects `u` (a user of _data/users.js with its role and status labels). #}
+<tr data-user="{{ u.id }}">
+    {#- max-width 0 lets the widest column shrink, so a long email ends with an ellipsis instead of widening the table #}
+    <td style="max-width: 0">
+        <div class="d-flex align-items-center gap-3">
+            <img{% if u.avatar %} src="assets/images/avatars/{{ u.avatar }}.jpg"{% endif %} width="36" height="36" class="rounded-circle flex-shrink-0{% if not u.avatar %} d-none{% endif %}" alt="" data-field="photo">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary-emphasis fw-bold small flex-shrink-0{% if u.avatar %} d-none{% endif %}" style="width: 36px; height: 36px" aria-hidden="true" data-field="initials">{{ u.name | initials if u.name }}</span>
+            <div class="overflow-hidden">
+                <div class="fw-bold text-truncate" data-field="name">{{ u.name }}</div>
+                <div class="small text-body-secondary text-truncate" data-field="email">{{ u.email }}</div>
+            </div>
+        </div>
+    </td>
+    <td class="d-none d-sm-table-cell"><span class="badge bg-{{ u.roleColor }}-subtle text-{{ u.roleColor }}-emphasis" data-field="role">{{ u.roleTitle }}</span></td>
+    <td class="d-none d-lg-table-cell" data-field="team">{{ u.team }}</td>
+    <td>
+        <span class="d-inline-flex align-items-center gap-2 small text-nowrap"><span class="d-inline-block p-1 rounded-circle bg-{{ u.statusColor }}" aria-hidden="true" data-field="status-dot"></span><span data-field="status">{{ u.statusTitle }}</span></span>
+    </td>
+    <td class="d-none d-xl-table-cell">
+        <span class="d-inline-flex align-items-center gap-1 small{% if u.twoStep %} text-success-emphasis{% else %} text-body-secondary{% endif %}" data-field="two-step"><i data-lucide="{{ 'shield-check' if u.twoStep else 'shield-off' }}"></i><span>{{ 'On' if u.twoStep else 'Off' }}</span></span>
+    </td>
+    <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">{{ u.lastActive }}</td>
+    <td class="text-end text-nowrap">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit {{ u.name }}"><i data-lucide="pencil"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete {{ u.name }}"{% if u.role == "owner" %} disabled title="An owner cannot be deleted"{% endif %}><i data-lucide="trash-2"></i></button>
+    </td>
+</tr>

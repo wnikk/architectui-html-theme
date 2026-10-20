@@ -717,6 +717,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `forms-controls.html` | Inputs, selects, checks, input groups; native date, time, suggestions, color and file fields with a drop zone |
 | `forms-layouts.html` | Grid and inline forms |
 | `apps-inbox.html` | Inbox: folders with an unread counter, labels, search, a conversation list, the conversation as a chat (`aui-chat`), star, archive, a reply box; on phones the list and the conversation take turns |
+| `apps-users.html` | Users: counters by status, search and role and status filters, a table with photos or initials, roles, teams, two-step sign-in, pages of 10; Add and Edit in one modal form with Bootstrap validation (unique email), Delete with a confirmation modal; owners cannot be deleted; changes stay until reload |
 | `apps-kanban.html` | Kanban board: five columns, cards with labels, due dates, checklists and people; drag and drop, a "Move to" menu, new cards, search and label filter, column limits |
 | `forms-wizard.html` | Form in four steps with `aui-stepper`: check of each step, plan cards, optional step with Skip, review of all answers, result screen |
 | `forms-validation.html` | Bootstrap validation |

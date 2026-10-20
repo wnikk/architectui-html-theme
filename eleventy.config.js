@@ -9,6 +9,9 @@ export default function (eleventyConfig) {
 
   // Path of a page in the menu for the header breadcrumbs: the heading and the parent item each with the links
   // of their level (for a dropdown), then the page itself. Empty when the page is not in the menu.
+  // Initials of a name for an avatar without a photo: "Maria Chen" -> "MC"
+  eleventyConfig.addFilter("initials", (name) => String(name).split(/\s+/).filter(Boolean).map((part) => part[0]).slice(0, 2).join("").toUpperCase());
+
   eleventyConfig.addFilter("breadcrumbsFor", (menu, stem) => {
     for (const group of menu) {
       const level = group.items.map((item) => ({ title: item.title, href: item.href ?? item.children?.[0]?.href }));

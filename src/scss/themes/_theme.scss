@@ -915,7 +915,7 @@
     --aui-shadow-lg: 0 .76875rem 2.4875rem rgba(var(--aui-depth-rgb), .3), 0 1.3375rem 1.70625rem rgba(var(--aui-depth-rgb), .3), 0 .55rem .53125rem rgba(0, 0, 0, .05), 0 .225rem .4375rem rgba(var(--aui-depth-rgb), .3);
     --aui-card-shadow: var(--aui-shadow);
     --aui-toast-shadow: var(--aui-shadow-soft);
-    --aui-title-color: color-mix(in srgb, var(--aui-brand-text) 75%, transparent);
+    --aui-title-color: var(--aui-brand-text);
     --aui-card-border-color: rgba(var(--aui-depth-rgb), .12);
   }
 
