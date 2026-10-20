@@ -35,6 +35,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "src/assets/images": "assets/images",
     "src/assets/favicon.ico": "favicon.ico",
+    "src/assets/favicon.svg": "favicon.svg",
     "src/js/architectui.js": "architectui.js",
     "src/js/architectui-auth.js": "architectui-auth.js",
   });

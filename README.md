@@ -66,8 +66,8 @@ The Icons demo page lists every icon with search and copy on click.
 
 Replace the files, nothing else:
 
-- `assets/images/logo.png` — logo for light backgrounds;
-- `assets/images/logo-on-dark.png` — logo for dark backgrounds (dark theme, dark header colors).
+- `assets/images/logo.svg` — logo for light backgrounds;
+- `assets/images/logo-on-dark.svg` — logo for dark backgrounds (dark theme, dark header colors).
 
 Wide and square logos both fit automatically. The maximum height is the `--aui-logo-max-height` variable (2.25rem).
 
@@ -185,4 +185,4 @@ MIT, see [LICENSE](LICENSE).
 
 ## Authors
 
-Forked from ArchitectUI HTML Theme Free and maintained by the community.
+Inspired by ArchitectUI by DashboardPack.

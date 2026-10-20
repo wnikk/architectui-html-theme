@@ -285,7 +285,7 @@ Always give the first tab `active`. The style (`shadow` or `line`) comes from `d
 
 ### Logo
 
-Replace the files, nothing else: `assets/images/logo.png` for light backgrounds and `assets/images/logo-on-dark.png` for dark backgrounds. Wide and square logos both fit into `--aui-logo-max-height` (2.25rem).
+Replace the files, nothing else: `assets/images/logo.svg` for light backgrounds and `assets/images/logo-on-dark.svg` for dark backgrounds. Wide and square logos both fit into `--aui-logo-max-height` (2.25rem).
 
 ### Print
 

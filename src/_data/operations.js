@@ -79,10 +79,10 @@ const activity = [
   [0, "Auto-scaling", "added 3 queue workers in EU West", "6 min ago", "eu-west"],
   [8, "Lucas Meyer", "approved deploy 2026.10.18-3", "11 min ago", "us-west"],
   [5, "Amara Okafor", "closed alert “Search index lag”", "13 min ago", "apac"],
-  [1, "Maria Chen", "changed the error budget for Checkout to 0.1%", "21 min ago", "eu-west"],
+  [11, "Maria Chen", "changed the error budget for Checkout to 0.1%", "21 min ago", "eu-west"],
   [10, "Omar Haddad", "restarted pods payments-api-4 and -5", "26 min ago", "us-east"],
   [2, "James Patel", "muted CDN alerts for Asia Pacific until 16:00", "34 min ago", "apac"],
-  [11, "Elena Petrova", "added a runbook to the Queue depth alert", "41 min ago", "eu-west"],
+  [3, "Sofia Rossi", "added a runbook to the Queue depth alert", "41 min ago", "eu-west"],
   [12, "Noah Williams", "rotated the API keys of the mail provider", "52 min ago", "eu-west"],
 ].map(([avatar, name, text, time, region]) => ({ avatar, name, text, time, region }));
 

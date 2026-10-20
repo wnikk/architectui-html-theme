@@ -1,6 +1,6 @@
 // Demo orders for the table pages. The list is the same on every build: no random values.
 const customers = [
-  ["Maria Chen", "maria.chen@northwind.test", 1],
+  ["Maria Chen", "maria.chen@northwind.test", 11],
   ["James Patel", "james@brightlabs.test", 2],
   ["Sofia Rossi", "s.rossi@lumen.test", 3],
   ["Daniel Novak", "daniel.novak@orbit.test", 4],
@@ -8,7 +8,6 @@ const customers = [
   ["Lucas Meyer", "lucas.meyer@tandem.test", 8],
   ["Hana Sato", "hana.sato@kite.test", 9],
   ["Omar Haddad", "omar@cedar.test", 10],
-  ["Elena Petrova", "elena.p@vector.test", 11],
   ["Noah Williams", "noah.w@summit.test", 12],
 ];
 

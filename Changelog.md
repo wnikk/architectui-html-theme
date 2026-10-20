@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - **Documentation.** README, `AGENTS.md`, `llms.txt` and `llms-full.txt` describe one way to get ArchitectUI: download or clone the repository, copy `dist/` into your project and adapt it. The theme files are no longer offered from jsDelivr; Bootstrap, Lucide and the page libraries still load from the CDN.
+- **New logo and favicon.** The logo is a bird built from flat blocks (a wing, a head, a body with a tail) and the ArchitectUI wordmark, drawn as SVG: `assets/images/logo.svg` in two blues for light backgrounds and `assets/images/logo-on-dark.svg` in white for dark and colored headers. `favicon.svg` with `favicon.ico` (16, 32, 48 px) as the fallback. To use your own logo, replace the two files or change the paths in `partials/logo.njk`.
+- **New avatars.** Ten generated portraits of fictional people replace the previous photos, 128 x 128 px (sharp on dense screens). One file is one person on every page: 1 Alina Mclourd (the signed-in user), 2 James Patel, 3 Sofia Rossi, 4 Daniel Novak, 5 Amara Okafor, 8 Lucas Meyer, 9 Hana Sato, 10 Omar Haddad, 11 Maria Chen, 12 Noah Williams; the people without a photo show initials. The dashboard, users and notifications use the same people.
 
 ## [6.2.32] - 2026-10-20
 
