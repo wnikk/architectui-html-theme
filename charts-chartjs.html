@@ -8,7 +8,7 @@
 <link rel="icon" href="favicon.ico">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
-<link rel="stylesheet" href="architectui.css?v=6.2.21">
+<link rel="stylesheet" href="architectui.css?v=6.2.26">
 
 <script>
 (function () {
@@ -16,8 +16,10 @@
   try { s = JSON.parse(localStorage.getItem("architectui")) || {}; } catch (e) {}
   if (s.theme === "light" || s.theme === "dark") { s.mode = s.theme; delete s.theme; }
   if (s.theme === "blue") delete s.theme;
-  for (var k in s) d.setAttribute("data-aui-" + k, s[k]);
   t = /^[a-z0-9-]+$/.test(s.theme || "") ? s.theme : "";
+  // An empty or unknown value sets no attribute: data-aui-theme="" would switch the built-in Business look off
+  for (var k in s) if (s[k] && k !== "theme") d.setAttribute("data-aui-" + k, s[k]);
+  if (t) d.setAttribute("data-aui-theme", t);
   m = s.mode || "light";
   if (t) {
     var base = document.querySelector('link[href*="architectui.css"]'), link = document.createElement("link");
@@ -41,12 +43,12 @@
 <script defer src="https://cdn.jsdelivr.net/npm/lucide@1.59.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" crossorigin="anonymous"></script>
 
-<script defer src="architectui.js?v=6.2.21"></script>
-<script defer src="charts-chartjs.js?v=6.2.21"></script>
+<script defer src="architectui.js?v=6.2.26"></script>
+<script defer src="charts-chartjs.js?v=6.2.26"></script>
 
     <!--
     =========================================================
-    * ArchitectUI HTML Theme Dashboard - v6.2.21
+    * ArchitectUI HTML Theme Dashboard - v6.2.26
     =========================================================
     * Source: https://github.com/wnikk/architectui-html-theme
     * Copyright 2025 DashboardPack
