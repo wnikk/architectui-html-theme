@@ -2,7 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [6.2.32] - 2026-10-20
+
+Readable color schemes of the header and sidebar in every theme, and five new demo pages: Users, Pricing, Notifications, Search Results and Settings, with a bell and a working search in the header. The 6.2.26 markup keeps working; to get the bell and the header search, copy the header from `dist/pages-starter.html`.
 
 ### Added
 - **Users page** (`apps-users.html`, menu Apps): the team of the store — counters by status, search, role and status filters, a table with photos or initials, roles, teams, two-step sign-in and last activity, pages of 10. Add and Edit open one modal form with Bootstrap validation (the email must be unique); Delete asks in a confirmation modal; an owner cannot be deleted. Changes stay until the page reloads. One row template (`partials/user-row.njk`) renders the first page at build and serves the script.
@@ -11,6 +13,9 @@ All notable changes to this project will be documented in this file.
 - **Bell in the header.** A new icon button (`aui-header-btn`, the same box as the mode toggle) with the unread count links to the Notifications page; the count sits on the top right corner, a circle for one digit and wider from two (it grows into the button, so it does not cover the next one); the page keeps the count current. In the user menu, Team members opens the Users page and Billing opens Pricing.
 - **Search Results page** (`pages-search.html`, menu Pages) and a working header search. The search field of the header is a form now: Enter (or the magnifier of the open field) opens the page with `?q=`. Results across pages of the menu, users, orders and conversations (without `?q=` the page shows a sample search, so the look of the results is visible at once), tabs with counts, the matching words in `<mark>`, a match in the title first, an empty state with suggestions; a new search keeps the page and updates the address, Back returns to the previous search. The index (`src/_data/search.js`) is part of the page, so the search also works from disk. An `aui-expand` field can be a `form` on any page.
 - **Settings page** (`pages-settings.html`, menu Pages): workspace settings in sections — a menu of sections on the left (a select on phones) and the open section as a Bootstrap tab; the address keeps the section (`#security`). General (name, address, logo, regional formats), Security (password with a match check, two-step sign-in, signed-in devices), Billing (plan, payment method, invoices), Integrations, API keys (create in a modal, the demo key shown once, revoke), Privacy & data (data export and account deletion: typed DELETE and a check mark, 30 days to cancel).
+
+### Changed
+- **Lucide 1.60.0.** The icons come from Lucide 1.60.0 (was 1.59.0); the catalog of the Icons page has 1899 icons.
 
 ### Fixed
 - **Card titles in Indigo and Coffee.** The depth layer colors card titles with the full brand text color; at 75% it read at 3.8:1 in Indigo.

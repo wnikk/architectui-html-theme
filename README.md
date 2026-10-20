@@ -32,7 +32,7 @@ the folders `themes/` and `assets/` to your project, then add to `<head>`:
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="architectui.css">
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.59.0/dist/umd/lucide.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.60.0/dist/umd/lucide.min.js"></script>
 <script defer src="architectui.js"></script>
 ```
 

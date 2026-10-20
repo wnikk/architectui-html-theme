@@ -4,7 +4,7 @@
     "css": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css",
     "js": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
   },
-  "lucide": "https://cdn.jsdelivr.net/npm/lucide@1.59.0/dist/umd/lucide.min.js",
+  "lucide": "https://cdn.jsdelivr.net/npm/lucide@1.60.0/dist/umd/lucide.min.js",
   "bootstrapIcons": {
     "_comment": "Loaded by the Icons page only when its Bootstrap Icons tab opens; the theme itself uses Lucide.",
     "version": "1.13.2",
