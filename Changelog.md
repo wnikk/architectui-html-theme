@@ -2,7 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [6.2.34] - 2026-10-20
+
+A new logo, favicon and avatars, and a shorter way to get the files. The 6.2.32 markup keeps working; the logo files are now `assets/images/logo.svg` and `assets/images/logo-on-dark.svg` instead of PNG, so pages that link the old names need the new ones.
 
 ### Changed
 - **Documentation.** README, `AGENTS.md`, `llms.txt` and `llms-full.txt` describe one way to get ArchitectUI: download or clone the repository, copy `dist/` into your project and adapt it. The theme files are no longer offered from jsDelivr; Bootstrap, Lucide and the page libraries still load from the CDN.
