@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en" data-aui-header="fixed" data-aui-sidebar="fixed" data-aui-footer="static" data-aui-tabs="shadow" data-aui-dark-only="cyberpunk ">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Search Results - Results across the workspace: pages, users, orders and conversations, with the matching words highlighted.</title>
+<meta name="description" content="Results across the workspace: pages, users, orders and conversations, with the matching words highlighted.">
+<link rel="icon" href="favicon.ico">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="architectui.css?v=6.2.26">
+
+<script>
+(function () {
+  var d = document.documentElement, s = {}, m, t;
+  try { s = JSON.parse(localStorage.getItem("architectui")) || {}; } catch (e) {}
+  if (s.theme === "light" || s.theme === "dark") { s.mode = s.theme; delete s.theme; }
+  if (s.theme === "blue") delete s.theme;
+  t = /^[a-z0-9-]+$/.test(s.theme || "") ? s.theme : "";
+  // An empty or unknown value sets no attribute: data-aui-theme="" would switch the built-in Business look off
+  for (var k in s) if (s[k] && k !== "theme") d.setAttribute("data-aui-" + k, s[k]);
+  if (t) d.setAttribute("data-aui-theme", t);
+  m = s.mode || "light";
+  if (t) {
+    var base = document.querySelector('link[href*="architectui.css"]'), link = document.createElement("link");
+    var shown = function () { d.removeAttribute("data-aui-loading"); };
+    link.rel = "stylesheet";
+    link.id = "aui-theme";
+    link.href = base.getAttribute("href").replace(/architectui\.css(\?|$)/, "themes/" + t + ".css$1");
+    link.setAttribute("blocking", "render");
+    link.onload = link.onerror = shown;
+    setTimeout(shown, 3000);
+    d.setAttribute("data-aui-loading", "");
+    base.parentNode.insertBefore(link, base.nextSibling);
+    if ((" " + d.getAttribute("data-aui-dark-only") + " ").indexOf(" " + t + " ") > -1) m = "dark";
+  }
+  if (m === "system") m = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  d.setAttribute("data-bs-theme", m);
+})();
+</script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.59.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
+
+<script defer src="architectui.js?v=6.2.26"></script>
+<script defer src="pages-search.js?v=6.2.26"></script>
+
+    <!--
+    =========================================================
+    * ArchitectUI HTML Theme Dashboard - v6.2.26
+    =========================================================
+    * Source: https://github.com/wnikk/architectui-html-theme
+    * Copyright 2025 DashboardPack
+    * Licensed under MIT (https://github.com/wnikk/architectui-html-theme/blob/master/LICENSE)
+    =========================================================
+    * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+    -->
+</head>
+<body>
+    <a class="visually-hidden-focusable btn btn-primary aui-skip-link" href="#main">Skip to content</a>
+    
+<svg class="position-absolute" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+        <linearGradient id="aui-gradient-primary" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#4facfe"/><stop offset="1" stop-color="#00f2fe"/></linearGradient>
+        <linearGradient id="aui-gradient-info" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#a18cd1"/><stop offset="1" stop-color="#8ec5fc"/></linearGradient>
+        <linearGradient id="aui-gradient-success" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3cba92"/><stop offset="1" stop-color="#8fd3f4"/></linearGradient>
+        <linearGradient id="aui-gradient-warning" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f6d365"/><stop offset="1" stop-color="#fda085"/></linearGradient>
+        <linearGradient id="aui-gradient-danger" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f093fb"/><stop offset="1" stop-color="#f5576c"/></linearGradient>
+        <linearGradient id="aui-gradient-secondary" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#29323c"/><stop offset="1" stop-color="#485563"/></linearGradient>
+        <linearGradient id="aui-gradient-dark" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
+        <linearGradient id="aui-gradient-focus" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3a3648"/><stop offset="1" stop-color="#5d5873"/></linearGradient>
+        <linearGradient id="aui-gradient-alternate" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
+    </defs>
+</svg>
+
+    <div class="aui-app">
+        <header class="navbar navbar-expand-md aui-header">
+    <div class="navbar-brand">
+        <button type="button" class="btn aui-burger d-md-none" data-bs-toggle="offcanvas" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
+        
+<a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
+    <img src="assets/images/logo.png" alt="ArchitectUI">
+    <img src="assets/images/logo-on-dark.png" alt="">
+</a>
+
+        <button type="button" class="btn aui-burger d-none d-xl-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
+        <button type="button" class="btn btn-primary btn-sm d-md-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
+    </div>
+    <div class="collapse navbar-collapse" id="auiHeaderContent">
+        
+<form class="aui-expand me-3" role="search" action="pages-search.html" data-aui-expand>
+    <input type="search" class="form-control" name="q" placeholder="Type to search" aria-label="Search" autocomplete="off">
+    <button type="button" class="btn" data-aui-expand-toggle aria-label="Search"></button>
+    <button type="button" class="btn-close" data-aui-expand-close aria-label="Close search"></button>
+</form>
+<ul class="navbar-nav d-none d-md-flex">
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="database" class="me-2"></i>Statistics</a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="square-pen" class="me-2"></i>Projects</a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="settings" class="me-2"></i>Settings</a>
+    </li>
+</ul>
+
+        <div class="d-flex align-items-center gap-3 ms-auto">
+            <span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
+<a class="btn aui-header-btn position-relative" href="apps-notifications.html" aria-label="Notifications, 4 unread">
+    <i data-lucide="bell"></i>
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger" data-notification-count aria-hidden="true">4</span>
+</a>
+<div class="btn-group aui-theme-switch">
+    <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+        <i data-lucide="moon"></i>
+        <i data-lucide="sun"></i>
+    </button>
+    <button type="button" class="btn aui-mode-toggle dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Choose a theme"></button>
+    <div class="dropdown-menu dropdown-menu-end">
+        <h6 class="dropdown-header">Theme</h6>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
+            <span>Business</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="orange">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
+            <span>Orange</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
+            <span>Indigo</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo-img">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
+            <span>Indigo Calathea</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="coffee">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
+            <span>Coffee</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="green">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
+            <span>Garden</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="raspberry">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
+            <span>Warm</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="teal">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
+            <span>Operations</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="violet">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
+            <span>Space</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="cyberpunk">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
+            <span>Cyberpunk</span>
+            <small class="opacity-75">dark only</small>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal" class="me-2 opacity-50"></i>All interface settings</a>
+    </div>
+</div>
+<div class="dropdown">
+    <a class="d-inline-flex align-items-center text-reset text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+        <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
+        <i data-lucide="chevron-down" class="ms-2 opacity-75"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-end">
+        <a class="dropdown-item" href="pages-profile.html"><i data-lucide="user" class="me-2 opacity-50"></i>My profile</a>
+        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="settings" class="me-2 opacity-50"></i>Interface settings</a>
+        <h6 class="dropdown-header">Workspace</h6>
+        <a class="dropdown-item" href="apps-users.html"><i data-lucide="users" class="me-2 opacity-50"></i>Team members</a>
+        <a class="dropdown-item" href="pages-pricing.html"><i data-lucide="credit-card" class="me-2 opacity-50"></i>Billing</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="pages-login.html"><i data-lucide="log-out" class="me-2 opacity-50"></i>Sign out</a>
+    </div>
+</div>
+<div class="d-none d-xxl-block lh-sm">
+    <div class="fw-bold opacity-75 text-nowrap">Alina Mclourd</div>
+    <div class="small opacity-50 text-nowrap">VP People Manager</div>
+</div>
+<button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 d-none d-xxl-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
+
+        </div>
+    </div>
+</header>
+
+        <aside class="aui-sidebar">
+    <div class="offcanvas-md offcanvas-start" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
+        <div class="offcanvas-header">
+            
+<a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
+    <img src="assets/images/logo.png" alt="ArchitectUI">
+    <img src="assets/images/logo-on-dark.png" alt="">
+</a>
+
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#auiSidebar" aria-label="Close menu"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav flex-column flex-nowrap" id="auiNav">
+                <li class="nav-item"><h6>Dashboards</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i data-lucide="rocket"></i>Dashboard Example 1
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard-operations.html">
+                        <i data-lucide="monitor"></i>Operations Wall
+                    </a>
+                </li>
+                <li class="nav-item"><h6>UI Components</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
+                        <i data-lucide="gem"></i>Elements<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-elements" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="elements-buttons-standard.html">Buttons</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-dropdowns.html">Dropdowns</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-icons.html">Icons</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-badges-labels.html">Badges</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-cards.html">Cards</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-list-group.html">List Groups</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-navigation.html">Navigation Menus</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-utilities.html">Utilities</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-palettes.html">Theme Palettes</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-components">
+                        <i data-lucide="car"></i>Components<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-components" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="components-bootstrap.html">Bootstrap Components</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-tabs.html">Tabs</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-accordions.html">Accordions</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-notifications.html">Notifications</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-modals.html">Modals</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-progress-bar.html">Progress Bar</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-tooltips-popovers.html">Tooltips &amp; Popovers</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-carousel.html">Carousel</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-calendar.html">Calendar</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-pagination.html">Pagination</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-scrollable-elements.html">Scrollable</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-maps.html">Maps</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-tables" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-tables">
+                        <i data-lucide="table"></i>Tables<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-tables" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="tables-regular.html">Regular Tables</a></li>
+                            <li class="nav-item"><a class="nav-link" href="tables-datatables.html">DataTables</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item"><h6>Widgets</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard-boxes.html">
+                        <i data-lucide="monitor"></i>Dashboard Boxes
+                    </a>
+                </li>
+                <li class="nav-item"><h6>Forms</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-controls.html">
+                        <i data-lucide="mouse"></i>Forms Controls
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-layouts.html">
+                        <i data-lucide="pipette"></i>Forms Layouts
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-validation.html">
+                        <i data-lucide="pen-line"></i>Forms Validation
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-wizard.html">
+                        <i data-lucide="list-ordered"></i>Forms Wizard
+                    </a>
+                </li>
+                <li class="nav-item"><h6>Charts</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="charts-chartjs.html">
+                        <i data-lucide="chart-column"></i>ChartJS
+                    </a>
+                </li>
+                <li class="nav-item"><h6>Apps</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="apps-kanban.html">
+                        <i data-lucide="square-kanban"></i>Kanban Board
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="apps-inbox.html">
+                        <i data-lucide="inbox"></i>Inbox
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="apps-users.html">
+                        <i data-lucide="users"></i>Users
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="apps-notifications.html">
+                        <i data-lucide="bell"></i>Notifications
+                    </a>
+                </li>
+                <li class="nav-item"><h6>Pages</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages-starter.html">
+                        <i data-lucide="file"></i>Starter Page
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages-invoice.html">
+                        <i data-lucide="receipt-text"></i>Invoice
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages-pricing.html">
+                        <i data-lucide="badge-percent"></i>Pricing
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="pages-search.html" aria-current="page">
+                        <i data-lucide="search"></i>Search Results
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-authentication">
+                        <i data-lucide="log-in"></i>Authentication<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-authentication" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="pages-login.html">Sign In</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-register.html">Sign Up</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-forgot-password.html">Forgot Password</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-errors">
+                        <i data-lucide="triangle-alert"></i>Errors<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-errors" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="pages-403.html">Error 403</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-404.html">Error 404</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-500.html">Error 500</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-maintenance.html">Scheduled maintenance: the site is temporarily unavailable</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages-profile.html">
+                        <i data-lucide="user-round"></i>My Profile
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</aside>
+
+        <main class="d-flex flex-column" id="main" tabindex="-1">
+            <div class="flex-grow-1 aui-content">
+                <div class="aui-page-title d-md-flex align-items-center text-center text-md-start">
+    <div class="d-none d-md-flex align-items-center justify-content-center flex-shrink-0 me-4">
+        <i data-lucide="search" class="text-primary"></i>
+    </div>
+    <div>
+        <h1>Search Results</h1>
+        <p>Results across the workspace: pages, users, orders and conversations, with the matching words highlighted.</p>
+    </div>
+    <div class="ms-md-auto mt-3 mt-md-0 d-print-none">
+    <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
+        <i data-lucide="star"></i>
+    </button>
+    <div class="d-inline-block dropdown">
+        <button type="button" class="btn btn-info aui-btn-shadow d-inline-flex align-items-center gap-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons
+        </button>
+        <div class="dropdown-menu dropdown-menu-end">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i data-lucide="inbox" class="me-2"></i><span>Inbox</span><span class="ms-auto badge rounded-pill bg-secondary">86</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i data-lucide="book-open" class="me-2"></i><span>Reports</span><span class="ms-auto badge rounded-pill bg-danger">5</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i data-lucide="image" class="me-2"></i><span>Media</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link disabled" aria-disabled="true"><i data-lucide="file" class="me-2"></i><span>Archive</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</div>
+
+                
+<div class="card mb-3" id="search">
+    <div class="card-body">
+        <form class="d-flex flex-column flex-sm-row gap-2" role="search" action="pages-search.html" data-search-form>
+            <div class="input-group">
+                <span class="input-group-text"><i data-lucide="search"></i></span>
+                <label class="visually-hidden" for="searchQuery">Search the workspace</label>
+                <input type="search" class="form-control" id="searchQuery" name="q" placeholder="Search pages, users, orders and conversations" autocomplete="off">
+            </div>
+            <button class="btn btn-primary px-4" type="submit">Search</button>
+        </form>
+        <p class="small text-body-secondary mt-3 mb-0" role="status" aria-live="polite" data-summary>Type a word to search the workspace.</p>
+    </div>
+    <div class="nav nav-underline flex-nowrap overflow-x-auto text-nowrap px-3 border-bottom small" role="group" aria-label="Show results of" data-types>
+        <button type="button" class="nav-link active d-inline-flex align-items-center gap-2" data-type="all" aria-pressed="true">All <span class="badge rounded-pill bg-secondary-subtle text-secondary-emphasis" data-count="all">0</span></button>
+        <button type="button" class="nav-link d-inline-flex align-items-center gap-2" data-type="page" aria-pressed="false">Pages <span class="badge rounded-pill bg-secondary-subtle text-secondary-emphasis" data-count="page">0</span></button>
+        <button type="button" class="nav-link d-inline-flex align-items-center gap-2" data-type="user" aria-pressed="false">Users <span class="badge rounded-pill bg-secondary-subtle text-secondary-emphasis" data-count="user">0</span></button>
+        <button type="button" class="nav-link d-inline-flex align-items-center gap-2" data-type="order" aria-pressed="false">Orders <span class="badge rounded-pill bg-secondary-subtle text-secondary-emphasis" data-count="order">0</span></button>
+        <button type="button" class="nav-link d-inline-flex align-items-center gap-2" data-type="conversation" aria-pressed="false">Conversations <span class="badge rounded-pill bg-secondary-subtle text-secondary-emphasis" data-count="conversation">0</span></button>
+    </div>
+    <ul class="list-group list-group-flush" data-results></ul>
+    <div class="text-center py-5 d-none" data-empty>
+        <div class="d-inline-flex p-3 rounded-circle bg-body-tertiary text-body-secondary mb-3"><i data-lucide="search-x"></i></div>
+        <p class="fw-bold mb-1" data-empty-title>Nothing found</p>
+        <p class="small text-body-secondary mb-3">Check the spelling or try one of these:</p>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+            <a class="btn btn-outline-secondary btn-sm" href="pages-search.html?q=Maria" data-suggestion="Maria">Maria</a>
+            <a class="btn btn-outline-secondary btn-sm" href="pages-search.html?q=ORD-1048" data-suggestion="ORD-1048">ORD-1048</a>
+            <a class="btn btn-outline-secondary btn-sm" href="pages-search.html?q=invoice" data-suggestion="invoice">invoice</a>
+            <a class="btn btn-outline-secondary btn-sm" href="pages-search.html?q=refund" data-suggestion="refund">refund</a>
+            <a class="btn btn-outline-secondary btn-sm" href="pages-search.html?q=Admin" data-suggestion="Admin">Admin</a>
+            <a class="btn btn-outline-secondary btn-sm" href="pages-search.html?q=Kanban" data-suggestion="Kanban">Kanban</a>
+        </div>
+    </div>
+</div>
+<script type="application/json" id="searchIndex">{"types":[{"id":"page","title":"Pages","icon":"file-text"},{"id":"user","title":"Users","icon":"users"},{"id":"order","title":"Orders","icon":"shopping-cart"},{"id":"conversation","title":"Conversations","icon":"inbox"}],"items":[{"type":"page","title":"Dashboard Example 1","text":"Dashboards","meta":"index.html","href":"index.html"},{"type":"page","title":"Operations Wall","text":"Dashboards","meta":"dashboard-operations.html","href":"dashboard-operations.html"},{"type":"page","title":"Buttons","text":"UI Components › Elements","meta":"elements-buttons-standard.html","href":"elements-buttons-standard.html"},{"type":"page","title":"Dropdowns","text":"UI Components › Elements","meta":"elements-dropdowns.html","href":"elements-dropdowns.html"},{"type":"page","title":"Icons","text":"UI Components › Elements","meta":"elements-icons.html","href":"elements-icons.html"},{"type":"page","title":"Badges","text":"UI Components › Elements","meta":"elements-badges-labels.html","href":"elements-badges-labels.html"},{"type":"page","title":"Cards","text":"UI Components › Elements","meta":"elements-cards.html","href":"elements-cards.html"},{"type":"page","title":"List Groups","text":"UI Components › Elements","meta":"elements-list-group.html","href":"elements-list-group.html"},{"type":"page","title":"Navigation Menus","text":"UI Components › Elements","meta":"elements-navigation.html","href":"elements-navigation.html"},{"type":"page","title":"Utilities","text":"UI Components › Elements","meta":"elements-utilities.html","href":"elements-utilities.html"},{"type":"page","title":"Theme Palettes","text":"UI Components › Elements","meta":"elements-palettes.html","href":"elements-palettes.html"},{"type":"page","title":"Bootstrap Components","text":"UI Components › Components","meta":"components-bootstrap.html","href":"components-bootstrap.html"},{"type":"page","title":"Tabs","text":"UI Components › Components","meta":"components-tabs.html","href":"components-tabs.html"},{"type":"page","title":"Accordions","text":"UI Components › Components","meta":"components-accordions.html","href":"components-accordions.html"},{"type":"page","title":"Notifications","text":"UI Components › Components","meta":"components-notifications.html","href":"components-notifications.html"},{"type":"page","title":"Modals","text":"UI Components › Components","meta":"components-modals.html","href":"components-modals.html"},{"type":"page","title":"Progress Bar","text":"UI Components › Components","meta":"components-progress-bar.html","href":"components-progress-bar.html"},{"type":"page","title":"Tooltips & Popovers","text":"UI Components › Components","meta":"components-tooltips-popovers.html","href":"components-tooltips-popovers.html"},{"type":"page","title":"Carousel","text":"UI Components › Components","meta":"components-carousel.html","href":"components-carousel.html"},{"type":"page","title":"Calendar","text":"UI Components › Components","meta":"components-calendar.html","href":"components-calendar.html"},{"type":"page","title":"Pagination","text":"UI Components › Components","meta":"components-pagination.html","href":"components-pagination.html"},{"type":"page","title":"Scrollable","text":"UI Components › Components","meta":"components-scrollable-elements.html","href":"components-scrollable-elements.html"},{"type":"page","title":"Maps","text":"UI Components › Components","meta":"components-maps.html","href":"components-maps.html"},{"type":"page","title":"Regular Tables","text":"UI Components › Tables","meta":"tables-regular.html","href":"tables-regular.html"},{"type":"page","title":"DataTables","text":"UI Components › Tables","meta":"tables-datatables.html","href":"tables-datatables.html"},{"type":"page","title":"Dashboard Boxes","text":"Widgets","meta":"dashboard-boxes.html","href":"dashboard-boxes.html"},{"type":"page","title":"Forms Controls","text":"Forms","meta":"forms-controls.html","href":"forms-controls.html"},{"type":"page","title":"Forms Layouts","text":"Forms","meta":"forms-layouts.html","href":"forms-layouts.html"},{"type":"page","title":"Forms Validation","text":"Forms","meta":"forms-validation.html","href":"forms-validation.html"},{"type":"page","title":"Forms Wizard","text":"Forms","meta":"forms-wizard.html","href":"forms-wizard.html"},{"type":"page","title":"ChartJS","text":"Charts","meta":"charts-chartjs.html","href":"charts-chartjs.html"},{"type":"page","title":"Kanban Board","text":"Apps","meta":"apps-kanban.html","href":"apps-kanban.html"},{"type":"page","title":"Inbox","text":"Apps","meta":"apps-inbox.html","href":"apps-inbox.html"},{"type":"page","title":"Users","text":"Apps","meta":"apps-users.html","href":"apps-users.html"},{"type":"page","title":"Notifications","text":"Apps","meta":"apps-notifications.html","href":"apps-notifications.html"},{"type":"page","title":"Starter Page","text":"Pages","meta":"pages-starter.html","href":"pages-starter.html"},{"type":"page","title":"Invoice","text":"Pages","meta":"pages-invoice.html","href":"pages-invoice.html"},{"type":"page","title":"Pricing","text":"Pages","meta":"pages-pricing.html","href":"pages-pricing.html"},{"type":"page","title":"Search Results","text":"Pages","meta":"pages-search.html","href":"pages-search.html"},{"type":"page","title":"Sign In","text":"Pages › Authentication","meta":"pages-login.html","href":"pages-login.html"},{"type":"page","title":"Sign Up","text":"Pages › Authentication","meta":"pages-register.html","href":"pages-register.html"},{"type":"page","title":"Forgot Password","text":"Pages › Authentication","meta":"pages-forgot-password.html","href":"pages-forgot-password.html"},{"type":"page","title":"Error 403","text":"Pages › Errors","meta":"pages-403.html","href":"pages-403.html"},{"type":"page","title":"Error 404","text":"Pages › Errors","meta":"pages-404.html","href":"pages-404.html"},{"type":"page","title":"Error 500","text":"Pages › Errors","meta":"pages-500.html","href":"pages-500.html"},{"type":"page","title":"Scheduled maintenance: the site is temporarily unavailable","text":"Pages › Errors","meta":"pages-maintenance.html","href":"pages-maintenance.html"},{"type":"page","title":"My Profile","text":"Pages","meta":"pages-profile.html","href":"pages-profile.html"},{"type":"user","title":"Alina Mclourd","text":"alina.mclourd@northwind.test","meta":"Owner · Management · Active","href":"apps-users.html","avatar":1},{"type":"user","title":"Ella-Rose Henry","text":"ella.henry@northwind.test","meta":"Admin · Engineering · Active","href":"apps-users.html","avatar":2},{"type":"user","title":"Ruben Tillman","text":"ruben.tillman@northwind.test","meta":"Editor · Product · Active","href":"apps-users.html","avatar":3},{"type":"user","title":"Vinnie Wagstaff","text":"vinnie.wagstaff@northwind.test","meta":"Editor · Engineering · Active","href":"apps-users.html","avatar":4},{"type":"user","title":"Maria Chen","text":"maria.chen@northwind.test","meta":"Admin · Support · Active","href":"apps-users.html","avatar":11},{"type":"user","title":"James Patel","text":"james.patel@northwind.test","meta":"Viewer · Finance · Invited","href":"apps-users.html","avatar":null},{"type":"user","title":"Sofia Rossi","text":"sofia.rossi@northwind.test","meta":"Editor · Marketing · Active","href":"apps-users.html","avatar":5},{"type":"user","title":"Daniel Novak","text":"daniel.novak@northwind.test","meta":"Editor · Sales · Active","href":"apps-users.html","avatar":8},{"type":"user","title":"Amara Okafor","text":"amara.okafor@northwind.test","meta":"Viewer · Sales · Active","href":"apps-users.html","avatar":9},{"type":"user","title":"Lucas Meyer","text":"lucas.meyer@northwind.test","meta":"Admin · Finance · Active","href":"apps-users.html","avatar":10},{"type":"user","title":"Hana Sato","text":"hana.sato@northwind.test","meta":"Editor · Marketing · Suspended","href":"apps-users.html","avatar":12},{"type":"user","title":"Omar Haddad","text":"omar.haddad@northwind.test","meta":"Viewer · Support · Active","href":"apps-users.html","avatar":null},{"type":"user","title":"Priya Nair","text":"priya.nair@northwind.test","meta":"Editor · Product · Active","href":"apps-users.html","avatar":null},{"type":"user","title":"Tom Becker","text":"tom.becker@northwind.test","meta":"Viewer · Engineering · Invited","href":"apps-users.html","avatar":null},{"type":"user","title":"Lea Moreau","text":"lea.moreau@northwind.test","meta":"Editor · Support · Active","href":"apps-users.html","avatar":null},{"type":"user","title":"Kenji Watanabe","text":"kenji.watanabe@northwind.test","meta":"Admin · Engineering · Active","href":"apps-users.html","avatar":null},{"type":"user","title":"Grace Kim","text":"grace.kim@northwind.test","meta":"Viewer · Marketing · Active","href":"apps-users.html","avatar":null},{"type":"user","title":"Mateo Silva","text":"mateo.silva@northwind.test","meta":"Editor · Sales · Suspended","href":"apps-users.html","avatar":null},{"type":"user","title":"Nora Lindqvist","text":"nora.lindqvist@northwind.test","meta":"Viewer · Finance · Active","href":"apps-users.html","avatar":null},{"type":"user","title":"Ahmed Karim","text":"ahmed.karim@northwind.test","meta":"Editor · Engineering · Active","href":"apps-users.html","avatar":null},{"type":"user","title":"Chloe Martin","text":"chloe.martin@northwind.test","meta":"Viewer · Support · Invited","href":"apps-users.html","avatar":null},{"type":"user","title":"Ivan Petrov","text":"ivan.petrov@northwind.test","meta":"Editor · Product · Active","href":"apps-users.html","avatar":null},{"type":"user","title":"Zara Ahmed","text":"zara.ahmed@northwind.test","meta":"Owner · Management · Active","href":"apps-users.html","avatar":null},{"type":"user","title":"Felix Wagner","text":"felix.wagner@northwind.test","meta":"Viewer · Sales · Active","href":"apps-users.html","avatar":null},{"type":"user","title":"Mia Johansson","text":"mia.johansson@northwind.test","meta":"Editor · Marketing · Active","href":"apps-users.html","avatar":null},{"type":"user","title":"Leo Rossi","text":"leo.rossi@northwind.test","meta":"Viewer · Engineering · Suspended","href":"apps-users.html","avatar":null},{"type":"order","title":"ORD-1048","text":"Maria Chen · $19.00","meta":"Paid · Oct 16, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1047","text":"Omar Haddad · $98.19","meta":"Paid · Oct 16, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1046","text":"Amara Okafor · $177.38","meta":"Pending · Oct 15, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1045","text":"James Patel · $256.57","meta":"Shipped · Oct 15, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1044","text":"Elena Petrova · $335.76","meta":"Refunded · Oct 14, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1043","text":"Lucas Meyer · $414.95","meta":"Shipped · Oct 13, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1042","text":"Sofia Rossi · $494.14","meta":"Failed · Oct 13, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1041","text":"Noah Williams · $573.33","meta":"Paid · Oct 12, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1040","text":"Hana Sato · $652.52","meta":"Paid · Oct 12, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1039","text":"Daniel Novak · $731.71","meta":"Paid · Oct 11, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1038","text":"Maria Chen · $810.90","meta":"Pending · Oct 10, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1037","text":"Omar Haddad · $890.09","meta":"Shipped · Oct 10, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1036","text":"Amara Okafor · $969.28","meta":"Refunded · Oct 9, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1035","text":"James Patel · $1,048.47","meta":"Shipped · Oct 9, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1034","text":"Elena Petrova · $1,127.66","meta":"Failed · Oct 8, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1033","text":"Lucas Meyer · $1,206.85","meta":"Paid · Oct 7, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1032","text":"Sofia Rossi · $1,286.04","meta":"Paid · Oct 7, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1031","text":"Noah Williams · $1,365.23","meta":"Paid · Oct 6, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1030","text":"Hana Sato · $1,444.42","meta":"Pending · Oct 6, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1029","text":"Daniel Novak · $1,523.61","meta":"Shipped · Oct 5, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1028","text":"Maria Chen · $1,602.80","meta":"Refunded · Oct 4, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1027","text":"Omar Haddad · $1,681.99","meta":"Shipped · Oct 4, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1026","text":"Amara Okafor · $1,761.18","meta":"Failed · Oct 3, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1025","text":"James Patel · $1,840.37","meta":"Paid · Oct 3, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1024","text":"Elena Petrova · $1,919.56","meta":"Paid · Oct 2, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1023","text":"Lucas Meyer · $1,998.75","meta":"Paid · Oct 1, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1022","text":"Sofia Rossi · $2,077.94","meta":"Pending · Oct 1, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1021","text":"Noah Williams · $2,157.13","meta":"Shipped · Sep 30, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1020","text":"Hana Sato · $2,236.32","meta":"Refunded · Sep 30, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1019","text":"Daniel Novak · $2,315.51","meta":"Shipped · Sep 29, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1018","text":"Maria Chen · $2,394.70","meta":"Failed · Sep 28, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1017","text":"Omar Haddad · $73.89","meta":"Paid · Sep 28, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1016","text":"Amara Okafor · $153.08","meta":"Paid · Sep 27, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1015","text":"James Patel · $232.27","meta":"Paid · Sep 27, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1014","text":"Elena Petrova · $311.46","meta":"Pending · Sep 26, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1013","text":"Lucas Meyer · $390.65","meta":"Shipped · Sep 25, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1012","text":"Sofia Rossi · $469.84","meta":"Refunded · Sep 25, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1011","text":"Noah Williams · $549.03","meta":"Shipped · Sep 24, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1010","text":"Hana Sato · $628.22","meta":"Failed · Sep 24, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1009","text":"Daniel Novak · $707.41","meta":"Paid · Sep 23, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1008","text":"Maria Chen · $786.60","meta":"Paid · Sep 22, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1007","text":"Omar Haddad · $865.79","meta":"Paid · Sep 22, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1006","text":"Amara Okafor · $944.98","meta":"Pending · Sep 21, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1005","text":"James Patel · $1,024.17","meta":"Shipped · Sep 21, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1004","text":"Elena Petrova · $1,103.36","meta":"Refunded · Sep 20, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1003","text":"Lucas Meyer · $1,182.55","meta":"Shipped · Sep 19, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1002","text":"Sofia Rossi · $1,261.74","meta":"Failed · Sep 19, 2026","href":"tables-regular.html"},{"type":"order","title":"ORD-1001","text":"Noah Williams · $1,340.93","meta":"Paid · Sep 18, 2026","href":"tables-regular.html"},{"type":"conversation","title":"Order ORD-1048 has not arrived","text":"Maria Chen · Perfect, thank you so much!","meta":"10:42 · inbox","href":"apps-inbox.html","avatar":11},{"type":"conversation","title":"VAT number on the invoice","text":"James Patel · Also, is it possible to get the invoices of the last three months as one PDF?","meta":"09:17 · inbox","href":"apps-inbox.html","avatar":2},{"type":"conversation","title":"Return of a damaged chair","text":"Sofia Rossi · Great service, thank you.","meta":"Yesterday · inbox","href":"apps-inbox.html","avatar":3},{"type":"conversation","title":"Wholesale prices for 2027","text":"Daniel Novak · Hi Daniel, the list is ready next week. I will send it together with the delivery schedule.","meta":"Oct 23 · inbox","href":"apps-inbox.html","avatar":4},{"type":"conversation","title":"Change the delivery address","text":"Amara Okafor · Done, Amara. The courier has the new address.","meta":"Oct 22 · inbox","href":"apps-inbox.html","avatar":5},{"type":"conversation","title":"Your refund is on its way","text":"Lucas Meyer · Hi Lucas, we refunded $56.40 for the missing item. The bank shows it within 3–5 business days.","meta":"Oct 21 · sent","href":"apps-inbox.html","avatar":8},{"type":"conversation","title":"Draft: photos for the product page","text":"Hana Sato · Hi Hana, thank you for the photos. Could you also send them at 2000 px wide for the zoom view?","meta":"Oct 20 · drafts","href":"apps-inbox.html","avatar":9},{"type":"conversation","title":"Exchange: size M to L","text":"Omar Haddad · Thanks, sending it today.","meta":"Oct 18 · archive","href":"apps-inbox.html","avatar":10}],"suggestions":["Maria","ORD-1048","invoice","refund","Admin","Kanban"]}</script>
+
+            </div>
+            <footer class="aui-footer d-flex align-items-center">
+    <ul class="nav">
+        <li class="nav-item"><a href="#" class="nav-link">Help Center</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">API Docs</a></li>
+    </ul>
+    <ul class="nav ms-auto d-none d-md-flex">
+        <li class="nav-item"><a href="#" class="nav-link">System Status</a></li>
+        <li class="nav-item"><a href="#" class="nav-link"><span class="badge bg-success me-1 ms-0"><small>NEW</small></span>What's New</a></li>
+    </ul>
+</footer>
+
+        </main>
+    </div>
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+    <div class="toast text-bg-primary" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
+        <div class="toast-header">
+            <i data-lucide="calendar" class="me-2"></i>
+            <strong class="me-auto">Example Toast</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">You don't have any new items in your calendar today!</div>
+    </div>
+</div>
+
+</body>
+</html>
