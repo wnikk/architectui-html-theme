@@ -208,6 +208,11 @@
         "icon": "receipt-text"
       },
       {
+        "title": "Pricing",
+        "href": "pages-pricing.html",
+        "icon": "badge-percent"
+      },
+      {
         "title": "Authentication",
         "icon": "log-in",
         "children": [

@@ -725,6 +725,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `tables-datatables.html` | The same orders in DataTables 3: search, sorting, pages, rows per page, responsive rows on a phone |
 | `charts-chartjs.html` | Chart.js charts colored by tokens |
 | `pages-starter.html` | An empty page with the frame: the start for a new screen |
+| `pages-pricing.html` | Pricing: Monthly / Yearly switch with the saving, four plans (the recommended one with a primary border and a colored shadow), a comparison table by groups, common questions in an accordion |
 | `pages-invoice.html` | Invoice ready for print: seller, bill to, ship to, details, items, totals with discount and VAT, bank details; Send and Print buttons. The print shows only the invoice on one A4 page |
 | `pages-profile.html` | My Profile: profile card, personal information form, and the Interface section with every setting (layout, mode, density, tabs, theme, header and sidebar colors, restore default). The user menu links to it |
 | `pages-login.html`, `pages-register.html`, `pages-forgot-password.html` | Guest frame: sign in with a code from an authenticator app, sign up with a code from the email, password reset; demo requests lock the form for 2 s |

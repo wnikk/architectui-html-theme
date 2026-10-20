@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - **Users page** (`apps-users.html`, menu Apps): the team of the store — counters by status, search, role and status filters, a table with photos or initials, roles, teams, two-step sign-in and last activity, pages of 10. Add and Edit open one modal form with Bootstrap validation (the email must be unique); Delete asks in a confirmation modal; an owner cannot be deleted. Changes stay until the page reloads. One row template (`partials/user-row.njk`) renders the first page at build and serves the script.
+- **Pricing page** (`pages-pricing.html`, menu Pages): a Monthly / Yearly switch with the saving, four plans with features and actions (the recommended one with a primary border and a colored shadow), a comparison table by groups and common questions in an accordion. Prices come from `src/_data/pricing.js`.
 
 ### Fixed
 - **Card titles in Indigo and Coffee.** The depth layer colors card titles with the full brand text color; at 75% it read at 3.8:1 in Indigo.
