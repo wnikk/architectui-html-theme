@@ -191,6 +191,11 @@
         "title": "Users",
         "href": "apps-users.html",
         "icon": "users"
+      },
+      {
+        "title": "Notifications",
+        "href": "apps-notifications.html",
+        "icon": "bell"
       }
     ]
   },

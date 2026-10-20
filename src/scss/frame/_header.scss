@@ -218,7 +218,9 @@
 }
 
 // Mode toggle: moon (first icon) in light mode, sun (second icon) in dark mode
-.btn.aui-mode-toggle {
+// Icon buttons of the header: the mode toggle and aui-header-btn (the bell)
+.btn.aui-mode-toggle,
+.btn.aui-header-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;

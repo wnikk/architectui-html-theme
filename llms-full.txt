@@ -175,7 +175,7 @@ body
 │   │   ├── .navbar-brand: mobile burger (btn.aui-burger.d-md-none), a.aui-logo, collapse burger (btn.aui-burger, from 1200 px), "more" button (phones)
 │   │   └── .collapse.navbar-collapse#auiHeaderContent
 │   │       ├── .aui-expand (search), ul.navbar-nav (header menu)
-│   │       └── .d-flex.ms-auto: status badges, .btn-group.aui-theme-switch (btn.aui-mode-toggle + theme dropdown), user dropdown, user name (from 1400 px)
+│   │       └── .d-flex.ms-auto: status badges, a.btn.aui-header-btn (the bell with an unread count), .btn-group.aui-theme-switch (btn.aui-mode-toggle + theme dropdown), user dropdown, user name (from 1400 px)
 │   ├── aside.aui-sidebar
 │   │   └── .offcanvas-md.offcanvas-start#auiSidebar
 │   │       └── .offcanvas-body > ul.nav.flex-column.flex-nowrap#auiNav
@@ -564,6 +564,7 @@ Other Bootstrap utilities (spacing, text, order) stop at `xxl`.
 - Page head: `aui-page-path` (Back link and breadcrumb line before the page title, see Path line).
 - Forms: `aui-dropzone` (file drop zone, see Forms), `aui-stepper` (steps of a form in several steps, see Stepper).
 - Apps: `aui-kanban`, `aui-kanban-column`, `aui-kanban-list`, `aui-kanban-card` (see Kanban board), `aui-avatars` (overlapping photos), `aui-chat`, `aui-chat-message`, `aui-chat-bubble` (see Chat).
+- Header: `aui-header-btn` (an icon button of the header, like the bell: the same box as the mode toggle; a count goes in a `badge` with `position-absolute`).
 - Settings controls: `aui-theme-option` (theme picker label with a dot), `aui-theme-dot` (small theme dot for a list), `aui-swatch aui-swatch--<scheme>` (color swatch label), `aui-theme-switch` (header group of the mode toggle and the theme list; `aui-theme-check` marks the current theme).
 - Scroll areas: `aui-scroll` with a height class `aui-scroll-sm`, `-md`, `-lg`.
 - Charts and maps: `aui-chart` (`aui-chart-xs`, `aui-chart-sm`, `aui-chart-lg`) sets the chart height; `aui-sparkline` is a 2.5rem trend line under a number (a Chart.js line without axes); `aui-map` (`aui-map-lg`) for Leaflet maps.
@@ -717,6 +718,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `forms-controls.html` | Inputs, selects, checks, input groups; native date, time, suggestions, color and file fields with a drop zone |
 | `forms-layouts.html` | Grid and inline forms |
 | `apps-inbox.html` | Inbox: folders with an unread counter, labels, search, a conversation list, the conversation as a chat (`aui-chat`), star, archive, a reply box; on phones the list and the conversation take turns |
+| `apps-notifications.html` | Notifications: a feed by day with filters (All, Unread, Mentions, System), unread marks, Mark all as read, remove; delivery settings per kind (email, browser, digest). The bell in the header shows the same unread count |
 | `apps-users.html` | Users: counters by status, search and role and status filters, a table with photos or initials, roles, teams, two-step sign-in, pages of 10; Add and Edit in one modal form with Bootstrap validation (unique email), Delete with a confirmation modal; owners cannot be deleted; changes stay until reload |
 | `apps-kanban.html` | Kanban board: five columns, cards with labels, due dates, checklists and people; drag and drop, a "Move to" menu, new cards, search and label filter, column limits |
 | `forms-wizard.html` | Form in four steps with `aui-stepper`: check of each step, plan cards, optional step with Skip, review of all answers, result screen |

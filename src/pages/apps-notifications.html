@@ -1,0 +1,123 @@
+---
+title: "Notifications"
+description: "What happened in the workspace: a feed by day with filters, read and unread, and the channels for each kind of notification."
+icon: "bell"
+iconClass: "text-primary"
+script: "apps-notifications.js"
+---
+{#- The feed lives in the browser: read marks and removals stay until the page reloads (apps-notifications.js).
+    The bell in the header (partials/header-right.njk) shows the same unread count. #}
+<div class="row g-3">
+    <div class="col-xl-8">
+        <div class="card mb-3" id="notifications">
+            <div class="card-header">
+                <i data-lucide="bell" class="me-2"></i>Notifications
+                <span class="badge rounded-pill bg-danger-subtle text-danger-emphasis ms-2" data-unread-badge>{{ notifications.unread }} new</span>
+                <div class="ms-auto">
+                    <button type="button" class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2" data-action="read-all"><i data-lucide="check-check"></i>Mark all as read</button>
+                </div>
+            </div>
+            <div class="card-body py-2 border-bottom">
+                <div class="nav nav-pills gap-1 small" role="group" aria-label="Show">
+                    {%- for f in [["all", "All"], ["unread", "Unread"], ["mention", "Mentions"], ["system", "System"]] %}
+                    <button type="button" class="nav-link py-1 px-3{% if loop.first %} active{% endif %}" data-filter="{{ f[0] }}" aria-pressed="{{ 'true' if loop.first else 'false' }}">{{ f[1] }}</button>
+                    {%- endfor %}
+                </div>
+            </div>
+            <div data-feed>
+                {%- for day in notifications.days %}
+                <section data-day>
+                    <h6 class="small text-uppercase text-body-secondary bg-body-tertiary px-3 py-2 mb-0">{{ day }}</h6>
+                    <ul class="list-group list-group-flush">
+                        {%- for n in notifications.items %}{% if n.day == day %}
+                        <li class="list-group-item d-flex gap-3 py-3" data-notification="{{ n.id }}" data-unread="{{ n.unread }}" data-mention="{{ n.mention }}" data-system="{{ n.system }}">
+                            {%- if n.avatar %}
+                            <img src="assets/images/avatars/{{ n.avatar }}.jpg" width="40" height="40" class="rounded-circle flex-shrink-0" alt="">
+                            {%- else %}
+                            <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 bg-{{ n.color }}-subtle text-{{ n.color }}-emphasis" style="width: 40px; height: 40px" aria-hidden="true"><i data-lucide="{{ n.icon }}"></i></span>
+                            {%- endif %}
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex align-items-start gap-2">
+                                    <p class="mb-1{% if n.unread %} fw-bold{% endif %}" data-text>{% if n.actor %}<strong>{{ n.actor }}</strong> {% endif %}{{ n.text }}</p>
+                                    <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0 mt-2 ms-auto{% if not n.unread %} d-none{% endif %}" data-dot><span class="visually-hidden">Unread</span></span>
+                                </div>
+                                <p class="small text-body-secondary mb-1">{{ n.details }}</p>
+                                <div class="d-flex align-items-center gap-2 small text-body-secondary">
+                                    <span class="badge bg-{{ n.color }}-subtle text-{{ n.color }}-emphasis">{{ n.label }}</span>
+                                    <span>{{ n.time }}</span>
+                                </div>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-link text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions"><i data-lucide="ellipsis"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button type="button" class="dropdown-item" data-action="toggle-read">{{ 'Mark as read' if n.unread else 'Mark as unread' }}</button></li>
+                                    <li><button type="button" class="dropdown-item text-danger-emphasis" data-action="remove">Remove</button></li>
+                                </ul>
+                            </div>
+                        </li>
+                        {%- endif %}{% endfor %}
+                    </ul>
+                </section>
+                {%- endfor %}
+            </div>
+            <div class="text-center py-5 d-none" data-empty>
+                <div class="d-inline-flex p-3 rounded-circle bg-body-tertiary text-body-secondary mb-3"><i data-lucide="bell-off"></i></div>
+                <p class="fw-bold mb-1">Nothing here</p>
+                <p class="small text-body-secondary mb-0">You are all caught up.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4">
+        <form class="card mb-3" data-channels>
+            <div class="card-header"><i data-lucide="bell-ring" class="me-2"></i>Delivery</div>
+            <div class="card-body">
+                <p class="small text-body-secondary">Choose where each kind of notification reaches you. The feed on this page always shows everything.</p>
+                <table class="table table-sm align-middle mb-3">
+                    <thead>
+                        <tr>
+                            <th scope="col">Kind</th>
+                            <th scope="col" class="text-center"><i data-lucide="mail"></i><span class="visually-hidden">Email</span></th>
+                            <th scope="col" class="text-center"><i data-lucide="monitor"></i><span class="visually-hidden">Browser</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%- for c in notifications.channels %}
+                        <tr>
+                            <th scope="row" class="fw-normal"><span class="d-inline-flex align-items-center gap-2"><i data-lucide="{{ c.icon }}" class="text-{{ c.color }}-emphasis"></i>{{ c.label }}</span></th>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="email-{{ c.kind }}"{% if c.email %} checked{% endif %}>
+                                    <label class="visually-hidden" for="email-{{ c.kind }}">{{ c.label }} by email</label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="browser-{{ c.kind }}"{% if c.browser %} checked{% endif %}>
+                                    <label class="visually-hidden" for="browser-{{ c.kind }}">{{ c.label }} in the browser</label>
+                                </div>
+                            </td>
+                        </tr>
+                        {%- endfor %}
+                    </tbody>
+                </table>
+                <label for="digest" class="form-label">Email digest</label>
+                <select class="form-select mb-3" id="digest">
+                    <option>Send each notification at once</option>
+                    <option selected>One digest every hour</option>
+                    <option>One digest a day, at 09:00</option>
+                </select>
+                <button type="submit" class="btn btn-primary w-100">Save settings</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast align-items-center text-bg-dark border-0" id="notificationToast" role="status" aria-live="polite" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body" data-toast-text>Saved</div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
