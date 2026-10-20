@@ -1,8 +1,9 @@
 <span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
-{#- The bell: the unread count of the Notifications page (apps-notifications.js keeps it current there) #}
-<a class="btn aui-header-btn position-relative" href="apps-notifications.html" aria-label="Notifications, {{ notifications.unread }} unread">
+{#- The bell: the unread count of the Notifications page (apps-notifications.js keeps it current there).
+    The count sits on the top right corner (frame/_header.scss); the button keeps room for two digits. #}
+<a class="btn aui-header-btn" href="apps-notifications.html" aria-label="Notifications, {{ notifications.unread }} unread">
     <i data-lucide="bell"></i>
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger" data-notification-count aria-hidden="true">{{ notifications.unread }}</span>
+    <span class="badge text-bg-danger" data-notification-count aria-hidden="true">{{ notifications.unread }}</span>
 </a>
 {#- Mode toggle and the theme list: one button group. Each theme is a button with data-aui-setting="theme". #}
 <div class="btn-group aui-theme-switch">

@@ -23,6 +23,6 @@
     <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">{{ u.lastActive }}</td>
     <td class="text-end text-nowrap">
         <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit {{ u.name }}"><i data-lucide="pencil"></i></button>
-        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete {{ u.name }}"{% if u.role == "owner" %} disabled title="An owner cannot be deleted"{% endif %}><i data-lucide="trash-2"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete {{ u.name }}"{% if u.role == "owner" %} disabled title="An owner cannot be deleted"{% endif %}><i data-lucide="trash"></i></button>
     </td>
 </tr>

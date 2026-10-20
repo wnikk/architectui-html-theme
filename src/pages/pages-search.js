@@ -1,4 +1,4 @@
-// Search Results page: reads ?q=, finds the items of the index that contain every word, groups them by type with
+// Search Results page: reads ?q= (a sample search when it is missing), finds the items of the index that contain every word, groups them by type with
 // counts, and highlights the words with <mark>. A new search updates the address without a reload.
 (() => {
   const root = document.getElementById("search");
@@ -110,11 +110,11 @@
   });
 
   addEventListener("popstate", () => {
-    field.value = new URLSearchParams(location.search).get("q") ?? "";
+    field.value = new URLSearchParams(location.search).get("q") ?? index.sample;
     search(field.value);
   });
 
-  field.value = new URLSearchParams(location.search).get("q") ?? "";
+  // Without ?q= the page shows the results of a sample search, so the look of the results is visible at once
+  field.value = new URLSearchParams(location.search).get("q") ?? index.sample;
   search(field.value);
-  if (!field.value) field.focus();
 })();

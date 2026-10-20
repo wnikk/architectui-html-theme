@@ -245,6 +245,29 @@
   }
 }
 
+// A count on an icon button (the bell): on the top right corner, a circle for one digit. It is anchored on the
+// right, so a wider count (two digits) grows into the button and does not cover the next button.
+.btn.aui-header-btn {
+  position: relative;
+  overflow: visible;
+
+  > .badge {
+    position: absolute;
+    top: 0;
+    right: -1.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 .3rem;
+    border-radius: var(--aui-pill, 50rem);
+    font-size: .7rem;
+    line-height: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
 .aui-mode-toggle > :last-child,
 [data-bs-theme="dark"] .aui-mode-toggle > :first-child {
   display: none !important;

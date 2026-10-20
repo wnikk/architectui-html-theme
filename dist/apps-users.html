@@ -107,9 +107,9 @@
 
         <div class="d-flex align-items-center gap-3 ms-auto">
             <span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
-<a class="btn aui-header-btn position-relative" href="apps-notifications.html" aria-label="Notifications, 4 unread">
+<a class="btn aui-header-btn" href="apps-notifications.html" aria-label="Notifications, 4 unread">
     <i data-lucide="bell"></i>
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger" data-notification-count aria-hidden="true">4</span>
+    <span class="badge text-bg-danger" data-notification-count aria-hidden="true">4</span>
 </a>
 <div class="btn-group aui-theme-switch">
     <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
@@ -375,6 +375,11 @@
                     </div>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="pages-settings.html">
+                        <i data-lucide="settings"></i>Settings
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="pages-profile.html">
                         <i data-lucide="user-round"></i>My Profile
                     </a>
@@ -542,7 +547,7 @@
     <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">Online now</td>
     <td class="text-end text-nowrap">
         <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Alina Mclourd"><i data-lucide="pencil"></i></button>
-        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Alina Mclourd" disabled title="An owner cannot be deleted"><i data-lucide="trash-2"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Alina Mclourd" disabled title="An owner cannot be deleted"><i data-lucide="trash"></i></button>
     </td>
 </tr>
 
@@ -569,7 +574,7 @@
     <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">5 min ago</td>
     <td class="text-end text-nowrap">
         <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Ella-Rose Henry"><i data-lucide="pencil"></i></button>
-        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Ella-Rose Henry"><i data-lucide="trash-2"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Ella-Rose Henry"><i data-lucide="trash"></i></button>
     </td>
 </tr>
 
@@ -596,7 +601,7 @@
     <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">1 hour ago</td>
     <td class="text-end text-nowrap">
         <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Ruben Tillman"><i data-lucide="pencil"></i></button>
-        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Ruben Tillman"><i data-lucide="trash-2"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Ruben Tillman"><i data-lucide="trash"></i></button>
     </td>
 </tr>
 
@@ -623,7 +628,7 @@
     <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">2 hours ago</td>
     <td class="text-end text-nowrap">
         <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Vinnie Wagstaff"><i data-lucide="pencil"></i></button>
-        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Vinnie Wagstaff"><i data-lucide="trash-2"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Vinnie Wagstaff"><i data-lucide="trash"></i></button>
     </td>
 </tr>
 
@@ -650,7 +655,7 @@
     <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">Today, 09:12</td>
     <td class="text-end text-nowrap">
         <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Maria Chen"><i data-lucide="pencil"></i></button>
-        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Maria Chen"><i data-lucide="trash-2"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Maria Chen"><i data-lucide="trash"></i></button>
     </td>
 </tr>
 
@@ -677,7 +682,7 @@
     <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">Never</td>
     <td class="text-end text-nowrap">
         <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit James Patel"><i data-lucide="pencil"></i></button>
-        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete James Patel"><i data-lucide="trash-2"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete James Patel"><i data-lucide="trash"></i></button>
     </td>
 </tr>
 
@@ -704,7 +709,7 @@
     <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">Yesterday</td>
     <td class="text-end text-nowrap">
         <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Sofia Rossi"><i data-lucide="pencil"></i></button>
-        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Sofia Rossi"><i data-lucide="trash-2"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Sofia Rossi"><i data-lucide="trash"></i></button>
     </td>
 </tr>
 
@@ -731,7 +736,7 @@
     <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">Yesterday</td>
     <td class="text-end text-nowrap">
         <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Daniel Novak"><i data-lucide="pencil"></i></button>
-        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Daniel Novak"><i data-lucide="trash-2"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Daniel Novak"><i data-lucide="trash"></i></button>
     </td>
 </tr>
 
@@ -758,7 +763,7 @@
     <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">Oct 18</td>
     <td class="text-end text-nowrap">
         <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Amara Okafor"><i data-lucide="pencil"></i></button>
-        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Amara Okafor"><i data-lucide="trash-2"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Amara Okafor"><i data-lucide="trash"></i></button>
     </td>
 </tr>
 
@@ -785,7 +790,7 @@
     <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active">Oct 18</td>
     <td class="text-end text-nowrap">
         <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit Lucas Meyer"><i data-lucide="pencil"></i></button>
-        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Lucas Meyer"><i data-lucide="trash-2"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete Lucas Meyer"><i data-lucide="trash"></i></button>
     </td>
 </tr>
 
@@ -830,7 +835,7 @@
     <td class="d-none d-md-table-cell small text-body-secondary text-nowrap" data-field="last-active"></td>
     <td class="text-end text-nowrap">
         <button type="button" class="btn btn-sm btn-outline-secondary" data-action="edit" aria-label="Edit "><i data-lucide="pencil"></i></button>
-        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete "><i data-lucide="trash-2"></i></button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" aria-label="Delete "><i data-lucide="trash"></i></button>
     </td>
 </tr>
 

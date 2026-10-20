@@ -38,4 +38,6 @@ export default {
   types,
   items: [...pages, ...people, ...sales, ...talks],
   suggestions: ["Maria", "ORD-1048", "invoice", "refund", "Admin", "Kanban"],
+  // Shown when the page opens without ?q=: it finds a user, orders and a conversation
+  sample: "Maria",
 };

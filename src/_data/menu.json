@@ -263,6 +263,11 @@
         ]
       },
       {
+        "title": "Settings",
+        "href": "pages-settings.html",
+        "icon": "settings"
+      },
+      {
         "title": "My Profile",
         "href": "pages-profile.html",
         "icon": "user-round"
