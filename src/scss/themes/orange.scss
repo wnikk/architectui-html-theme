@@ -1,7 +1,9 @@
 // Orange theme: the original ArchitectUI look with orange accents, color gradients and soft warm shadows.
 // The shared theme base of architectui.css skips Orange; this file holds the classic colors and component rules.
 @use "sass:list";
+@use "sass:map";
 @use "../config" as *;
+@use "theme" as t;
 
 :root {
   @each $name, $def in $aui-colors {
@@ -75,6 +77,19 @@
     --bs-#{$name}-bg-subtle: color-mix(in srgb, var(--bs-#{$name}) 20%, #000);
     --bs-#{$name}-border-subtle: color-mix(in srgb, var(--bs-#{$name}) 60%, #000);
     --bs-#{$name}-text-emphasis: color-mix(in srgb, var(--bs-#{$name}) 60%, #fff);
+  }
+}
+
+// Header and sidebar color schemes: the classic gradients with the classic text tones; danger takes dark text,
+// white does not read on its pink end
+:root {
+  @each $name, $ink in (primary: #000, secondary: #fff, success: #000, info: #000, warning: #000, danger: #000, light: #000, dark: #fff, focus: #fff, alternate: #fff) {
+    @if map.has-key($aui-gradients, $name) {
+      --aui-scheme-#{$name}-bg: var(--aui-gradient-#{$name});
+    } @else {
+      --aui-scheme-#{$name}-bg: var(--bs-#{$name});
+    }
+    @include t.scheme-ink($name, $ink);
   }
 }
 

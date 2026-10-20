@@ -316,6 +316,8 @@ The browser print shows only the page content: the header, sidebar, footer, path
 | `data-aui-dark-only` | space-separated ids of dark-only themes | `cyberpunk` |
 | `data-bs-theme` | `light`, `dark`; set by the theme script from the mode | `light` |
 
+A header or sidebar color scheme takes its background, text color and logo from the theme: tokens `--aui-scheme-<color>-bg` (a gradient in the theme colors, dark or light enough for its text), `--aui-scheme-<color>-ink` (`#fff` or `#000`), `--aui-scheme-<color>-logo` and `-logo-dark` (which logo image shows). Text on every scheme reads at WCAG AA in every theme. On phones the folded header panel keeps the theme colors; the scheme colors only the top bar.
+
 ### Storage
 
 The settings are one JSON object in `localStorage` under the key `architectui`, for example `{"theme":"coffee","mode":"dark","sidebar-collapsed":"true"}`. Keys match the attribute names without `data-aui-`. Default values are not stored.
@@ -413,14 +415,15 @@ Optional palette keys: `fill` (defaults to `surface-2`) and `accent-solid`, `acc
 
 Two optional looks come as mixins of the theme base; include them after the palette:
 
-- `@include t.depth($tint, $gradients)`: the depth of Orange on the theme tokens. Soft shadows instead of border lines (colored by `$tint` in light mode, black in dark mode), a floating header and sidebar, a lifted active menu link, cards without a border line, uppercase card titles in the brand color, layered shadows on menus and overlays, uppercase badges. `$gradients` is a map of `--aui-gradient-<name>` values (keys `primary`, `success`, `info`, `warning`, `danger`, `secondary`, `dark`, `light` and their `-subtle`) that `bg-<color>` paints. Indigo and Coffee use it.
+- `@include t.depth($tint, $gradients)`: the depth of Orange on the theme tokens. Soft shadows instead of border lines (colored by `$tint` in light mode, black in dark mode), a floating header and sidebar, a lifted active menu link, cards without a border line, uppercase card titles in the brand color, layered shadows on menus and overlays, uppercase badges. `$gradients` is a map of `--aui-gradient-<name>` values, a pair of colors (a 120° gradient that also sets the scheme of that color) or any CSS gradient (keys `primary`, `success`, `info`, `warning`, `danger`, `secondary`, `dark`, `light` and their `-subtle`) that `bg-<color>` paints. Indigo and Coffee use it.
+- Header and sidebar schemes come with the palette: `t.palette` computes them for `primary`, `alternate`, `light` and `danger`, the base for the status colors, and `t.depth` for every gradient given as a pair of colors. For other colors of a theme call `@include t.scheme(<color>, <from>, <to>)` inside the light and dark blocks; `t.scheme-ink(<color>, #fff | #000)` sets only the text and the logo when the theme sets the background itself.
 - `@include t.compact`: the compact sizes of Business: 14.5px root type, line height 1.45, denser table headers and cells, a smaller table font. Radii and shadows stay with the theme. Coffee uses it.
 
 ```scss
 @include t.compact;
 @include t.depth(#77552b, (
-  primary: linear-gradient(120deg, #8b4513 0%, #d99235 100%),
-  danger: linear-gradient(120deg, #a63a2b 0%, #d9694f 100%),
+  primary: (#8b4513, #d99235),
+  danger: (#a63a2b, #d9694f),
 ));
 ```
 

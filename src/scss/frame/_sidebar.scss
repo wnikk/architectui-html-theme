@@ -232,43 +232,48 @@
   }
 }
 
-// Sidebar color schemes: data-aui-sidebar-scheme="<color>" on <html>
-@each $name, $tone in $aui-schemes {
+// Sidebar color schemes: data-aui-sidebar-scheme="<color>" on <html>. Background and text come from the scheme
+// tokens of the theme; labels, headings and icons are the ink with less opacity, the active link a light veil.
+@each $name in $aui-scheme-colors {
   [data-aui-sidebar-scheme="#{$name}"] {
     .aui-sidebar,
     .aui-sidebar > .offcanvas-md {
       --bs-offcanvas-bg: var(--bs-#{$name});
-      background-color: var(--bs-#{$name});
-      @if map.has-key($aui-gradients, $name) {
-        background-image: var(--aui-gradient-#{$name});
-      }
+      background: var(--aui-scheme-#{$name}-bg, var(--bs-#{$name}));
     }
 
-    @if $tone == light {
-      .aui-sidebar {
-        --aui-nav-color: rgba(255, 255, 255, .7);
-        --aui-nav-sub-color: rgba(255, 255, 255, .6);
-        --aui-hover-bg: rgba(255, 255, 255, .15);
-        --aui-nav-icon-hover: #fff;
+    .aui-sidebar {
+      --aui-scheme-ink: var(--aui-scheme-#{$name}-ink, #fff);
+      --aui-nav-color: color-mix(in srgb, var(--aui-scheme-ink) 92%, transparent);
+      --aui-nav-sub-color: color-mix(in srgb, var(--aui-scheme-ink) 88%, transparent);
+      --aui-hover-bg: color-mix(in srgb, var(--aui-scheme-ink) 12%, transparent);
+      --aui-nav-icon-hover: var(--aui-scheme-ink);
 
-        h6 {
-          color: rgba(255, 255, 255, .6);
-        }
+      h6 {
+        color: color-mix(in srgb, var(--aui-scheme-ink) 85%, transparent);
+      }
 
-        .nav-link.active {
-          background: rgba(255, 255, 255, .15);
-          box-shadow: none;
-        }
+      // A light veil: more would lift the background under the ink below 4.5:1
+      .nav-link.active,
+      .nav .nav .nav-link.active {
+        background: color-mix(in srgb, var(--aui-scheme-ink) 8%, transparent);
+        box-shadow: none;
+        color: var(--aui-scheme-ink);
+      }
 
-        .nav .nav .nav-link:hover,
-        .nav .nav .nav-link.active {
-          color: #fff;
-        }
+      .nav .nav .nav-link:hover {
+        color: var(--aui-scheme-ink);
+      }
 
-        .nav-link > [data-lucide]:first-child,
-        .nav-link > [data-lucide="chevron-down"] {
-          opacity: .5;
-        }
+      .nav .nav::before {
+        background: color-mix(in srgb, var(--aui-scheme-ink) 25%, transparent);
+      }
+
+      .nav-link > [data-lucide]:first-child,
+      .nav-link > [data-lucide="chevron-down"],
+      .nav-link.active > [data-lucide]:first-child {
+        color: var(--aui-scheme-ink);
+        opacity: .7;
       }
     }
   }

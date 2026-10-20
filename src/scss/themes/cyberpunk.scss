@@ -90,6 +90,18 @@ $cyber: (
   }
 }
 
+// Header and sidebar color schemes: the dimmed neon gradients with light text; the dark colors of the theme for the rest
+#{t.both()} {
+  @each $name in (primary, success, info, warning, danger) {
+    --aui-scheme-#{$name}-bg: var(--aui-gradient-#{$name});
+    @include t.scheme-ink($name, #fff);
+  }
+  @include t.scheme(secondary, #2a2a2e);
+  @include t.scheme(light, #141417, #2a2a2e);
+  @include t.scheme(dark, #060607, #141417);
+  @include t.scheme(focus, #141417);
+}
+
 // Background texture: grid and scan lines
 html {
   background-color: #000;

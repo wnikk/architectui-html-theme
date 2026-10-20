@@ -36,12 +36,9 @@
   background: var(--aui-surface);
 }
 
-@each $name, $tone in $aui-schemes {
+@each $name in $aui-scheme-colors {
   .aui-swatch--#{$name} {
-    background-color: var(--bs-#{$name});
-    @if map.has-key($aui-gradients, $name) {
-      background-image: var(--aui-gradient-#{$name});
-    }
+    background: var(--aui-scheme-#{$name}-bg, var(--bs-#{$name}));
   }
 }
 

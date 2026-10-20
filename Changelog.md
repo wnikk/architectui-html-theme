@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Fixed
+- **Readable header and sidebar color schemes (K36).** A scheme took its text tone from a fixed table made for Orange, so in most themes the text was dark on a dark background or white on a light end of the gradient (about 25 texts below WCAG AA per scheme). Now each theme gives every scheme a background, a text color and a logo: tokens `--aui-scheme-<color>-bg`, `-ink`, `-logo`, `-logo-dark`. The theme base computes them from the theme colors at build: it picks white or black text and moves both ends of the gradient until the text reads at 5.8:1 or more. Orange keeps its classic gradients and tones (danger now takes dark text); Cyberpunk keeps its dimmed neon gradients with light text. All 10 schemes pass in all themes and modes. The active menu link takes a lighter veil. On phones the folded header panel keeps the theme colors. The scheme swatches on the profile page show the scheme background. The `$aui-schemes` map of `_config.scss` is replaced by the list `$aui-scheme-colors`; `t.depth()` also takes a gradient as a pair of colors.
+
 ## [6.2.26] - 2026-10-20
 
 Readable guest pages in every theme and a fix for an empty stored theme. Markup does not change; to get the theme fix, copy the new inline `<head>` script from `dist/pages-starter.html`.

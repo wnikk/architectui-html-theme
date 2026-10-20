@@ -46,11 +46,9 @@ $aui-gradients: (
   "dark-subtle":      linear-gradient(to right, #141e30, #243b55),
 );
 
-// Header and sidebar color schemes: name => text tone
-$aui-schemes: (
-  "primary": dark, "secondary": light, "success": dark, "info": dark, "warning": dark,
-  "danger": light, "light": dark, "dark": light, "focus": light, "alternate": light,
-);
+// Header and sidebar color schemes. Each theme sets --aui-scheme-<name>-bg, -ink, -logo and -logo-dark
+// (themes/_theme.scss, mixins scheme and scheme-ink): the ink is the text color that reads on that background.
+$aui-scheme-colors: (primary, secondary, success, info, warning, danger, light, dark, focus, alternate);
 
 // Layout breakpoints
 $aui-bp-mobile: 768px;   // below: sidebar in an Offcanvas, mobile header

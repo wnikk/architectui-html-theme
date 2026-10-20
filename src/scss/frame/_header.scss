@@ -172,42 +172,47 @@
   }
 }
 
-// Header color schemes: data-aui-header-scheme="<color>" on <html>
-@each $name, $tone in $aui-schemes {
+// Header color schemes: data-aui-header-scheme="<color>" on <html>. Background, text and logo come from the scheme
+// tokens of the theme; links, icons and the search field are the ink with less opacity. On phones the right part
+// folds into a panel on the surface color: there the ink applies only to the top bar (burgers, logo, toggle).
+@mixin header-ink {
+  --aui-header-link-color: color-mix(in srgb, var(--aui-scheme-ink) 88%, transparent);
+  --aui-header-link-icon: color-mix(in srgb, var(--aui-scheme-ink) 75%, transparent);
+  --aui-header-link-hover: var(--aui-scheme-ink);
+  --aui-burger-color: color-mix(in srgb, var(--aui-scheme-ink) 85%, transparent);
+  color: color-mix(in srgb, var(--aui-scheme-ink) 92%, transparent);
+
+  .aui-burger {
+    --aui-burger-color: color-mix(in srgb, var(--aui-scheme-ink) 85%, transparent);
+  }
+
+  .aui-expand {
+    --aui-expand-bg: color-mix(in srgb, var(--aui-scheme-ink) 12%, transparent);
+    --aui-expand-color: color-mix(in srgb, var(--aui-scheme-ink) 88%, transparent);
+  }
+}
+
+@each $name in $aui-scheme-colors {
   [data-aui-header-scheme="#{$name}"] .aui-header {
-    background-color: var(--bs-#{$name});
-    @if map.has-key($aui-gradients, $name) {
-      background-image: var(--aui-gradient-#{$name});
+    --aui-scheme-ink: var(--aui-scheme-#{$name}-ink, #fff);
+    background: var(--aui-scheme-#{$name}-bg, var(--bs-#{$name}));
+
+    @include desktop {
+      @include header-ink;
     }
 
-    @if $tone == light {
-      --aui-header-link-color: rgba(255, 255, 255, .7);
-      --aui-header-link-icon: rgba(255, 255, 255, .8);
-      --aui-header-link-hover: #fff;
-      --aui-burger-color: rgba(255, 255, 255, .8);
-      color: rgba(255, 255, 255, .8);
-
-      .aui-burger {
-        --aui-burger-color: rgba(255, 255, 255, .8);
+    @include mobile {
+      > .navbar-brand {
+        @include header-ink;
       }
+    }
 
-      .aui-expand {
-        --aui-expand-bg: rgba(255, 255, 255, .1);
-        --aui-expand-color: rgba(255, 255, 255, .8);
-      }
+    .aui-logo > img:first-child {
+      display: var(--aui-scheme-#{$name}-logo, none);
+    }
 
-      .aui-logo > img:first-child {
-        display: none;
-      }
-
-      .aui-logo > img:last-child {
-        display: block;
-      }
-    } @else {
-      color: rgba(0, 0, 0, .8);
-      --aui-header-link-color: rgba(0, 0, 0, .6);
-      --aui-header-link-icon: rgba(0, 0, 0, .4);
-      --aui-header-link-hover: #000;
+    .aui-logo > img:last-child {
+      display: var(--aui-scheme-#{$name}-logo-dark, block);
     }
   }
 }

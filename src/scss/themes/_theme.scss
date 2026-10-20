@@ -8,6 +8,8 @@
 @use "sass:color";
 @use "sass:map";
 @use "sass:list";
+@use "sass:math";
+@use "sass:meta";
 
 @function root($when: null) {
   @if $when {
@@ -51,6 +53,81 @@
 
 @function rgb($c) {
   @return round(color.channel($c, "red", $space: rgb)), round(color.channel($c, "green", $space: rgb)), round(color.channel($c, "blue", $space: rgb));
+}
+
+// Relative luminance and WCAG contrast of two colors
+@function luminance($c) {
+  $sum: 0;
+  @each $channel, $weight in ("red": .2126, "green": .7152, "blue": .0722) {
+    $v: math.div(color.channel($c, $channel, $space: rgb), 255);
+    @if $v <= .03928 {
+      $v: math.div($v, 12.92);
+    } @else {
+      $v: math.pow(math.div($v + .055, 1.055), 2.4);
+    }
+    $sum: $sum + $v * $weight;
+  }
+  @return $sum;
+}
+
+@function contrast($a, $b) {
+  $x: luminance($a);
+  $y: luminance($b);
+  @return math.div(math.max($x, $y) + .05, math.min($x, $y) + .05);
+}
+
+// Steps of 5% toward black (under white ink) or white (under black ink) until the ink reads at $min or more
+@function steps-under($c, $ink, $min: 5.8) {
+  $step: 0;
+  @while contrast($c, $ink) < $min and $step < 30 {
+    @if $ink == #fff {
+      $c: color.mix(#000, $c, 5%);
+    } @else {
+      $c: color.mix(#fff, $c, 5%);
+    }
+    $step: $step + 1;
+  }
+  @return $step;
+}
+
+// The color after those steps, as a hex value
+@function readable-under($c, $ink, $min: 5.8) {
+  $mix: #000;
+  @if $ink == #000 {
+    $mix: #fff;
+  }
+  @for $i from 1 through steps-under($c, $ink, $min) {
+    $c: color.mix($mix, $c, 5%);
+  }
+  @return color.change($c, $red: math.round(color.channel($c, "red", $space: rgb)), $green: math.round(color.channel($c, "green", $space: rgb)), $blue: math.round(color.channel($c, "blue", $space: rgb)));
+}
+
+// Header and sidebar color scheme of one color: the ink (white or black text), the background (both ends of the
+// gradient moved until the ink reads at 5.8:1 or more, so muted labels still pass WCAG AA) and which logo image shows
+// on it. The ink is the one that needs fewer steps away from the theme colors; white, the usual text on colored
+// headers, wins unless black needs more than four steps fewer.
+@mixin scheme($name, $from, $to: null) {
+  @if not $to {
+    $to: $from;
+  }
+  $ink: #fff;
+  @if steps-under($from, #000) + steps-under($to, #000) + 4 < steps-under($from, #fff) + steps-under($to, #fff) {
+    $ink: #000;
+  }
+  --aui-scheme-#{$name}-bg: linear-gradient(120deg, #{readable-under($from, $ink)}, #{readable-under($to, $ink)});
+  @include scheme-ink($name, $ink);
+}
+
+// Ink and logo of a scheme whose background is set elsewhere
+@mixin scheme-ink($name, $ink) {
+  --aui-scheme-#{$name}-ink: #{$ink};
+  @if $ink == #fff {
+    --aui-scheme-#{$name}-logo: none;
+    --aui-scheme-#{$name}-logo-dark: block;
+  } @else {
+    --aui-scheme-#{$name}-logo: block;
+    --aui-scheme-#{$name}-logo-dark: none;
+  }
 }
 
 // Token values for one mode. $p is a map of palette keys (bg, surface, text, brand-*, accent-*, ...).
@@ -114,6 +191,9 @@
   --bs-highlight-bg: #{map.get($p, brand-soft)};
   --bs-highlight-color: #{map.get($p, text)};
   --bs-focus-ring-color: color-mix(in srgb, #{map.get($p, brand-focus)} 35%, transparent);
+  @include scheme(primary, map.get($p, brand-solid), map.get($p, accent-solid));
+  @include scheme(alternate, map.get($p, accent-solid));
+  @include scheme(light, map.get($p, surface-2), map.get($p, border));
 }
 
 // Theme palette for both modes. The light danger color fills danger buttons in both modes.
@@ -129,6 +209,7 @@
   #{both($when)} {
     --bs-danger: #{map.get($light-values, danger)};
     --bs-danger-rgb: #{rgb(map.get($light-values, danger))};
+    @include scheme(danger, map.get($light-values, danger), color.mix(map.get($light-values, danger), #000, 85%));
   }
 }
 
@@ -182,6 +263,10 @@
     --bs-tertiary: #059669;
     --bs-tertiary-rgb: 5, 150, 105;
     --bs-secondary: #64748b;
+    @include scheme(success, #059669, color.mix(#059669, #000, 85%));
+    @include scheme(info, #0284c7, color.mix(#0284c7, #000, 85%));
+    @include scheme(warning, #d97706, color.mix(#d97706, #000, 85%));
+    @include scheme(secondary, #64748b, color.mix(#64748b, #000, 85%));
     --bs-secondary-rgb: 100, 116, 139;
     --bs-yellow: #eab308;
     --aui-primary-contrast: #fff;
@@ -223,6 +308,8 @@
     --bs-dark: #1e293b;
     --bs-dark-rgb: 30, 41, 59;
     --bs-focus: #334155;
+    @include scheme(dark, #1e293b, color.mix(#1e293b, #fff, 85%));
+    @include scheme(focus, #334155);
     --bs-focus-rgb: 51, 65, 85;
     --aui-light-contrast: #0f172a;
     --aui-dark-contrast: #fff;
@@ -249,6 +336,8 @@
     --bs-dark: #0f172a;
     --bs-dark-rgb: 15, 23, 42;
     --bs-focus: #475569;
+    @include scheme(dark, #0f172a, color.mix(#0f172a, #fff, 85%));
+    @include scheme(focus, #475569);
     --bs-focus-rgb: 71, 85, 105;
     --aui-light-contrast: #e2e8f0;
     --aui-dark-contrast: #e2e8f0;
@@ -784,14 +873,28 @@
 // Depth layer: the look of the Orange theme on the theme tokens. Soft shadows instead of lines, a floating header
 // and sidebar, a lifted active menu link, cards without a border line, uppercase card titles in the brand color,
 // layered shadows on menus and overlays. A theme file includes it after its palette:
-//   @include t.depth(#4338ca, (primary: linear-gradient(...), success: ...));
-// $tint colors the light-mode shadows (dark mode uses black). $gradients replaces --aui-gradient-<name>
+//   @include t.depth(#4338ca, (primary: (#4f46e5, #0ea5e9), success: ...));
+// $tint colors the light-mode shadows (dark mode uses black). $gradients replaces --aui-gradient-<name>: a pair of
+// colors (a 120deg gradient; it also sets the header and sidebar scheme of that color) or any CSS gradient
 // (the keys of $aui-gradients: primary, success, info, warning, danger, secondary, dark, light and their -subtle);
 // the bg-<color> utilities paint them over the color.
 @mixin depth($tint, $gradients: ()) {
   :root {
     @each $name, $gradient in $gradients {
-      --aui-gradient-#{$name}: #{$gradient};
+      @if meta.type-of($gradient) == list {
+        --aui-gradient-#{$name}: linear-gradient(120deg, #{list.nth($gradient, 1)} 0%, #{list.nth($gradient, 2)} 100%);
+      } @else {
+        --aui-gradient-#{$name}: #{$gradient};
+      }
+    }
+  }
+
+  // A gradient given as two colors also sets the header and sidebar scheme of that color
+  #{both()} {
+    @each $name, $gradient in $gradients {
+      @if meta.type-of($gradient) == list and list.index((primary, secondary, success, info, warning, danger, light, dark), $name) {
+        @include scheme($name, list.nth($gradient, 1), list.nth($gradient, 2));
+      }
     }
   }
 
