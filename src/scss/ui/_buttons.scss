@@ -57,6 +57,11 @@
   --bs-btn-color: #939393;
 }
 
+// Outline secondary: the label takes the muted text color of the theme, so it reads on the page and on cards
+.btn-outline-secondary {
+  --bs-btn-color: var(--bs-secondary-color);
+}
+
 // Shadow in the button color
 .aui-btn-shadow {
   --aui-btn-shadow-rgb: 0, 0, 0;

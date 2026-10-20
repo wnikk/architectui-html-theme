@@ -8,7 +8,7 @@
 <link rel="icon" href="favicon.ico">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
-<link rel="stylesheet" href="architectui.css?v=6.2.21">
+<link rel="stylesheet" href="architectui.css?v=6.2.26">
 
 <script>
 (function () {
@@ -16,8 +16,10 @@
   try { s = JSON.parse(localStorage.getItem("architectui")) || {}; } catch (e) {}
   if (s.theme === "light" || s.theme === "dark") { s.mode = s.theme; delete s.theme; }
   if (s.theme === "blue") delete s.theme;
-  for (var k in s) d.setAttribute("data-aui-" + k, s[k]);
   t = /^[a-z0-9-]+$/.test(s.theme || "") ? s.theme : "";
+  // An empty or unknown value sets no attribute: data-aui-theme="" would switch the built-in Business look off
+  for (var k in s) if (s[k] && k !== "theme") d.setAttribute("data-aui-" + k, s[k]);
+  if (t) d.setAttribute("data-aui-theme", t);
   m = s.mode || "light";
   if (t) {
     var base = document.querySelector('link[href*="architectui.css"]'), link = document.createElement("link");
@@ -40,12 +42,12 @@
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/lucide@1.59.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
 
-<script defer src="architectui.js?v=6.2.21"></script>
-<script defer src="elements-palettes.js?v=6.2.21"></script>
+<script defer src="architectui.js?v=6.2.26"></script>
+<script defer src="elements-palettes.js?v=6.2.26"></script>
 
     <!--
     =========================================================
-    * ArchitectUI HTML Theme Dashboard - v6.2.21
+    * ArchitectUI HTML Theme Dashboard - v6.2.26
     =========================================================
     * Source: https://github.com/wnikk/architectui-html-theme
     * Copyright 2025 DashboardPack
@@ -796,7 +798,7 @@
                     </td>
                     <td>
                         <span class="d-block rounded-2 p-1" data-surface-light="#fff" data-surface-dark="#151b17" style="background: #fff">
-                            <button type="button" class="d-block w-100 border rounded-2" style="height: 2rem; min-width: 5.5rem; background: #2f6b45" data-light="#2f6b45" data-dark="#2f8f58" data-copy="" aria-label="Garden, Primary"></button>
+                            <button type="button" class="d-block w-100 border rounded-2" style="height: 2rem; min-width: 5.5rem; background: #2f6b45" data-light="#2f6b45" data-dark="#2a8250" data-copy="" aria-label="Garden, Primary"></button>
                         </span>
                         <span class="d-block text-center font-monospace small text-body-secondary mt-1" data-cell-hex>&nbsp;</span>
                     </td>
@@ -970,7 +972,7 @@
                     </td>
                     <td>
                         <span class="d-block rounded-2 p-1" data-surface-light="#fff" data-surface-dark="#212529" style="background: #fff">
-                            <button type="button" class="d-block w-100 border rounded-2" style="height: 2rem; min-width: 5.5rem; background: #eeaa55" data-light="#eeaa55" data-dark="#eeaa55" data-copy="" aria-label="Orange, Link"></button>
+                            <button type="button" class="d-block w-100 border rounded-2" style="height: 2rem; min-width: 5.5rem; background: #9a5f22" data-light="#9a5f22" data-dark="#eeaa55" data-copy="" aria-label="Orange, Link"></button>
                         </span>
                         <span class="d-block text-center font-monospace small text-body-secondary mt-1" data-cell-hex>&nbsp;</span>
                     </td>
@@ -2101,7 +2103,7 @@
                     </td>
                     <td>
                         <span class="d-block rounded-2 p-1" data-surface-light="#fff" data-surface-dark="#212529" style="background: #fff">
-                            <button type="button" class="d-block w-100 border rounded-2" style="height: 2rem; min-width: 5.5rem; background: rgba(73, 80, 87, .75)" data-light="rgba(73, 80, 87, .75)" data-dark="rgba(222, 226, 230, .75)" data-copy="" aria-label="Orange, Secondary text"></button>
+                            <button type="button" class="d-block w-100 border rounded-2" style="height: 2rem; min-width: 5.5rem; background: rgba(73, 80, 87, .85)" data-light="rgba(73, 80, 87, .85)" data-dark="rgba(222, 226, 230, .75)" data-copy="" aria-label="Orange, Secondary text"></button>
                         </span>
                         <span class="d-block text-center font-monospace small text-body-secondary mt-1" data-cell-hex>&nbsp;</span>
                     </td>
@@ -2260,7 +2262,7 @@
                     </td>
                     <td>
                         <span class="d-block rounded-2 p-1" data-surface-light="#fff" data-surface-dark="#151b17" style="background: #fff">
-                            <button type="button" class="d-block w-100 border rounded-2" style="height: 2rem; min-width: 5.5rem; background: linear-gradient(120deg, #2f6b45, #6e8f5a)" data-light="linear-gradient(120deg, #2f6b45, #6e8f5a)" data-dark="linear-gradient(120deg, #2f8f58, #7fa469)" data-gradient data-copy="" aria-label="Garden, Primary"></button>
+                            <button type="button" class="d-block w-100 border rounded-2" style="height: 2rem; min-width: 5.5rem; background: linear-gradient(120deg, #2f6b45, #6e8f5a)" data-light="linear-gradient(120deg, #2f6b45, #6e8f5a)" data-dark="linear-gradient(120deg, #2a8250, #7fa469)" data-gradient data-copy="" aria-label="Garden, Primary"></button>
                         </span>
                         <span class="d-block text-center font-monospace small text-body-secondary mt-1" data-cell-hex>&nbsp;</span>
                     </td>

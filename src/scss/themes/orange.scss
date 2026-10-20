@@ -44,7 +44,12 @@
 :root:not([data-bs-theme="dark"]) {
   --bs-body-color: #495057;
   --bs-body-color-rgb: 73, 80, 87;
-  --bs-secondary-color: rgba(73, 80, 87, .75);
+  --bs-secondary-color: rgba(73, 80, 87, .85);
+  // Links take a deeper orange than the brand: #eeaa55 on white reads at 2:1, this one at 5.2:1
+  --bs-link-color: #9a5f22;
+  --bs-link-color-rgb: 154, 95, 34;
+  --bs-link-hover-color: #7a4a18;
+  --bs-link-hover-color-rgb: 122, 74, 24;
   --bs-tertiary-color: rgba(73, 80, 87, .5);
   --bs-highlight-color: #495057;
   --bs-highlight-bg: color-mix(in srgb, var(--bs-yellow) 20%, #fff);

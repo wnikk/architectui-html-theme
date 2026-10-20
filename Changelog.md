@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.2.26] - 2026-10-20
+
+Readable guest pages in every theme and a fix for an empty stored theme. Markup does not change; to get the theme fix, copy the new inline `<head>` script from `dist/pages-starter.html`.
+
+### Fixed
+- **Readable guest pages.** Sign in, sign up, password reset, errors and maintenance reach WCAG AA contrast in every theme and mode: Orange links in the light mode take a deeper orange (`#9a5f22`; buttons and accents stay `#eeaa55`) and its muted text is darker; the label of `btn-outline-secondary` takes the muted text color of the theme in every theme; the error digits on 403, 404 and 500 use `text-*-emphasis`; Garden takes a deeper green for the dark-mode primary (`#2a8250`).
+- **Empty theme setting.** A stored empty or unknown theme no longer puts `data-aui-theme` on `<html>`: before, `data-aui-theme=""` switched the built-in Business look off. Copy the new inline `<head>` script from `dist/pages-starter.html`.
+
 ## [6.2.21] - 2026-10-19
 
 A reference page for the colors of every theme. Markup and styles do not change.
