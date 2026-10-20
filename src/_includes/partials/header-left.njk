@@ -1,8 +1,9 @@
-<div class="aui-expand me-3" role="search" data-aui-expand>
-    <input type="search" class="form-control" placeholder="Type to search" aria-label="Search">
+{#- The search field: Enter opens the Search Results page with the words as ?q= #}
+<form class="aui-expand me-3" role="search" action="pages-search.html" data-aui-expand>
+    <input type="search" class="form-control" name="q" placeholder="Type to search" aria-label="Search" autocomplete="off">
     <button type="button" class="btn" data-aui-expand-toggle aria-label="Search"></button>
     <button type="button" class="btn-close" data-aui-expand-close aria-label="Close search"></button>
-</div>
+</form>
 {#- A page with "breadcrumbs: header" in its front matter shows its path in the menu here; other pages show the quick links. #}
 {%- from "partials/breadcrumbs.njk" import trail %}
 {%- set crumbs = (menu | breadcrumbsFor(page.filePathStem)) if breadcrumbs == "header" else [] %}

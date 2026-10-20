@@ -87,11 +87,12 @@
         <button type="button" class="btn btn-primary btn-sm d-md-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
     </div>
     <div class="collapse navbar-collapse" id="auiHeaderContent">
-        <div class="aui-expand me-3" role="search" data-aui-expand>
-    <input type="search" class="form-control" placeholder="Type to search" aria-label="Search">
+        
+<form class="aui-expand me-3" role="search" action="pages-search.html" data-aui-expand>
+    <input type="search" class="form-control" name="q" placeholder="Type to search" aria-label="Search" autocomplete="off">
     <button type="button" class="btn" data-aui-expand-toggle aria-label="Search"></button>
     <button type="button" class="btn-close" data-aui-expand-close aria-label="Close search"></button>
-</div>
+</form>
 <ul class="navbar-nav d-none d-md-flex">
     <li class="nav-item">
         <a href="#" class="nav-link"><i data-lucide="database" class="me-2"></i>Statistics</a>
@@ -341,6 +342,11 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="pages-pricing.html" aria-current="page">
                         <i data-lucide="badge-percent"></i>Pricing
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages-search.html">
+                        <i data-lucide="search"></i>Search Results
                     </a>
                 </li>
                 <li class="nav-item">

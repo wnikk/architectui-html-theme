@@ -218,6 +218,11 @@
         "icon": "badge-percent"
       },
       {
+        "title": "Search Results",
+        "href": "pages-search.html",
+        "icon": "search"
+      },
+      {
         "title": "Authentication",
         "icon": "log-in",
         "children": [

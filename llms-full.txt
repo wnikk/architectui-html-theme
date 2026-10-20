@@ -174,7 +174,7 @@ body
 │   ├── header.navbar.navbar-expand-md.aui-header
 │   │   ├── .navbar-brand: mobile burger (btn.aui-burger.d-md-none), a.aui-logo, collapse burger (btn.aui-burger, from 1200 px), "more" button (phones)
 │   │   └── .collapse.navbar-collapse#auiHeaderContent
-│   │       ├── .aui-expand (search), ul.navbar-nav (header menu)
+│   │       ├── form.aui-expand (search, sends ?q= to pages-search.html), ul.navbar-nav (header menu)
 │   │       └── .d-flex.ms-auto: status badges, a.btn.aui-header-btn (the bell with an unread count), .btn-group.aui-theme-switch (btn.aui-mode-toggle + theme dropdown), user dropdown, user name (from 1400 px)
 │   ├── aside.aui-sidebar
 │   │   └── .offcanvas-md.offcanvas-start#auiSidebar
@@ -628,6 +628,8 @@ A round button that opens into a field: search in the header, search above a tab
 </div>
 ```
 
+The expanding field can be a `form`: give it an `action` and the input a `name`. Enter sends the form; the magnifier of the open field sends it too when the field has words. The header does this: `form.aui-expand[action="pages-search.html"]` with `input[name="q"]` opens the Search Results page.
+
 The script adds `is-open`. Size, open width and colors are CSS variables: `--aui-expand-size`, `--aui-expand-width`, `--aui-expand-bg`, `--aui-expand-color`.
 
 ### Toasts
@@ -728,6 +730,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 | `charts-chartjs.html` | Chart.js charts colored by tokens |
 | `pages-starter.html` | An empty page with the frame: the start for a new screen |
 | `pages-pricing.html` | Pricing: Monthly / Yearly switch with the saving, four plans (the recommended one with a primary border and a colored shadow), a comparison table by groups, common questions in an accordion |
+| `pages-search.html` | Search Results: the header search sends ?q= here; results across pages, users, orders and conversations, tabs with counts, matching words in `<mark>`, a title match first, an empty state with suggestions; a new search keeps the page and updates the address. The index is part of the page, so it works from disk |
 | `pages-invoice.html` | Invoice ready for print: seller, bill to, ship to, details, items, totals with discount and VAT, bank details; Send and Print buttons. The print shows only the invoice on one A4 page |
 | `pages-profile.html` | My Profile: profile card, personal information form, and the Interface section with every setting (layout, mode, density, tabs, theme, header and sidebar colors, restore default). The user menu links to it |
 | `pages-login.html`, `pages-register.html`, `pages-forgot-password.html` | Guest frame: sign in with a code from an authenticator app, sign up with a code from the email, password reset; demo requests lock the form for 2 s |

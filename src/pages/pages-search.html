@@ -1,0 +1,40 @@
+---
+title: "Search Results"
+description: "Results across the workspace: pages, users, orders and conversations, with the matching words highlighted."
+icon: "search"
+iconClass: "text-primary"
+script: "pages-search.js"
+---
+{#- The search field of the header sends its words here as ?q=. The index (src/_data/search.js) is part of the page,
+    so the search works from disk too. #}
+<div class="card mb-3" id="search">
+    <div class="card-body">
+        <form class="d-flex flex-column flex-sm-row gap-2" role="search" action="pages-search.html" data-search-form>
+            <div class="input-group">
+                <span class="input-group-text"><i data-lucide="search"></i></span>
+                <label class="visually-hidden" for="searchQuery">Search the workspace</label>
+                <input type="search" class="form-control" id="searchQuery" name="q" placeholder="Search pages, users, orders and conversations" autocomplete="off">
+            </div>
+            <button class="btn btn-primary px-4" type="submit">Search</button>
+        </form>
+        <p class="small text-body-secondary mt-3 mb-0" role="status" aria-live="polite" data-summary>Type a word to search the workspace.</p>
+    </div>
+    <div class="nav nav-underline flex-nowrap overflow-x-auto text-nowrap px-3 border-bottom small" role="group" aria-label="Show results of" data-types>
+        <button type="button" class="nav-link active d-inline-flex align-items-center gap-2" data-type="all" aria-pressed="true">All <span class="badge rounded-pill bg-secondary-subtle text-secondary-emphasis" data-count="all">0</span></button>
+        {%- for type in search.types %}
+        <button type="button" class="nav-link d-inline-flex align-items-center gap-2" data-type="{{ type.id }}" aria-pressed="false">{{ type.title }} <span class="badge rounded-pill bg-secondary-subtle text-secondary-emphasis" data-count="{{ type.id }}">0</span></button>
+        {%- endfor %}
+    </div>
+    <ul class="list-group list-group-flush" data-results></ul>
+    <div class="text-center py-5 d-none" data-empty>
+        <div class="d-inline-flex p-3 rounded-circle bg-body-tertiary text-body-secondary mb-3"><i data-lucide="search-x"></i></div>
+        <p class="fw-bold mb-1" data-empty-title>Nothing found</p>
+        <p class="small text-body-secondary mb-3">Check the spelling or try one of these:</p>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+            {%- for word in search.suggestions %}
+            <a class="btn btn-outline-secondary btn-sm" href="pages-search.html?q={{ word | urlencode }}" data-suggestion="{{ word }}">{{ word }}</a>
+            {%- endfor %}
+        </div>
+    </div>
+</div>
+<script type="application/json" id="searchIndex">{{ search | dump | safe }}</script>

@@ -252,6 +252,12 @@
       writeSettings({});
       Object.entries(DEFAULTS).forEach(([key, value]) => setSetting(key, value, false));
     } else if (target?.matches("[data-aui-expand-toggle], [data-aui-expand-close]")) {
+      // The magnifier of an open field inside a form with words in it sends the form
+      const input = field.querySelector("input");
+      if (target.matches("[data-aui-expand-toggle]") && field.classList.contains("is-open") && field.matches("form") && input?.value.trim()) {
+        field.requestSubmit();
+        return;
+      }
       const open = field.classList.toggle("is-open", target.matches("[data-aui-expand-toggle]"));
       if (open) field.querySelector("input")?.focus({ preventScroll: true });
     } else if (target?.matches("[data-aui-toast]")) {
