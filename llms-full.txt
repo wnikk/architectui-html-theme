@@ -48,8 +48,7 @@ Built files in `dist/`:
 
 Getting the files:
 
-- Download: the `dist/` folder of the repository holds the latest built files (version in `package.json` and `Changelog.md`). Take a ZIP of the `master` branch (https://github.com/wnikk/architectui-html-theme/archive/refs/heads/master.zip) or clone the repository, and copy the files from `dist/` into the project.
-- CDN: jsDelivr serves the latest files from the `master` branch: `https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@master/dist/architectui.css`, `.../dist/architectui.js`, `.../dist/architectui-auth.js`, `.../dist/themes/<id>.css`, `.../dist/assets/...`. A new version reaches the CDN within about 12 hours. Themes load from the folder next to `architectui.css`, so the theme setting works from the CDN. Images in the markup (logo, avatars) need their own path: a local copy of `assets/` or the CDN folder.
+ArchitectUI is a template: the project keeps its own copy and adapts it. The `dist/` folder of the repository holds the latest built files (version in `package.json` and `Changelog.md`). Take a ZIP of the `master` branch (https://github.com/wnikk/architectui-html-theme/archive/refs/heads/master.zip) or clone the repository, copy the files from `dist/` into the project and link them with relative paths. Themes load from the folder next to `architectui.css`; images in the markup (logo, avatars) come from the copied `assets/`. Do not link the theme files from the repository or from a CDN.
 
 CDN dependencies. The exact, tested URLs are in `src/_data/cdn.json` and in the `<head>` of `dist/index.html`:
 

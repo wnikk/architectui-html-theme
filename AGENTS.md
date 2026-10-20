@@ -19,7 +19,7 @@ Take them from `dist/`:
 | `assets/images/` | Logos and images used by the frame |
 | `index.html` and other pages | Complete demo pages to copy markup from |
 
-Bootstrap 5.3 (CSS and bundle JS) and Lucide come from a CDN; the exact URLs are in the `<head>` of `dist/index.html`. ArchitectUI itself is the `dist/` folder of the repository, always the latest version: a ZIP of the `master` branch (`https://github.com/wnikk/architectui-html-theme/archive/refs/heads/master.zip`) or jsDelivr from the branch: `https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@master/dist/architectui.css`.
+Bootstrap 5.3 (CSS and bundle JS) and Lucide come from a CDN; the exact URLs are in the `<head>` of `dist/index.html`. ArchitectUI is a template: the project keeps its own copy of the `dist/` folder (from a ZIP of the `master` branch, `https://github.com/wnikk/architectui-html-theme/archive/refs/heads/master.zip`, or a clone) and adapts it. Link the theme files from that copy with relative paths.
 
 ## Build a page
 

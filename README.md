@@ -21,10 +21,10 @@ for Bootstrap 5 works inside the theme without changes, and you never rebuild Bo
 
 ## Quick start
 
-The built files are in the `dist/` folder of this repository, always the latest version
-(its number is in `package.json` and `Changelog.md`). Take them in one of two ways.
+ArchitectUI is a template: take your own copy and adapt it to your project. The built files are in the `dist/`
+folder of this repository, always the latest version (its number is in `package.json` and `Changelog.md`).
 
-**Download.** Download the repository as a [ZIP of the `master` branch](https://github.com/wnikk/architectui-html-theme/archive/refs/heads/master.zip)
+Download the repository as a [ZIP of the `master` branch](https://github.com/wnikk/architectui-html-theme/archive/refs/heads/master.zip)
 or clone it. Copy from `dist/` the files `architectui.css`, `architectui.js` (and `architectui-auth.js` for sign-in pages),
 the folders `themes/` and `assets/` to your project, then add to `<head>`:
 
@@ -36,23 +36,16 @@ the folders `themes/` and `assets/` to your project, then add to `<head>`:
 <script defer src="architectui.js"></script>
 ```
 
-**From jsDelivr.** Link the latest files straight from the `master` branch of this repository.
-A new version reaches the CDN within about 12 hours:
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@master/dist/architectui.css">
-<script defer src="https://cdn.jsdelivr.net/gh/wnikk/architectui-html-theme@master/dist/architectui.js"></script>
-```
-
-Themes load from the folder next to `architectui.css`, so the theme setting and `data-aui-theme` work from the CDN too.
-Logos, avatars and other images are part of your markup: copy `assets/` or point the `src` to the same CDN folder.
+Themes load from the folder next to `architectui.css`. Logos, avatars and other images are part of your markup:
+keep `assets/` next to the pages or change the paths. The copy is yours: change the variables, the sources in `src/`
+and the demo pages as your project needs, and build them again with `npm run build`.
 
 All links are relative, and every script is a classic `defer` script. The demo works from any folder of a local
 server and from disk (`file://`). The theme script adds one global, `window.ArchitectUI`. Markup that a script inserts
 later renders its icons, tooltips and popovers by itself. `ArchitectUI.token("primary")`, `ArchitectUI.rgba("primary", .5)`
 and `ArchitectUI.chartDefaults(Chart)` give page scripts the colors of the current theme.
 
-The demo pages link the theme files with `?v=<version>` (for example `architectui.css?v=6.2.0`), so a new release reaches
+The demo pages link the theme files with `?v=<version>` (for example `architectui.css?v=6.2.32`), so a new version reaches
 visitors past their browser cache. Do the same on your pages; the theme stylesheets keep the query.
 
 Start from `dist/pages-starter.html` for a page with the frame (header, sidebar, page title, footer) and from

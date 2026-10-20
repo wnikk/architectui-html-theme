@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Changed
+- **Documentation.** README, `AGENTS.md`, `llms.txt` and `llms-full.txt` describe one way to get ArchitectUI: download or clone the repository, copy `dist/` into your project and adapt it. The theme files are no longer offered from jsDelivr; Bootstrap, Lucide and the page libraries still load from the CDN.
+
 ## [6.2.32] - 2026-10-20
 
 Readable color schemes of the header and sidebar in every theme, and five new demo pages: Users, Pricing, Notifications, Search Results and Settings, with a bell and a working search in the header. The 6.2.26 markup keeps working; to get the bell and the header search, copy the header from `dist/pages-starter.html`.
