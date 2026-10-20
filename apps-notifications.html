@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="en" data-aui-header="fixed" data-aui-sidebar="fixed" data-aui-footer="static" data-aui-tabs="shadow" data-aui-dark-only="cyberpunk ">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notifications - What happened in the workspace: a feed by day with filters, read and unread, and the channels for each kind of notification.</title>
+<meta name="description" content="What happened in the workspace: a feed by day with filters, read and unread, and the channels for each kind of notification.">
+<link rel="icon" href="favicon.ico">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="architectui.css?v=6.2.26">
+
+<script>
+(function () {
+  var d = document.documentElement, s = {}, m, t;
+  try { s = JSON.parse(localStorage.getItem("architectui")) || {}; } catch (e) {}
+  if (s.theme === "light" || s.theme === "dark") { s.mode = s.theme; delete s.theme; }
+  if (s.theme === "blue") delete s.theme;
+  t = /^[a-z0-9-]+$/.test(s.theme || "") ? s.theme : "";
+  // An empty or unknown value sets no attribute: data-aui-theme="" would switch the built-in Business look off
+  for (var k in s) if (s[k] && k !== "theme") d.setAttribute("data-aui-" + k, s[k]);
+  if (t) d.setAttribute("data-aui-theme", t);
+  m = s.mode || "light";
+  if (t) {
+    var base = document.querySelector('link[href*="architectui.css"]'), link = document.createElement("link");
+    var shown = function () { d.removeAttribute("data-aui-loading"); };
+    link.rel = "stylesheet";
+    link.id = "aui-theme";
+    link.href = base.getAttribute("href").replace(/architectui\.css(\?|$)/, "themes/" + t + ".css$1");
+    link.setAttribute("blocking", "render");
+    link.onload = link.onerror = shown;
+    setTimeout(shown, 3000);
+    d.setAttribute("data-aui-loading", "");
+    base.parentNode.insertBefore(link, base.nextSibling);
+    if ((" " + d.getAttribute("data-aui-dark-only") + " ").indexOf(" " + t + " ") > -1) m = "dark";
+  }
+  if (m === "system") m = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  d.setAttribute("data-bs-theme", m);
+})();
+</script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.59.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
+
+<script defer src="architectui.js?v=6.2.26"></script>
+<script defer src="apps-notifications.js?v=6.2.26"></script>
+
+    <!--
+    =========================================================
+    * ArchitectUI HTML Theme Dashboard - v6.2.26
+    =========================================================
+    * Source: https://github.com/wnikk/architectui-html-theme
+    * Copyright 2025 DashboardPack
+    * Licensed under MIT (https://github.com/wnikk/architectui-html-theme/blob/master/LICENSE)
+    =========================================================
+    * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+    -->
+</head>
+<body>
+    <a class="visually-hidden-focusable btn btn-primary aui-skip-link" href="#main">Skip to content</a>
+    
+<svg class="position-absolute" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+        <linearGradient id="aui-gradient-primary" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#4facfe"/><stop offset="1" stop-color="#00f2fe"/></linearGradient>
+        <linearGradient id="aui-gradient-info" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#a18cd1"/><stop offset="1" stop-color="#8ec5fc"/></linearGradient>
+        <linearGradient id="aui-gradient-success" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3cba92"/><stop offset="1" stop-color="#8fd3f4"/></linearGradient>
+        <linearGradient id="aui-gradient-warning" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f6d365"/><stop offset="1" stop-color="#fda085"/></linearGradient>
+        <linearGradient id="aui-gradient-danger" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f093fb"/><stop offset="1" stop-color="#f5576c"/></linearGradient>
+        <linearGradient id="aui-gradient-secondary" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#29323c"/><stop offset="1" stop-color="#485563"/></linearGradient>
+        <linearGradient id="aui-gradient-dark" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
+        <linearGradient id="aui-gradient-focus" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3a3648"/><stop offset="1" stop-color="#5d5873"/></linearGradient>
+        <linearGradient id="aui-gradient-alternate" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
+    </defs>
+</svg>
+
+    <div class="aui-app">
+        <header class="navbar navbar-expand-md aui-header">
+    <div class="navbar-brand">
+        <button type="button" class="btn aui-burger d-md-none" data-bs-toggle="offcanvas" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
+        
+<a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
+    <img src="assets/images/logo.png" alt="ArchitectUI">
+    <img src="assets/images/logo-on-dark.png" alt="">
+</a>
+
+        <button type="button" class="btn aui-burger d-none d-xl-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
+        <button type="button" class="btn btn-primary btn-sm d-md-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
+    </div>
+    <div class="collapse navbar-collapse" id="auiHeaderContent">
+        <div class="aui-expand me-3" role="search" data-aui-expand>
+    <input type="search" class="form-control" placeholder="Type to search" aria-label="Search">
+    <button type="button" class="btn" data-aui-expand-toggle aria-label="Search"></button>
+    <button type="button" class="btn-close" data-aui-expand-close aria-label="Close search"></button>
+</div>
+<ul class="navbar-nav d-none d-md-flex">
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="database" class="me-2"></i>Statistics</a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="square-pen" class="me-2"></i>Projects</a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link"><i data-lucide="settings" class="me-2"></i>Settings</a>
+    </li>
+</ul>
+
+        <div class="d-flex align-items-center gap-3 ms-auto">
+            <span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
+<a class="btn aui-header-btn position-relative" href="apps-notifications.html" aria-label="Notifications, 4 unread">
+    <i data-lucide="bell"></i>
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger" data-notification-count aria-hidden="true">4</span>
+</a>
+<div class="btn-group aui-theme-switch">
+    <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+        <i data-lucide="moon"></i>
+        <i data-lucide="sun"></i>
+    </button>
+    <button type="button" class="btn aui-mode-toggle dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Choose a theme"></button>
+    <div class="dropdown-menu dropdown-menu-end">
+        <h6 class="dropdown-header">Theme</h6>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
+            <span>Business</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="orange">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
+            <span>Orange</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
+            <span>Indigo</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo-img">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
+            <span>Indigo Calathea</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="coffee">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
+            <span>Coffee</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="green">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
+            <span>Garden</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="raspberry">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
+            <span>Warm</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="teal">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
+            <span>Operations</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="violet">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
+            <span>Space</span>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="cyberpunk">
+            <span class="aui-theme-dot" style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
+            <span>Cyberpunk</span>
+            <small class="opacity-75">dark only</small>
+            <i data-lucide="check" class="ms-auto aui-theme-check"></i>
+        </button>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal" class="me-2 opacity-50"></i>All interface settings</a>
+    </div>
+</div>
+<div class="dropdown">
+    <a class="d-inline-flex align-items-center text-reset text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+        <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
+        <i data-lucide="chevron-down" class="ms-2 opacity-75"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-end">
+        <a class="dropdown-item" href="pages-profile.html"><i data-lucide="user" class="me-2 opacity-50"></i>My profile</a>
+        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="settings" class="me-2 opacity-50"></i>Interface settings</a>
+        <h6 class="dropdown-header">Workspace</h6>
+        <a class="dropdown-item" href="apps-users.html"><i data-lucide="users" class="me-2 opacity-50"></i>Team members</a>
+        <a class="dropdown-item" href="pages-pricing.html"><i data-lucide="credit-card" class="me-2 opacity-50"></i>Billing</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="pages-login.html"><i data-lucide="log-out" class="me-2 opacity-50"></i>Sign out</a>
+    </div>
+</div>
+<div class="d-none d-xxl-block lh-sm">
+    <div class="fw-bold opacity-75 text-nowrap">Alina Mclourd</div>
+    <div class="small opacity-50 text-nowrap">VP People Manager</div>
+</div>
+<button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 d-none d-xxl-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
+
+        </div>
+    </div>
+</header>
+
+        <aside class="aui-sidebar">
+    <div class="offcanvas-md offcanvas-start" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
+        <div class="offcanvas-header">
+            
+<a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
+    <img src="assets/images/logo.png" alt="ArchitectUI">
+    <img src="assets/images/logo-on-dark.png" alt="">
+</a>
+
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#auiSidebar" aria-label="Close menu"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav flex-column flex-nowrap" id="auiNav">
+                <li class="nav-item"><h6>Dashboards</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i data-lucide="rocket"></i>Dashboard Example 1
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard-operations.html">
+                        <i data-lucide="monitor"></i>Operations Wall
+                    </a>
+                </li>
+                <li class="nav-item"><h6>UI Components</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
+                        <i data-lucide="gem"></i>Elements<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-elements" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="elements-buttons-standard.html">Buttons</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-dropdowns.html">Dropdowns</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-icons.html">Icons</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-badges-labels.html">Badges</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-cards.html">Cards</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-list-group.html">List Groups</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-navigation.html">Navigation Menus</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-utilities.html">Utilities</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements-palettes.html">Theme Palettes</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-components">
+                        <i data-lucide="car"></i>Components<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-components" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="components-bootstrap.html">Bootstrap Components</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-tabs.html">Tabs</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-accordions.html">Accordions</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-notifications.html">Notifications</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-modals.html">Modals</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-progress-bar.html">Progress Bar</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-tooltips-popovers.html">Tooltips &amp; Popovers</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-carousel.html">Carousel</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-calendar.html">Calendar</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-pagination.html">Pagination</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-scrollable-elements.html">Scrollable</a></li>
+                            <li class="nav-item"><a class="nav-link" href="components-maps.html">Maps</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-tables" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-tables">
+                        <i data-lucide="table"></i>Tables<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-tables" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="tables-regular.html">Regular Tables</a></li>
+                            <li class="nav-item"><a class="nav-link" href="tables-datatables.html">DataTables</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item"><h6>Widgets</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard-boxes.html">
+                        <i data-lucide="monitor"></i>Dashboard Boxes
+                    </a>
+                </li>
+                <li class="nav-item"><h6>Forms</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-controls.html">
+                        <i data-lucide="mouse"></i>Forms Controls
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-layouts.html">
+                        <i data-lucide="pipette"></i>Forms Layouts
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-validation.html">
+                        <i data-lucide="pen-line"></i>Forms Validation
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="forms-wizard.html">
+                        <i data-lucide="list-ordered"></i>Forms Wizard
+                    </a>
+                </li>
+                <li class="nav-item"><h6>Charts</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="charts-chartjs.html">
+                        <i data-lucide="chart-column"></i>ChartJS
+                    </a>
+                </li>
+                <li class="nav-item"><h6>Apps</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="apps-kanban.html">
+                        <i data-lucide="square-kanban"></i>Kanban Board
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="apps-inbox.html">
+                        <i data-lucide="inbox"></i>Inbox
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="apps-users.html">
+                        <i data-lucide="users"></i>Users
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="apps-notifications.html" aria-current="page">
+                        <i data-lucide="bell"></i>Notifications
+                    </a>
+                </li>
+                <li class="nav-item"><h6>Pages</h6></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages-starter.html">
+                        <i data-lucide="file"></i>Starter Page
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages-invoice.html">
+                        <i data-lucide="receipt-text"></i>Invoice
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages-pricing.html">
+                        <i data-lucide="badge-percent"></i>Pricing
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-authentication">
+                        <i data-lucide="log-in"></i>Authentication<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-authentication" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="pages-login.html">Sign In</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-register.html">Sign Up</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-forgot-password.html">Forgot Password</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#nav-errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-errors">
+                        <i data-lucide="triangle-alert"></i>Errors<i data-lucide="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="nav-errors" data-bs-parent="#auiNav">
+                        <ul class="nav flex-column flex-nowrap">
+                            <li class="nav-item"><a class="nav-link" href="pages-403.html">Error 403</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-404.html">Error 404</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-500.html">Error 500</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pages-maintenance.html">Scheduled maintenance: the site is temporarily unavailable</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages-profile.html">
+                        <i data-lucide="user-round"></i>My Profile
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</aside>
+
+        <main class="d-flex flex-column" id="main" tabindex="-1">
+            <div class="flex-grow-1 aui-content">
+                <div class="aui-page-title d-md-flex align-items-center text-center text-md-start">
+    <div class="d-none d-md-flex align-items-center justify-content-center flex-shrink-0 me-4">
+        <i data-lucide="bell" class="text-primary"></i>
+    </div>
+    <div>
+        <h1>Notifications</h1>
+        <p>What happened in the workspace: a feed by day with filters, read and unread, and the channels for each kind of notification.</p>
+    </div>
+    <div class="ms-md-auto mt-3 mt-md-0 d-print-none">
+    <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
+        <i data-lucide="star"></i>
+    </button>
+    <div class="d-inline-block dropdown">
+        <button type="button" class="btn btn-info aui-btn-shadow d-inline-flex align-items-center gap-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons
+        </button>
+        <div class="dropdown-menu dropdown-menu-end">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i data-lucide="inbox" class="me-2"></i><span>Inbox</span><span class="ms-auto badge rounded-pill bg-secondary">86</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i data-lucide="book-open" class="me-2"></i><span>Reports</span><span class="ms-auto badge rounded-pill bg-danger">5</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i data-lucide="image" class="me-2"></i><span>Media</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link disabled" aria-disabled="true"><i data-lucide="file" class="me-2"></i><span>Archive</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</div>
+
+                
+<div class="row g-3">
+    <div class="col-xl-8">
+        <div class="card mb-3" id="notifications">
+            <div class="card-header">
+                <i data-lucide="bell" class="me-2"></i>Notifications
+                <span class="badge rounded-pill bg-danger-subtle text-danger-emphasis ms-2" data-unread-badge>4 new</span>
+                <div class="ms-auto">
+                    <button type="button" class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2" data-action="read-all"><i data-lucide="check-check"></i>Mark all as read</button>
+                </div>
+            </div>
+            <div class="card-body py-2 border-bottom">
+                <div class="nav nav-pills gap-1 small" role="group" aria-label="Show">
+                    <button type="button" class="nav-link py-1 px-3 active" data-filter="all" aria-pressed="true">All</button>
+                    <button type="button" class="nav-link py-1 px-3" data-filter="unread" aria-pressed="false">Unread</button>
+                    <button type="button" class="nav-link py-1 px-3" data-filter="mention" aria-pressed="false">Mentions</button>
+                    <button type="button" class="nav-link py-1 px-3" data-filter="system" aria-pressed="false">System</button>
+                </div>
+            </div>
+            <div data-feed>
+                <section data-day>
+                    <h6 class="small text-uppercase text-body-secondary bg-body-tertiary px-3 py-2 mb-0">Today</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex gap-3 py-3" data-notification="n1" data-unread="true" data-mention="true" data-system="false">
+                            <img src="assets/images/avatars/11.jpg" width="40" height="40" class="rounded-circle flex-shrink-0" alt="">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex align-items-start gap-2">
+                                    <p class="mb-1 fw-bold" data-text><strong>Maria Chen</strong> mentioned you in Order ORD-1048</p>
+                                    <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0 mt-2 ms-auto" data-dot><span class="visually-hidden">Unread</span></span>
+                                </div>
+                                <p class="small text-body-secondary mb-1">“@Alina can we send the lamp by express? The customer needs it before Friday.”</p>
+                                <div class="d-flex align-items-center gap-2 small text-body-secondary">
+                                    <span class="badge bg-primary-subtle text-primary-emphasis">Mentions</span>
+                                    <span>10:42</span>
+                                </div>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-link text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions"><i data-lucide="ellipsis"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button type="button" class="dropdown-item" data-action="toggle-read">Mark as read</button></li>
+                                    <li><button type="button" class="dropdown-item text-danger-emphasis" data-action="remove">Remove</button></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex gap-3 py-3" data-notification="n2" data-unread="true" data-mention="false" data-system="true">
+                            <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 bg-danger-subtle text-danger-emphasis" style="width: 40px; height: 40px" aria-hidden="true"><i data-lucide="shield-alert"></i></span>
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex align-items-start gap-2">
+                                    <p class="mb-1 fw-bold" data-text>New sign-in from Chrome on macOS</p>
+                                    <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0 mt-2 ms-auto" data-dot><span class="visually-hidden">Unread</span></span>
+                                </div>
+                                <p class="small text-body-secondary mb-1">Lisbon, Portugal · 185.42.17.8. If it was not you, change the password.</p>
+                                <div class="d-flex align-items-center gap-2 small text-body-secondary">
+                                    <span class="badge bg-danger-subtle text-danger-emphasis">Security</span>
+                                    <span>09:58</span>
+                                </div>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-link text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions"><i data-lucide="ellipsis"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button type="button" class="dropdown-item" data-action="toggle-read">Mark as read</button></li>
+                                    <li><button type="button" class="dropdown-item text-danger-emphasis" data-action="remove">Remove</button></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex gap-3 py-3" data-notification="n3" data-unread="true" data-mention="false" data-system="false">
+                            <img src="assets/images/avatars/3.jpg" width="40" height="40" class="rounded-circle flex-shrink-0" alt="">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex align-items-start gap-2">
+                                    <p class="mb-1 fw-bold" data-text><strong>Ruben Tillman</strong> moved “Apple Pay in the checkout” to Review</p>
+                                    <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0 mt-2 ms-auto" data-dot><span class="visually-hidden">Unread</span></span>
+                                </div>
+                                <p class="small text-body-secondary mb-1">Spring release board · 1 of 5 checks done</p>
+                                <div class="d-flex align-items-center gap-2 small text-body-secondary">
+                                    <span class="badge bg-success-subtle text-success-emphasis">Tasks</span>
+                                    <span>09:31</span>
+                                </div>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-link text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions"><i data-lucide="ellipsis"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button type="button" class="dropdown-item" data-action="toggle-read">Mark as read</button></li>
+                                    <li><button type="button" class="dropdown-item text-danger-emphasis" data-action="remove">Remove</button></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex gap-3 py-3" data-notification="n4" data-unread="true" data-mention="false" data-system="false">
+                            <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 bg-warning-subtle text-warning-emphasis" style="width: 40px; height: 40px" aria-hidden="true"><i data-lucide="shopping-cart"></i></span>
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex align-items-start gap-2">
+                                    <p class="mb-1 fw-bold" data-text>Refund requested for ORD-1043</p>
+                                    <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0 mt-2 ms-auto" data-dot><span class="visually-hidden">Unread</span></span>
+                                </div>
+                                <p class="small text-body-secondary mb-1">$56.40 · Lucas Meyer · reason: an item is missing</p>
+                                <div class="d-flex align-items-center gap-2 small text-body-secondary">
+                                    <span class="badge bg-warning-subtle text-warning-emphasis">Orders</span>
+                                    <span>08:15</span>
+                                </div>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-link text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions"><i data-lucide="ellipsis"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button type="button" class="dropdown-item" data-action="toggle-read">Mark as read</button></li>
+                                    <li><button type="button" class="dropdown-item text-danger-emphasis" data-action="remove">Remove</button></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex gap-3 py-3" data-notification="n5" data-unread="false" data-mention="false" data-system="false">
+                            <img src="assets/images/avatars/2.jpg" width="40" height="40" class="rounded-circle flex-shrink-0" alt="">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex align-items-start gap-2">
+                                    <p class="mb-1" data-text><strong>Ella-Rose Henry</strong> commented on “Fix VAT rounding in invoices”</p>
+                                    <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0 mt-2 ms-auto d-none" data-dot><span class="visually-hidden">Unread</span></span>
+                                </div>
+                                <p class="small text-body-secondary mb-1">“The rounding now follows the UK rules; please check INV-2291.”</p>
+                                <div class="d-flex align-items-center gap-2 small text-body-secondary">
+                                    <span class="badge bg-info-subtle text-info-emphasis">Comments</span>
+                                    <span>07:50</span>
+                                </div>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-link text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions"><i data-lucide="ellipsis"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button type="button" class="dropdown-item" data-action="toggle-read">Mark as unread</button></li>
+                                    <li><button type="button" class="dropdown-item text-danger-emphasis" data-action="remove">Remove</button></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+                <section data-day>
+                    <h6 class="small text-uppercase text-body-secondary bg-body-tertiary px-3 py-2 mb-0">Yesterday</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex gap-3 py-3" data-notification="n6" data-unread="false" data-mention="true" data-system="false">
+                            <img src="assets/images/avatars/4.jpg" width="40" height="40" class="rounded-circle flex-shrink-0" alt="">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex align-items-start gap-2">
+                                    <p class="mb-1" data-text><strong>Vinnie Wagstaff</strong> mentioned you in the Weekly report</p>
+                                    <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0 mt-2 ms-auto d-none" data-dot><span class="visually-hidden">Unread</span></span>
+                                </div>
+                                <p class="small text-body-secondary mb-1">“@Alina the conversion rate is up 0.4 points after the new checkout.”</p>
+                                <div class="d-flex align-items-center gap-2 small text-body-secondary">
+                                    <span class="badge bg-primary-subtle text-primary-emphasis">Mentions</span>
+                                    <span>17:20</span>
+                                </div>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-link text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions"><i data-lucide="ellipsis"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button type="button" class="dropdown-item" data-action="toggle-read">Mark as unread</button></li>
+                                    <li><button type="button" class="dropdown-item text-danger-emphasis" data-action="remove">Remove</button></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex gap-3 py-3" data-notification="n7" data-unread="false" data-mention="false" data-system="true">
+                            <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 bg-secondary-subtle text-secondary-emphasis" style="width: 40px; height: 40px" aria-hidden="true"><i data-lucide="server"></i></span>
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex align-items-start gap-2">
+                                    <p class="mb-1" data-text>Scheduled maintenance tonight, 02:00–03:00 UTC</p>
+                                    <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0 mt-2 ms-auto d-none" data-dot><span class="visually-hidden">Unread</span></span>
+                                </div>
+                                <p class="small text-body-secondary mb-1">The search index is rebuilt; the store stays open.</p>
+                                <div class="d-flex align-items-center gap-2 small text-body-secondary">
+                                    <span class="badge bg-secondary-subtle text-secondary-emphasis">System</span>
+                                    <span>15:05</span>
+                                </div>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-link text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions"><i data-lucide="ellipsis"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button type="button" class="dropdown-item" data-action="toggle-read">Mark as unread</button></li>
+                                    <li><button type="button" class="dropdown-item text-danger-emphasis" data-action="remove">Remove</button></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex gap-3 py-3" data-notification="n8" data-unread="false" data-mention="false" data-system="true">
+                            <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 bg-secondary-subtle text-secondary-emphasis" style="width: 40px; height: 40px" aria-hidden="true"><i data-lucide="credit-card"></i></span>
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex align-items-start gap-2">
+                                    <p class="mb-1" data-text>Invoice INV-2291 is paid</p>
+                                    <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0 mt-2 ms-auto d-none" data-dot><span class="visually-hidden">Unread</span></span>
+                                </div>
+                                <p class="small text-body-secondary mb-1">Bright Labs Ltd · $3,453.52</p>
+                                <div class="d-flex align-items-center gap-2 small text-body-secondary">
+                                    <span class="badge bg-secondary-subtle text-secondary-emphasis">Billing</span>
+                                    <span>12:40</span>
+                                </div>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-link text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions"><i data-lucide="ellipsis"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button type="button" class="dropdown-item" data-action="toggle-read">Mark as unread</button></li>
+                                    <li><button type="button" class="dropdown-item text-danger-emphasis" data-action="remove">Remove</button></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex gap-3 py-3" data-notification="n9" data-unread="false" data-mention="false" data-system="false">
+                            <img src="assets/images/avatars/9.jpg" width="40" height="40" class="rounded-circle flex-shrink-0" alt="">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex align-items-start gap-2">
+                                    <p class="mb-1" data-text><strong>Amara Okafor</strong> assigned you “Gift cards: balance page”</p>
+                                    <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0 mt-2 ms-auto d-none" data-dot><span class="visually-hidden">Unread</span></span>
+                                </div>
+                                <p class="small text-body-secondary mb-1">Due Nov 14 · Checkout</p>
+                                <div class="d-flex align-items-center gap-2 small text-body-secondary">
+                                    <span class="badge bg-success-subtle text-success-emphasis">Tasks</span>
+                                    <span>11:02</span>
+                                </div>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-link text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions"><i data-lucide="ellipsis"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button type="button" class="dropdown-item" data-action="toggle-read">Mark as unread</button></li>
+                                    <li><button type="button" class="dropdown-item text-danger-emphasis" data-action="remove">Remove</button></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+                <section data-day>
+                    <h6 class="small text-uppercase text-body-secondary bg-body-tertiary px-3 py-2 mb-0">Earlier this week</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex gap-3 py-3" data-notification="n10" data-unread="false" data-mention="false" data-system="false">
+                            <img src="assets/images/avatars/5.jpg" width="40" height="40" class="rounded-circle flex-shrink-0" alt="">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex align-items-start gap-2">
+                                    <p class="mb-1" data-text><strong>Sofia Rossi</strong> replied in the Inbox</p>
+                                    <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0 mt-2 ms-auto d-none" data-dot><span class="visually-hidden">Unread</span></span>
+                                </div>
+                                <p class="small text-body-secondary mb-1">“Great service, thank you.” · Return of a damaged chair</p>
+                                <div class="d-flex align-items-center gap-2 small text-body-secondary">
+                                    <span class="badge bg-info-subtle text-info-emphasis">Comments</span>
+                                    <span>Oct 18</span>
+                                </div>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-link text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions"><i data-lucide="ellipsis"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button type="button" class="dropdown-item" data-action="toggle-read">Mark as unread</button></li>
+                                    <li><button type="button" class="dropdown-item text-danger-emphasis" data-action="remove">Remove</button></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex gap-3 py-3" data-notification="n11" data-unread="false" data-mention="false" data-system="true">
+                            <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 bg-danger-subtle text-danger-emphasis" style="width: 40px; height: 40px" aria-hidden="true"><i data-lucide="shield-alert"></i></span>
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex align-items-start gap-2">
+                                    <p class="mb-1" data-text>Two-step sign-in is on for 18 of 26 users</p>
+                                    <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0 mt-2 ms-auto d-none" data-dot><span class="visually-hidden">Unread</span></span>
+                                </div>
+                                <p class="small text-body-secondary mb-1">Ask the other 8 to turn it on in their profile.</p>
+                                <div class="d-flex align-items-center gap-2 small text-body-secondary">
+                                    <span class="badge bg-danger-subtle text-danger-emphasis">Security</span>
+                                    <span>Oct 17</span>
+                                </div>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-link text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions"><i data-lucide="ellipsis"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button type="button" class="dropdown-item" data-action="toggle-read">Mark as unread</button></li>
+                                    <li><button type="button" class="dropdown-item text-danger-emphasis" data-action="remove">Remove</button></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex gap-3 py-3" data-notification="n12" data-unread="false" data-mention="false" data-system="true">
+                            <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 bg-secondary-subtle text-secondary-emphasis" style="width: 40px; height: 40px" aria-hidden="true"><i data-lucide="server"></i></span>
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex align-items-start gap-2">
+                                    <p class="mb-1" data-text>Export of October orders is ready</p>
+                                    <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0 mt-2 ms-auto d-none" data-dot><span class="visually-hidden">Unread</span></span>
+                                </div>
+                                <p class="small text-body-secondary mb-1">orders-2026-10.csv · 1.2 MB</p>
+                                <div class="d-flex align-items-center gap-2 small text-body-secondary">
+                                    <span class="badge bg-secondary-subtle text-secondary-emphasis">System</span>
+                                    <span>Oct 16</span>
+                                </div>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-link text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions"><i data-lucide="ellipsis"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button type="button" class="dropdown-item" data-action="toggle-read">Mark as unread</button></li>
+                                    <li><button type="button" class="dropdown-item text-danger-emphasis" data-action="remove">Remove</button></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex gap-3 py-3" data-notification="n13" data-unread="false" data-mention="false" data-system="false">
+                            <span class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0 bg-warning-subtle text-warning-emphasis" style="width: 40px; height: 40px" aria-hidden="true"><i data-lucide="shopping-cart"></i></span>
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex align-items-start gap-2">
+                                    <p class="mb-1" data-text>Order ORD-1046 changed its delivery address</p>
+                                    <span class="d-inline-block p-1 rounded-circle bg-primary flex-shrink-0 mt-2 ms-auto d-none" data-dot><span class="visually-hidden">Unread</span></span>
+                                </div>
+                                <p class="small text-body-secondary mb-1">Amara Okafor · 21 Harbor Street, floor 3</p>
+                                <div class="d-flex align-items-center gap-2 small text-body-secondary">
+                                    <span class="badge bg-warning-subtle text-warning-emphasis">Orders</span>
+                                    <span>Oct 15</span>
+                                </div>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-link text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions"><i data-lucide="ellipsis"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button type="button" class="dropdown-item" data-action="toggle-read">Mark as unread</button></li>
+                                    <li><button type="button" class="dropdown-item text-danger-emphasis" data-action="remove">Remove</button></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <div class="text-center py-5 d-none" data-empty>
+                <div class="d-inline-flex p-3 rounded-circle bg-body-tertiary text-body-secondary mb-3"><i data-lucide="bell-off"></i></div>
+                <p class="fw-bold mb-1">Nothing here</p>
+                <p class="small text-body-secondary mb-0">You are all caught up.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4">
+        <form class="card mb-3" data-channels>
+            <div class="card-header"><i data-lucide="bell-ring" class="me-2"></i>Delivery</div>
+            <div class="card-body">
+                <p class="small text-body-secondary">Choose where each kind of notification reaches you. The feed on this page always shows everything.</p>
+                <table class="table table-sm align-middle mb-3">
+                    <thead>
+                        <tr>
+                            <th scope="col">Kind</th>
+                            <th scope="col" class="text-center"><i data-lucide="mail"></i><span class="visually-hidden">Email</span></th>
+                            <th scope="col" class="text-center"><i data-lucide="monitor"></i><span class="visually-hidden">Browser</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="fw-normal"><span class="d-inline-flex align-items-center gap-2"><i data-lucide="at-sign" class="text-primary-emphasis"></i>Mentions</span></th>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="email-mention" checked>
+                                    <label class="visually-hidden" for="email-mention">Mentions by email</label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="browser-mention" checked>
+                                    <label class="visually-hidden" for="browser-mention">Mentions in the browser</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="fw-normal"><span class="d-inline-flex align-items-center gap-2"><i data-lucide="message-square" class="text-info-emphasis"></i>Comments</span></th>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="email-comment">
+                                    <label class="visually-hidden" for="email-comment">Comments by email</label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="browser-comment" checked>
+                                    <label class="visually-hidden" for="browser-comment">Comments in the browser</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="fw-normal"><span class="d-inline-flex align-items-center gap-2"><i data-lucide="square-kanban" class="text-success-emphasis"></i>Tasks</span></th>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="email-task" checked>
+                                    <label class="visually-hidden" for="email-task">Tasks by email</label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="browser-task" checked>
+                                    <label class="visually-hidden" for="browser-task">Tasks in the browser</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="fw-normal"><span class="d-inline-flex align-items-center gap-2"><i data-lucide="shopping-cart" class="text-warning-emphasis"></i>Orders</span></th>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="email-order" checked>
+                                    <label class="visually-hidden" for="email-order">Orders by email</label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="browser-order">
+                                    <label class="visually-hidden" for="browser-order">Orders in the browser</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="fw-normal"><span class="d-inline-flex align-items-center gap-2"><i data-lucide="shield-alert" class="text-danger-emphasis"></i>Security</span></th>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="email-security" checked>
+                                    <label class="visually-hidden" for="email-security">Security by email</label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="browser-security" checked>
+                                    <label class="visually-hidden" for="browser-security">Security in the browser</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="fw-normal"><span class="d-inline-flex align-items-center gap-2"><i data-lucide="credit-card" class="text-secondary-emphasis"></i>Billing</span></th>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="email-billing" checked>
+                                    <label class="visually-hidden" for="email-billing">Billing by email</label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="browser-billing">
+                                    <label class="visually-hidden" for="browser-billing">Billing in the browser</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="fw-normal"><span class="d-inline-flex align-items-center gap-2"><i data-lucide="server" class="text-secondary-emphasis"></i>System</span></th>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="email-system">
+                                    <label class="visually-hidden" for="email-system">System by email</label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-inline-block mb-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="browser-system">
+                                    <label class="visually-hidden" for="browser-system">System in the browser</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <label for="digest" class="form-label">Email digest</label>
+                <select class="form-select mb-3" id="digest">
+                    <option>Send each notification at once</option>
+                    <option selected>One digest every hour</option>
+                    <option>One digest a day, at 09:00</option>
+                </select>
+                <button type="submit" class="btn btn-primary w-100">Save settings</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast align-items-center text-bg-dark border-0" id="notificationToast" role="status" aria-live="polite" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body" data-toast-text>Saved</div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+            </div>
+            <footer class="aui-footer d-flex align-items-center">
+    <ul class="nav">
+        <li class="nav-item"><a href="#" class="nav-link">Help Center</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">API Docs</a></li>
+    </ul>
+    <ul class="nav ms-auto d-none d-md-flex">
+        <li class="nav-item"><a href="#" class="nav-link">System Status</a></li>
+        <li class="nav-item"><a href="#" class="nav-link"><span class="badge bg-success me-1 ms-0"><small>NEW</small></span>What's New</a></li>
+    </ul>
+</footer>
+
+        </main>
+    </div>
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+    <div class="toast text-bg-primary" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
+        <div class="toast-header">
+            <i data-lucide="calendar" class="me-2"></i>
+            <strong class="me-auto">Example Toast</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">You don't have any new items in your calendar today!</div>
+    </div>
+</div>
+
+</body>
+</html>
