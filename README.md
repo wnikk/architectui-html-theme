@@ -192,4 +192,4 @@ MIT, see [LICENSE](LICENSE).
 
 ## Authors
 
-Forked from [DashboardPack ArchitectUI HTML Theme Free](https://github.com/DashboardPack/architectui-html-theme-free) and maintained by the community.
+Forked from ArchitectUI HTML Theme Free and maintained by the community.
