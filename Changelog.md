@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Fixed
+- **Burger in the collapsed menu.** With the sidebar collapsed, the menu button in the header sits in the middle of its narrow area, over the menu icons; it stood 6 px to the left.
+
 ## [6.2.34] - 2026-10-20
 
 A new logo, favicon and avatars, and a shorter way to get the files. The 6.2.32 markup keeps working; the logo files are now `assets/images/logo.svg` and `assets/images/logo-on-dark.svg` instead of PNG, so pages that link the old names need the new ones.

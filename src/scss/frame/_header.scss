@@ -39,7 +39,12 @@
 }
 
 @include wide {
+  // Collapsed menu: the burger sits in the middle of the narrow brand area, over the menu icons
   [data-aui-sidebar-collapsed] .aui-header {
+    > .navbar-brand {
+      justify-content: center;
+    }
+
     .aui-logo {
       display: none;
     }
