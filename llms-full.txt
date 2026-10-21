@@ -249,6 +249,8 @@ The first icon of a link is its menu icon (20 px, `--aui-nav-icon-size`); `chevr
 </div>
 ```
 
+From 768 px the title is one row: the title text wraps, the actions block after it keeps its buttons in one line. On phones the actions go under the text, centered.
+
 Spacing of the page head follows `--aui-gutter`: the content padding above the first line, one gutter between the title and the content or the section tabs, one gutter between the tabs and the content. Do not add margins to these blocks.
 
 ### Path line

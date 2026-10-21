@@ -22,6 +22,18 @@ $page-icon-gap: 1.5rem;
     padding: 3px 0 0;
   }
 
+  // From 768 px the title is one row: the text wraps and gives way, the actions stay in one line
+  @media (min-width: 768px) {
+    > :has(> h1) {
+      min-width: 0;
+      margin-right: var(--aui-gutter);
+    }
+
+    > :has(> h1) ~ * {
+      flex-shrink: 0;
+    }
+  }
+
   > :has(> [data-lucide]) {
     width: $page-icon-size;
     height: $page-icon-size;

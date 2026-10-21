@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - **Burger in the collapsed menu.** With the sidebar collapsed, the menu button in the header sits in the middle of its narrow area, over the menu icons; it stood 6 px to the left.
+- **Page title actions in one row.** From 768 px the buttons after the title stay in one line and the title text wraps instead; before, the buttons broke into rows on narrow screens and long descriptions.
 
 ## [6.2.34] - 2026-10-20
 
