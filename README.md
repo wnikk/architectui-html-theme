@@ -45,7 +45,7 @@ server and from disk (`file://`). The theme script adds one global, `window.Arch
 later renders its icons, tooltips and popovers by itself. `ArchitectUI.token("primary")`, `ArchitectUI.rgba("primary", .5)`
 and `ArchitectUI.chartDefaults(Chart)` give page scripts the colors of the current theme.
 
-The demo pages link the theme files with `?v=<version>` (for example `architectui.css?v=6.2.34`), so a new version reaches
+The demo pages link the theme files with `?v=<version>` (for example `architectui.css?v=6.2.35`), so a new version reaches
 visitors past their browser cache. Do the same on your pages; the theme stylesheets keep the query.
 
 Start from `dist/pages-starter.html` for a page with the frame (header, sidebar, page title, footer) and from

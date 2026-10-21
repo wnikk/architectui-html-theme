@@ -2,7 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [6.2.35] - 2026-10-21
+
+Two fixes of the page frame. The 6.2.34 markup keeps working.
 
 ### Fixed
 - **Burger in the collapsed menu.** With the sidebar collapsed, the menu button in the header sits in the middle of its narrow area, over the menu icons; it stood 6 px to the left.
