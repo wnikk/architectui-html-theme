@@ -2,7 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [6.2.36] - 2026-10-30
+
+A square header corner in four themes and newer libraries. The 6.2.35 markup keeps working.
+
+### Changed
+- **Libraries.** Lucide 1.65.0 (the Icons page lists 1998 icons; nine icons left the set, none of them is used by the theme), Chart.js 4.6.1, DataTables 3.1.5. The build uses Sass 1.107.0.
 
 ### Fixed
 - **Square header corner in Orange, Indigo, Indigo Calathea and Coffee.** The header lost its rounded bottom left corner: with the header not fixed and a sidebar color set, the corner showed the page background.

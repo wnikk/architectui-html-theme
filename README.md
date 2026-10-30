@@ -32,7 +32,7 @@ the folders `themes/` and `assets/` to your project, then add to `<head>`:
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="architectui.css">
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.60.0/dist/umd/lucide.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.65.0/dist/umd/lucide.min.js"></script>
 <script defer src="architectui.js"></script>
 ```
 
@@ -45,7 +45,7 @@ server and from disk (`file://`). The theme script adds one global, `window.Arch
 later renders its icons, tooltips and popovers by itself. `ArchitectUI.token("primary")`, `ArchitectUI.rgba("primary", .5)`
 and `ArchitectUI.chartDefaults(Chart)` give page scripts the colors of the current theme.
 
-The demo pages link the theme files with `?v=<version>` (for example `architectui.css?v=6.2.35`), so a new version reaches
+The demo pages link the theme files with `?v=<version>` (for example `architectui.css?v=6.2.36`), so a new version reaches
 visitors past their browser cache. Do the same on your pages; the theme stylesheets keep the query.
 
 Start from `dist/pages-starter.html` for a page with the frame (header, sidebar, page title, footer) and from
