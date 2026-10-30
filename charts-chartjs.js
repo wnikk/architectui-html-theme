@@ -1,3 +1,13 @@
+/*!
+ * =========================================================
+ * ArchitectUI v6.2.37 - a theme layer on Bootstrap
+ * =========================================================
+ * https://github.com/wnikk/architectui-html-theme
+ * Copyright (c) 2026 Wnikk
+ * Released under the MIT License, see LICENSE
+ * =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
 // Chart.js demo charts (needs the Chart.js UMD bundle). Draws every chart whose <canvas> exists on the page; colors come from the theme tokens.
 // Chart height is set by the .aui-chart container (.aui-chart-sm, .aui-chart-lg).
 (() => {

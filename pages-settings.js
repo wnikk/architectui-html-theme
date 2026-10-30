@@ -1,3 +1,13 @@
+/*!
+ * =========================================================
+ * ArchitectUI v6.2.37 - a theme layer on Bootstrap
+ * =========================================================
+ * https://github.com/wnikk/architectui-html-theme
+ * Copyright (c) 2026 Wnikk
+ * Released under the MIT License, see LICENSE
+ * =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
 // Settings page: sections as Bootstrap tabs (the address keeps the open one, a select switches them on phones),
 // forms with Bootstrap validation, sessions, integrations, API keys, the data export and the deletion of the account
 // with a typed confirmation. A demo: changes stay until the page reloads, keys are random demo strings.

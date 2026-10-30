@@ -1,3 +1,13 @@
+/*!
+ * =========================================================
+ * ArchitectUI v6.2.37 - a theme layer on Bootstrap
+ * =========================================================
+ * https://github.com/wnikk/architectui-html-theme
+ * Copyright (c) 2026 Wnikk
+ * Released under the MIT License, see LICENSE
+ * =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
 // FullCalendar 7 demo: the global bundle and the Bootstrap 5 theme plugin, which registers itself.
 // Events are placed in the current month; their colors come from the ArchitectUI theme tokens.
 (() => {

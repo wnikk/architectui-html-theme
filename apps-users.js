@@ -1,3 +1,13 @@
+/*!
+ * =========================================================
+ * ArchitectUI v6.2.37 - a theme layer on Bootstrap
+ * =========================================================
+ * https://github.com/wnikk/architectui-html-theme
+ * Copyright (c) 2026 Wnikk
+ * Released under the MIT License, see LICENSE
+ * =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
 // Users page: search, role and status filters, pages of 10, add and edit in one modal form with Bootstrap validation,
 // delete with a confirmation. The list lives in the browser: changes stay until the page reloads.
 (() => {

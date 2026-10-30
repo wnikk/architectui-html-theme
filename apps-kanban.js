@@ -1,3 +1,13 @@
+/*!
+ * =========================================================
+ * ArchitectUI v6.2.37 - a theme layer on Bootstrap
+ * =========================================================
+ * https://github.com/wnikk/architectui-html-theme
+ * Copyright (c) 2026 Wnikk
+ * Released under the MIT License, see LICENSE
+ * =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
 // Kanban demo: drag cards between columns (HTML drag and drop), or move them with the card menu (keyboard,
 // touch screens). Add a card at the end of a column, filter by text and label. Changes stay until the page reloads.
 (() => {

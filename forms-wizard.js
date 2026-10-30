@@ -1,3 +1,13 @@
+/*!
+ * =========================================================
+ * ArchitectUI v6.2.37 - a theme layer on Bootstrap
+ * =========================================================
+ * https://github.com/wnikk/architectui-html-theme
+ * Copyright (c) 2026 Wnikk
+ * Released under the MIT License, see LICENSE
+ * =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
 // Wizard demo: one form, one section per step. Next checks the current section with Bootstrap validation
 // (.was-validated on the section), the stepper follows the steps, the last step shows a review of all answers.
 // A real project sends the form with fetch on the last step.
