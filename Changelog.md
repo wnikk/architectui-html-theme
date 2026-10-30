@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Fixed
+- **Square header corner in Orange, Indigo, Indigo Calathea and Coffee.** The header lost its rounded bottom left corner: with the header not fixed and a sidebar color set, the corner showed the page background.
+
 ## [6.2.35] - 2026-10-21
 
 Two fixes of the page frame. The 6.2.34 markup keeps working.
