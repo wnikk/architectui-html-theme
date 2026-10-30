@@ -25,7 +25,7 @@ ArchitectUI is a template: take your own copy and adapt it to your project. The 
 folder of this repository, always the latest version (its number is in `package.json` and `Changelog.md`).
 
 Download the repository as a [ZIP of the `master` branch](https://github.com/wnikk/architectui-html-theme/archive/refs/heads/master.zip)
-or clone it. Copy from `dist/` the files `architectui.css`, `architectui.js` (and `architectui-auth.js` for sign-in pages),
+or clone it. A fixed version is on the [Releases](https://github.com/wnikk/architectui-html-theme/releases) page: its ZIP holds the `dist/` files of that version. Copy from `dist/` the files `architectui.css`, `architectui.js` (and `architectui-auth.js` for sign-in pages),
 the folders `themes/` and `assets/` to your project, then add to `<head>`:
 
 ```html

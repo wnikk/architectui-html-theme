@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+- **Releases.** Each version gets a release on GitHub: the tag `v<version>`, the notes of the version from this file and a ZIP of `dist/`. A workflow publishes it when the version in `package.json` changes on `master`.
+
 ## [6.2.36] - 2026-10-30
 
 A square header corner in four themes and newer libraries. The 6.2.35 markup keeps working.

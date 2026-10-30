@@ -1,0 +1,46 @@
+# Publishes a GitHub Release when the version in package.json changes on master.
+# The release gets the tag v<version>, the notes of that version from Changelog.md
+# and a ZIP of dist/. A version that already has a release is skipped.
+name: Release
+
+on:
+  push:
+    branches: [master]
+    paths: [package.json]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Read the version
+        id: version
+        run: echo "version=$(node -p 'require("./package.json").version')" >> "$GITHUB_OUTPUT"
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          if gh release view "v$VERSION" > /dev/null 2>&1; then
+            echo "Release v$VERSION already exists"
+            exit 0
+          fi
+          awk -v v="$VERSION" '
+            index($0, "## [" v "]") == 1 { on = 1; next }
+            on && /^## \[/ { exit }
+            on { print }
+          ' Changelog.md > notes.md
+          if [ ! -s notes.md ]; then
+            echo "Changelog.md has no section for $VERSION" >&2
+            exit 1
+          fi
+          cp -r dist "architectui-$VERSION"
+          zip -qr "architectui-$VERSION.zip" "architectui-$VERSION"
+          gh release create "v$VERSION" "architectui-$VERSION.zip" \
+            --target "$GITHUB_SHA" --title "ArchitectUI $VERSION" --notes-file notes.md
