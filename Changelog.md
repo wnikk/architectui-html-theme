@@ -2,14 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [6.2.37] - 2026-10-30
+
+Updated build and a release workflow.
 
 ### Added
 - **Releases.** Each version gets a release on GitHub: the tag `v<version>`, the notes of the version from this file and a ZIP of `dist/`. A workflow publishes it when the version in `package.json` changes on `master`.
+- **License in `dist/`.** The `LICENSE` file is copied next to the built files, so every copy of `dist/` carries it.
+
+### Changed
+- **Build.** Sass 1.107.1.
 
 ## [6.2.36] - 2026-10-30
 
-A square header corner in four themes and newer libraries. The 6.2.35 markup keeps working.
+A square header corner in four themes and newer libraries.
 
 ### Changed
 - **Libraries.** Lucide 1.65.0 (the Icons page lists 1998 icons; nine icons left the set, none of them is used by the theme), Chart.js 4.6.1, DataTables 3.1.5. The build uses Sass 1.107.0.
@@ -19,7 +25,7 @@ A square header corner in four themes and newer libraries. The 6.2.35 markup kee
 
 ## [6.2.35] - 2026-10-21
 
-Two fixes of the page frame. The 6.2.34 markup keeps working.
+Two fixes of the page frame.
 
 ### Fixed
 - **Burger in the collapsed menu.** With the sidebar collapsed, the menu button in the header sits in the middle of its narrow area, over the menu icons; it stood 6 px to the left.
@@ -27,7 +33,7 @@ Two fixes of the page frame. The 6.2.34 markup keeps working.
 
 ## [6.2.34] - 2026-10-20
 
-A new logo, favicon and avatars, and a shorter way to get the files. The 6.2.32 markup keeps working; the logo files are now `assets/images/logo.svg` and `assets/images/logo-on-dark.svg` instead of PNG, so pages that link the old names need the new ones.
+A new logo, favicon and avatars, and a shorter way to get the files. the logo files are now `assets/images/logo.svg` and `assets/images/logo-on-dark.svg` instead of PNG, so pages that link the old names need the new ones.
 
 ### Changed
 - **Documentation.** README, `AGENTS.md`, `llms.txt` and `llms-full.txt` describe one way to get ArchitectUI: download or clone the repository, copy `dist/` into your project and adapt it. The theme files are no longer offered from jsDelivr; Bootstrap, Lucide and the page libraries still load from the CDN.
@@ -36,7 +42,7 @@ A new logo, favicon and avatars, and a shorter way to get the files. The 6.2.32 
 
 ## [6.2.32] - 2026-10-20
 
-Readable color schemes of the header and sidebar in every theme, and five new demo pages: Users, Pricing, Notifications, Search Results and Settings, with a bell and a working search in the header. The 6.2.26 markup keeps working; to get the bell and the header search, copy the header from `dist/pages-starter.html`.
+Readable color schemes of the header and sidebar in every theme, and five new demo pages: Users, Pricing, Notifications, Search Results and Settings, with a bell and a working search in the header. to get the bell and the header search, copy the header from `dist/pages-starter.html`.
 
 ### Added
 - **Users page** (`apps-users.html`, menu Apps): the team of the store — counters by status, search, role and status filters, a table with photos or initials, roles, teams, two-step sign-in and last activity, pages of 10. Add and Edit open one modal form with Bootstrap validation (the email must be unique); Delete asks in a confirmation modal; an owner cannot be deleted. Changes stay until the page reloads. One row template (`partials/user-row.njk`) renders the first page at build and serves the script.

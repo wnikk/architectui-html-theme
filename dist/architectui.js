@@ -1,3 +1,13 @@
+/*!
+ * =========================================================
+ * ArchitectUI v6.2.37 - a theme layer on Bootstrap
+ * =========================================================
+ * https://github.com/wnikk/architectui-html-theme
+ * Copyright (c) 2026 Wnikk
+ * Released under the MIT License, see LICENSE
+ * =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
 // ArchitectUI theme script: layout behavior on top of Bootstrap 5, no dependencies. Load it after Bootstrap
 // with <script defer src="architectui.js"></script>. Its only global is window.ArchitectUI.
 // Settings are stored in localStorage under "architectui" and applied as data-aui-* attributes on <html>.

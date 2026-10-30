@@ -1,3 +1,13 @@
+/*!
+ * =========================================================
+ * ArchitectUI v6.2.37 - a theme layer on Bootstrap
+ * =========================================================
+ * https://github.com/wnikk/architectui-html-theme
+ * Copyright (c) 2026 Wnikk
+ * Released under the MIT License, see LICENSE
+ * =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
 // Operations Wall demo (needs the Chart.js UMD bundle): sparklines in the key figures, requests by region, service charts.
 // Each <canvas data-ops-chart> is one chart; colors come from the theme tokens and follow theme and mode changes.
 // The series come from a fixed seed, so a period always starts with the same values. Auto-refresh adds a point every 5 s.

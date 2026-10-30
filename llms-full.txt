@@ -44,6 +44,7 @@ Built files in `dist/`:
 - `architectui-auth.js` — the script of the guest pages (sign in, sign up, password reset, errors): mode toggle, icons and the form flow. Load it instead of `architectui.js`.
 - `themes/<id>.css` — optional visual themes, loaded after `architectui.css`.
 - `assets/images/` — logos, avatars, theme background image.
+- `LICENSE` — the MIT license; keep it in the project copy.
 - `*.html` — demo pages; `*.js` next to them — scripts of individual demo pages.
 
 Getting the files:

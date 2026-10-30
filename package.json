@@ -1,15 +1,15 @@
 {
   "name": "architectui-html-free",
-  "version": "6.2.36",
+  "version": "6.2.37",
   "description": "ArchitectUI - Bootstrap 5 admin dashboard theme: a CSS and script layer on top of CDN Bootstrap, Lucide icons, switchable visual themes",
-  "author": "DashboardPack",
+  "author": "Wnikk",
   "homepage": "https://github.com/wnikk/architectui-html-theme",
   "private": false,
   "type": "module",
   "scripts": {
     "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
     "build:html": "eleventy",
-    "build:css": "sass src/scss/architectui.scss:dist/architectui.css src/scss/themes:dist/themes --no-source-map --style=compressed",
+    "build:css": "sass src/scss/architectui.scss:dist/architectui.css src/scss/themes:dist/themes --no-source-map --style=compressed && node src/_data/banner.js",
     "build": "npm run clean && npm run build:html && npm run build:css",
     "watch:css": "sass --watch src/scss/architectui.scss:dist/architectui.css src/scss/themes:dist/themes --no-source-map --style=compressed",
     "dev": "npm run build:css && (npm run watch:css & eleventy --serve)",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.7",
-    "sass": "^1.107.0"
+    "sass": "^1.107.1"
   },
   "license": "MIT"
 }

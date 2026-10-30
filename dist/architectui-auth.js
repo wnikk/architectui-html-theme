@@ -1,3 +1,13 @@
+/*!
+ * =========================================================
+ * ArchitectUI v6.2.37 - a theme layer on Bootstrap
+ * =========================================================
+ * https://github.com/wnikk/architectui-html-theme
+ * Copyright (c) 2026 Wnikk
+ * Released under the MIT License, see LICENSE
+ * =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
 // ArchitectUI guest script: pages for a visitor who is not signed in (sign in, sign up, password reset, errors).
 // Load it instead of architectui.js: <script defer src="architectui-auth.js"></script>. It has no admin features
 // (sidebar, header search, drop zone), and architectui.js has none of these. Its only global is window.ArchitectUI.

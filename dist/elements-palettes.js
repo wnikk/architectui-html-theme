@@ -1,3 +1,13 @@
+/*!
+ * =========================================================
+ * ArchitectUI v6.2.37 - a theme layer on Bootstrap
+ * =========================================================
+ * https://github.com/wnikk/architectui-html-theme
+ * Copyright (c) 2026 Wnikk
+ * Released under the MIT License, see LICENSE
+ * =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
 // Theme Palettes page: HEX values of the current theme (read from the page), the light or dark palettes of all themes
 // (values from the build), live script values, copy on click. A canvas pixel turns any CSS color (rgb, color-mix,
 // color()) into HEX; a translucent color gets the alpha byte.

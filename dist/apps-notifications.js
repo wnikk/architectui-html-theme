@@ -1,3 +1,13 @@
+/*!
+ * =========================================================
+ * ArchitectUI v6.2.37 - a theme layer on Bootstrap
+ * =========================================================
+ * https://github.com/wnikk/architectui-html-theme
+ * Copyright (c) 2026 Wnikk
+ * Released under the MIT License, see LICENSE
+ * =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
 // Notifications page: filters (All, Unread, Mentions, System), read and unread, remove, mark all as read, and the
 // delivery settings form. The unread count is shown on the card and on the bell in the header. Changes stay until
 // the page reloads.

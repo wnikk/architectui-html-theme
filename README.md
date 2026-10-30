@@ -45,7 +45,7 @@ server and from disk (`file://`). The theme script adds one global, `window.Arch
 later renders its icons, tooltips and popovers by itself. `ArchitectUI.token("primary")`, `ArchitectUI.rgba("primary", .5)`
 and `ArchitectUI.chartDefaults(Chart)` give page scripts the colors of the current theme.
 
-The demo pages link the theme files with `?v=<version>` (for example `architectui.css?v=6.2.36`), so a new version reaches
+The demo pages link the theme files with `?v=<version>` (for example `architectui.css?v=6.2.37`), so a new version reaches
 visitors past their browser cache. Do the same on your pages; the theme stylesheets keep the query.
 
 Start from `dist/pages-starter.html` for a page with the frame (header, sidebar, page title, footer) and from
@@ -160,20 +160,6 @@ npm run dev
 
 `npm run dev` serves the demo at http://localhost:8080 and rebuilds pages and styles on change. `npm run build` writes the built files into `dist/`.
 
-| Path | Purpose |
-|------|---------|
-| `src/pages/*.html` | Demo pages. Front matter holds the title, description and icon; `breadcrumbs` (`header` or `title`) shows the page path, `titleActions` names the partial with the title buttons, `printTitle: false` keeps the title off paper. |
-| `src/pages/*.js` | Scripts of individual pages (charts, Operations Wall, calendar, maps, notifications, icons, validation, forms wizard, Kanban, inbox, users, notifications, pricing, search, settings, profile, DataTables). |
-| `src/_includes/` | Page layouts (`base.njk` with the admin frame, `guest.njk` for sign-in and error pages) and partials (Eleventy + Nunjucks). |
-| `src/_data/menu.json` | Sidebar menu; the page path (breadcrumbs) is built from it. |
-| `src/_data/themes.json` | Theme list of the header and the profile page. |
-| `src/_data/palettes.js` | Colors of every theme in both modes, collected from the theme sources at build (Theme Palettes page). |
-| `src/_data/orders.js` | Demo orders for the table pages. |
-| `src/_data/operations.js`, `kanban.js`, `inbox.js`, `invoice.js`, `users.js`, `pricing.js`, `notifications.js`, `search.js`, `settings.js` | Demo data of the Operations Wall, Kanban, Inbox, Invoice, Users, Pricing, Notifications and Settings pages (the last one also feeds the bell in the header); `search.js` builds the search index from the menu and the other data. |
-| `src/_data/cdn.json` | Every external URL. Point them to a local `vendor/` folder to work offline. |
-| `src/scss/` | Theme styles. `architectui.scss` is the entry point. |
-| `src/js/architectui.js` | Theme script of the admin pages. |
-| `src/js/architectui-auth.js` | Script of the guest pages. |
 
 The demo pages are built with [Eleventy 3](https://www.11ty.dev), the styles with [Sass](https://sass-lang.com). These are the only two dependencies.
 

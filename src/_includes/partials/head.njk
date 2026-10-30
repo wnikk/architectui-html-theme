@@ -53,3 +53,9 @@
 {%- if script %}
 <script defer src="{{ script }}?v={{ pkg.version }}"></script>
 {%- endif %}
+{# Notice from src/_data/banner.js: the version from package.json, the copyright lines from LICENSE #}
+<!--
+{%- for line in banner %}
+* {{ line }}
+{%- endfor %}
+-->

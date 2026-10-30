@@ -33,6 +33,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("permalink", () => (data) => `${data.page.filePathStem}.html`);
 
   eleventyConfig.addPassthroughCopy({
+    LICENSE: "LICENSE",
     "src/assets/images": "assets/images",
     "src/assets/favicon.ico": "favicon.ico",
     "src/assets/favicon.svg": "favicon.svg",
