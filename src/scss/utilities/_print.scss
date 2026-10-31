@@ -2,8 +2,19 @@
 // the page title prints without its icon. architectui.js switches to the light mode for the print.
 // Cards get a thin border instead of the shadow, scroll areas print in full, and what fits on a page
 // (a card, a table row, a chart) does not break across pages. Colors print as on the screen.
-// In the markup: d-print-none hides an element on paper, d-print-block shows one only there (Bootstrap).
+// Bootstrap 6.0.0-alpha.1 has no print utilities: print:d-none hides an element on paper, print:d-block,
+// print:d-inline-block and print:d-flex show one only there (the Bootstrap 6 prefix form, in its utilities layer).
 
+@layer utilities {
+  @media print {
+    .print\:d-none { display: none; }
+    .print\:d-block { display: block; }
+    .print\:d-inline-block { display: inline-block; }
+    .print\:d-flex { display: flex; }
+  }
+}
+
+// The frame rules stay outside of the layers: they must win over the frame, the vendor styles and the utilities
 @media print {
   @page {
     margin: 12mm;
@@ -11,7 +22,7 @@
 
   html,
   body {
-    background: var(--bs-body-bg) !important;
+    background: var(--bs-bg-body) !important;
   }
 
   body {
@@ -35,9 +46,7 @@
   .toast-container,
   .tooltip,
   .popover,
-  .dropdown-menu,
-  .modal-backdrop,
-  .offcanvas-backdrop {
+  .menu {
     display: none !important;
   }
 

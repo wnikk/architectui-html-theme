@@ -1,227 +1,212 @@
 // Sidebar.
-//   >= 1250px   - full width; the header button collapses it to an icon rail
-//   768-1249px  - icon rail that expands over the content on hover
-//   < 768px     - Bootstrap Offcanvas opened from the header
+//   >= 1280px   - full width; the header button collapses it to an icon rail
+//   768-1279px  - icon rail that expands over the content on hover
+//   < 768px     - Bootstrap Drawer opened from the header
+// Markup: aside.aui-sidebar > dialog.drawer.drawer-start.drawer-sheet.md:drawer > .drawer-header + .drawer-body > ul.nav
 @use "sass:map";
 @use "../config" as *;
 
-.aui-sidebar {
-  grid-area: sidebar;
-  position: relative;
-  z-index: 1020;
-  width: var(--aui-sidebar-col);
-  background: var(--aui-surface);
-  transition: width .3s ease, box-shadow .3s ease;
-}
-
-.aui-sidebar > .offcanvas-md {
-  --bs-offcanvas-width: var(--aui-sidebar-width);
-  --bs-offcanvas-bg: var(--aui-surface);
-  overflow-x: hidden;
-}
-
-.aui-sidebar .offcanvas-body {
-  display: block;
-  padding: 0;
-}
-
-@include desktop {
-  [data-aui-sidebar="fixed"] .aui-sidebar > .offcanvas-md {
-    position: sticky;
-    top: var(--aui-header-offset);
-    height: calc(100vh - var(--aui-header-offset));
-    overflow-y: auto;
-  }
-}
-
-@include mobile {
+@layer custom {
   .aui-sidebar {
-    position: static;
-    z-index: auto;
-    width: 0;
-    background: none;
-  }
-}
-
-// Navigation: a Bootstrap nav; nested navs are submenus
-.aui-sidebar .offcanvas-body > .nav {
-  margin: 0;
-  padding: 2px var(--aui-gutter) var(--aui-gutter);
-  list-style: none;
-
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    grid-area: sidebar;
+    position: relative;
+    z-index: 1020;
+    width: var(--aui-sidebar-col);
+    background: var(--aui-surface);
+    transition: width .3s ease, box-shadow .3s ease;
   }
 
-  .collapsing {
-    transition-duration: .25s;
-  }
-}
-
-.aui-sidebar h6 {
-  position: relative;
-  margin: .75rem 0;
-  line-height: inherit;
-  font-weight: 700;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.aui-sidebar .nav-link {
-  position: relative;
-  display: block;
-  height: 2.4rem;
-  margin: .1rem 0;
-  padding: 0 var(--aui-gutter) 0 45px;
-  border-radius: var(--bs-border-radius);
-  color: var(--aui-nav-color);
-  line-height: 2.4rem;
-  white-space: nowrap;
-  transition: all .2s;
-
-  &:hover {
-    background: var(--aui-hover-bg);
-    color: var(--aui-nav-color);
+  .aui-sidebar > .drawer {
+    --bs-drawer-width: var(--aui-sidebar-width);
+    --bs-drawer-bg: var(--aui-surface);
   }
 
-  &.active {
-    font-weight: 700;
-  }
-
-  &[aria-expanded="true"] {
-    font-weight: 700;
-  }
-}
-
-// Icons are centered with auto margins, so the row stays aligned at any icon size
-.aui-sidebar .nav-link > [data-lucide]:first-child,
-.aui-sidebar .nav-link > [data-lucide="chevron-down"] {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 10px;
-  margin: auto 0;
-  transition: color .3s, opacity .3s, transform .3s;
-}
-
-.aui-sidebar .nav-link > [data-lucide="chevron-down"] {
-  right: 7px;
-  left: auto;
-}
-
-// The link prefix outweighs the default Lucide size (svg.lucide)
-.aui-sidebar .nav-link > [data-lucide]:first-child {
-  width: var(--aui-nav-icon-size);
-  height: var(--aui-nav-icon-size);
-}
-
-.aui-sidebar .nav-link > [data-lucide="chevron-down"] {
-  width: 16px;
-  height: 16px;
-}
-
-.aui-sidebar .nav-link:hover {
-  > [data-lucide]:first-child {
-    color: var(--aui-nav-icon-hover);
-    opacity: 1;
-  }
-
-  > [data-lucide="chevron-down"] {
-    opacity: 1;
-  }
-}
-
-.aui-sidebar .nav-link[aria-expanded="true"] > [data-lucide="chevron-down"] {
-  transform: rotate(-180deg);
-}
-
-.aui-sidebar .nav .nav {
-  position: relative;
-  padding: .5em 0 0 2rem !important;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 20px;
-    width: 3px;
-    height: 100%;
-    border-radius: 15px;
-  }
-
-  // Narrower side padding than the top level; a label longer than the sidebar wraps to a second line
-  .nav-link {
-    display: flex;
-    align-items: center;
-    height: auto;
-    min-height: 2rem;
-    padding: .3rem .75rem .3rem 1rem;
-    color: var(--aui-nav-sub-color);
-    line-height: 1.25;
-    white-space: normal;
-
-    &:hover {
-      color: var(--bs-primary);
+  @include mobile {
+    .aui-sidebar {
+      position: static;
+      z-index: auto;
+      width: 0;
+      background: none;
     }
   }
-}
 
-// Icon rail: labels hidden, section headings replaced by a line
-@mixin rail-items {
-  h6 {
-    color: transparent;
+  // Navigation: a Bootstrap nav; nested navs are submenus
+  .aui-sidebar .drawer-body > .nav {
+    display: block;
+    margin: 0;
+    padding: 2px var(--aui-gutter) var(--aui-gutter);
+    list-style: none;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .collapse {
+      --bs-transition-collapse-duration: .25s;
+    }
+  }
+
+  // Bootstrap 6 lays a nav item out as a flex row; the sidebar link takes the whole row
+  .aui-sidebar .nav-item {
+    display: block;
+  }
+
+  .aui-sidebar h6 {
+    position: relative;
+    margin: .75rem 0;
+    line-height: inherit;
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .aui-sidebar .nav-link {
+    position: relative;
+    display: block;
+    height: 2.4rem;
+    margin: .1rem 0;
+    padding: 0 var(--aui-gutter) 0 45px;
+    border: 0;
+    border-radius: var(--bs-radius-5);
+    color: var(--aui-nav-color);
+    font-weight: 400;
+    line-height: 2.4rem;
+    white-space: nowrap;
+    transition: all .2s;
+
+    &:hover {
+      background: var(--aui-hover-bg);
+      color: var(--aui-nav-color);
+    }
+
+    &.active {
+      font-weight: 700;
+    }
+
+    &[aria-expanded="true"] {
+      font-weight: 700;
+    }
+  }
+
+  // Icons are centered with auto margins, so the row stays aligned at any icon size
+  .aui-sidebar .nav-link > [data-lucide]:first-child,
+  .aui-sidebar .nav-link > [data-lucide="chevron-down"] {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 10px;
+    margin: auto 0;
+    transition: color .3s, opacity .3s, transform .3s;
+  }
+
+  .aui-sidebar .nav-link > [data-lucide="chevron-down"] {
+    right: 7px;
+    left: auto;
+  }
+
+  // The link prefix outweighs the default Lucide size (svg.lucide)
+  .aui-sidebar .nav-link > [data-lucide]:first-child {
+    width: var(--aui-nav-icon-size);
+    height: var(--aui-nav-icon-size);
+  }
+
+  .aui-sidebar .nav-link > [data-lucide="chevron-down"] {
+    width: 16px;
+    height: 16px;
+  }
+
+  .aui-sidebar .nav-link:hover {
+    > [data-lucide]:first-child {
+      color: var(--aui-nav-icon-hover);
+      opacity: 1;
+    }
+
+    > [data-lucide="chevron-down"] {
+      opacity: 1;
+    }
+  }
+
+  .aui-sidebar .nav-link[aria-expanded="true"] > [data-lucide="chevron-down"] {
+    transform: rotate(-180deg);
+  }
+
+  .aui-sidebar .nav .nav {
+    position: relative;
+    display: block;
+    padding: .5em 0 0 2rem;
 
     &::before {
       content: "";
       position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: var(--aui-hover-bg);
+      top: 0;
+      left: 20px;
+      width: 3px;
+      height: 100%;
+      border-radius: 15px;
+    }
+
+    // Narrower side padding than the top level; a label longer than the sidebar wraps to a second line
+    .nav-link {
+      display: flex;
+      align-items: center;
+      height: auto;
+      min-height: 2rem;
+      padding: .3rem .75rem .3rem 1rem;
+      color: var(--aui-nav-sub-color);
+      line-height: 1.25;
+      white-space: normal;
+
+      &:hover {
+        color: var(--bs-primary-fg);
+      }
     }
   }
 
-  .nav-link {
-    padding: 0;
-    color: transparent;
+  // Icon rail: labels hidden, section headings replaced by a line
+  @mixin rail-items {
+    h6 {
+      color: transparent;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--aui-hover-bg);
+      }
+    }
+
+    .nav-link {
+      padding: 0;
+      color: transparent;
+    }
+
+    // The active link keeps its background; its label stays hidden over the theme color
+    .nav-link.active {
+      color: transparent;
+    }
+
+    .nav-link > [data-lucide]:first-child {
+      right: 0;
+      left: 0;
+      margin: auto;
+    }
+
+    .nav-link > [data-lucide="chevron-down"] {
+      visibility: hidden;
+    }
+
+    .nav .collapse {
+      display: none;
+    }
   }
 
-  // The active link keeps its background; its label stays hidden over the theme color
-  .nav-link.active {
-    color: transparent;
-  }
-
-  .nav-link > [data-lucide]:first-child {
-    right: 0;
-    left: 0;
-    margin: auto;
-  }
-
-  .nav-link > [data-lucide="chevron-down"] {
-    visibility: hidden;
-  }
-
-  .nav .collapse {
-    display: none;
-  }
-}
-
-// The rail expands on hover and while a menu item has keyboard focus
-@include rail-range {
-  .aui-sidebar:not(:hover, :focus-within) {
-    @include rail-items;
-  }
-
-  .aui-sidebar:is(:hover, :focus-within) {
-    width: var(--aui-sidebar-width);
-  }
-}
-
-@include wide {
-  [data-aui-sidebar-collapsed] {
+  // The rail expands on hover and while a menu item has keyboard focus
+  @include rail-range {
     .aui-sidebar:not(:hover, :focus-within) {
       @include rail-items;
     }
@@ -230,51 +215,111 @@
       width: var(--aui-sidebar-width);
     }
   }
+
+  @include wide {
+    [data-aui-sidebar-collapsed] {
+      .aui-sidebar:not(:hover, :focus-within) {
+        @include rail-items;
+      }
+
+      .aui-sidebar:is(:hover, :focus-within) {
+        width: var(--aui-sidebar-width);
+      }
+    }
+  }
+
+  // Sidebar color schemes: data-aui-sidebar-scheme="<color>" on <html>. Background and text come from the scheme
+  // tokens of the theme; labels, headings and icons are the ink with less opacity, the active link a light veil.
+  @each $name in $aui-scheme-colors {
+    [data-aui-sidebar-scheme="#{$name}"] {
+      .aui-sidebar,
+      .aui-sidebar > .drawer {
+        --bs-drawer-bg: var(--bs-#{$name}-bg);
+        background: var(--aui-scheme-#{$name}-bg, var(--bs-#{$name}-bg));
+      }
+
+      .aui-sidebar {
+        --aui-scheme-ink: var(--aui-scheme-#{$name}-ink, #fff);
+        --aui-nav-color: color-mix(in srgb, var(--aui-scheme-ink) 92%, transparent);
+        --aui-nav-sub-color: color-mix(in srgb, var(--aui-scheme-ink) 88%, transparent);
+        --aui-hover-bg: color-mix(in srgb, var(--aui-scheme-ink) 12%, transparent);
+        --aui-nav-icon-hover: var(--aui-scheme-ink);
+
+        h6 {
+          color: color-mix(in srgb, var(--aui-scheme-ink) 85%, transparent);
+        }
+
+        // A light veil: more would lift the background under the ink below 4.5:1
+        .nav-link.active,
+        .nav .nav .nav-link.active {
+          background: color-mix(in srgb, var(--aui-scheme-ink) 8%, transparent);
+          box-shadow: none;
+          color: var(--aui-scheme-ink);
+        }
+
+        .nav .nav .nav-link:hover {
+          color: var(--aui-scheme-ink);
+        }
+
+        .nav .nav::before {
+          background: color-mix(in srgb, var(--aui-scheme-ink) 25%, transparent);
+        }
+
+        .nav-link > [data-lucide]:first-child,
+        .nav-link > [data-lucide="chevron-down"],
+        .nav-link.active > [data-lucide]:first-child {
+          color: var(--aui-scheme-ink);
+          opacity: .7;
+        }
+
+        .drawer-header .btn-close {
+          color: var(--aui-scheme-ink);
+        }
+      }
+    }
+  }
 }
 
-// Sidebar color schemes: data-aui-sidebar-scheme="<color>" on <html>. Background and text come from the scheme
-// tokens of the theme; labels, headings and icons are the ink with less opacity, the active link a light veil.
-@each $name in $aui-scheme-colors {
-  [data-aui-sidebar-scheme="#{$name}"] {
-    .aui-sidebar,
-    .aui-sidebar > .offcanvas-md {
-      --bs-offcanvas-bg: var(--bs-#{$name});
-      background: var(--aui-scheme-#{$name}-bg, var(--bs-#{$name}));
+// The Drawer rules of Bootstrap 6 sit outside of its layers, so these overrides stay outside too.
+// From 768 px the responsive drawer is a static block (Bootstrap sets display: flex and a row layout for
+// a navbar); the sidebar needs a column that scrolls on its own when the sidebar is fixed.
+@include desktop {
+  .aui-sidebar > .drawer {
+    flex-direction: column;
+    overflow-x: hidden;
+    // The shadow of the closed dialog would cover the page
+    box-shadow: none;
+
+    > .drawer-body {
+      display: block;
+      padding: 0;
+      overflow-x: hidden;
+    }
+  }
+
+  [data-aui-sidebar="fixed"] .aui-sidebar > .drawer {
+    position: sticky !important;
+    top: var(--aui-header-offset);
+    height: calc(100vh - var(--aui-header-offset)) !important;
+    overflow-y: auto;
+  }
+}
+
+@include mobile {
+  // The sheet variant: flush to the left edge, full height, no inset or radius
+  .aui-sidebar > .drawer {
+    --bs-drawer-inset: 0;
+    --bs-drawer-border-radius: 0;
+    max-width: var(--aui-sidebar-width);
+    overflow-x: hidden;
+
+    > .drawer-header {
+      height: var(--aui-header-height);
+      padding: 0 var(--aui-gutter);
     }
 
-    .aui-sidebar {
-      --aui-scheme-ink: var(--aui-scheme-#{$name}-ink, #fff);
-      --aui-nav-color: color-mix(in srgb, var(--aui-scheme-ink) 92%, transparent);
-      --aui-nav-sub-color: color-mix(in srgb, var(--aui-scheme-ink) 88%, transparent);
-      --aui-hover-bg: color-mix(in srgb, var(--aui-scheme-ink) 12%, transparent);
-      --aui-nav-icon-hover: var(--aui-scheme-ink);
-
-      h6 {
-        color: color-mix(in srgb, var(--aui-scheme-ink) 85%, transparent);
-      }
-
-      // A light veil: more would lift the background under the ink below 4.5:1
-      .nav-link.active,
-      .nav .nav .nav-link.active {
-        background: color-mix(in srgb, var(--aui-scheme-ink) 8%, transparent);
-        box-shadow: none;
-        color: var(--aui-scheme-ink);
-      }
-
-      .nav .nav .nav-link:hover {
-        color: var(--aui-scheme-ink);
-      }
-
-      .nav .nav::before {
-        background: color-mix(in srgb, var(--aui-scheme-ink) 25%, transparent);
-      }
-
-      .nav-link > [data-lucide]:first-child,
-      .nav-link > [data-lucide="chevron-down"],
-      .nav-link.active > [data-lucide]:first-child {
-        color: var(--aui-scheme-ink);
-        opacity: .7;
-      }
+    > .drawer-body {
+      padding: 0;
     }
   }
 }

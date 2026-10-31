@@ -9,7 +9,7 @@
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
 // Wizard demo: one form, one section per step. Next checks the current section with Bootstrap validation
-// (.was-validated on the section), the stepper follows the steps, the last step shows a review of all answers.
+// (data-bs-validate on the form), the stepper follows the steps, the last step shows a review of all answers.
 // A real project sends the form with fetch on the last step.
 (() => {
   const form = document.getElementById("wizard");
@@ -65,9 +65,9 @@
     steps.forEach((step, i) => {
       step.hidden = i !== index;
     });
+    // The Bootstrap 6 stepper marks the finished steps and the current one with .active
     stepper.forEach((item, i) => {
-      item.classList.toggle("active", i === index);
-      item.classList.toggle("done", i < index);
+      item.classList.toggle("active", i <= index);
       if (i === index) item.setAttribute("aria-current", "step");
       else item.removeAttribute("aria-current");
     });
@@ -89,8 +89,7 @@
       step.hidden = true;
     });
     stepper.forEach((item) => {
-      item.classList.remove("active");
-      item.classList.add("done");
+      item.classList.add("active");
       item.removeAttribute("aria-current");
     });
     nav.classList.add("d-none");
@@ -105,7 +104,6 @@
     if (current === TEAM_STEP) checkInvites();
     const fields = [...step.querySelectorAll("input, select, textarea")];
     if (!fields.every((field) => field.checkValidity())) {
-      step.classList.add("was-validated");
       fields.find((field) => !field.validity.valid)?.focus();
       return;
     }
@@ -125,7 +123,6 @@
 
   form.querySelector("[data-wizard-restart]").addEventListener("click", () => {
     form.reset();
-    steps.forEach((step) => step.classList.remove("was-validated"));
     done.hidden = true;
     nav.classList.remove("d-none");
     show(0);

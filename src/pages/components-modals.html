@@ -4,20 +4,23 @@ description: "Wide selection of modal dialogs styles and animations available."
 icon: "phone"
 ---
             <div class="row">
-                <div class="col-md-12">
-                    <div class="mb-3 card">
+                <div class="md:col-12">
+                    <div class="mb-5 card">
                         <div class="card-body">
                             <div class="card-title">Basic Examples</div>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn me-2 mb-2 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="btn-solid theme-primary me-3 mb-3" data-bs-toggle="dialog" data-bs-target="#exampleModal">
                                 Basic Modal
                             </button>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn me-2 mb-2 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
+                            <button type="button" class="btn-solid theme-primary me-3 mb-3" data-bs-toggle="dialog" data-bs-target="#exampleModalLong">
                                 Long Content
                             </button>
-                            <button type="button" class="btn me-2 mb-2 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLarge">Large modal</button>
-                            <button type="button" class="btn me-2 mb-2 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalSmall">Small modal</button>
+                            <button type="button" class="btn-solid theme-primary me-3 mb-3" data-bs-toggle="dialog" data-bs-target="#exampleModalLarge">Large modal</button>
+                            <button type="button" class="btn-solid theme-primary me-3 mb-3" data-bs-toggle="dialog" data-bs-target="#exampleModalSmall">Small modal</button>
+                            <button type="button" class="btn-outline theme-primary me-3 mb-3" data-bs-toggle="dialog" data-bs-target="#exampleModalSlide">Slides up, fullscreen on phones</button>
+                            <button type="button" class="btn-outline theme-primary me-3 mb-3" data-bs-toggle="dialog" data-bs-target="#exampleModalStatic">Static backdrop</button>
+                            <button type="button" class="btn-outline theme-secondary me-3 mb-3" data-bs-toggle="dialog" data-bs-target="#exampleModalNonmodal">Non-modal</button>
                         </div>
                     </div>
                 </div>
@@ -26,99 +29,111 @@ icon: "phone"
 
 <!-- Large modal -->
 
-<div class="modal fade" id="exampleModalLarge" tabindex="-1" role="dialog" aria-labelledby="exampleModalLargeTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLargeTitle">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>The quarterly report is ready for review. It covers revenue, refunds, new customers and churn by region. Comments from the finance team are due on Friday, after which the report goes to the board.</p>
-                <p>Support answered 94% of tickets within one hour. The average rating is 4.7 out of 5.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
+<dialog class="dialog dialog-lg" id="exampleModalLarge" aria-labelledby="exampleModalLargeTitle">
+    <div class="dialog-header">
+        <h5 class="dialog-title" id="exampleModalLargeTitle">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="dialog" aria-label="Close">
+        </button>
     </div>
-</div>
+    <div class="dialog-body">
+        <p>The quarterly report is ready for review. It covers revenue, refunds, new customers and churn by region. Comments from the finance team are due on Friday, after which the report goes to the board.</p>
+        <p>Support answered 94% of tickets within one hour. The average rating is 4.7 out of 5.</p>
+    </div>
+    <div class="dialog-footer">
+        <button type="button" class="btn-solid theme-secondary" data-bs-dismiss="dialog">Close</button>
+        <button type="button" class="btn-solid theme-primary">Save changes</button>
+    </div>
+</dialog>
 
 <!-- Small modal -->
 
-<div class="modal fade" id="exampleModalSmall" tabindex="-1" role="dialog" aria-labelledby="exampleModalSmallTitle" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalSmallTitle">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Two new team members joined this week. Assign them a role before they sign in.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
+<dialog class="dialog dialog-sm" id="exampleModalSmall" aria-labelledby="exampleModalSmallTitle">
+    <div class="dialog-header">
+        <h5 class="dialog-title" id="exampleModalSmallTitle">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="dialog" aria-label="Close">
+        </button>
     </div>
-</div>
+    <div class="dialog-body">
+        <p>Two new team members joined this week. Assign them a role before they sign in.</p>
+    </div>
+    <div class="dialog-footer">
+        <button type="button" class="btn-solid theme-secondary" data-bs-dismiss="dialog">Close</button>
+        <button type="button" class="btn-solid theme-primary">Save changes</button>
+    </div>
+</dialog>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Two-step sign-in is now required for owners and administrators. Members without a verification app get a code by email. Accounts that do not turn it on within 14 days lose access until they complete the setup.</p>
-                <p>The nightly backup finished in 12 minutes. The next one starts at 02:00 UTC.</p>
-                <p>The new pricing for annual plans starts on November 1. Existing customers keep their price until the next renewal. Send the announcement at least 30 days before the change, as the terms of service require.</p>
-                <p>This month the store processed 1,896 orders with an average value of $73. Conversion on mobile rose from 2.1% to 2.6% after the new checkout went live, while desktop stayed flat. The team plans to test one-click payments next.</p>
-                <p>Shipping costs rose by 4% after the carrier update on October 1.</p>
-                <p>Inventory for 14 products is below the reorder level. The suggested purchase order covers four weeks of sales based on the last 90 days. Review the quantities before you send it to the supplier, because two items have seasonal demand.</p>
-                <p>Customer support closed 312 tickets this week. Most questions were about delivery dates and invoice copies. Adding the tracking link to the order email should cut these questions by about a third, according to last quarter's test.</p>
-                <p>The API key for the billing integration expires in 9 days. Create a new key in Settings.</p>
-                <p>The quarterly report is ready for review. It covers revenue, refunds, new customers and churn by region. Comments from the finance team are due on Friday, after which the report goes to the board.</p>
-                <p>Two-step sign-in is now required for owners and administrators. Members without a verification app get a code by email. Accounts that do not turn it on within 14 days lose access until they complete the setup.</p>
-                <p>Revenue grew 18% this month. Most of the growth came from repeat customers in the EU region.</p>
-                <p>The new pricing for annual plans starts on November 1. Existing customers keep their price until the next renewal. Send the announcement at least 30 days before the change, as the terms of service require.</p>
-                <p>This month the store processed 1,896 orders with an average value of $73. Conversion on mobile rose from 2.1% to 2.6% after the new checkout went live, while desktop stayed flat. The team plans to test one-click payments next.</p>
-                <p>Three orders are waiting for payment for more than 48 hours. Send a reminder or cancel them.</p>
-                <p>Inventory for 14 products is below the reorder level. The suggested purchase order covers four weeks of sales based on the last 90 days. Review the quantities before you send it to the supplier, because two items have seasonal demand.</p>
-                <p>Customer support closed 312 tickets this week. Most questions were about delivery dates and invoice copies. Adding the tracking link to the order email should cut these questions by about a third, according to last quarter's test.</p>
-                <p>The warehouse in Lisbon ships same-day orders placed before 2 pm local time.</p>
-                <p>The quarterly report is ready for review. It covers revenue, refunds, new customers and churn by region. Comments from the finance team are due on Friday, after which the report goes to the board.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
+<dialog class="dialog" id="exampleModalLong" aria-labelledby="exampleModalLongTitle">
+    <div class="dialog-header">
+        <h5 class="dialog-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="dialog" aria-label="Close">
+        </button>
     </div>
-</div>
+    <div class="dialog-body">
+        <p>Two-step sign-in is now required for owners and administrators. Members without a verification app get a code by email. Accounts that do not turn it on within 14 days lose access until they complete the setup.</p>
+        <p>The nightly backup finished in 12 minutes. The next one starts at 02:00 UTC.</p>
+        <p>The new pricing for annual plans starts on November 1. Existing customers keep their price until the next renewal. Send the announcement at least 30 days before the change, as the terms of service require.</p>
+        <p>This month the store processed 1,896 orders with an average value of $73. Conversion on mobile rose from 2.1% to 2.6% after the new checkout went live, while desktop stayed flat. The team plans to test one-click payments next.</p>
+        <p>Shipping costs rose by 4% after the carrier update on October 1.</p>
+        <p>Inventory for 14 products is below the reorder level. The suggested purchase order covers four weeks of sales based on the last 90 days. Review the quantities before you send it to the supplier, because two items have seasonal demand.</p>
+        <p>Customer support closed 312 tickets this week. Most questions were about delivery dates and invoice copies. Adding the tracking link to the order email should cut these questions by about a third, according to last quarter's test.</p>
+        <p>The API key for the billing integration expires in 9 days. Create a new key in Settings.</p>
+        <p>The quarterly report is ready for review. It covers revenue, refunds, new customers and churn by region. Comments from the finance team are due on Friday, after which the report goes to the board.</p>
+        <p>Two-step sign-in is now required for owners and administrators. Members without a verification app get a code by email. Accounts that do not turn it on within 14 days lose access until they complete the setup.</p>
+        <p>Revenue grew 18% this month. Most of the growth came from repeat customers in the EU region.</p>
+        <p>The new pricing for annual plans starts on November 1. Existing customers keep their price until the next renewal. Send the announcement at least 30 days before the change, as the terms of service require.</p>
+        <p>This month the store processed 1,896 orders with an average value of $73. Conversion on mobile rose from 2.1% to 2.6% after the new checkout went live, while desktop stayed flat. The team plans to test one-click payments next.</p>
+        <p>Three orders are waiting for payment for more than 48 hours. Send a reminder or cancel them.</p>
+        <p>Inventory for 14 products is below the reorder level. The suggested purchase order covers four weeks of sales based on the last 90 days. Review the quantities before you send it to the supplier, because two items have seasonal demand.</p>
+        <p>Customer support closed 312 tickets this week. Most questions were about delivery dates and invoice copies. Adding the tracking link to the order email should cut these questions by about a third, according to last quarter's test.</p>
+        <p>The warehouse in Lisbon ships same-day orders placed before 2 pm local time.</p>
+        <p>The quarterly report is ready for review. It covers revenue, refunds, new customers and churn by region. Comments from the finance team are due on Friday, after which the report goes to the board.</p>
+    </div>
+    <div class="dialog-footer">
+        <button type="button" class="btn-solid theme-secondary" data-bs-dismiss="dialog">Close</button>
+        <button type="button" class="btn-solid theme-primary">Save changes</button>
+    </div>
+</dialog>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="mb-0">Support answered 94% of tickets within one hour. The average rating is 4.7 out of 5.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
+<dialog class="dialog" id="exampleModal" aria-labelledby="exampleModalLabel">
+    <div class="dialog-header">
+        <h5 class="dialog-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="dialog" aria-label="Close">
+        </button>
     </div>
-</div>
+    <div class="dialog-body">
+        <p class="mb-0">Support answered 94% of tickets within one hour. The average rating is 4.7 out of 5.</p>
+    </div>
+    <div class="dialog-footer">
+        <button type="button" class="btn-solid theme-secondary" data-bs-dismiss="dialog">Close</button>
+        <button type="button" class="btn-solid theme-primary">Save changes</button>
+    </div>
+</dialog>
+{#- New in Bootstrap 6: slide animation with a fullscreen variant on phones, a static backdrop and a non-modal dialog #}
+<dialog class="dialog dialog-slide-up sm-down:dialog-fullscreen" id="exampleModalSlide" aria-labelledby="exampleModalSlideTitle">
+    <div class="dialog-header">
+        <h5 class="dialog-title" id="exampleModalSlideTitle">Slides up</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="dialog" aria-label="Close"></button>
+    </div>
+    <div class="dialog-body"><p class="mb-0">On a phone this dialog takes the whole screen (<code>sm-down:dialog-fullscreen</code>).</p></div>
+    <div class="dialog-footer">
+        <button type="button" class="btn-solid theme-primary" data-bs-dismiss="dialog">Got it</button>
+    </div>
+</dialog>
+<dialog class="dialog dialog-sm dialog-static" id="exampleModalStatic" aria-labelledby="exampleModalStaticTitle">
+    <div class="dialog-header">
+        <h5 class="dialog-title" id="exampleModalStaticTitle">Unsaved changes</h5>
+    </div>
+    <div class="dialog-body"><p class="mb-0">A click outside shakes the dialog instead of closing it; Escape still closes it.</p></div>
+    <div class="dialog-footer">
+        <button type="button" class="btn-text theme-secondary" data-bs-dismiss="dialog">Discard</button>
+        <button type="button" class="btn-solid theme-primary" data-bs-dismiss="dialog">Save</button>
+    </div>
+</dialog>
+<dialog class="dialog dialog-nonmodal" id="exampleModalNonmodal" data-bs-modal="false" aria-labelledby="exampleModalNonmodalTitle">
+    <div class="dialog-header">
+        <h5 class="dialog-title" id="exampleModalNonmodalTitle">Non-modal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="dialog" aria-label="Close"></button>
+    </div>
+    <div class="dialog-body"><p class="mb-0">The page stays usable while this dialog is open: no backdrop, no focus trap.</p></div>
+</dialog>

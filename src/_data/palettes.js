@@ -8,54 +8,63 @@ import { readFileSync } from "node:fs";
 
 const themes = JSON.parse(readFileSync(new URL("./themes.json", import.meta.url), "utf8"));
 
-// Colors shown on the page: group, label, custom property, a class that uses it. A solid color is text-bg-<color>:
-// in the theme bg-<color> paints the gradient over the color.
+// Colors shown on the page: group, label, custom property, a class that uses it. A solid color is bg-<color> with
+// fg-contrast-<color>: in the theme bg-<color> paints the gradient over the color.
 const tokens = [
-  ["Brand", "Primary", "--bs-primary", "text-bg-primary"],
-  ["Brand", "Primary subtle", "--bs-primary-bg-subtle", "bg-primary-subtle"],
-  ["Brand", "Primary emphasis", "--bs-primary-text-emphasis", "text-primary-emphasis"],
-  ["Brand", "Link", "--bs-link-color", "link-primary"],
-  ["Brand", "Alternate", "--bs-alternate", "text-bg-alternate"],
-  ["Status", "Secondary", "--bs-secondary", "text-bg-secondary"],
-  ["Status", "Success", "--bs-success", "text-bg-success"],
-  ["Status", "Info", "--bs-info", "text-bg-info"],
-  ["Status", "Warning", "--bs-warning", "text-bg-warning"],
-  ["Status", "Danger", "--bs-danger", "text-bg-danger"],
-  ["Status", "Light", "--bs-light", "text-bg-light"],
-  ["Status", "Dark", "--bs-dark", "text-bg-dark"],
-  ["Status", "Focus", "--bs-focus", "text-bg-focus"],
-  ["Status", "Tertiary", "--bs-tertiary", "text-bg-tertiary"],
+  ["Brand", "Primary", "--bs-primary-base", "bg-primary fg-contrast-primary"],
+  ["Brand", "Primary subtle", "--bs-primary-bg-subtle", "bg-subtle-primary"],
+  ["Brand", "Primary text", "--bs-primary-fg", "fg-primary"],
+  ["Brand", "Primary emphasis", "--bs-primary-fg-emphasis", "fg-emphasis-primary"],
+  ["Brand", "Link", "--bs-link-color", ""],
+  ["Brand", "Accent", "--bs-accent-base", "bg-accent fg-contrast-accent"],
+  ["Status", "Secondary", "--bs-secondary-base", "bg-secondary fg-contrast-secondary"],
+  ["Status", "Success", "--bs-success-base", "bg-success fg-contrast-success"],
+  ["Status", "Info", "--bs-info-base", "bg-info fg-contrast-info"],
+  ["Status", "Warning", "--bs-warning-base", "bg-warning fg-contrast-warning"],
+  ["Status", "Danger", "--bs-danger-base", "bg-danger fg-contrast-danger"],
+  ["Status", "Inverse", "--bs-inverse-base", "bg-inverse fg-contrast-inverse"],
+  ["Status", "Focus", "--bs-focus-base", "bg-focus fg-contrast-focus"],
   ["Surfaces", "Page", "--aui-app-bg", ""],
-  ["Surfaces", "Surface", "--aui-surface", "bg-body"],
-  ["Surfaces", "Secondary surface", "--bs-secondary-bg", "bg-body-secondary"],
-  ["Surfaces", "Tertiary surface", "--bs-tertiary-bg", "bg-body-tertiary"],
+  ["Surfaces", "Surface", "--bs-bg-body", "bg-body"],
+  ["Surfaces", "Surface 1", "--bs-bg-1", "bg-1"],
+  ["Surfaces", "Surface 2", "--bs-bg-2", "bg-2"],
+  ["Surfaces", "Surface 3", "--bs-bg-3", "bg-3"],
   ["Surfaces", "Border", "--bs-border-color", "border"],
-  ["Text", "Body text", "--bs-body-color", "text-body"],
-  ["Text", "Secondary text", "--bs-secondary-color", "text-body-secondary"],
-  ["Text", "Tertiary text", "--bs-tertiary-color", "text-body-tertiary"],
+  ["Text", "Body text", "--bs-fg-body", "fg-body"],
+  ["Text", "Text 1", "--bs-fg-1", "fg-1"],
+  ["Text", "Text 2", "--bs-fg-2", "fg-2"],
+  ["Text", "Text 3", "--bs-fg-3", "fg-3"],
   ["Gradients", "Primary", "--aui-gradient-primary", "bg-primary"],
   ["Gradients", "Success", "--aui-gradient-success", "bg-success"],
   ["Gradients", "Info", "--aui-gradient-info", "bg-info"],
   ["Gradients", "Warning", "--aui-gradient-warning", "bg-warning"],
   ["Gradients", "Danger", "--aui-gradient-danger", "bg-danger"],
-  ["Gradients", "Dark", "--aui-gradient-dark", "bg-dark"],
+  ["Gradients", "Inverse", "--aui-gradient-inverse", "bg-inverse"],
 ].map(([group, label, name, cls]) => ({ group, label, name, cls, gradient: name.startsWith("--aui-gradient") }));
 
-// Bootstrap 5.3 values that a theme may leave as they are (Bootstrap CSS comes from the CDN, not from the sources)
+// Bootstrap 6 values that a theme may leave as they are (Bootstrap CSS comes from the CDN, not from the sources)
 const bootstrap = {
-  light: {
-    "--bs-body-color": "#212529", "--bs-body-bg": "#fff", "--bs-secondary-color": "rgba(33, 37, 41, .75)",
-    "--bs-tertiary-color": "rgba(33, 37, 41, .5)", "--bs-secondary-bg": "#e9ecef", "--bs-tertiary-bg": "#f8f9fa",
-    "--bs-border-color": "#dee2e6", "--bs-link-color": "#0d6efd", "--bs-primary-bg-subtle": "#cfe2ff",
-    "--bs-primary-text-emphasis": "#052c65", "--bs-light": "#f8f9fa", "--bs-dark": "#212529",
-  },
-  dark: {
-    "--bs-body-color": "#dee2e6", "--bs-body-bg": "#212529", "--bs-secondary-color": "rgba(222, 226, 230, .75)",
-    "--bs-tertiary-color": "rgba(222, 226, 230, .5)", "--bs-secondary-bg": "#343a40", "--bs-tertiary-bg": "#2b3035",
-    "--bs-border-color": "#495057", "--bs-link-color": "#6ea8fe", "--bs-primary-bg-subtle": "#031633",
-    "--bs-primary-text-emphasis": "#6ea8fe", "--bs-light": "#f8f9fa", "--bs-dark": "#212529",
-  },
+  light: { "--bs-bg-body": "#fff", "--bs-fg-body": "#212529", "--bs-border-color": "#dee2e6", "--bs-link-color": "#0d6efd" },
+  dark: { "--bs-bg-body": "#111", "--bs-fg-body": "#f8f9fa", "--bs-border-color": "#495057", "--bs-link-color": "#6ea8fe" },
 };
+
+// Bootstrap 6 writes both modes in one value: light-dark(light, dark). Keep the value of one mode.
+function pickMode(value, mode) {
+  let out = value;
+  for (;;) {
+    const i = out.indexOf("light-dark(");
+    if (i < 0) return out;
+    let depth = 0, j = i + 10, comma = -1;
+    for (; j < out.length; j++) {
+      if (out[j] === "(") depth++;
+      else if (out[j] === ")") { depth--; if (depth === 0) break; }
+      else if (out[j] === "," && depth === 1 && comma < 0) comma = j;
+    }
+    const light = out.slice(i + 11, comma).trim();
+    const dark = out.slice(comma + 1, j).trim();
+    out = out.slice(0, i) + (mode === "dark" ? dark : light) + out.slice(j + 1);
+  }
+}
 
 // Rules with custom properties, in source order: { selector, declarations: [[name, value]] }
 function rules(css) {
@@ -130,7 +139,8 @@ function resolve(map, value, seen = new Set()) {
   });
 }
 
-const compile = (file) => sass.compile(file, { loadPaths: ["src/scss"], style: "expanded" }).css;
+// Only the token blocks matter here; the component rules in @layer custom carry no tokens
+const compile = (file) => sass.compile(file, { loadPaths: ["src/scss"], style: "expanded" }).css.replace(/@layer custom \{[\s\S]*?\n\}\n/g, "");
 const core = rules(compile("src/scss/architectui.scss"));
 const unresolved = [];
 
@@ -152,7 +162,7 @@ function palette(theme, mode, themeRules) {
   const map = { ...bootstrap[mode], ...Object.fromEntries(Object.entries(won).map(([k, v]) => [k, v.value])) };
   const values = {};
   for (const token of tokens) {
-    const value = map[token.name] === undefined ? undefined : resolve(map, map[token.name]);
+    const value = map[token.name] === undefined ? undefined : pickMode(resolve(map, map[token.name]), mode);
     if (value === undefined || value.includes("var(")) unresolved.push(`${theme.name || "Business"} ${mode} ${token.name}: ${value}`);
     values[token.name] = value ?? "";
   }

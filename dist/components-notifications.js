@@ -38,12 +38,12 @@
   const ICONS = { primary: "bell", success: "circle-check", info: "info", warning: "triangle-alert", danger: "circle-x", dark: "bell" };
 
   function markup(s) {
-    const icon = `<i data-lucide="${ICONS[s.color]}" class="me-2"></i>`;
+    const icon = `<i data-lucide="${ICONS[s.color]}" class="me-3"></i>`;
     const message = escapeHtml(s.message);
     const body = s.title
       ? `\n  <div class="toast-header">\n    ${icon}\n    <strong class="me-auto">${escapeHtml(s.title)}</strong>${s.close ? '\n    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>' : ""}\n  </div>\n  <div class="toast-body">${message}</div>`
-      : `\n  <div class="d-flex">\n    <div class="toast-body">${icon}${message}</div>${s.close ? '\n    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>' : ""}\n  </div>`;
-    return `<div class="toast text-bg-${s.color}" role="status" aria-live="polite" aria-atomic="true" data-bs-autohide="${s.autohide}" data-bs-delay="${s.delay}">${body}\n</div>`;
+      : `\n  <div class="d-flex">\n    <div class="toast-body">${icon}${message}</div>${s.close ? '\n    <button type="button" class="btn-close me-3 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>' : ""}\n  </div>`;
+    return `<div class="toast theme-${s.color}" role="status" aria-live="polite" aria-atomic="true" data-bs-autohide="${s.autohide}" data-bs-delay="${s.delay}">${body}\n</div>`;
   }
 
   function container(position) {

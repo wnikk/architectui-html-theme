@@ -1,7 +1,8 @@
 // Lucide icon colors. Gradient strokes reference the <svg> gradients in partials/icon-gradients.njk.
-
-@each $name in ("primary", "info", "success", "warning", "danger", "secondary", "dark", "focus", "alternate") {
-  svg.aui-icon-gradient-#{$name} {
-    stroke: url("#aui-gradient-#{$name}");
+@layer custom {
+  @each $name in ("primary", "info", "success", "warning", "danger", "secondary", "inverse", "focus", "accent") {
+    svg.aui-icon-gradient-#{$name} {
+      stroke: url("#aui-gradient-#{$name}");
+    }
   }
 }

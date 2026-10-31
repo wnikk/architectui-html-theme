@@ -3,19 +3,21 @@
 // stored settings and links to themes/indigo-img.css keep working.
 @use "indigo";
 
-.aui-app > main {
-  background-image: url("../assets/images/themes/indigo-calathea.jpg");
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-}
+@layer custom {
+  .aui-app > main {
+    background-image: url("../assets/images/themes/indigo-calathea.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
 
-:root:not([data-bs-theme="dark"]) .aui-app > main {
-  background-color: rgba(248, 250, 252, .99);
-  background-blend-mode: lighten;
-}
+  :root:not([data-bs-theme="dark"]) .aui-app > main {
+    background-color: rgba(248, 250, 252, .99);
+    background-blend-mode: lighten;
+  }
 
-[data-bs-theme="dark"] .aui-app > main {
-  background-color: rgba(11, 18, 32, .99);
-  background-blend-mode: darken;
+  [data-bs-theme="dark"] .aui-app > main {
+    background-color: rgba(11, 18, 32, .99);
+    background-blend-mode: darken;
+  }
 }

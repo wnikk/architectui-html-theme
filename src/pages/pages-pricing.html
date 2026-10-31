@@ -6,41 +6,39 @@ iconClass: "text-primary"
 script: "pages-pricing.js"
 ---
 {#- Prices come from _data/pricing.js. The page shows monthly prices; pages-pricing.js switches them to yearly. #}
-<div class="text-center mb-4" id="pricing">
-    <h2 class="h3 mb-2">One price per user, every feature of the plan</h2>
-    <p class="text-body-secondary mb-3">Start free and upgrade when the team grows. Every paid plan starts with a 14-day trial.</p>
+<div class="text-center mb-7" id="pricing">
+    <h2 class="h3 mb-3">One price per user, every feature of the plan</h2>
+    <p class="fg-2 mb-5">Start free and upgrade when the team grows. Every paid plan starts with a 14-day trial.</p>
     <div class="btn-group" role="group" aria-label="Billing period">
-        <input type="radio" class="btn-check" name="billing" id="billingMonthly" value="monthly" checked>
-        <label class="btn btn-outline-primary" for="billingMonthly">Monthly</label>
-        <input type="radio" class="btn-check" name="billing" id="billingYearly" value="yearly">
-        <label class="btn btn-outline-primary d-inline-flex align-items-center gap-2" for="billingYearly">Yearly <span class="badge bg-success-subtle text-success-emphasis">Save {{ pricing.saving }}%</span></label>
+        <label class="btn-check btn-outline theme-primary"><input type="radio"  name="billing" value="monthly" checked>Monthly</label>
+        <label class="btn-check btn-outline theme-primary d-inline-flex align-items-center gap-3"><input type="radio"  name="billing" value="yearly">Yearly <span class="badge theme-success badge-subtle">Save {{ pricing.saving }}%</span></label>
     </div>
 </div>
 
-<div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-3 mb-4">
+<div class="row row-cols-1 md:row-cols-2 xl:row-cols-4 g-5 mb-7">
     {%- for plan in pricing.plans %}
     <div class="col">
-        <div class="card h-100{% if plan.popular %} border border-2 border-primary aui-card-shadow-primary{% endif %}">
+        <div class="card h-100 {% if plan.popular %} border border-2 border-primary shadow shadow-primary {% endif %}">
             <div class="card-body d-flex flex-column">
-                <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-                    <span class="d-inline-flex p-2 rounded-3 bg-primary-subtle text-primary-emphasis"><i data-lucide="{{ plan.icon }}"></i></span>
+                <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                    <span class="d-inline-flex p-3 rounded-5 bg-subtle-primary fg-emphasis-primary"><i data-lucide="{{ plan.icon }}"></i></span>
                     <h3 class="h5 mb-0">{{ plan.title }}</h3>
                     {%- if plan.popular %}
-                    <span class="badge text-bg-primary ms-auto">Most popular</span>
+                    <span class="badge ms-auto theme-primary">Most popular</span>
                     {%- endif %}
                 </div>
-                <p class="small text-body-secondary mb-3">{{ plan.note }}</p>
+                <p class="small fg-2 mb-5">{{ plan.note }}</p>
                 <div class="mb-1">
-                    <span class="fs-2 fw-bold aui-number" data-price data-monthly="{{ plan.priceMonthly }}" data-yearly="{{ plan.priceYearly }}">{{ plan.priceMonthly }}</span>
+                    <span class="fs-3xl fw-bold aui-number" data-price data-monthly="{{ plan.priceMonthly }}" data-yearly="{{ plan.priceYearly }}">{{ plan.priceMonthly }}</span>
                     {%- if plan.perUser %}
-                    <span class="text-body-secondary small">/ user / month</span>
+                    <span class="fg-2 small">/ user / month</span>
                     {%- endif %}
                 </div>
-                <p class="small text-body-secondary mb-3" data-billed data-monthly="{{ plan.billedMonthly }}" data-yearly="{{ plan.billedYearly }}">{{ plan.billedMonthly }}</p>
-                <a href="#" class="btn {{ plan.ctaClass }} w-100 mb-3">{{ plan.cta }}</a>
+                <p class="small fg-2 mb-5" data-billed data-monthly="{{ plan.billedMonthly }}" data-yearly="{{ plan.billedYearly }}">{{ plan.billedMonthly }}</p>
+                <a href="#" class="btn-text theme-secondary {{ plan.ctaClass }} w-100 mb-5">{{ plan.cta }}</a>
                 <ul class="list-unstyled small mb-0">
                     {%- for feature in plan.features %}
-                    <li class="d-flex align-items-start gap-2 py-1"><i data-lucide="check" class="text-success-emphasis flex-shrink-0 mt-1"></i>{{ feature }}</li>
+                    <li class="d-flex align-items-start gap-3 py-1"><i data-lucide="check" class="fg-emphasis-success flex-shrink-0 mt-1"></i>{{ feature }}</li>
                     {%- endfor %}
                 </ul>
             </div>
@@ -49,32 +47,32 @@ script: "pages-pricing.js"
     {%- endfor %}
 </div>
 
-<div class="card mb-4">
-    <div class="card-header"><i data-lucide="list-checks" class="me-2"></i>Compare plans</div>
+<div class="card mb-7">
+    <div class="card-header"><i data-lucide="list-checks" class="me-3"></i>Compare plans</div>
     <div class="table-responsive">
         <table class="table align-middle mb-0">
             <thead>
                 <tr>
                     <th scope="col" class="w-25">Feature</th>
                     {%- for plan in pricing.plans %}
-                    <th scope="col" class="text-center{% if plan.popular %} text-primary-emphasis{% endif %}">{{ plan.title }}</th>
+                    <th scope="col" class="text-center {% if plan.popular %} fg-emphasis-primary {% endif %}">{{ plan.title }}</th>
                     {%- endfor %}
                 </tr>
             </thead>
             <tbody>
                 {%- for group in pricing.groups %}
                 <tr>
-                    <th scope="rowgroup" colspan="{{ pricing.plans.length + 1 }}" class="bg-body-tertiary small text-uppercase text-body-secondary">{{ group }}</th>
+                    <th scope="rowgroup" colspan="{{ pricing.plans.length + 1 }}" class="bg-1 small text-uppercase fg-2">{{ group }}</th>
                 </tr>
                 {%- for row in pricing.compare %}{% if row.group == group %}
                 <tr>
                     <th scope="row" class="fw-normal">{{ row.title }}</th>
                     {%- for value in row.values %}
-                    <td class="text-center text-nowrap{% if pricing.plans[loop.index0].popular %} bg-primary-subtle{% endif %}">
+                    <td class="text-center text-nowrap {% if pricing.plans[loop.index0].popular %} bg-subtle-primary {% endif %}">
                         {%- if value === true -%}
-                        <i data-lucide="check" class="text-success-emphasis"></i><span class="visually-hidden">Included</span>
+                        <i data-lucide="check" class="fg-emphasis-success"></i><span class="visually-hidden">Included</span>
                         {%- elif value === false -%}
-                        <i data-lucide="minus" class="text-body-secondary"></i><span class="visually-hidden">Not included</span>
+                        <i data-lucide="minus" class="fg-2"></i><span class="visually-hidden">Not included</span>
                         {%- else -%}
                         {{ value }}
                         {%- endif -%}
@@ -88,21 +86,17 @@ script: "pages-pricing.js"
     </div>
 </div>
 
-<div class="row justify-content-center mb-3">
-    <div class="col-xl-9 col-4xl-7">
-        <h2 class="h4 text-center mb-3">Common questions</h2>
-        <div class="accordion" id="pricingFaq">
+<div class="row justify-content-center mb-5">
+    <div class="xl:col-9 3xl:col-7">
+        <h2 class="h4 text-center mb-5">Common questions</h2>
+        <div class="accordion">
             {%- for item in pricing.faq %}
-            <div class="accordion-item">
-                <h3 class="accordion-header">
-                    <button class="accordion-button{% if not loop.first %} collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#faq{{ loop.index }}" aria-expanded="{{ 'true' if loop.first else 'false' }}" aria-controls="faq{{ loop.index }}">{{ item.q }}</button>
-                </h3>
-                <div id="faq{{ loop.index }}" class="accordion-collapse collapse{% if loop.first %} show{% endif %}" data-bs-parent="#pricingFaq">
-                    <div class="accordion-body text-body-secondary">{{ item.a }}</div>
-                </div>
-            </div>
+            <details class="accordion-item" name="pricing-faq"{% if loop.first %} open{% endif %}>
+                <summary class="accordion-header">{{ item.q }}<svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg></summary>
+                <div class="accordion-body fg-2">{{ item.a }}</div>
+            </details>
             {%- endfor %}
         </div>
-        <p class="text-center small text-body-secondary mt-3 mb-0">Prices are in US dollars, without VAT. Questions about a plan: <a href="mailto:sales@northwind.test">sales@northwind.test</a>.</p>
+        <p class="text-center small fg-2 mt-5 mb-0">Prices are in US dollars, without VAT. Questions about a plan: <a href="mailto:sales@northwind.test">sales@northwind.test</a>.</p>
     </div>
 </div>

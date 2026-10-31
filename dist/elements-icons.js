@@ -82,7 +82,7 @@
     const tiles = names.map((name) => {
       const tile = Object.assign(document.createElement("button"), {
         type: "button",
-        className: "btn btn-sm border rounded d-flex flex-column align-items-center gap-2 py-3 px-2",
+        className: "btn-text theme-secondary btn-sm border rounded d-flex flex-column align-items-center gap-3 py-5 px-3",
       });
       tile.dataset.icon = name;
       const icon = Object.assign(document.createElement("i"), { className: `bi bi-${name} fs-4` });
@@ -101,7 +101,7 @@
     loading ??= loadBootstrapIcons().catch(() => {
       loading = null;
       status.replaceChildren(Object.assign(document.createElement("span"), {
-        className: "text-danger",
+        className: "fg-danger",
         textContent: "Bootstrap Icons could not be loaded from the CDN. Check the connection and open the tab again.",
       }));
     });

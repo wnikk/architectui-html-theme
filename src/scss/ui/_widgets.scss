@@ -1,5 +1,6 @@
 // Numbers in widgets and stats. Themes change their font with --aui-numbers-font.
-
-.aui-number {
-  font-family: var(--aui-numbers-font, inherit);
+@layer custom {
+  .aui-number {
+    font-family: var(--aui-numbers-font, inherit);
+  }
 }

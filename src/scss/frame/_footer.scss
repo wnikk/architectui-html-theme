@@ -1,15 +1,17 @@
 // Footer: a flex row of Bootstrap navs; the second nav goes to the right with ms-auto
 @use "../config" as *;
 
-.aui-footer {
-  height: var(--aui-header-height);
-  padding: 0 var(--aui-gutter) 0 calc(var(--aui-gutter) / 2);
-  background: var(--aui-surface);
-}
+@layer custom {
+  .aui-footer {
+    height: var(--aui-header-height);
+    padding: 0 var(--aui-gutter) 0 calc(var(--aui-gutter) / 2);
+    background: var(--aui-surface);
+  }
 
-[data-aui-footer="fixed"] .aui-footer {
-  position: sticky;
-  bottom: 0;
-  z-index: 1010;
-  box-shadow: .3rem -.46875rem 2.1875rem rgba(var(--aui-shadow-rgb), .02), .3rem -.9375rem 1.40625rem rgba(var(--aui-shadow-rgb), .02), .3rem -.25rem .53125rem rgba(var(--aui-shadow-rgb), .04), .3rem -.125rem .1875rem rgba(var(--aui-shadow-rgb), .02);
+  [data-aui-footer="fixed"] .aui-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 1010;
+    box-shadow: .3rem -.46875rem 2.1875rem color-mix(in srgb, var(--aui-shadow-color) 6%, transparent), .3rem -.9375rem 1.40625rem color-mix(in srgb, var(--aui-shadow-color) 6%, transparent), .3rem -.25rem .53125rem color-mix(in srgb, var(--aui-shadow-color) 12%, transparent), .3rem -.125rem .1875rem color-mix(in srgb, var(--aui-shadow-color) 6%, transparent);
+  }
 }

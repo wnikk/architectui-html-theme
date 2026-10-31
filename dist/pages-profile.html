@@ -8,7 +8,7 @@
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="architectui.css?v=6.2.37">
 
 <script>
@@ -40,7 +40,9 @@
 })();
 </script>
 
-<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+<script type="importmap">{ "imports": { "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" } }</script>
+<script type="module">import * as bootstrap from "bootstrap"; window.bootstrap = bootstrap; document.dispatchEvent(new Event("aui:bootstrap"));</script>
 <script defer src="https://cdn.jsdelivr.net/npm/lucide@1.65.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
 
 <script defer src="architectui.js?v=6.2.37"></script>
@@ -59,7 +61,7 @@
 
 </head>
 <body>
-    <a class="visually-hidden-focusable btn btn-primary aui-skip-link" href="#main">Skip to content</a>
+    <a class="visually-hidden-focusable btn-solid theme-primary aui-skip-link" href="#main">Skip to content</a>
     
 <svg class="position-absolute" width="0" height="0" aria-hidden="true" focusable="false">
     <defs>
@@ -69,150 +71,151 @@
         <linearGradient id="aui-gradient-warning" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f6d365"/><stop offset="1" stop-color="#fda085"/></linearGradient>
         <linearGradient id="aui-gradient-danger" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f093fb"/><stop offset="1" stop-color="#f5576c"/></linearGradient>
         <linearGradient id="aui-gradient-secondary" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#29323c"/><stop offset="1" stop-color="#485563"/></linearGradient>
-        <linearGradient id="aui-gradient-dark" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
+        <linearGradient id="aui-gradient-inverse" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
         <linearGradient id="aui-gradient-focus" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3a3648"/><stop offset="1" stop-color="#5d5873"/></linearGradient>
-        <linearGradient id="aui-gradient-alternate" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
+        <linearGradient id="aui-gradient-accent" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
     </defs>
 </svg>
 
     <div class="aui-app">
-        <header class="navbar navbar-expand-md aui-header">
+        <header class="navbar navbar-expand aui-header">
     <div class="navbar-brand">
-        <button type="button" class="btn aui-burger d-md-none" data-bs-toggle="offcanvas" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
+        <button type="button" class="aui-burger md:d-none" data-bs-toggle="drawer" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
         
 <a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
     <img src="assets/images/logo.svg" alt="ArchitectUI">
     <img src="assets/images/logo-on-dark.svg" alt="">
 </a>
 
-        <button type="button" class="btn aui-burger d-none d-xl-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
-        <button type="button" class="btn btn-primary btn-sm d-md-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
+        <button type="button" class="aui-burger d-none xl:d-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
+        <button type="button" class="btn-solid btn-icon btn-sm theme-primary md:d-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
     </div>
-    <div class="collapse navbar-collapse" id="auiHeaderContent">
+    <div class="collapse aui-header-panel" id="auiHeaderContent">
         
-<form class="aui-expand me-3" role="search" action="pages-search.html" data-aui-expand>
+<form class="aui-expand me-5" role="search" action="pages-search.html" data-aui-expand>
     <input type="search" class="form-control" name="q" placeholder="Type to search" aria-label="Search" autocomplete="off">
-    <button type="button" class="btn" data-aui-expand-toggle aria-label="Search"></button>
+    <button type="button" data-aui-expand-toggle aria-label="Search"></button>
     <button type="button" class="btn-close" data-aui-expand-close aria-label="Close search"></button>
 </form>
-<ul class="navbar-nav d-none d-md-flex">
+<ul class="navbar-nav d-none md:d-flex">
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="database" class="me-2"></i>Statistics</a>
+        <a href="#" class="nav-link"><i data-lucide="database"></i>Statistics</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="square-pen" class="me-2"></i>Projects</a>
+        <a href="#" class="nav-link"><i data-lucide="square-pen"></i>Projects</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="settings" class="me-2"></i>Settings</a>
+        <a href="#" class="nav-link"><i data-lucide="settings"></i>Settings</a>
     </li>
 </ul>
 
-        <div class="d-flex align-items-center gap-3 ms-auto">
-            <span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
-<a class="btn aui-header-btn" href="apps-notifications.html" aria-label="Notifications, 4 unread">
+        <div class="d-flex align-items-center gap-5 ms-auto">
+            <span class="badge theme-success d-none lg:d-inline-flex"><i data-lucide="activity"></i>All systems normal</span>
+<a class="aui-header-btn" href="apps-notifications.html" aria-label="Notifications, 4 unread">
     <i data-lucide="bell"></i>
-    <span class="badge text-bg-danger" data-notification-count aria-hidden="true">4</span>
+    <span class="badge theme-danger" data-notification-count aria-hidden="true">4</span>
 </a>
-<div class="btn-group aui-theme-switch">
-    <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+<div class="aui-theme-switch">
+    <button type="button" class="aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
         <i data-lucide="moon"></i>
         <i data-lucide="sun"></i>
     </button>
-    <button type="button" class="btn aui-mode-toggle dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Choose a theme"></button>
-    <div class="dropdown-menu dropdown-menu-end">
-        <h6 class="dropdown-header">Theme</h6>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="">
+    <button type="button" class="aui-mode-toggle" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Choose a theme"><i data-lucide="chevron-down"></i></button>
+    <div class="menu">
+        <h6 class="menu-header">Theme</h6>
+        <button type="button" class="menu-item" data-aui-setting="theme" value="">
             <span class="aui-theme-dot" style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
             <span>Business</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="orange">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="orange">
             <span class="aui-theme-dot" style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
             <span>Orange</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="indigo">
             <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
             <span>Indigo</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo-img">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="indigo-img">
             <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
             <span>Indigo Calathea</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="coffee">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="coffee">
             <span class="aui-theme-dot" style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
             <span>Coffee</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="green">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="green">
             <span class="aui-theme-dot" style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
             <span>Garden</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="raspberry">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="raspberry">
             <span class="aui-theme-dot" style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
             <span>Warm</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="teal">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="teal">
             <span class="aui-theme-dot" style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
             <span>Operations</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="violet">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="violet">
             <span class="aui-theme-dot" style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
             <span>Space</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="cyberpunk">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="cyberpunk">
             <span class="aui-theme-dot" style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
             <span>Cyberpunk</span>
             <small class="opacity-75">dark only</small>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal" class="me-2 opacity-50"></i>All interface settings</a>
+        <hr class="menu-divider">
+        <a class="menu-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal"></i>All interface settings</a>
     </div>
 </div>
-<div class="dropdown">
-    <a class="d-inline-flex align-items-center text-reset text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
-        <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
-        <i data-lucide="chevron-down" class="ms-2 opacity-75"></i>
+<div>
+    <a class="d-inline-flex align-items-center fg-reset text-decoration-none" href="#" role="button" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="User menu">
+        <span class="avatar"><img src="assets/images/avatars/1.jpg" class="avatar-img" alt=""></span>
+        <i data-lucide="chevron-down" class="ms-3 opacity-75"></i>
     </a>
-    <div class="dropdown-menu dropdown-menu-end">
-        <a class="dropdown-item" href="pages-profile.html"><i data-lucide="user" class="me-2 opacity-50"></i>My profile</a>
-        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="settings" class="me-2 opacity-50"></i>Interface settings</a>
-        <h6 class="dropdown-header">Workspace</h6>
-        <a class="dropdown-item" href="apps-users.html"><i data-lucide="users" class="me-2 opacity-50"></i>Team members</a>
-        <a class="dropdown-item" href="pages-pricing.html"><i data-lucide="credit-card" class="me-2 opacity-50"></i>Billing</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="pages-login.html"><i data-lucide="log-out" class="me-2 opacity-50"></i>Sign out</a>
+    <div class="menu">
+        <a class="menu-item" href="pages-profile.html"><i data-lucide="user"></i>My profile</a>
+        <a class="menu-item" href="pages-profile.html#interface"><i data-lucide="settings"></i>Interface settings</a>
+        <h6 class="menu-header">Workspace</h6>
+        <a class="menu-item" href="apps-users.html"><i data-lucide="users"></i>Team members</a>
+        <a class="menu-item" href="pages-pricing.html"><i data-lucide="credit-card"></i>Billing</a>
+        <hr class="menu-divider">
+        <a class="menu-item" href="pages-login.html"><i data-lucide="log-out"></i>Sign out</a>
     </div>
 </div>
-<div class="d-none d-xxl-block lh-sm">
+<div class="d-none 2xl:d-block lh-sm">
     <div class="fw-bold opacity-75 text-nowrap">Alina Mclourd</div>
     <div class="small opacity-50 text-nowrap">VP People Manager</div>
 </div>
-<button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 d-none d-xxl-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
+<button type="button" class="btn-solid btn-icon btn-sm theme-primary shadow-sm shadow-primary d-none 2xl:d-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar"></i></button>
 
         </div>
     </div>
 </header>
 
-        <aside class="aui-sidebar">
-    <div class="offcanvas-md offcanvas-start" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
-        <div class="offcanvas-header">
+        
+<aside class="aui-sidebar">
+    <dialog class="drawer drawer-start drawer-sheet md:drawer" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
+        <div class="drawer-header">
             
 <a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
     <img src="assets/images/logo.svg" alt="ArchitectUI">
     <img src="assets/images/logo-on-dark.svg" alt="">
 </a>
 
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#auiSidebar" aria-label="Close menu"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close menu"></button>
         </div>
-        <div class="offcanvas-body">
+        <div class="drawer-body">
             <ul class="nav flex-column flex-nowrap" id="auiNav">
                 <li class="nav-item"><h6>Dashboards</h6></li>
                 <li class="nav-item">
@@ -227,7 +230,7 @@
                 </li>
                 <li class="nav-item"><h6>UI Components</h6></li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
+                    <a class="nav-link" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
                         <i data-lucide="gem"></i>Elements<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-elements" data-bs-parent="#auiNav">
@@ -245,7 +248,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-components">
+                    <a class="nav-link" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-components">
                         <i data-lucide="car"></i>Components<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-components" data-bs-parent="#auiNav">
@@ -266,7 +269,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-tables" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-tables">
+                    <a class="nav-link" href="#nav-tables" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-tables">
                         <i data-lucide="table"></i>Tables<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-tables" data-bs-parent="#auiNav">
@@ -352,7 +355,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-authentication">
+                    <a class="nav-link" href="#nav-authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-authentication">
                         <i data-lucide="log-in"></i>Authentication<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-authentication" data-bs-parent="#auiNav">
@@ -364,7 +367,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-errors">
+                    <a class="nav-link" href="#nav-errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-errors">
                         <i data-lucide="triangle-alert"></i>Errors<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-errors" data-bs-parent="#auiNav">
@@ -388,7 +391,7 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </dialog>
 </aside>
 
         <main class="d-flex flex-column" id="main" tabindex="-1">
@@ -396,117 +399,109 @@
                 
 <div class="aui-page-path">
     <a href="index.html" data-aui-back><i data-lucide="arrow-left"></i>Back</a>
-    <nav class="d-none d-sm-block" aria-label="breadcrumb">
-<ol class="breadcrumb mb-0">
-    <li class="breadcrumb-item"><a href="index.html" aria-label="Home"><i data-lucide="house"></i></a></li>
-    <li class="breadcrumb-item dropdown">
-        <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="pages-starter.html">Starter Page</a></li>
-            <li><a class="dropdown-item" href="pages-invoice.html">Invoice</a></li>
-            <li><a class="dropdown-item" href="pages-pricing.html">Pricing</a></li>
-            <li><a class="dropdown-item" href="pages-search.html">Search Results</a></li>
-            <li><a class="dropdown-item" href="pages-login.html">Authentication</a></li>
-            <li><a class="dropdown-item" href="pages-403.html">Errors</a></li>
-            <li><a class="dropdown-item" href="pages-settings.html">Settings</a></li>
-            <li><a class="dropdown-item active" href="pages-profile.html" aria-current="page">My Profile</a></li>
-        </ul>
+    <nav class="d-none sm:d-block" aria-label="breadcrumb">
+<ol class="breadcrumb">
+    <li><a class="breadcrumb-link" href="index.html" aria-label="Home"><i data-lucide="house"></i></a></li>
+    <li class="breadcrumb-divider" aria-hidden="true"></li>
+    <li>
+        <a href="#" class="breadcrumb-link" role="button" data-bs-toggle="menu" aria-expanded="false">Pages<i data-lucide="chevron-down"></i></a>
+        <div class="menu">
+            <a class="menu-item" href="pages-starter.html">Starter Page</a>
+            <a class="menu-item" href="pages-invoice.html">Invoice</a>
+            <a class="menu-item" href="pages-pricing.html">Pricing</a>
+            <a class="menu-item" href="pages-search.html">Search Results</a>
+            <a class="menu-item" href="pages-login.html">Authentication</a>
+            <a class="menu-item" href="pages-403.html">Errors</a>
+            <a class="menu-item" href="pages-settings.html">Settings</a>
+            <a class="menu-item active" href="pages-profile.html" aria-current="page">My Profile</a>
+        </div>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+    <li class="breadcrumb-divider" aria-hidden="true"></li>
+    <li><span class="breadcrumb-link active" aria-current="page">My Profile</span></li>
 </ol>
     </nav>
 </div>
-<div class="aui-page-title d-md-flex align-items-center text-center text-md-start">
-    <div class="d-none d-md-flex align-items-center justify-content-center flex-shrink-0 me-4">
+<div class="aui-page-title md:d-flex align-items-center text-center md:text-start">
+    <div class="d-none md:d-flex align-items-center justify-content-center flex-shrink-0 me-7">
         <i data-lucide="user-round" class="aui-icon-gradient-primary"></i>
     </div>
     <div>
         <h1>My Profile</h1>
         <p>Personal details and interface settings: layout, mode, theme, density and colors.</p>
     </div>
-    <div class="ms-md-auto mt-3 mt-md-0 d-print-none">
-    <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
+    <div class="md:ms-auto mt-5 md:mt-0 d-flex justify-content-center gap-5 print:d-none">
+    <button type="button" class="btn-solid btn-icon theme-inverse shadow-sm shadow-inverse" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
         <i data-lucide="star"></i>
     </button>
-    <div class="d-inline-block dropdown">
-        <button type="button" class="btn btn-info aui-btn-shadow d-inline-flex align-items-center gap-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons
+    <div>
+        <button type="button" class="btn-solid theme-info shadow-sm shadow-info" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false">
+            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons<i data-lucide="chevron-down"></i>
         </button>
-        <div class="dropdown-menu dropdown-menu-end">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="inbox" class="me-2"></i><span>Inbox</span><span class="ms-auto badge rounded-pill bg-secondary">86</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="book-open" class="me-2"></i><span>Reports</span><span class="ms-auto badge rounded-pill bg-danger">5</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="image" class="me-2"></i><span>Media</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link disabled" aria-disabled="true"><i data-lucide="file" class="me-2"></i><span>Archive</span></a>
-                </li>
-            </ul>
+        <div class="menu">
+            <a href="#" class="menu-item"><i data-lucide="inbox"></i><span>Inbox</span><span class="ms-auto badge theme-secondary">86</span></a>
+            <a href="#" class="menu-item"><i data-lucide="book-open"></i><span>Reports</span><span class="ms-auto badge theme-danger">5</span></a>
+            <a href="#" class="menu-item"><i data-lucide="image"></i><span>Media</span></a>
+            <a href="#" class="menu-item disabled" aria-disabled="true"><i data-lucide="file"></i><span>Archive</span></a>
         </div>
     </div>
 </div>
 
 </div>
 
-                <div class="row g-3 mb-3">
-    <div class="col-12 col-xl-4">
+                <div class="row g-5 mb-5">
+    <div class="col-12 xl:col-4">
         <div class="card h-100">
             <div class="card-body text-center">
-                <img src="assets/images/avatars/1.jpg" width="96" height="96" class="rounded-circle mb-3" alt="">
+                <span class="avatar avatar-xl mb-5"><img class="avatar-img" src="assets/images/avatars/1.jpg" alt=""></span>
                 <h5 class="mb-1">Alina Mclourd</h5>
-                <div class="text-body-secondary mb-3">VP People Manager · Northwind</div>
-                <div class="d-flex justify-content-center gap-2 mb-4">
-                    <span class="badge text-bg-success">Active</span>
-                    <span class="badge text-bg-secondary">Administrator</span>
+                <div class="fg-2 mb-5">VP People Manager · Northwind</div>
+                <div class="d-flex justify-content-center gap-3 mb-7">
+                    <span class="badge theme-success">Active</span>
+                    <span class="badge theme-secondary">Administrator</span>
                 </div>
-                <div class="row row-cols-3 g-0 border-top border-bottom py-3 mb-3">
-                    <div class="col"><div class="aui-number fs-5 fw-bold">24</div><div class="small text-body-secondary">Projects</div></div>
-                    <div class="col border-start"><div class="aui-number fs-5 fw-bold">6</div><div class="small text-body-secondary">Teams</div></div>
-                    <div class="col border-start"><div class="aui-number fs-5 fw-bold">4.9</div><div class="small text-body-secondary">Rating</div></div>
+                <div class="row row-cols-3 g-0 border-top border-bottom py-5 mb-5">
+                    <div class="col"><div class="aui-number fs-lg fw-bold">24</div><div class="small fg-2">Projects</div></div>
+                    <div class="col border-start"><div class="aui-number fs-lg fw-bold">6</div><div class="small fg-2">Teams</div></div>
+                    <div class="col border-start"><div class="aui-number fs-lg fw-bold">4.9</div><div class="small fg-2">Rating</div></div>
                 </div>
                 <ul class="list-unstyled text-start mb-0">
-                    <li class="d-flex align-items-center gap-2 mb-2"><i data-lucide="mail" class="text-body-secondary"></i><a href="mailto:alina.mclourd@northwind.test">alina.mclourd@northwind.test</a></li>
-                    <li class="d-flex align-items-center gap-2 mb-2"><i data-lucide="phone" class="text-body-secondary"></i>+1 415 555 0132</li>
-                    <li class="d-flex align-items-center gap-2 mb-2"><i data-lucide="map-pin" class="text-body-secondary"></i>San Francisco, United States</li>
-                    <li class="d-flex align-items-center gap-2"><i data-lucide="clock" class="text-body-secondary"></i>Pacific Time (UTC−08:00)</li>
+                    <li class="d-flex align-items-center gap-3 mb-3"><i data-lucide="mail" class="fg-2"></i><a href="mailto:alina.mclourd@northwind.test">alina.mclourd@northwind.test</a></li>
+                    <li class="d-flex align-items-center gap-3 mb-3"><i data-lucide="phone" class="fg-2"></i>+1 415 555 0132</li>
+                    <li class="d-flex align-items-center gap-3 mb-3"><i data-lucide="map-pin" class="fg-2"></i>San Francisco, United States</li>
+                    <li class="d-flex align-items-center gap-3"><i data-lucide="clock" class="fg-2"></i>Pacific Time (UTC−08:00)</li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="col-12 col-xl-8">
+    <div class="col-12 xl:col-8">
         <div class="card h-100">
-            <div class="card-header"><i data-lucide="id-card" class="me-2"></i>Personal information</div>
+            <div class="card-header"><i data-lucide="id-card" class="me-3"></i>Personal information</div>
             <div class="card-body">
                 <form id="profile-form">
-                    <div class="row g-3">
-                        <div class="col-md-6">
+                    <div class="row g-5">
+                        <div class="md:col-6">
                             <label for="profile-first-name" class="form-label">First name</label>
                             <input type="text" class="form-control" id="profile-first-name" value="Alina" autocomplete="given-name">
                         </div>
-                        <div class="col-md-6">
+                        <div class="md:col-6">
                             <label for="profile-last-name" class="form-label">Last name</label>
                             <input type="text" class="form-control" id="profile-last-name" value="Mclourd" autocomplete="family-name">
                         </div>
-                        <div class="col-md-6">
+                        <div class="md:col-6">
                             <label for="profile-email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="profile-email" value="alina.mclourd@northwind.test" autocomplete="email">
                         </div>
-                        <div class="col-md-6">
+                        <div class="md:col-6">
                             <label for="profile-phone" class="form-label">Phone</label>
                             <input type="tel" class="form-control" id="profile-phone" value="+1 415 555 0132" autocomplete="tel">
                         </div>
-                        <div class="col-md-6">
+                        <div class="md:col-6">
                             <label for="profile-title" class="form-label">Job title</label>
                             <input type="text" class="form-control" id="profile-title" value="VP People Manager" autocomplete="organization-title">
                         </div>
-                        <div class="col-md-6">
+                        <div class="md:col-6">
                             <label for="profile-timezone" class="form-label">Time zone</label>
-                            <select class="form-select" id="profile-timezone">
+                            <select class="form-control" id="profile-timezone">
                                 <option>Pacific Time (UTC−08:00)</option>
                                 <option>Eastern Time (UTC−05:00)</option>
                                 <option>Central European Time (UTC+01:00)</option>
@@ -520,201 +515,156 @@
                     </div>
                 </form>
             </div>
-            <div class="card-footer d-flex justify-content-end gap-2">
-                <button type="reset" form="profile-form" class="btn btn-outline-secondary">Cancel</button>
-                <button type="submit" form="profile-form" class="btn btn-primary">Save changes</button>
+            <div class="card-footer d-flex justify-content-end gap-3">
+                <button type="reset" form="profile-form" class="btn-outline theme-secondary">Cancel</button>
+                <button type="submit" form="profile-form" class="btn-solid theme-primary">Save changes</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="card mb-3" id="interface">
+<div class="card mb-5" id="interface">
     <div class="card-header">
-        <i data-lucide="sliders-horizontal" class="me-2"></i>Interface
+        <i data-lucide="sliders-horizontal" class="me-3"></i>Interface
         <div class="ms-auto">
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-aui-reset>Restore default</button>
+            <button type="button" class="btn-outline theme-secondary btn-sm" data-aui-reset>Restore default</button>
         </div>
     </div>
     <div class="card-body">
-        <p class="text-body-secondary">The settings apply at once on every page and stay in this browser.</p>
+        <p class="fg-2">The settings apply at once on every page and stay in this browser.</p>
         
-<div class="row g-4">
-    <div class="col-lg-6">
-        <h6 class="mb-3">Layout</h6>
-        <div class="form-check form-switch mb-3">
-            <input class="form-check-input" type="checkbox" role="switch" id="profile-setting-header" data-aui-setting="header" value="fixed" data-aui-off="static">
-            <label class="form-check-label" for="profile-setting-header">
+<div class="row g-7">
+    <div class="lg:col-6">
+        <h6 class="mb-5">Layout</h6>
+        <div class="form-field mb-5">
+            <div class="switch">
+                <input type="checkbox" role="switch" switch id="profile-setting-header" data-aui-setting="header" value="fixed" data-aui-off="static">
+            </div>
+            <label for="profile-setting-header">
                 <span class="d-block fw-bold">Fixed header</span>
-                <span class="small text-body-secondary">The header stays at the top while the page scrolls.</span>
+                <span class="small fg-2">The header stays at the top while the page scrolls.</span>
             </label>
         </div>
-        <div class="form-check form-switch mb-3">
-            <input class="form-check-input" type="checkbox" role="switch" id="profile-setting-sidebar" data-aui-setting="sidebar" value="fixed" data-aui-off="static">
-            <label class="form-check-label" for="profile-setting-sidebar">
+        <div class="form-field mb-5">
+            <div class="switch">
+                <input type="checkbox" role="switch" switch id="profile-setting-sidebar" data-aui-setting="sidebar" value="fixed" data-aui-off="static">
+            </div>
+            <label for="profile-setting-sidebar">
                 <span class="d-block fw-bold">Fixed sidebar</span>
-                <span class="small text-body-secondary">The sidebar stays on the left while the page scrolls.</span>
+                <span class="small fg-2">The sidebar stays on the left while the page scrolls.</span>
             </label>
         </div>
-        <div class="form-check form-switch mb-3">
-            <input class="form-check-input" type="checkbox" role="switch" id="profile-setting-footer" data-aui-setting="footer" value="fixed" data-aui-off="static">
-            <label class="form-check-label" for="profile-setting-footer">
+        <div class="form-field mb-5">
+            <div class="switch">
+                <input type="checkbox" role="switch" switch id="profile-setting-footer" data-aui-setting="footer" value="fixed" data-aui-off="static">
+            </div>
+            <label for="profile-setting-footer">
                 <span class="d-block fw-bold">Fixed footer</span>
-                <span class="small text-body-secondary">The footer stays at the bottom of the window.</span>
+                <span class="small fg-2">The footer stays at the bottom of the window.</span>
             </label>
         </div>
     </div>
-    <div class="col-lg-6">
-        <h6 class="mb-3">Mode</h6>
-        <div class="btn-group btn-group-sm mb-4" role="radiogroup" aria-label="Color mode">
-            <input type="radio" class="btn-check" name="profile-mode" id="profile-mode-light" value="light" data-aui-setting="mode">
-            <label class="btn btn-outline-primary" for="profile-mode-light">Light</label>
-            <input type="radio" class="btn-check" name="profile-mode" id="profile-mode-dark" value="dark" data-aui-setting="mode">
-            <label class="btn btn-outline-primary" for="profile-mode-dark">Dark</label>
-            <input type="radio" class="btn-check" name="profile-mode" id="profile-mode-system" value="system" data-aui-setting="mode">
-            <label class="btn btn-outline-primary" for="profile-mode-system">System</label>
+    <div class="lg:col-6">
+        <h6 class="mb-5">Mode</h6>
+        <div class="btn-group mb-7" role="radiogroup" aria-label="Color mode">
+            <label class="btn-check btn-outline btn-sm theme-primary"><input type="radio" name="profile-mode" value="light" data-aui-setting="mode">Light</label>
+            <label class="btn-check btn-outline btn-sm theme-primary"><input type="radio" name="profile-mode" value="dark" data-aui-setting="mode">Dark</label>
+            <label class="btn-check btn-outline btn-sm theme-primary"><input type="radio" name="profile-mode" value="system" data-aui-setting="mode">System</label>
         </div>
-        <h6 class="mb-3">Density</h6>
-        <div class="btn-group btn-group-sm mb-4" role="radiogroup" aria-label="Density">
-            <input type="radio" class="btn-check" name="profile-density" id="profile-density-comfortable" value="" data-aui-setting="density">
-            <label class="btn btn-outline-primary" for="profile-density-comfortable">Comfortable</label>
-            <input type="radio" class="btn-check" name="profile-density" id="profile-density-compact" value="compact" data-aui-setting="density">
-            <label class="btn btn-outline-primary" for="profile-density-compact">Compact</label>
+        <h6 class="mb-5">Density</h6>
+        <div class="btn-group mb-7" role="radiogroup" aria-label="Density">
+            <label class="btn-check btn-outline btn-sm theme-primary"><input type="radio" name="profile-density" value="" data-aui-setting="density">Comfortable</label>
+            <label class="btn-check btn-outline btn-sm theme-primary"><input type="radio" name="profile-density" value="compact" data-aui-setting="density">Compact</label>
         </div>
-        <h6 class="mb-3">Page section tabs</h6>
-        <div class="btn-group btn-group-sm" role="radiogroup" aria-label="Page section tabs">
-            <input type="radio" class="btn-check" name="profile-tabs" id="profile-tabs-shadow" value="shadow" data-aui-setting="tabs">
-            <label class="btn btn-outline-primary" for="profile-tabs-shadow">Shadow</label>
-            <input type="radio" class="btn-check" name="profile-tabs" id="profile-tabs-line" value="line" data-aui-setting="tabs">
-            <label class="btn btn-outline-primary" for="profile-tabs-line">Line</label>
+        <h6 class="mb-5">Page section tabs</h6>
+        <div class="btn-group" role="radiogroup" aria-label="Page section tabs">
+            <label class="btn-check btn-outline btn-sm theme-primary"><input type="radio" name="profile-tabs" value="shadow" data-aui-setting="tabs">Shadow</label>
+            <label class="btn-check btn-outline btn-sm theme-primary"><input type="radio" name="profile-tabs" value="line" data-aui-setting="tabs">Line</label>
         </div>
     </div>
     <div class="col-12">
-        <h6 class="mb-3">Theme</h6>
-        <div class="d-flex flex-wrap gap-4" role="radiogroup" aria-label="Theme">
-            <div>
-                <input type="radio" class="btn-check" name="profile-theme" id="profile-theme-business" value="" data-aui-setting="theme">
-                <label class="aui-theme-option" for="profile-theme-business">
-                    <span style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
-                    <span>Business</span>
-                </label>
-            </div>
-            <div>
-                <input type="radio" class="btn-check" name="profile-theme" id="profile-theme-orange" value="orange" data-aui-setting="theme">
-                <label class="aui-theme-option" for="profile-theme-orange">
-                    <span style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
-                    <span>Orange</span>
-                </label>
-            </div>
-            <div>
-                <input type="radio" class="btn-check" name="profile-theme" id="profile-theme-indigo" value="indigo" data-aui-setting="theme">
-                <label class="aui-theme-option" for="profile-theme-indigo">
-                    <span style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
-                    <span>Indigo</span>
-                </label>
-            </div>
-            <div>
-                <input type="radio" class="btn-check" name="profile-theme" id="profile-theme-indigo-img" value="indigo-img" data-aui-setting="theme">
-                <label class="aui-theme-option" for="profile-theme-indigo-img">
-                    <span style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
-                    <span>Indigo Calathea</span>
-                </label>
-            </div>
-            <div>
-                <input type="radio" class="btn-check" name="profile-theme" id="profile-theme-coffee" value="coffee" data-aui-setting="theme">
-                <label class="aui-theme-option" for="profile-theme-coffee">
-                    <span style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
-                    <span>Coffee</span>
-                </label>
-            </div>
-            <div>
-                <input type="radio" class="btn-check" name="profile-theme" id="profile-theme-green" value="green" data-aui-setting="theme">
-                <label class="aui-theme-option" for="profile-theme-green">
-                    <span style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
-                    <span>Garden</span>
-                </label>
-            </div>
-            <div>
-                <input type="radio" class="btn-check" name="profile-theme" id="profile-theme-raspberry" value="raspberry" data-aui-setting="theme">
-                <label class="aui-theme-option" for="profile-theme-raspberry">
-                    <span style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
-                    <span>Warm</span>
-                </label>
-            </div>
-            <div>
-                <input type="radio" class="btn-check" name="profile-theme" id="profile-theme-teal" value="teal" data-aui-setting="theme">
-                <label class="aui-theme-option" for="profile-theme-teal">
-                    <span style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
-                    <span>Operations</span>
-                </label>
-            </div>
-            <div>
-                <input type="radio" class="btn-check" name="profile-theme" id="profile-theme-violet" value="violet" data-aui-setting="theme">
-                <label class="aui-theme-option" for="profile-theme-violet">
-                    <span style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
-                    <span>Space</span>
-                </label>
-            </div>
-            <div>
-                <input type="radio" class="btn-check" name="profile-theme" id="profile-theme-cyberpunk" value="cyberpunk" data-aui-setting="theme">
-                <label class="aui-theme-option" for="profile-theme-cyberpunk">
-                    <span style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
-                    <span>Cyberpunk<br><small>dark only</small></span>
-                </label>
-            </div>
+        <h6 class="mb-5">Theme</h6>
+        <div class="d-flex flex-wrap gap-7" role="radiogroup" aria-label="Theme">
+            <label class="aui-theme-option">
+                <input type="radio" name="profile-theme" value="" data-aui-setting="theme">
+                <span style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
+                <span>Business</span>
+            </label>
+            <label class="aui-theme-option">
+                <input type="radio" name="profile-theme" value="orange" data-aui-setting="theme">
+                <span style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
+                <span>Orange</span>
+            </label>
+            <label class="aui-theme-option">
+                <input type="radio" name="profile-theme" value="indigo" data-aui-setting="theme">
+                <span style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
+                <span>Indigo</span>
+            </label>
+            <label class="aui-theme-option">
+                <input type="radio" name="profile-theme" value="indigo-img" data-aui-setting="theme">
+                <span style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
+                <span>Indigo Calathea</span>
+            </label>
+            <label class="aui-theme-option">
+                <input type="radio" name="profile-theme" value="coffee" data-aui-setting="theme">
+                <span style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
+                <span>Coffee</span>
+            </label>
+            <label class="aui-theme-option">
+                <input type="radio" name="profile-theme" value="green" data-aui-setting="theme">
+                <span style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
+                <span>Garden</span>
+            </label>
+            <label class="aui-theme-option">
+                <input type="radio" name="profile-theme" value="raspberry" data-aui-setting="theme">
+                <span style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
+                <span>Warm</span>
+            </label>
+            <label class="aui-theme-option">
+                <input type="radio" name="profile-theme" value="teal" data-aui-setting="theme">
+                <span style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
+                <span>Operations</span>
+            </label>
+            <label class="aui-theme-option">
+                <input type="radio" name="profile-theme" value="violet" data-aui-setting="theme">
+                <span style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
+                <span>Space</span>
+            </label>
+            <label class="aui-theme-option">
+                <input type="radio" name="profile-theme" value="cyberpunk" data-aui-setting="theme">
+                <span style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
+                <span>Cyberpunk<br><small>dark only</small></span>
+            </label>
         </div>
     </div>
-    <div class="col-lg-6">
-        <h6 class="mb-3">Header color</h6>
-        <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-label="Header color">
-            <input type="radio" class="btn-check" name="profile-header-scheme" id="profile-header-scheme-default" value="" data-aui-setting="header-scheme">
-            <label class="aui-swatch aui-swatch--default" for="profile-header-scheme-default" title="default"><span class="visually-hidden">default</span></label>
-            <input type="radio" class="btn-check" name="profile-header-scheme" id="profile-header-scheme-primary" value="primary" data-aui-setting="header-scheme">
-            <label class="aui-swatch aui-swatch--primary" for="profile-header-scheme-primary" title="primary"><span class="visually-hidden">primary</span></label>
-            <input type="radio" class="btn-check" name="profile-header-scheme" id="profile-header-scheme-secondary" value="secondary" data-aui-setting="header-scheme">
-            <label class="aui-swatch aui-swatch--secondary" for="profile-header-scheme-secondary" title="secondary"><span class="visually-hidden">secondary</span></label>
-            <input type="radio" class="btn-check" name="profile-header-scheme" id="profile-header-scheme-success" value="success" data-aui-setting="header-scheme">
-            <label class="aui-swatch aui-swatch--success" for="profile-header-scheme-success" title="success"><span class="visually-hidden">success</span></label>
-            <input type="radio" class="btn-check" name="profile-header-scheme" id="profile-header-scheme-info" value="info" data-aui-setting="header-scheme">
-            <label class="aui-swatch aui-swatch--info" for="profile-header-scheme-info" title="info"><span class="visually-hidden">info</span></label>
-            <input type="radio" class="btn-check" name="profile-header-scheme" id="profile-header-scheme-warning" value="warning" data-aui-setting="header-scheme">
-            <label class="aui-swatch aui-swatch--warning" for="profile-header-scheme-warning" title="warning"><span class="visually-hidden">warning</span></label>
-            <input type="radio" class="btn-check" name="profile-header-scheme" id="profile-header-scheme-danger" value="danger" data-aui-setting="header-scheme">
-            <label class="aui-swatch aui-swatch--danger" for="profile-header-scheme-danger" title="danger"><span class="visually-hidden">danger</span></label>
-            <input type="radio" class="btn-check" name="profile-header-scheme" id="profile-header-scheme-light" value="light" data-aui-setting="header-scheme">
-            <label class="aui-swatch aui-swatch--light" for="profile-header-scheme-light" title="light"><span class="visually-hidden">light</span></label>
-            <input type="radio" class="btn-check" name="profile-header-scheme" id="profile-header-scheme-dark" value="dark" data-aui-setting="header-scheme">
-            <label class="aui-swatch aui-swatch--dark" for="profile-header-scheme-dark" title="dark"><span class="visually-hidden">dark</span></label>
-            <input type="radio" class="btn-check" name="profile-header-scheme" id="profile-header-scheme-focus" value="focus" data-aui-setting="header-scheme">
-            <label class="aui-swatch aui-swatch--focus" for="profile-header-scheme-focus" title="focus"><span class="visually-hidden">focus</span></label>
-            <input type="radio" class="btn-check" name="profile-header-scheme" id="profile-header-scheme-alternate" value="alternate" data-aui-setting="header-scheme">
-            <label class="aui-swatch aui-swatch--alternate" for="profile-header-scheme-alternate" title="alternate"><span class="visually-hidden">alternate</span></label>
+    <div class="lg:col-6">
+        <h6 class="mb-5">Header color</h6>
+        <div class="d-flex flex-wrap gap-3" role="radiogroup" aria-label="Header color">
+            <label class="aui-swatch aui-swatch--default" title="default"><input type="radio" name="profile-header-scheme" value="" data-aui-setting="header-scheme"><span class="visually-hidden">default</span></label>
+            <label class="aui-swatch aui-swatch--primary" title="primary"><input type="radio" name="profile-header-scheme" value="primary" data-aui-setting="header-scheme"><span class="visually-hidden">primary</span></label>
+            <label class="aui-swatch aui-swatch--accent" title="accent"><input type="radio" name="profile-header-scheme" value="accent" data-aui-setting="header-scheme"><span class="visually-hidden">accent</span></label>
+            <label class="aui-swatch aui-swatch--success" title="success"><input type="radio" name="profile-header-scheme" value="success" data-aui-setting="header-scheme"><span class="visually-hidden">success</span></label>
+            <label class="aui-swatch aui-swatch--info" title="info"><input type="radio" name="profile-header-scheme" value="info" data-aui-setting="header-scheme"><span class="visually-hidden">info</span></label>
+            <label class="aui-swatch aui-swatch--warning" title="warning"><input type="radio" name="profile-header-scheme" value="warning" data-aui-setting="header-scheme"><span class="visually-hidden">warning</span></label>
+            <label class="aui-swatch aui-swatch--danger" title="danger"><input type="radio" name="profile-header-scheme" value="danger" data-aui-setting="header-scheme"><span class="visually-hidden">danger</span></label>
+            <label class="aui-swatch aui-swatch--secondary" title="secondary"><input type="radio" name="profile-header-scheme" value="secondary" data-aui-setting="header-scheme"><span class="visually-hidden">secondary</span></label>
+            <label class="aui-swatch aui-swatch--inverse" title="inverse"><input type="radio" name="profile-header-scheme" value="inverse" data-aui-setting="header-scheme"><span class="visually-hidden">inverse</span></label>
+            <label class="aui-swatch aui-swatch--focus" title="focus"><input type="radio" name="profile-header-scheme" value="focus" data-aui-setting="header-scheme"><span class="visually-hidden">focus</span></label>
         </div>
     </div>
-    <div class="col-lg-6">
-        <h6 class="mb-3">Sidebar color</h6>
-        <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-label="Sidebar color">
-            <input type="radio" class="btn-check" name="profile-sidebar-scheme" id="profile-sidebar-scheme-default" value="" data-aui-setting="sidebar-scheme">
-            <label class="aui-swatch aui-swatch--default" for="profile-sidebar-scheme-default" title="default"><span class="visually-hidden">default</span></label>
-            <input type="radio" class="btn-check" name="profile-sidebar-scheme" id="profile-sidebar-scheme-primary" value="primary" data-aui-setting="sidebar-scheme">
-            <label class="aui-swatch aui-swatch--primary" for="profile-sidebar-scheme-primary" title="primary"><span class="visually-hidden">primary</span></label>
-            <input type="radio" class="btn-check" name="profile-sidebar-scheme" id="profile-sidebar-scheme-secondary" value="secondary" data-aui-setting="sidebar-scheme">
-            <label class="aui-swatch aui-swatch--secondary" for="profile-sidebar-scheme-secondary" title="secondary"><span class="visually-hidden">secondary</span></label>
-            <input type="radio" class="btn-check" name="profile-sidebar-scheme" id="profile-sidebar-scheme-success" value="success" data-aui-setting="sidebar-scheme">
-            <label class="aui-swatch aui-swatch--success" for="profile-sidebar-scheme-success" title="success"><span class="visually-hidden">success</span></label>
-            <input type="radio" class="btn-check" name="profile-sidebar-scheme" id="profile-sidebar-scheme-info" value="info" data-aui-setting="sidebar-scheme">
-            <label class="aui-swatch aui-swatch--info" for="profile-sidebar-scheme-info" title="info"><span class="visually-hidden">info</span></label>
-            <input type="radio" class="btn-check" name="profile-sidebar-scheme" id="profile-sidebar-scheme-warning" value="warning" data-aui-setting="sidebar-scheme">
-            <label class="aui-swatch aui-swatch--warning" for="profile-sidebar-scheme-warning" title="warning"><span class="visually-hidden">warning</span></label>
-            <input type="radio" class="btn-check" name="profile-sidebar-scheme" id="profile-sidebar-scheme-danger" value="danger" data-aui-setting="sidebar-scheme">
-            <label class="aui-swatch aui-swatch--danger" for="profile-sidebar-scheme-danger" title="danger"><span class="visually-hidden">danger</span></label>
-            <input type="radio" class="btn-check" name="profile-sidebar-scheme" id="profile-sidebar-scheme-light" value="light" data-aui-setting="sidebar-scheme">
-            <label class="aui-swatch aui-swatch--light" for="profile-sidebar-scheme-light" title="light"><span class="visually-hidden">light</span></label>
-            <input type="radio" class="btn-check" name="profile-sidebar-scheme" id="profile-sidebar-scheme-dark" value="dark" data-aui-setting="sidebar-scheme">
-            <label class="aui-swatch aui-swatch--dark" for="profile-sidebar-scheme-dark" title="dark"><span class="visually-hidden">dark</span></label>
-            <input type="radio" class="btn-check" name="profile-sidebar-scheme" id="profile-sidebar-scheme-focus" value="focus" data-aui-setting="sidebar-scheme">
-            <label class="aui-swatch aui-swatch--focus" for="profile-sidebar-scheme-focus" title="focus"><span class="visually-hidden">focus</span></label>
-            <input type="radio" class="btn-check" name="profile-sidebar-scheme" id="profile-sidebar-scheme-alternate" value="alternate" data-aui-setting="sidebar-scheme">
-            <label class="aui-swatch aui-swatch--alternate" for="profile-sidebar-scheme-alternate" title="alternate"><span class="visually-hidden">alternate</span></label>
+    <div class="lg:col-6">
+        <h6 class="mb-5">Sidebar color</h6>
+        <div class="d-flex flex-wrap gap-3" role="radiogroup" aria-label="Sidebar color">
+            <label class="aui-swatch aui-swatch--default" title="default"><input type="radio" name="profile-sidebar-scheme" value="" data-aui-setting="sidebar-scheme"><span class="visually-hidden">default</span></label>
+            <label class="aui-swatch aui-swatch--primary" title="primary"><input type="radio" name="profile-sidebar-scheme" value="primary" data-aui-setting="sidebar-scheme"><span class="visually-hidden">primary</span></label>
+            <label class="aui-swatch aui-swatch--accent" title="accent"><input type="radio" name="profile-sidebar-scheme" value="accent" data-aui-setting="sidebar-scheme"><span class="visually-hidden">accent</span></label>
+            <label class="aui-swatch aui-swatch--success" title="success"><input type="radio" name="profile-sidebar-scheme" value="success" data-aui-setting="sidebar-scheme"><span class="visually-hidden">success</span></label>
+            <label class="aui-swatch aui-swatch--info" title="info"><input type="radio" name="profile-sidebar-scheme" value="info" data-aui-setting="sidebar-scheme"><span class="visually-hidden">info</span></label>
+            <label class="aui-swatch aui-swatch--warning" title="warning"><input type="radio" name="profile-sidebar-scheme" value="warning" data-aui-setting="sidebar-scheme"><span class="visually-hidden">warning</span></label>
+            <label class="aui-swatch aui-swatch--danger" title="danger"><input type="radio" name="profile-sidebar-scheme" value="danger" data-aui-setting="sidebar-scheme"><span class="visually-hidden">danger</span></label>
+            <label class="aui-swatch aui-swatch--secondary" title="secondary"><input type="radio" name="profile-sidebar-scheme" value="secondary" data-aui-setting="sidebar-scheme"><span class="visually-hidden">secondary</span></label>
+            <label class="aui-swatch aui-swatch--inverse" title="inverse"><input type="radio" name="profile-sidebar-scheme" value="inverse" data-aui-setting="sidebar-scheme"><span class="visually-hidden">inverse</span></label>
+            <label class="aui-swatch aui-swatch--focus" title="focus"><input type="radio" name="profile-sidebar-scheme" value="focus" data-aui-setting="sidebar-scheme"><span class="visually-hidden">focus</span></label>
         </div>
     </div>
 </div>
@@ -722,11 +672,11 @@
     </div>
 </div>
 
-<div class="toast-container position-fixed top-0 end-0 p-3">
-    <div class="toast text-bg-success" id="profile-saved" role="status" aria-live="polite" aria-atomic="true">
+<div class="toast-container position-fixed top-0 end-0 p-5">
+    <div class="toast theme-success" id="profile-saved" role="status" aria-live="polite" aria-atomic="true">
         <div class="d-flex">
-            <div class="toast-body d-flex align-items-center gap-2"><i data-lucide="circle-check"></i>Profile saved.</div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            <div class="toast-body d-flex align-items-center gap-3"><i data-lucide="circle-check"></i>Profile saved.</div>
+            <button type="button" class="btn-close me-3 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     </div>
 </div>
@@ -737,18 +687,18 @@
         <li class="nav-item"><a href="#" class="nav-link">Help Center</a></li>
         <li class="nav-item"><a href="#" class="nav-link">API Docs</a></li>
     </ul>
-    <ul class="nav ms-auto d-none d-md-flex">
+    <ul class="nav ms-auto d-none md:d-flex">
         <li class="nav-item"><a href="#" class="nav-link">System Status</a></li>
-        <li class="nav-item"><a href="#" class="nav-link"><span class="badge bg-success me-1 ms-0"><small>NEW</small></span>What's New</a></li>
+        <li class="nav-item"><a href="#" class="nav-link"><span class="badge theme-success"><small>NEW</small></span>What's New</a></li>
     </ul>
 </footer>
 
         </main>
     </div>
-    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
-    <div class="toast text-bg-primary" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-5">
+    <div class="toast theme-primary" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
         <div class="toast-header">
-            <i data-lucide="calendar" class="me-2"></i>
+            <i data-lucide="calendar" class="me-3"></i>
             <strong class="me-auto">Example Toast</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>

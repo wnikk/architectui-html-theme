@@ -8,8 +8,9 @@
  * =========================================================
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
-// ArchitectUI theme script: layout behavior on top of Bootstrap 5, no dependencies. Load it after Bootstrap
-// with <script defer src="architectui.js"></script>. Its only global is window.ArchitectUI.
+// ArchitectUI theme script: layout behavior on top of Bootstrap 6, no dependencies. Bootstrap 6 is an ES module;
+// the inline module in <head> keeps it as window.bootstrap, and this classic <script defer> runs after it.
+// Its only global is window.ArchitectUI.
 // Settings are stored in localStorage under "architectui" and applied as data-aui-* attributes on <html>.
 // The inline <head> script applies them before the first paint; this script changes and saves them.
 (() => {
@@ -21,23 +22,48 @@
     header: "fixed", sidebar: "fixed", footer: "static", tabs: "shadow", mode: "light", theme: "",
     density: "", "header-scheme": "", "sidebar-scheme": "", "sidebar-collapsed": "",
   };
+  const THEME_COLORS = ["primary", "accent", "success", "info", "warning", "danger", "secondary", "inverse", "focus"];
   const attrName = (key) => `data-aui-${key}`;
   const currentValue = (key) => root.getAttribute(attrName(key)) || DEFAULTS[key];
+
   // Theme colors for page scripts (charts, calendars). Read on every call, so they follow theme and mode changes.
-  // token("primary") is the value of --bs-primary; a name with "--" is read as is: token("--aui-surface").
+  // token("primary") is the solid color of a theme color (--bs-primary-base); token("primary-fg") any other
+  // --bs-* token; a name with "--" is read as is: token("--aui-surface"). Bootstrap 6 writes colors as oklch(),
+  // color-mix() and light-dark(): the value is resolved on a probe element and serialized by a canvas to
+  // "#rrggbb" or "rgba(…)", which every chart library reads.
+  const probe = document.body.appendChild(Object.assign(document.createElement("span"), { hidden: true }));
+  const canvas = document.createElement("canvas").getContext("2d");
+
   function token(name) {
-    return getComputedStyle(root).getPropertyValue(name.startsWith("--") ? name : `--bs-${name}`).trim();
+    const property = name.startsWith("--") ? name : `--bs-${THEME_COLORS.includes(name) ? `${name}-base` : name}`;
+    const value = getComputedStyle(root).getPropertyValue(property).trim();
+    probe.style.color = "";
+    probe.style.color = `var(${property})`;
+    const resolved = getComputedStyle(probe).color;
+    if (!probe.style.color || !resolved) return value;
+    canvas.fillStyle = "#010203";
+    canvas.fillStyle = resolved;
+    return canvas.fillStyle === "#010203" && !/^(#010203|rgb\(1, 2, 3\))$/.test(resolved) ? value : canvas.fillStyle;
   }
 
-  // rgba("primary", .5) uses the --bs-primary-rgb triplet
-  const rgba = (name, alpha) => `rgba(${token(`${name}-rgb`)}, ${alpha})`;
+  // rgba("primary", .5): the token color with an alpha
+  function rgba(name, alpha) {
+    const color = token(name);
+    const hex = /^#([0-9a-f]{6})/i.exec(color);
+    if (hex) {
+      const n = parseInt(hex[1], 16);
+      return `rgba(${n >> 16}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
+    }
+    const rgb = /^rgba?\(([^)]+)\)/.exec(color);
+    return rgb ? `rgba(${rgb[1].split(",").slice(0, 3).map((v) => v.trim()).join(", ")}, ${alpha})` : color;
+  }
 
   // Chart.js defaults from the theme: font, text and grid colors. Call it before charts are created
   // and again on aui:theme-change, then redraw the charts.
   function chartDefaults(Chart = window.Chart) {
     if (!Chart) return;
-    Chart.defaults.font.family = token("body-font-family");
-    Chart.defaults.color = token("secondary-color");
+    Chart.defaults.font.family = getComputedStyle(root).getPropertyValue("--bs-body-font-family").trim();
+    Chart.defaults.color = token("fg-2");
     Chart.defaults.borderColor = token("border-color-translucent");
   }
 
@@ -180,30 +206,18 @@
     }
   }
 
-  // Renders Lucide icons and initialises Bootstrap tooltips and popovers in scope (the scope element included).
-  // New markup gets this by itself (see the observer below); refresh() is for code that needs it at once.
-  function refresh(scope = document) {
+  // Renders Lucide icons in scope. Bootstrap 6 tooltips, popovers and the other data-API components
+  // initialise themselves, also in markup added later. New markup gets its icons by itself (see the observer below);
+  // refresh() is for code that needs them at once.
+  function refresh() {
     window.lucide?.createIcons();
-    const { Tooltip, Popover } = window.bootstrap ?? {};
-    const within = (selector) => [...(scope.matches?.(selector) ? [scope] : []), ...scope.querySelectorAll(selector)];
-    within('[data-bs-toggle="tooltip"]').forEach((el) => Tooltip?.getOrCreateInstance(el));
-    within('[data-bs-toggle="popover"]').forEach((el) => Popover?.getOrCreateInstance(el));
   }
 
-  // Markup added later (page scripts, DataTables, fetch) renders its icons, tooltips and popovers without a call
-  const NEEDS_REFRESH = 'i[data-lucide], [data-bs-toggle="tooltip"], [data-bs-toggle="popover"]';
+  // Markup added later (page scripts, DataTables, fetch) renders its icons without a call
   function watch() {
     new MutationObserver((records) => {
-      const added = records.flatMap((record) => [...record.addedNodes])
-        .filter((node) => node.nodeType === 1 && (node.matches(NEEDS_REFRESH) || node.querySelector(NEEDS_REFRESH)));
-      if (!added.length) return;
-      window.lucide?.createIcons();
-      const { Tooltip, Popover } = window.bootstrap ?? {};
-      added.forEach((node) => {
-        const within = (selector) => [...(node.matches(selector) ? [node] : []), ...node.querySelectorAll(selector)];
-        within('[data-bs-toggle="tooltip"]').forEach((el) => Tooltip?.getOrCreateInstance(el));
-        within('[data-bs-toggle="popover"]').forEach((el) => Popover?.getOrCreateInstance(el));
-      });
+      if (records.some((record) => [...record.addedNodes].some((node) => node.nodeType === 1
+        && (node.matches("i[data-lucide]") || node.querySelector("i[data-lucide]"))))) refresh();
     }).observe(document.body, { childList: true, subtree: true });
   }
 
@@ -214,15 +228,15 @@
     const size = (bytes) => (bytes < 1048576 ? `${Math.max(1, Math.round(bytes / 1024))} KB` : `${(bytes / 1048576).toFixed(1)} MB`);
     list.replaceChildren(...[...files].map((file) => {
       const item = document.createElement("li");
-      item.className = "list-group-item d-flex align-items-center gap-2";
+      item.className = "list-group-item d-flex align-items-center gap-3";
       const icon = document.createElement("i");
       icon.dataset.lucide = file.type.startsWith("image/") ? "image" : "file";
       const name = Object.assign(document.createElement("span"), { className: "text-truncate", textContent: file.name });
-      const note = Object.assign(document.createElement("span"), { className: "ms-auto small text-body-secondary text-nowrap", textContent: size(file.size) });
+      const note = Object.assign(document.createElement("span"), { className: "ms-auto small fg-2 text-nowrap", textContent: size(file.size) });
       item.append(icon, name, note);
       return item;
     }));
-    refresh(list);
+    refresh();
   }
 
   ["dragenter", "dragover"].forEach((type) => document.addEventListener(type, (event) => {
@@ -276,16 +290,9 @@
     }
   });
 
-  // A tab pane that Bootstrap shows fades in (.aui-tab-in). The pane active on load has no class:
-  // it appears with the page content. The class stays, so every next show runs the animation again.
-  document.addEventListener("show.bs.tab", (event) => {
-    const selector = event.target.getAttribute("data-bs-target") || event.target.getAttribute("href");
-    if (selector?.startsWith("#")) document.querySelector(selector)?.classList.add("aui-tab-in");
-  });
-
-  // During the page animation the content is the frame of position: fixed children. A modal or an offcanvas
+  // During the page animation the content is the frame of position: fixed children. A dialog or a drawer
   // opened in that time ends the animation first, so it takes the whole window.
-  ["show.bs.modal", "show.bs.offcanvas"].forEach((type) => document.addEventListener(type, () => {
+  ["show.bs.dialog", "show.bs.drawer"].forEach((type) => document.addEventListener(type, () => {
     document.querySelector(".aui-content")?.getAnimations().forEach((animation) => animation.finish());
   }));
 
@@ -293,8 +300,8 @@
     if (event.key === "Escape") document.querySelectorAll("[data-aui-expand].is-open").forEach((el) => el.classList.remove("is-open"));
   });
 
-  // Offcanvas does not set aria-expanded on its toggle; the burger animation relies on it
-  ["show.bs.offcanvas", "hide.bs.offcanvas"].forEach((type) => document.addEventListener(type, (event) => {
+  // The drawer does not set aria-expanded on its toggle; the burger animation relies on it
+  ["show.bs.drawer", "hide.bs.drawer"].forEach((type) => document.addEventListener(type, (event) => {
     document.querySelectorAll(`[data-bs-target="#${event.target.id}"][aria-expanded]`)
       .forEach((button) => button.setAttribute("aria-expanded", String(type.startsWith("show"))));
   }));

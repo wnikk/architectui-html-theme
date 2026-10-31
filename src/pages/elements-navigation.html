@@ -4,47 +4,47 @@ description: "Navigation menus are one of the basic building blocks for any web 
 icon: "image"
 ---
 <div class="row">
-    <div class="col-md-12">
-        <div class="mb-3 card">
+    <div class="md:col-12">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Vertical Menu</h5>
                 <div class="row">
                     <div class="col">
                         <ul class="nav flex-column">
                             <li class="nav-item"><a href="#" class="nav-link">Overview</a></li>
                             <li class="nav-item"><a href="#" class="nav-link">Reports
-                                <div class="ms-auto badge bg-success">New</div>
+                                <div class="ms-auto badge theme-success">New</div>
                             </a></li>
                             <li class="nav-item"><a href="#" class="nav-link">Invoices
-                                <div class="ms-auto badge bg-warning">512</div>
+                                <div class="ms-auto badge theme-warning">512</div>
                             </a></li>
                             <li class="nav-item"><a disabled="" href="#" class="nav-link disabled">Audit log</a></li>
                         </ul>
                     </div>
                     <div class="col">
                         <ul class="nav flex-column">
-                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="inbox" class="me-2"></i><span>Inbox</span>
-                                <div class="ms-auto badge rounded-pill bg-secondary">86</div>
+                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="inbox" class="me-3"></i><span>Inbox</span>
+                                <div class="ms-auto badge rounded-pill theme-secondary">86</div>
                             </a></li>
-                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="book-open" class="me-2"></i><span>Reports</span>
-                                <div class="ms-auto badge rounded-pill bg-danger">5</div>
+                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="book-open" class="me-3"></i><span>Reports</span>
+                                <div class="ms-auto badge rounded-pill theme-danger">5</div>
                             </a></li>
-                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="image" class="me-2"></i><span>Media</span></a></li>
-                            <li class="nav-item"><a disabled="" href="#" class="nav-link disabled"><i data-lucide="file" class="me-2"></i><span>Archive</span></a></li>
+                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="image" class="me-3"></i><span>Media</span></a></li>
+                            <li class="nav-item"><a disabled="" href="#" class="nav-link disabled"><i data-lucide="file" class="me-3"></i><span>Archive</span></a></li>
                         </ul>
                     </div>
                 </div>
                 <hr>
                 <div class="text-center">
-                    <div class="btn-group dropdown">
-                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-primary">Dropdown Basic</button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                    <div class="btn-group">
+                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-primary mb-3 me-3">Dropdown Basic<i data-lucide="chevron-down"></i></button>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
                             <ul class="nav flex-column">
                                 <li class="nav-item"><a href="#" class="nav-link">Customers</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Billing
-                                    <div class="ms-auto badge bg-success">New</div>
+                                    <div class="ms-auto badge theme-success">New</div>
                                 </a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Team
-                                    <div class="ms-auto badge bg-warning">512</div>
+                                    <div class="ms-auto badge theme-warning">512</div>
                                 </a></li>
                                 <li class="nav-item"><a disabled="" href="#" class="nav-link disabled">Audit log</a></li>
                             </ul>
@@ -53,74 +53,74 @@ icon: "image"
                 </div>
             </div>
         </div>
-        <div class="mb-3 card">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Separators &amp; Headers</h5>
                 <div class="row">
                     <div class="col">
                         <ul class="nav flex-column">
-                            <li class="px-3 py-2 small text-uppercase fw-bold text-body-secondary nav-item">Activity</li>
+                            <li class="px-5 py-3 small text-uppercase fw-bold fg-2 nav-item">Activity</li>
                             <li class="nav-item"><a href="#" class="nav-link">Chat
-                                <div class="ms-auto badge rounded-pill bg-info">8</div>
+                                <div class="ms-auto badge rounded-pill theme-info">8</div>
                             </a></li>
                             <li class="nav-item"><a href="#" class="nav-link">Recover Password</a></li>
-                            <li class="px-3 py-2 small text-uppercase fw-bold text-body-secondary nav-item">My Account</li>
+                            <li class="px-5 py-3 small text-uppercase fw-bold fg-2 nav-item">My Account</li>
                             <li class="nav-item"><a href="#" class="nav-link">Settings
-                                <div class="ms-auto badge bg-success">New</div>
+                                <div class="ms-auto badge theme-success">New</div>
                             </a></li>
                             <li class="nav-item"><a href="#" class="nav-link">Messages
-                                <div class="ms-auto badge bg-warning">512</div>
+                                <div class="ms-auto badge theme-warning">512</div>
                             </a></li>
                             <li class="nav-item"><a href="#" class="nav-link">Logs</a></li>
-                            <li class="border-top my-2 nav-item"></li>
-                            <li class="px-3 py-2 nav-item">
-                                <button class="px-4 aui-btn-shadow btn btn-danger btn-sm">Cancel</button>
+                            <li class="border-top my-3 nav-item"></li>
+                            <li class="px-5 py-3 nav-item">
+                                <button class="btn-solid theme-danger shadow-sm shadow-danger px-7 btn-sm">Cancel</button>
                             </li>
                         </ul>
                     </div>
                     <div class="col">
                         <ul class="nav flex-column">
-                            <li class="px-3 py-2 small text-uppercase fw-bold text-body-secondary nav-item">Activity</li>
-                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="message-circle" class="me-2"></i><span>Chat</span>
-                                <div class="ms-auto badge rounded-pill bg-info">8</div>
+                            <li class="px-5 py-3 small text-uppercase fw-bold fg-2 nav-item">Activity</li>
+                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="message-circle" class="me-3"></i><span>Chat</span>
+                                <div class="ms-auto badge rounded-pill theme-info">8</div>
                             </a></li>
-                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="wallet" class="me-2"></i><span>Recover Password</span></a></li>
-                            <li class="px-3 py-2 small text-uppercase fw-bold text-body-secondary nav-item">My Account</li>
-                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="wrench" class="me-2"></i><span>Settings</span>
-                                <div class="ms-auto badge bg-success">New</div>
+                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="wallet" class="me-3"></i><span>Recover Password</span></a></li>
+                            <li class="px-5 py-3 small text-uppercase fw-bold fg-2 nav-item">My Account</li>
+                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="wrench" class="me-3"></i><span>Settings</span>
+                                <div class="ms-auto badge theme-success">New</div>
                             </a></li>
-                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="coffee" class="me-2"></i><span>Messages</span>
-                                <div class="ms-auto badge bg-warning">512</div>
+                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="coffee" class="me-3"></i><span>Messages</span>
+                                <div class="ms-auto badge theme-warning">512</div>
                             </a></li>
-                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="box" class="me-2"></i><span>Logs</span></a></li>
-                            <li class="border-top my-2 nav-item"></li>
-                            <li class="px-3 py-2 nav-item">
-                                <button class="rounded-pill btn btn-success btn-sm">Save</button>
+                            <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="box" class="me-3"></i><span>Logs</span></a></li>
+                            <li class="border-top my-3 nav-item"></li>
+                            <li class="px-5 py-3 nav-item">
+                                <button class="btn-solid theme-success rounded-pill btn-sm">Save</button>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <hr>
                 <div class="text-center">
-                    <div class="dropdown btn-group">
-                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-primary">Dropdown Basic</button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                    <div class="btn-group">
+                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-primary mb-3 me-3">Dropdown Basic<i data-lucide="chevron-down"></i></button>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
                             <ul class="nav flex-column">
-                                <li class="px-3 py-2 small text-uppercase fw-bold text-body-secondary nav-item">Activity</li>
+                                <li class="px-5 py-3 small text-uppercase fw-bold fg-2 nav-item">Activity</li>
                                 <li class="nav-item"><a href="#" class="nav-link">Chat
-                                    <div class="ms-auto badge rounded-pill bg-info">8</div>
+                                    <div class="ms-auto badge rounded-pill theme-info">8</div>
                                 </a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Recover Password</a></li>
-                                <li class="px-3 py-2 small text-uppercase fw-bold text-body-secondary nav-item">My Account</li>
+                                <li class="px-5 py-3 small text-uppercase fw-bold fg-2 nav-item">My Account</li>
                                 <li class="nav-item"><a href="#" class="nav-link">Settings
-                                    <div class="ms-auto badge bg-success">New</div>
+                                    <div class="ms-auto badge theme-success">New</div>
                                 </a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Messages
-                                    <div class="ms-auto badge bg-warning">512</div>
+                                    <div class="ms-auto badge theme-warning">512</div>
                                 </a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Logs</a></li>
-                                <li class="border-top my-2 nav-item"></li>
-                                <li class="px-3 py-2 nav-item">
-                                    <button class="px-4 aui-btn-shadow btn btn-danger btn-sm">Cancel</button>
+                                <li class="border-top my-3 nav-item"></li>
+                                <li class="px-5 py-3 nav-item">
+                                    <button class="btn-solid theme-danger shadow-sm shadow-danger px-7 btn-sm">Cancel</button>
                                 </li>
                             </ul>
                         </div>
@@ -131,8 +131,8 @@ icon: "image"
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
-        <div class="mb-3 card">
+    <div class="md:col-12">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Horizontal Menu</h5>
                 <ul class="nav"><a href="#" class="nav-link active">Overview</a><a href="#" class="nav-link">Reports</a><a href="#" class="nav-link">Integrations</a><a disabled=""
                                                                                                                                                                                                                        href="#"
@@ -140,40 +140,40 @@ icon: "image"
                     Link</a></ul>
                 <hr>
                 <div class="nav">
-                    <a href="#" class="nav-link active"><i data-lucide="settings" class="me-2"></i><span>Customers</span></a>
-                    <a href="#" class="nav-link"><i data-lucide="wallet" class="me-2"></i><span>Billing</span>
-                        <div class="badge rounded-pill bg-danger">12</div>
+                    <a href="#" class="nav-link active"><i data-lucide="settings" class="me-3"></i><span>Customers</span></a>
+                    <a href="#" class="nav-link"><i data-lucide="wallet" class="me-3"></i><span>Billing</span>
+                        <div class="badge rounded-pill theme-danger">12</div>
                     </a>
                     <a href="#" class="nav-link"><span>Invoices</span></a>
-                    <a disabled="" href="#" class="nav-link disabled"><i data-lucide="box" class="me-2"></i><span>Audit log</span></a>
+                    <a disabled="" href="#" class="nav-link disabled"><i data-lucide="box" class="me-3"></i><span>Audit log</span></a>
                 </div>
                 <hr>
                 <ul class="nav nav-justified">
-                    <li class="nav-item"><a href="#" class="nav-link active"><i data-lucide="settings" class="me-2"></i><span>Justified</span></a></li>
-                    <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="headset" class="me-2"></i><span>Overview</span>
-                        <div class="badge bg-success">NEW</div>
+                    <li class="nav-item"><a href="#" class="nav-link active"><i data-lucide="settings" class="me-3"></i><span>Justified</span></a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="headset" class="me-3"></i><span>Overview</span>
+                        <div class="badge theme-success">NEW</div>
                     </a></li>
                     <li class="nav-item"><a href="#" class="nav-link"><span>Team</span></a></li>
-                    <li class="nav-item"><a disabled="" href="#" class="nav-link disabled"><i data-lucide="box" class="me-2"></i><span>Audit log</span></a></li>
+                    <li class="nav-item"><a disabled="" href="#" class="nav-link disabled"><i data-lucide="box" class="me-3"></i><span>Audit log</span></a></li>
                 </ul>
             </div>
         </div>
-        <div class="mb-3 card">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Active Links</h5>
                 <div class="nav nav-pills"><a href="#" class="nav-link active">Reports</a><a href="#" class="nav-link">Customers</a><a href="#" class="nav-link">Integrations</a><a
                         disabled="" href="#" class="nav-link disabled">Audit log</a></div>
                 <hr>
-                <div class="nav nav-pills"><a href="#" class="nav-link active"><i data-lucide="settings" class="me-2"></i><span>Billing</span></a><a href="#" class="nav-link"><i data-lucide="wallet" class="me-2"></i><span>Overview</span>
-                    <div class="badge rounded-pill bg-danger">12</div>
-                </a><a href="#" class="nav-link"><span>Invoices</span></a><a disabled="" href="#" class="nav-link disabled"><i data-lucide="box" class="me-2"></i><span>Audit log</span></a></div>
+                <div class="nav nav-pills"><a href="#" class="nav-link active"><i data-lucide="settings" class="me-3"></i><span>Billing</span></a><a href="#" class="nav-link"><i data-lucide="wallet" class="me-3"></i><span>Overview</span>
+                    <div class="badge rounded-pill theme-danger">12</div>
+                </a><a href="#" class="nav-link"><span>Invoices</span></a><a disabled="" href="#" class="nav-link disabled"><i data-lucide="box" class="me-3"></i><span>Audit log</span></a></div>
                 <hr>
                 <ul class="nav nav-pills nav-justified">
-                    <li class="nav-item"><a href="#" class="nav-link active"><i data-lucide="settings" class="me-2"></i>Justified</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="messages-square" class="me-2"></i>Reports
-                        <div class="badge bg-success">NEW</div>
+                    <li class="nav-item"><a href="#" class="nav-link active"><i data-lucide="settings" class="me-3"></i>Justified</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i data-lucide="messages-square" class="me-3"></i>Reports
+                        <div class="badge theme-success">NEW</div>
                     </a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Team</a></li>
-                    <li class="nav-item"><a disabled="" href="#" class="nav-link disabled"><i data-lucide="box" class="me-2"></i>Audit log</a></li>
+                    <li class="nav-item"><a disabled="" href="#" class="nav-link disabled"><i data-lucide="box" class="me-3"></i>Audit log</a></li>
                 </ul>
             </div>
         </div>

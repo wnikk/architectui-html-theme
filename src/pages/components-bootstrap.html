@@ -1,167 +1,678 @@
 ---
 title: "Bootstrap Components"
-description: "Every Bootstrap 5.3 component on one page, styled by the theme. Use it to check a theme in both modes."
+description: "Every Bootstrap 6 component on one page, styled by the theme, the new ones included. Use it to check a theme in both modes."
 icon: "layers"
 breadcrumbs: "header"
+script: "components-bootstrap.js"
 ---
+{#- Section navigation: a Bootstrap 6 nav overflow folds the links that do not fit into a More menu #}
+<div class="card mb-5">
+    <div class="card-body py-3">
+        <div class="nav-overflow" data-bs-toggle="nav-overflow">
+            <ul class="nav nav-pills">
+                {%- for s in [["bs-buttons", "Buttons"], ["bs-badges", "Badges & chips"], ["bs-alerts", "Alerts & toasts"], ["bs-forms", "Forms"], ["bs-new-forms", "New form controls"], ["bs-avatars", "Avatars & stepper"], ["bs-lists", "Lists & tables"], ["bs-cards", "Cards"], ["bs-navs", "Navs & menus"], ["bs-overlays", "Dialogs & drawers"], ["bs-misc", "Helpers & utilities"]] %}
+                <li class="nav-item"><a class="nav-link{% if loop.first %} active{% endif %}" href="#{{ s[0] }}">{{ s[1] }}</a></li>
+                {%- endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
 <div class="row">
-    <div class="col-xl-6">
-        <div class="mb-3 card">
+    <div class="xl:col-6">
+        <div class="mb-5 card" id="bs-buttons">
             <div class="card-body">
-                <h5 class="card-title">Spinners</h5>
-                <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
-                    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
-                    <div class="spinner-border text-success" role="status"><span class="visually-hidden">Loading…</span></div>
-                    <div class="spinner-border text-warning" role="status"><span class="visually-hidden">Loading…</span></div>
-                    <div class="spinner-border text-danger" role="status"><span class="visually-hidden">Loading…</span></div>
-                    <div class="spinner-border spinner-border-sm text-secondary" role="status"><span class="visually-hidden">Loading…</span></div>
-                    <div class="vr"></div>
-                    <div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
-                    <div class="spinner-grow text-info" role="status"><span class="visually-hidden">Loading…</span></div>
-                    <div class="spinner-grow spinner-grow-sm text-focus" role="status"><span class="visually-hidden">Loading…</span></div>
+                <h5 class="card-title">Buttons</h5>
+                <p class="card-subtitle">A variant class and a theme class on one element: <code>btn-solid theme-primary</code>. New: <code>btn-subtle</code>, <code>btn-text</code>, <code>btn-icon</code>, <code>btn-xs</code>, <code>btn-styled</code>.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <button type="button" class="btn-solid theme-primary">Solid</button>
+                    <button type="button" class="btn-outline theme-primary">Outline</button>
+                    <button type="button" class="btn-subtle theme-primary">Subtle</button>
+                    <button type="button" class="btn-text theme-primary">Text</button>
+                    <button type="button" class="btn-link">Link</button>
+                    <button type="button" class="btn-solid theme-primary btn-styled">Styled</button>
                 </div>
-                <div class="d-flex flex-wrap gap-2">
-                    <button class="btn btn-primary" type="button" disabled>
-                        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                        <span role="status">Saving report…</span>
-                    </button>
-                    <button class="btn btn-outline-secondary" type="button" disabled>
-                        <span class="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
-                        <span role="status">Syncing</span>
+                <div class="d-flex flex-wrap gap-3 theme-success">
+                    <button type="button" class="btn-solid">Inherited theme</button>
+                    <button type="button" class="btn-outline">Outline</button>
+                    <button type="button" class="btn-subtle">Subtle</button>
+                    <button type="button" class="btn-solid theme-danger">Own theme</button>
+                    <button type="button" class="btn-solid theme-accent">Accent</button>
+                    <button type="button" class="btn-solid theme-inverse">Inverse</button>
+                    <button type="button" class="btn-solid theme-secondary">Secondary</button>
+                </div>
+                <div class="d-flex flex-wrap align-items-center gap-3">
+                    <button type="button" class="btn-solid theme-primary btn-xs">Extra small</button>
+                    <button type="button" class="btn-solid theme-primary btn-sm">Small</button>
+                    <button type="button" class="btn-solid theme-primary">Default</button>
+                    <button type="button" class="btn-solid theme-primary btn-lg">Large</button>
+                    <button type="button" class="btn-solid btn-icon theme-primary" aria-label="Add"><i data-lucide="plus"></i></button>
+                    <button type="button" class="btn-outline btn-icon theme-secondary" aria-label="Edit"><i data-lucide="pencil"></i></button>
+                    <button type="button" class="btn-text btn-icon theme-danger" aria-label="Delete"><i data-lucide="trash"></i></button>
+                    <button type="button" class="btn-solid theme-primary shadow shadow-primary hover-lift">Shadow and lift</button>
+                </div>
+                <div class="d-flex flex-wrap align-items-center gap-3">
+                    <div class="btn-group" role="group" aria-label="Period">
+                        <label class="btn-check btn-outline theme-primary"><input type="radio" name="bsPeriod" checked>Day</label>
+                        <label class="btn-check btn-outline theme-primary"><input type="radio" name="bsPeriod">Week</label>
+                        <label class="btn-check btn-outline theme-primary"><input type="radio" name="bsPeriod">Month</label>
+                    </div>
+                    <label class="btn-check btn-subtle theme-success"><input type="checkbox" checked><i data-lucide="bell"></i>Notify me</label>
+                    <div class="btn-group" role="group" aria-label="Export">
+                        <button type="button" class="btn-solid theme-secondary"><i data-lucide="download"></i>Export</button>
+                        <button type="button" class="btn-solid theme-secondary menu-toggle-split" data-bs-toggle="menu" aria-expanded="false"><i data-lucide="chevron-down"></i><span class="visually-hidden">Toggle menu</span></button>
+                        <div class="menu">
+                            <a class="menu-item" href="#">CSV</a>
+                            <a class="menu-item" href="#">Excel</a>
+                            <hr class="menu-divider">
+                            <a class="menu-item" href="#">Schedule export</a>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-solid theme-primary" disabled>
+                        <span class="spinner-border" aria-hidden="true"></span>
+                        <span role="status">Saving…</span>
                     </button>
                 </div>
             </div>
         </div>
-        <div class="mb-3 card">
+
+        <div class="mb-5 card" id="bs-badges">
             <div class="card-body">
-                <h5 class="card-title">Placeholders</h5>
-                <p class="card-subtitle">Show the shape of the content while the data loads.</p>
-                <div class="row g-3">
-                    <div class="col-sm-6">
-                        <div class="border rounded p-3 h-100" aria-hidden="true">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-6 placeholder-lg mb-2"></span>
-                                <span class="placeholder col-7"></span>
-                                <span class="placeholder col-4"></span>
-                                <span class="placeholder col-4"></span>
-                                <span class="placeholder col-6"></span>
+                <h5 class="card-title">Badges and chips</h5>
+                <p class="card-subtitle">Badges take <code>theme-*</code>, <code>badge-subtle</code>, <code>badge-outline</code> and <code>badge-lg</code>. Chips are new: small interactive tags, and a chip input for several values.</p>
+                <div class="d-flex flex-wrap align-items-center gap-3">
+                    <span class="badge theme-primary">Primary</span>
+                    <span class="badge theme-success">Paid</span>
+                    <span class="badge theme-warning">Pending</span>
+                    <span class="badge theme-danger">Failed</span>
+                    <span class="badge theme-info">Shipped</span>
+                    <span class="badge theme-accent">Accent</span>
+                    <span class="badge theme-inverse">Inverse</span>
+                    <span class="badge theme-secondary">Draft</span>
+                    <span class="badge theme-focus">Focus</span>
+                </div>
+                <div class="d-flex flex-wrap align-items-center gap-3">
+                    <span class="badge badge-subtle theme-primary">Subtle</span>
+                    <span class="badge badge-subtle theme-success"><i data-lucide="check"></i>Done</span>
+                    <span class="badge badge-outline theme-danger">Outline</span>
+                    <span class="badge badge-outline theme-secondary">Outline</span>
+                    <span class="badge badge-lg theme-primary">Large <span class="spinner-border" aria-hidden="true"></span></span>
+                    <button type="button" class="btn-outline theme-secondary btn-sm">Inbox <span class="badge theme-danger">4</span></button>
+                </div>
+                <div class="d-flex flex-wrap align-items-center gap-3">
+                    <span class="chip">Design</span>
+                    <span class="chip active">Frontend</span>
+                    <button type="button" class="chip theme-primary"><i data-lucide="tag" class="chip-icon"></i>Billing</button>
+                    <span class="chip theme-success"><img class="chip-img" src="assets/images/avatars/3.jpg" alt="">Sofia Rossi<button type="button" class="chip-dismiss" aria-label="Remove"></button></span>
+                    <span class="chip disabled">Archived</span>
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="bsChipInput">Recipients</label>
+                    <div class="chip-input theme-primary" data-bs-chips data-bs-separator="," data-bs-max-chips="6">
+                        <span class="chip">maria.chen@northwind.test<button type="button" class="chip-dismiss" aria-label="Remove"></button></span>
+                        <span class="chip">daniel.novak@northwind.test<button type="button" class="chip-dismiss" aria-label="Remove"></button></span>
+                        <input type="text" class="form-ghost" id="bsChipInput" placeholder="Add an address and press Enter">
+                    </div>
+                    <div class="form-text">Enter or a comma adds a chip, Backspace selects the last one.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-5 card" id="bs-alerts">
+            <div class="card-body">
+                <h5 class="card-title">Alerts and toasts</h5>
+                <p class="card-subtitle">An alert takes <code>theme-*</code>; a close button inside it needs no extra class. Toasts take <code>theme-*</code> and <code>toast-translucent</code>.</p>
+                <div class="alert theme-success" role="alert">
+                    <i data-lucide="circle-check"></i>
+                    <p>The report was sent to 12 people. <a href="#" class="alert-link">Open the log</a>.</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div class="alert theme-warning" role="alert">
+                    <i data-lucide="triangle-alert"></i>
+                    <div>
+                        <h6 class="alert-heading">Payment method expires soon</h6>
+                        <p class="mb-0">The card ending 4242 expires next month. Update it before the next invoice.</p>
+                    </div>
+                </div>
+                <div class="alert theme-danger alert-instant" role="alert">
+                    <p>Two servers did not answer the health check. <code>alert-instant</code> closes without the fade.</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div class="d-flex flex-wrap gap-3">
+                    <button type="button" class="btn-solid theme-primary" data-aui-toast="#bsToastTheme">Theme toast</button>
+                    <button type="button" class="btn-outline theme-secondary" data-aui-toast="#bsToastGlass">Translucent toast</button>
+                    <button type="button" class="btn-outline theme-secondary" data-aui-toast="#bsToastInstant">Instant toast</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-5 card" id="bs-forms">
+            <div class="card-body">
+                <h5 class="card-title">Forms</h5>
+                <p class="card-subtitle">Label, control, help and feedback live in a <code>form-field</code>. Checks, radios and switches are plain inputs. Validation starts after the first interaction with <code>data-bs-validate</code>.</p>
+                <form novalidate data-bs-validate class="row g-5">
+                    <div class="form-field md:col-6">
+                        <label class="form-label" for="bsFormEmail">Work email</label>
+                        <input type="email" class="form-control" id="bsFormEmail" placeholder="name@company.com" required>
+                        <div class="form-text">Invitations go to this address.</div>
+                        <div class="invalid-feedback">Enter a valid email address.</div>
+                    </div>
+                    <div class="form-field md:col-6">
+                        <label class="form-label" for="bsFormRole">Role</label>
+                        <select class="form-control" id="bsFormRole" required>
+                            <option value="">Choose a role</option>
+                            <option>Administrator</option>
+                            <option>Editor</option>
+                            <option>Viewer</option>
+                        </select>
+                        <div class="invalid-feedback">Choose a role.</div>
+                    </div>
+                    <div class="form-field md:col-6">
+                        <label class="form-label" for="bsFormSite">Site address</label>
+                        <div class="input-group">
+                            <span class="input-group-text">https://</span>
+                            <input type="text" class="form-control" id="bsFormSite" placeholder="shop" required pattern="[a-z0-9-]{3,}">
+                            <span class="input-group-text">.example.test</span>
+                        </div>
+                        <div class="invalid-feedback">Lowercase letters, digits and hyphens, 3 or more.</div>
+                    </div>
+                    <div class="form-field md:col-6">
+                        <label class="form-label" for="bsFormNote">Note</label>
+                        <textarea class="form-control" id="bsFormNote" rows="1" placeholder="Optional"></textarea>
+                    </div>
+                    <div class="md:col-6">
+                        <div class="form-group" role="group" aria-labelledby="bsFormPlanLabel">
+                            <div class="form-label" id="bsFormPlanLabel">Plan</div>
+                            <div class="form-field">
+                                <input type="radio" class="radio" name="bsFormPlan" id="bsFormPlanStarter" checked>
+                                <label for="bsFormPlanStarter">Starter</label>
                             </div>
-                            <a class="btn btn-primary disabled placeholder col-5 mt-3" aria-disabled="true"></a>
+                            <div class="form-field">
+                                <input type="radio" class="radio" name="bsFormPlan" id="bsFormPlanBusiness">
+                                <label for="bsFormPlanBusiness">Business<span class="d-block small fg-2">Audit log and single sign-on</span></label>
+                            </div>
+                            <div class="form-field">
+                                <input type="radio" class="radio" name="bsFormPlan" id="bsFormPlanEnterprise" disabled>
+                                <label for="bsFormPlanEnterprise">Enterprise</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="border rounded p-3 h-100">
-                            <div class="fw-bold mb-1">Monthly revenue</div>
-                            <div class="text-body-secondary small mb-2">Updated 5 minutes ago</div>
-                            <div class="aui-number fs-3 fw-bold lh-1 text-success">$48,290</div>
-                            <a href="#" class="btn btn-primary mt-3">Open report</a>
+                    <div class="md:col-6 vstack gap-3">
+                        <div class="form-field">
+                            <input type="checkbox" class="check" id="bsFormTerms" required>
+                            <label for="bsFormTerms">I accept the <a href="#">terms of service</a></label>
+                            <div class="invalid-feedback">You must accept the terms.</div>
+                        </div>
+                        <div class="form-field">
+                            <input type="checkbox" class="check" id="bsFormIndeterminate" data-bs-indeterminate>
+                            <label for="bsFormIndeterminate">Select all orders<span class="d-block small fg-2">Some of them are selected</span></label>
+                        </div>
+                        <div class="form-field">
+                            <div class="switch theme-success">
+                                <input type="checkbox" role="switch" switch id="bsFormSwitch" checked>
+                            </div>
+                            <label for="bsFormSwitch">Email me a weekly digest</label>
+                        </div>
+                        <div class="form-field">
+                            <div class="switch switch-sm">
+                                <input type="checkbox" role="switch" switch id="bsFormSwitchSm">
+                            </div>
+                            <label for="bsFormSwitchSm">Small switch</label>
                         </div>
                     </div>
-                </div>
-                <p class="placeholder-wave mt-3 mb-0" aria-hidden="true">
-                    <span class="placeholder col-12 bg-primary"></span>
-                    <span class="placeholder col-8 bg-secondary"></span>
-                </p>
+                    <div class="col-12 d-flex flex-wrap gap-3">
+                        <button type="submit" class="btn-solid theme-primary">Create account</button>
+                        <button type="reset" class="btn-text theme-secondary">Reset</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="mb-3 card">
+
+        <div class="mb-5 card" id="bs-new-forms">
             <div class="card-body">
-                <h5 class="card-title">Floating Labels and Range</h5>
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="bsFloatEmail" placeholder="name@company.com">
-                    <label for="bsFloatEmail">Work email</label>
+                <h5 class="card-title">New form controls</h5>
+                <p class="card-subtitle">Range with a value bubble and tick marks, adorned inputs, floating labels, a one-time code, a password meter, a combobox and a date picker.</p>
+                <div class="row g-5">
+                    <div class="form-field md:col-6">
+                        <label class="form-label" for="bsRange">Alert threshold</label>
+                        <div class="form-range theme-primary" data-bs-bubble="true">
+                            <input type="range" class="form-range-input" id="bsRange" min="0" max="100" step="5" value="70" list="bsRangeTicks">
+                            <datalist id="bsRangeTicks">
+                                <option value="0" label="0%"></option>
+                                <option value="50" label="50%"></option>
+                                <option value="100" label="100%"></option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="form-field md:col-6">
+                        <label class="form-label" for="bsRangeDisabled">Disabled range</label>
+                        <div class="form-range">
+                            <input type="range" class="form-range-input" id="bsRangeDisabled" value="40" disabled>
+                        </div>
+                    </div>
+                    <div class="form-field md:col-6">
+                        <label class="form-label" for="bsAdornPrice">Price</label>
+                        <label class="form-control form-adorn">
+                            <span class="form-adorn-text" aria-hidden="true">$</span>
+                            <input type="text" class="form-ghost" id="bsAdornPrice" placeholder="0.00" inputmode="decimal">
+                            <span class="form-adorn-text form-adorn-end" aria-hidden="true">USD</span>
+                        </label>
+                    </div>
+                    <div class="form-field md:col-6">
+                        <label class="form-label" for="bsAdornSearch">Search orders</label>
+                        <label class="form-control form-adorn">
+                            <span class="form-adorn-icon" aria-hidden="true"><i data-lucide="search"></i></span>
+                            <input type="search" class="form-ghost" id="bsAdornSearch" placeholder="Order number or customer">
+                        </label>
+                    </div>
+                    <div class="md:col-6">
+                        <div class="form-floating mb-3">
+                            <label for="bsFloatEmail">Work email</label>
+                            <input type="email" class="form-control" id="bsFloatEmail" placeholder="name@company.com">
+                        </div>
+                        <div class="form-floating">
+                            <label for="bsFloatRole">Role</label>
+                            <select class="form-control" id="bsFloatRole">
+                                <option selected>Editor</option>
+                                <option value="admin">Administrator</option>
+                                <option value="viewer">Viewer</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-field md:col-6">
+                        <label class="form-label" for="bsOtp">Verification code</label>
+                        <div class="otp otp-connected" data-bs-otp data-bs-groups="[3,3]">
+                            <input type="text" class="otp-input" id="bsOtp" maxlength="6" inputmode="numeric" autocomplete="one-time-code">
+                        </div>
+                        <div class="form-text">One real field drawn as six slots: paste a code or let the phone fill it in.</div>
+                    </div>
+                    <div class="form-field md:col-6">
+                        <label class="form-label" for="bsPassword">New password</label>
+                        <input type="password" class="form-control" id="bsPassword" autocomplete="new-password" placeholder="At least 8 characters">
+                        <div class="strength" data-bs-strength data-bs-input="#bsPassword" data-bs-min-length="8">
+                            <div class="strength-segment"></div>
+                            <div class="strength-segment"></div>
+                            <div class="strength-segment"></div>
+                            <div class="strength-segment"></div>
+                            <div class="strength-text"></div>
+                        </div>
+                    </div>
+                    <div class="form-field md:col-6">
+                        <label class="form-label" for="bsCombobox">Assignee</label>
+                        <button type="button" class="form-control combobox-toggle" id="bsCombobox" data-bs-toggle="combobox" data-bs-search="true" data-bs-name="assignee" data-bs-placeholder="Choose a person" aria-expanded="false">
+                            <span class="combobox-value combobox-placeholder">Choose a person</span>
+                            <i data-lucide="chevrons-up-down" class="combobox-caret"></i>
+                        </button>
+                        <div class="menu">
+                            <div class="combobox-search"><input type="search" class="form-control form-control-sm combobox-search-input" placeholder="Search" aria-label="Search people"></div>
+                            <h6 class="menu-header">Support</h6>
+                            <button type="button" class="menu-item" data-bs-value="maria">
+                                <span class="avatar avatar-xs menu-item-icon"><img class="avatar-img" src="assets/images/avatars/11.jpg" alt=""></span>
+                                <span class="menu-item-content"><span>Maria Chen</span><span class="menu-item-description">Head of Operations</span></span>
+                                <i data-lucide="check" class="menu-item-check"></i>
+                            </button>
+                            <button type="button" class="menu-item" data-bs-value="daniel">
+                                <span class="avatar avatar-xs menu-item-icon"><img class="avatar-img" src="assets/images/avatars/4.jpg" alt=""></span>
+                                <span class="menu-item-content"><span>Daniel Novak</span><span class="menu-item-description">Support engineer</span></span>
+                                <i data-lucide="check" class="menu-item-check"></i>
+                            </button>
+                            <h6 class="menu-header">Sales</h6>
+                            <button type="button" class="menu-item" data-bs-value="amara">
+                                <span class="avatar avatar-xs menu-item-icon"><img class="avatar-img" src="assets/images/avatars/5.jpg" alt=""></span>
+                                <span class="menu-item-content"><span>Amara Okafor</span><span class="menu-item-description">Account manager</span></span>
+                                <i data-lucide="check" class="menu-item-check"></i>
+                            </button>
+                            <div class="combobox-no-results d-none">No one matches</div>
+                        </div>
+                    </div>
+                    <div class="form-field md:col-6">
+                        <label class="form-label" for="bsDate">Delivery date</label>
+                        <label class="form-control form-adorn">
+                            <span class="form-adorn-icon" aria-hidden="true"><i data-lucide="calendar"></i></span>
+                            <input type="text" class="form-ghost" id="bsDate" data-bs-toggle="datepicker" data-bs-date-min="today" placeholder="Pick a date" autocomplete="off">
+                        </label>
+                        <div class="form-text">Vanilla Calendar Pro comes with the Bootstrap bundle.</div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-field">
+                            <label class="form-label" for="bsFile">Attachments</label>
+                            <input type="file" class="form-control" id="bsFile" multiple>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-floating mb-3">
-                    <select class="form-select" id="bsFloatRole">
-                        <option selected>Editor</option>
-                        <option value="admin">Administrator</option>
-                        <option value="viewer">Viewer</option>
-                    </select>
-                    <label for="bsFloatRole">Role</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <textarea class="form-control" placeholder="Note" id="bsFloatNote" style="height: 6rem"></textarea>
-                    <label for="bsFloatNote">Note for the team</label>
-                </div>
-                <label for="bsRange" class="form-label">Alert threshold, %</label>
-                <input type="range" class="form-range" min="0" max="100" step="5" value="70" id="bsRange">
-                <label for="bsRangeDisabled" class="form-label">Disabled range</label>
-                <input type="range" class="form-range" id="bsRangeDisabled" disabled>
             </div>
         </div>
     </div>
-    <div class="col-xl-6">
-        <div class="mb-3 card">
+
+    <div class="xl:col-6">
+        <div class="mb-5 card" id="bs-avatars">
             <div class="card-body">
-                <h5 class="card-title">Navbar</h5>
-                <nav class="navbar navbar-expand-lg bg-body-tertiary rounded mb-3">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#">Orders</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bsNavbarLight" aria-controls="bsNavbarLight" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="bsNavbarLight">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-nowrap">
-                                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Today</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Week</a></li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Status</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Paid</a></li>
-                                        <li><a class="dropdown-item" href="#">Pending</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="#">Refunded</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <form class="d-flex" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Order no." aria-label="Order number">
-                                <button class="btn btn-outline-primary" type="submit">Find</button>
-                            </form>
-                        </div>
-                    </div>
-                </nav>
-                <nav class="navbar navbar-expand-lg bg-primary rounded" data-bs-theme="dark">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#">Monitoring</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bsNavbarDark" aria-controls="bsNavbarDark" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="bsNavbarDark">
-                            <ul class="navbar-nav">
-                                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Servers</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Queues</a></li>
-                                <li class="nav-item"><a class="nav-link disabled" aria-disabled="true">Billing</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+                <h5 class="card-title">Avatars and stepper</h5>
+                <p class="card-subtitle">New components: avatars with sizes, initials, status dots and stacks; a stepper for a flow in steps.</p>
+                <div class="d-flex flex-wrap align-items-center gap-3">
+                    <span class="avatar avatar-xs"><img class="avatar-img" src="assets/images/avatars/1.jpg" alt="Alina Mclourd"></span>
+                    <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/2.jpg" alt="James Patel"></span>
+                    <span class="avatar"><img class="avatar-img" src="assets/images/avatars/3.jpg" alt="Sofia Rossi"></span>
+                    <span class="avatar avatar-lg"><img class="avatar-img" src="assets/images/avatars/4.jpg" alt="Daniel Novak"><span class="avatar-status status-online" role="img" aria-label="Online"></span></span>
+                    <span class="avatar avatar-xl"><img class="avatar-img" src="assets/images/avatars/5.jpg" alt="Amara Okafor"><span class="avatar-status status-busy" role="img" aria-label="Busy"></span></span>
+                    <span class="avatar theme-primary">MC</span>
+                    <span class="avatar avatar-subtle theme-success">LM</span>
+                    <span class="avatar avatar-subtle theme-accent">HS</span>
+                    <span class="avatar theme-inverse"><i data-lucide="user"></i></span>
+                </div>
+                <div class="d-flex flex-wrap align-items-center gap-7">
+                    <span class="avatar-stack">
+                        <span class="avatar"><img class="avatar-img" src="assets/images/avatars/8.jpg" alt="Lucas Meyer"></span>
+                        <span class="avatar"><img class="avatar-img" src="assets/images/avatars/9.jpg" alt="Hana Sato"></span>
+                        <span class="avatar"><img class="avatar-img" src="assets/images/avatars/10.jpg" alt="Omar Haddad"></span>
+                        <span class="avatar theme-secondary">+5</span>
+                    </span>
+                    <span class="avatar-stack avatar-stack-sm">
+                        <span class="avatar"><img class="avatar-img" src="assets/images/avatars/11.jpg" alt="Maria Chen"></span>
+                        <span class="avatar"><img class="avatar-img" src="assets/images/avatars/12.jpg" alt="Noah Williams"></span>
+                        <span class="avatar"><img class="avatar-img" src="assets/images/avatars/1.jpg" alt="Alina Mclourd"></span>
+                    </span>
+                    <span class="avatar"><img class="avatar-img" src="assets/images/avatars/2.jpg" alt="James Patel"><span class="avatar-status status-away" role="img" aria-label="Away"></span></span>
+                    <span class="avatar"><img class="avatar-img" src="assets/images/avatars/3.jpg" alt="Sofia Rossi"><span class="avatar-status status-offline" role="img" aria-label="Offline"></span></span>
+                </div>
+                <div class="stepper-overflow">
+                    <ol class="stepper stepper-horizontal">
+                        <li class="stepper-item active">Order placed</li>
+                        <li class="stepper-item active">Paid</li>
+                        <li class="stepper-item active" aria-current="step">Packing</li>
+                        <li class="stepper-item">Shipped</li>
+                        <li class="stepper-item">Delivered</li>
+                    </ol>
+                </div>
+                <ol class="stepper stepper-vertical theme-success">
+                    <li class="stepper-item align-items-start active">
+                        <div class="pt-1"><div class="fw-semibold">Domain connected</div><small class="fg-3">DNS records verified at 09:12.</small></div>
+                    </li>
+                    <li class="stepper-item align-items-start active" aria-current="step">
+                        <div class="pt-1"><div class="fw-semibold">Team invited</div><small class="fg-3">3 of 8 people accepted.</small></div>
+                    </li>
+                    <li class="stepper-item align-items-start">
+                        <div class="pt-1"><div class="fw-semibold">Billing set up</div><small class="fg-3">Card or invoice.</small></div>
+                    </li>
+                </ol>
             </div>
         </div>
-        <div class="mb-3 card">
+
+        <div class="mb-5 card" id="bs-lists">
             <div class="card-body">
-                <h5 class="card-title">Offcanvas and Dark Dropdown</h5>
-                <div class="d-flex flex-wrap gap-2">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#bsOffcanvasFilters" aria-controls="bsOffcanvasFilters">Filters panel</button>
-                    <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#bsOffcanvasBottom" aria-controls="bsOffcanvasBottom">Bottom panel</button>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dark menu</button>
-                        <ul class="dropdown-menu" data-bs-theme="dark">
-                            <li><h6 class="dropdown-header">Export</h6></li>
-                            <li><a class="dropdown-item active" href="#">CSV</a></li>
-                            <li><a class="dropdown-item" href="#">Excel</a></li>
-                            <li><a class="dropdown-item disabled" aria-disabled="true">PDF</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Schedule export</a></li>
-                        </ul>
+                <h5 class="card-title">Lists, tables and progress</h5>
+                <p class="card-subtitle">List group items, table rows and progress bars take <code>theme-*</code>. New: <code>table-stacked</code> and <code>table-card</code>; horizontal lists and card groups follow a <code>contains-inline</code> parent.</p>
+                <div class="row g-5">
+                    <div class="md:col-6">
+                        <ol class="list-group list-group-numbered">
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-3 me-auto"><div class="fw-bold">Connect the domain</div>Add the DNS records</div>
+                                <span class="badge theme-success">Done</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start theme-warning">
+                                <div class="ms-3 me-auto"><div class="fw-bold">Invite the team</div>3 of 8 accepted</div>
+                                <span class="badge theme-warning">In progress</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-3 me-auto"><div class="fw-bold">Set up billing</div>Card or invoice</div>
+                                <span class="badge theme-secondary">Next</span>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="md:col-6">
+                        <div class="list-group mb-5">
+                            <a href="#" class="list-group-item list-group-item-action active" aria-current="true"><i data-lucide="inbox" class="me-3"></i>Inbox <span class="badge theme-inverse ms-auto">12</span></a>
+                            <a href="#" class="list-group-item list-group-item-action"><i data-lucide="send" class="me-3"></i>Sent</a>
+                            <label class="list-group-item d-flex gap-3"><input class="check" type="checkbox" checked>Archive read mail</label>
+                            <a href="#" class="list-group-item list-group-item-action disabled" aria-disabled="true"><i data-lucide="trash" class="me-3"></i>Trash</a>
+                        </div>
+                        <div class="contains-inline">
+                            <ul class="list-group sm:list-group-horizontal">
+                                <li class="list-group-item active" aria-current="true">Day</li>
+                                <li class="list-group-item">Week</li>
+                                <li class="list-group-item">Month</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="progress mb-3" role="progressbar" aria-label="Storage" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar" style="width: 65%">65%</div>
+                        </div>
+                        <div class="progress theme-success mb-3" role="progressbar" aria-label="Uptime" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="height: .5rem">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 99%"></div>
+                        </div>
+                        <div class="progress-stacked" aria-label="Plan usage">
+                            <div class="progress theme-primary" role="progressbar" aria-label="Documents" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width: 35%"><div class="progress-bar">Documents</div></div>
+                            <div class="progress theme-info" role="progressbar" aria-label="Media" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"><div class="progress-bar">Media</div></div>
+                            <div class="progress theme-warning" role="progressbar" aria-label="Backups" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%"><div class="progress-bar">Backups</div></div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="md:table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead>
+                                    <tr><th scope="col">Order</th><th scope="col">Customer</th><th scope="col">Status</th><th scope="col" class="text-end">Amount</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>ORD-1047</td><td>Omar Haddad</td><td><span class="badge badge-subtle theme-success">Paid</span></td><td class="text-end">$98.19</td></tr>
+                                    <tr class="theme-warning"><td>ORD-1048</td><td>Maria Chen</td><td><span class="badge badge-subtle theme-warning">Pending</span></td><td class="text-end">$19.00</td></tr>
+                                    <tr><td>ORD-1049</td><td>Hana Sato</td><td><span class="badge badge-subtle theme-danger">Failed</span></td><td class="text-end theme-danger">$494.14</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <p class="small fg-2 mb-3">Stacked below 768 px: every cell shows its column name from <code>data-cell</code>, so the rows read on a phone; <code>table-card</code> frames the table.</p>
+                        <table class="table md:table-stacked table-card mb-0">
+                            <thead>
+                                <tr><th scope="col">Server</th><th scope="col">Region</th><th scope="col">Load</th><th scope="col">State</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td data-cell="Server">web-01</td><td data-cell="Region">EU West</td><td data-cell="Load">42%</td><td data-cell="State"><span class="badge theme-success">Healthy</span></td></tr>
+                                <tr><td data-cell="Server">db-02</td><td data-cell="Region">US East</td><td data-cell="Load">88%</td><td data-cell="State"><span class="badge theme-warning">Busy</span></td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mb-3 card">
+
+        <div class="mb-5 card" id="bs-cards">
             <div class="card-body">
-                <h5 class="card-title">Scrollspy</h5>
-                <div class="row">
+                <h5 class="card-title">Cards</h5>
+                <p class="card-subtitle">The body is a flex column with a gap. New: <code>card-row</code>, <code>card-subtle</code>, <code>card-translucent</code>, a themed card and <code>hover-lift</code>.</p>
+                <div class="row g-5">
+                    <div class="md:col-6">
+                        <a href="#" class="card hover-lift text-decoration-none h-100">
+                            <div class="card-body">
+                                <h6 class="card-title">Hover lift</h6>
+                                <p class="card-text fg-2 mb-0">This card lifts on hover and keyboard focus.</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="md:col-6">
+                        <div class="card card-subtle theme-primary h-100">
+                            <div class="card-body">
+                                <h6 class="card-title">Subtle themed card</h6>
+                                <p class="card-text mb-0">A pale background in the theme color.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card card-row">
+                            <div class="d-flex align-items-center justify-content-center bg-primary fg-contrast-primary p-7" style="min-width: 8rem"><i data-lucide="package" class="fs-3xl"></i></div>
+                            <div class="card-body">
+                                <h6 class="card-title">Horizontal card</h6>
+                                <p class="card-text mb-0">The image column and the body sit side by side with <code>card-row</code>.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 contains-inline">
+                        <div class="card-group">
+                            <div class="card theme-success">
+                                <div class="card-header">Starter</div>
+                                <div class="card-body"><p class="card-text">5 seats, 10 GB of storage and email support.</p></div>
+                                <div class="card-footer"><span class="fg-2">$19 per month</span></div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">Business</div>
+                                <div class="card-body"><p class="card-text">25 seats, audit log and single sign-on.</p></div>
+                                <div class="card-footer"><span class="fg-2">$79 per month</span></div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">Enterprise</div>
+                                <div class="card-body"><p class="card-text">Unlimited seats and a 99.9% uptime agreement.</p></div>
+                                <div class="card-footer"><span class="fg-2">On request</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-5 card" id="bs-navs">
+            <div class="card-body">
+                <h5 class="card-title">Navs, navbar and menus</h5>
+                <p class="card-subtitle">A nav in a <code>nav-overflow</code> folds into a More menu. The navbar folds into a drawer. Menus replace dropdowns: a toggle and a sibling <code>.menu</code>, with icons, descriptions, checks and submenus.</p>
+                <div class="nav-overflow mb-5" data-bs-toggle="nav-overflow">
+                    <ul class="nav nav-underline" role="tablist">
+                        {%- for tab in ["Overview", "Activity", "Orders", "Invoices", "Documents", "Members", "Integrations", "Settings"] %}
+                        <li class="nav-item" role="presentation"><button type="button" class="nav-link{% if loop.first %} active{% endif %}" data-bs-toggle="tab" data-bs-target="#bsTab{{ loop.index }}" role="tab" aria-selected="{{ 'true' if loop.first else 'false' }}">{{ tab }}</button></li>
+                        {%- endfor %}
+                    </ul>
+                </div>
+                <div class="tab-content mb-5">
+                    {%- for tab in ["Overview", "Activity", "Orders", "Invoices", "Documents", "Members", "Integrations", "Settings"] %}
+                    <div class="tab-pane{% if loop.first %} active{% endif %} small fg-2" id="bsTab{{ loop.index }}" role="tabpanel">{{ tab }}: the pane fades in by itself when the tab opens.</div>
+                    {%- endfor %}
+                </div>
+                <nav class="navbar lg:navbar-expand bg-1 rounded-5 px-5 mb-5">
+                    <a class="navbar-brand" href="#">Orders</a>
+                    <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#bsNavbarDrawer" aria-controls="bsNavbarDrawer" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon" aria-hidden="true"></span></button>
+                    <dialog class="drawer drawer-end lg:drawer" tabindex="-1" id="bsNavbarDrawer" aria-labelledby="bsNavbarDrawerLabel">
+                        <div class="drawer-header">
+                            <h5 class="drawer-title" id="bsNavbarDrawerLabel">Orders</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+                        </div>
+                        <div class="drawer-body">
+                            <ul class="nav navbar-nav me-auto">
+                                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Today</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Week</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" role="button" data-bs-toggle="menu" aria-expanded="false">Status<i data-lucide="chevron-down"></i></a>
+                                    <div class="menu">
+                                        <a class="menu-item" href="#">Paid</a>
+                                        <a class="menu-item" href="#">Pending</a>
+                                        <hr class="menu-divider">
+                                        <a class="menu-item" href="#">Refunded</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <form class="d-flex gap-3" role="search">
+                                <input class="form-control form-control-sm" type="search" placeholder="Order no." aria-label="Order number">
+                                <button class="btn-outline theme-primary btn-sm" type="submit">Find</button>
+                            </form>
+                        </div>
+                    </dialog>
+                </nav>
+                <div class="d-flex flex-wrap gap-3">
+                    <div>
+                        <button type="button" class="btn-solid theme-primary" data-bs-toggle="menu" aria-expanded="false">Rich menu<i data-lucide="chevron-down"></i></button>
+                        <div class="menu">
+                            <h6 class="menu-header">Order ORD-1048</h6>
+                            <a class="menu-item" href="#"><i data-lucide="eye" class="menu-item-icon"></i><span class="menu-item-content"><span>View</span><span class="menu-item-description">Open the order page</span></span></a>
+                            <a class="menu-item" href="#"><i data-lucide="printer" class="menu-item-icon"></i><span class="menu-item-content"><span>Print invoice</span><span class="menu-item-description">PDF, A4</span></span></a>
+                            <hr class="menu-divider">
+                            <button type="button" class="menu-item selected" aria-selected="true"><span>Notify the customer</span><i data-lucide="check" class="menu-item-check"></i></button>
+                            <button type="button" class="menu-item"><span>Mark as priority</span><i data-lucide="check" class="menu-item-check"></i></button>
+                            <hr class="menu-divider">
+                            <a class="menu-item theme-danger" href="#"><i data-lucide="x" class="menu-item-icon"></i>Cancel order</a>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn-outline theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-start md:bottom-end" aria-expanded="false">Submenu<i data-lucide="chevron-down"></i></button>
+                        <div class="menu">
+                            <a class="menu-item" href="#">Edit</a>
+                            <div class="submenu">
+                                <button type="button" class="menu-item" data-bs-toggle="menu" aria-expanded="false">Move to<i data-lucide="chevron-right" class="ms-auto"></i></button>
+                                <div class="menu">
+                                    <a class="menu-item" href="#">Backlog</a>
+                                    <a class="menu-item" href="#">In progress</a>
+                                    <a class="menu-item" href="#">Done</a>
+                                </div>
+                            </div>
+                            <a class="menu-item" href="#">Archive</a>
+                        </div>
+                    </div>
+                    <div data-bs-theme="dark">
+                        <button type="button" class="btn-solid theme-inverse" data-bs-toggle="menu" data-bs-placement="top-start" aria-expanded="false">Dark, opens up<i data-lucide="chevron-up"></i></button>
+                        <div class="menu menu-translucent">
+                            <a class="menu-item active" href="#">CSV</a>
+                            <a class="menu-item" href="#">Excel</a>
+                            <a class="menu-item disabled" aria-disabled="true">PDF</a>
+                        </div>
+                    </div>
+                </div>
+                <nav aria-label="breadcrumb" class="mt-5">
+                    <ol class="breadcrumb">
+                        <li><a class="breadcrumb-link" href="#">Customers</a></li>
+                        <li class="breadcrumb-divider" aria-hidden="true"></li>
+                        <li><a class="breadcrumb-link" href="#">Northwind Ltd</a></li>
+                        <li class="breadcrumb-divider" aria-hidden="true"><i data-lucide="slash"></i></li>
+                        <li><span class="breadcrumb-link active" aria-current="page">Invoices</span></li>
+                    </ol>
+                </nav>
+                <nav aria-label="Pages of the invoice list">
+                    <ul class="pagination pagination-sm theme-primary mb-0">
+                        <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i data-lucide="chevron-left"></i></a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active" aria-current="page"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i data-lucide="chevron-right"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="mb-5 card" id="bs-overlays">
+            <div class="card-body">
+                <h5 class="card-title">Dialogs, drawers, tooltips and popovers</h5>
+                <p class="card-subtitle">Dialogs and drawers are native <code>&lt;dialog&gt;</code> elements: the browser gives the backdrop, the focus trap and Escape. Tooltips stay open while the pointer is on them.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <button type="button" class="btn-solid theme-primary" data-bs-toggle="dialog" data-bs-target="#bsDialog">Dialog</button>
+                    <button type="button" class="btn-outline theme-primary" data-bs-toggle="dialog" data-bs-target="#bsDialogScroll">Scrollable, slides up</button>
+                    <button type="button" class="btn-outline theme-primary" data-bs-toggle="dialog" data-bs-target="#bsDialogStatic">Static backdrop</button>
+                    <button type="button" class="btn-outline theme-secondary" data-bs-toggle="drawer" data-bs-target="#bsDrawerFilters" aria-controls="bsDrawerFilters">Drawer</button>
+                    <button type="button" class="btn-outline theme-secondary" data-bs-toggle="drawer" data-bs-target="#bsDrawerSheet" aria-controls="bsDrawerSheet">Bottom sheet</button>
+                </div>
+                <div class="d-flex flex-wrap gap-3">
+                    <button type="button" class="btn-subtle theme-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">Tooltip</button>
+                    <button type="button" class="btn-subtle theme-primary" data-bs-toggle="tooltip" data-bs-placement="bottom md:right" data-bs-title="Bottom on phones, right from md">Responsive placement</button>
+                    <button type="button" class="btn-subtle theme-primary" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="A tooltip with a <a href='#'>link</a> stays open while you reach it">With a link</button>
+                    <button type="button" class="btn-subtle theme-accent" data-bs-toggle="popover" data-bs-title="Order ORD-1048" data-bs-content="The order is paid and waits for packing. Expected shipping: tomorrow.">Popover</button>
+                    <button type="button" class="btn-subtle theme-accent" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-placement="left" data-bs-title="On focus" data-bs-content="Closes when the button loses focus.">Popover on focus</button>
+                </div>
+                <div class="d-flex flex-wrap gap-3 align-items-center">
+                    <button type="button" class="btn-outline theme-secondary" data-bs-toggle="collapse" data-bs-target="#bsCollapse" aria-expanded="false" aria-controls="bsCollapse">Collapse</button>
+                    <button type="button" class="btn-outline theme-secondary" data-bs-toggle="collapse" data-bs-target="#bsCollapseWide" aria-expanded="false" aria-controls="bsCollapseWide">Horizontal collapse</button>
+                </div>
+                <div class="collapse" id="bsCollapse">
+                    <div class="p-5 rounded-5 bg-1">The collapse animates its height with CSS; <code>shown.bs.collapse</code> fires after the transition.</div>
+                </div>
+                <div class="collapse collapse-horizontal" id="bsCollapseWide">
+                    <div class="p-5 rounded-5 bg-subtle-info" style="width: 18rem">A horizontal collapse grows to the width of its content.</div>
+                </div>
+                <div class="accordion accordion-sm theme-primary">
+                    <details class="accordion-item" name="bsFaq" open>
+                        <summary class="accordion-header">Accordion on details and summary<svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg></summary>
+                        <div class="accordion-body">The browser keeps one item open: the items share a <code>name</code>.</div>
+                    </details>
+                    <details class="accordion-item" name="bsFaq">
+                        <summary class="accordion-header">Second item<svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg></summary>
+                        <div class="accordion-body">No JavaScript is involved.</div>
+                    </details>
+                </div>
+                <div class="row g-5 mt-0">
                     <div class="col-4">
                         <nav id="bsSpyNav" class="nav nav-pills flex-column">
                             <a class="nav-link active" href="#bsSpyAccount">Account</a>
@@ -171,7 +682,7 @@ breadcrumbs: "header"
                         </nav>
                     </div>
                     <div class="col-8">
-                        <div class="aui-scroll aui-scroll-sm pe-2" data-bs-spy="scroll" data-bs-target="#bsSpyNav" data-bs-smooth-scroll="true" tabindex="0">
+                        <div class="aui-scroll aui-scroll-sm pe-3" data-bs-spy="scroll" data-bs-target="#bsSpyNav" data-bs-smooth-scroll="true" tabindex="0">
                             <h6 id="bsSpyAccount">Account</h6>
                             <p>Name, email and language of the profile. Changes apply after the next sign-in.</p>
                             <p>The account owner can transfer the workspace to another member.</p>
@@ -189,150 +700,154 @@ breadcrumbs: "header"
                 </div>
             </div>
         </div>
-        <div class="mb-3 card">
+
+        <div class="mb-5 card" id="bs-misc">
             <div class="card-body">
-                <h5 class="card-title">Breadcrumb and Button Toolbar</h5>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Customers</a></li>
-                        <li class="breadcrumb-item"><a href="#">Northwind Ltd</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Invoices</li>
-                    </ol>
-                </nav>
-                <div class="btn-toolbar gap-2" role="toolbar" aria-label="Table actions">
-                    <div class="btn-group" role="group" aria-label="Pages">
-                        <button type="button" class="btn btn-outline-secondary">1</button>
-                        <button type="button" class="btn btn-outline-secondary active" aria-current="page">2</button>
-                        <button type="button" class="btn btn-outline-secondary">3</button>
-                    </div>
-                    <div class="btn-group" role="group" aria-label="View">
-                        <button type="button" class="btn btn-primary" aria-label="List view"><i data-lucide="list"></i></button>
-                        <button type="button" class="btn btn-outline-primary" aria-label="Grid view"><i data-lucide="layout-grid"></i></button>
-                    </div>
+                <h5 class="card-title">Helpers and utilities</h5>
+                <p class="card-subtitle">Toggler without a script, spinners and placeholders, icon links, prose, and the new utilities: colored shadows, divide, space, keyline borders, text balance.</p>
+                <div class="d-flex flex-wrap gap-3 align-items-center">
+                    <button type="button" class="btn-outline theme-primary" data-bs-toggle="toggler" data-bs-target="#bsTogglerBox">Toggle the box color</button>
+                    <div id="bsTogglerBox" class="p-3 rounded-5 border bg-subtle-info" data-bs-value="bg-subtle-info" data-bs-attribute="class">Click the button: <code>Toggler</code> switches a class or an attribute.</div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-4">
-        <div class="mb-3 card">
-            <div class="card-body">
-                <h5 class="card-title">Stacks</h5>
-                <div class="hstack gap-2 mb-3">
-                    <input class="form-control" type="text" placeholder="Tag name" aria-label="Tag name">
-                    <button type="button" class="btn btn-primary">Add</button>
+                <div class="d-flex flex-wrap align-items-center gap-5">
+                    <div class="spinner-border fg-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+                    <div class="spinner-grow fg-success" role="status"><span class="visually-hidden">Loading…</span></div>
+                    <div class="spinner-border spinner-sm fg-danger" role="status"><span class="visually-hidden">Loading…</span></div>
+                    <span class="spinner-rotate fg-accent fs-xl" role="status" aria-label="Loading"><i data-lucide="loader"></i></span>
                     <div class="vr"></div>
-                    <button type="button" class="btn btn-outline-danger">Clear</button>
+                    <a class="icon-link icon-link-hover" href="#"><i data-lucide="arrow-right" aria-hidden="true"></i>Icon link</a>
+                    <a class="icon-link" href="#" data-bs-toggle="tooltip" title="A tooltip on a link"><i data-lucide="info" aria-hidden="true"></i>Details</a>
                 </div>
-                <div class="vstack gap-2">
-                    <div class="border rounded px-3 py-2">Draft created</div>
-                    <div class="border rounded px-3 py-2">Sent for review</div>
-                    <div class="border rounded px-3 py-2 border-success text-success">Approved</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="mb-3 card">
-            <div class="card-body">
-                <h5 class="card-title">Numbered List Group</h5>
-                <ol class="list-group list-group-numbered mb-3">
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto"><div class="fw-bold">Connect the domain</div>Add the DNS records</div>
-                        <span class="badge text-bg-success">Done</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto"><div class="fw-bold">Invite the team</div>3 of 8 accepted</div>
-                        <span class="badge text-bg-warning">In progress</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto"><div class="fw-bold">Set up billing</div>Card or invoice</div>
-                        <span class="badge text-bg-secondary">Next</span>
-                    </li>
-                </ol>
-                <ul class="list-group list-group-horizontal-sm">
-                    <li class="list-group-item active" aria-current="true">Day</li>
-                    <li class="list-group-item">Week</li>
-                    <li class="list-group-item">Month</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="mb-3 card">
-            <div class="card-body">
-                <h5 class="card-title">Ratio and Blockquote</h5>
-                <div class="ratio ratio-16x9 rounded overflow-hidden mb-3">
-                    <div class="d-flex align-items-center justify-content-center bg-primary text-white">
-                        <i data-lucide="circle-play" class="fs-1"></i>
+                <div class="row g-5">
+                    <div class="md:col-6">
+                        <div class="border rounded-5 p-5 h-100" aria-hidden="true">
+                            <div class="placeholder-wave">
+                                <span class="placeholder col-6 placeholder-lg mb-3"></span>
+                                <span class="placeholder col-7"></span>
+                                <span class="placeholder col-4"></span>
+                                <span class="placeholder col-4"></span>
+                                <span class="placeholder col-6"></span>
+                            </div>
+                            <a class="btn-solid theme-primary disabled placeholder col-5 mt-5" aria-disabled="true"></a>
+                        </div>
+                    </div>
+                    <div class="md:col-6">
+                        <div class="border rounded-5 p-5 h-100 placeholder-pulse" aria-hidden="true">
+                            <div class="d-flex align-items-center gap-3 mb-3"><span class="avatar placeholder"></span><span class="placeholder col-5"></span></div>
+                            <span class="placeholder col-12"></span>
+                            <span class="placeholder col-8"></span>
+                        </div>
                     </div>
                 </div>
-                <figure class="mb-0">
-                    <blockquote class="blockquote">
-                        <p>The new dashboard cut our weekly report from two hours to ten minutes.</p>
-                    </blockquote>
-                    <figcaption class="blockquote-footer mb-0">Head of Operations, <cite title="Customer review">customer review</cite></figcaption>
-                </figure>
+                <div class="row g-5">
+                    <div class="md:col-6">
+                        <div class="divide-y rounded-5 border">
+                            <div class="p-3">Divide utilities draw a line between children</div>
+                            <div class="p-3">without a border on the first or the last one.</div>
+                            <div class="p-3 fg-2 small">Three rows, two lines.</div>
+                        </div>
+                    </div>
+                    <div class="md:col-6">
+                        <div class="space-y-3">
+                            <div class="p-3 rounded-5 shadow shadow-primary bg-body">Shadow in the primary color</div>
+                            <div class="p-3 rounded-5 shadow-lg shadow-success shadow-opacity-50 bg-body">Larger shadow at half opacity</div>
+                            <div class="p-3 rounded-5 border border-keyline">A half-pixel keyline border</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="prose small">
+                    <h6>Prose</h6>
+                    <p class="text-balance">The <code>prose</code> class gives long text its typography: headings, lists, quotes and code read well without utilities on every element. The <code>text-balance</code> utility evens out the line lengths of this paragraph.</p>
+                    <ul><li>One class on the container.</li><li>Add <code>not-prose</code> to a part that keeps its own styles.</li></ul>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="card-group mb-3">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Starter</h5>
-            <p class="card-text">For a small team: 5 seats, 10 GB of storage and email support.</p>
-        </div>
-        <div class="card-footer"><span class="text-body-secondary">$19 per month</span></div>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Business</h5>
-            <p class="card-text">For a growing company: 25 seats, audit log and single sign-on.</p>
-        </div>
-        <div class="card-footer"><span class="text-body-secondary">$79 per month</span></div>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Enterprise</h5>
-            <p class="card-text">Unlimited seats, a dedicated manager and a 99.9% uptime agreement.</p>
-        </div>
-        <div class="card-footer"><span class="text-body-secondary">On request</span></div>
     </div>
 </div>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="bsOffcanvasFilters" aria-labelledby="bsOffcanvasFiltersLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="bsOffcanvasFiltersLabel">Filters</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+{#- Toasts, dialogs and drawers of the page #}
+<div class="toast-container position-fixed bottom-0 end-0 p-5">
+    <div class="toast theme-success" id="bsToastTheme" role="status" aria-live="polite" aria-atomic="true">
+        <div class="toast-header"><i data-lucide="circle-check" class="me-3"></i><strong class="me-auto">Report sent</strong><small>just now</small><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button></div>
+        <div class="toast-body">12 people received the weekly report.</div>
     </div>
-    <div class="offcanvas-body">
-        <div class="mb-3">
-            <label for="bsFilterStatus" class="form-label">Status</label>
-            <select class="form-select" id="bsFilterStatus">
+    <div class="toast toast-translucent" id="bsToastGlass" role="status" aria-live="polite" aria-atomic="true">
+        <div class="d-flex"><div class="toast-body">A translucent toast blurs what is behind it.</div><button type="button" class="btn-close me-3 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div>
+    </div>
+    <div class="toast toast-instant theme-inverse" id="bsToastInstant" role="status" aria-live="polite" aria-atomic="true">
+        <div class="d-flex"><div class="toast-body">This toast appears without a fade.</div><button type="button" class="btn-close me-3 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div>
+    </div>
+</div>
+
+<dialog class="dialog" id="bsDialog" aria-labelledby="bsDialogLabel">
+    <div class="dialog-header">
+        <h5 class="dialog-title" id="bsDialogLabel">Archive the order?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="dialog" aria-label="Close"></button>
+    </div>
+    <div class="dialog-body"><p class="mb-0">The order leaves the list and stays in the archive for 90 days. A second dialog can replace this one: <button type="button" class="btn-link p-0" data-bs-toggle="dialog" data-bs-target="#bsDialogScroll">open the long one</button>.</p></div>
+    <div class="dialog-footer">
+        <button type="button" class="btn-text theme-secondary" data-bs-dismiss="dialog">Keep</button>
+        <button type="button" class="btn-solid theme-danger" data-bs-dismiss="dialog">Archive</button>
+    </div>
+</dialog>
+<dialog class="dialog dialog-lg dialog-scrollable dialog-slide-up md-down:dialog-fullscreen" id="bsDialogScroll" aria-labelledby="bsDialogScrollLabel">
+    <div class="dialog-header">
+        <h5 class="dialog-title" id="bsDialogScrollLabel">Terms of service</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="dialog" aria-label="Close"></button>
+    </div>
+    <div class="dialog-body">
+        {%- for n in range(1, 9) %}
+        <p>Section {{ n }}. The service is provided as is. Invoices are sent on the first day of the month; seats can be added at any time, and the price is prorated. Sessions older than 30 days end automatically. The account owner can transfer the workspace to another member.</p>
+        {%- endfor %}
+    </div>
+    <div class="dialog-footer">
+        <button type="button" class="btn-solid theme-primary" data-bs-dismiss="dialog">I agree</button>
+    </div>
+</dialog>
+<dialog class="dialog dialog-sm dialog-static" id="bsDialogStatic" aria-labelledby="bsDialogStaticLabel">
+    <div class="dialog-header">
+        <h5 class="dialog-title" id="bsDialogStaticLabel">Unsaved changes</h5>
+    </div>
+    <div class="dialog-body"><p class="mb-0">A click outside shakes the dialog instead of closing it.</p></div>
+    <div class="dialog-footer">
+        <button type="button" class="btn-text theme-secondary" data-bs-dismiss="dialog">Discard</button>
+        <button type="button" class="btn-solid theme-primary" data-bs-dismiss="dialog">Save</button>
+    </div>
+</dialog>
+<dialog class="drawer drawer-end" tabindex="-1" id="bsDrawerFilters" aria-labelledby="bsDrawerFiltersLabel">
+    <div class="drawer-header">
+        <h5 class="drawer-title" id="bsDrawerFiltersLabel">Filters</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+    </div>
+    <div class="drawer-body vstack gap-5">
+        <div class="form-field">
+            <label class="form-label" for="bsFilterStatus">Status</label>
+            <select class="form-control" id="bsFilterStatus">
                 <option selected>Any</option>
                 <option value="paid">Paid</option>
                 <option value="pending">Pending</option>
             </select>
         </div>
-        <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" id="bsFilterOverdue" checked>
-            <label class="form-check-label" for="bsFilterOverdue">Only overdue</label>
-        </div>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="offcanvas">Apply</button>
-    </div>
-</div>
-<div class="offcanvas offcanvas-bottom" tabindex="-1" id="bsOffcanvasBottom" aria-labelledby="bsOffcanvasBottomLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="bsOffcanvasBottomLabel">Selected: 3 orders</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body small">
-        <div class="d-flex flex-wrap gap-2">
-            <button type="button" class="btn btn-success">Mark as paid</button>
-            <button type="button" class="btn btn-outline-secondary">Export</button>
-            <button type="button" class="btn btn-outline-danger">Cancel orders</button>
+        <div class="form-field">
+            <input class="check" type="checkbox" id="bsFilterOverdue" checked>
+            <label for="bsFilterOverdue">Only overdue</label>
         </div>
     </div>
-</div>
+    <div class="drawer-footer">
+        <button type="button" class="btn-solid theme-primary" data-bs-dismiss="drawer">Apply</button>
+    </div>
+</dialog>
+<dialog class="drawer drawer-bottom drawer-sheet" tabindex="-1" id="bsDrawerSheet" aria-labelledby="bsDrawerSheetLabel">
+    <div class="drawer-header">
+        <h5 class="drawer-title" id="bsDrawerSheetLabel">Selected: 3 orders</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+    </div>
+    <div class="drawer-body small">
+        <p class="fg-2">A sheet sits flush with the edge; on a phone swipe it down to close it.</p>
+        <div class="d-flex flex-wrap gap-3">
+            <button type="button" class="btn-solid theme-success">Mark as paid</button>
+            <button type="button" class="btn-outline theme-secondary">Export</button>
+            <button type="button" class="btn-outline theme-danger">Cancel orders</button>
+        </div>
+    </div>
+</dialog>

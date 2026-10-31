@@ -8,15 +8,15 @@
  * =========================================================
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
-// Bootstrap 5 form validation
+// Bootstrap 6 form validation: a form with data-bs-validate shows the :user-invalid styles after the first
+// interaction by itself. This script only keeps an invalid demo form from being sent.
 (() => {
-  document.querySelectorAll("form.needs-validation").forEach((form) => {
+  document.querySelectorAll("form[data-bs-validate]").forEach((form) => {
     form.addEventListener("submit", (event) => {
       if (!form.checkValidity()) {
         event.preventDefault();
         event.stopPropagation();
       }
-      form.classList.add("was-validated");
     });
   });
 })();

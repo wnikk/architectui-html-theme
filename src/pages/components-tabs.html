@@ -21,16 +21,35 @@ icon: "archive"
     </li>
 </ul>
 <div class="tab-content">
-    <div class="tab-pane fade show active" id="tab-content-0" role="tabpanel">
+    <div class="tab-pane active" id="tab-content-0" role="tabpanel">
+        {#- New in Bootstrap 6: a nav overflow folds the tabs that do not fit into a More menu #}
+        <div class="mb-5 card">
+            <div class="card-body">
+                <h5 class="card-title">Tabs with overflow</h5>
+                <p class="card-subtitle">Make the window narrower: the tabs that do not fit move into a More menu, and the active tab keeps its place.</p>
+                <div class="nav-overflow" data-bs-toggle="nav-overflow">
+                    <ul class="nav nav-tabs" role="tablist">
+                        {%- for tab in ["Overview", "Activity", "Orders", "Invoices", "Documents", "Members", "Integrations", "Settings", "Audit log"] %}
+                        <li class="nav-item" role="presentation"><button type="button" class="nav-link{% if loop.first %} active{% endif %}" data-bs-toggle="tab" data-bs-target="#tab-overflow-{{ loop.index }}" role="tab" aria-selected="{{ 'true' if loop.first else 'false' }}">{{ tab }}</button></li>
+                        {%- endfor %}
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    {%- for tab in ["Overview", "Activity", "Orders", "Invoices", "Documents", "Members", "Integrations", "Settings", "Audit log"] %}
+                    <div class="tab-pane{% if loop.first %} active{% endif %}" id="tab-overflow-{{ loop.index }}" role="tabpanel"><p class="mb-0">{{ tab }}: the pane fades in by itself when the tab opens.</p></div>
+                    {%- endfor %}
+                </div>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-md-6">
-                <div class="mb-3 card">
-                    <div class="card-header"><i data-lucide="award" class="me-2"></i>Header with Tabs
+            <div class="md:col-6">
+                <div class="mb-5 card">
+                    <div class="card-header"><i data-lucide="award" class="me-3"></i>Header with Tabs
                         <div class="ms-auto text-nowrap">
                             <div role="group" class="btn-group-sm nav btn-group">
-                                <a data-bs-toggle="tab" href="#tab-eg1-0" class="aui-btn-shadow active btn btn-primary">Overview</a>
-                                <a data-bs-toggle="tab" href="#tab-eg1-1" class="aui-btn-shadow btn btn-primary">Activity</a>
-                                <a data-bs-toggle="tab" href="#tab-eg1-2" class="aui-btn-shadow btn btn-primary">Settings</a>
+                                <a data-bs-toggle="tab" href="#tab-eg1-0" class="btn-solid theme-primary shadow-sm shadow-primary active">Overview</a>
+                                <a data-bs-toggle="tab" href="#tab-eg1-1" class="btn-solid theme-primary shadow-sm shadow-primary">Activity</a>
+                                <a data-bs-toggle="tab" href="#tab-eg1-2" class="btn-solid theme-primary shadow-sm shadow-primary">Settings</a>
                             </div>
                         </div>
                     </div>
@@ -42,16 +61,16 @@ icon: "archive"
                         </div>
                     </div>
                     <div class="d-block text-end card-footer">
-                        <a href="#" class="px-4 btn btn-success">Save</a>
+                        <a href="#" class="btn-solid theme-success px-7">Save</a>
                     </div>
                 </div>
-                <div class="mb-3 card">
-                    <div class="card-header"><i data-lucide="award" class="me-2"></i>Header Tabs Buttons
+                <div class="mb-5 card">
+                    <div class="card-header"><i data-lucide="award" class="me-3"></i>Header Tabs Buttons
                         <div class="ms-auto text-nowrap">
                             <div class="nav">
-                                <a data-bs-toggle="tab" href="#tab-eg2-0" class="rounded-pill px-4 active btn btn-outline-alternate btn-sm">Overview</a>
-                                <a data-bs-toggle="tab" href="#tab-eg2-1" class="rounded-pill px-4 me-1 ms-1 btn btn-outline-alternate btn-sm">Activity</a>
-                                <a data-bs-toggle="tab" href="#tab-eg2-2" class="rounded-pill px-4 btn btn-outline-alternate btn-sm">Settings</a>
+                                <a data-bs-toggle="tab" href="#tab-eg2-0" class="btn-outline theme-accent rounded-pill px-7 active btn-sm">Overview</a>
+                                <a data-bs-toggle="tab" href="#tab-eg2-1" class="btn-outline theme-accent rounded-pill px-7 me-1 ms-1 btn-sm">Activity</a>
+                                <a data-bs-toggle="tab" href="#tab-eg2-2" class="btn-outline theme-accent rounded-pill px-7 btn-sm">Settings</a>
                             </div>
                         </div>
                     </div>
@@ -63,16 +82,16 @@ icon: "archive"
                         </div>
                     </div>
                     <div class="d-block text-end card-footer">
-                        <a href="#" class="px-4 btn btn-success">Save</a>
+                        <a href="#" class="btn-solid theme-success px-7">Save</a>
                     </div>
                 </div>
-                <div class="mb-3 card">
-                    <div class="card-header"><i data-lucide="gift" class="me-2"></i>Alternate Tabs
+                <div class="mb-5 card">
+                    <div class="card-header"><i data-lucide="gift" class="me-3"></i>Alternate Tabs
                         <div class="ms-auto text-nowrap">
                             <div role="group" class="btn-group-sm nav btn-group">
-                                <a data-bs-toggle="tab" href="#tab-eg3-0" class="rounded-start-pill ps-3 active btn btn-focus">Overview</a>
-                                <a data-bs-toggle="tab" href="#tab-eg3-1" class="btn btn-focus">Activity</a>
-                                <a data-bs-toggle="tab" href="#tab-eg3-2" class="rounded-end-pill pe-3 btn btn-focus">Settings</a>
+                                <a data-bs-toggle="tab" href="#tab-eg3-0" class="btn-solid theme-focus rounded-start-pill ps-5 active">Overview</a>
+                                <a data-bs-toggle="tab" href="#tab-eg3-1" class="btn-solid theme-focus">Activity</a>
+                                <a data-bs-toggle="tab" href="#tab-eg3-2" class="btn-solid theme-focus rounded-end-pill pe-5">Settings</a>
                             </div>
                         </div>
                     </div>
@@ -84,13 +103,13 @@ icon: "archive"
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
-                    <div class="card-header"><i data-lucide="gift" class="me-2"></i>Header Tabs Standard Buttons
+                <div class="mb-5 card">
+                    <div class="card-header"><i data-lucide="gift" class="me-3"></i>Header Tabs Standard Buttons
                         <div class="ms-auto text-nowrap">
                             <div class="nav">
-                                <a data-bs-toggle="tab" href="#tab-eg4-0" class="border-0 rounded-pill px-4 aui-btn-transition active btn btn-outline-danger">Overview</a>
-                                <a data-bs-toggle="tab" href="#tab-eg4-1" class="me-1 ms-1 rounded-pill px-4 border-0 aui-btn-transition btn btn-outline-danger">Activity</a>
-                                <a data-bs-toggle="tab" href="#tab-eg4-2" class="border-0 rounded-pill px-4 aui-btn-transition btn btn-outline-danger">Settings</a>
+                                <a data-bs-toggle="tab" href="#tab-eg4-0" class="btn-subtle theme-danger border-0 rounded-pill px-7 active">Overview</a>
+                                <a data-bs-toggle="tab" href="#tab-eg4-1" class="btn-subtle theme-danger me-1 ms-1 rounded-pill px-7 border-0">Activity</a>
+                                <a data-bs-toggle="tab" href="#tab-eg4-2" class="btn-subtle theme-danger border-0 rounded-pill px-7">Settings</a>
                             </div>
                         </div>
                     </div>
@@ -102,15 +121,15 @@ icon: "archive"
                         </div>
                     </div>
                     <div class="d-block text-end card-footer">
-                        <a href="#" class="px-4 btn btn-success">Save</a>
+                        <a href="#" class="btn-solid theme-success px-7">Save</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="mb-3 card">
+            <div class="md:col-6">
+                <div class="mb-5 card">
                     <div class="card-header">
                         <div class="d-flex align-items-center text-nowrap">
-                            <i data-lucide="bike" class="me-2"></i>
+                            <i data-lucide="bike" class="me-3"></i>
                             Header Alternate Tabs
                         </div>
                         <ul class="nav ms-auto">
@@ -127,16 +146,16 @@ icon: "archive"
                         </div>
                     </div>
                     <div class="d-block text-end card-footer">
-                        <a href="#" class="px-4 aui-btn-shadow btn btn-danger">Delete</a>
+                        <a href="#" class="btn-solid theme-danger shadow-sm shadow-danger px-7">Delete</a>
                     </div>
                 </div>
-                <div class="mb-3 card">
-                    <div class="card-header"><i data-lucide="gift" class="me-2"></i>Header Tabs Standard Buttons
+                <div class="mb-5 card">
+                    <div class="card-header"><i data-lucide="gift" class="me-3"></i>Header Tabs Standard Buttons
                         <div class="ms-auto text-nowrap">
                             <div class="nav">
-                                <a data-bs-toggle="tab" href="#tab-eg6-0" class="border-0 aui-btn-transition active btn btn-outline-primary">Overview</a>
-                                <a data-bs-toggle="tab" href="#tab-eg6-1" class="me-1 ms-1 border-0 aui-btn-transition btn btn-outline-primary">Activity</a>
-                                <a data-bs-toggle="tab" href="#tab-eg6-2" class="border-0 aui-btn-transition btn btn-outline-primary">Settings</a>
+                                <a data-bs-toggle="tab" href="#tab-eg6-0" class="btn-subtle theme-primary border-0 active">Overview</a>
+                                <a data-bs-toggle="tab" href="#tab-eg6-1" class="btn-subtle theme-primary me-1 ms-1 border-0">Activity</a>
+                                <a data-bs-toggle="tab" href="#tab-eg6-2" class="btn-subtle theme-primary border-0">Settings</a>
                             </div>
                         </div>
                     </div>
@@ -148,10 +167,10 @@ icon: "archive"
                         </div>
                     </div>
                     <div class="d-block text-end card-footer">
-                        <a href="#" class="px-4 btn btn-success">Save</a>
+                        <a href="#" class="btn-solid theme-success px-7">Save</a>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-header">
                         <ul class="nav nav-justified">
                             <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg7-0" class="active nav-link">Overview</a></li>
@@ -170,10 +189,10 @@ icon: "archive"
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="tab-content-1" role="tabpanel">
+    <div class="tab-pane" id="tab-content-1" role="tabpanel">
         <div class="row">
-            <div class="col-md-6">
-                <div class="mb-3 card">
+            <div class="md:col-6">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <ul class="aui-tabs-shadow nav-underline nav">
                             <li class="nav-item">
@@ -205,7 +224,7 @@ icon: "archive"
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-header">
                         <ul class="nav nav-justified nav-underline">
                             <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg115-0" class="active nav-link">Overview</a></li>
@@ -222,8 +241,8 @@ icon: "archive"
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="mb-3 card">
+            <div class="md:col-6">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <ul class="aui-tabs-shadow nav-justified nav-underline nav">
                             <li class="nav-item">
@@ -255,9 +274,9 @@ icon: "archive"
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-header">
-                        <div class="d-flex align-items-center text-nowrap fs-6 text-capitalize fw-normal"><i data-lucide="gift" class="me-2"></i>Tabs Alternate Animation</div>
+                        <div class="d-flex align-items-center text-nowrap fs-md text-capitalize fw-normal"><i data-lucide="gift" class="me-3"></i>Tabs Alternate Animation</div>
                         <ul class="nav ms-auto nav-underline">
                             <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg8-0" class="active nav-link">Overview</a></li>
                             <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg8-1" class="nav-link">Activity</a></li>
@@ -272,18 +291,18 @@ icon: "archive"
                         </div>
                     </div>
                     <div class="d-block text-center card-footer">
-                        <a href="#" class="px-4 btn btn-link">Link Button</a>
-                        <a href="#" class="px-4 aui-btn-shadow btn btn-danger">Delete</a>
+                        <a href="#" class="btn-link px-7">Link Button</a>
+                        <a href="#" class="btn-solid theme-danger shadow-sm shadow-danger px-7">Delete</a>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
-    <div class="tab-pane fade" id="tab-content-2" role="tabpanel">
+    <div class="tab-pane" id="tab-content-2" role="tabpanel">
         <div class="row">
-            <div class="col-md-6">
-                <div class="mb-3 card">
+            <div class="md:col-6">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Basic</h5>
                         <ul class="nav nav-tabs">
                             <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg10-0" class="active nav-link">Overview</a></li>
@@ -297,7 +316,7 @@ icon: "archive"
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Justified Alignment</h5>
                         <ul class="nav nav-tabs nav-justified">
                             <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg11-0" class="active nav-link">Overview</a></li>
@@ -311,13 +330,13 @@ icon: "archive"
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Tabs Variations</h5>
-                        <div class="mb-3">
+                        <div class="mb-5">
                             <div role="group" class="btn-group-sm nav btn-group">
-                                <a data-bs-toggle="tab" href="#tab-eg12-0" class="rounded-start-pill ps-3 active btn btn-warning">Overview</a>
-                                <a data-bs-toggle="tab" href="#tab-eg12-1" class="btn btn-warning">Activity</a>
-                                <a data-bs-toggle="tab" href="#tab-eg12-2" class="rounded-end-pill pe-3 btn btn-warning">Settings</a>
+                                <a data-bs-toggle="tab" href="#tab-eg12-0" class="btn-solid theme-warning rounded-start-pill ps-5 active">Overview</a>
+                                <a data-bs-toggle="tab" href="#tab-eg12-1" class="btn-solid theme-warning">Activity</a>
+                                <a data-bs-toggle="tab" href="#tab-eg12-2" class="btn-solid theme-warning rounded-end-pill pe-5">Settings</a>
                             </div>
                         </div>
                         <div class="tab-content">
@@ -328,8 +347,8 @@ icon: "archive"
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="mb-3 card">
+            <div class="md:col-6">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <h5 class="card-title">Pills</h5>
                         <ul class="nav nav-pills">
@@ -344,7 +363,7 @@ icon: "archive"
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Pills</h5>
                         <ul class="nav nav-pills nav-fill">
                             <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg14-0" class="active nav-link">Pill 1</a></li>
@@ -358,13 +377,13 @@ icon: "archive"
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Button Group Tabs</h5>
-                        <div class="mb-3 text-center">
+                        <div class="mb-5 text-center">
                             <div role="group" class="btn-group-sm nav btn-group">
-                                <a data-bs-toggle="tab" href="#tab-eg15-0" class="aui-btn-shadow active btn btn-primary">Overview</a>
-                                <a data-bs-toggle="tab" href="#tab-eg15-1" class="aui-btn-shadow btn btn-primary">Activity</a>
-                                <a data-bs-toggle="tab" href="#tab-eg15-2" class="aui-btn-shadow btn btn-primary">Settings</a>
+                                <a data-bs-toggle="tab" href="#tab-eg15-0" class="btn-solid theme-primary shadow-sm shadow-primary active">Overview</a>
+                                <a data-bs-toggle="tab" href="#tab-eg15-1" class="btn-solid theme-primary shadow-sm shadow-primary">Activity</a>
+                                <a data-bs-toggle="tab" href="#tab-eg15-2" class="btn-solid theme-primary shadow-sm shadow-primary">Settings</a>
                             </div>
                         </div>
                         <div class="tab-content">

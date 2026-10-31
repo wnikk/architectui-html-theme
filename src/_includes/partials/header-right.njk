@@ -1,21 +1,21 @@
-<span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
+<span class="badge theme-success d-none lg:d-inline-flex"><i data-lucide="activity"></i>All systems normal</span>
 {#- The bell: the unread count of the Notifications page (apps-notifications.js keeps it current there).
     The count sits on the top right corner (frame/_header.scss); the button keeps room for two digits. #}
-<a class="btn aui-header-btn" href="apps-notifications.html" aria-label="Notifications, {{ notifications.unread }} unread">
+<a class="aui-header-btn" href="apps-notifications.html" aria-label="Notifications, {{ notifications.unread }} unread">
     <i data-lucide="bell"></i>
-    <span class="badge text-bg-danger" data-notification-count aria-hidden="true">{{ notifications.unread }}</span>
+    <span class="badge theme-danger" data-notification-count aria-hidden="true">{{ notifications.unread }}</span>
 </a>
-{#- Mode toggle and the theme list: one button group. Each theme is a button with data-aui-setting="theme". #}
-<div class="btn-group aui-theme-switch">
-    <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+{#- Mode toggle and the theme list: one group. Each theme is a Menu item button with data-aui-setting="theme". #}
+<div class="aui-theme-switch">
+    <button type="button" class="aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
         <i data-lucide="moon"></i>
         <i data-lucide="sun"></i>
     </button>
-    <button type="button" class="btn aui-mode-toggle dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Choose a theme"></button>
-    <div class="dropdown-menu dropdown-menu-end">
-        <h6 class="dropdown-header">Theme</h6>
+    <button type="button" class="aui-mode-toggle" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Choose a theme"><i data-lucide="chevron-down"></i></button>
+    <div class="menu">
+        <h6 class="menu-header">Theme</h6>
         {%- for theme in themes %}
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="{{ theme.id }}">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="{{ theme.id }}">
             <span class="aui-theme-dot" style="--aui-dot-brand: {{ theme.brand }}; --aui-dot-accent: {{ theme.accent }}"></span>
             <span>{{ theme.name }}</span>
             {%- if theme.darkOnly %}
@@ -24,27 +24,27 @@
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
         {%- endfor %}
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal" class="me-2 opacity-50"></i>All interface settings</a>
+        <hr class="menu-divider">
+        <a class="menu-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal"></i>All interface settings</a>
     </div>
 </div>
-<div class="dropdown">
-    <a class="d-inline-flex align-items-center text-reset text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
-        <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
-        <i data-lucide="chevron-down" class="ms-2 opacity-75"></i>
+<div>
+    <a class="d-inline-flex align-items-center fg-reset text-decoration-none" href="#" role="button" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="User menu">
+        <span class="avatar"><img src="assets/images/avatars/1.jpg" class="avatar-img" alt=""></span>
+        <i data-lucide="chevron-down" class="ms-3 opacity-75"></i>
     </a>
-    <div class="dropdown-menu dropdown-menu-end">
-        <a class="dropdown-item" href="pages-profile.html"><i data-lucide="user" class="me-2 opacity-50"></i>My profile</a>
-        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="settings" class="me-2 opacity-50"></i>Interface settings</a>
-        <h6 class="dropdown-header">Workspace</h6>
-        <a class="dropdown-item" href="apps-users.html"><i data-lucide="users" class="me-2 opacity-50"></i>Team members</a>
-        <a class="dropdown-item" href="pages-pricing.html"><i data-lucide="credit-card" class="me-2 opacity-50"></i>Billing</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="pages-login.html"><i data-lucide="log-out" class="me-2 opacity-50"></i>Sign out</a>
+    <div class="menu">
+        <a class="menu-item" href="pages-profile.html"><i data-lucide="user"></i>My profile</a>
+        <a class="menu-item" href="pages-profile.html#interface"><i data-lucide="settings"></i>Interface settings</a>
+        <h6 class="menu-header">Workspace</h6>
+        <a class="menu-item" href="apps-users.html"><i data-lucide="users"></i>Team members</a>
+        <a class="menu-item" href="pages-pricing.html"><i data-lucide="credit-card"></i>Billing</a>
+        <hr class="menu-divider">
+        <a class="menu-item" href="pages-login.html"><i data-lucide="log-out"></i>Sign out</a>
     </div>
 </div>
-<div class="d-none d-xxl-block lh-sm">
+<div class="d-none 2xl:d-block lh-sm">
     <div class="fw-bold opacity-75 text-nowrap">Alina Mclourd</div>
     <div class="small opacity-50 text-nowrap">VP People Manager</div>
 </div>
-<button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 d-none d-xxl-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
+<button type="button" class="btn-solid btn-icon btn-sm theme-primary shadow-sm shadow-primary d-none 2xl:d-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar"></i></button>

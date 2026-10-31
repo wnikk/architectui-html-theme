@@ -1,26 +1,16 @@
-<div class="ms-md-auto mt-3 mt-md-0 d-print-none">
-    <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
+<div class="md:ms-auto mt-5 md:mt-0 d-flex justify-content-center gap-5 print:d-none">
+    <button type="button" class="btn-solid btn-icon theme-inverse shadow-sm shadow-inverse" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
         <i data-lucide="star"></i>
     </button>
-    <div class="d-inline-block dropdown">
-        <button type="button" class="btn btn-info aui-btn-shadow d-inline-flex align-items-center gap-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons
+    <div>
+        <button type="button" class="btn-solid theme-info shadow-sm shadow-info" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false">
+            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons<i data-lucide="chevron-down"></i>
         </button>
-        <div class="dropdown-menu dropdown-menu-end">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="inbox" class="me-2"></i><span>Inbox</span><span class="ms-auto badge rounded-pill bg-secondary">86</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="book-open" class="me-2"></i><span>Reports</span><span class="ms-auto badge rounded-pill bg-danger">5</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="image" class="me-2"></i><span>Media</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link disabled" aria-disabled="true"><i data-lucide="file" class="me-2"></i><span>Archive</span></a>
-                </li>
-            </ul>
+        <div class="menu">
+            <a href="#" class="menu-item"><i data-lucide="inbox"></i><span>Inbox</span><span class="ms-auto badge theme-secondary">86</span></a>
+            <a href="#" class="menu-item"><i data-lucide="book-open"></i><span>Reports</span><span class="ms-auto badge theme-danger">5</span></a>
+            <a href="#" class="menu-item"><i data-lucide="image"></i><span>Media</span></a>
+            <a href="#" class="menu-item disabled" aria-disabled="true"><i data-lucide="file"></i><span>Archive</span></a>
         </div>
     </div>
 </div>

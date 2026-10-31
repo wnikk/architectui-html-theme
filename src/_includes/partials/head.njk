@@ -43,7 +43,12 @@
 })();
 </script>
 
-<script defer src="{{ cdn.bootstrap.js }}" crossorigin="anonymous"></script>
+{# Bootstrap 6 is an ES module without a global. The import map names it "bootstrap" for every module on the page;
+   the inline module below loads it (its data API starts on import) and keeps it as window.bootstrap for the classic
+   scripts of the theme and the pages, which run after it. The pages work from disk: the module is inline and the
+   import comes from the CDN. #}
+<script type="importmap">{ "imports": { "bootstrap": "{{ cdn.bootstrap.js }}" } }</script>
+<script type="module">import * as bootstrap from "bootstrap"; window.bootstrap = bootstrap; document.dispatchEvent(new Event("aui:bootstrap"));</script>
 <script defer src="{{ cdn.lucide }}" crossorigin="anonymous"></script>
 {%- for name in scripts %}
 <script defer src="{{ cdn.scripts[name] }}" crossorigin="anonymous"></script>

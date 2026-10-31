@@ -1,10 +1,11 @@
+{#- The sidebar is a responsive Bootstrap 6 Drawer: a sheet from the left edge on phones, a static column from 768 px #}
 <aside class="aui-sidebar">
-    <div class="offcanvas-md offcanvas-start" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
-        <div class="offcanvas-header">
+    <dialog class="drawer drawer-start drawer-sheet md:drawer" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
+        <div class="drawer-header">
             {% include "partials/logo.njk" %}
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#auiSidebar" aria-label="Close menu"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close menu"></button>
         </div>
-        <div class="offcanvas-body">
+        <div class="drawer-body">
             <ul class="nav flex-column flex-nowrap" id="auiNav">
                 {%- for section in menu %}
                 <li class="nav-item"><h6>{{ section.heading }}</h6></li>
@@ -13,7 +14,7 @@
                 {%- set open = item.children | hasActive(page.filePathStem) %}
                 {%- set groupId = "nav-" + (item.title | slugify) %}
                 <li class="nav-item">
-                    <a class="nav-link{% if not open %} collapsed{% endif %}" href="#{{ groupId }}" role="button" data-bs-toggle="collapse" aria-expanded="{{ 'true' if open else 'false' }}" aria-controls="{{ groupId }}">
+                    <a class="nav-link" href="#{{ groupId }}" role="button" data-bs-toggle="collapse" aria-expanded="{{ 'true' if open else 'false' }}" aria-controls="{{ groupId }}">
                         <i data-lucide="{{ item.icon }}"></i>{{ item.title }}<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse{% if open %} show{% endif %}" id="{{ groupId }}" data-bs-parent="#auiNav">
@@ -37,5 +38,5 @@
                 {%- endfor %}
             </ul>
         </div>
-    </div>
+    </dialog>
 </aside>

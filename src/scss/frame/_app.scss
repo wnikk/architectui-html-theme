@@ -3,60 +3,62 @@
 // data-aui-sidebar-collapsed, data-aui-tabs, data-aui-header-scheme, data-aui-sidebar-scheme.
 @use "../config" as *;
 
-.aui-app {
-  --aui-sidebar-col: var(--aui-sidebar-width);
-  --aui-header-offset: 0px;
-  display: grid;
-  grid-template-columns: var(--aui-sidebar-col) minmax(0, 1fr);
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    "header header"
-    "sidebar main";
-  min-height: 100vh;
-  transition: grid-template-columns .3s ease;
-}
-
-[data-aui-header="fixed"] .aui-app {
-  --aui-header-offset: var(--aui-header-height);
-}
-
-@include rail-range {
+@layer custom {
   .aui-app {
-    --aui-sidebar-col: var(--aui-sidebar-collapsed-width);
+    --aui-sidebar-col: var(--aui-sidebar-width);
+    --aui-header-offset: 0px;
+    display: grid;
+    grid-template-columns: var(--aui-sidebar-col) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "header header"
+      "sidebar main";
+    min-height: 100vh;
+    transition: grid-template-columns .3s ease;
   }
-}
 
-@include wide {
-  [data-aui-sidebar-collapsed] .aui-app {
-    --aui-sidebar-col: var(--aui-sidebar-collapsed-width);
+  [data-aui-header="fixed"] .aui-app {
+    --aui-header-offset: var(--aui-header-height);
   }
-}
 
-@include mobile {
-  .aui-app {
-    --aui-sidebar-col: 0px;
+  @include rail-range {
+    .aui-app {
+      --aui-sidebar-col: var(--aui-sidebar-collapsed-width);
+    }
   }
-}
 
-.aui-app > main {
-  grid-area: main;
-  min-width: 0;
-}
+  @include wide {
+    [data-aui-sidebar-collapsed] .aui-app {
+      --aui-sidebar-col: var(--aui-sidebar-collapsed-width);
+    }
+  }
 
-// A link to an anchor (#interface) stops below the fixed header
-[data-aui-header="fixed"] {
-  scroll-padding-top: calc(var(--aui-header-height) + 1rem);
-}
+  @include mobile {
+    .aui-app {
+      --aui-sidebar-col: 0px;
+    }
+  }
 
-// Content area: the page title and the page content. The padding follows --aui-gutter.
-// It appears on every page load (--aui-page-animation); the header, sidebar and footer stay still.
-.aui-content {
-  padding: var(--aui-gutter) var(--aui-gutter) 0;
-  animation: var(--aui-page-animation);
-}
+  .aui-app > main {
+    grid-area: main;
+    min-width: 0;
+  }
 
-@include phone {
-  .aui-app {
-    --aui-gutter: 1rem;
+  // A link to an anchor (#interface) stops below the fixed header
+  [data-aui-header="fixed"] {
+    scroll-padding-top: calc(var(--aui-header-height) + 1rem);
+  }
+
+  // Content area: the page title and the page content. The padding follows --aui-gutter.
+  // It appears on every page load (--aui-page-animation); the header, sidebar and footer stay still.
+  .aui-content {
+    padding: var(--aui-gutter) var(--aui-gutter) 0;
+    animation: var(--aui-page-animation);
+  }
+
+  @include phone {
+    .aui-app {
+      --aui-gutter: 1rem;
+    }
   }
 }

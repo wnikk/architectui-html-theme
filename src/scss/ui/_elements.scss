@@ -1,155 +1,111 @@
-// Badges, forms, list groups, modals, pagination, progress, accordion and toasts
+// Badges, forms, list groups, toasts and scroll areas
+@layer custom {
+  .badge {
+    min-width: 19px;
+    padding: 5px 10px;
+    font-weight: 700;
+  }
 
-.badge {
-  min-width: 19px;
-  padding: 5px 10px;
-  font-weight: 700;
-}
+  // Colors change smoothly
+  .form-control {
+    --bs-control-transition-property: border-color, box-shadow, background-color;
+    --bs-control-transition-duration: .2s;
+  }
 
-// Colors change smoothly; the validation icon appears in place without sliding across the field
-.form-control,
-.form-select {
-  transition: border-color .2s, box-shadow .2s, background-color .2s;
-}
-
-// Native date, time and suggestion pickers: the browser icon is quiet until the pointer is on it
-.form-control::-webkit-calendar-picker-indicator {
-  opacity: .55;
-  cursor: pointer;
-}
-
-.form-control:hover::-webkit-calendar-picker-indicator {
-  opacity: 1;
-}
-
-// File drop zone: a native file input covers the whole area, so a click and a drop both reach it.
-// architectui.js marks the area while files are dragged over it and lists the chosen files.
-.aui-dropzone {
-  position: relative;
-  padding: 2rem 1rem;
-  border: 2px dashed var(--bs-border-color);
-  border-radius: var(--bs-border-radius-lg);
-  background: var(--bs-tertiary-bg);
-  color: var(--bs-body-color);
-  text-align: center;
-  transition: border-color .2s, background-color .2s;
-
-  > input[type="file"] {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
+  // Native date, time and suggestion pickers: the browser icon is quiet until the pointer is on it
+  .form-control::-webkit-calendar-picker-indicator {
+    opacity: .55;
     cursor: pointer;
   }
 
-  > svg.lucide,
-  > i[data-lucide] {
-    width: 2.25rem;
-    height: 2.25rem;
-    color: var(--bs-primary);
+  .form-control:hover::-webkit-calendar-picker-indicator {
+    opacity: 1;
   }
 
-  &:hover,
-  &.is-dragover {
-    border-color: var(--bs-primary);
-    background: var(--bs-primary-bg-subtle);
-  }
+  // File drop zone: a native file input covers the whole area, so a click and a drop both reach it.
+  // architectui.js marks the area while files are dragged over it and lists the chosen files.
+  .aui-dropzone {
+    position: relative;
+    padding: 2rem 1rem;
+    border: 2px dashed var(--bs-border-color);
+    border-radius: var(--bs-radius-7);
+    background: var(--bs-bg-1);
+    color: var(--bs-fg-body);
+    text-align: center;
+    transition: border-color .2s, background-color .2s;
 
-  &:has(> input:focus-visible) {
-    border-color: var(--bs-primary);
-    box-shadow: 0 0 0 .25rem var(--bs-focus-ring-color);
-  }
+    > input[type="file"] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
 
-  &:has(> input:disabled) {
-    opacity: .6;
-    pointer-events: none;
-  }
-}
+    > svg.lucide,
+    > i[data-lucide] {
+      width: 2.25rem;
+      height: 2.25rem;
+      color: var(--bs-primary-fg);
+    }
 
-.form-range::-webkit-slider-thumb {
-  background-color: var(--bs-primary);
-}
+    &:hover,
+    &.is-dragover {
+      border-color: var(--bs-primary-base);
+      background: var(--bs-primary-bg-subtle);
+    }
 
-.form-range::-moz-range-thumb {
-  background-color: var(--bs-primary);
-}
+    &:has(> input:focus-visible) {
+      border-color: var(--bs-primary-base);
+      box-shadow: 0 0 0 .25rem var(--bs-focus-ring-color);
+    }
 
-.list-group-item {
-  border: 1px solid rgba(var(--bs-emphasis-color-rgb), .125);
-}
-
-// Carousel caption: headings take the white caption color, not the theme heading color
-.carousel-caption {
-  --bs-heading-color: currentColor;
-}
-
-// The scroll box is the containing block of its content: a .visually-hidden label in a header cell
-// stays inside the box and does not widen the page on a phone
-.table-responsive {
-  position: relative;
-}
-
-.list-group-flush + .card-footer {
-  border-top: 0;
-}
-
-.modal-dialog {
-  border-radius: var(--bs-border-radius);
-}
-
-.pagination {
-  --bs-pagination-focus-box-shadow: none;
-}
-
-.progress,
-.progress-stacked {
-  --bs-progress-bar-bg: var(--bs-primary);
-}
-
-.accordion {
-  --bs-accordion-btn-focus-box-shadow: none;
-}
-
-// Filled toasts (text-bg-<color>): the header and the close button follow the text color
-.toast[class*="text-bg-"] {
-  --bs-toast-header-bg: transparent;
-  --bs-toast-header-color: inherit;
-  --bs-toast-header-border-color: color-mix(in srgb, currentColor 20%, transparent);
-  border: 0;
-
-  .btn-close {
-    color: inherit;
-    background: currentColor;
-    opacity: .75;
-    filter: none;
-    mask: var(--bs-btn-close-bg) center / .75em auto no-repeat;
-
-    &:hover {
-      opacity: 1;
+    &:has(> input:disabled) {
+      opacity: .6;
+      pointer-events: none;
     }
   }
-}
 
-.alert-dismissible .btn-close {
-  top: 0;
-  right: 5px;
-  padding: 5px;
-}
+  // The scroll box is the containing block of its content: a .visually-hidden label in a header cell
+  // stays inside the box and does not widen the page on a phone
+  .table-responsive {
+    position: relative;
+  }
 
-// Scroll areas: native scrolling with a thin scrollbar
-.aui-scroll {
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, .2) transparent;
-}
+  .list-group-flush + .card-footer {
+    border-top: 0;
+  }
 
-[data-bs-theme="dark"] .aui-scroll {
-  scrollbar-color: rgba(255, 255, 255, .2) transparent;
-}
+  .progress,
+  .progress-stacked {
+    --bs-progress-bar-bg: var(--bs-theme-bg, var(--bs-primary-bg));
+  }
 
-.aui-scroll-sm { height: 200px; }
-.aui-scroll-md { height: 300px; }
-.aui-scroll-lg { height: 400px; }
+  // Filled toasts (toast theme-<color>): the header and the close button follow the text color
+  .toast[class*="theme-"] {
+    --bs-toast-bg: var(--bs-theme-bg);
+    --bs-toast-color: var(--bs-theme-contrast);
+    --bs-toast-header-bg: transparent;
+    --bs-toast-header-color: inherit;
+    --bs-toast-header-border-color: color-mix(in srgb, currentColor 20%, transparent);
+    --bs-toast-border-color: transparent;
+  }
+
+  // Scroll areas: native scrolling with a thin scrollbar
+  .aui-scroll {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, .2) transparent;
+  }
+
+  [data-bs-theme="dark"] .aui-scroll {
+    scrollbar-color: rgba(255, 255, 255, .2) transparent;
+  }
+
+  .aui-scroll-sm { height: 200px; }
+  .aui-scroll-md { height: 300px; }
+  .aui-scroll-lg { height: 400px; }
+}

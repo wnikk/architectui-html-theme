@@ -9,7 +9,7 @@
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="architectui.css?v=6.2.37">
 
 <script>
@@ -41,7 +41,9 @@
 })();
 </script>
 
-<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+<script type="importmap">{ "imports": { "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" } }</script>
+<script type="module">import * as bootstrap from "bootstrap"; window.bootstrap = bootstrap; document.dispatchEvent(new Event("aui:bootstrap"));</script>
 <script defer src="https://cdn.jsdelivr.net/npm/lucide@1.65.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
 
 <script defer src="architectui-auth.js?v=6.2.37"></script>
@@ -59,63 +61,63 @@
 
 </head>
 <body class="aui-guest">
-    <a class="visually-hidden-focusable btn btn-primary aui-skip-link" href="#main">Skip to content</a>
+    <a class="visually-hidden-focusable btn-solid theme-primary aui-skip-link" href="#main">Skip to content</a>
     <div class="d-flex flex-column min-vh-100">
-        <header class="d-flex align-items-center gap-3 px-3 px-sm-4 py-3">
+        <header class="d-flex align-items-center gap-5 px-5 sm:px-7 py-5">
             
 <a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
     <img src="assets/images/logo.svg" alt="ArchitectUI">
     <img src="assets/images/logo-on-dark.svg" alt="">
 </a>
 
-            <a href="#" class="ms-auto small text-body-secondary d-inline-flex align-items-center gap-1"><i data-lucide="life-buoy"></i>Help</a>
-            <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+            <a href="#" class="ms-auto small fg-2 d-inline-flex align-items-center gap-1"><i data-lucide="life-buoy"></i>Help</a>
+            <button type="button" class="aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
                 <i data-lucide="moon"></i>
                 <i data-lucide="sun"></i>
             </button>
         </header>
-        <main id="main" class="flex-grow-1 d-flex align-items-center py-3" tabindex="-1">
+        <main id="main" class="flex-grow-1 d-flex align-items-center py-5" tabindex="-1">
             
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-9 col-lg-7 col-xl-6 aui-guest-card">
+        <div class="md:col-9 lg:col-7 xl:col-6 aui-guest-card">
             <div class="text-center">
-                <div class="d-inline-flex p-3 rounded-circle bg-warning-subtle text-warning-emphasis mb-3"><i data-lucide="wrench" class="fs-1"></i></div>
+                <div class="d-inline-flex p-5 rounded-circle bg-subtle-warning fg-emphasis-warning mb-5"><i data-lucide="wrench" class="fs-4xl"></i></div>
                 <h1 class="h3">We are improving the store</h1>
-                <p class="text-body-secondary mb-4">Scheduled maintenance: the site is temporarily unavailable. Your orders, carts and accounts are safe. We will be back soon.</p>
+                <p class="fg-2 mb-7">Scheduled maintenance: the site is temporarily unavailable. Your orders, carts and accounts are safe. We will be back soon.</p>
             </div>
-            <div class="card mb-4">
+            <div class="card mb-7">
                 <div class="card-body">
-                    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
-                        <i data-lucide="clock" class="text-body-secondary"></i>
+                    <div class="d-flex flex-wrap align-items-center gap-3 mb-5">
+                        <i data-lucide="clock" class="fg-2"></i>
                         <span class="fw-bold">Today, 02:00–03:00 UTC</span>
-                        <span class="badge bg-warning-subtle text-warning-emphasis ms-auto">In progress</span>
+                        <span class="badge ms-auto theme-warning badge-subtle">In progress</span>
                     </div>
-                    <div class="progress mb-3" role="progressbar" aria-label="Maintenance progress" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="height: .5rem">
+                    <div class="progress mb-5" role="progressbar" aria-label="Maintenance progress" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="height: .5rem">
                         <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 60%"></div>
                     </div>
                     <ul class="list-unstyled mb-0 small">
-                        <li class="d-flex align-items-center gap-2 py-1"><i data-lucide="circle-check" class="text-success"></i>Database upgrade<span class="ms-auto text-body-secondary">Done</span></li>
-                        <li class="d-flex align-items-center gap-2 py-1"><i data-lucide="circle-check" class="text-success"></i>Payment service update<span class="ms-auto text-body-secondary">Done</span></li>
-                        <li class="d-flex align-items-center gap-2 py-1 fw-bold"><i data-lucide="loader" class="text-primary aui-animate-spin"></i>Search index rebuild<span class="ms-auto text-body-secondary fw-normal">About 20 min</span></li>
-                        <li class="d-flex align-items-center gap-2 py-1 text-body-secondary"><i data-lucide="circle-dashed"></i>Final checks<span class="ms-auto">Next</span></li>
+                        <li class="d-flex align-items-center gap-3 py-1"><i data-lucide="circle-check" class="fg-success"></i>Database upgrade<span class="ms-auto fg-2">Done</span></li>
+                        <li class="d-flex align-items-center gap-3 py-1"><i data-lucide="circle-check" class="fg-success"></i>Payment service update<span class="ms-auto fg-2">Done</span></li>
+                        <li class="d-flex align-items-center gap-3 py-1 fw-bold"><i data-lucide="loader" class="fg-primary aui-animate-spin"></i>Search index rebuild<span class="ms-auto fg-2 fw-normal">About 20 min</span></li>
+                        <li class="d-flex align-items-center gap-3 py-1 fg-2"><i data-lucide="circle-dashed"></i>Final checks<span class="ms-auto">Next</span></li>
                     </ul>
                 </div>
             </div>
-            <div class="d-flex flex-wrap justify-content-center gap-2">
-                <a href="#" class="btn btn-primary d-inline-flex align-items-center gap-2"><i data-lucide="activity"></i>Status page</a>
-                <a href="mailto:support@northwind.test" class="btn btn-outline-secondary d-inline-flex align-items-center gap-2"><i data-lucide="mail"></i>Contact support</a>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="#" class="btn-solid theme-primary d-inline-flex align-items-center gap-3"><i data-lucide="activity"></i>Status page</a>
+                <a href="mailto:support@northwind.test" class="btn-outline theme-secondary d-inline-flex align-items-center gap-3"><i data-lucide="mail"></i>Contact support</a>
             </div>
         </div>
     </div>
 </div>
 
         </main>
-        <footer class="d-flex flex-wrap justify-content-center gap-3 px-3 px-sm-4 py-3 small text-body-secondary">
+        <footer class="d-flex flex-wrap justify-content-center gap-5 px-5 sm:px-7 py-5 small fg-2">
             <span>© 2026 ArchitectUI</span>
-            <a href="#" class="text-reset">Privacy</a>
-            <a href="#" class="text-reset">Terms</a>
-            <a href="#" class="text-reset">Status</a>
+            <a href="#" class="fg-reset">Privacy</a>
+            <a href="#" class="fg-reset">Terms</a>
+            <a href="#" class="fg-reset">Status</a>
         </footer>
     </div>
 </body>

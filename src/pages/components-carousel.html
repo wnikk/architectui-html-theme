@@ -1,15 +1,16 @@
 ---
 title: "Carousels & Slideshows"
-description: "Bootstrap 5 carousels with slides drawn in the theme colors."
+description: "Bootstrap 6 carousels on CSS scroll snap: overlay controls, a crossfade with indicators and several slides in view."
 icon: "image"
 ---
 <div class="row">
-    <div class="col-md-6">
-        <div class="mb-3 card">
+    <div class="md:col-6">
+        <div class="mb-5 card">
             <div class="card-body">
-                <h5 class="card-title">Basic Bootstrap 5 Carousel</h5>
-                <div id="carouselExampleControls1" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
+                <h5 class="card-title">Overlay controls</h5>
+                <p class="card-subtitle">The classic look: the previous and next buttons over the slides. Drag or swipe the slides, or scroll them with the keyboard.</p>
+                <div id="carouselOverlay" class="carousel carousel-overlay slide" data-bs-autoplay="true">
+                    <div class="carousel-inner rounded-5">
                         <div class="carousel-item active">
                             {% set slide = 1 %}{% set withText = true %}{% include "partials/demo-slide.njk" %}
                         </div>
@@ -20,54 +21,97 @@ icon: "image"
                             {% set slide = 3 %}{% set withText = true %}{% include "partials/demo-slide.njk" %}
                         </div>
                     </div>
-                    <a class="carousel-control-prev" data-bs-target="#carouselExampleControls1" role="button" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" data-bs-target="#carouselExampleControls1" role="button" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </a>
+                    <div class="carousel-overlay-controls">
+                        <button class="btn-icon btn-sm" type="button" data-bs-target="#carouselOverlay" data-bs-slide="prev">
+                            <span class="carousel-icon-prev" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="btn-icon btn-sm carousel-control-play-pause" type="button" data-bs-target="#carouselOverlay" aria-label="Pause" data-bs-pause-label="Pause" data-bs-play-label="Play">
+                            <span class="carousel-icon-pause" aria-hidden="true"></span>
+                            <span class="carousel-icon-play" aria-hidden="true"></span>
+                        </button>
+                        <button class="btn-icon btn-sm" type="button" data-bs-target="#carouselOverlay" data-bs-slide="next">
+                            <span class="carousel-icon-next" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="mb-3 card">
+    <div class="md:col-6">
+        <div class="mb-5 card">
             <div class="card-body">
-                <h5 class="card-title">Carousel with Captions</h5>
-                <div id="carouselExampleControls2" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
+                <h5 class="card-title">Crossfade with text and indicators</h5>
+                <p class="card-subtitle">A slide holds any markup: here a text block over the chart. The indicators and the controls stand below the slides.</p>
+                <div id="carouselFade" class="carousel carousel-fade slide" data-bs-autoplay="true">
+                    <div class="carousel-inner rounded-5">
+                        <div class="carousel-item active position-relative">
                             {% set slide = 1 %}{% set withText = false %}{% include "partials/demo-slide.njk" %}
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Revenue up 18%</h5>
-                                <p>Most of the growth came from repeat customers in the EU region.</p>
+                            <div class="position-absolute bottom-0 start-0 end-0 p-7 text-center fg-white d-none md:d-block">
+                                <h5 class="fg-white">Revenue up 18%</h5>
+                                <p class="mb-0">Most of the growth came from repeat customers in the EU region.</p>
                             </div>
                         </div>
-                        <div class="carousel-item">
+                        <div class="carousel-item position-relative">
                             {% set slide = 2 %}{% set withText = false %}{% include "partials/demo-slide.njk" %}
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Busiest week of the quarter</h5>
-                                <p>Saturday had 250 orders; the warehouse added a second shift.</p>
+                            <div class="position-absolute bottom-0 start-0 end-0 p-7 text-center fg-white d-none md:d-block">
+                                <h5 class="fg-white">Busiest week of the quarter</h5>
+                                <p class="mb-0">Saturday had 250 orders; the warehouse added a second shift.</p>
                             </div>
                         </div>
-                        <div class="carousel-item">
+                        <div class="carousel-item position-relative">
                             {% set slide = 3 %}{% set withText = false %}{% include "partials/demo-slide.njk" %}
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Organic search leads</h5>
-                                <p>62% of visitors come from search, 24% from email, 14% from ads.</p>
+                            <div class="position-absolute bottom-0 start-0 end-0 p-7 text-center fg-white d-none md:d-block">
+                                <h5 class="fg-white">Organic search leads</h5>
+                                <p class="mb-0">62% of visitors come from search, 24% from email, 14% from ads.</p>
                             </div>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" data-bs-target="#carouselExampleControls2" role="button" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" data-bs-target="#carouselExampleControls2" role="button" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </a>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <div>
+                            <button class="btn-icon btn-sm" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
+                                <span class="carousel-icon-prev" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="btn-icon btn-sm" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
+                                <span class="carousel-icon-next" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="mb-5 card">
+            <div class="card-body">
+                <h5 class="card-title">Several slides in view</h5>
+                <p class="card-subtitle">New in Bootstrap 6: the number of slides, the gap and a peek of the next slide are CSS variables; the slides stop at the ends.</p>
+                <div id="carouselMultiple" class="carousel slide" data-bs-ends="stop" style="--bs-carousel-items: 2; --bs-carousel-items-gap: 1rem; --bs-carousel-items-peek: 2rem;">
+                    <div class="d-flex justify-content-end gap-1 mb-3">
+                        <button class="btn-icon btn-sm" type="button" data-bs-target="#carouselMultiple" data-bs-slide="prev">
+                            <span class="carousel-icon-prev" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="btn-icon btn-sm" type="button" data-bs-target="#carouselMultiple" data-bs-slide="next">
+                            <span class="carousel-icon-next" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="carousel-inner">
+                        {%- for n in [1, 2, 3, 1, 2] %}
+                        <div class="carousel-item{% if loop.first %} active{% endif %} rounded-5 overflow-hidden">
+                            {% set slide = n %}{% set withText = true %}{% include "partials/demo-slide.njk" %}
+                        </div>
+                        {%- endfor %}
+                    </div>
                 </div>
             </div>
         </div>

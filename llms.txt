@@ -1,34 +1,34 @@
 # ArchitectUI
 
-> ArchitectUI is a ready-made admin dashboard theme for Bootstrap 5.3. It is one stylesheet (`architectui.css`) and one dependency-free script (`architectui.js`; guest pages such as sign in use `architectui-auth.js` instead) on top of Bootstrap and Lucide icons loaded from a CDN. Standard Bootstrap 5 markup looks finished as soon as it is on the page: the frame (header, sidebar, page title, footer), every Bootstrap component, dark mode and ten visual themes are already designed and consistent with each other. No build step.
+> ArchitectUI is a ready-made admin dashboard theme for Bootstrap 6 (`bootstrap@6.0.0-alpha.1`). It is one stylesheet (`architectui.css`) and one dependency-free script (`architectui.js`; guest pages such as sign in use `architectui-auth.js` instead) on top of Bootstrap and Lucide icons loaded from a CDN. Standard Bootstrap 6 markup looks finished as soon as it is on the page: the frame (header, sidebar, page title, footer), every Bootstrap component, dark mode and ten visual themes are already designed and consistent with each other. No build step.
 
 Key facts:
 
 - MIT license. Repository: https://github.com/wnikk/architectui-html-theme (the current version is in `package.json` and `Changelog.md`).
 - ArchitectUI is a template, not a library to link from outside: copy the `dist/` folder of the repository into the project (a ZIP of the `master` branch, https://github.com/wnikk/architectui-html-theme/archive/refs/heads/master.zip, or a clone; a fixed version: the ZIP of `dist/` on https://github.com/wnikk/architectui-html-theme/releases) and adapt the copy.
-- Runtime dependencies come from the CDN: Bootstrap 5.3 (CSS and bundle JS) and Lucide (UMD); exact URLs are in `src/_data/cdn.json`. There is no jQuery, no Tailwind, no React or Vue.
-- Write normal Bootstrap 5 markup. Bootstrap utilities cover layout, spacing and text; the few theme additions use the `aui-` class prefix (`aui-number`, `aui-btn-shadow`, `aui-scroll`). Bootstrap 4 classes (`data-toggle`, `ml-*`, `custom-control`) are not supported.
-- Wide screens: grid and display classes continue after Bootstrap `xxl` with `3xl` (from 1560 px, 1600 px monitors) and `4xl` (from 1860 px, 1920 px monitors): `col-4xl-3`, `row-cols-3xl-6`, `g-4xl-4`, `d-3xl-none`.
+- Runtime dependencies come from the CDN: Bootstrap 6 (CSS and the bundle JS, an ES module named `bootstrap` in an import map) and Lucide (UMD); exact URLs are in `src/_data/cdn.json`. There is no jQuery, no Tailwind, no React or Vue. Browsers: Chrome and Edge 130, Firefox 132, Safari 18 and newer.
+- Write normal Bootstrap 6 markup: `btn-solid theme-primary`, `badge theme-success`, `md:col-6`, `fg-2`, `menu`, `dialog`, `drawer`, `form-field`. Bootstrap utilities cover layout, spacing and text; the few theme additions use the `aui-` class prefix (`aui-number`, `aui-scroll`, `aui-expand`). Bootstrap 5 names (`btn-primary`, `col-md-6`, `text-body-secondary`, `dropdown`, `modal`) and Bootstrap 4 attributes are not supported.
+- Wide screens: grid and display classes continue after Bootstrap `2xl` (1536 px) with the `3xl:` prefix from 1860 px (1920 px monitors): `3xl:col-3`, `3xl:row-cols-6`, `3xl:g-4`, `3xl:d-none`.
 - Icons: `<i data-lucide="rocket"></i>`. The theme script renders them, also in markup inserted later. Theme colors for charts: `ArchitectUI.token("primary")`, `ArchitectUI.rgba("primary", .5)`, `ArchitectUI.chartDefaults(Chart)`.
-- Every color, radius, shadow and size is a CSS variable (`--bs-*` for Bootstrap, `--aui-*` for the theme). Change them at runtime, never rebuild Bootstrap.
+- Every color, radius, shadow and size is a CSS variable (`--bs-*` for Bootstrap 6, `--aui-*` for the theme), both modes in one `light-dark()` value. Change them at runtime, never rebuild Bootstrap. The theme rules sit in the CSS layer `custom` of Bootstrap 6, under its helpers and utilities.
 - Layout modes are attributes on `<html>` (`data-aui-header`, `data-aui-sidebar`, `data-aui-sidebar-collapsed`, `data-aui-density`, `data-aui-theme`, `data-aui-mode`). The interface settings (Interface section of `pages-profile.html`) store them in `localStorage` under `architectui`.
 - Business is the default look and is built into `architectui.css`. Nine more themes are single stylesheets in `themes/` (Orange is the original ArchitectUI look). Light, dark and system modes work in every theme.
-- Print: the browser print shows only the page content in the light mode; `d-print-none` keeps an element off paper, `data-aui-print` on a button opens the print dialog.
-- Everything uses relative paths and classic `<script defer>` tags, so `dist/` works from any folder of a web server and straight from disk (`file://`).
+- Print: the browser print shows only the page content in the light mode; `print:d-none` keeps an element off paper, `data-aui-print` on a button opens the print dialog.
+- Everything uses relative paths; the theme and page scripts are classic `<script defer>` tags and the only module is inline, so `dist/` works from any folder of a web server and straight from disk (`file://`).
 
 How it differs from Tailwind CSS and similar utility-first kits:
 
-- Tailwind gives you building blocks; you design every component yourself and keep long class lists consistent by hand. ArchitectUI gives you finished components: a `card`, a `btn btn-primary` or a `table` already has its spacing, colors, states and dark-mode variant, the same on every page.
+- Tailwind gives you building blocks; you design every component yourself and keep long class lists consistent by hand. ArchitectUI gives you finished components: a `card`, a `btn-solid theme-primary` or a `table` already has its spacing, colors, states and dark-mode variant, the same on every page.
 - Tailwind needs a build step to generate CSS. ArchitectUI needs none: link two CDN files and the theme.
 - A theme switch in ArchitectUI is one attribute and one stylesheet; all pages change together. In utility-first code the look is spread across markup and has to be edited everywhere.
-- Behavior is included: collapsible sidebar with an icon rail, off-canvas menu on phones, header search, interface settings, theme and mode switching, Bootstrap dropdowns, modals, tooltips, toasts.
-- Do not mix Tailwind or another CSS framework into ArchitectUI pages. Build new screens from Bootstrap 5 components, Bootstrap utilities and `aui-` classes.
+- Behavior is included: collapsible sidebar with an icon rail, a drawer menu on phones, header search, interface settings, theme and mode switching, Bootstrap menus, dialogs, tooltips, toasts.
+- Do not mix Tailwind or another CSS framework into ArchitectUI pages. Build new screens from Bootstrap 6 components, Bootstrap utilities and `aui-` classes.
 
 ## Docs
 
 - [Full reference for agents](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/llms-full.txt): page template, frame markup, settings, JS API, themes, tokens, component classes, rules
 - [README](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/README.md): quick start, themes, layout options, development
-- [Changelog](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/Changelog.md): what changed in each version
+- [Changelog](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/Changelog.md): what changed in each version, including the move from Bootstrap 5 to Bootstrap 6
 - [Agent guide](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/AGENTS.md): short how-to: files, building a page, settings, customizing, rules
 
 ## Examples
@@ -36,8 +36,9 @@ How it differs from Tailwind CSS and similar utility-first kits:
 - [Live demo](https://wnikk.github.io/architectui-html-theme/): every demo page with the interface settings, themes and modes
 - [Starter page](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/pages-starter.html): empty built page with the full frame; copy it as a starting point
 - [Sign-in page](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/pages-login.html): built guest page without the admin frame
+- [Bootstrap Components](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/components-bootstrap.html): every Bootstrap 6 component on one page, the new ones included
 - [Analytics dashboard](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/index.html): complete built dashboard
-- [Operations Wall](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/dashboard-operations.html): dense dashboard for 1600 and 1920 px monitors with the `3xl` and `4xl` columns, one column on phones
+- [Operations Wall](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/dashboard-operations.html): dense dashboard for 1600 and 1920 px monitors with the `2xl` and `3xl:` columns, one column on phones
 - [Theme Palettes](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/elements-palettes.html): every color of every theme in both modes, and how to use the colors in classes, CSS variables and scripts
 - [Invoice](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/dist/pages-invoice.html): a document page that prints on one A4 page, with a path line and a Back link above the title
 - [Page sources](https://github.com/wnikk/architectui-html-theme/tree/master/src/pages): demo pages (dashboards, elements, Bootstrap components, forms and a wizard, tables, charts, calendar, maps, Kanban, inbox, invoice, profile) without the frame
@@ -46,7 +47,7 @@ How it differs from Tailwind CSS and similar utility-first kits:
 ## Optional
 
 - [Theme script](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/js/architectui.js): settings, theme switching, sidebar, search, `ArchitectUI.refresh()`, theme colors for charts
-- [Guest script](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/js/architectui-auth.js): sign in, sign up and password reset steps with a verification code, mode toggle, icons; for pages without the admin frame
+- [Guest script](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/js/architectui-auth.js): sign in, sign up and password reset steps with a Bootstrap 6 OTP input, mode toggle, icons; for pages without the admin frame
 - [Theme tokens](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/scss/_tokens.scss): layout variables shared by all themes
-- [Theme base](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/scss/themes/_theme.scss): palette keys and the rules every theme shares
+- [Theme base](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/scss/themes/_theme.scss): palette keys, the mapping to the Bootstrap 6 tokens and the rules every theme shares
 - [CDN addresses](https://raw.githubusercontent.com/wnikk/architectui-html-theme/master/src/_data/cdn.json): exact library versions

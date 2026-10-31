@@ -1,26 +1,26 @@
 {#- The search field: Enter opens the Search Results page with the words as ?q= #}
-<form class="aui-expand me-3" role="search" action="pages-search.html" data-aui-expand>
+<form class="aui-expand me-5" role="search" action="pages-search.html" data-aui-expand>
     <input type="search" class="form-control" name="q" placeholder="Type to search" aria-label="Search" autocomplete="off">
-    <button type="button" class="btn" data-aui-expand-toggle aria-label="Search"></button>
+    <button type="button" data-aui-expand-toggle aria-label="Search"></button>
     <button type="button" class="btn-close" data-aui-expand-close aria-label="Close search"></button>
 </form>
 {#- A page with "breadcrumbs: header" in its front matter shows its path in the menu here; other pages show the quick links. #}
 {%- from "partials/breadcrumbs.njk" import trail %}
 {%- set crumbs = (menu | breadcrumbsFor(page.filePathStem)) if breadcrumbs == "header" else [] %}
 {%- if crumbs.length %}
-<nav class="d-none d-md-block" aria-label="breadcrumb">
+<nav class="d-none md:d-block" aria-label="breadcrumb">
     {{- trail(crumbs, page.filePathStem) }}
 </nav>
 {%- else %}
-<ul class="navbar-nav d-none d-md-flex">
+<ul class="navbar-nav d-none md:d-flex">
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="database" class="me-2"></i>Statistics</a>
+        <a href="#" class="nav-link"><i data-lucide="database"></i>Statistics</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="square-pen" class="me-2"></i>Projects</a>
+        <a href="#" class="nav-link"><i data-lucide="square-pen"></i>Projects</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="settings" class="me-2"></i>Settings</a>
+        <a href="#" class="nav-link"><i data-lucide="settings"></i>Settings</a>
     </li>
 </ul>
 {%- endif %}

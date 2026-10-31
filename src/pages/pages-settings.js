@@ -43,7 +43,6 @@
         const repeat = form.querySelector("#pwRepeat");
         repeat.setCustomValidity(repeat.value === form.querySelector("#pwNew").value ? "" : "mismatch");
       }
-      form.classList.add("was-validated");
       if (!form.checkValidity()) {
         form.querySelector(":invalid")?.focus();
         return;
@@ -51,7 +50,6 @@
       notify(form.dataset.save);
       if (form.matches("[data-password]")) {
         form.reset();
-        form.classList.remove("was-validated");
       }
     });
   });
@@ -73,8 +71,8 @@
       const on = button.getAttribute("aria-pressed") !== "true";
       button.setAttribute("aria-pressed", String(on));
       button.textContent = on ? "Disconnect" : "Connect";
-      button.classList.toggle("btn-outline-secondary", on);
-      button.classList.toggle("btn-outline-primary", !on);
+      button.classList.toggle("btn-outline theme-secondary", on);
+      button.classList.toggle("btn-outline theme-primary", !on);
       button.closest("[data-integration]").querySelector("[data-connected]").classList.toggle("d-none", !on);
       notify(`${button.dataset.connect} ${on ? "connected" : "disconnected"}`);
     } else if (button.matches("[data-revoke]")) {
@@ -96,16 +94,14 @@
   const keyModalEl = document.getElementById("keyModal");
   const keyForm = keyModalEl.querySelector("[data-key-form]");
   const step = (name) => keyForm.querySelectorAll("[data-key-step]").forEach((s) => s.classList.toggle("d-none", s.dataset.keyStep !== name));
-  keyModalEl.addEventListener("show.bs.modal", () => {
+  keyModalEl.addEventListener("show.bs.dialog", () => {
     keyForm.reset();
-    keyForm.classList.remove("was-validated");
     step("form");
     keyForm.querySelector("[data-key-create]").classList.remove("d-none");
   });
-  keyModalEl.addEventListener("shown.bs.modal", () => keyForm.querySelector("#keyName").focus());
+  keyModalEl.addEventListener("shown.bs.dialog", () => keyForm.querySelector("#keyName").focus());
   keyForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    keyForm.classList.add("was-validated");
     if (!keyForm.checkValidity()) return;
     const bytes = crypto.getRandomValues(new Uint8Array(16));
     const key = `aui_demo_${[...bytes].map((b) => b.toString(16).padStart(2, "0")).join("")}`;
@@ -116,11 +112,11 @@
     const cell = (html) => Object.assign(document.createElement("td"), html);
     const name = cell({});
     name.append(Object.assign(document.createElement("div"), { className: "fw-bold", textContent: keyForm.querySelector("#keyName").value.trim() }),
-      Object.assign(document.createElement("div"), { className: "small text-body-secondary", textContent: "Created just now" }));
+      Object.assign(document.createElement("div"), { className: "small fg-2", textContent: "Created just now" }));
     const code = cell({});
     code.append(Object.assign(document.createElement("code"), { className: "text-nowrap", textContent: `${key.slice(0, 13)}…${key.slice(-4)}` }));
     const revoke = cell({ className: "text-end" });
-    const revokeButton = Object.assign(document.createElement("button"), { type: "button", className: "btn btn-sm btn-outline-danger" });
+    const revokeButton = Object.assign(document.createElement("button"), { type: "button", className: "btn-outline btn-sm theme-danger" });
     revokeButton.setAttribute("data-revoke", "");
     revokeButton.setAttribute("aria-label", `Revoke ${keyForm.querySelector("#keyName").value.trim()}`);
     const trash = Object.assign(document.createElement("i"), { className: "d-sm-none" });
@@ -128,7 +124,7 @@
     revokeButton.append(trash, Object.assign(document.createElement("span"), { className: "d-none d-sm-inline", textContent: "Revoke" }));
     revoke.append(revokeButton);
     row.append(name, code, cell({ className: "d-none d-md-table-cell", textContent: keyForm.querySelector("#keyScope").value }),
-      cell({ className: "d-none d-md-table-cell text-nowrap small text-body-secondary", textContent: "Never" }), revoke);
+      cell({ className: "d-none md:d-table-cell text-nowrap small fg-2", textContent: "Never" }), revoke);
     root.querySelector("[data-keys]").prepend(row);
   });
   keyForm.querySelector("[data-copy-key]").addEventListener("click", async () => {
@@ -151,11 +147,11 @@
     submit.disabled = !(confirmField.value.trim() === confirmField.dataset.expected && understand.checked);
   };
   deleteForm.addEventListener("input", ready);
-  deleteModalEl.addEventListener("show.bs.modal", () => {
+  deleteModalEl.addEventListener("show.bs.dialog", () => {
     deleteForm.reset();
     ready();
   });
-  deleteModalEl.addEventListener("shown.bs.modal", () => confirmField.focus());
+  deleteModalEl.addEventListener("shown.bs.dialog", () => confirmField.focus());
   deleteForm.addEventListener("submit", (event) => {
     event.preventDefault();
     if (submit.disabled) return;
@@ -163,7 +159,7 @@
     root.querySelector("[data-delete-date]").textContent = date;
     root.querySelector("[data-delete-intro]").classList.add("d-none");
     root.querySelector("[data-delete-scheduled]").classList.remove("d-none");
-    window.bootstrap.Modal.getOrCreateInstance(deleteModalEl).hide();
+    window.bootstrap.Dialog.getOrCreateInstance(deleteModalEl).hide();
     notify("The account is scheduled for deletion");
   });
 })();

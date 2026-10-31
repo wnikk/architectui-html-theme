@@ -9,12 +9,14 @@
 //     data-aui-auth-next="name"        the next step
 //     data-aui-auth-delay="2000"       request time in ms (a demo without a server)
 //     data-aui-auth-reject="000000"    a code that the demo request refuses
-//   [data-aui-otp]                     group of one-digit inputs for a verification code
+//   .otp[data-bs-otp]                  the Bootstrap 6 OTP input for a verification code (sent when complete)
 //   [data-aui-auth-error]              message shown when the request refuses the code
 //   [data-aui-auth-back="name"]        button that returns to a step
 //   [data-aui-auth-resend]             button that sends the code again; data-aui-auth-timer="30" seconds
 //   [data-aui-auth-echo="#id"]         shows the value of a field from an earlier step
 //   [data-aui-auth-redirect="url"]     on a step: opens the address after a short pause
+// Field checks use the Bootstrap 6 validation (data-bs-validate on the form); a refused form shakes
+// with the animation-shake utility.
 (() => {
   const root = document.documentElement;
   const STORAGE_KEY = "architectui";
@@ -64,6 +66,7 @@
 
   // Steps
   const replay = (el, name) => {
+    if (!el) return;
     el.classList.remove(name);
     void el.offsetWidth; // restart the animation
     el.classList.add(name);
@@ -110,39 +113,52 @@
     form.querySelectorAll("[type=submit] .spinner-border").forEach((spinner) => { spinner.hidden = !busy; });
   }
 
-  const codeOf = (form) => [...form.querySelectorAll("[data-aui-otp] input")].map((input) => input.value).join("");
+  // The OTP input of a form, its real field and its value
+  const otpOf = (form) => form.querySelector(".otp");
+  const otpInput = (otp) => otp.querySelector("input");
+  const codeOf = (form) => otpInput(otpOf(form)).value;
 
   function showCodeError(form, message) {
-    const inputs = form.querySelectorAll("[data-aui-otp] input");
-    inputs.forEach((input) => input.classList.add("is-invalid"));
+    otpOf(form).classList.add("is-invalid");
     const error = form.querySelector("[data-aui-auth-error]");
     if (error) {
       if (message) error.textContent = message;
       error.classList.add("d-block");
     }
-    replay(form.querySelector("[data-aui-otp]"), "aui-auth-shake");
+    replay(otpOf(form), "animation-shake");
   }
 
   function clearCodeError(form) {
-    form.querySelectorAll("[data-aui-otp] input").forEach((input) => input.classList.remove("is-invalid"));
+    otpOf(form)?.classList.remove("is-invalid");
     form.querySelector("[data-aui-auth-error]")?.classList.remove("d-block");
+  }
+
+  function clearCode(otp) {
+    const input = otpInput(otp);
+    const plugin = window.bootstrap?.OtpInput.getInstance(input);
+    if (plugin) {
+      plugin.clear();
+      plugin.focus();
+    } else {
+      input.value = "";
+      input.focus();
+    }
   }
 
   document.addEventListener("submit", (event) => {
     const form = event.target.closest("form[data-aui-auth-form]");
     if (!form) return;
     event.preventDefault();
-    const otp = form.querySelector("[data-aui-otp]");
+    const otp = otpOf(form);
     if (otp) {
-      const size = otp.querySelectorAll("input").length;
+      const size = Number(otpInput(otp).maxLength) || 6;
       if (codeOf(form).length < size) {
         showCodeError(form, `Enter all ${size} digits.`);
-        [...otp.querySelectorAll("input")].find((input) => !input.value)?.focus();
+        otpInput(otp).focus();
         return;
       }
     } else if (!form.checkValidity()) {
-      form.classList.add("was-validated");
-      replay(form, "aui-auth-shake");
+      replay(form, "animation-shake");
       form.querySelector("input:invalid, select:invalid, textarea:invalid")?.focus();
       return;
     }
@@ -151,74 +167,21 @@
       lock(form, false);
       if (otp && codeOf(form) === form.dataset.auiAuthReject) {
         showCodeError(form, form.querySelector("[data-aui-auth-error]")?.dataset.auiAuthMessage);
-        otp.querySelectorAll("input").forEach((input) => { input.value = ""; });
-        otp.querySelector("input").focus();
+        clearCode(otp);
         return;
       }
       showStep(form.closest("[data-aui-auth]"), form.dataset.auiAuthNext);
     }, Number(form.dataset.auiAuthDelay) || 2000);
   });
 
-  // Puts digits into the fields from the given one on, then focuses the first empty field or sends the form
-  function fillCode(inputs, start, digits) {
-    digits.split("").slice(0, inputs.length - start).forEach((digit, i) => { inputs[start + i].value = digit; });
-    const empty = inputs.find((input) => !input.value);
-    if (empty) empty.focus();
-    else inputs[0].form.requestSubmit();
-  }
-
-  // Code input: one digit per field, the focus moves on; Backspace goes back. A pasted code, or a code that
-  // the phone fills in from a message (autocomplete="one-time-code"), is spread over the fields.
-  document.addEventListener("input", (event) => {
-    const input = event.target;
-    const otp = input.closest("[data-aui-otp]");
-    if (!otp) return;
-    const inputs = [...otp.querySelectorAll("input")];
-    // A typed digit replaces the field, wherever the caret was; pasted or filled-in text is cleaned
-    const typed = event.inputType === "insertText" && /^\d$/.test(event.data || "");
-    const digits = typed ? event.data : input.value.replace(/\D/g, "");
-    clearCodeError(input.form);
-    if (digits.length > 1) {
-      fillCode(inputs, inputs.indexOf(input), digits);
-      return;
-    }
-    input.value = digits;
-    if (digits) fillCode(inputs, inputs.indexOf(input), digits);
+  // A complete code sends the form; typing clears the error
+  document.addEventListener("complete.bs.otpInput", (event) => {
+    event.target.closest("form[data-aui-auth-form]")?.requestSubmit();
   });
 
-  // A focused field selects its digit, so the next key replaces it
-  document.addEventListener("focusin", (event) => {
-    if (event.target.closest?.("[data-aui-otp]")) event.target.select();
-  });
-
-  document.addEventListener("keydown", (event) => {
-    const input = event.target;
-    const otp = input.closest?.("[data-aui-otp]");
-    if (!otp) return;
-    const inputs = [...otp.querySelectorAll("input")];
-    const index = inputs.indexOf(input);
-    if (event.key === "Backspace" && !input.value && index > 0) {
-      inputs[index - 1].value = "";
-      inputs[index - 1].focus();
-      event.preventDefault();
-    } else if (event.key === "ArrowLeft" && index > 0) {
-      inputs[index - 1].focus();
-      event.preventDefault();
-    } else if (event.key === "ArrowRight" && index < inputs.length - 1) {
-      inputs[index + 1].focus();
-      event.preventDefault();
-    }
-  });
-
-  document.addEventListener("paste", (event) => {
-    const otp = event.target.closest?.("[data-aui-otp]");
-    if (!otp) return;
-    event.preventDefault();
-    const digits = (event.clipboardData?.getData("text") || "").replace(/\D/g, "");
-    const inputs = [...otp.querySelectorAll("input")];
-    inputs.forEach((input) => { input.value = ""; });
-    clearCodeError(event.target.form);
-    fillCode(inputs, 0, digits);
+  document.addEventListener("input.bs.otpInput", (event) => {
+    const form = event.target.closest("form[data-aui-auth-form]");
+    if (form) clearCodeError(form);
   });
 
   document.addEventListener("click", (event) => {

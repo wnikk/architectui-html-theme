@@ -1,4 +1,6 @@
-// Order matters: tokens, base, layout, components, utilities, then the default Business look
+// Order matters: tokens, base, layout, components, utilities, then the default Business look.
+// Component rules live in the CSS layer "custom" of Bootstrap 6; token blocks (:root) and the rules for
+// third-party libraries and print stay outside of the layers.
 @use "tokens";
 @use "base";
 
@@ -13,12 +15,11 @@
 
 @use "ui/buttons";
 @use "ui/cards";
-@use "ui/dropdowns";
+@use "ui/menus";
 @use "ui/navs";
 @use "ui/elements";
 @use "ui/expand";
 @use "ui/interface-settings";
-@use "ui/stepper";
 @use "ui/kanban";
 @use "ui/chat";
 @use "ui/widgets";

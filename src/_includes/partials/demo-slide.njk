@@ -1,7 +1,7 @@
 {# Demo carousel slide drawn in the theme colors. Set slide (1, 2 or 3) and withText before the include. #}
 {%- set labels = [["Revenue, October", "$48,290", "Revenue chart: growth through October"], ["Orders per day", "1,896", "Bar chart: orders per day this week"], ["Traffic sources", "62% organic", "Donut chart: traffic by source"]][slide - 1] %}
 <svg class="d-block w-100 h-auto" viewBox="0 0 800 400" role="img" aria-label="{{ labels[2] }}" xmlns="http://www.w3.org/2000/svg">
-    <rect width="800" height="400" style="fill: var(--bs-primary)"/>
+    <rect width="800" height="400" style="fill: var(--bs-primary-bg)"/>
     <circle cx="700" cy="40" r="180" fill="#fff" fill-opacity=".07"/>
     <circle cx="80" cy="380" r="140" fill="#000" fill-opacity=".08"/>
     {%- if slide == 1 %}
@@ -20,7 +20,7 @@
     </g>
     {%- endif %}
     {%- if not withText %}
-    {# A shade at the bottom keeps the carousel caption readable over the chart #}
+    {# A shade at the bottom keeps the slide text, placed by the page, readable over the chart #}
     <defs><linearGradient id="auiSlideShade{{ slide }}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></linearGradient></defs>
     <rect y="180" width="800" height="220" fill="url(#auiSlideShade{{ slide }})"/>
     {%- endif %}

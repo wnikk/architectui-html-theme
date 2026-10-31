@@ -8,7 +8,9 @@ $cyber: (
   brand-solid: #ff2d78, brand-solid-hover: #ff5c96, brand-soft: rgba(252, 238, 10, .1), brand-veil: rgba(255, 45, 120, .07),
   brand-text: #fcee0a, brand-text-hover: #fff75c, brand-ink: #fcee0a, brand-faint: #a89c1f,
   brand-line: rgba(34, 229, 255, .55), brand-line-soft: rgba(34, 229, 255, .25), brand-focus: #22e5ff, brand-shadow: rgba(255, 45, 120, .45),
+  brand-contrast: #08080a,
   accent-solid: #22e5ff, accent-soft: rgba(34, 229, 255, .12), accent-text: #8bebff, accent-ink: #8bebff, accent-line: rgba(34, 229, 255, .3),
+  accent-contrast: #000,
   shadow: "0 0 0 1px rgba(34, 229, 255, .06)",
 );
 
@@ -32,221 +34,190 @@ $cyber: (
   --aui-shadow-xl: 0 0 0 1px rgba(34, 229, 255, .28), 0 0 30px -10px rgba(34, 229, 255, .5);
   --aui-card-shadow: 0 0 22px -14px rgba(34, 229, 255, .75);
   --aui-btn-primary-shadow: 0 0 0 1px rgba(255, 45, 120, .6), 0 0 20px -6px rgba(255, 45, 120, .9);
-  --aui-primary-contrast: #08080a;
-  --aui-success-contrast: #000;
-  --aui-warning-contrast: #000;
-  --aui-info-contrast: #000;
-  --aui-danger-contrast: #08080a;
-  --aui-tertiary-contrast: #000;
-  --aui-alternate-contrast: #000;
-}
-
-// Status colors: yellow is the brand color here, so warnings are orange
-:root:not([data-bs-theme="dark"]),
-[data-bs-theme="dark"] {
-  --bs-success: #39ff88;
-  --bs-success-rgb: 57, 255, 136;
-  --bs-success-bg-subtle: rgba(57, 255, 136, .12);
-  --bs-success-text-emphasis: #39ff88;
-  --bs-success-border-subtle: rgba(57, 255, 136, .35);
-  --bs-tertiary: #5cffd0;
-  --bs-tertiary-rgb: 92, 255, 208;
-  --bs-danger-bg-subtle: rgba(255, 51, 85, .14);
-  --bs-danger-text-emphasis: #ff6b85;
-  --bs-danger-border-subtle: rgba(255, 51, 85, .4);
-  --bs-warning: #ff9a3c;
-  --bs-warning-rgb: 255, 154, 60;
-  --bs-warning-bg-subtle: rgba(255, 154, 60, .14);
-  --bs-warning-text-emphasis: #ff9a3c;
-  --bs-warning-border-subtle: rgba(255, 154, 60, .4);
-  --bs-info: #22e5ff;
-  --bs-info-rgb: 34, 229, 255;
-  --bs-info-bg-subtle: rgba(34, 229, 255, .12);
-  --bs-info-text-emphasis: #8bebff;
-  --bs-info-border-subtle: rgba(34, 229, 255, .35);
-  --bs-secondary: #2a2a2e;
-  --bs-secondary-rgb: 42, 42, 46;
-  --bs-light: #141417;
-  --bs-light-rgb: 20, 20, 23;
-  --bs-dark: #060607;
-  --bs-dark-rgb: 6, 6, 7;
-  --bs-focus: #141417;
-  --bs-focus-rgb: 20, 20, 23;
-  --bs-yellow: #fcee0a;
-  --aui-light-contrast: #f2f2f2;
-  --aui-dark-contrast: #f2f2f2;
-  --aui-focus-contrast: #f2f2f2;
   --aui-input-bg: rgba(34, 229, 255, .04);
   --aui-toast-shadow: var(--aui-shadow-xl);
   --aui-border: rgba(34, 229, 255, .14);
   --bs-border-color: rgba(34, 229, 255, .14);
   --bs-border-color-translucent: rgba(34, 229, 255, .14);
-  color-scheme: dark;
+  --bs-yellow-500: #fcee0a;
+
+  // Status colors: yellow is the brand color here, so warnings are orange; the dark surfaces are the neutrals
+  @include t.color-from-base(success, #39ff88, #000);
+  @include t.color-from-base(warning, #ff9a3c, #000);
+  @include t.color-from-base(info, #22e5ff, #000);
+  @include t.color-from-base(danger, #ff3355, #08080a);
+  @include t.color-from-base(focus, #141417, #f2f2f2);
+  --bs-secondary-base: #2a2a2e;
+  --bs-secondary-bg: #2a2a2e;
+  --bs-secondary-contrast: #f2f2f2;
+  --bs-secondary-fg: #b3b3b3;
+  --bs-secondary-fg-emphasis: #f2f2f2;
+  --bs-secondary-bg-subtle: #141417;
+  --bs-secondary-bg-muted: #1c1c20;
+  --bs-secondary-border: #2a2a2e;
+  --bs-inverse-base: #060607;
+  --bs-inverse-bg: #060607;
+  --bs-inverse-contrast: #f2f2f2;
+  --bs-inverse-fg: #f2f2f2;
+  --bs-inverse-fg-emphasis: #fff;
+  --bs-inverse-bg-subtle: #0b0b0d;
+  --bs-inverse-bg-muted: #141417;
+  --bs-inverse-border: #2a2a2e;
 
   // Neon gradients are dimmed so light text stays readable on them
   --aui-gradient-primary: linear-gradient(120deg, color-mix(in srgb, #ff2d78 45%, #000), color-mix(in srgb, #22e5ff 35%, #000));
   @each $name in (success, info, warning, danger) {
-    --aui-gradient-#{$name}: linear-gradient(120deg, color-mix(in srgb, var(--bs-#{$name}) 25%, #000), color-mix(in srgb, var(--bs-#{$name}) 45%, #000));
+    --aui-gradient-#{$name}: linear-gradient(120deg, color-mix(in srgb, var(--bs-#{$name}-base) 25%, #000), color-mix(in srgb, var(--bs-#{$name}-base) 45%, #000));
   }
-}
 
-// Header and sidebar color schemes: the dimmed neon gradients with light text; the dark colors of the theme for the rest
-#{t.both()} {
+  // Header and sidebar color schemes: the dimmed neon gradients with light text; the dark colors of the theme for the rest
   @each $name in (primary, success, info, warning, danger) {
     --aui-scheme-#{$name}-bg: var(--aui-gradient-#{$name});
     @include t.scheme-ink($name, #fff);
   }
-  @include t.scheme(secondary, #2a2a2e);
-  @include t.scheme(light, #141417, #2a2a2e);
-  @include t.scheme(dark, #060607, #141417);
+  @include t.scheme(accent, #0b5f6b, #22e5ff);
+  @include t.scheme(secondary, #141417, #2a2a2e);
+  @include t.scheme(inverse, #060607, #141417);
   @include t.scheme(focus, #141417);
 }
 
-// Background texture: grid and scan lines
-html {
-  background-color: #000;
-  background-image:
-    repeating-linear-gradient(0deg, rgba(34, 229, 255, .035) 0 1px, transparent 1px 3px),
-    repeating-linear-gradient(90deg, rgba(255, 45, 120, .018) 0 1px, transparent 1px 4px);
-  scrollbar-color: rgba(34, 229, 255, .35) #060607;
-}
-
-body {
-  background: transparent;
-}
-
-::selection {
-  background: #ff2d78;
-  color: #000;
-}
-
-h1, h2, h3, h4, h5, h6,
-.aui-page-title h1,
-.card-title {
-  text-transform: uppercase;
-}
-
-.btn {
-  letter-spacing: .07em;
-  text-transform: uppercase;
-}
-
-// Secondary is near black here: outline buttons take the muted text color so they stay readable
-.btn-outline-secondary {
-  --bs-btn-color: var(--aui-text-muted);
-  --bs-btn-border-color: var(--aui-border);
-  --bs-btn-hover-color: var(--aui-text);
-  --bs-btn-active-color: var(--aui-text);
-  --bs-btn-disabled-color: var(--aui-text-faint);
-  --bs-btn-disabled-border-color: var(--aui-border);
-}
-
-.btn-primary:disabled,
-.btn-primary.disabled {
-  --bs-btn-disabled-bg: #141417;
-  --bs-btn-disabled-color: #8a8a8a;
-  --bs-btn-disabled-border-color: #2a2a2e;
-  --bs-btn-disabled-opacity: 1;
-  box-shadow: inset 0 0 0 1px #2a2a2e;
-}
-
-.rounded-circle,
-.rounded-pill {
-  border-radius: .12rem !important;
-}
-
-// Panels: cyan line drawn with a shadow, glow and corner brackets inside the panel
-.card {
-  position: relative;
-  box-shadow: inset 0 0 0 1px rgba(34, 229, 255, .22), var(--aui-card-shadow);
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    width: 12px;
-    height: 12px;
-    border: 1px solid #22e5ff;
-    opacity: .85;
-    pointer-events: none;
+@layer custom {
+  // Background texture: grid and scan lines
+  html {
+    background-color: #000;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(34, 229, 255, .035) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(255, 45, 120, .018) 0 1px, transparent 1px 4px);
+    scrollbar-color: rgba(34, 229, 255, .35) #060607;
   }
 
-  &::before {
-    top: 0;
-    left: 0;
-    border-right: 0;
-    border-bottom: 0;
+  body {
+    background: transparent;
   }
 
-  &::after {
-    right: 0;
-    bottom: 0;
-    border-top: 0;
-    border-left: 0;
+  ::selection {
+    background: #ff2d78;
+    color: #000;
   }
-}
 
-.aui-header,
-.aui-sidebar,
-.aui-footer {
-  border-color: rgba(34, 229, 255, .18);
-}
-
-// Terminal-style inputs
-.form-control,
-.form-select {
-  border: 0;
-  border-bottom: 1px solid rgba(34, 229, 255, .35);
-  border-radius: 0;
-  box-shadow: none;
-  caret-color: #22e5ff;
-
-  &:focus {
-    border-bottom-color: #22e5ff;
-    box-shadow: 0 8px 20px -14px rgba(34, 229, 255, .9);
+  h1, h2, h3, h4, h5, h6,
+  .aui-page-title h1,
+  .card-title {
+    text-transform: uppercase;
   }
-}
 
-// Tables: cyan header, dashed row separators, cyan numbers
-.table {
-  > thead th,
-  > thead td {
-    border-bottom-color: rgba(34, 229, 255, .25);
+  :where(.btn-solid, .btn-outline, .btn-subtle, .btn-text, .btn-link) {
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+
+  .btn-solid.theme-primary:disabled,
+  .btn-solid.theme-primary.disabled {
+    --bs-btn-disabled-bg: #141417;
+    --bs-btn-disabled-color: #8a8a8a;
+    --bs-btn-disabled-border-color: #2a2a2e;
+    --bs-btn-disabled-opacity: 1;
+    box-shadow: inset 0 0 0 1px #2a2a2e;
+  }
+
+  .rounded-circle,
+  .rounded-pill,
+  .avatar {
+    border-radius: .12rem !important;
+  }
+
+  // Panels: cyan line drawn with a shadow, glow and corner brackets inside the panel
+  .card {
+    --bs-card-border-color: rgba(34, 229, 255, .22);
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      width: 12px;
+      height: 12px;
+      border: 1px solid #22e5ff;
+      opacity: .85;
+      pointer-events: none;
+    }
+
+    &::before {
+      top: -1px;
+      left: -1px;
+      border-right: 0;
+      border-bottom: 0;
+    }
+
+    &::after {
+      right: -1px;
+      bottom: -1px;
+      border-top: 0;
+      border-left: 0;
+    }
+  }
+
+  .aui-header,
+  .aui-sidebar,
+  .aui-footer {
+    border-color: rgba(34, 229, 255, .18);
+  }
+
+  // Terminal-style inputs
+  .form-control {
+    --bs-control-border-radius: 0;
+    border-width: 0 0 1px;
+    border-bottom-color: rgba(34, 229, 255, .35);
+    box-shadow: none;
+    caret-color: #22e5ff;
+
+    &:focus,
+    &:focus-within {
+      border-bottom-color: #22e5ff;
+      box-shadow: 0 8px 20px -14px rgba(34, 229, 255, .9);
+    }
+  }
+
+  // Tables: cyan header, dashed row separators, cyan numbers
+  .table {
+    > thead th,
+    > thead td {
+      border-bottom-color: rgba(34, 229, 255, .25);
+      color: #22e5ff;
+    }
+
+    > tbody > tr > * {
+      border-bottom-style: dashed;
+    }
+
+    > tbody > tr > :last-child {
+      color: #8bebff;
+    }
+
+    > tbody > tr.table-active {
+      box-shadow: inset 3px 0 0 0 #ff2d78;
+    }
+  }
+
+  .dialog {
+    --bs-dialog-backdrop-bg: rgba(0, 0, 0, .72);
+    --bs-dialog-backdrop-blur: 0px;
+  }
+
+  // Sidebar: "// " before section headings, uppercase items
+  .aui-sidebar h6::before {
+    content: "// ";
     color: #22e5ff;
   }
 
-  > tbody > tr > * {
-    border-bottom-style: dashed;
+  .aui-sidebar .nav-link {
+    font-size: .8rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
   }
 
-  > tbody > tr > :last-child {
-    color: #8bebff;
+  .aui-page-title p {
+    text-transform: none;
   }
-
-  > tbody > tr.table-active {
-    box-shadow: inset 3px 0 0 0 #ff2d78;
-  }
-}
-
-.modal-backdrop {
-  --bs-backdrop-bg: #000;
-  --bs-backdrop-opacity: .72;
-  backdrop-filter: none;
-}
-
-// Sidebar: "// " before section headings, uppercase items
-.aui-sidebar h6::before {
-  content: "// ";
-  color: #22e5ff;
-}
-
-.aui-sidebar .nav-link {
-  font-size: .8rem;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-}
-
-.aui-page-title p {
-  text-transform: none;
 }

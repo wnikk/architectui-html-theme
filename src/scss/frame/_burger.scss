@@ -1,69 +1,78 @@
 // Burger button with the "elastic" animation. Active state: aria-expanded or aria-pressed.
+// A plain <button class="aui-burger">: Bootstrap 6 has no base button class.
+@layer custom {
+  .aui-burger {
+    --aui-burger-color: var(--bs-primary-base);
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: opacity .15s linear;
 
-.btn.aui-burger {
-  --aui-burger-color: var(--bs-primary);
-  display: inline-flex;
-  align-items: center;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  transition: opacity .15s linear;
+    &:hover {
+      opacity: .7;
+    }
 
-  &:hover {
-    opacity: .7;
-  }
+    &:focus-visible {
+      outline: var(--bs-focus-ring);
+      outline-offset: 4px;
+      border-radius: var(--bs-radius-3);
+    }
 
-  > span {
-    position: relative;
-    display: block;
-    width: 24px;
-    height: 14px;
-  }
+    > span {
+      position: relative;
+      display: block;
+      width: 24px;
+      height: 14px;
+    }
 
-  > span::before,
-  > span::after,
-  > span > span {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 24px;
-    height: 2px;
-    border-radius: 10px;
-    background: var(--aui-burger-color);
-  }
-
-  > span > span {
-    top: 1px;
-    transition: transform .275s cubic-bezier(.68, -.55, .265, 1.55);
-  }
-
-  > span::before {
-    top: 7px;
-    transition: opacity .125s .275s ease;
-  }
-
-  > span::after {
-    top: 13px;
-    transition: transform .275s cubic-bezier(.68, -.55, .265, 1.55);
-  }
-
-  &[aria-expanded="true"],
-  &[aria-pressed="true"] {
+    > span::before,
+    > span::after,
     > span > span {
-      transform: translate3d(0, 6px, 0) rotate(135deg);
-      transition-delay: .075s;
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      border-radius: 10px;
+      background: var(--aui-burger-color);
+    }
+
+    > span > span {
+      top: 1px;
+      transition: transform .275s cubic-bezier(.68, -.55, .265, 1.55);
     }
 
     > span::before {
-      opacity: 0;
-      transition-delay: 0s;
+      top: 7px;
+      transition: opacity .125s .275s ease;
     }
 
-    // The lines are siblings, so each rotation is absolute: 135deg and -135deg cross at a right angle
     > span::after {
-      transform: translate3d(0, -6px, 0) rotate(-135deg);
-      transition-delay: .075s;
+      top: 13px;
+      transition: transform .275s cubic-bezier(.68, -.55, .265, 1.55);
+    }
+
+    &[aria-expanded="true"],
+    &[aria-pressed="true"] {
+      > span > span {
+        transform: translate3d(0, 6px, 0) rotate(135deg);
+        transition-delay: .075s;
+      }
+
+      > span::before {
+        opacity: 0;
+        transition-delay: 0s;
+      }
+
+      // The lines are siblings, so each rotation is absolute: 135deg and -135deg cross at a right angle
+      > span::after {
+        transform: translate3d(0, -6px, 0) rotate(-135deg);
+        transition-delay: .075s;
+      }
     }
   }
 }

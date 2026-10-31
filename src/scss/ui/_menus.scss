@@ -1,0 +1,38 @@
+// Menus, popovers and tooltips (Bootstrap 6 Menu: a .menu next to its toggle, flat .menu-item children)
+@layer custom {
+  .menu {
+    --bs-menu-min-width: 15rem;
+    --bs-menu-padding-y: .5rem;
+    --bs-menu-font-size: var(--bs-body-font-size);
+    --bs-menu-item-padding-y: .4rem;
+
+    .menu-header {
+      font-size: .7333rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .menu-item {
+      transition: background-color .3s ease, color .3s ease;
+    }
+
+    // An icon at the start of an item takes the quiet color of the theme
+    .menu-item > [data-lucide]:first-child {
+      opacity: .6;
+    }
+  }
+
+  .popover {
+    --bs-popover-max-width: 320px;
+  }
+
+  .tooltip-light {
+    --bs-tooltip-bg: var(--aui-surface);
+    --bs-tooltip-color: var(--bs-fg-body);
+
+    .tooltip-inner {
+      border: 1px solid var(--aui-card-border-color);
+      box-shadow: var(--aui-shadow);
+    }
+  }
+}

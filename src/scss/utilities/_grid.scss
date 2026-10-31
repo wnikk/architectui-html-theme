@@ -1,61 +1,71 @@
-// Grid and display utilities for the wide breakpoints 3xl and 4xl (see $aui-breakpoints-wide).
-// Names and rules copy Bootstrap's xxl set, so the same markup continues past 1400px.
+// Grid and display utilities for the wide breakpoint 3xl (see $aui-breakpoints-wide), in the Bootstrap 6
+// prefix form: 3xl:col-3, 3xl:row-cols-6, 3xl:offset-2, 3xl:g-4, 3xl:d-block. Names and rules copy the
+// Bootstrap 2xl set, so the same markup continues past 1536px. The classes join the Bootstrap layers.
 @use "sass:math";
 @use "../config" as *;
 
-$aui-gutters: (0: 0, 1: .25rem, 2: .5rem, 3: 1rem, 4: 1.5rem, 5: 3rem);
+// The Bootstrap 6 spacer scale for the gutters
+$aui-gutters: (0: 0, 1: .25rem, 2: .375rem, 3: .5rem, 4: .75rem, 5: 1rem, 6: 1.25rem, 7: 1.5rem, 8: 1.75rem, 9: 2rem, 10: 2.25rem, 11: 2.5rem, 12: 3rem);
 
 @each $bp, $width in $aui-breakpoints-wide {
-  @include media-up($bp) {
-    .col-#{$bp} {
-      flex: 1 0 0;
-    }
+  $p: prefix($bp);
 
-    .row-cols-#{$bp}-auto > * {
-      flex: 0 0 auto;
-      width: auto;
-    }
+  @layer layout {
+    @include media-up($bp) {
+      .#{$p}col {
+        flex: 1 0 0;
+      }
 
-    @for $n from 1 through 8 {
-      .row-cols-#{$bp}-#{$n} > * {
+      .#{$p}row-cols-auto > * {
         flex: 0 0 auto;
-        width: math.percentage(math.div(1, $n));
+        width: auto;
       }
-    }
 
-    .col-#{$bp}-auto {
-      flex: 0 0 auto;
-      width: auto;
-    }
+      @for $n from 1 through 8 {
+        .#{$p}row-cols-#{$n} > * {
+          flex: 0 0 auto;
+          width: math.percentage(math.div(1, $n));
+        }
+      }
 
-    @for $n from 1 through 12 {
-      .col-#{$bp}-#{$n} {
+      .#{$p}col-auto {
         flex: 0 0 auto;
-        width: math.percentage(math.div($n, 12));
+        width: auto;
+      }
+
+      @for $n from 1 through 12 {
+        .#{$p}col-#{$n} {
+          flex: 0 0 auto;
+          width: math.percentage(math.div($n, 12));
+        }
+      }
+
+      @for $n from 0 through 11 {
+        .#{$p}offset-#{$n} {
+          margin-inline-start: math.percentage(math.div($n, 12));
+        }
+      }
+
+      @each $n, $size in $aui-gutters {
+        .#{$p}g-#{$n},
+        .#{$p}gx-#{$n} {
+          --bs-gutter-x: #{$size};
+        }
+
+        .#{$p}g-#{$n},
+        .#{$p}gy-#{$n} {
+          --bs-gutter-y: #{$size};
+        }
       }
     }
+  }
 
-    @for $n from 0 through 11 {
-      .offset-#{$bp}-#{$n} {
-        margin-left: math.percentage(math.div($n, 12));
-      }
-    }
-
-    @each $n, $size in $aui-gutters {
-      .g-#{$bp}-#{$n},
-      .gx-#{$bp}-#{$n} {
-        --bs-gutter-x: #{$size};
-      }
-
-      .g-#{$bp}-#{$n},
-      .gy-#{$bp}-#{$n} {
-        --bs-gutter-y: #{$size};
-      }
-    }
-
-    @each $value in (none, block, flex, grid, inline-flex) {
-      .d-#{$bp}-#{$value} {
-        display: $value !important;
+  @layer utilities {
+    @include media-up($bp) {
+      @each $value in (none, block, flex, grid, inline-flex, inline-block, inline, table-cell) {
+        .#{$p}d-#{$value} {
+          display: $value;
+        }
       }
     }
   }

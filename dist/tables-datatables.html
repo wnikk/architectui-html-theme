@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DataTables - DataTables 3 with the Bootstrap 5 integration: search, sorting, pages and responsive rows, without jQuery.</title>
-<meta name="description" content="DataTables 3 with the Bootstrap 5 integration: search, sorting, pages and responsive rows, without jQuery.">
+<title>DataTables - DataTables 3 with the Bootstrap 6 integration: search, sorting, pages and responsive rows, without jQuery.</title>
+<meta name="description" content="DataTables 3 with the Bootstrap 6 integration: search, sorting, pages and responsive rows, without jQuery.">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/datatables.net-bs5@3.1.5/css/dataTables.bootstrap5.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/datatables.net-responsive-bs5@4.1.1/css/responsive.bootstrap5.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="architectui.css?v=6.2.37">
@@ -42,7 +42,9 @@
 })();
 </script>
 
-<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+<script type="importmap">{ "imports": { "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" } }</script>
+<script type="module">import * as bootstrap from "bootstrap"; window.bootstrap = bootstrap; document.dispatchEvent(new Event("aui:bootstrap"));</script>
 <script defer src="https://cdn.jsdelivr.net/npm/lucide@1.65.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/datatables.net@3.1.5/js/dataTables.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/datatables.net-bs5@3.1.5/js/dataTables.bootstrap5.min.js" crossorigin="anonymous"></script>
@@ -65,7 +67,7 @@
 
 </head>
 <body>
-    <a class="visually-hidden-focusable btn btn-primary aui-skip-link" href="#main">Skip to content</a>
+    <a class="visually-hidden-focusable btn-solid theme-primary aui-skip-link" href="#main">Skip to content</a>
     
 <svg class="position-absolute" width="0" height="0" aria-hidden="true" focusable="false">
     <defs>
@@ -75,150 +77,151 @@
         <linearGradient id="aui-gradient-warning" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f6d365"/><stop offset="1" stop-color="#fda085"/></linearGradient>
         <linearGradient id="aui-gradient-danger" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f093fb"/><stop offset="1" stop-color="#f5576c"/></linearGradient>
         <linearGradient id="aui-gradient-secondary" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#29323c"/><stop offset="1" stop-color="#485563"/></linearGradient>
-        <linearGradient id="aui-gradient-dark" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
+        <linearGradient id="aui-gradient-inverse" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
         <linearGradient id="aui-gradient-focus" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3a3648"/><stop offset="1" stop-color="#5d5873"/></linearGradient>
-        <linearGradient id="aui-gradient-alternate" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
+        <linearGradient id="aui-gradient-accent" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
     </defs>
 </svg>
 
     <div class="aui-app">
-        <header class="navbar navbar-expand-md aui-header">
+        <header class="navbar navbar-expand aui-header">
     <div class="navbar-brand">
-        <button type="button" class="btn aui-burger d-md-none" data-bs-toggle="offcanvas" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
+        <button type="button" class="aui-burger md:d-none" data-bs-toggle="drawer" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
         
 <a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
     <img src="assets/images/logo.svg" alt="ArchitectUI">
     <img src="assets/images/logo-on-dark.svg" alt="">
 </a>
 
-        <button type="button" class="btn aui-burger d-none d-xl-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
-        <button type="button" class="btn btn-primary btn-sm d-md-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
+        <button type="button" class="aui-burger d-none xl:d-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
+        <button type="button" class="btn-solid btn-icon btn-sm theme-primary md:d-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
     </div>
-    <div class="collapse navbar-collapse" id="auiHeaderContent">
+    <div class="collapse aui-header-panel" id="auiHeaderContent">
         
-<form class="aui-expand me-3" role="search" action="pages-search.html" data-aui-expand>
+<form class="aui-expand me-5" role="search" action="pages-search.html" data-aui-expand>
     <input type="search" class="form-control" name="q" placeholder="Type to search" aria-label="Search" autocomplete="off">
-    <button type="button" class="btn" data-aui-expand-toggle aria-label="Search"></button>
+    <button type="button" data-aui-expand-toggle aria-label="Search"></button>
     <button type="button" class="btn-close" data-aui-expand-close aria-label="Close search"></button>
 </form>
-<ul class="navbar-nav d-none d-md-flex">
+<ul class="navbar-nav d-none md:d-flex">
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="database" class="me-2"></i>Statistics</a>
+        <a href="#" class="nav-link"><i data-lucide="database"></i>Statistics</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="square-pen" class="me-2"></i>Projects</a>
+        <a href="#" class="nav-link"><i data-lucide="square-pen"></i>Projects</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="settings" class="me-2"></i>Settings</a>
+        <a href="#" class="nav-link"><i data-lucide="settings"></i>Settings</a>
     </li>
 </ul>
 
-        <div class="d-flex align-items-center gap-3 ms-auto">
-            <span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
-<a class="btn aui-header-btn" href="apps-notifications.html" aria-label="Notifications, 4 unread">
+        <div class="d-flex align-items-center gap-5 ms-auto">
+            <span class="badge theme-success d-none lg:d-inline-flex"><i data-lucide="activity"></i>All systems normal</span>
+<a class="aui-header-btn" href="apps-notifications.html" aria-label="Notifications, 4 unread">
     <i data-lucide="bell"></i>
-    <span class="badge text-bg-danger" data-notification-count aria-hidden="true">4</span>
+    <span class="badge theme-danger" data-notification-count aria-hidden="true">4</span>
 </a>
-<div class="btn-group aui-theme-switch">
-    <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+<div class="aui-theme-switch">
+    <button type="button" class="aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
         <i data-lucide="moon"></i>
         <i data-lucide="sun"></i>
     </button>
-    <button type="button" class="btn aui-mode-toggle dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Choose a theme"></button>
-    <div class="dropdown-menu dropdown-menu-end">
-        <h6 class="dropdown-header">Theme</h6>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="">
+    <button type="button" class="aui-mode-toggle" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Choose a theme"><i data-lucide="chevron-down"></i></button>
+    <div class="menu">
+        <h6 class="menu-header">Theme</h6>
+        <button type="button" class="menu-item" data-aui-setting="theme" value="">
             <span class="aui-theme-dot" style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
             <span>Business</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="orange">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="orange">
             <span class="aui-theme-dot" style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
             <span>Orange</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="indigo">
             <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
             <span>Indigo</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo-img">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="indigo-img">
             <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
             <span>Indigo Calathea</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="coffee">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="coffee">
             <span class="aui-theme-dot" style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
             <span>Coffee</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="green">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="green">
             <span class="aui-theme-dot" style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
             <span>Garden</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="raspberry">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="raspberry">
             <span class="aui-theme-dot" style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
             <span>Warm</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="teal">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="teal">
             <span class="aui-theme-dot" style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
             <span>Operations</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="violet">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="violet">
             <span class="aui-theme-dot" style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
             <span>Space</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="cyberpunk">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="cyberpunk">
             <span class="aui-theme-dot" style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
             <span>Cyberpunk</span>
             <small class="opacity-75">dark only</small>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal" class="me-2 opacity-50"></i>All interface settings</a>
+        <hr class="menu-divider">
+        <a class="menu-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal"></i>All interface settings</a>
     </div>
 </div>
-<div class="dropdown">
-    <a class="d-inline-flex align-items-center text-reset text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
-        <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
-        <i data-lucide="chevron-down" class="ms-2 opacity-75"></i>
+<div>
+    <a class="d-inline-flex align-items-center fg-reset text-decoration-none" href="#" role="button" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="User menu">
+        <span class="avatar"><img src="assets/images/avatars/1.jpg" class="avatar-img" alt=""></span>
+        <i data-lucide="chevron-down" class="ms-3 opacity-75"></i>
     </a>
-    <div class="dropdown-menu dropdown-menu-end">
-        <a class="dropdown-item" href="pages-profile.html"><i data-lucide="user" class="me-2 opacity-50"></i>My profile</a>
-        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="settings" class="me-2 opacity-50"></i>Interface settings</a>
-        <h6 class="dropdown-header">Workspace</h6>
-        <a class="dropdown-item" href="apps-users.html"><i data-lucide="users" class="me-2 opacity-50"></i>Team members</a>
-        <a class="dropdown-item" href="pages-pricing.html"><i data-lucide="credit-card" class="me-2 opacity-50"></i>Billing</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="pages-login.html"><i data-lucide="log-out" class="me-2 opacity-50"></i>Sign out</a>
+    <div class="menu">
+        <a class="menu-item" href="pages-profile.html"><i data-lucide="user"></i>My profile</a>
+        <a class="menu-item" href="pages-profile.html#interface"><i data-lucide="settings"></i>Interface settings</a>
+        <h6 class="menu-header">Workspace</h6>
+        <a class="menu-item" href="apps-users.html"><i data-lucide="users"></i>Team members</a>
+        <a class="menu-item" href="pages-pricing.html"><i data-lucide="credit-card"></i>Billing</a>
+        <hr class="menu-divider">
+        <a class="menu-item" href="pages-login.html"><i data-lucide="log-out"></i>Sign out</a>
     </div>
 </div>
-<div class="d-none d-xxl-block lh-sm">
+<div class="d-none 2xl:d-block lh-sm">
     <div class="fw-bold opacity-75 text-nowrap">Alina Mclourd</div>
     <div class="small opacity-50 text-nowrap">VP People Manager</div>
 </div>
-<button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 d-none d-xxl-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
+<button type="button" class="btn-solid btn-icon btn-sm theme-primary shadow-sm shadow-primary d-none 2xl:d-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar"></i></button>
 
         </div>
     </div>
 </header>
 
-        <aside class="aui-sidebar">
-    <div class="offcanvas-md offcanvas-start" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
-        <div class="offcanvas-header">
+        
+<aside class="aui-sidebar">
+    <dialog class="drawer drawer-start drawer-sheet md:drawer" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
+        <div class="drawer-header">
             
 <a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
     <img src="assets/images/logo.svg" alt="ArchitectUI">
     <img src="assets/images/logo-on-dark.svg" alt="">
 </a>
 
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#auiSidebar" aria-label="Close menu"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close menu"></button>
         </div>
-        <div class="offcanvas-body">
+        <div class="drawer-body">
             <ul class="nav flex-column flex-nowrap" id="auiNav">
                 <li class="nav-item"><h6>Dashboards</h6></li>
                 <li class="nav-item">
@@ -233,7 +236,7 @@
                 </li>
                 <li class="nav-item"><h6>UI Components</h6></li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
+                    <a class="nav-link" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
                         <i data-lucide="gem"></i>Elements<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-elements" data-bs-parent="#auiNav">
@@ -251,7 +254,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-components">
+                    <a class="nav-link" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-components">
                         <i data-lucide="car"></i>Components<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-components" data-bs-parent="#auiNav">
@@ -358,7 +361,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-authentication">
+                    <a class="nav-link" href="#nav-authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-authentication">
                         <i data-lucide="log-in"></i>Authentication<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-authentication" data-bs-parent="#auiNav">
@@ -370,7 +373,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-errors">
+                    <a class="nav-link" href="#nav-errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-errors">
                         <i data-lucide="triangle-alert"></i>Errors<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-errors" data-bs-parent="#auiNav">
@@ -394,54 +397,44 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </dialog>
 </aside>
 
         <main class="d-flex flex-column" id="main" tabindex="-1">
             <div class="flex-grow-1 aui-content">
-                <div class="aui-page-title d-md-flex align-items-center text-center text-md-start">
-    <div class="d-none d-md-flex align-items-center justify-content-center flex-shrink-0 me-4">
+                <div class="aui-page-title md:d-flex align-items-center text-center md:text-start">
+    <div class="d-none md:d-flex align-items-center justify-content-center flex-shrink-0 me-7">
         <i data-lucide="table" class="aui-icon-gradient-primary"></i>
     </div>
     <div>
         <h1>DataTables</h1>
-        <p>DataTables 3 with the Bootstrap 5 integration: search, sorting, pages and responsive rows, without jQuery.</p>
+        <p>DataTables 3 with the Bootstrap 6 integration: search, sorting, pages and responsive rows, without jQuery.</p>
     </div>
-    <div class="ms-md-auto mt-3 mt-md-0 d-print-none">
-    <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
+    <div class="md:ms-auto mt-5 md:mt-0 d-flex justify-content-center gap-5 print:d-none">
+    <button type="button" class="btn-solid btn-icon theme-inverse shadow-sm shadow-inverse" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
         <i data-lucide="star"></i>
     </button>
-    <div class="d-inline-block dropdown">
-        <button type="button" class="btn btn-info aui-btn-shadow d-inline-flex align-items-center gap-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons
+    <div>
+        <button type="button" class="btn-solid theme-info shadow-sm shadow-info" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false">
+            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons<i data-lucide="chevron-down"></i>
         </button>
-        <div class="dropdown-menu dropdown-menu-end">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="inbox" class="me-2"></i><span>Inbox</span><span class="ms-auto badge rounded-pill bg-secondary">86</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="book-open" class="me-2"></i><span>Reports</span><span class="ms-auto badge rounded-pill bg-danger">5</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="image" class="me-2"></i><span>Media</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link disabled" aria-disabled="true"><i data-lucide="file" class="me-2"></i><span>Archive</span></a>
-                </li>
-            </ul>
+        <div class="menu">
+            <a href="#" class="menu-item"><i data-lucide="inbox"></i><span>Inbox</span><span class="ms-auto badge theme-secondary">86</span></a>
+            <a href="#" class="menu-item"><i data-lucide="book-open"></i><span>Reports</span><span class="ms-auto badge theme-danger">5</span></a>
+            <a href="#" class="menu-item"><i data-lucide="image"></i><span>Media</span></a>
+            <a href="#" class="menu-item disabled" aria-disabled="true"><i data-lucide="file"></i><span>Archive</span></a>
         </div>
     </div>
 </div>
 
 </div>
 
-                <div class="mb-3 card">
+                <div class="mb-5 card">
     <div class="card-header">
-        <i data-lucide="shopping-cart" class="me-2"></i>All orders
-        <div class="ms-auto d-flex gap-2">
-            <button type="button" class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2"><i data-lucide="download"></i>Export</button>
-            <button type="button" class="btn btn-primary btn-sm d-inline-flex align-items-center gap-2"><i data-lucide="plus"></i>New order</button>
+        <i data-lucide="shopping-cart" class="me-3"></i>All orders
+        <div class="ms-auto d-flex gap-3">
+            <button type="button" class="btn-outline theme-secondary btn-sm d-inline-flex align-items-center gap-3"><i data-lucide="download"></i>Export</button>
+            <button type="button" class="btn-solid theme-primary btn-sm d-inline-flex align-items-center gap-3"><i data-lucide="plus"></i>New order</button>
         </div>
     </div>
     <div class="card-body">
@@ -461,26 +454,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1048</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/11.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/11.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Maria Chen</div>
-                <div class="small text-body-secondary">maria.chen@northwind.test</div>
+                <div class="fw-bold fg-body">Maria Chen</div>
+                <div class="small fg-2">maria.chen@northwind.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-10-16" class="text-nowrap">Oct 16, 2026</td>
     <td data-order="1900" class="text-end text-nowrap aui-number">$19.00</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1048"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1048"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -489,26 +480,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1047</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/10.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/10.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Omar Haddad</div>
-                <div class="small text-body-secondary">omar@cedar.test</div>
+                <div class="fw-bold fg-body">Omar Haddad</div>
+                <div class="small fg-2">omar@cedar.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-10-16" class="text-nowrap">Oct 16, 2026</td>
     <td data-order="9819" class="text-end text-nowrap aui-number">$98.19</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1047"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1047"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -517,26 +506,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1046</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/8.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/8.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Lucas Meyer</div>
-                <div class="small text-body-secondary">lucas.meyer@tandem.test</div>
+                <div class="fw-bold fg-body">Lucas Meyer</div>
+                <div class="small fg-2">lucas.meyer@tandem.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-warning">Pending</span></td>
+    <td><span class="badge theme-warning">Pending</span></td>
     <td data-order="2026-10-15" class="text-nowrap">Oct 15, 2026</td>
     <td data-order="17738" class="text-end text-nowrap aui-number">$177.38</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1046"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1046"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -545,26 +532,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1045</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/4.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/4.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Daniel Novak</div>
-                <div class="small text-body-secondary">daniel.novak@orbit.test</div>
+                <div class="fw-bold fg-body">Daniel Novak</div>
+                <div class="small fg-2">daniel.novak@orbit.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-info">Shipped</span></td>
+    <td><span class="badge theme-info">Shipped</span></td>
     <td data-order="2026-10-15" class="text-nowrap">Oct 15, 2026</td>
     <td data-order="25657" class="text-end text-nowrap aui-number">$256.57</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1045"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1045"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -573,26 +558,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1044</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/2.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/2.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">James Patel</div>
-                <div class="small text-body-secondary">james@brightlabs.test</div>
+                <div class="fw-bold fg-body">James Patel</div>
+                <div class="small fg-2">james@brightlabs.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-secondary">Refunded</span></td>
+    <td><span class="badge theme-secondary">Refunded</span></td>
     <td data-order="2026-10-14" class="text-nowrap">Oct 14, 2026</td>
     <td data-order="33576" class="text-end text-nowrap aui-number">$335.76</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1044"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1044"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -601,26 +584,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1043</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/12.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/12.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Noah Williams</div>
-                <div class="small text-body-secondary">noah.w@summit.test</div>
+                <div class="fw-bold fg-body">Noah Williams</div>
+                <div class="small fg-2">noah.w@summit.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-info">Shipped</span></td>
+    <td><span class="badge theme-info">Shipped</span></td>
     <td data-order="2026-10-13" class="text-nowrap">Oct 13, 2026</td>
     <td data-order="41495" class="text-end text-nowrap aui-number">$414.95</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1043"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1043"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -629,26 +610,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1042</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/9.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/9.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Hana Sato</div>
-                <div class="small text-body-secondary">hana.sato@kite.test</div>
+                <div class="fw-bold fg-body">Hana Sato</div>
+                <div class="small fg-2">hana.sato@kite.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-danger">Failed</span></td>
+    <td><span class="badge theme-danger">Failed</span></td>
     <td data-order="2026-10-13" class="text-nowrap">Oct 13, 2026</td>
     <td data-order="49414" class="text-end text-nowrap aui-number">$494.14</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1042"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1042"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -657,26 +636,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1041</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/5.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/5.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Amara Okafor</div>
-                <div class="small text-body-secondary">amara@harbor.test</div>
+                <div class="fw-bold fg-body">Amara Okafor</div>
+                <div class="small fg-2">amara@harbor.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-10-12" class="text-nowrap">Oct 12, 2026</td>
     <td data-order="57333" class="text-end text-nowrap aui-number">$573.33</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1041"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1041"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -685,26 +662,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1040</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/3.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/3.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Sofia Rossi</div>
-                <div class="small text-body-secondary">s.rossi@lumen.test</div>
+                <div class="fw-bold fg-body">Sofia Rossi</div>
+                <div class="small fg-2">s.rossi@lumen.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-10-12" class="text-nowrap">Oct 12, 2026</td>
     <td data-order="65252" class="text-end text-nowrap aui-number">$652.52</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1040"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1040"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -713,26 +688,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1039</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/11.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/11.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Maria Chen</div>
-                <div class="small text-body-secondary">maria.chen@northwind.test</div>
+                <div class="fw-bold fg-body">Maria Chen</div>
+                <div class="small fg-2">maria.chen@northwind.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-10-11" class="text-nowrap">Oct 11, 2026</td>
     <td data-order="73171" class="text-end text-nowrap aui-number">$731.71</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1039"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1039"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -741,26 +714,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1038</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/10.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/10.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Omar Haddad</div>
-                <div class="small text-body-secondary">omar@cedar.test</div>
+                <div class="fw-bold fg-body">Omar Haddad</div>
+                <div class="small fg-2">omar@cedar.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-warning">Pending</span></td>
+    <td><span class="badge theme-warning">Pending</span></td>
     <td data-order="2026-10-10" class="text-nowrap">Oct 10, 2026</td>
     <td data-order="81090" class="text-end text-nowrap aui-number">$810.90</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1038"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1038"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -769,26 +740,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1037</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/8.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/8.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Lucas Meyer</div>
-                <div class="small text-body-secondary">lucas.meyer@tandem.test</div>
+                <div class="fw-bold fg-body">Lucas Meyer</div>
+                <div class="small fg-2">lucas.meyer@tandem.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-info">Shipped</span></td>
+    <td><span class="badge theme-info">Shipped</span></td>
     <td data-order="2026-10-10" class="text-nowrap">Oct 10, 2026</td>
     <td data-order="89009" class="text-end text-nowrap aui-number">$890.09</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1037"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1037"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -797,26 +766,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1036</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/4.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/4.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Daniel Novak</div>
-                <div class="small text-body-secondary">daniel.novak@orbit.test</div>
+                <div class="fw-bold fg-body">Daniel Novak</div>
+                <div class="small fg-2">daniel.novak@orbit.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-secondary">Refunded</span></td>
+    <td><span class="badge theme-secondary">Refunded</span></td>
     <td data-order="2026-10-09" class="text-nowrap">Oct 9, 2026</td>
     <td data-order="96928" class="text-end text-nowrap aui-number">$969.28</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1036"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1036"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -825,26 +792,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1035</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/2.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/2.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">James Patel</div>
-                <div class="small text-body-secondary">james@brightlabs.test</div>
+                <div class="fw-bold fg-body">James Patel</div>
+                <div class="small fg-2">james@brightlabs.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-info">Shipped</span></td>
+    <td><span class="badge theme-info">Shipped</span></td>
     <td data-order="2026-10-09" class="text-nowrap">Oct 9, 2026</td>
     <td data-order="104847" class="text-end text-nowrap aui-number">$1,048.47</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1035"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1035"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -853,26 +818,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1034</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/12.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/12.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Noah Williams</div>
-                <div class="small text-body-secondary">noah.w@summit.test</div>
+                <div class="fw-bold fg-body">Noah Williams</div>
+                <div class="small fg-2">noah.w@summit.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-danger">Failed</span></td>
+    <td><span class="badge theme-danger">Failed</span></td>
     <td data-order="2026-10-08" class="text-nowrap">Oct 8, 2026</td>
     <td data-order="112766" class="text-end text-nowrap aui-number">$1,127.66</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1034"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1034"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -881,26 +844,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1033</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/9.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/9.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Hana Sato</div>
-                <div class="small text-body-secondary">hana.sato@kite.test</div>
+                <div class="fw-bold fg-body">Hana Sato</div>
+                <div class="small fg-2">hana.sato@kite.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-10-07" class="text-nowrap">Oct 7, 2026</td>
     <td data-order="120685" class="text-end text-nowrap aui-number">$1,206.85</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1033"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1033"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -909,26 +870,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1032</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/5.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/5.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Amara Okafor</div>
-                <div class="small text-body-secondary">amara@harbor.test</div>
+                <div class="fw-bold fg-body">Amara Okafor</div>
+                <div class="small fg-2">amara@harbor.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-10-07" class="text-nowrap">Oct 7, 2026</td>
     <td data-order="128604" class="text-end text-nowrap aui-number">$1,286.04</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1032"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1032"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -937,26 +896,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1031</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/3.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/3.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Sofia Rossi</div>
-                <div class="small text-body-secondary">s.rossi@lumen.test</div>
+                <div class="fw-bold fg-body">Sofia Rossi</div>
+                <div class="small fg-2">s.rossi@lumen.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-10-06" class="text-nowrap">Oct 6, 2026</td>
     <td data-order="136523" class="text-end text-nowrap aui-number">$1,365.23</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1031"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1031"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -965,26 +922,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1030</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/11.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/11.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Maria Chen</div>
-                <div class="small text-body-secondary">maria.chen@northwind.test</div>
+                <div class="fw-bold fg-body">Maria Chen</div>
+                <div class="small fg-2">maria.chen@northwind.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-warning">Pending</span></td>
+    <td><span class="badge theme-warning">Pending</span></td>
     <td data-order="2026-10-06" class="text-nowrap">Oct 6, 2026</td>
     <td data-order="144442" class="text-end text-nowrap aui-number">$1,444.42</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1030"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1030"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -993,26 +948,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1029</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/10.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/10.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Omar Haddad</div>
-                <div class="small text-body-secondary">omar@cedar.test</div>
+                <div class="fw-bold fg-body">Omar Haddad</div>
+                <div class="small fg-2">omar@cedar.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-info">Shipped</span></td>
+    <td><span class="badge theme-info">Shipped</span></td>
     <td data-order="2026-10-05" class="text-nowrap">Oct 5, 2026</td>
     <td data-order="152361" class="text-end text-nowrap aui-number">$1,523.61</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1029"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1029"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1021,26 +974,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1028</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/8.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/8.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Lucas Meyer</div>
-                <div class="small text-body-secondary">lucas.meyer@tandem.test</div>
+                <div class="fw-bold fg-body">Lucas Meyer</div>
+                <div class="small fg-2">lucas.meyer@tandem.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-secondary">Refunded</span></td>
+    <td><span class="badge theme-secondary">Refunded</span></td>
     <td data-order="2026-10-04" class="text-nowrap">Oct 4, 2026</td>
     <td data-order="160280" class="text-end text-nowrap aui-number">$1,602.80</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1028"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1028"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1049,26 +1000,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1027</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/4.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/4.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Daniel Novak</div>
-                <div class="small text-body-secondary">daniel.novak@orbit.test</div>
+                <div class="fw-bold fg-body">Daniel Novak</div>
+                <div class="small fg-2">daniel.novak@orbit.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-info">Shipped</span></td>
+    <td><span class="badge theme-info">Shipped</span></td>
     <td data-order="2026-10-04" class="text-nowrap">Oct 4, 2026</td>
     <td data-order="168199" class="text-end text-nowrap aui-number">$1,681.99</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1027"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1027"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1077,26 +1026,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1026</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/2.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/2.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">James Patel</div>
-                <div class="small text-body-secondary">james@brightlabs.test</div>
+                <div class="fw-bold fg-body">James Patel</div>
+                <div class="small fg-2">james@brightlabs.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-danger">Failed</span></td>
+    <td><span class="badge theme-danger">Failed</span></td>
     <td data-order="2026-10-03" class="text-nowrap">Oct 3, 2026</td>
     <td data-order="176118" class="text-end text-nowrap aui-number">$1,761.18</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1026"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1026"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1105,26 +1052,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1025</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/12.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/12.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Noah Williams</div>
-                <div class="small text-body-secondary">noah.w@summit.test</div>
+                <div class="fw-bold fg-body">Noah Williams</div>
+                <div class="small fg-2">noah.w@summit.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-10-03" class="text-nowrap">Oct 3, 2026</td>
     <td data-order="184037" class="text-end text-nowrap aui-number">$1,840.37</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1025"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1025"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1133,26 +1078,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1024</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/9.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/9.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Hana Sato</div>
-                <div class="small text-body-secondary">hana.sato@kite.test</div>
+                <div class="fw-bold fg-body">Hana Sato</div>
+                <div class="small fg-2">hana.sato@kite.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-10-02" class="text-nowrap">Oct 2, 2026</td>
     <td data-order="191956" class="text-end text-nowrap aui-number">$1,919.56</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1024"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1024"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1161,26 +1104,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1023</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/5.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/5.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Amara Okafor</div>
-                <div class="small text-body-secondary">amara@harbor.test</div>
+                <div class="fw-bold fg-body">Amara Okafor</div>
+                <div class="small fg-2">amara@harbor.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-10-01" class="text-nowrap">Oct 1, 2026</td>
     <td data-order="199875" class="text-end text-nowrap aui-number">$1,998.75</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1023"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1023"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1189,26 +1130,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1022</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/3.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/3.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Sofia Rossi</div>
-                <div class="small text-body-secondary">s.rossi@lumen.test</div>
+                <div class="fw-bold fg-body">Sofia Rossi</div>
+                <div class="small fg-2">s.rossi@lumen.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-warning">Pending</span></td>
+    <td><span class="badge theme-warning">Pending</span></td>
     <td data-order="2026-10-01" class="text-nowrap">Oct 1, 2026</td>
     <td data-order="207794" class="text-end text-nowrap aui-number">$2,077.94</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1022"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1022"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1217,26 +1156,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1021</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/11.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/11.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Maria Chen</div>
-                <div class="small text-body-secondary">maria.chen@northwind.test</div>
+                <div class="fw-bold fg-body">Maria Chen</div>
+                <div class="small fg-2">maria.chen@northwind.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-info">Shipped</span></td>
+    <td><span class="badge theme-info">Shipped</span></td>
     <td data-order="2026-09-30" class="text-nowrap">Sep 30, 2026</td>
     <td data-order="215713" class="text-end text-nowrap aui-number">$2,157.13</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1021"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1021"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1245,26 +1182,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1020</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/10.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/10.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Omar Haddad</div>
-                <div class="small text-body-secondary">omar@cedar.test</div>
+                <div class="fw-bold fg-body">Omar Haddad</div>
+                <div class="small fg-2">omar@cedar.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-secondary">Refunded</span></td>
+    <td><span class="badge theme-secondary">Refunded</span></td>
     <td data-order="2026-09-30" class="text-nowrap">Sep 30, 2026</td>
     <td data-order="223632" class="text-end text-nowrap aui-number">$2,236.32</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1020"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1020"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1273,26 +1208,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1019</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/8.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/8.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Lucas Meyer</div>
-                <div class="small text-body-secondary">lucas.meyer@tandem.test</div>
+                <div class="fw-bold fg-body">Lucas Meyer</div>
+                <div class="small fg-2">lucas.meyer@tandem.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-info">Shipped</span></td>
+    <td><span class="badge theme-info">Shipped</span></td>
     <td data-order="2026-09-29" class="text-nowrap">Sep 29, 2026</td>
     <td data-order="231551" class="text-end text-nowrap aui-number">$2,315.51</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1019"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1019"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1301,26 +1234,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1018</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/4.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/4.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Daniel Novak</div>
-                <div class="small text-body-secondary">daniel.novak@orbit.test</div>
+                <div class="fw-bold fg-body">Daniel Novak</div>
+                <div class="small fg-2">daniel.novak@orbit.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-danger">Failed</span></td>
+    <td><span class="badge theme-danger">Failed</span></td>
     <td data-order="2026-09-28" class="text-nowrap">Sep 28, 2026</td>
     <td data-order="239470" class="text-end text-nowrap aui-number">$2,394.70</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1018"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1018"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1329,26 +1260,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1017</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/2.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/2.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">James Patel</div>
-                <div class="small text-body-secondary">james@brightlabs.test</div>
+                <div class="fw-bold fg-body">James Patel</div>
+                <div class="small fg-2">james@brightlabs.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-09-28" class="text-nowrap">Sep 28, 2026</td>
     <td data-order="7389" class="text-end text-nowrap aui-number">$73.89</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1017"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1017"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1357,26 +1286,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1016</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/12.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/12.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Noah Williams</div>
-                <div class="small text-body-secondary">noah.w@summit.test</div>
+                <div class="fw-bold fg-body">Noah Williams</div>
+                <div class="small fg-2">noah.w@summit.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-09-27" class="text-nowrap">Sep 27, 2026</td>
     <td data-order="15308" class="text-end text-nowrap aui-number">$153.08</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1016"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1016"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1385,26 +1312,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1015</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/9.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/9.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Hana Sato</div>
-                <div class="small text-body-secondary">hana.sato@kite.test</div>
+                <div class="fw-bold fg-body">Hana Sato</div>
+                <div class="small fg-2">hana.sato@kite.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-09-27" class="text-nowrap">Sep 27, 2026</td>
     <td data-order="23227" class="text-end text-nowrap aui-number">$232.27</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1015"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1015"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1413,26 +1338,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1014</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/5.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/5.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Amara Okafor</div>
-                <div class="small text-body-secondary">amara@harbor.test</div>
+                <div class="fw-bold fg-body">Amara Okafor</div>
+                <div class="small fg-2">amara@harbor.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-warning">Pending</span></td>
+    <td><span class="badge theme-warning">Pending</span></td>
     <td data-order="2026-09-26" class="text-nowrap">Sep 26, 2026</td>
     <td data-order="31146" class="text-end text-nowrap aui-number">$311.46</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1014"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1014"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1441,26 +1364,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1013</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/3.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/3.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Sofia Rossi</div>
-                <div class="small text-body-secondary">s.rossi@lumen.test</div>
+                <div class="fw-bold fg-body">Sofia Rossi</div>
+                <div class="small fg-2">s.rossi@lumen.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-info">Shipped</span></td>
+    <td><span class="badge theme-info">Shipped</span></td>
     <td data-order="2026-09-25" class="text-nowrap">Sep 25, 2026</td>
     <td data-order="39065" class="text-end text-nowrap aui-number">$390.65</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1013"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1013"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1469,26 +1390,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1012</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/11.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/11.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Maria Chen</div>
-                <div class="small text-body-secondary">maria.chen@northwind.test</div>
+                <div class="fw-bold fg-body">Maria Chen</div>
+                <div class="small fg-2">maria.chen@northwind.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-secondary">Refunded</span></td>
+    <td><span class="badge theme-secondary">Refunded</span></td>
     <td data-order="2026-09-25" class="text-nowrap">Sep 25, 2026</td>
     <td data-order="46984" class="text-end text-nowrap aui-number">$469.84</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1012"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1012"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1497,26 +1416,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1011</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/10.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/10.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Omar Haddad</div>
-                <div class="small text-body-secondary">omar@cedar.test</div>
+                <div class="fw-bold fg-body">Omar Haddad</div>
+                <div class="small fg-2">omar@cedar.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-info">Shipped</span></td>
+    <td><span class="badge theme-info">Shipped</span></td>
     <td data-order="2026-09-24" class="text-nowrap">Sep 24, 2026</td>
     <td data-order="54903" class="text-end text-nowrap aui-number">$549.03</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1011"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1011"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1525,26 +1442,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1010</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/8.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/8.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Lucas Meyer</div>
-                <div class="small text-body-secondary">lucas.meyer@tandem.test</div>
+                <div class="fw-bold fg-body">Lucas Meyer</div>
+                <div class="small fg-2">lucas.meyer@tandem.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-danger">Failed</span></td>
+    <td><span class="badge theme-danger">Failed</span></td>
     <td data-order="2026-09-24" class="text-nowrap">Sep 24, 2026</td>
     <td data-order="62822" class="text-end text-nowrap aui-number">$628.22</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1010"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1010"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1553,26 +1468,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1009</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/4.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/4.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Daniel Novak</div>
-                <div class="small text-body-secondary">daniel.novak@orbit.test</div>
+                <div class="fw-bold fg-body">Daniel Novak</div>
+                <div class="small fg-2">daniel.novak@orbit.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-09-23" class="text-nowrap">Sep 23, 2026</td>
     <td data-order="70741" class="text-end text-nowrap aui-number">$707.41</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1009"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1009"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1581,26 +1494,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1008</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/2.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/2.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">James Patel</div>
-                <div class="small text-body-secondary">james@brightlabs.test</div>
+                <div class="fw-bold fg-body">James Patel</div>
+                <div class="small fg-2">james@brightlabs.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-09-22" class="text-nowrap">Sep 22, 2026</td>
     <td data-order="78660" class="text-end text-nowrap aui-number">$786.60</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1008"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1008"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1609,26 +1520,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1007</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/12.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/12.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Noah Williams</div>
-                <div class="small text-body-secondary">noah.w@summit.test</div>
+                <div class="fw-bold fg-body">Noah Williams</div>
+                <div class="small fg-2">noah.w@summit.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-09-22" class="text-nowrap">Sep 22, 2026</td>
     <td data-order="86579" class="text-end text-nowrap aui-number">$865.79</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1007"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1007"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1637,26 +1546,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1006</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/9.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/9.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Hana Sato</div>
-                <div class="small text-body-secondary">hana.sato@kite.test</div>
+                <div class="fw-bold fg-body">Hana Sato</div>
+                <div class="small fg-2">hana.sato@kite.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-warning">Pending</span></td>
+    <td><span class="badge theme-warning">Pending</span></td>
     <td data-order="2026-09-21" class="text-nowrap">Sep 21, 2026</td>
     <td data-order="94498" class="text-end text-nowrap aui-number">$944.98</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1006"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1006"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1665,26 +1572,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1005</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/5.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/5.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Amara Okafor</div>
-                <div class="small text-body-secondary">amara@harbor.test</div>
+                <div class="fw-bold fg-body">Amara Okafor</div>
+                <div class="small fg-2">amara@harbor.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-info">Shipped</span></td>
+    <td><span class="badge theme-info">Shipped</span></td>
     <td data-order="2026-09-21" class="text-nowrap">Sep 21, 2026</td>
     <td data-order="102417" class="text-end text-nowrap aui-number">$1,024.17</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1005"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1005"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1693,26 +1598,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1004</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/3.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/3.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Sofia Rossi</div>
-                <div class="small text-body-secondary">s.rossi@lumen.test</div>
+                <div class="fw-bold fg-body">Sofia Rossi</div>
+                <div class="small fg-2">s.rossi@lumen.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-secondary">Refunded</span></td>
+    <td><span class="badge theme-secondary">Refunded</span></td>
     <td data-order="2026-09-20" class="text-nowrap">Sep 20, 2026</td>
     <td data-order="110336" class="text-end text-nowrap aui-number">$1,103.36</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1004"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1004"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1721,26 +1624,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1003</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/11.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/11.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Maria Chen</div>
-                <div class="small text-body-secondary">maria.chen@northwind.test</div>
+                <div class="fw-bold fg-body">Maria Chen</div>
+                <div class="small fg-2">maria.chen@northwind.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-info">Shipped</span></td>
+    <td><span class="badge theme-info">Shipped</span></td>
     <td data-order="2026-09-19" class="text-nowrap">Sep 19, 2026</td>
     <td data-order="118255" class="text-end text-nowrap aui-number">$1,182.55</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1003"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1003"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1749,26 +1650,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1002</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/10.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/10.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Omar Haddad</div>
-                <div class="small text-body-secondary">omar@cedar.test</div>
+                <div class="fw-bold fg-body">Omar Haddad</div>
+                <div class="small fg-2">omar@cedar.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-danger">Failed</span></td>
+    <td><span class="badge theme-danger">Failed</span></td>
     <td data-order="2026-09-19" class="text-nowrap">Sep 19, 2026</td>
     <td data-order="126174" class="text-end text-nowrap aui-number">$1,261.74</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1002"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1002"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1777,26 +1676,24 @@
 <tr>
     <td class="text-nowrap"><a href="#" class="fw-bold">ORD-1001</a></td>
     <td>
-        <div class="d-flex align-items-center gap-2">
-            <img src="assets/images/avatars/8.jpg" width="32" height="32" class="rounded-circle" alt="">
+        <div class="d-flex align-items-center gap-3">
+            <span class="avatar avatar-sm"><img class="avatar-img" src="assets/images/avatars/8.jpg" alt=""></span>
             <div class="lh-sm">
-                <div class="fw-bold text-body">Lucas Meyer</div>
-                <div class="small text-body-secondary">lucas.meyer@tandem.test</div>
+                <div class="fw-bold fg-body">Lucas Meyer</div>
+                <div class="small fg-2">lucas.meyer@tandem.test</div>
             </div>
         </div>
     </td>
-    <td><span class="badge text-bg-success">Paid</span></td>
+    <td><span class="badge theme-success">Paid</span></td>
     <td data-order="2026-09-18" class="text-nowrap">Sep 18, 2026</td>
     <td data-order="134093" class="text-end text-nowrap aui-number">$1,340.93</td>
     <td class="text-end">
-        <div class="dropdown">
-            <button type="button" class="btn btn-link text-body px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Actions for ORD-1001"><i data-lucide="ellipsis"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i data-lucide="eye" class="me-2 opacity-50"></i>View</a></li>
-                <li><a class="dropdown-item" href="#"><i data-lucide="printer" class="me-2 opacity-50"></i>Print invoice</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i data-lucide="x" class="me-2 opacity-50"></i>Cancel order</a></li>
-            </ul>
+        <button type="button" class="btn-text btn-icon btn-sm theme-secondary" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Actions for ORD-1001"><i data-lucide="ellipsis"></i></button>
+        <div class="menu">
+            <a class="menu-item" href="#"><i data-lucide="eye"></i>View</a>
+            <a class="menu-item" href="#"><i data-lucide="printer"></i>Print invoice</a>
+            <hr class="menu-divider">
+            <a class="menu-item theme-danger" href="#"><i data-lucide="x"></i>Cancel order</a>
         </div>
     </td>
 </tr>
@@ -1812,18 +1709,18 @@
         <li class="nav-item"><a href="#" class="nav-link">Help Center</a></li>
         <li class="nav-item"><a href="#" class="nav-link">API Docs</a></li>
     </ul>
-    <ul class="nav ms-auto d-none d-md-flex">
+    <ul class="nav ms-auto d-none md:d-flex">
         <li class="nav-item"><a href="#" class="nav-link">System Status</a></li>
-        <li class="nav-item"><a href="#" class="nav-link"><span class="badge bg-success me-1 ms-0"><small>NEW</small></span>What's New</a></li>
+        <li class="nav-item"><a href="#" class="nav-link"><span class="badge theme-success"><small>NEW</small></span>What's New</a></li>
     </ul>
 </footer>
 
         </main>
     </div>
-    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
-    <div class="toast text-bg-primary" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-5">
+    <div class="toast theme-primary" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
         <div class="toast-header">
-            <i data-lucide="calendar" class="me-2"></i>
+            <i data-lucide="calendar" class="me-3"></i>
             <strong class="me-auto">Example Toast</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>

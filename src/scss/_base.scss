@@ -1,90 +1,92 @@
-// Base rules on top of Bootstrap
-
-html,
-body {
-  background: var(--aui-app-bg);
-}
-
-// While the stored theme stylesheet loads (head.njk sets data-aui-loading), the page is hidden; then it fades in
-html[data-aui-loading] body {
-  opacity: 0;
-}
-
-body {
-  transition: opacity .2s ease-out;
-}
-
-// Theme and mode changes cross-fade the whole page (View Transitions API in architectui.js)
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: .3s;
-}
-
-@media (prefers-reduced-motion: reduce) {
+// Base rules on top of Bootstrap. All theme rules live in the CSS layer "custom" that Bootstrap 6 leaves
+// to the project: they win over the Bootstrap components, and the Bootstrap helpers and utilities win over them.
+@layer custom {
+  html,
   body {
-    transition: none;
+    background: var(--aui-app-bg);
   }
-}
 
-a,
-a:hover,
-.btn-link,
-.btn-link:hover {
-  text-decoration: none;
-}
+  // While the stored theme stylesheet loads (head.njk sets data-aui-loading), the page is hidden; then it fades in
+  html[data-aui-loading] body {
+    opacity: 0;
+  }
 
-:where(a, button, .btn):focus:not(:focus-visible) {
-  outline: none;
-}
+  body {
+    transition: opacity .2s ease-out;
+  }
 
-legend {
-  font-size: var(--bs-body-font-size);
-  font-weight: 700;
-}
+  // Theme and mode changes cross-fade the whole page (View Transitions API in architectui.js)
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: .3s;
+  }
 
-// Light divider line in every mode and theme
-hr {
-  color: var(--bs-secondary-bg);
-  opacity: 1;
-}
+  @media (prefers-reduced-motion: reduce) {
+    body {
+      transition: none;
+    }
+  }
 
-// Lucide icons: placeholder size before rendering and default size
-i[data-lucide],
-svg.lucide {
-  display: inline-block;
-  width: 1.15em;
-  height: 1.15em;
-  vertical-align: -.2em;
-  flex-shrink: 0;
-}
+  a,
+  a:hover,
+  .btn-link,
+  .btn-link:hover {
+    text-decoration: none;
+  }
 
-svg.lucide {
-  stroke-width: 2;
-}
+  :where(a, button):focus:not(:focus-visible) {
+    outline: none;
+  }
 
-// Until Lucide draws the icon, its place shows a neutral gray block, the same in every theme
-i[data-lucide] {
-  border-radius: .25em;
-  background-color: rgba(128, 128, 128, .25);
-}
+  legend {
+    font-size: var(--bs-body-font-size);
+    font-weight: 700;
+  }
 
-// Skip link: shown above the fixed header while it has keyboard focus
-.aui-skip-link:focus {
-  position: fixed;
-  top: .5rem;
-  left: .5rem;
-  z-index: 1090;
-}
+  // Light divider line in every mode and theme
+  hr {
+    color: var(--bs-bg-2);
+    opacity: 1;
+  }
 
-.aui-app > main:focus {
-  outline: 0;
-}
+  // Lucide icons: placeholder size before rendering and default size
+  i[data-lucide],
+  svg.lucide {
+    display: inline-block;
+    width: 1.15em;
+    height: 1.15em;
+    vertical-align: -.2em;
+    flex-shrink: 0;
+  }
 
-// Thin native scrollbars in the sidebar
-.aui-sidebar > .offcanvas-md {
-  scrollbar-width: thin;
-}
+  svg.lucide {
+    stroke-width: 2;
+  }
 
-[data-bs-theme="dark"] .aui-sidebar > .offcanvas-md {
-  scrollbar-color: rgba(255, 255, 255, .2) transparent;
+  // Until Lucide draws the icon, its place shows a neutral gray block, the same in every theme
+  i[data-lucide] {
+    border-radius: .25em;
+    background-color: rgba(128, 128, 128, .25);
+  }
+
+  // Skip link: shown above the fixed header while it has keyboard focus
+  .aui-skip-link:focus {
+    position: fixed;
+    top: .5rem;
+    left: .5rem;
+    z-index: 1090;
+  }
+
+  .aui-app > main:focus {
+    outline: 0;
+  }
+
+  // Thin native scrollbars in the sidebar
+  .aui-sidebar > .drawer {
+    scrollbar-width: thin;
+  }
+
+  [data-bs-theme="dark"] .aui-sidebar > .drawer {
+    scrollbar-color: rgba(255, 255, 255, .2) transparent;
+  }
 }

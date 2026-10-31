@@ -1,4 +1,5 @@
-// Animations. The aui-animate-* classes work on any element.
+// Animations. The aui-animate-* classes work on any element. Bootstrap 6 brings animation-shake and
+// animation-pop; the theme adds a fade in, a pulse, a flip, a light-speed entry and a spin.
 
 @keyframes aui-drop-in {
   from {
@@ -16,7 +17,7 @@
 
 // Page content: from transparent and 8px lower. The end state is not kept (backwards fill),
 // so no transform stays on the content after the animation. While the transform is on, the content is
-// the frame of position: fixed children: overflow: clip keeps a hidden offcanvas from widening the page.
+// the frame of position: fixed children: overflow: clip keeps a hidden drawer from widening the page.
 @keyframes aui-page-in {
   from { opacity: 0; transform: translateY(8px); overflow: clip; }
   to { opacity: 1; transform: none; overflow: clip; }
@@ -55,31 +56,24 @@
   to { transform: none; }
 }
 
-.aui-animate-fade-in { animation: aui-fade-in .4s both; }
-.aui-animate-pulse { animation: aui-pulse 2s ease-out infinite; }
-.aui-animate-flip { animation: aui-flip 1s both; backface-visibility: visible; }
-.aui-animate-light-speed-in { animation: aui-light-speed-in 1s ease-out both; }
-.aui-animate-spin { animation: aui-spin 2s linear infinite; }
+@layer custom {
+  .aui-animate-fade-in { animation: aui-fade-in .4s both; }
+  .aui-animate-pulse { animation: aui-pulse 2s ease-out infinite; }
+  .aui-animate-flip { animation: aui-flip 1s both; backface-visibility: visible; }
+  .aui-animate-light-speed-in { animation: aui-light-speed-in 1s ease-out both; }
+  .aui-animate-spin { animation: aui-spin 2s linear infinite; }
 
-// Tab content fades in when a tab is switched: architectui.js marks the pane with aui-tab-in.
-// The pane that is active on load appears together with the page content.
-.tab-pane.aui-tab-in.active {
-  animation: aui-fade-in .2s both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [class*="aui-animate-"],
-  .aui-content,
-  .tab-pane.aui-tab-in.active,
-  .dropdown-menu.show {
-    animation: none !important;
+  @media (prefers-reduced-motion: reduce) {
+    [class*="aui-animate-"],
+    .aui-content {
+      animation: none !important;
+    }
   }
 }
 
 // Print: everything is visible at once
 @media print {
-  .aui-content,
-  .tab-pane.aui-tab-in.active {
+  .aui-content {
     animation: none !important;
   }
 }

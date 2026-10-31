@@ -1,94 +1,105 @@
 // Interface settings controls (partials/interface-settings.njk): color swatches for the header and
 // sidebar schemes, the theme picker and the theme dot. The other controls are Bootstrap switches and button groups.
+// A swatch and a theme option are labels with the radio input inside (the Bootstrap 6 toggle button pattern).
 @use "sass:map";
 @use "../config" as *;
 
-// Color swatch: a round radio label in a scheme color
-.aui-swatch {
-  position: relative;
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  margin: 0;
-  border: 1px solid var(--bs-border-color);
-  border-radius: 30px;
-  cursor: pointer;
-  opacity: .7;
-  transition: all .2s;
-
-  &:hover {
-    opacity: 1;
-    transform: scale(1.1);
+@layer custom {
+  .aui-swatch > input,
+  .aui-theme-option > input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    pointer-events: none;
   }
-}
 
-.btn-check:checked + .aui-swatch {
-  opacity: 1;
-  box-shadow: 0 0 0 3px var(--aui-surface), 0 0 0 5px var(--bs-primary);
-}
+  // Color swatch: a round radio label in a scheme color
+  .aui-swatch {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 30px;
+    cursor: pointer;
+    opacity: .7;
+    transition: all .2s;
 
-.btn-check:focus-visible + .aui-swatch {
-  outline: 2px solid var(--bs-primary);
-  outline-offset: 4px;
-}
+    &:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
 
-.aui-swatch--default {
-  background: var(--aui-surface);
-}
+    &:has(input:checked) {
+      opacity: 1;
+      box-shadow: 0 0 0 3px var(--aui-surface), 0 0 0 5px var(--bs-primary-base);
+    }
 
-@each $name in $aui-scheme-colors {
-  .aui-swatch--#{$name} {
-    background: var(--aui-scheme-#{$name}-bg, var(--bs-#{$name}));
+    &:has(input:focus-visible) {
+      outline: 2px solid var(--bs-primary-base);
+      outline-offset: 4px;
+    }
   }
-}
 
-// Theme picker: a dot (first span) with the two theme accents and a caption
-.aui-theme-option {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .4rem;
-  margin: 0;
-  color: var(--bs-secondary-color);
-  font-size: .72rem;
-  line-height: 1.2;
-  text-align: center;
-  cursor: pointer;
-}
-
-.aui-theme-option > span:first-child {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--aui-dot-brand) 50%, var(--aui-dot-accent) 50%);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .08), 0 1px 2px rgba(0, 0, 0, .12);
-  transition: transform .2s, box-shadow .2s;
-}
-
-.aui-theme-option:hover > span:first-child {
-  transform: scale(1.06);
-}
-
-.btn-check:checked + .aui-theme-option {
-  color: var(--bs-body-color);
-  font-weight: 600;
-
-  > span:first-child {
-    box-shadow: 0 0 0 2px var(--aui-surface), 0 0 0 4px var(--bs-primary);
+  .aui-swatch--default {
+    background: var(--aui-surface);
   }
-}
 
-.btn-check:focus-visible + .aui-theme-option > span:first-child {
-  outline: 2px solid var(--bs-primary);
-  outline-offset: 4px;
-}
+  @each $name in $aui-scheme-colors {
+    .aui-swatch--#{$name} {
+      background: var(--aui-scheme-#{$name}-bg, var(--bs-#{$name}-bg));
+    }
+  }
 
-// Small theme dot for lists (the theme list in the header)
-.aui-theme-dot {
-  flex-shrink: 0;
-  width: 1.1rem;
-  height: 1.1rem;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--aui-dot-brand) 50%, var(--aui-dot-accent) 50%);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .08);
+  // Theme picker: a dot (first span) with the two theme accents and a caption
+  .aui-theme-option {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .4rem;
+    margin: 0;
+    color: var(--bs-fg-2);
+    font-size: .72rem;
+    line-height: 1.2;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .aui-theme-option > input + span {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--aui-dot-brand) 50%, var(--aui-dot-accent) 50%);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .08), 0 1px 2px rgba(0, 0, 0, .12);
+    transition: transform .2s, box-shadow .2s;
+  }
+
+  .aui-theme-option:hover > input + span {
+    transform: scale(1.06);
+  }
+
+  .aui-theme-option:has(input:checked) {
+    color: var(--bs-fg-body);
+    font-weight: 600;
+
+    > input + span {
+      box-shadow: 0 0 0 2px var(--aui-surface), 0 0 0 4px var(--bs-primary-base);
+    }
+  }
+
+  .aui-theme-option:has(input:focus-visible) > input + span {
+    outline: 2px solid var(--bs-primary-base);
+    outline-offset: 4px;
+  }
+
+  // Small theme dot for lists (the theme list in the header)
+  .aui-theme-dot {
+    flex-shrink: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--aui-dot-brand) 50%, var(--aui-dot-accent) 50%);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .08);
+  }
 }

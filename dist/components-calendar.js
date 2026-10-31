@@ -8,7 +8,7 @@
  * =========================================================
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
-// FullCalendar 7 demo: the global bundle and the Bootstrap 5 theme plugin, which registers itself.
+// FullCalendar 7 demo: the global bundle; the theme colors come through the FullCalendar CSS variables (ui/_vendors.scss).
 // Events are placed in the current month; their colors come from the ArchitectUI theme tokens.
 (() => {
   const element = document.getElementById("calendar");
@@ -23,10 +23,10 @@
     const current = today.getDate();
     const { token } = window.ArchitectUI;
     // An event with "tone" takes that theme color and the text color the theme uses on it.
-    // Other events use the primary color of the Bootstrap theme plugin.
+    // Other events use the primary color of the theme.
     const paint = (event) => {
       const tone = event.tone ?? event.extendedProps?.tone;
-      return tone ? { color: token(`--bs-${tone}`), contrastColor: token(`--aui-${tone}-contrast`) } : {};
+      return tone ? { color: token(tone), contrastColor: token(`${tone}-contrast`) } : {};
     };
 
     const calendar = new window.FullCalendar.Calendar(element, {
@@ -50,7 +50,7 @@
         { title: "Happy Hour", start: day(current, "17:30:00"), tone: "warning" },
         { title: "Dinner", start: day(current, "20:00:00") },
         { title: "Birthday Party", start: day(current + 1, "07:00:00"), tone: "danger" },
-        { title: "Click for Bootstrap", url: "https://getbootstrap.com/", start: day(28), tone: "alternate" },
+        { title: "Click for Bootstrap", url: "https://getbootstrap.com/", start: day(28), tone: "accent" },
       ].map((event) => ({ ...event, ...paint(event) })),
     });
 

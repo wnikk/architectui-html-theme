@@ -21,9 +21,9 @@
 
   const formModalEl = document.getElementById("userModal");
   const form = formModalEl.querySelector("[data-user-form]");
-  const formModal = () => window.bootstrap.Modal.getOrCreateInstance(formModalEl);
+  const formModal = () => window.bootstrap.Dialog.getOrCreateInstance(formModalEl);
   const deleteModalEl = document.getElementById("userDeleteModal");
-  const deleteModal = () => window.bootstrap.Modal.getOrCreateInstance(deleteModalEl);
+  const deleteModal = () => window.bootstrap.Dialog.getOrCreateInstance(deleteModalEl);
   const toastEl = document.getElementById("userToast");
   let editing = null;
   let deleting = null;
@@ -50,18 +50,18 @@
     tr.dataset.user = u.id;
     const photo = field("photo");
     if (u.avatar) photo.src = `assets/images/avatars/${u.avatar}.jpg`;
-    photo.classList.toggle("d-none", !u.avatar);
+    field("photo-wrap").classList.toggle("d-none", !u.avatar);
     field("initials").classList.toggle("d-none", Boolean(u.avatar));
     field("initials").textContent = initials(u.name);
     field("name").textContent = u.name;
     field("email").textContent = u.email;
-    field("role").className = `badge bg-${role.color}-subtle text-${role.color}-emphasis`;
+    field("role").className = `badge badge-subtle theme-${role.color}`;
     field("role").textContent = role.title;
     field("team").textContent = u.team;
     field("status-dot").className = `d-inline-block p-1 rounded-circle bg-${status.color}`;
     field("status").textContent = status.title;
     const twoStep = field("two-step");
-    twoStep.className = `d-inline-flex align-items-center gap-1 small ${u.twoStep ? "text-success-emphasis" : "text-body-secondary"}`;
+    twoStep.className = `d-inline-flex align-items-center gap-1 small ${u.twoStep ? "fg-emphasis-success" : "fg-2"}`;
     const icon = document.createElement("i");
     icon.setAttribute("data-lucide", u.twoStep ? "shield-check" : "shield-off");
     twoStep.replaceChildren(icon, Object.assign(document.createElement("span"), { textContent: u.twoStep ? "On" : "Off" }));
@@ -117,7 +117,6 @@
   function openForm(u = null) {
     editing = u;
     form.reset();
-    form.classList.remove("was-validated");
     form.email.setCustomValidity("");
     form.name.setCustomValidity("");
     const isNew = !u;
@@ -135,7 +134,7 @@
     formModal().show();
   }
 
-  formModalEl.addEventListener("shown.bs.modal", () => form.name.focus());
+  formModalEl.addEventListener("shown.bs.dialog", () => form.name.focus());
 
   form.email.addEventListener("input", () => form.email.setCustomValidity(""));
   form.name.addEventListener("input", () => form.name.setCustomValidity(""));
@@ -148,7 +147,6 @@
     // minlength checks typed text only; a pasted or filled value is checked here
     form.name.setCustomValidity(form.name.value.trim().length < 2 ? "short" : "");
     form.querySelector("[data-email-feedback]").textContent = taken ? "A user with this email already exists." : "Enter a valid email.";
-    form.classList.add("was-validated");
     if (!form.checkValidity()) {
       form.querySelector(":invalid")?.focus();
       return;

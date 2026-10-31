@@ -1,6 +1,6 @@
 ---
 title: "Form Controls"
-description: "Wide selection of form controls, using the Bootstrap 5 code base with the theme on top."
+description: "Wide selection of form controls, using the Bootstrap 6 code base with the theme on top."
 icon: "monitor"
 ---
 <ul class="nav aui-body-tabs">
@@ -26,96 +26,96 @@ icon: "monitor"
     </li>
 </ul>
 <div class="tab-content">
-    <div class="tab-pane fade show active" id="tab-content-0" role="tabpanel">
+    <div class="tab-pane active" id="tab-content-0" role="tabpanel">
         <div class="row">
-            <div class="col-md-6">
-                <div class="mb-3 card">
+            <div class="md:col-6">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Controls Types</h5>
                         <form>
-                            <div class="mb-3"><label for="exampleEmail" class="form-label">Email</label><input name="email" id="exampleEmail" placeholder="name@company.com" type="email" class="form-control"></div>
-                            <div class="mb-3"><label for="examplePassword" class="form-label">Password</label><input name="password" id="examplePassword" placeholder="At least 8 characters" type="password"
+                            <div class="mb-5"><label for="exampleEmail" class="form-label">Email</label><input name="email" id="exampleEmail" placeholder="name@company.com" type="email" class="form-control"></div>
+                            <div class="mb-5"><label for="examplePassword" class="form-label">Password</label><input name="password" id="examplePassword" placeholder="At least 8 characters" type="password"
                                                                                                                                    class="form-control"></div>
-                            <div class="mb-3">
+                            <div class="mb-5">
                                 <label for="exampleSelect" class="form-label">Select</label>
-                                <select name="select" id="exampleSelect" class="form-select">
+                                <select name="select" id="exampleSelect" class="form-control">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
                                 <option>5</option>
                             </select></div>
-                            <div class="mb-3">
+                            <div class="mb-5">
                                 <label for="exampleSelectMulti" class="form-label">Select Multiple</label>
-                                <select multiple="" name="selectMulti" id="exampleSelectMulti" class="form-select">
+                                <select multiple="" name="selectMulti" id="exampleSelectMulti" class="form-control">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
                                 <option>5</option>
                             </select></div>
-                            <div class="mb-3">
+                            <div class="mb-5">
                                 <label for="exampleText" class="form-label">Text Area</label>
                                 <textarea name="text" id="exampleText" class="form-control"></textarea>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-5">
                                 <label for="exampleFile" class="form-label">File</label>
                                 <input name="file" id="exampleFile" type="file" class="form-control">
-                                <small class="form-text text-muted">
+                                <small class="form-text fg-3">
                                     This is some placeholder block-level help text for the above input.
                                     It's a bit lighter and easily wraps to a new line.
                                 </small>
                             </div>
-                            <button class="mt-1 btn btn-primary">Submit</button>
+                            <button class="btn-solid theme-primary mt-1">Submit</button>
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="mb-3 card">
+            <div class="md:col-6">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Sizing</h5>
                         <form>
-                            <input placeholder="Large size" type="text" class="mb-2 form-control-lg form-control">
-                            <input placeholder="Default size" type="text" class="mb-2 form-control">
-                            <input placeholder="Small size" type="text" class="mb-2 form-control-sm form-control">
+                            <input placeholder="Large size" type="text" class="mb-3 form-control-lg form-control">
+                            <input placeholder="Default size" type="text" class="mb-3 form-control">
+                            <input placeholder="Small size" type="text" class="mb-3 form-control-sm form-control">
                             <hr>
-                            <select class="mb-2 form-control-lg form-select">
+                            <select class="mb-3 form-control-lg form-control">
                                 <option>Large Select</option>
                             </select>
-                            <select class="mb-2 form-select">
+                            <select class="mb-3 form-control">
                                 <option>Default Select</option>
                             </select>
-                            <select class="form-control-sm form-select">
+                            <select class="form-control-sm form-control">
                                 <option>Small Select</option>
                             </select>
                         </form>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <h5 class="card-title">Checkboxes &amp; Radios</h5>
                         <form>
-                            <fieldset class="mb-3">
-                                <div class="form-check"><input id="forms-controls-radio1-1" name="radio1" type="radio" class="form-check-input"><label class="form-check-label" for="forms-controls-radio1-1">Option one is this and that—be sure to include why it's great</label></div>
-                                <div class="form-check"><input id="forms-controls-radio1-2" name="radio1" type="radio" class="form-check-input"><label class="form-check-label" for="forms-controls-radio1-2">Option two can be something else and selecting it will deselect option one</label></div>
-                                <div class="form-check"><input id="forms-controls-radio1-3" name="radio1" disabled type="radio" class="form-check-input"><label class="form-check-label" for="forms-controls-radio1-3">Option three is disabled</label></div>
+                            <fieldset class="mb-5">
+                                <div class="form-field"><input id="forms-controls-radio1-1" name="radio1" type="radio" class="radio"><label for="forms-controls-radio1-1">Option one is this and that—be sure to include why it's great</label></div>
+                                <div class="form-field"><input id="forms-controls-radio1-2" name="radio1" type="radio" class="radio"><label for="forms-controls-radio1-2">Option two can be something else and selecting it will deselect option one</label></div>
+                                <div class="form-field"><input id="forms-controls-radio1-3" name="radio1" disabled type="radio" class="radio"><label for="forms-controls-radio1-3">Option three is disabled</label></div>
                             </fieldset>
-                            <div class="form-check"><input id="forms-controls-checkbox-1" type="checkbox" class="form-check-input"><label class="form-check-label" for="forms-controls-checkbox-1">Check me out</label></div>
+                            <div class="form-field"><input id="forms-controls-checkbox-1" type="checkbox" class="check"><label for="forms-controls-checkbox-1">Check me out</label></div>
                         </form>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <h5 class="card-title">Expanding Fields</h5>
-                        <p class="text-body-secondary">A round button that opens into a field. Use it for search above a table or for a field in a form.</p>
-                        <div class="d-flex flex-column gap-3">
+                        <p class="fg-2">A round button that opens into a field. Use it for search above a table or for a field in a form.</p>
+                        <div class="d-flex flex-column gap-5">
                             <div class="aui-expand" role="search" data-aui-expand>
                                 <input type="search" class="form-control" placeholder="Search orders" aria-label="Search orders">
-                                <button type="button" class="btn" data-aui-expand-toggle aria-label="Search orders"></button>
+                                <button type="button" class="btn-text theme-secondary" data-aui-expand-toggle aria-label="Search orders"></button>
                                 <button type="button" class="btn-close" data-aui-expand-close aria-label="Close"></button>
                             </div>
                             <div class="aui-expand" data-aui-expand>
                                 <input type="password" class="form-control" placeholder="New password" aria-label="New password" autocomplete="new-password">
-                                <button type="button" class="btn" data-aui-expand-toggle aria-label="Change password"><i data-lucide="key-round"></i></button>
+                                <button type="button" class="btn-text theme-secondary" data-aui-expand-toggle aria-label="Change password"><i data-lucide="key-round"></i></button>
                                 <button type="button" class="btn-close" data-aui-expand-close aria-label="Close"></button>
                             </div>
                         </div>
@@ -124,10 +124,10 @@ icon: "monitor"
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="tab-content-1" role="tabpanel">
+    <div class="tab-pane" id="tab-content-1" role="tabpanel">
         <div class="row">
-            <div class="col-md-6">
-                <div class="mb-3 card">
+            <div class="md:col-6">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Input Groups</h5>
                         <div>
                             <div class="input-group">
@@ -176,45 +176,45 @@ icon: "monitor"
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <h5 class="card-title">Input Group Button Dropdown</h5>
                         <div class="input-group">
-                            <button type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary">Button Dropdown</button>
-                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                                <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                                <button type="button" disabled="" tabindex="-1" class="disabled dropdown-item">Edit</button>
-                                <button type="button" tabindex="0" class="dropdown-item">Another Action</button>
-                                <div tabindex="-1" class="dropdown-divider"></div>
-                                <button type="button" tabindex="0" class="dropdown-item">Another Action</button>
+                            <button type="button" data-bs-toggle="menu" aria-haspopup="true" aria-expanded="false" class="btn-solid theme-secondary">Button Dropdown<i data-lucide="chevron-down"></i></button>
+                            <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                                <h6 tabindex="-1" class="menu-header">Share</h6>
+                                <button type="button" disabled="" tabindex="-1" class="disabled menu-item">Edit</button>
+                                <button type="button" tabindex="0" class="menu-item">Another Action</button>
+                                <div tabindex="-1" class="menu-divider"></div>
+                                <button type="button" tabindex="0" class="menu-item">Another Action</button>
                             </div>
                             <input type="text" class="form-control"></div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <h5 class="card-title">Input Group Button Shorthand</h5>
                         <div>
                             <div class="input-group">
-                                <button class="btn btn-secondary">To the Left!</button>
+                                <button class="btn-solid theme-secondary">To the Left!</button>
                                 <input type="text" class="form-control"></div>
                             <br>
                             <div class="input-group">
                                 <input type="text" class="form-control">
-                                <button class="btn btn-secondary">To the Right!</button>
+                                <button class="btn-solid theme-secondary">To the Right!</button>
                             </div>
                             <br>
                             <div class="input-group">
-                                <button class="btn btn-danger">To the Left!</button>
+                                <button class="btn-solid theme-danger">To the Left!</button>
                                 <input placeholder="Order notes" type="text" class="form-control">
-                                <button class="btn btn-success">To the Right!</button>
+                                <button class="btn-solid theme-success">To the Right!</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="mb-3 card">
+            <div class="md:col-6">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Input Group Sizing</h5>
                         <div>
                             <div class="input-group input-group-lg">
@@ -240,7 +240,7 @@ icon: "monitor"
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Input Group Addon</h5>
                         <div>
                             <div class="input-group">
@@ -268,40 +268,40 @@ icon: "monitor"
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <h5 class="card-title">Input Group Button</h5>
                         <div>
                             <div class="input-group">
-                                <button class="btn btn-secondary">I'm a button</button>
+                                <button class="btn-solid theme-secondary">I'm a button</button>
                                 <input type="text" class="form-control"></div>
                             <br>
                             <div class="input-group">
                                 <input type="text" class="form-control">
-                                <button type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary">Button Dropdown</button>
-                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                                    <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                                    <button type="button" disabled="" tabindex="-1" class="disabled dropdown-item">Edit</button>
-                                    <button type="button" tabindex="0" class="dropdown-item">Another Action</button>
-                                    <div tabindex="-1" class="dropdown-divider"></div>
-                                    <button type="button" tabindex="0" class="dropdown-item">Another Action</button>
+                                <button type="button" data-bs-toggle="menu" aria-haspopup="true" aria-expanded="false" class="btn-solid theme-secondary">Button Dropdown<i data-lucide="chevron-down"></i></button>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                                    <h6 tabindex="-1" class="menu-header">Share</h6>
+                                    <button type="button" disabled="" tabindex="-1" class="disabled menu-item">Edit</button>
+                                    <button type="button" tabindex="0" class="menu-item">Another Action</button>
+                                    <div tabindex="-1" class="menu-divider"></div>
+                                    <button type="button" tabindex="0" class="menu-item">Another Action</button>
                                 </div>
                             </div>
                             <br>
                             <div class="input-group">
-                                <button class="btn btn-outline-secondary">Split Button</button>
-                                <button type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle dropdown-toggle-split btn btn-outline-secondary">
+                                <button class="btn-outline theme-secondary">Split Button</button>
+                                <button type="button" data-bs-toggle="menu" aria-haspopup="true" aria-expanded="false" class="btn-outline theme-secondary menu-toggle-split">
                                     <span class="visually-hidden">Toggle Dropdown</span>
-                                </button>
-                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                                    <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                                    <button type="button" disabled="" tabindex="-1" class="disabled dropdown-item">Edit</button>
-                                    <button type="button" tabindex="0" class="dropdown-item">Another Action</button>
-                                    <div tabindex="-1" class="dropdown-divider"></div>
-                                    <button type="button" tabindex="0" class="dropdown-item">Another Action</button>
+                                <i data-lucide="chevron-down"></i></button>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                                    <h6 tabindex="-1" class="menu-header">Share</h6>
+                                    <button type="button" disabled="" tabindex="-1" class="disabled menu-item">Edit</button>
+                                    <button type="button" tabindex="0" class="menu-item">Another Action</button>
+                                    <div tabindex="-1" class="menu-divider"></div>
+                                    <button type="button" tabindex="0" class="menu-item">Another Action</button>
                                 </div>
                                 <input placeholder="Order notes" type="text" class="form-control">
-                                <button class="btn btn-secondary">I'm a button</button>
+                                <button class="btn-solid theme-secondary">I'm a button</button>
                             </div>
                         </div>
                     </div>
@@ -309,79 +309,79 @@ icon: "monitor"
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="tab-content-2" role="tabpanel">
+    <div class="tab-pane" id="tab-content-2" role="tabpanel">
         <form>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-3 card">
+                <div class="md:col-6">
+                    <div class="mb-5 card">
                         <div class="card-body">
                             <h5 class="card-title">Checkboxes</h5>
-                            <div class="mb-3">
+                            <div class="mb-5">
                                 <div>
-                                    <div class="form-check">
-                                        <input type="checkbox" id="exampleCustomCheckbox" class="form-check-input">
-                                        <label class="form-check-label" for="exampleCustomCheckbox">Check this custom checkbox</label>
+                                    <div class="form-field">
+                                        <input type="checkbox" id="exampleCustomCheckbox" class="check">
+                                        <label for="exampleCustomCheckbox">Check this custom checkbox</label>
                                     </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" id="exampleCustomCheckbox2" class="form-check-input">
-                                        <label class="form-check-label" for="exampleCustomCheckbox2">Or this one</label>
+                                    <div class="form-field">
+                                        <input type="checkbox" id="exampleCustomCheckbox2" class="check">
+                                        <label for="exampleCustomCheckbox2">Or this one</label>
                                     </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" id="exampleCustomCheckbox3" disabled="" class="form-check-input">
-                                        <label class="form-check-label" for="exampleCustomCheckbox3">But  not this disabled one</label>
+                                    <div class="form-field">
+                                        <input type="checkbox" id="exampleCustomCheckbox3" disabled="" class="check">
+                                        <label for="exampleCustomCheckbox3">But  not this disabled one</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="mb-3 card">
+                    <div class="mb-5 card">
                     <div class="card-body">
                         <h5 class="card-title">Inline</h5>
-                        <div class="mb-3">
+                        <div class="mb-5">
                             <div>
-                                <div class="form-check form-check-inline">
-                                    <input type="checkbox" id="exampleCustomInline" class="form-check-input">
-                                    <label class="form-label form-check-label" for="exampleCustomInline">An inline custom input</label>
+                                <div class="form-field d-inline-grid me-7">
+                                    <input type="checkbox" id="exampleCustomInline" class="check">
+                                    <label class="form-label" for="exampleCustomInline">An inline custom input</label>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input type="checkbox" id="exampleCustomInline2" class="form-check-input">
-                                    <label class="form-label form-check-label" for="exampleCustomInline2">and another one</label>
+                                <div class="form-field d-inline-grid me-7">
+                                    <input type="checkbox" id="exampleCustomInline2" class="check">
+                                    <label class="form-label" for="exampleCustomInline2">and another one</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="mb-3 card">
+                <div class="md:col-6">
+                    <div class="mb-5 card">
                         <div class="card-body">
                             <h5 class="card-title">Radios</h5>
-                            <div class="mb-3">
+                            <div class="mb-5">
                                 <div>
-                                    <div class="form-check">
-                                        <input type="radio" id="exampleCustomRadio" name="customRadio" class="form-check-input">
-                                        <label class="form-check-label" for="exampleCustomRadio">Select this custom radio</label>
+                                    <div class="form-field">
+                                        <input type="radio" id="exampleCustomRadio" name="customRadio" class="radio">
+                                        <label for="exampleCustomRadio">Select this custom radio</label>
                                     </div>
-                                    <div class="form-check">
-                                        <input type="radio" id="exampleCustomRadio2" name="customRadio" class="form-check-input">
-                                        <label class="form-check-label" for="exampleCustomRadio2">Or this one</label>
+                                    <div class="form-field">
+                                        <input type="radio" id="exampleCustomRadio2" name="customRadio" class="radio">
+                                        <label for="exampleCustomRadio2">Or this one</label>
                                     </div>
-                                    <div class="form-check">
-                                        <input type="radio" id="exampleCustomRadio3" disabled="" class="form-check-input">
-                                        <label class="form-check-label" for="exampleCustomRadio3">But not this disabled one</label>
+                                    <div class="form-field">
+                                        <input type="radio" id="exampleCustomRadio3" disabled="" class="radio">
+                                        <label for="exampleCustomRadio3">But not this disabled one</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="mb-3 card">
+                    <div class="mb-5 card">
                         <div class="card-body">
                             <h5 class="card-title">Form Select</h5>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
+                                <div class="md:col-6">
+                                    <div class="mb-5">
                                         <label for="exampleCustomSelect" class="form-label">Custom Select</label>
-                                        <select type="select" id="exampleCustomSelect" name="customSelect" class="form-select">
+                                        <select type="select" id="exampleCustomSelect" name="customSelect" class="form-control">
                                             <option value="">Select</option>
                                             <option>Administrator</option>
                                             <option>Editor</option>
@@ -390,9 +390,9 @@ icon: "monitor"
                                             <option>Support agent</option>
                                         </select>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-5">
                                         <label for="exampleCustomMutlipleSelect" class="form-label">Custom Multiple Select</label>
-                                        <select multiple="" type="select" id="exampleCustomMutlipleSelect" name="customSelect" class="form-select">
+                                        <select multiple="" type="select" id="exampleCustomMutlipleSelect" name="customSelect" class="form-control">
                                             <option value="">Select</option>
                                             <option>Administrator</option>
                                             <option>Editor</option>
@@ -402,10 +402,10 @@ icon: "monitor"
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
+                                <div class="md:col-6">
+                                    <div class="mb-5">
                                         <label for="exampleCustomSelectDisabled" class="form-label">Custom Select Disabled</label>
-                                        <select type="select" id="exampleCustomSelectDisabled" name="customSelect" disabled="" class="form-select">
+                                        <select type="select" id="exampleCustomSelectDisabled" name="customSelect" disabled="" class="form-control">
                                             <option value="">Select</option>
                                             <option>Administrator</option>
                                             <option>Editor</option>
@@ -414,9 +414,9 @@ icon: "monitor"
                                             <option>Support agent</option>
                                         </select>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-5">
                                         <label for="exampleCustomMutlipleSelectDisabled" class="form-label">Custom Multiple Select Disabled</label>
-                                        <select multiple="" type="select"  id="exampleCustomMutlipleSelectDisabled" name="customSelect" disabled="" class="form-select">
+                                        <select multiple="" type="select"  id="exampleCustomMutlipleSelectDisabled" name="customSelect" disabled="" class="form-control">
                                             <option value="">Select</option>
                                             <option>Administrator</option>
                                             <option>Editor</option>
@@ -433,27 +433,27 @@ icon: "monitor"
             </div>
         </form>
     </div>
-    <div class="tab-pane fade" id="tab-content-3" role="tabpanel">
+    <div class="tab-pane" id="tab-content-3" role="tabpanel">
         <div class="row">
-            <div class="col-lg-6">
-                <div class="mb-3 card">
+            <div class="lg:col-6">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <h5 class="card-title">Date and Time</h5>
                         <p class="card-subtitle">Native pickers of the browser: no library, the keyboard and the phone keypad work.</p>
-                        <div class="row g-3">
-                            <div class="col-sm-6">
+                        <div class="row g-5">
+                            <div class="sm:col-6">
                                 <label for="nativeDate" class="form-label">Delivery date</label>
                                 <input type="date" class="form-control" id="nativeDate" value="2026-10-20" min="2026-10-16">
                             </div>
-                            <div class="col-sm-6">
+                            <div class="sm:col-6">
                                 <label for="nativeTime" class="form-label">Time slot</label>
                                 <input type="time" class="form-control" id="nativeTime" value="14:30" step="900">
                             </div>
-                            <div class="col-sm-6">
+                            <div class="sm:col-6">
                                 <label for="nativeDateTime" class="form-label">Publish at</label>
                                 <input type="datetime-local" class="form-control" id="nativeDateTime" value="2026-10-21T09:00">
                             </div>
-                            <div class="col-sm-6">
+                            <div class="sm:col-6">
                                 <label for="nativeMonth" class="form-label">Billing month</label>
                                 <input type="month" class="form-control" id="nativeMonth" value="2026-10">
                             </div>
@@ -465,22 +465,22 @@ icon: "monitor"
                                     <input type="date" class="form-control" value="2026-10-16" aria-label="To">
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="sm:col-6">
                                 <label for="nativeDateSmall" class="form-label">Small</label>
                                 <input type="date" class="form-control form-control-sm" id="nativeDateSmall" value="2026-10-16">
                             </div>
-                            <div class="col-sm-6">
+                            <div class="sm:col-6">
                                 <label for="nativeDateDisabled" class="form-label">Disabled</label>
                                 <input type="date" class="form-control" id="nativeDateDisabled" value="2026-10-16" disabled>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <h5 class="card-title">Lists with Suggestions</h5>
                         <p class="card-subtitle">A text field with <code>datalist</code>: the browser suggests values, any other value is allowed.</p>
-                        <div class="mb-3">
+                        <div class="mb-5">
                             <label for="nativeCity" class="form-label">Warehouse city</label>
                             <input class="form-control" list="nativeCityList" id="nativeCity" placeholder="Start typing a city" autocomplete="off">
                             <datalist id="nativeCityList">
@@ -493,7 +493,7 @@ icon: "monitor"
                                 <option value="Warsaw"></option>
                             </datalist>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-5">
                             <label for="nativeAssignee" class="form-label">Assignee</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i data-lucide="users"></i></span>
@@ -506,12 +506,12 @@ icon: "monitor"
                                 <option value="Omar Haddad">omar@cedar.test</option>
                             </datalist>
                         </div>
-                        <div class="row g-3">
-                            <div class="col-sm-6">
+                        <div class="row g-5">
+                            <div class="sm:col-6">
                                 <label for="nativeQuantity" class="form-label">Quantity</label>
                                 <input type="number" class="form-control" id="nativeQuantity" value="12" min="1" max="500" step="1">
                             </div>
-                            <div class="col-sm-6">
+                            <div class="sm:col-6">
                                 <label for="nativeColor" class="form-label">Label color</label>
                                 <input type="color" class="form-control form-control-color w-100" id="nativeColor" value="#2f5f9e" title="Choose a color">
                             </div>
@@ -519,32 +519,32 @@ icon: "monitor"
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="mb-3 card">
+            <div class="lg:col-6">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <h5 class="card-title">File Upload</h5>
                         <p class="card-subtitle">Drop files on the area or click it. The area is a native file input, so both ways work without a library.</p>
-                        <div class="aui-dropzone mb-3" data-aui-dropzone="#nativeDropList">
+                        <div class="aui-dropzone mb-5" data-aui-dropzone="#nativeDropList">
                             <input type="file" id="nativeDrop" multiple accept="image/*,.pdf,.csv" aria-describedby="nativeDropHelp">
                             <i data-lucide="cloud-upload"></i>
-                            <div class="fw-bold mt-2">Drop files here or <span class="text-primary">browse</span></div>
-                            <div class="small text-body-secondary" id="nativeDropHelp">PNG, JPG, PDF or CSV, up to 10 MB each</div>
+                            <div class="fw-bold mt-3">Drop files here or <span class="fg-primary">browse</span></div>
+                            <div class="small fg-2" id="nativeDropHelp">PNG, JPG, PDF or CSV, up to 10 MB each</div>
                         </div>
-                        <ul class="list-group mb-4" id="nativeDropList"></ul>
-                        <div class="mb-3">
+                        <ul class="list-group mb-7" id="nativeDropList"></ul>
+                        <div class="mb-5">
                             <label for="nativeFile" class="form-label">Contract</label>
                             <input class="form-control" type="file" id="nativeFile" accept=".pdf">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-5">
                             <label for="nativeFiles" class="form-label">Attachments</label>
                             <input class="form-control" type="file" id="nativeFiles" multiple>
                         </div>
-                        <div class="row g-3">
-                            <div class="col-sm-6">
+                        <div class="row g-5">
+                            <div class="sm:col-6">
                                 <label for="nativeFileSmall" class="form-label">Small</label>
                                 <input class="form-control form-control-sm" type="file" id="nativeFileSmall">
                             </div>
-                            <div class="col-sm-6">
+                            <div class="sm:col-6">
                                 <label for="nativeFileDisabled" class="form-label">Disabled</label>
                                 <input class="form-control" type="file" id="nativeFileDisabled" disabled>
                             </div>

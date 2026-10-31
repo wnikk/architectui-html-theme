@@ -1,13 +1,14 @@
-<header class="navbar navbar-expand-md aui-header">
+<header class="navbar navbar-expand aui-header">
     <div class="navbar-brand">
-        <button type="button" class="btn aui-burger d-md-none" data-bs-toggle="offcanvas" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
+        <button type="button" class="aui-burger md:d-none" data-bs-toggle="drawer" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
         {% include "partials/logo.njk" %}
-        <button type="button" class="btn aui-burger d-none d-xl-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
-        <button type="button" class="btn btn-primary btn-sm d-md-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
+        <button type="button" class="aui-burger d-none xl:d-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
+        <button type="button" class="btn-solid btn-icon btn-sm theme-primary md:d-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
     </div>
-    <div class="collapse navbar-collapse" id="auiHeaderContent">
+    {#- On phones the panel is a Collapse under the header; from 768 px it is always open (frame/_header.scss) #}
+    <div class="collapse aui-header-panel" id="auiHeaderContent">
         {% include "partials/header-left.njk" %}
-        <div class="d-flex align-items-center gap-3 ms-auto">
+        <div class="d-flex align-items-center gap-5 ms-auto">
             {% include "partials/header-right.njk" %}
         </div>
     </div>

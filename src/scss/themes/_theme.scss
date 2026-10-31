@@ -1,6 +1,12 @@
-// Shared base for the visual themes. architectui.css includes `base` once for every theme;
-// a theme file only passes its palette to `palette` and adds the rules that only this theme needs.
+// Shared base of the visual themes: component rules on the theme tokens, included once for all themes.
+// Orange keeps the classic component rules of the core, so the base skips it.
+// A theme file only passes its palette to `palette` and adds the rules that only this theme needs.
 // Components here read colors only from --aui-* tokens; each theme sets their values.
+//
+// Bootstrap 6: colors of both modes are written once with light-dark(); the theme's --aui-* tokens are mapped
+// to the Bootstrap 6 tokens (--bs-bg-*, --bs-fg-*, --bs-<color>-{base,bg,fg,fg-emphasis,bg-subtle,bg-muted,border,
+// focus-ring,contrast}) in `base`. Token blocks stay outside of CSS layers, as the Bootstrap tokens do;
+// component rules go to the layer "custom" that Bootstrap 6 leaves to the project.
 //
 // $when limits rules to a state of <html>, for example ':not([data-aui-theme])'. The condition sits
 // inside :where(), so the specificity is the same as without it. Theme files load after architectui.css
@@ -10,6 +16,7 @@
 @use "sass:list";
 @use "sass:math";
 @use "sass:meta";
+@use "sass:string";
 
 @function root($when: null) {
   @if $when {
@@ -40,19 +47,30 @@
   @return '#{light($when)}, #{dark($when)}';
 }
 
-// Component rules, limited by $when without extra specificity
+// Component rules, limited by $when without extra specificity, in the layer "custom"
 @mixin scope($when: null) {
-  @if $when {
-    :where(:root#{$when}) {
+  @layer custom {
+    @if $when {
+      :where(:root#{$when}) {
+        @content;
+      }
+    } @else {
       @content;
     }
-  } @else {
-    @content;
   }
 }
 
-@function rgb($c) {
-  @return round(color.channel($c, "red", $space: rgb)), round(color.channel($c, "green", $space: rgb)), round(color.channel($c, "blue", $space: rgb));
+// light-dark() of two values; one value when both are the same
+@function ld($light, $dark) {
+  @if $light == $dark {
+    @return $light;
+  }
+  @return light-dark(#{$light}, #{$dark});
+}
+
+// A color with alpha, as CSS that follows a token: mix(var(--x), 40%) -> color-mix(in srgb, var(--x) 40%, transparent)
+@function mix($color, $amount, $with: transparent) {
+  @return color-mix(in srgb, #{$color} #{$amount}, #{$with});
 }
 
 // Relative luminance and WCAG contrast of two colors
@@ -130,86 +148,71 @@
   }
 }
 
-// Token values for one mode. $p is a map of palette keys (bg, surface, text, brand-*, accent-*, ...).
-@mixin tokens($p) {
-  $accent: (
-    accent-solid: map.get($p, brand-solid), accent-soft: map.get($p, brand-soft), accent-text: map.get($p, brand-text),
-    accent-ink: map.get($p, brand-ink), accent-line: map.get($p, brand-line),
-  );
-  $p: map.merge($accent, $p);
-  $fill: map.get($p, surface-2);
-  @if map.has-key($p, fill) {
-    $fill: map.get($p, fill);
-  }
-
-  --aui-app-bg: #{map.get($p, bg)};
-  --aui-surface: #{map.get($p, surface)};
-  --aui-surface-2: #{map.get($p, surface-2)};
-  --aui-surface-muted: #{map.get($p, surface-muted)};
-  --aui-fill: #{$fill};
-  --aui-border: #{map.get($p, border)};
-  --aui-text: #{map.get($p, text)};
-  --aui-text-muted: #{map.get($p, text-muted)};
-  --aui-text-faint: #{map.get($p, text-faint)};
-  --aui-text-dim: #{map.get($p, text-dim)};
-  --aui-danger-text: #{map.get($p, danger)};
-  --aui-shadow-token: #{map.get($p, shadow)};
-  @each $key in (brand-solid, brand-solid-hover, brand-soft, brand-veil, brand-text, brand-text-hover, brand-ink, brand-faint,
-    brand-line, brand-line-soft, brand-focus, brand-shadow, accent-solid, accent-soft, accent-text, accent-ink, accent-line) {
-    --aui-#{$key}: #{map.get($p, $key)};
-  }
-
-  // Mapped to Bootstrap tokens so Bootstrap components follow the theme
-  --bs-body-bg: #{map.get($p, surface)};
-  --bs-body-bg-rgb: #{rgb(map.get($p, surface))};
-  --bs-body-color: #{map.get($p, text)};
-  --bs-body-color-rgb: #{rgb(map.get($p, text))};
-  --bs-emphasis-color: #{map.get($p, text)};
-  --bs-emphasis-color-rgb: #{rgb(map.get($p, text))};
-  --bs-heading-color: #{map.get($p, text)};
-  --bs-secondary-color: #{map.get($p, text-muted)};
-  --bs-secondary-color-rgb: #{rgb(map.get($p, text-muted))};
-  --bs-tertiary-color: #{map.get($p, text-faint)};
-  --bs-tertiary-color-rgb: #{rgb(map.get($p, text-faint))};
-  --bs-secondary-bg: #{map.get($p, surface-2)};
-  --bs-secondary-bg-rgb: #{rgb(map.get($p, surface-2))};
-  --bs-tertiary-bg: #{map.get($p, surface-muted)};
-  --bs-tertiary-bg-rgb: #{rgb(map.get($p, surface-muted))};
-  --bs-border-color: #{map.get($p, border)};
-  --bs-border-color-translucent: #{map.get($p, border)};
-  --bs-primary: #{map.get($p, brand-solid)};
-  --bs-primary-rgb: #{rgb(map.get($p, brand-solid))};
-  --bs-primary-bg-subtle: #{map.get($p, brand-soft)};
-  --bs-primary-border-subtle: #{map.get($p, brand-line-soft)};
-  --bs-primary-text-emphasis: #{map.get($p, brand-ink)};
-  --bs-alternate: #{map.get($p, accent-solid)};
-  --bs-alternate-rgb: #{rgb(map.get($p, accent-solid))};
-  --bs-link-color: #{map.get($p, brand-text)};
-  --bs-link-color-rgb: #{rgb(map.get($p, brand-text))};
-  --bs-link-hover-color: #{map.get($p, brand-text-hover)};
-  --bs-link-hover-color-rgb: #{rgb(map.get($p, brand-text-hover))};
-  --bs-highlight-bg: #{map.get($p, brand-soft)};
-  --bs-highlight-color: #{map.get($p, text)};
-  --bs-focus-ring-color: color-mix(in srgb, #{map.get($p, brand-focus)} 35%, transparent);
-  @include scheme(primary, map.get($p, brand-solid), map.get($p, accent-solid));
-  @include scheme(alternate, map.get($p, accent-solid));
-  @include scheme(light, map.get($p, surface-2), map.get($p, border));
+// The nine Bootstrap 6 tokens of a theme color from one base color (a color or a CSS value). Text colors are
+// mixes toward black in the light mode and toward white in the dark mode; the pale backgrounds and the border
+// are mixes of the text color with the page surface, so they follow the mode by themselves.
+@mixin color-from-base($name, $base, $contrast: #fff) {
+  --bs-#{$name}-base: #{$base};
+  --bs-#{$name}-bg: var(--bs-#{$name}-base);
+  --bs-#{$name}-contrast: #{$contrast};
+  --bs-#{$name}-fg: light-dark(color-mix(in srgb, var(--bs-#{$name}-base) 82%, #000), color-mix(in srgb, var(--bs-#{$name}-base) 62%, #fff));
+  --bs-#{$name}-fg-emphasis: light-dark(color-mix(in srgb, var(--bs-#{$name}-base) 62%, #000), color-mix(in srgb, var(--bs-#{$name}-base) 42%, #fff));
+  --bs-#{$name}-bg-subtle: color-mix(in srgb, var(--bs-#{$name}-fg) 12%, var(--bs-bg-body));
+  --bs-#{$name}-bg-muted: color-mix(in srgb, var(--bs-#{$name}-fg) 24%, var(--bs-bg-body));
+  --bs-#{$name}-border: color-mix(in srgb, var(--bs-#{$name}-fg) 40%, var(--bs-bg-body));
+  --bs-#{$name}-focus-ring: color-mix(in srgb, var(--bs-#{$name}-base) 45%, transparent);
 }
 
-// Theme palette for both modes. The light danger color fills danger buttons in both modes.
+// Palette keys that are colors in both modes and become --aui-<key> tokens with light-dark()
+$color-keys: (bg, surface, surface-2, surface-muted, fill, border, text, text-muted, text-faint, text-dim,
+  brand-solid, brand-solid-hover, brand-soft, brand-veil, brand-text, brand-text-hover, brand-ink, brand-faint,
+  brand-line, brand-line-soft, brand-focus, brand-shadow, brand-contrast,
+  accent-solid, accent-soft, accent-text, accent-ink, accent-line, accent-contrast);
+
+// A palette map with the defaults filled in: the accent follows the brand, the fill is the second surface,
+// the ink on the solid colors is white
+@function complete($p) {
+  $defaults: (
+    accent-solid: map.get($p, brand-solid), accent-soft: map.get($p, brand-soft), accent-text: map.get($p, brand-text),
+    accent-ink: map.get($p, brand-ink), accent-line: map.get($p, brand-line),
+    fill: map.get($p, surface-2), brand-contrast: #fff, accent-contrast: #fff,
+  );
+  @return map.merge($defaults, $p);
+}
+
+// Theme palette for both modes: $light-values and $dark-values are maps of palette keys (bg, surface, text,
+// brand-*, accent-*, danger, shadow). Colors are written once with light-dark(); the header and sidebar schemes
+// (computed at build) and the shadow string are written per mode.
 @mixin palette($light-values, $dark-values, $when: null) {
+  $l: complete($light-values);
+  $d: complete($dark-values);
+
+  #{root($when)} {
+    @each $key in $color-keys {
+      --aui-#{$key}: #{ld(map.get($l, $key), map.get($d, $key))};
+    }
+    --aui-app-bg: var(--aui-bg);
+    // The light danger color fills danger buttons in both modes; the text color follows the mode
+    --aui-danger-solid: #{map.get($l, danger)};
+    --aui-danger-text: #{ld(map.get($l, danger), map.get($d, danger))};
+    --aui-danger-ink: #{ld(color.mix(#000, map.get($l, danger), 25%), color.mix(#fff, map.get($d, danger), 15%))};
+    @include scheme(danger, map.get($l, danger), color.mix(map.get($l, danger), #000, 85%));
+  }
+
   #{light($when)} {
-    @include tokens($light-values);
+    --aui-shadow-token: #{map.get($l, shadow)};
+    @include scheme(primary, map.get($l, brand-solid), map.get($l, accent-solid));
+    @include scheme(accent, map.get($l, accent-solid));
+    @include scheme(secondary, map.get($l, surface-2), map.get($l, border));
+    @include scheme(inverse, map.get($l, text), color.mix(map.get($l, text), map.get($l, surface), 85%));
   }
 
   #{dark($when)} {
-    @include tokens($dark-values);
-  }
-
-  #{both($when)} {
-    --bs-danger: #{map.get($light-values, danger)};
-    --bs-danger-rgb: #{rgb(map.get($light-values, danger))};
-    @include scheme(danger, map.get($light-values, danger), color.mix(map.get($light-values, danger), #000, 85%));
+    --aui-shadow-token: #{map.get($d, shadow)};
+    @include scheme(primary, map.get($d, brand-solid), map.get($d, accent-solid));
+    @include scheme(accent, map.get($d, accent-solid));
+    @include scheme(secondary, map.get($d, surface-2), map.get($d, border));
+    @include scheme(inverse, map.get($d, text), color.mix(map.get($d, text), map.get($d, surface), 85%));
   }
 }
 
@@ -242,117 +245,128 @@
     --aui-th-weight: 600;
     --aui-th-padding: var(--aui-cell-py);
     --aui-numbers-font: inherit;
+    --aui-input-bg: light-dark(var(--aui-surface), var(--aui-surface-2));
+    --aui-toast-shadow: light-dark(var(--aui-shadow-xl), 0 10px 15px -3px rgba(0, 0, 0, .5)) ;
 
+    // Type and radii of Bootstrap
     --bs-body-font-family: var(--aui-font);
     --bs-body-font-size: .875rem;
     --bs-body-line-height: 1.5;
-    --bs-font-monospace: var(--aui-font-mono);
-    --bs-border-radius: var(--aui-radius);
-    --bs-border-radius-sm: var(--aui-radius-sm);
-    --bs-border-radius-lg: var(--aui-radius-lg);
-    --bs-border-radius-xl: var(--aui-radius-lg);
-    --bs-border-radius-pill: var(--aui-pill);
+    --bs-font-mono: var(--aui-font-mono);
+    --bs-radius-5: var(--aui-radius-sm);
+    --bs-radius-7: var(--aui-radius);
+    --bs-radius-9: var(--aui-radius-lg);
+    --bs-radius-pill: var(--aui-pill);
+
+    // Surfaces, text, borders and links of Bootstrap 6 from the theme tokens
+    --bs-bg-body: var(--aui-surface);
+    --bs-bg-1: var(--aui-surface-muted);
+    --bs-bg-2: var(--aui-surface-2);
+    --bs-bg-3: var(--aui-fill);
+    --bs-bg-4: var(--aui-border);
+    --bs-fg-body: var(--aui-text);
+    --bs-fg-1: color-mix(in srgb, var(--aui-text), var(--aui-text-muted) 35%);
+    --bs-fg-2: var(--aui-text-muted);
+    --bs-fg-3: var(--aui-text-faint);
+    --bs-fg-4: var(--aui-text-dim);
+    --bs-heading-color: var(--aui-text);
+    --bs-border-color: var(--aui-border);
+    --bs-border-color-translucent: var(--aui-border);
+    --bs-border-subtle: color-mix(in srgb, var(--aui-border) 60%, var(--aui-surface));
+    --bs-border-muted: var(--aui-border);
+    --bs-border-emphasized: var(--aui-text-dim);
+    --bs-link-color: var(--aui-brand-text);
+    --bs-link-hover-color: var(--aui-brand-text-hover);
+    --bs-focus-ring-color: color-mix(in srgb, var(--aui-brand-focus) 35%, transparent);
+    --bs-mark-bg: var(--aui-brand-soft);
+    --bs-mark-color: var(--aui-text);
+    --bs-btn-input-fg: var(--aui-text);
+    --bs-btn-input-bg: var(--aui-input-bg);
+    // Buttons and inputs share the sizing tokens of Bootstrap 6
+    --bs-btn-input-font-size: .875rem;
+    --bs-btn-input-font-weight: 600;
+    --bs-btn-input-padding-x: 1rem;
+    --bs-btn-input-padding-y: .5rem;
+    --bs-btn-input-border-radius: var(--aui-btn-radius);
+    --bs-btn-input-sm-font-size: .8rem;
+    --bs-btn-input-sm-padding-x: .75rem;
+    --bs-btn-input-sm-padding-y: .3rem;
+    --bs-btn-input-sm-border-radius: var(--aui-radius-sm);
+    --bs-btn-input-lg-font-size: 1rem;
+    --bs-btn-input-lg-border-radius: var(--aui-btn-radius);
+
+    // Theme colors: primary and accent from the palette, danger from its two values
+    --bs-primary-base: var(--aui-brand-solid);
+    --bs-primary-bg: var(--aui-brand-solid);
+    --bs-primary-contrast: var(--aui-brand-contrast);
+    --bs-primary-fg: var(--aui-brand-text);
+    --bs-primary-fg-emphasis: var(--aui-brand-ink);
+    --bs-primary-bg-subtle: var(--aui-brand-soft);
+    --bs-primary-bg-muted: color-mix(in srgb, var(--aui-brand-line-soft) 70%, var(--aui-brand-soft));
+    --bs-primary-border: var(--aui-brand-line-soft);
+    --bs-primary-focus-ring: color-mix(in srgb, var(--aui-brand-focus) 45%, transparent);
+    --bs-accent-base: var(--aui-accent-solid);
+    --bs-accent-bg: var(--aui-accent-solid);
+    --bs-accent-contrast: var(--aui-accent-contrast);
+    --bs-accent-fg: var(--aui-accent-text);
+    --bs-accent-fg-emphasis: var(--aui-accent-ink);
+    --bs-accent-bg-subtle: var(--aui-accent-soft);
+    --bs-accent-bg-muted: color-mix(in srgb, var(--aui-accent-line) 70%, var(--aui-accent-soft));
+    --bs-accent-border: var(--aui-accent-line);
+    --bs-accent-focus-ring: color-mix(in srgb, var(--aui-accent-solid) 40%, transparent);
+    --bs-danger-base: var(--aui-danger-solid);
+    --bs-danger-bg: var(--aui-danger-solid);
+    --bs-danger-contrast: #fff;
+    --bs-danger-fg: var(--aui-danger-text);
+    --bs-danger-fg-emphasis: var(--aui-danger-ink);
+    --bs-danger-bg-subtle: color-mix(in srgb, var(--aui-danger-text) 12%, var(--aui-surface));
+    --bs-danger-bg-muted: color-mix(in srgb, var(--aui-danger-text) 24%, var(--aui-surface));
+    --bs-danger-border: color-mix(in srgb, var(--aui-danger-text) 40%, var(--aui-surface));
+    --bs-danger-focus-ring: color-mix(in srgb, var(--aui-danger-solid) 45%, transparent);
 
     // Status colors: solid fills are the same in every theme
-    --bs-success: #059669;
-    --bs-success-rgb: 5, 150, 105;
-    --bs-warning: #d97706;
-    --bs-warning-rgb: 217, 119, 6;
-    --bs-info: #0284c7;
-    --bs-info-rgb: 2, 132, 199;
-    --bs-tertiary: #059669;
-    --bs-tertiary-rgb: 5, 150, 105;
-    --bs-secondary: #64748b;
+    @include color-from-base(success, #059669);
+    @include color-from-base(info, #0284c7);
+    @include color-from-base(warning, #d97706);
+    @include color-from-base(focus, light-dark(#334155, #475569));
     @include scheme(success, #059669, color.mix(#059669, #000, 85%));
     @include scheme(info, #0284c7, color.mix(#0284c7, #000, 85%));
     @include scheme(warning, #d97706, color.mix(#d97706, #000, 85%));
-    @include scheme(secondary, #64748b, color.mix(#64748b, #000, 85%));
-    --bs-secondary-rgb: 100, 116, 139;
-    --bs-yellow: #eab308;
-    --aui-primary-contrast: #fff;
-    --aui-success-contrast: #fff;
-    --aui-info-contrast: #fff;
-    --aui-warning-contrast: #fff;
-    --aui-danger-contrast: #fff;
-    --aui-alternate-contrast: #fff;
-    --aui-tertiary-contrast: #fff;
+
+    // Secondary is the neutral of the theme (Bootstrap 6: a light surface with the body text on it);
+    // inverse swaps text and surface
+    --bs-secondary-base: var(--aui-fill);
+    --bs-secondary-bg: var(--aui-fill);
+    --bs-secondary-contrast: var(--aui-text);
+    --bs-secondary-fg: var(--aui-text-muted);
+    --bs-secondary-fg-emphasis: var(--aui-text);
+    --bs-secondary-bg-subtle: var(--aui-surface-muted);
+    --bs-secondary-bg-muted: var(--aui-surface-2);
+    --bs-secondary-border: var(--aui-border);
+    --bs-secondary-focus-ring: color-mix(in srgb, var(--aui-text-dim) 40%, transparent);
+    --bs-inverse-base: var(--aui-text);
+    --bs-inverse-bg: var(--aui-text);
+    --bs-inverse-contrast: var(--aui-surface);
+    --bs-inverse-fg: var(--aui-text);
+    --bs-inverse-fg-emphasis: var(--aui-text);
+    --bs-inverse-bg-subtle: var(--aui-surface-2);
+    --bs-inverse-bg-muted: var(--aui-fill);
+    --bs-inverse-border: var(--aui-text-dim);
+    --bs-inverse-focus-ring: color-mix(in srgb, var(--aui-text) 40%, transparent);
 
     // ArchitectUI gradients in theme colors
     --aui-gradient-primary: linear-gradient(120deg, var(--aui-brand-solid), var(--aui-accent-solid));
     --aui-gradient-primary-subtle: linear-gradient(120deg, var(--aui-brand-soft), var(--aui-accent-soft));
-    @each $name in (success, info, warning, danger, secondary) {
-      --aui-gradient-#{$name}: linear-gradient(120deg, var(--bs-#{$name}), color-mix(in srgb, var(--bs-#{$name}), #fff 30%));
-      --aui-gradient-#{$name}-subtle: linear-gradient(120deg, var(--bs-#{$name}-bg-subtle), var(--bs-#{$name}-border-subtle));
+    @each $name in (success, info, warning, danger, secondary, inverse) {
+      --aui-gradient-#{$name}: linear-gradient(120deg, var(--bs-#{$name}-bg), color-mix(in srgb, var(--bs-#{$name}-bg), #fff 30%));
+      --aui-gradient-#{$name}-subtle: linear-gradient(120deg, var(--bs-#{$name}-bg-subtle), var(--bs-#{$name}-border));
     }
-    --aui-gradient-dark: linear-gradient(120deg, var(--bs-dark), color-mix(in srgb, var(--bs-dark), #fff 15%));
-    --aui-gradient-dark-subtle: var(--aui-gradient-dark);
-    --aui-gradient-light: linear-gradient(120deg, var(--aui-surface-2), var(--aui-border));
-    --aui-gradient-light-subtle: var(--aui-gradient-light);
-  }
 
-  #{light($when)} {
-    --bs-success-bg-subtle: #ecfdf5;
-    --bs-success-text-emphasis: #047857;
-    --bs-success-border-subtle: #a7f3d0;
-    --bs-danger-bg-subtle: #fff1f2;
-    --bs-danger-text-emphasis: #be123c;
-    --bs-danger-border-subtle: #fecdd3;
-    --bs-warning-bg-subtle: #fffbeb;
-    --bs-warning-text-emphasis: #b45309;
-    --bs-warning-border-subtle: #fde68a;
-    --bs-info-bg-subtle: #f0f9ff;
-    --bs-info-text-emphasis: #0369a1;
-    --bs-info-border-subtle: #bae6fd;
-    --bs-light: #f1f5f9;
-    --bs-light-rgb: 241, 245, 249;
-    --bs-dark: #1e293b;
-    --bs-dark-rgb: 30, 41, 59;
-    --bs-focus: #334155;
-    @include scheme(dark, #1e293b, color.mix(#1e293b, #fff, 85%));
-    @include scheme(focus, #334155);
-    --bs-focus-rgb: 51, 65, 85;
-    --aui-light-contrast: #0f172a;
-    --aui-dark-contrast: #fff;
-    --aui-focus-contrast: #fff;
-    --aui-input-bg: var(--aui-surface);
-    --aui-toast-shadow: var(--aui-shadow-xl);
-  }
-
-  #{dark($when)} {
-    --bs-success-bg-subtle: rgba(16, 185, 129, .14);
-    --bs-success-text-emphasis: #6ee7b7;
-    --bs-success-border-subtle: rgba(52, 211, 153, .4);
-    --bs-danger-bg-subtle: rgba(244, 63, 94, .14);
-    --bs-danger-text-emphasis: #fda4af;
-    --bs-danger-border-subtle: rgba(251, 113, 133, .4);
-    --bs-warning-bg-subtle: rgba(245, 158, 11, .14);
-    --bs-warning-text-emphasis: #fcd34d;
-    --bs-warning-border-subtle: rgba(251, 191, 36, .4);
-    --bs-info-bg-subtle: rgba(14, 165, 233, .14);
-    --bs-info-text-emphasis: #7dd3fc;
-    --bs-info-border-subtle: rgba(56, 189, 248, .4);
-    --bs-light: #334155;
-    --bs-light-rgb: 51, 65, 85;
-    --bs-dark: #0f172a;
-    --bs-dark-rgb: 15, 23, 42;
-    --bs-focus: #475569;
-    @include scheme(dark, #0f172a, color.mix(#0f172a, #fff, 85%));
-    @include scheme(focus, #475569);
-    --bs-focus-rgb: 71, 85, 105;
-    --aui-light-contrast: #e2e8f0;
-    --aui-dark-contrast: #e2e8f0;
-    --aui-focus-contrast: #fff;
-    --aui-input-bg: var(--aui-surface-2);
-    --aui-toast-shadow: 0 10px 15px -3px rgba(0, 0, 0, .5), 0 4px 6px -2px rgba(0, 0, 0, .4);
-    color-scheme: dark;
-  }
-
-  // ArchitectUI tokens read the theme tokens in both modes
-  #{both($when)} {
+    // ArchitectUI tokens read the theme tokens in both modes
     --aui-shadow: var(--aui-card-shadow);
     --aui-shadow-soft: var(--aui-shadow-md);
     --aui-shadow-lg: var(--aui-shadow-xl);
-    --aui-shadow-rgb: 0, 0, 0;
+    --aui-shadow-color: rgba(0, 0, 0, .35);
     --aui-hover-bg: var(--aui-fill);
     --aui-heading-bg: var(--aui-surface-2);
     --aui-title-color: var(--aui-text-faint);
@@ -366,8 +380,18 @@
     --aui-header-link-hover: var(--aui-text);
   }
 
-  #{html($when)} {
-    font-size: var(--aui-root-size);
+  #{light($when)} {
+    @include scheme(focus, #334155);
+  }
+
+  #{dark($when)} {
+    @include scheme(focus, #475569);
+  }
+
+  @layer custom {
+    #{html($when)} {
+      font-size: var(--aui-root-size);
+    }
   }
 
   @include scope($when) {
@@ -431,7 +455,7 @@
       background: var(--aui-border);
     }
 
-    .aui-sidebar > .offcanvas-md {
+    .aui-sidebar > .drawer {
       scrollbar-color: var(--aui-border) transparent;
     }
 
@@ -471,9 +495,9 @@
       color: var(--aui-brand-text);
     }
 
-    @each $name in (info, success, warning, danger, secondary, dark, focus, alternate) {
+    @each $name in (info, success, warning, danger, secondary, inverse, focus, accent) {
       svg.aui-icon-gradient-#{$name} {
-        color: var(--bs-#{$name});
+        color: var(--bs-#{$name}-fg);
       }
     }
 
@@ -482,7 +506,7 @@
       color: var(--aui-text-faint);
     }
 
-    // Card: border drawn as an inset shadow, subtle drop shadow
+    // Card: a border line and a subtle drop shadow
     .card {
       --bs-card-spacer-y: calc(var(--aui-card-padding) * var(--aui-density));
       --bs-card-spacer-x: calc(var(--aui-card-padding) * var(--aui-density));
@@ -490,7 +514,8 @@
       --bs-card-border-radius: var(--aui-radius-lg);
       --bs-card-inner-border-radius: calc(var(--aui-radius-lg) - 1px);
       --bs-card-cap-bg: transparent;
-      box-shadow: inset 0 0 0 1px var(--aui-border), var(--aui-card-shadow);
+      --bs-card-border-color: var(--aui-border);
+      --bs-card-box-shadow: var(--aui-card-shadow);
     }
 
     .card-header {
@@ -514,20 +539,7 @@
       background: var(--aui-surface-2);
     }
 
-    // Colored card shadows stay visible over the card rule above
-    @each $name in (primary, secondary, success, info, warning, danger, light, dark, focus, alternate) {
-      .aui-card-shadow-#{$name} {
-        box-shadow: inset 0 0 0 1px var(--aui-border), 0 .25rem 1rem -.25rem rgba(var(--bs-#{$name}-rgb), .45);
-      }
-    }
-
-    // Buttons
-    .btn {
-      --bs-btn-font-size: .875rem;
-      --bs-btn-font-weight: 600;
-      --bs-btn-padding-x: 1rem;
-      --bs-btn-padding-y: .5rem;
-      --bs-btn-border-radius: var(--aui-btn-radius);
+    :where(.btn-solid, .btn-outline, .btn-subtle, .btn-text, .btn-link, .btn-icon) {
       --bs-btn-disabled-opacity: .5;
 
       &:focus-visible {
@@ -536,51 +548,18 @@
       }
     }
 
-    .btn-sm,
-    .btn-group-sm > .btn {
-      --bs-btn-font-size: .8rem;
-      --bs-btn-padding-x: .75rem;
-      --bs-btn-padding-y: .3rem;
-      --bs-btn-border-radius: var(--aui-radius-sm);
-    }
-
-    .btn-group > .btn,
-    .btn-group-lg > .btn {
-      --bs-btn-font-size: .875rem;
-    }
-
-    .btn-primary {
-      --bs-btn-bg: var(--aui-brand-solid);
-      --bs-btn-border-color: var(--aui-brand-solid);
+    .btn-solid:where(.theme-primary, :not([class*="theme-"])) {
       --bs-btn-hover-bg: var(--aui-brand-solid-hover);
       --bs-btn-hover-border-color: var(--aui-brand-solid-hover);
       --bs-btn-active-bg: var(--aui-brand-solid-hover);
       --bs-btn-active-border-color: var(--aui-brand-solid-hover);
-      --bs-btn-disabled-bg: var(--aui-brand-solid);
-      --bs-btn-disabled-border-color: var(--aui-brand-solid);
       --bs-btn-font-weight: 700;
       box-shadow: var(--aui-btn-primary-shadow);
     }
 
-    .btn-outline-primary {
+    .btn-outline:where(.theme-primary, :not([class*="theme-"])) {
       --bs-btn-color: var(--aui-brand-text);
       --bs-btn-border-color: var(--aui-brand-line);
-    }
-
-    .btn-secondary,
-    .btn-light {
-      --bs-btn-color: var(--aui-text-muted);
-      --bs-btn-bg: var(--aui-surface);
-      --bs-btn-border-color: var(--aui-border);
-      --bs-btn-hover-color: var(--aui-text);
-      --bs-btn-hover-bg: var(--aui-fill);
-      --bs-btn-hover-border-color: var(--aui-border);
-      --bs-btn-active-color: var(--aui-text);
-      --bs-btn-active-bg: var(--aui-fill);
-      --bs-btn-active-border-color: var(--aui-border);
-      --bs-btn-disabled-color: var(--aui-text-muted);
-      --bs-btn-disabled-bg: var(--aui-surface);
-      --bs-btn-disabled-border-color: var(--aui-border);
     }
 
     .btn-link {
@@ -588,59 +567,37 @@
       --bs-btn-hover-color: var(--aui-brand-text-hover);
     }
 
-    .aui-btn-transition {
-      --bs-btn-color: var(--aui-text-muted);
-      --bs-btn-border-color: var(--aui-border);
-    }
-
     // Inputs
-    .form-control,
-    .form-select {
-      border-color: var(--aui-border);
-      border-radius: var(--aui-input-radius);
-      background-color: var(--aui-input-bg);
-      color: var(--aui-text);
-      font-size: .875rem;
-
-      &::placeholder {
-        color: var(--aui-text-dim);
-      }
-
-      &:focus {
-        border-color: var(--aui-brand-line);
-        box-shadow: 0 0 0 2px var(--aui-brand-focus);
-      }
+    .form-control {
+      --bs-control-font-size: .875rem;
+      --bs-control-border-color: var(--aui-border);
+      --bs-control-border-radius: var(--aui-input-radius);
+      --bs-control-bg: var(--aui-input-bg);
+      --bs-control-fg: var(--aui-text);
+      --bs-control-placeholder-color: var(--aui-text-dim);
     }
 
-    .form-control-lg,
-    .form-select-lg {
-      font-size: 1rem;
+    .form-control-lg {
+      --bs-control-font-size: 1rem;
     }
 
-    .form-control-sm,
-    .form-select-sm {
-      font-size: .8rem;
+    .form-control-sm {
+      --bs-control-font-size: .8rem;
     }
 
     .input-group-text {
-      border-color: var(--aui-border);
-      background: var(--aui-surface-2);
-      color: var(--aui-text-muted);
+      --bs-input-group-addon-border-color: var(--aui-border);
+      --bs-input-group-addon-bg: var(--aui-surface-2);
+      --bs-input-group-addon-color: var(--aui-text-muted);
     }
 
-    .form-check-input {
-      border-color: var(--aui-border);
-      background-color: var(--aui-input-bg);
-
-      &:checked {
-        border-color: var(--aui-brand-solid);
-        background-color: var(--aui-brand-solid);
-      }
-
-      &:focus {
-        border-color: var(--aui-brand-line);
-        box-shadow: 0 0 0 2px var(--aui-brand-focus);
-      }
+    .check,
+    .radio,
+    .switch {
+      --bs-control-border-color: var(--aui-border);
+      --bs-control-bg: var(--aui-input-bg);
+      --bs-control-checked-bg: var(--aui-brand-solid);
+      --bs-control-checked-border-color: var(--aui-brand-solid);
     }
 
     // Tables
@@ -653,11 +610,9 @@
       --bs-table-hover-bg: var(--aui-brand-veil);
       --bs-table-hover-color: var(--aui-text);
       --bs-table-active-bg: var(--aui-brand-veil);
+      --bs-table-cell-padding-y: calc(var(--aui-cell-py) * var(--aui-density));
+      --bs-table-cell-padding-x: calc(var(--aui-cell-px) * var(--aui-density));
       font-size: .875rem;
-
-      > :not(caption) > * > * {
-        padding: calc(var(--aui-cell-py) * var(--aui-density)) calc(var(--aui-cell-px) * var(--aui-density));
-      }
 
       > thead th,
       > thead td {
@@ -681,32 +636,12 @@
       }
     }
 
-    // .table-dark stays dark in every theme and mode
-    .table-dark {
-      --bs-table-color: #e2e8f0;
-      --bs-table-bg: var(--bs-dark);
-      --bs-table-border-color: rgba(255, 255, 255, .12);
-      --bs-table-striped-bg: rgba(255, 255, 255, .04);
-      --bs-table-striped-color: #e2e8f0;
-      --bs-table-hover-bg: rgba(255, 255, 255, .06);
-      --bs-table-hover-color: #fff;
-
-      > thead th,
-      > thead td {
-        background: var(--bs-table-bg);
-        color: rgba(255, 255, 255, .6);
-      }
-
-      > tbody > tr > :first-child {
-        color: #fff;
-      }
+    .table-sm {
+      --bs-table-cell-padding-y: calc(var(--aui-cell-py) * var(--aui-density) / 2);
+      --bs-table-cell-padding-x: calc(var(--aui-cell-px) * var(--aui-density) / 2);
     }
 
-    .table-sm > :not(caption) > * > * {
-      padding: calc(var(--aui-cell-py) * var(--aui-density) / 2) calc(var(--aui-cell-px) * var(--aui-density) / 2);
-    }
-
-    // Badges, dropdowns, modals and other components
+    // Badges, menus, dialogs and other components
     .badge {
       --bs-badge-font-size: .75rem;
       --bs-badge-font-weight: 700;
@@ -717,45 +652,36 @@
       text-transform: none;
     }
 
-    .dropdown-menu {
-      --bs-dropdown-bg: var(--aui-surface);
-      --bs-dropdown-border-color: var(--aui-border);
-      --bs-dropdown-border-radius: var(--aui-radius);
-      --bs-dropdown-link-color: var(--aui-text);
-      --bs-dropdown-link-hover-bg: var(--aui-fill);
-      --bs-dropdown-link-active-bg: var(--aui-brand-soft);
-      --bs-dropdown-link-active-color: var(--aui-brand-ink);
-      --bs-dropdown-header-color: var(--aui-text-faint);
-      box-shadow: var(--aui-shadow-md);
+    .menu {
+      --bs-menu-bg: var(--aui-surface);
+      --bs-menu-border-color: var(--aui-border);
+      --bs-menu-border-radius: var(--aui-radius);
+      --bs-menu-item-color: var(--aui-text);
+      --bs-menu-item-hover-bg: var(--aui-fill);
+      --bs-menu-item-active-bg: var(--aui-brand-soft);
+      --bs-menu-item-active-color: var(--aui-brand-ink);
+      --bs-menu-header-color: var(--aui-text-faint);
+      --bs-menu-box-shadow: var(--aui-shadow-md);
     }
 
-    .modal {
-      --bs-modal-bg: var(--aui-surface);
-      --bs-modal-border-color: var(--aui-border);
-      --bs-modal-border-radius: var(--aui-radius-lg);
-      --bs-modal-inner-border-radius: calc(var(--aui-radius-lg) - 1px);
-      --bs-modal-padding: 1.5rem;
-      --bs-modal-header-border-color: var(--aui-border);
-      --bs-modal-footer-border-color: var(--aui-border);
+    .dialog {
+      --bs-dialog-bg: var(--aui-surface);
+      --bs-dialog-border-color: var(--aui-border);
+      --bs-dialog-border-radius: var(--aui-radius-lg);
+      --bs-dialog-padding: 1.5rem;
+      --bs-dialog-header-padding: 1.5rem;
+      --bs-dialog-footer-padding: 1.5rem;
+      --bs-dialog-header-border-color: var(--aui-border);
+      --bs-dialog-footer-border-color: var(--aui-border);
+      --bs-dialog-box-shadow: var(--aui-shadow-xl);
+      --bs-dialog-backdrop-bg: rgba(15, 23, 42, .6);
+      --bs-dialog-backdrop-blur: 8px;
     }
 
-    .modal-dialog {
-      box-shadow: none;
-    }
-
-    .modal-content {
-      box-shadow: var(--aui-shadow-xl);
-    }
-
-    .modal-header,
-    .modal-footer {
-      background: var(--aui-surface);
-    }
-
-    .modal-backdrop {
-      --bs-backdrop-bg: #0f172a;
-      --bs-backdrop-opacity: .6;
-      backdrop-filter: blur(8px);
+    .drawer {
+      --bs-drawer-bg: var(--aui-surface);
+      --bs-drawer-border-color: var(--aui-border);
+      --bs-drawer-box-shadow: var(--aui-shadow-xl);
     }
 
     .popover {
@@ -763,7 +689,7 @@
       --bs-popover-border-color: var(--aui-border);
       --bs-popover-border-radius: var(--aui-radius);
       --bs-popover-header-bg: var(--aui-surface-2);
-      box-shadow: var(--aui-shadow-md);
+      --bs-popover-box-shadow: var(--aui-shadow-md);
     }
 
     .tooltip {
@@ -779,7 +705,7 @@
       --bs-toast-border-radius: var(--aui-radius);
       --bs-toast-header-bg: var(--aui-surface);
       --bs-toast-header-color: var(--aui-text);
-      box-shadow: var(--aui-toast-shadow);
+      --bs-toast-box-shadow: var(--aui-toast-shadow);
     }
 
     .list-group {
@@ -790,22 +716,18 @@
       --bs-list-group-action-hover-bg: var(--aui-fill);
       --bs-list-group-active-bg: var(--aui-brand-solid);
       --bs-list-group-active-border-color: var(--aui-brand-solid);
+      --bs-list-group-active-color: var(--aui-brand-contrast);
     }
 
-    .list-group-item {
-      border-color: var(--aui-border);
-    }
-
-    // The card border is an inset shadow; a flush list with its own background would cover it
     .card .list-group-flush {
       --bs-list-group-bg: transparent;
     }
 
     .accordion {
       --bs-accordion-bg: var(--aui-surface);
+      --bs-accordion-btn-bg: var(--aui-surface);
       --bs-accordion-border-color: var(--aui-border);
-      --bs-accordion-border-radius: var(--aui-radius-lg);
-      --bs-accordion-inner-border-radius: calc(var(--aui-radius-lg) - 1px);
+      --bs-accordion-radius: var(--aui-radius-lg);
       --bs-accordion-active-bg: var(--aui-brand-soft);
       --bs-accordion-active-color: var(--aui-brand-ink);
     }
@@ -817,8 +739,6 @@
       --bs-pagination-hover-bg: var(--aui-fill);
       --bs-pagination-hover-color: var(--aui-brand-text-hover);
       --bs-pagination-hover-border-color: var(--aui-border);
-      --bs-pagination-active-bg: var(--aui-brand-solid);
-      --bs-pagination-active-border-color: var(--aui-brand-solid);
       --bs-pagination-disabled-bg: var(--aui-surface);
       --bs-pagination-border-radius: var(--aui-radius);
     }
@@ -830,7 +750,10 @@
     }
 
     .nav-pills {
+      --bs-nav-pills-bg: transparent;
+      --bs-nav-pills-padding: 0;
       --bs-nav-pills-border-radius: var(--aui-radius);
+      --bs-nav-pills-link-border-radius: var(--aui-radius);
     }
 
     .nav-tabs {
@@ -843,8 +766,16 @@
       --bs-alert-border-radius: var(--aui-radius);
     }
 
-    .btn.aui-mode-toggle,
-    .btn.aui-header-btn {
+    .stepper {
+      --bs-stepper-bg: var(--aui-surface-2);
+    }
+
+    .avatar {
+      --bs-avatar-bg: var(--aui-surface-2);
+    }
+
+    .aui-mode-toggle,
+    .aui-header-btn {
       box-shadow: inset 0 0 0 1px var(--aui-border);
     }
   }
@@ -877,8 +808,12 @@
 //   @include t.depth(#4338ca, (primary: (#4f46e5, #0ea5e9), success: ...));
 // $tint colors the light-mode shadows (dark mode uses black). $gradients replaces --aui-gradient-<name>: a pair of
 // colors (a 120deg gradient; it also sets the header and sidebar scheme of that color) or any CSS gradient
-// (the keys of $aui-gradients: primary, success, info, warning, danger, secondary, dark, light and their -subtle);
+// (the keys of $aui-gradients: primary, success, info, warning, danger, secondary, inverse and their -subtle);
 // the bg-<color> utilities paint them over the color.
+@function depth-shadow($amount) {
+  @return color-mix(in srgb, var(--aui-depth-color) #{$amount}, transparent);
+}
+
 @mixin depth($tint, $gradients: ()) {
   :root {
     @each $name, $gradient in $gradients {
@@ -888,115 +823,100 @@
         --aui-gradient-#{$name}: #{$gradient};
       }
     }
-  }
 
-  // A gradient given as two colors also sets the header and sidebar scheme of that color
-  #{both()} {
+    // A gradient given as two colors also sets the header and sidebar scheme of that color
     @each $name, $gradient in $gradients {
-      @if meta.type-of($gradient) == list and list.index((primary, secondary, success, info, warning, danger, light, dark), $name) {
+      @if meta.type-of($gradient) == list and list.index((primary, accent, secondary, success, info, warning, danger, inverse, focus), $name) {
         @include scheme($name, list.nth($gradient, 1), list.nth($gradient, 2));
       }
     }
-  }
 
-  #{light()} {
-    --aui-depth-rgb: #{rgb($tint)};
-    --aui-shadow-color: rgba(#{rgb($tint)}, .09);
-  }
-
-  #{dark()} {
-    --aui-depth-rgb: 0, 0, 0;
-    --aui-shadow-color: rgba(0, 0, 0, .35);
-  }
-
-  #{both()} {
-    --aui-shadow-rgb: var(--aui-depth-rgb);
+    --aui-depth-color: light-dark(#{$tint}, #000);
+    --aui-shadow-color: light-dark(#{rgba($tint, .09)}, rgba(0, 0, 0, .35));
     --aui-shadow: 0 1.3rem 1.7rem 0 var(--aui-shadow-color);
-    --aui-shadow-soft: 0 .46875rem 2.1875rem rgba(var(--aui-depth-rgb), .03), 0 .9375rem 1.40625rem rgba(var(--aui-depth-rgb), .03), 0 .25rem .53125rem rgba(var(--aui-depth-rgb), .05), 0 .125rem .1875rem rgba(var(--aui-depth-rgb), .03);
-    --aui-shadow-lg: 0 .76875rem 2.4875rem rgba(var(--aui-depth-rgb), .3), 0 1.3375rem 1.70625rem rgba(var(--aui-depth-rgb), .3), 0 .55rem .53125rem rgba(0, 0, 0, .05), 0 .225rem .4375rem rgba(var(--aui-depth-rgb), .3);
+    --aui-shadow-soft: 0 .46875rem 2.1875rem #{depth-shadow(3%)}, 0 .9375rem 1.40625rem #{depth-shadow(3%)}, 0 .25rem .53125rem #{depth-shadow(5%)}, 0 .125rem .1875rem #{depth-shadow(3%)};
+    --aui-shadow-lg: 0 .76875rem 2.4875rem #{depth-shadow(30%)}, 0 1.3375rem 1.70625rem #{depth-shadow(30%)}, 0 .55rem .53125rem rgba(0, 0, 0, .05), 0 .225rem .4375rem #{depth-shadow(30%)};
     --aui-card-shadow: var(--aui-shadow);
     --aui-toast-shadow: var(--aui-shadow-soft);
     --aui-title-color: var(--aui-brand-text);
-    --aui-card-border-color: rgba(var(--aui-depth-rgb), .12);
+    --aui-card-border-color: #{depth-shadow(12%)};
+    // Bootstrap shadows (.shadow, .hover-lift) take the tint too
+    --bs-shadow-color: var(--aui-depth-color);
   }
 
-  // Frame: the header and the sidebar float on soft shadows
-  .aui-header {
-    border-bottom: 0;
-    box-shadow: var(--aui-shadow);
-  }
+  @layer custom {
+    // Frame: the header and the sidebar float on soft shadows
+    .aui-header {
+      border-bottom: 0;
+      box-shadow: var(--aui-shadow);
+    }
 
-  .aui-footer {
-    border-top: 0;
-    border-bottom-left-radius: var(--aui-radius-lg);
-  }
+    .aui-footer {
+      border-top: 0;
+      border-bottom-left-radius: var(--aui-radius-lg);
+    }
 
-  .aui-sidebar {
-    border-right: 0;
-    box-shadow: 7px 0 60px rgba(var(--aui-depth-rgb), .07);
-  }
-
-  @media (max-width: 767.98px) {
     .aui-sidebar {
+      border-right: 0;
+      box-shadow: 7px 0 60px #{depth-shadow(7%)};
+    }
+
+    @media (width < 768px) {
+      .aui-sidebar {
+        box-shadow: none;
+      }
+    }
+
+    // Group headings in the brand color on the plain sidebar; a color scheme keeps its own heading color
+    :where(:root:not([data-aui-sidebar-scheme])) .aui-sidebar h6 {
+      color: var(--aui-brand-text);
+    }
+
+    .aui-sidebar .nav-link.active {
+      background: var(--aui-surface);
+      box-shadow: 0 20px 27px 0 #{depth-shadow(8%)};
+      color: var(--aui-text);
+    }
+
+    .aui-sidebar .nav .nav .nav-link.active {
+      background: var(--aui-brand-soft);
       box-shadow: none;
+      color: var(--aui-brand-ink);
     }
-  }
 
-  // Group headings in the brand color on the plain sidebar; a color scheme keeps its own heading color
-  :where(:root:not([data-aui-sidebar-scheme])) .aui-sidebar h6 {
-    color: var(--aui-brand-text);
-  }
-
-  .aui-sidebar .nav-link.active {
-    background: var(--aui-surface);
-    box-shadow: 0 20px 27px 0 rgba(var(--aui-depth-rgb), .08);
-    color: var(--aui-text);
-  }
-
-  .aui-sidebar .nav .nav .nav-link.active {
-    background: var(--aui-brand-soft);
-    box-shadow: none;
-    color: var(--aui-brand-ink);
-  }
-
-  .aui-page-title > :has(> [data-lucide]) {
-    box-shadow: var(--aui-shadow);
-  }
-
-  // Cards: a shadow without a border line, uppercase titles in the brand color
-  .card {
-    box-shadow: var(--aui-shadow);
-  }
-
-  .card-title {
-    color: var(--aui-title-color);
-    font-size: var(--bs-body-font-size);
-    letter-spacing: .02em;
-    text-transform: uppercase;
-  }
-
-  @each $name in (primary, secondary, success, info, warning, danger, light, dark, focus, alternate) {
-    .aui-card-shadow-#{$name} {
-      box-shadow: 0 .46875rem 2.1875rem rgba(var(--bs-#{$name}-rgb), .03), 0 .9375rem 1.40625rem rgba(var(--bs-#{$name}-rgb), .03), 0 .25rem .53125rem rgba(var(--bs-#{$name}-rgb), .05), 0 .125rem .1875rem rgba(var(--bs-#{$name}-rgb), .03);
+    .aui-page-title > :has(> [data-lucide]) {
+      box-shadow: var(--aui-shadow);
     }
-  }
 
-  // Menus and overlays on layered soft shadows
-  .dropdown-menu {
-    --bs-dropdown-border-color: var(--aui-card-border-color);
-    box-shadow: var(--aui-shadow-soft);
-  }
+    // Cards: a shadow without a border line, uppercase titles in the brand color
+    .card {
+      --bs-card-border-color: transparent;
+    }
 
-  .popover {
-    --bs-popover-border-color: var(--aui-card-border-color);
-    box-shadow: var(--aui-shadow);
-  }
+    .card-title {
+      color: var(--aui-title-color);
+      font-size: var(--bs-body-font-size);
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
 
-  .modal-content {
-    box-shadow: var(--aui-shadow-lg);
-  }
+    // Menus and overlays on layered soft shadows
+    .menu {
+      --bs-menu-border-color: var(--aui-card-border-color);
+      --bs-menu-box-shadow: var(--aui-shadow-soft);
+    }
 
-  .badge {
-    text-transform: uppercase;
+    .popover {
+      --bs-popover-border-color: var(--aui-card-border-color);
+      --bs-popover-box-shadow: var(--aui-shadow);
+    }
+
+    .dialog {
+      --bs-dialog-box-shadow: var(--aui-shadow-lg);
+    }
+
+    .badge {
+      text-transform: uppercase;
+    }
   }
 }

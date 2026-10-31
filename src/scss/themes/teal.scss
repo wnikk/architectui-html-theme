@@ -38,15 +38,15 @@
 }
 
 // Zebra rows in every table
-:root:not([data-bs-theme="dark"]) .table > tbody > tr:nth-child(even) > * {
-  --bs-table-bg-type: var(--aui-surface-muted);
-}
-
-[data-bs-theme="dark"] .table > tbody > tr:nth-child(even) > * {
-  --bs-table-bg-type: var(--aui-surface-2);
+@layer custom {
+  .table > tbody > tr:nth-child(even) > * {
+    --bs-table-bg-type: light-dark(var(--aui-surface-muted), var(--aui-surface-2));
+  }
 }
 
 // Widget numbers take --aui-numbers-font from the core; here the digits also get equal widths
-.aui-number {
-  font-variant-numeric: tabular-nums;
+@layer custom {
+  .aui-number {
+    font-variant-numeric: tabular-nums;
+  }
 }

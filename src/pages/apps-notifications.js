@@ -68,7 +68,7 @@
     } else if (action.dataset.action === "toggle-read" && item) {
       setRead(item, item.dataset.unread === "true");
     } else if (action.dataset.action === "remove" && item) {
-      window.bootstrap.Dropdown.getInstance(item.querySelector('[data-bs-toggle="dropdown"]'))?.hide();
+      window.bootstrap.Menu.getInstance(item.querySelector('[data-bs-toggle="menu"]'))?.hide();
       item.remove();
       notify("Notification removed");
     }

@@ -22,8 +22,8 @@
       const badge = column.querySelector("[data-count]");
       const over = Boolean(column.dataset.limit) && count > Number(column.dataset.limit);
       badge.textContent = count;
-      badge.classList.toggle("text-bg-danger", over);
-      badge.classList.toggle("text-bg-secondary", !over);
+      badge.classList.toggle("theme-danger", over);
+      badge.classList.toggle("theme-secondary", !over);
       badge.title = over ? "More cards than the limit" : "";
       column.querySelectorAll("[data-move-to]").forEach((item) => {
         item.disabled = item.dataset.moveTo === column.dataset.column;

@@ -8,7 +8,7 @@
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="architectui.css?v=6.2.37">
 
 <script>
@@ -40,7 +40,9 @@
 })();
 </script>
 
-<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+<script type="importmap">{ "imports": { "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" } }</script>
+<script type="module">import * as bootstrap from "bootstrap"; window.bootstrap = bootstrap; document.dispatchEvent(new Event("aui:bootstrap"));</script>
 <script defer src="https://cdn.jsdelivr.net/npm/lucide@1.65.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.6.1/dist/chart.umd.min.js" crossorigin="anonymous"></script>
 
@@ -60,7 +62,7 @@
 
 </head>
 <body>
-    <a class="visually-hidden-focusable btn btn-primary aui-skip-link" href="#main">Skip to content</a>
+    <a class="visually-hidden-focusable btn-solid theme-primary aui-skip-link" href="#main">Skip to content</a>
     
 <svg class="position-absolute" width="0" height="0" aria-hidden="true" focusable="false">
     <defs>
@@ -70,150 +72,151 @@
         <linearGradient id="aui-gradient-warning" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f6d365"/><stop offset="1" stop-color="#fda085"/></linearGradient>
         <linearGradient id="aui-gradient-danger" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f093fb"/><stop offset="1" stop-color="#f5576c"/></linearGradient>
         <linearGradient id="aui-gradient-secondary" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#29323c"/><stop offset="1" stop-color="#485563"/></linearGradient>
-        <linearGradient id="aui-gradient-dark" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
+        <linearGradient id="aui-gradient-inverse" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
         <linearGradient id="aui-gradient-focus" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3a3648"/><stop offset="1" stop-color="#5d5873"/></linearGradient>
-        <linearGradient id="aui-gradient-alternate" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
+        <linearGradient id="aui-gradient-accent" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
     </defs>
 </svg>
 
     <div class="aui-app">
-        <header class="navbar navbar-expand-md aui-header">
+        <header class="navbar navbar-expand aui-header">
     <div class="navbar-brand">
-        <button type="button" class="btn aui-burger d-md-none" data-bs-toggle="offcanvas" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
+        <button type="button" class="aui-burger md:d-none" data-bs-toggle="drawer" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
         
 <a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
     <img src="assets/images/logo.svg" alt="ArchitectUI">
     <img src="assets/images/logo-on-dark.svg" alt="">
 </a>
 
-        <button type="button" class="btn aui-burger d-none d-xl-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
-        <button type="button" class="btn btn-primary btn-sm d-md-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
+        <button type="button" class="aui-burger d-none xl:d-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
+        <button type="button" class="btn-solid btn-icon btn-sm theme-primary md:d-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
     </div>
-    <div class="collapse navbar-collapse" id="auiHeaderContent">
+    <div class="collapse aui-header-panel" id="auiHeaderContent">
         
-<form class="aui-expand me-3" role="search" action="pages-search.html" data-aui-expand>
+<form class="aui-expand me-5" role="search" action="pages-search.html" data-aui-expand>
     <input type="search" class="form-control" name="q" placeholder="Type to search" aria-label="Search" autocomplete="off">
-    <button type="button" class="btn" data-aui-expand-toggle aria-label="Search"></button>
+    <button type="button" data-aui-expand-toggle aria-label="Search"></button>
     <button type="button" class="btn-close" data-aui-expand-close aria-label="Close search"></button>
 </form>
-<ul class="navbar-nav d-none d-md-flex">
+<ul class="navbar-nav d-none md:d-flex">
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="database" class="me-2"></i>Statistics</a>
+        <a href="#" class="nav-link"><i data-lucide="database"></i>Statistics</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="square-pen" class="me-2"></i>Projects</a>
+        <a href="#" class="nav-link"><i data-lucide="square-pen"></i>Projects</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="settings" class="me-2"></i>Settings</a>
+        <a href="#" class="nav-link"><i data-lucide="settings"></i>Settings</a>
     </li>
 </ul>
 
-        <div class="d-flex align-items-center gap-3 ms-auto">
-            <span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
-<a class="btn aui-header-btn" href="apps-notifications.html" aria-label="Notifications, 4 unread">
+        <div class="d-flex align-items-center gap-5 ms-auto">
+            <span class="badge theme-success d-none lg:d-inline-flex"><i data-lucide="activity"></i>All systems normal</span>
+<a class="aui-header-btn" href="apps-notifications.html" aria-label="Notifications, 4 unread">
     <i data-lucide="bell"></i>
-    <span class="badge text-bg-danger" data-notification-count aria-hidden="true">4</span>
+    <span class="badge theme-danger" data-notification-count aria-hidden="true">4</span>
 </a>
-<div class="btn-group aui-theme-switch">
-    <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+<div class="aui-theme-switch">
+    <button type="button" class="aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
         <i data-lucide="moon"></i>
         <i data-lucide="sun"></i>
     </button>
-    <button type="button" class="btn aui-mode-toggle dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Choose a theme"></button>
-    <div class="dropdown-menu dropdown-menu-end">
-        <h6 class="dropdown-header">Theme</h6>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="">
+    <button type="button" class="aui-mode-toggle" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Choose a theme"><i data-lucide="chevron-down"></i></button>
+    <div class="menu">
+        <h6 class="menu-header">Theme</h6>
+        <button type="button" class="menu-item" data-aui-setting="theme" value="">
             <span class="aui-theme-dot" style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
             <span>Business</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="orange">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="orange">
             <span class="aui-theme-dot" style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
             <span>Orange</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="indigo">
             <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
             <span>Indigo</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo-img">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="indigo-img">
             <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
             <span>Indigo Calathea</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="coffee">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="coffee">
             <span class="aui-theme-dot" style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
             <span>Coffee</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="green">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="green">
             <span class="aui-theme-dot" style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
             <span>Garden</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="raspberry">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="raspberry">
             <span class="aui-theme-dot" style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
             <span>Warm</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="teal">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="teal">
             <span class="aui-theme-dot" style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
             <span>Operations</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="violet">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="violet">
             <span class="aui-theme-dot" style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
             <span>Space</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="cyberpunk">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="cyberpunk">
             <span class="aui-theme-dot" style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
             <span>Cyberpunk</span>
             <small class="opacity-75">dark only</small>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal" class="me-2 opacity-50"></i>All interface settings</a>
+        <hr class="menu-divider">
+        <a class="menu-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal"></i>All interface settings</a>
     </div>
 </div>
-<div class="dropdown">
-    <a class="d-inline-flex align-items-center text-reset text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
-        <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
-        <i data-lucide="chevron-down" class="ms-2 opacity-75"></i>
+<div>
+    <a class="d-inline-flex align-items-center fg-reset text-decoration-none" href="#" role="button" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="User menu">
+        <span class="avatar"><img src="assets/images/avatars/1.jpg" class="avatar-img" alt=""></span>
+        <i data-lucide="chevron-down" class="ms-3 opacity-75"></i>
     </a>
-    <div class="dropdown-menu dropdown-menu-end">
-        <a class="dropdown-item" href="pages-profile.html"><i data-lucide="user" class="me-2 opacity-50"></i>My profile</a>
-        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="settings" class="me-2 opacity-50"></i>Interface settings</a>
-        <h6 class="dropdown-header">Workspace</h6>
-        <a class="dropdown-item" href="apps-users.html"><i data-lucide="users" class="me-2 opacity-50"></i>Team members</a>
-        <a class="dropdown-item" href="pages-pricing.html"><i data-lucide="credit-card" class="me-2 opacity-50"></i>Billing</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="pages-login.html"><i data-lucide="log-out" class="me-2 opacity-50"></i>Sign out</a>
+    <div class="menu">
+        <a class="menu-item" href="pages-profile.html"><i data-lucide="user"></i>My profile</a>
+        <a class="menu-item" href="pages-profile.html#interface"><i data-lucide="settings"></i>Interface settings</a>
+        <h6 class="menu-header">Workspace</h6>
+        <a class="menu-item" href="apps-users.html"><i data-lucide="users"></i>Team members</a>
+        <a class="menu-item" href="pages-pricing.html"><i data-lucide="credit-card"></i>Billing</a>
+        <hr class="menu-divider">
+        <a class="menu-item" href="pages-login.html"><i data-lucide="log-out"></i>Sign out</a>
     </div>
 </div>
-<div class="d-none d-xxl-block lh-sm">
+<div class="d-none 2xl:d-block lh-sm">
     <div class="fw-bold opacity-75 text-nowrap">Alina Mclourd</div>
     <div class="small opacity-50 text-nowrap">VP People Manager</div>
 </div>
-<button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 d-none d-xxl-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
+<button type="button" class="btn-solid btn-icon btn-sm theme-primary shadow-sm shadow-primary d-none 2xl:d-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar"></i></button>
 
         </div>
     </div>
 </header>
 
-        <aside class="aui-sidebar">
-    <div class="offcanvas-md offcanvas-start" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
-        <div class="offcanvas-header">
+        
+<aside class="aui-sidebar">
+    <dialog class="drawer drawer-start drawer-sheet md:drawer" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
+        <div class="drawer-header">
             
 <a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
     <img src="assets/images/logo.svg" alt="ArchitectUI">
     <img src="assets/images/logo-on-dark.svg" alt="">
 </a>
 
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#auiSidebar" aria-label="Close menu"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close menu"></button>
         </div>
-        <div class="offcanvas-body">
+        <div class="drawer-body">
             <ul class="nav flex-column flex-nowrap" id="auiNav">
                 <li class="nav-item"><h6>Dashboards</h6></li>
                 <li class="nav-item">
@@ -228,7 +231,7 @@
                 </li>
                 <li class="nav-item"><h6>UI Components</h6></li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
+                    <a class="nav-link" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
                         <i data-lucide="gem"></i>Elements<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-elements" data-bs-parent="#auiNav">
@@ -246,7 +249,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-components">
+                    <a class="nav-link" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-components">
                         <i data-lucide="car"></i>Components<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-components" data-bs-parent="#auiNav">
@@ -267,7 +270,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-tables" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-tables">
+                    <a class="nav-link" href="#nav-tables" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-tables">
                         <i data-lucide="table"></i>Tables<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-tables" data-bs-parent="#auiNav">
@@ -353,7 +356,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-authentication">
+                    <a class="nav-link" href="#nav-authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-authentication">
                         <i data-lucide="log-in"></i>Authentication<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-authentication" data-bs-parent="#auiNav">
@@ -365,7 +368,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-errors">
+                    <a class="nav-link" href="#nav-errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-errors">
                         <i data-lucide="triangle-alert"></i>Errors<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-errors" data-bs-parent="#auiNav">
@@ -389,88 +392,74 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </dialog>
 </aside>
 
         <main class="d-flex flex-column" id="main" tabindex="-1">
             <div class="flex-grow-1 aui-content">
-                <div class="aui-page-title d-md-flex align-items-center text-center text-md-start">
-    <div class="d-none d-md-flex align-items-center justify-content-center flex-shrink-0 me-4">
+                <div class="aui-page-title md:d-flex align-items-center text-center md:text-start">
+    <div class="d-none md:d-flex align-items-center justify-content-center flex-shrink-0 me-7">
         <i data-lucide="monitor" class="aui-icon-gradient-primary"></i>
     </div>
     <div>
         <h1>Operations Wall</h1>
         <p>Live overview for wide screens: key figures, traffic, regions, services, events and activity on one page.</p>
     </div>
-    <div class="ms-md-auto mt-3 mt-md-0 d-print-none">
-    <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
+    <div class="md:ms-auto mt-5 md:mt-0 d-flex justify-content-center gap-5 print:d-none">
+    <button type="button" class="btn-solid btn-icon theme-inverse shadow-sm shadow-inverse" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
         <i data-lucide="star"></i>
     </button>
-    <div class="d-inline-block dropdown">
-        <button type="button" class="btn btn-info aui-btn-shadow d-inline-flex align-items-center gap-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons
+    <div>
+        <button type="button" class="btn-solid theme-info shadow-sm shadow-info" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false">
+            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons<i data-lucide="chevron-down"></i>
         </button>
-        <div class="dropdown-menu dropdown-menu-end">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="inbox" class="me-2"></i><span>Inbox</span><span class="ms-auto badge rounded-pill bg-secondary">86</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="book-open" class="me-2"></i><span>Reports</span><span class="ms-auto badge rounded-pill bg-danger">5</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="image" class="me-2"></i><span>Media</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link disabled" aria-disabled="true"><i data-lucide="file" class="me-2"></i><span>Archive</span></a>
-                </li>
-            </ul>
+        <div class="menu">
+            <a href="#" class="menu-item"><i data-lucide="inbox"></i><span>Inbox</span><span class="ms-auto badge theme-secondary">86</span></a>
+            <a href="#" class="menu-item"><i data-lucide="book-open"></i><span>Reports</span><span class="ms-auto badge theme-danger">5</span></a>
+            <a href="#" class="menu-item"><i data-lucide="image"></i><span>Media</span></a>
+            <a href="#" class="menu-item disabled" aria-disabled="true"><i data-lucide="file"></i><span>Archive</span></a>
         </div>
     </div>
 </div>
 
 </div>
 
-                <div class="card mb-3">
-    <div class="card-body d-flex flex-wrap align-items-center gap-2 gap-md-3 py-2">
+                <div class="card mb-5">
+    <div class="card-body d-flex flex-wrap align-items-center gap-3 md:gap-5 py-3">
         <div class="btn-group btn-group-sm" role="radiogroup" aria-label="Period">
-            <input type="radio" class="btn-check" name="ops-period" id="ops-period-1h" value="1h" checked>
-            <label class="btn btn-outline-primary" for="ops-period-1h">1 h</label>
-            <input type="radio" class="btn-check" name="ops-period" id="ops-period-24h" value="24h">
-            <label class="btn btn-outline-primary" for="ops-period-24h">24 h</label>
-            <input type="radio" class="btn-check" name="ops-period" id="ops-period-7d" value="7d">
-            <label class="btn btn-outline-primary" for="ops-period-7d">7 days</label>
-            <input type="radio" class="btn-check" name="ops-period" id="ops-period-30d" value="30d">
-            <label class="btn btn-outline-primary" for="ops-period-30d">30 days</label>
+            <label class="btn-check btn-outline theme-primary"><input type="radio"  name="ops-period" value="1h" checked>1 h</label>
+            <label class="btn-check btn-outline theme-primary"><input type="radio"  name="ops-period" value="24h">24 h</label>
+            <label class="btn-check btn-outline theme-primary"><input type="radio"  name="ops-period" value="7d">7 days</label>
+            <label class="btn-check btn-outline theme-primary"><input type="radio"  name="ops-period" value="30d">30 days</label>
         </div>
         <label class="visually-hidden" for="ops-region">Region</label>
-        <select class="form-select form-select-sm w-auto" id="ops-region">
+        <select class="form-control form-control-sm w-auto" id="ops-region">
             <option value="">All regions</option>
             <option value="eu-west">EU West</option>
             <option value="us-east">US East</option>
             <option value="us-west">US West</option>
             <option value="apac">Asia Pacific</option>
         </select>
-        <div class="form-check form-switch mb-0">
-            <input class="form-check-input" type="checkbox" role="switch" id="ops-refresh" checked>
-            <label class="form-check-label" for="ops-refresh">Auto-refresh</label>
+        <div class="form-field mb-0">
+            <div class="switch"><input type="checkbox" role="switch" switch id="ops-refresh" checked></div>
+            <label for="ops-refresh">Auto-refresh</label>
         </div>
-        <div class="ms-auto d-flex align-items-center gap-2 small text-body-secondary">
+        <div class="ms-auto d-flex align-items-center gap-3 small fg-2">
             <i data-lucide="clock"></i><span>Updated <time id="ops-updated">14:32:05</time></span>
-            <button type="button" class="btn btn-outline-secondary btn-sm" id="ops-reload" aria-label="Refresh now"><i data-lucide="refresh-cw"></i></button>
+            <button type="button" class="btn-outline theme-secondary btn-sm" id="ops-reload" aria-label="Refresh now"><i data-lucide="refresh-cw"></i></button>
         </div>
     </div>
 </div>
-<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-4xl-8 g-3 mb-3">
+<div class="row row-cols-1 sm:row-cols-2 lg:row-cols-4 3xl:row-cols-8 g-5 mb-5">
     <div class="col">
         <div class="card h-100">
-            <div class="card-body pb-2">
-                <div class="d-flex align-items-center justify-content-between gap-2 small text-body-secondary">
+            <div class="card-body pb-3">
+                <div class="d-flex align-items-center justify-content-between gap-3 small fg-2">
                     <span class="text-truncate">Requests / min</span>
-                    <span class="d-inline-flex align-items-center text-nowrap text-success"><i data-lucide="arrow-up-right"></i>+6.4%</span>
+                    <span class="d-inline-flex align-items-center text-nowrap fg-success"><i data-lucide="arrow-up-right"></i>+6.4%</span>
                 </div>
-                <div class="aui-number fs-4 fw-bold lh-sm mt-1">48.2k</div>
-                <div class="aui-sparkline mt-2">
+                <div class="aui-number fs-xl fw-bold lh-sm mt-1">48.2k</div>
+                <div class="aui-sparkline mt-3">
                     <canvas data-ops-chart="spark" data-ops-key="requests" data-ops-color="primary" role="img" aria-label="Requests / min trend"></canvas>
                 </div>
             </div>
@@ -478,13 +467,13 @@
     </div>
     <div class="col">
         <div class="card h-100">
-            <div class="card-body pb-2">
-                <div class="d-flex align-items-center justify-content-between gap-2 small text-body-secondary">
+            <div class="card-body pb-3">
+                <div class="d-flex align-items-center justify-content-between gap-3 small fg-2">
                     <span class="text-truncate">Error rate</span>
-                    <span class="d-inline-flex align-items-center text-nowrap text-success"><i data-lucide="arrow-down-right"></i>−0.08 pp</span>
+                    <span class="d-inline-flex align-items-center text-nowrap fg-success"><i data-lucide="arrow-down-right"></i>−0.08 pp</span>
                 </div>
-                <div class="aui-number fs-4 fw-bold lh-sm mt-1">0.42%</div>
-                <div class="aui-sparkline mt-2">
+                <div class="aui-number fs-xl fw-bold lh-sm mt-1">0.42%</div>
+                <div class="aui-sparkline mt-3">
                     <canvas data-ops-chart="spark" data-ops-key="errors" data-ops-color="danger" role="img" aria-label="Error rate trend"></canvas>
                 </div>
             </div>
@@ -492,13 +481,13 @@
     </div>
     <div class="col">
         <div class="card h-100">
-            <div class="card-body pb-2">
-                <div class="d-flex align-items-center justify-content-between gap-2 small text-body-secondary">
+            <div class="card-body pb-3">
+                <div class="d-flex align-items-center justify-content-between gap-3 small fg-2">
                     <span class="text-truncate">p95 latency</span>
-                    <span class="d-inline-flex align-items-center text-nowrap text-warning"><i data-lucide="arrow-up-right"></i>+12 ms</span>
+                    <span class="d-inline-flex align-items-center text-nowrap fg-warning"><i data-lucide="arrow-up-right"></i>+12 ms</span>
                 </div>
-                <div class="aui-number fs-4 fw-bold lh-sm mt-1">182 ms</div>
-                <div class="aui-sparkline mt-2">
+                <div class="aui-number fs-xl fw-bold lh-sm mt-1">182 ms</div>
+                <div class="aui-sparkline mt-3">
                     <canvas data-ops-chart="spark" data-ops-key="latency" data-ops-color="warning" role="img" aria-label="p95 latency trend"></canvas>
                 </div>
             </div>
@@ -506,13 +495,13 @@
     </div>
     <div class="col">
         <div class="card h-100">
-            <div class="card-body pb-2">
-                <div class="d-flex align-items-center justify-content-between gap-2 small text-body-secondary">
+            <div class="card-body pb-3">
+                <div class="d-flex align-items-center justify-content-between gap-3 small fg-2">
                     <span class="text-truncate">Active sessions</span>
-                    <span class="d-inline-flex align-items-center text-nowrap text-success"><i data-lucide="arrow-up-right"></i>+3.1%</span>
+                    <span class="d-inline-flex align-items-center text-nowrap fg-success"><i data-lucide="arrow-up-right"></i>+3.1%</span>
                 </div>
-                <div class="aui-number fs-4 fw-bold lh-sm mt-1">12,840</div>
-                <div class="aui-sparkline mt-2">
+                <div class="aui-number fs-xl fw-bold lh-sm mt-1">12,840</div>
+                <div class="aui-sparkline mt-3">
                     <canvas data-ops-chart="spark" data-ops-key="sessions" data-ops-color="info" role="img" aria-label="Active sessions trend"></canvas>
                 </div>
             </div>
@@ -520,13 +509,13 @@
     </div>
     <div class="col">
         <div class="card h-100">
-            <div class="card-body pb-2">
-                <div class="d-flex align-items-center justify-content-between gap-2 small text-body-secondary">
+            <div class="card-body pb-3">
+                <div class="d-flex align-items-center justify-content-between gap-3 small fg-2">
                     <span class="text-truncate">Orders / hour</span>
-                    <span class="d-inline-flex align-items-center text-nowrap text-success"><i data-lucide="arrow-up-right"></i>+8.9%</span>
+                    <span class="d-inline-flex align-items-center text-nowrap fg-success"><i data-lucide="arrow-up-right"></i>+8.9%</span>
                 </div>
-                <div class="aui-number fs-4 fw-bold lh-sm mt-1">1,326</div>
-                <div class="aui-sparkline mt-2">
+                <div class="aui-number fs-xl fw-bold lh-sm mt-1">1,326</div>
+                <div class="aui-sparkline mt-3">
                     <canvas data-ops-chart="spark" data-ops-key="orders" data-ops-color="success" role="img" aria-label="Orders / hour trend"></canvas>
                 </div>
             </div>
@@ -534,13 +523,13 @@
     </div>
     <div class="col">
         <div class="card h-100">
-            <div class="card-body pb-2">
-                <div class="d-flex align-items-center justify-content-between gap-2 small text-body-secondary">
+            <div class="card-body pb-3">
+                <div class="d-flex align-items-center justify-content-between gap-3 small fg-2">
                     <span class="text-truncate">Revenue today</span>
-                    <span class="d-inline-flex align-items-center text-nowrap text-success"><i data-lucide="arrow-up-right"></i>+5.2%</span>
+                    <span class="d-inline-flex align-items-center text-nowrap fg-success"><i data-lucide="arrow-up-right"></i>+5.2%</span>
                 </div>
-                <div class="aui-number fs-4 fw-bold lh-sm mt-1">$184,320</div>
-                <div class="aui-sparkline mt-2">
+                <div class="aui-number fs-xl fw-bold lh-sm mt-1">$184,320</div>
+                <div class="aui-sparkline mt-3">
                     <canvas data-ops-chart="spark" data-ops-key="revenue" data-ops-color="success" role="img" aria-label="Revenue today trend"></canvas>
                 </div>
             </div>
@@ -548,13 +537,13 @@
     </div>
     <div class="col">
         <div class="card h-100">
-            <div class="card-body pb-2">
-                <div class="d-flex align-items-center justify-content-between gap-2 small text-body-secondary">
+            <div class="card-body pb-3">
+                <div class="d-flex align-items-center justify-content-between gap-3 small fg-2">
                     <span class="text-truncate">Queue depth</span>
-                    <span class="d-inline-flex align-items-center text-nowrap text-danger"><i data-lucide="arrow-up-right"></i>+38</span>
+                    <span class="d-inline-flex align-items-center text-nowrap fg-danger"><i data-lucide="arrow-up-right"></i>+38</span>
                 </div>
-                <div class="aui-number fs-4 fw-bold lh-sm mt-1">214</div>
-                <div class="aui-sparkline mt-2">
+                <div class="aui-number fs-xl fw-bold lh-sm mt-1">214</div>
+                <div class="aui-sparkline mt-3">
                     <canvas data-ops-chart="spark" data-ops-key="queue" data-ops-color="danger" role="img" aria-label="Queue depth trend"></canvas>
                 </div>
             </div>
@@ -562,13 +551,13 @@
     </div>
     <div class="col">
         <div class="card h-100">
-            <div class="card-body pb-2">
-                <div class="d-flex align-items-center justify-content-between gap-2 small text-body-secondary">
+            <div class="card-body pb-3">
+                <div class="d-flex align-items-center justify-content-between gap-3 small fg-2">
                     <span class="text-truncate">Average CPU</span>
-                    <span class="d-inline-flex align-items-center text-nowrap text-success"><i data-lucide="arrow-down-right"></i>−4%</span>
+                    <span class="d-inline-flex align-items-center text-nowrap fg-success"><i data-lucide="arrow-down-right"></i>−4%</span>
                 </div>
-                <div class="aui-number fs-4 fw-bold lh-sm mt-1">61%</div>
-                <div class="aui-sparkline mt-2">
+                <div class="aui-number fs-xl fw-bold lh-sm mt-1">61%</div>
+                <div class="aui-sparkline mt-3">
                     <canvas data-ops-chart="spark" data-ops-key="cpu" data-ops-color="secondary" role="img" aria-label="Average CPU trend"></canvas>
                 </div>
             </div>
@@ -576,10 +565,10 @@
     </div>
 </div>
 
-<div class="row g-3 mb-3">
-    <div class="col-12 col-xl-8 col-3xl-6">
+<div class="row g-5 mb-5">
+    <div class="col-12 xl:col-8 2xl:col-6">
         <div class="card h-100">
-            <div class="card-header"><i data-lucide="chart-line" class="me-2"></i>Requests by region</div>
+            <div class="card-header"><i data-lucide="chart-line" class="me-3"></i>Requests by region</div>
             <div class="card-body">
                 <div class="aui-chart aui-chart-lg">
                     <canvas data-ops-chart="traffic" role="img" aria-label="Requests per minute by region"></canvas>
@@ -587,77 +576,77 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-6 col-xl-4 col-3xl-3">
+    <div class="col-12 md:col-6 xl:col-4 2xl:col-3">
         <div class="card h-100">
-            <div class="card-header"><i data-lucide="map-pin" class="me-2"></i>Regions</div>
+            <div class="card-header"><i data-lucide="map-pin" class="me-3"></i>Regions</div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    <div class="d-flex align-items-center gap-2">
+                    <div class="d-flex align-items-center gap-3">
                         <span class="fw-bold">EU West</span>
-                        <span class="badge text-bg-danger ms-auto">Incident</span>
+                        <span class="badge theme-danger ms-auto">Incident</span>
                     </div>
-                    <div class="d-flex flex-wrap column-gap-3 small text-body-secondary mt-1">
-                        <span>Traffic <span class="aui-number text-body">38%</span></span>
-                        <span>p95 <span class="aui-number text-body">164 ms</span></span>
-                        <span>Errors <span class="aui-number text-body">0.61%</span></span>
+                    <div class="d-flex flex-wrap column-gap-5 small fg-2 mt-1">
+                        <span>Traffic <span class="aui-number fg-body">38%</span></span>
+                        <span>p95 <span class="aui-number fg-body">164 ms</span></span>
+                        <span>Errors <span class="aui-number fg-body">0.61%</span></span>
                     </div>
-                    <div class="progress mt-2" role="progressbar" aria-label="EU West traffic share" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" style="height: .25rem">
+                    <div class="progress mt-3" role="progressbar" aria-label="EU West traffic share" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" style="height: .25rem">
                         <div class="progress-bar bg-primary" style="width: 38%"></div>
                     </div>
                 </li>
                 <li class="list-group-item">
-                    <div class="d-flex align-items-center gap-2">
+                    <div class="d-flex align-items-center gap-3">
                         <span class="fw-bold">US East</span>
-                        <span class="badge text-bg-warning ms-auto">Degraded</span>
+                        <span class="badge theme-warning ms-auto">Degraded</span>
                     </div>
-                    <div class="d-flex flex-wrap column-gap-3 small text-body-secondary mt-1">
-                        <span>Traffic <span class="aui-number text-body">31%</span></span>
-                        <span>p95 <span class="aui-number text-body">212 ms</span></span>
-                        <span>Errors <span class="aui-number text-body">0.48%</span></span>
+                    <div class="d-flex flex-wrap column-gap-5 small fg-2 mt-1">
+                        <span>Traffic <span class="aui-number fg-body">31%</span></span>
+                        <span>p95 <span class="aui-number fg-body">212 ms</span></span>
+                        <span>Errors <span class="aui-number fg-body">0.48%</span></span>
                     </div>
-                    <div class="progress mt-2" role="progressbar" aria-label="US East traffic share" aria-valuenow="31" aria-valuemin="0" aria-valuemax="100" style="height: .25rem">
+                    <div class="progress mt-3" role="progressbar" aria-label="US East traffic share" aria-valuenow="31" aria-valuemin="0" aria-valuemax="100" style="height: .25rem">
                         <div class="progress-bar bg-info" style="width: 31%"></div>
                     </div>
                 </li>
                 <li class="list-group-item">
-                    <div class="d-flex align-items-center gap-2">
+                    <div class="d-flex align-items-center gap-3">
                         <span class="fw-bold">US West</span>
-                        <span class="badge text-bg-success ms-auto">Healthy</span>
+                        <span class="badge theme-success ms-auto">Healthy</span>
                     </div>
-                    <div class="d-flex flex-wrap column-gap-3 small text-body-secondary mt-1">
-                        <span>Traffic <span class="aui-number text-body">19%</span></span>
-                        <span>p95 <span class="aui-number text-body">131 ms</span></span>
-                        <span>Errors <span class="aui-number text-body">0.22%</span></span>
+                    <div class="d-flex flex-wrap column-gap-5 small fg-2 mt-1">
+                        <span>Traffic <span class="aui-number fg-body">19%</span></span>
+                        <span>p95 <span class="aui-number fg-body">131 ms</span></span>
+                        <span>Errors <span class="aui-number fg-body">0.22%</span></span>
                     </div>
-                    <div class="progress mt-2" role="progressbar" aria-label="US West traffic share" aria-valuenow="19" aria-valuemin="0" aria-valuemax="100" style="height: .25rem">
+                    <div class="progress mt-3" role="progressbar" aria-label="US West traffic share" aria-valuenow="19" aria-valuemin="0" aria-valuemax="100" style="height: .25rem">
                         <div class="progress-bar bg-success" style="width: 19%"></div>
                     </div>
                 </li>
                 <li class="list-group-item">
-                    <div class="d-flex align-items-center gap-2">
+                    <div class="d-flex align-items-center gap-3">
                         <span class="fw-bold">Asia Pacific</span>
-                        <span class="badge text-bg-success ms-auto">Healthy</span>
+                        <span class="badge theme-success ms-auto">Healthy</span>
                     </div>
-                    <div class="d-flex flex-wrap column-gap-3 small text-body-secondary mt-1">
-                        <span>Traffic <span class="aui-number text-body">12%</span></span>
-                        <span>p95 <span class="aui-number text-body">198 ms</span></span>
-                        <span>Errors <span class="aui-number text-body">0.19%</span></span>
+                    <div class="d-flex flex-wrap column-gap-5 small fg-2 mt-1">
+                        <span>Traffic <span class="aui-number fg-body">12%</span></span>
+                        <span>p95 <span class="aui-number fg-body">198 ms</span></span>
+                        <span>Errors <span class="aui-number fg-body">0.19%</span></span>
                     </div>
-                    <div class="progress mt-2" role="progressbar" aria-label="Asia Pacific traffic share" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="height: .25rem">
+                    <div class="progress mt-3" role="progressbar" aria-label="Asia Pacific traffic share" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="height: .25rem">
                         <div class="progress-bar bg-warning" style="width: 12%"></div>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
-    <div class="col-12 col-md-6 col-xl-12 col-3xl-3">
+    <div class="col-12 md:col-6 xl:col-12 2xl:col-3">
         <div class="card h-100">
-            <div class="card-header"><i data-lucide="gauge" class="me-2"></i>Capacity</div>
+            <div class="card-header"><i data-lucide="gauge" class="me-3"></i>Capacity</div>
             <div class="card-body">
-                <div class="row row-cols-1 row-cols-xl-3 row-cols-3xl-1 g-3">
+                <div class="row row-cols-1 xl:row-cols-3 2xl:row-cols-1 g-5">
                     <div class="col">
                         <div class="d-flex justify-content-between small mb-1">
-                            <span class="text-body-secondary">CPU</span>
+                            <span class="fg-2">CPU</span>
                             <span class="aui-number fw-bold">61%</span>
                         </div>
                         <div class="progress" role="progressbar" aria-label="CPU" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100" style="height: .5rem">
@@ -666,7 +655,7 @@
                     </div>
                     <div class="col">
                         <div class="d-flex justify-content-between small mb-1">
-                            <span class="text-body-secondary">Memory</span>
+                            <span class="fg-2">Memory</span>
                             <span class="aui-number fw-bold">74%</span>
                         </div>
                         <div class="progress" role="progressbar" aria-label="Memory" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100" style="height: .5rem">
@@ -675,7 +664,7 @@
                     </div>
                     <div class="col">
                         <div class="d-flex justify-content-between small mb-1">
-                            <span class="text-body-secondary">Disk</span>
+                            <span class="fg-2">Disk</span>
                             <span class="aui-number fw-bold">48%</span>
                         </div>
                         <div class="progress" role="progressbar" aria-label="Disk" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100" style="height: .5rem">
@@ -684,7 +673,7 @@
                     </div>
                     <div class="col">
                         <div class="d-flex justify-content-between small mb-1">
-                            <span class="text-body-secondary">Network</span>
+                            <span class="fg-2">Network</span>
                             <span class="aui-number fw-bold">37%</span>
                         </div>
                         <div class="progress" role="progressbar" aria-label="Network" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100" style="height: .5rem">
@@ -693,7 +682,7 @@
                     </div>
                     <div class="col">
                         <div class="d-flex justify-content-between small mb-1">
-                            <span class="text-body-secondary">DB connections</span>
+                            <span class="fg-2">DB connections</span>
                             <span class="aui-number fw-bold">82%</span>
                         </div>
                         <div class="progress" role="progressbar" aria-label="DB connections" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" style="height: .5rem">
@@ -702,7 +691,7 @@
                     </div>
                     <div class="col">
                         <div class="d-flex justify-content-between small mb-1">
-                            <span class="text-body-secondary">Queue workers</span>
+                            <span class="fg-2">Queue workers</span>
                             <span class="aui-number fw-bold">93%</span>
                         </div>
                         <div class="progress" role="progressbar" aria-label="Queue workers" aria-valuenow="93" aria-valuemin="0" aria-valuemax="100" style="height: .5rem">
@@ -714,129 +703,129 @@
         </div>
     </div>
 </div>
-<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-4xl-6 g-3 mb-3">
+<div class="row row-cols-1 md:row-cols-2 xl:row-cols-3 3xl:row-cols-6 g-5 mb-5">
     <div class="col">
         <div class="card h-100">
             <div class="card-header">
-                <i data-lucide="shopping-cart" class="me-2"></i><span class="text-truncate">Checkout API</span>
-                <span class="badge text-bg-success ms-auto">Operational</span>
+                <i data-lucide="shopping-cart" class="me-3"></i><span class="text-truncate">Checkout API</span>
+                <span class="badge theme-success ms-auto">Operational</span>
             </div>
             <div class="card-body">
-                <div class="d-flex align-items-baseline gap-2 mb-2">
-                    <span class="aui-number fs-5 fw-bold">8.4k</span>
-                    <span class="small text-body-secondary">req/min</span>
-                    <span class="ms-auto small text-body-secondary text-nowrap">p95 <span class="aui-number text-body">142 ms</span></span>
+                <div class="d-flex align-items-baseline gap-3 mb-3">
+                    <span class="aui-number fs-lg fw-bold">8.4k</span>
+                    <span class="small fg-2">req/min</span>
+                    <span class="ms-auto small fg-2 text-nowrap">p95 <span class="aui-number fg-body">142 ms</span></span>
                 </div>
                 <div class="aui-chart aui-chart-xs">
                     <canvas data-ops-chart="service" data-ops-key="checkout" data-ops-color="success" role="img" aria-label="Checkout API requests per minute"></canvas>
                 </div>
-                <div class="small text-body-secondary mt-2">Uptime 30 days <span class="aui-number text-body">99.99%</span></div>
+                <div class="small fg-2 mt-3">Uptime 30 days <span class="aui-number fg-body">99.99%</span></div>
             </div>
         </div>
     </div>
     <div class="col">
         <div class="card h-100">
             <div class="card-header">
-                <i data-lucide="search" class="me-2"></i><span class="text-truncate">Search</span>
-                <span class="badge text-bg-success ms-auto">Operational</span>
+                <i data-lucide="search" class="me-3"></i><span class="text-truncate">Search</span>
+                <span class="badge theme-success ms-auto">Operational</span>
             </div>
             <div class="card-body">
-                <div class="d-flex align-items-baseline gap-2 mb-2">
-                    <span class="aui-number fs-5 fw-bold">14.1k</span>
-                    <span class="small text-body-secondary">req/min</span>
-                    <span class="ms-auto small text-body-secondary text-nowrap">p95 <span class="aui-number text-body">96 ms</span></span>
+                <div class="d-flex align-items-baseline gap-3 mb-3">
+                    <span class="aui-number fs-lg fw-bold">14.1k</span>
+                    <span class="small fg-2">req/min</span>
+                    <span class="ms-auto small fg-2 text-nowrap">p95 <span class="aui-number fg-body">96 ms</span></span>
                 </div>
                 <div class="aui-chart aui-chart-xs">
                     <canvas data-ops-chart="service" data-ops-key="search" data-ops-color="success" role="img" aria-label="Search requests per minute"></canvas>
                 </div>
-                <div class="small text-body-secondary mt-2">Uptime 30 days <span class="aui-number text-body">99.97%</span></div>
+                <div class="small fg-2 mt-3">Uptime 30 days <span class="aui-number fg-body">99.97%</span></div>
             </div>
         </div>
     </div>
     <div class="col">
         <div class="card h-100">
             <div class="card-header">
-                <i data-lucide="credit-card" class="me-2"></i><span class="text-truncate">Payments</span>
-                <span class="badge text-bg-warning ms-auto">Degraded</span>
+                <i data-lucide="credit-card" class="me-3"></i><span class="text-truncate">Payments</span>
+                <span class="badge theme-warning ms-auto">Degraded</span>
             </div>
             <div class="card-body">
-                <div class="d-flex align-items-baseline gap-2 mb-2">
-                    <span class="aui-number fs-5 fw-bold">3.2k</span>
-                    <span class="small text-body-secondary">req/min</span>
-                    <span class="ms-auto small text-body-secondary text-nowrap">p95 <span class="aui-number text-body">418 ms</span></span>
+                <div class="d-flex align-items-baseline gap-3 mb-3">
+                    <span class="aui-number fs-lg fw-bold">3.2k</span>
+                    <span class="small fg-2">req/min</span>
+                    <span class="ms-auto small fg-2 text-nowrap">p95 <span class="aui-number fg-body">418 ms</span></span>
                 </div>
                 <div class="aui-chart aui-chart-xs">
                     <canvas data-ops-chart="service" data-ops-key="payments" data-ops-color="warning" role="img" aria-label="Payments requests per minute"></canvas>
                 </div>
-                <div class="small text-body-secondary mt-2">Uptime 30 days <span class="aui-number text-body">99.82%</span></div>
+                <div class="small fg-2 mt-3">Uptime 30 days <span class="aui-number fg-body">99.82%</span></div>
             </div>
         </div>
     </div>
     <div class="col">
         <div class="card h-100">
             <div class="card-header">
-                <i data-lucide="package" class="me-2"></i><span class="text-truncate">Catalog</span>
-                <span class="badge text-bg-success ms-auto">Operational</span>
+                <i data-lucide="package" class="me-3"></i><span class="text-truncate">Catalog</span>
+                <span class="badge theme-success ms-auto">Operational</span>
             </div>
             <div class="card-body">
-                <div class="d-flex align-items-baseline gap-2 mb-2">
-                    <span class="aui-number fs-5 fw-bold">11.6k</span>
-                    <span class="small text-body-secondary">req/min</span>
-                    <span class="ms-auto small text-body-secondary text-nowrap">p95 <span class="aui-number text-body">71 ms</span></span>
+                <div class="d-flex align-items-baseline gap-3 mb-3">
+                    <span class="aui-number fs-lg fw-bold">11.6k</span>
+                    <span class="small fg-2">req/min</span>
+                    <span class="ms-auto small fg-2 text-nowrap">p95 <span class="aui-number fg-body">71 ms</span></span>
                 </div>
                 <div class="aui-chart aui-chart-xs">
                     <canvas data-ops-chart="service" data-ops-key="catalog" data-ops-color="success" role="img" aria-label="Catalog requests per minute"></canvas>
                 </div>
-                <div class="small text-body-secondary mt-2">Uptime 30 days <span class="aui-number text-body">99.99%</span></div>
+                <div class="small fg-2 mt-3">Uptime 30 days <span class="aui-number fg-body">99.99%</span></div>
             </div>
         </div>
     </div>
     <div class="col">
         <div class="card h-100">
             <div class="card-header">
-                <i data-lucide="user-round" class="me-2"></i><span class="text-truncate">Accounts</span>
-                <span class="badge text-bg-success ms-auto">Operational</span>
+                <i data-lucide="user-round" class="me-3"></i><span class="text-truncate">Accounts</span>
+                <span class="badge theme-success ms-auto">Operational</span>
             </div>
             <div class="card-body">
-                <div class="d-flex align-items-baseline gap-2 mb-2">
-                    <span class="aui-number fs-5 fw-bold">6.9k</span>
-                    <span class="small text-body-secondary">req/min</span>
-                    <span class="ms-auto small text-body-secondary text-nowrap">p95 <span class="aui-number text-body">54 ms</span></span>
+                <div class="d-flex align-items-baseline gap-3 mb-3">
+                    <span class="aui-number fs-lg fw-bold">6.9k</span>
+                    <span class="small fg-2">req/min</span>
+                    <span class="ms-auto small fg-2 text-nowrap">p95 <span class="aui-number fg-body">54 ms</span></span>
                 </div>
                 <div class="aui-chart aui-chart-xs">
                     <canvas data-ops-chart="service" data-ops-key="auth" data-ops-color="success" role="img" aria-label="Accounts requests per minute"></canvas>
                 </div>
-                <div class="small text-body-secondary mt-2">Uptime 30 days <span class="aui-number text-body">100%</span></div>
+                <div class="small fg-2 mt-3">Uptime 30 days <span class="aui-number fg-body">100%</span></div>
             </div>
         </div>
     </div>
     <div class="col">
         <div class="card h-100">
             <div class="card-header">
-                <i data-lucide="bell" class="me-2"></i><span class="text-truncate">Notifications</span>
-                <span class="badge text-bg-danger ms-auto">Outage</span>
+                <i data-lucide="bell" class="me-3"></i><span class="text-truncate">Notifications</span>
+                <span class="badge theme-danger ms-auto">Outage</span>
             </div>
             <div class="card-body">
-                <div class="d-flex align-items-baseline gap-2 mb-2">
-                    <span class="aui-number fs-5 fw-bold">0.4k</span>
-                    <span class="small text-body-secondary">req/min</span>
-                    <span class="ms-auto small text-body-secondary text-nowrap">p95 <span class="aui-number text-body">—</span></span>
+                <div class="d-flex align-items-baseline gap-3 mb-3">
+                    <span class="aui-number fs-lg fw-bold">0.4k</span>
+                    <span class="small fg-2">req/min</span>
+                    <span class="ms-auto small fg-2 text-nowrap">p95 <span class="aui-number fg-body">—</span></span>
                 </div>
                 <div class="aui-chart aui-chart-xs">
                     <canvas data-ops-chart="service" data-ops-key="notify" data-ops-color="danger" role="img" aria-label="Notifications requests per minute"></canvas>
                 </div>
-                <div class="small text-body-secondary mt-2">Uptime 30 days <span class="aui-number text-body">98.71%</span></div>
+                <div class="small fg-2 mt-3">Uptime 30 days <span class="aui-number fg-body">98.71%</span></div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="row g-3 mb-3">
-    <div class="col-12 col-xxl-8 col-4xl-9">
+<div class="row g-5 mb-5">
+    <div class="col-12 2xl:col-8 3xl:col-9">
         <div class="card h-100">
             <div class="card-header">
-                <i data-lucide="scroll-text" class="me-2"></i>Events
-                <span class="badge rounded-pill text-bg-secondary ms-auto" id="ops-events-count">12</span>
+                <i data-lucide="scroll-text" class="me-3"></i>Events
+                <span class="badge rounded-pill ms-auto theme-secondary" id="ops-events-count">12</span>
             </div>
             <div class="table-responsive">
                 <table class="table table-sm table-hover align-middle mb-0">
@@ -844,187 +833,187 @@
                         <tr>
                             <th scope="col">Time</th>
                             <th scope="col">Severity</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Service</th>
-                            <th scope="col" class="d-none d-md-table-cell">Region</th>
+                            <th scope="col" class="d-none sm:d-table-cell">Service</th>
+                            <th scope="col" class="d-none md:d-table-cell">Region</th>
                             <th scope="col">Event</th>
-                            <th scope="col" class="d-none d-xl-table-cell">Owner</th>
+                            <th scope="col" class="d-none xl:d-table-cell">Owner</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr data-region="eu-west">
                             <td class="text-nowrap aui-number">14:31:08</td>
-                            <td><span class="badge text-bg-danger">Critical</span></td>
-                            <td class="d-none d-sm-table-cell">Notifications</td>
-                            <td class="d-none d-md-table-cell text-nowrap">EU West</td>
-                            <td class="text-body"><div class="d-sm-none small text-body-secondary">Notifications</div>Mail provider rejects connections: 0 of 4 workers healthy</td>
-                            <td class="d-none d-xl-table-cell text-nowrap text-body-secondary">On call: D. Novak</td>
+                            <td><span class="badge theme-danger">Critical</span></td>
+                            <td class="d-none sm:d-table-cell">Notifications</td>
+                            <td class="d-none md:d-table-cell text-nowrap">EU West</td>
+                            <td class="fg-body"><div class="sm:d-none small fg-2">Notifications</div>Mail provider rejects connections: 0 of 4 workers healthy</td>
+                            <td class="d-none xl:d-table-cell text-nowrap fg-2">On call: D. Novak</td>
                         </tr>
                         <tr data-region="us-east">
                             <td class="text-nowrap aui-number">14:29:42</td>
-                            <td><span class="badge text-bg-warning">Warning</span></td>
-                            <td class="d-none d-sm-table-cell">Payments</td>
-                            <td class="d-none d-md-table-cell text-nowrap">US East</td>
-                            <td class="text-body"><div class="d-sm-none small text-body-secondary">Payments</div>p95 latency 418 ms is over the 300 ms target</td>
-                            <td class="d-none d-xl-table-cell text-nowrap text-body-secondary">H. Sato</td>
+                            <td><span class="badge theme-warning">Warning</span></td>
+                            <td class="d-none sm:d-table-cell">Payments</td>
+                            <td class="d-none md:d-table-cell text-nowrap">US East</td>
+                            <td class="fg-body"><div class="sm:d-none small fg-2">Payments</div>p95 latency 418 ms is over the 300 ms target</td>
+                            <td class="d-none xl:d-table-cell text-nowrap fg-2">H. Sato</td>
                         </tr>
                         <tr data-region="eu-west">
                             <td class="text-nowrap aui-number">14:27:15</td>
-                            <td><span class="badge text-bg-warning">Warning</span></td>
-                            <td class="d-none d-sm-table-cell">Queue</td>
-                            <td class="d-none d-md-table-cell text-nowrap">EU West</td>
-                            <td class="text-body"><div class="d-sm-none small text-body-secondary">Queue</div>Order queue depth 214 messages, growing for 9 min</td>
-                            <td class="d-none d-xl-table-cell text-nowrap text-body-secondary">Auto-scaling</td>
+                            <td><span class="badge theme-warning">Warning</span></td>
+                            <td class="d-none sm:d-table-cell">Queue</td>
+                            <td class="d-none md:d-table-cell text-nowrap">EU West</td>
+                            <td class="fg-body"><div class="sm:d-none small fg-2">Queue</div>Order queue depth 214 messages, growing for 9 min</td>
+                            <td class="d-none xl:d-table-cell text-nowrap fg-2">Auto-scaling</td>
                         </tr>
                         <tr data-region="us-west">
                             <td class="text-nowrap aui-number">14:24:51</td>
-                            <td><span class="badge text-bg-info">Info</span></td>
-                            <td class="d-none d-sm-table-cell">Checkout API</td>
-                            <td class="d-none d-md-table-cell text-nowrap">US West</td>
-                            <td class="text-body"><div class="d-sm-none small text-body-secondary">Checkout API</div>Deploy 2026.10.18-3 finished on 12 of 12 nodes</td>
-                            <td class="d-none d-xl-table-cell text-nowrap text-body-secondary">CI</td>
+                            <td><span class="badge theme-info">Info</span></td>
+                            <td class="d-none sm:d-table-cell">Checkout API</td>
+                            <td class="d-none md:d-table-cell text-nowrap">US West</td>
+                            <td class="fg-body"><div class="sm:d-none small fg-2">Checkout API</div>Deploy 2026.10.18-3 finished on 12 of 12 nodes</td>
+                            <td class="d-none xl:d-table-cell text-nowrap fg-2">CI</td>
                         </tr>
                         <tr data-region="apac">
                             <td class="text-nowrap aui-number">14:22:03</td>
-                            <td><span class="badge text-bg-success">Resolved</span></td>
-                            <td class="d-none d-sm-table-cell">Search</td>
-                            <td class="d-none d-md-table-cell text-nowrap">Asia Pacific</td>
-                            <td class="text-body"><div class="d-sm-none small text-body-secondary">Search</div>Index lag is back under 5 s</td>
-                            <td class="d-none d-xl-table-cell text-nowrap text-body-secondary">A. Okafor</td>
+                            <td><span class="badge theme-success">Resolved</span></td>
+                            <td class="d-none sm:d-table-cell">Search</td>
+                            <td class="d-none md:d-table-cell text-nowrap">Asia Pacific</td>
+                            <td class="fg-body"><div class="sm:d-none small fg-2">Search</div>Index lag is back under 5 s</td>
+                            <td class="d-none xl:d-table-cell text-nowrap fg-2">A. Okafor</td>
                         </tr>
                         <tr data-region="us-east">
                             <td class="text-nowrap aui-number">14:18:37</td>
-                            <td><span class="badge text-bg-warning">Warning</span></td>
-                            <td class="d-none d-sm-table-cell">Database</td>
-                            <td class="d-none d-md-table-cell text-nowrap">US East</td>
-                            <td class="text-body"><div class="d-sm-none small text-body-secondary">Database</div>Connection pool at 82% of the limit</td>
-                            <td class="d-none d-xl-table-cell text-nowrap text-body-secondary">Auto-scaling</td>
+                            <td><span class="badge theme-warning">Warning</span></td>
+                            <td class="d-none sm:d-table-cell">Database</td>
+                            <td class="d-none md:d-table-cell text-nowrap">US East</td>
+                            <td class="fg-body"><div class="sm:d-none small fg-2">Database</div>Connection pool at 82% of the limit</td>
+                            <td class="d-none xl:d-table-cell text-nowrap fg-2">Auto-scaling</td>
                         </tr>
                         <tr data-region="eu-west">
                             <td class="text-nowrap aui-number">14:15:10</td>
-                            <td><span class="badge text-bg-info">Info</span></td>
-                            <td class="d-none d-sm-table-cell">Catalog</td>
-                            <td class="d-none d-md-table-cell text-nowrap">EU West</td>
-                            <td class="text-body"><div class="d-sm-none small text-body-secondary">Catalog</div>Price import: 18,204 items updated</td>
-                            <td class="d-none d-xl-table-cell text-nowrap text-body-secondary">Scheduler</td>
+                            <td><span class="badge theme-info">Info</span></td>
+                            <td class="d-none sm:d-table-cell">Catalog</td>
+                            <td class="d-none md:d-table-cell text-nowrap">EU West</td>
+                            <td class="fg-body"><div class="sm:d-none small fg-2">Catalog</div>Price import: 18,204 items updated</td>
+                            <td class="d-none xl:d-table-cell text-nowrap fg-2">Scheduler</td>
                         </tr>
                         <tr data-region="us-east">
                             <td class="text-nowrap aui-number">14:11:46</td>
-                            <td><span class="badge text-bg-danger">Critical</span></td>
-                            <td class="d-none d-sm-table-cell">Payments</td>
-                            <td class="d-none d-md-table-cell text-nowrap">US East</td>
-                            <td class="text-body"><div class="d-sm-none small text-body-secondary">Payments</div>Card processor timeouts: 2.1% of requests</td>
-                            <td class="d-none d-xl-table-cell text-nowrap text-body-secondary">On call: H. Sato</td>
+                            <td><span class="badge theme-danger">Critical</span></td>
+                            <td class="d-none sm:d-table-cell">Payments</td>
+                            <td class="d-none md:d-table-cell text-nowrap">US East</td>
+                            <td class="fg-body"><div class="sm:d-none small fg-2">Payments</div>Card processor timeouts: 2.1% of requests</td>
+                            <td class="d-none xl:d-table-cell text-nowrap fg-2">On call: H. Sato</td>
                         </tr>
                         <tr data-region="us-west">
                             <td class="text-nowrap aui-number">14:08:29</td>
-                            <td><span class="badge text-bg-success">Resolved</span></td>
-                            <td class="d-none d-sm-table-cell">Accounts</td>
-                            <td class="d-none d-md-table-cell text-nowrap">US West</td>
-                            <td class="text-body"><div class="d-sm-none small text-body-secondary">Accounts</div>Login error rate back to normal</td>
-                            <td class="d-none d-xl-table-cell text-nowrap text-body-secondary">L. Meyer</td>
+                            <td><span class="badge theme-success">Resolved</span></td>
+                            <td class="d-none sm:d-table-cell">Accounts</td>
+                            <td class="d-none md:d-table-cell text-nowrap">US West</td>
+                            <td class="fg-body"><div class="sm:d-none small fg-2">Accounts</div>Login error rate back to normal</td>
+                            <td class="d-none xl:d-table-cell text-nowrap fg-2">L. Meyer</td>
                         </tr>
                         <tr data-region="apac">
                             <td class="text-nowrap aui-number">14:05:02</td>
-                            <td><span class="badge text-bg-info">Info</span></td>
-                            <td class="d-none d-sm-table-cell">CDN</td>
-                            <td class="d-none d-md-table-cell text-nowrap">Asia Pacific</td>
-                            <td class="text-body"><div class="d-sm-none small text-body-secondary">CDN</div>Cache hit ratio 96.4%</td>
-                            <td class="d-none d-xl-table-cell text-nowrap text-body-secondary">Monitor</td>
+                            <td><span class="badge theme-info">Info</span></td>
+                            <td class="d-none sm:d-table-cell">CDN</td>
+                            <td class="d-none md:d-table-cell text-nowrap">Asia Pacific</td>
+                            <td class="fg-body"><div class="sm:d-none small fg-2">CDN</div>Cache hit ratio 96.4%</td>
+                            <td class="d-none xl:d-table-cell text-nowrap fg-2">Monitor</td>
                         </tr>
                         <tr data-region="us-west">
                             <td class="text-nowrap aui-number">14:01:55</td>
-                            <td><span class="badge text-bg-warning">Warning</span></td>
-                            <td class="d-none d-sm-table-cell">Checkout API</td>
-                            <td class="d-none d-md-table-cell text-nowrap">US West</td>
-                            <td class="text-body"><div class="d-sm-none small text-body-secondary">Checkout API</div>Error rate 1.2% on node co-07, node drained</td>
-                            <td class="d-none d-xl-table-cell text-nowrap text-body-secondary">Auto-heal</td>
+                            <td><span class="badge theme-warning">Warning</span></td>
+                            <td class="d-none sm:d-table-cell">Checkout API</td>
+                            <td class="d-none md:d-table-cell text-nowrap">US West</td>
+                            <td class="fg-body"><div class="sm:d-none small fg-2">Checkout API</div>Error rate 1.2% on node co-07, node drained</td>
+                            <td class="d-none xl:d-table-cell text-nowrap fg-2">Auto-heal</td>
                         </tr>
                         <tr data-region="eu-west">
                             <td class="text-nowrap aui-number">13:58:20</td>
-                            <td><span class="badge text-bg-info">Info</span></td>
-                            <td class="d-none d-sm-table-cell">Search</td>
-                            <td class="d-none d-md-table-cell text-nowrap">EU West</td>
-                            <td class="text-body"><div class="d-sm-none small text-body-secondary">Search</div>Synonyms dictionary reloaded</td>
-                            <td class="d-none d-xl-table-cell text-nowrap text-body-secondary">M. Chen</td>
+                            <td><span class="badge theme-info">Info</span></td>
+                            <td class="d-none sm:d-table-cell">Search</td>
+                            <td class="d-none md:d-table-cell text-nowrap">EU West</td>
+                            <td class="fg-body"><div class="sm:d-none small fg-2">Search</div>Synonyms dictionary reloaded</td>
+                            <td class="d-none xl:d-table-cell text-nowrap fg-2">M. Chen</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <div class="col-12 col-xxl-4 col-4xl-3">
+    <div class="col-12 2xl:col-4 3xl:col-3">
         <div class="card h-100">
-            <div class="card-header"><i data-lucide="activity" class="me-2"></i>Activity</div>
+            <div class="card-header"><i data-lucide="activity" class="me-3"></i>Activity</div>
             <div class="aui-scroll aui-scroll-lg">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex gap-3" data-region="eu-west">
-                        <img src="assets/images/avatars/4.jpg" width="32" height="32" class="rounded-circle flex-shrink-0" alt="">
+                    <li class="list-group-item d-flex gap-5" data-region="eu-west">
+                        <span class="avatar avatar-sm flex-shrink-0"><img class="avatar-img" src="assets/images/avatars/4.jpg" alt=""></span>
                         <div class="lh-sm">
                             <div><span class="fw-bold">Daniel Novak</span> acknowledged the Notifications outage</div>
-                            <div class="small text-body-secondary mt-1">2 min ago</div>
+                            <div class="small fg-2 mt-1">2 min ago</div>
                         </div>
                     </li>
-                    <li class="list-group-item d-flex gap-3" data-region="us-east">
-                        <img src="assets/images/avatars/9.jpg" width="32" height="32" class="rounded-circle flex-shrink-0" alt="">
+                    <li class="list-group-item d-flex gap-5" data-region="us-east">
+                        <span class="avatar avatar-sm flex-shrink-0"><img class="avatar-img" src="assets/images/avatars/9.jpg" alt=""></span>
                         <div class="lh-sm">
                             <div><span class="fw-bold">Hana Sato</span> opened incident INC-2291 for Payments</div>
-                            <div class="small text-body-secondary mt-1">4 min ago</div>
+                            <div class="small fg-2 mt-1">4 min ago</div>
                         </div>
                     </li>
-                    <li class="list-group-item d-flex gap-3" data-region="eu-west">
-                        <span class="d-inline-flex p-2 rounded-circle text-bg-secondary flex-shrink-0"><i data-lucide="bot"></i></span>
+                    <li class="list-group-item d-flex gap-5" data-region="eu-west">
+                        <span class="d-inline-flex p-3 rounded-circle bg-secondary fg-contrast-secondary flex-shrink-0"><i data-lucide="bot"></i></span>
                         <div class="lh-sm">
                             <div><span class="fw-bold">Auto-scaling</span> added 3 queue workers in EU West</div>
-                            <div class="small text-body-secondary mt-1">6 min ago</div>
+                            <div class="small fg-2 mt-1">6 min ago</div>
                         </div>
                     </li>
-                    <li class="list-group-item d-flex gap-3" data-region="us-west">
-                        <img src="assets/images/avatars/8.jpg" width="32" height="32" class="rounded-circle flex-shrink-0" alt="">
+                    <li class="list-group-item d-flex gap-5" data-region="us-west">
+                        <span class="avatar avatar-sm flex-shrink-0"><img class="avatar-img" src="assets/images/avatars/8.jpg" alt=""></span>
                         <div class="lh-sm">
                             <div><span class="fw-bold">Lucas Meyer</span> approved deploy 2026.10.18-3</div>
-                            <div class="small text-body-secondary mt-1">11 min ago</div>
+                            <div class="small fg-2 mt-1">11 min ago</div>
                         </div>
                     </li>
-                    <li class="list-group-item d-flex gap-3" data-region="apac">
-                        <img src="assets/images/avatars/5.jpg" width="32" height="32" class="rounded-circle flex-shrink-0" alt="">
+                    <li class="list-group-item d-flex gap-5" data-region="apac">
+                        <span class="avatar avatar-sm flex-shrink-0"><img class="avatar-img" src="assets/images/avatars/5.jpg" alt=""></span>
                         <div class="lh-sm">
                             <div><span class="fw-bold">Amara Okafor</span> closed alert “Search index lag”</div>
-                            <div class="small text-body-secondary mt-1">13 min ago</div>
+                            <div class="small fg-2 mt-1">13 min ago</div>
                         </div>
                     </li>
-                    <li class="list-group-item d-flex gap-3" data-region="eu-west">
-                        <img src="assets/images/avatars/11.jpg" width="32" height="32" class="rounded-circle flex-shrink-0" alt="">
+                    <li class="list-group-item d-flex gap-5" data-region="eu-west">
+                        <span class="avatar avatar-sm flex-shrink-0"><img class="avatar-img" src="assets/images/avatars/11.jpg" alt=""></span>
                         <div class="lh-sm">
                             <div><span class="fw-bold">Maria Chen</span> changed the error budget for Checkout to 0.1%</div>
-                            <div class="small text-body-secondary mt-1">21 min ago</div>
+                            <div class="small fg-2 mt-1">21 min ago</div>
                         </div>
                     </li>
-                    <li class="list-group-item d-flex gap-3" data-region="us-east">
-                        <img src="assets/images/avatars/10.jpg" width="32" height="32" class="rounded-circle flex-shrink-0" alt="">
+                    <li class="list-group-item d-flex gap-5" data-region="us-east">
+                        <span class="avatar avatar-sm flex-shrink-0"><img class="avatar-img" src="assets/images/avatars/10.jpg" alt=""></span>
                         <div class="lh-sm">
                             <div><span class="fw-bold">Omar Haddad</span> restarted pods payments-api-4 and -5</div>
-                            <div class="small text-body-secondary mt-1">26 min ago</div>
+                            <div class="small fg-2 mt-1">26 min ago</div>
                         </div>
                     </li>
-                    <li class="list-group-item d-flex gap-3" data-region="apac">
-                        <img src="assets/images/avatars/2.jpg" width="32" height="32" class="rounded-circle flex-shrink-0" alt="">
+                    <li class="list-group-item d-flex gap-5" data-region="apac">
+                        <span class="avatar avatar-sm flex-shrink-0"><img class="avatar-img" src="assets/images/avatars/2.jpg" alt=""></span>
                         <div class="lh-sm">
                             <div><span class="fw-bold">James Patel</span> muted CDN alerts for Asia Pacific until 16:00</div>
-                            <div class="small text-body-secondary mt-1">34 min ago</div>
+                            <div class="small fg-2 mt-1">34 min ago</div>
                         </div>
                     </li>
-                    <li class="list-group-item d-flex gap-3" data-region="eu-west">
-                        <img src="assets/images/avatars/3.jpg" width="32" height="32" class="rounded-circle flex-shrink-0" alt="">
+                    <li class="list-group-item d-flex gap-5" data-region="eu-west">
+                        <span class="avatar avatar-sm flex-shrink-0"><img class="avatar-img" src="assets/images/avatars/3.jpg" alt=""></span>
                         <div class="lh-sm">
                             <div><span class="fw-bold">Sofia Rossi</span> added a runbook to the Queue depth alert</div>
-                            <div class="small text-body-secondary mt-1">41 min ago</div>
+                            <div class="small fg-2 mt-1">41 min ago</div>
                         </div>
                     </li>
-                    <li class="list-group-item d-flex gap-3" data-region="eu-west">
-                        <img src="assets/images/avatars/12.jpg" width="32" height="32" class="rounded-circle flex-shrink-0" alt="">
+                    <li class="list-group-item d-flex gap-5" data-region="eu-west">
+                        <span class="avatar avatar-sm flex-shrink-0"><img class="avatar-img" src="assets/images/avatars/12.jpg" alt=""></span>
                         <div class="lh-sm">
                             <div><span class="fw-bold">Noah Williams</span> rotated the API keys of the mail provider</div>
-                            <div class="small text-body-secondary mt-1">52 min ago</div>
+                            <div class="small fg-2 mt-1">52 min ago</div>
                         </div>
                     </li>
                 </ul>
@@ -1039,18 +1028,18 @@
         <li class="nav-item"><a href="#" class="nav-link">Help Center</a></li>
         <li class="nav-item"><a href="#" class="nav-link">API Docs</a></li>
     </ul>
-    <ul class="nav ms-auto d-none d-md-flex">
+    <ul class="nav ms-auto d-none md:d-flex">
         <li class="nav-item"><a href="#" class="nav-link">System Status</a></li>
-        <li class="nav-item"><a href="#" class="nav-link"><span class="badge bg-success me-1 ms-0"><small>NEW</small></span>What's New</a></li>
+        <li class="nav-item"><a href="#" class="nav-link"><span class="badge theme-success"><small>NEW</small></span>What's New</a></li>
     </ul>
 </footer>
 
         </main>
     </div>
-    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
-    <div class="toast text-bg-primary" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-5">
+    <div class="toast theme-primary" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
         <div class="toast-header">
-            <i data-lucide="calendar" class="me-2"></i>
+            <i data-lucide="calendar" class="me-3"></i>
             <strong class="me-auto">Example Toast</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>

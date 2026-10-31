@@ -6,13 +6,13 @@
 {%- if crumbs.length %}
 <div class="aui-page-path">
     <a href="index.html" data-aui-back><i data-lucide="arrow-left"></i>Back</a>
-    <nav class="d-none d-sm-block" aria-label="breadcrumb">
+    <nav class="d-none sm:d-block" aria-label="breadcrumb">
         {{- trail(crumbs, page.filePathStem) }}
     </nav>
 </div>
 {% endif -%}
-<div class="aui-page-title d-md-flex align-items-center text-center text-md-start{% if printTitle === false %} d-print-none{% endif %}">
-    <div class="d-none d-md-flex align-items-center justify-content-center flex-shrink-0 me-4">
+<div class="aui-page-title md:d-flex align-items-center text-center md:text-start{% if printTitle === false %} print:d-none{% endif %}">
+    <div class="d-none md:d-flex align-items-center justify-content-center flex-shrink-0 me-7">
         <i data-lucide="{{ icon }}" class="{{ iconClass or 'aui-icon-gradient-primary' }}"></i>
     </div>
     <div>

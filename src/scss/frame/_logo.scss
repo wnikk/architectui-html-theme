@@ -2,34 +2,35 @@
 //   assets/images/logo.svg         - first image, for light backgrounds
 //   assets/images/logo-on-dark.svg - second image, for dark backgrounds
 // Any shape, wide or square, fits into --aui-logo-max-height.
+@layer custom {
+  .aui-logo {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    height: 100%;
 
-.aui-logo {
-  display: flex;
-  align-items: center;
-  min-width: 0;
-  height: 100%;
+    > img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: var(--aui-logo-max-height);
+      object-fit: contain;
+    }
 
-  > img {
-    display: block;
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: var(--aui-logo-max-height);
-    object-fit: contain;
+    > img:last-child {
+      display: none;
+    }
   }
 
-  > img:last-child {
-    display: none;
-  }
-}
+  // Dark background: dark mode
+  [data-bs-theme="dark"] .aui-logo {
+    > img:first-child {
+      display: none;
+    }
 
-// Dark background: dark mode
-[data-bs-theme="dark"] .aui-logo {
-  > img:first-child {
-    display: none;
-  }
-
-  > img:last-child {
-    display: block;
+    > img:last-child {
+      display: block;
+    }
   }
 }

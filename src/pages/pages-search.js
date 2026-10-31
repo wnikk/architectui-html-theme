@@ -32,7 +32,7 @@
   }
 
   function item(entry, list) {
-    const li = Object.assign(document.createElement("li"), { className: "list-group-item d-flex gap-3 py-3 position-relative" });
+    const li = Object.assign(document.createElement("li"), { className: "list-group-item d-flex gap-5 py-5 position-relative" });
     if (entry.avatar) {
       li.append(Object.assign(document.createElement("img"), {
         src: `assets/images/avatars/${entry.avatar}.jpg`, width: 40, height: 40, alt: "", className: "rounded-circle flex-shrink-0",
@@ -51,10 +51,10 @@
     const body = Object.assign(document.createElement("div"), { className: "overflow-hidden" });
     const link = Object.assign(document.createElement("a"), { href: entry.href, className: "fw-bold text-decoration-none stretched-link" });
     link.append(highlighted(entry.title, list));
-    const text = Object.assign(document.createElement("div"), { className: "small text-body-secondary text-truncate" });
+    const text = Object.assign(document.createElement("div"), { className: "small fg-2 text-truncate" });
     text.append(highlighted(entry.text, list));
-    const meta = Object.assign(document.createElement("div"), { className: "small d-flex flex-wrap align-items-center gap-2 mt-1" });
-    meta.append(Object.assign(document.createElement("span"), { className: "badge bg-secondary-subtle text-secondary-emphasis", textContent: types[entry.type].title }));
+    const meta = Object.assign(document.createElement("div"), { className: "small d-flex flex-wrap align-items-center gap-3 mt-1" });
+    meta.append(Object.assign(document.createElement("span"), { className: "badge badge-subtle theme-secondary", textContent: types[entry.type].title }));
     meta.append(highlighted(entry.meta, list));
     body.append(link, text, meta);
     li.append(body);

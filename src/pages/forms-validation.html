@@ -5,26 +5,26 @@ icon: "image"
 script: "forms-validation.js"
 iconClass: "text-danger"
 ---
-<div class="mb-3 card">
+<div class="mb-5 card">
     <div class="card-body">
-        <h5 class="card-title">Bootstrap 5 Form Validation</h5>
-        <form class="needs-validation" novalidate>
+        <h5 class="card-title">Bootstrap 6 Form Validation</h5>
+        <form novalidate data-bs-validate>
             <div class="row">
-                <div class="col-md-4 mb-3">
+                <div class="md:col-4 mb-5">
                     <label for="validationCustom01" class="form-label">First name</label>
                     <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Maria" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="md:col-4 mb-5">
                     <label for="validationCustom02" class="form-label">Last name</label>
                     <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Chen" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="md:col-4 mb-5">
                     <label for="validationCustomUsername" class="form-label">Username</label>
                     <div class="input-group">
                         <div class="input-group-text">
@@ -38,21 +38,21 @@ iconClass: "text-danger"
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 mb-3">
+                <div class="md:col-6 mb-5">
                     <label for="validationCustom03" class="form-label">City</label>
                     <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
                     <div class="invalid-feedback">
                         Please provide a valid city.
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="md:col-3 mb-5">
                     <label for="validationCustom04" class="form-label">State</label>
                     <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
                     <div class="invalid-feedback">
                         Please provide a valid state.
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="md:col-3 mb-5">
                     <label for="validationCustom05" class="form-label">Zip</label>
                     <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
                     <div class="invalid-feedback">
@@ -60,10 +60,10 @@ iconClass: "text-danger"
                     </div>
                 </div>
             </div>
-            <div class="mb-3">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                    <label class="form-check-label" for="invalidCheck">
+            <div class="mb-5">
+                <div class="form-field">
+                    <input class="check" type="checkbox" value="" id="invalidCheck" required>
+                    <label for="invalidCheck">
                         Agree to terms and conditions
                     </label>
                     <div class="invalid-feedback">
@@ -71,66 +71,66 @@ iconClass: "text-danger"
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button class="btn-solid theme-primary" type="submit">Submit form</button>
         </form>
     </div>
 </div>
-<div class="mb-3 card">
+<div class="mb-5 card">
     <div class="card-body">
         <h5 class="card-title">Tooltips Validation</h5>
-        <form class="needs-validation" novalidate>
+        <form novalidate data-bs-validate>
             <div class="row">
-                <div class="col-md-4 mb-3">
+                <div class="md:col-4 mb-5">
                     <label for="validationTooltip01" class="form-label">First name</label>
                     <input type="text" class="form-control" id="validationTooltip01" placeholder="First name" value="Maria" required>
-                    <div class="valid-tooltip">
+                    <div class="tooltip valid-tooltip">
                         Looks good!
                     </div>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="md:col-4 mb-5">
                     <label for="validationTooltip02" class="form-label">Last name</label>
                     <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" value="Chen" required>
-                    <div class="valid-tooltip">
+                    <div class="tooltip valid-tooltip">
                         Looks good!
                     </div>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="md:col-4 mb-5">
                     <label for="validationTooltipUsername" class="form-label">Username</label>
                     <div class="input-group">
                         <div class="input-group-text">
                             <span id="validationTooltipUsernamePrepend">@</span>
                         </div>
                         <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" required>
-                        <div class="invalid-tooltip">
+                        <div class="tooltip invalid-tooltip">
                             Please choose a unique and valid username.
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 mb-3">
+                <div class="md:col-6 mb-5">
                     <label for="validationTooltip03" class="form-label">City</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="City" required>
-                    <div class="invalid-tooltip">
+                    <div class="tooltip invalid-tooltip">
                         Please provide a valid city.
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="md:col-3 mb-5">
                     <label for="validationTooltip04" class="form-label">State</label>
                     <input type="text" class="form-control" id="validationTooltip04" placeholder="State" required>
-                    <div class="invalid-tooltip">
+                    <div class="tooltip invalid-tooltip">
                         Please provide a valid state.
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="md:col-3 mb-5">
                     <label for="validationTooltip05" class="form-label">Zip</label>
                     <input type="text" class="form-control" id="validationTooltip05" placeholder="Zip" required>
-                    <div class="invalid-tooltip">
+                    <div class="tooltip invalid-tooltip">
                         Please provide a valid zip.
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button class="btn-solid theme-primary" type="submit">Submit form</button>
         </form>
     </div>
 </div>

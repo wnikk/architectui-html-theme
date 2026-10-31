@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dropdowns - Multiple styles, actions and effects are available for the ArchitectUI dropdown buttons.</title>
-<meta name="description" content="Multiple styles, actions and effects are available for the ArchitectUI dropdown buttons.">
+<title>Dropdowns - Bootstrap 6 menus: a toggle and a sibling menu in every color, split buttons, sizes and placements.</title>
+<meta name="description" content="Bootstrap 6 menus: a toggle and a sibling menu in every color, split buttons, sizes and placements.">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="architectui.css?v=6.2.37">
 
 <script>
@@ -40,7 +40,9 @@
 })();
 </script>
 
-<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+<script type="importmap">{ "imports": { "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" } }</script>
+<script type="module">import * as bootstrap from "bootstrap"; window.bootstrap = bootstrap; document.dispatchEvent(new Event("aui:bootstrap"));</script>
 <script defer src="https://cdn.jsdelivr.net/npm/lucide@1.65.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
 
 <script defer src="architectui.js?v=6.2.37"></script>
@@ -58,7 +60,7 @@
 
 </head>
 <body>
-    <a class="visually-hidden-focusable btn btn-primary aui-skip-link" href="#main">Skip to content</a>
+    <a class="visually-hidden-focusable btn-solid theme-primary aui-skip-link" href="#main">Skip to content</a>
     
 <svg class="position-absolute" width="0" height="0" aria-hidden="true" focusable="false">
     <defs>
@@ -68,150 +70,151 @@
         <linearGradient id="aui-gradient-warning" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f6d365"/><stop offset="1" stop-color="#fda085"/></linearGradient>
         <linearGradient id="aui-gradient-danger" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f093fb"/><stop offset="1" stop-color="#f5576c"/></linearGradient>
         <linearGradient id="aui-gradient-secondary" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#29323c"/><stop offset="1" stop-color="#485563"/></linearGradient>
-        <linearGradient id="aui-gradient-dark" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
+        <linearGradient id="aui-gradient-inverse" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
         <linearGradient id="aui-gradient-focus" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3a3648"/><stop offset="1" stop-color="#5d5873"/></linearGradient>
-        <linearGradient id="aui-gradient-alternate" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
+        <linearGradient id="aui-gradient-accent" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
     </defs>
 </svg>
 
     <div class="aui-app">
-        <header class="navbar navbar-expand-md aui-header">
+        <header class="navbar navbar-expand aui-header">
     <div class="navbar-brand">
-        <button type="button" class="btn aui-burger d-md-none" data-bs-toggle="offcanvas" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
+        <button type="button" class="aui-burger md:d-none" data-bs-toggle="drawer" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
         
 <a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
     <img src="assets/images/logo.svg" alt="ArchitectUI">
     <img src="assets/images/logo-on-dark.svg" alt="">
 </a>
 
-        <button type="button" class="btn aui-burger d-none d-xl-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
-        <button type="button" class="btn btn-primary btn-sm d-md-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
+        <button type="button" class="aui-burger d-none xl:d-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
+        <button type="button" class="btn-solid btn-icon btn-sm theme-primary md:d-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
     </div>
-    <div class="collapse navbar-collapse" id="auiHeaderContent">
+    <div class="collapse aui-header-panel" id="auiHeaderContent">
         
-<form class="aui-expand me-3" role="search" action="pages-search.html" data-aui-expand>
+<form class="aui-expand me-5" role="search" action="pages-search.html" data-aui-expand>
     <input type="search" class="form-control" name="q" placeholder="Type to search" aria-label="Search" autocomplete="off">
-    <button type="button" class="btn" data-aui-expand-toggle aria-label="Search"></button>
+    <button type="button" data-aui-expand-toggle aria-label="Search"></button>
     <button type="button" class="btn-close" data-aui-expand-close aria-label="Close search"></button>
 </form>
-<ul class="navbar-nav d-none d-md-flex">
+<ul class="navbar-nav d-none md:d-flex">
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="database" class="me-2"></i>Statistics</a>
+        <a href="#" class="nav-link"><i data-lucide="database"></i>Statistics</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="square-pen" class="me-2"></i>Projects</a>
+        <a href="#" class="nav-link"><i data-lucide="square-pen"></i>Projects</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="settings" class="me-2"></i>Settings</a>
+        <a href="#" class="nav-link"><i data-lucide="settings"></i>Settings</a>
     </li>
 </ul>
 
-        <div class="d-flex align-items-center gap-3 ms-auto">
-            <span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
-<a class="btn aui-header-btn" href="apps-notifications.html" aria-label="Notifications, 4 unread">
+        <div class="d-flex align-items-center gap-5 ms-auto">
+            <span class="badge theme-success d-none lg:d-inline-flex"><i data-lucide="activity"></i>All systems normal</span>
+<a class="aui-header-btn" href="apps-notifications.html" aria-label="Notifications, 4 unread">
     <i data-lucide="bell"></i>
-    <span class="badge text-bg-danger" data-notification-count aria-hidden="true">4</span>
+    <span class="badge theme-danger" data-notification-count aria-hidden="true">4</span>
 </a>
-<div class="btn-group aui-theme-switch">
-    <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+<div class="aui-theme-switch">
+    <button type="button" class="aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
         <i data-lucide="moon"></i>
         <i data-lucide="sun"></i>
     </button>
-    <button type="button" class="btn aui-mode-toggle dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Choose a theme"></button>
-    <div class="dropdown-menu dropdown-menu-end">
-        <h6 class="dropdown-header">Theme</h6>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="">
+    <button type="button" class="aui-mode-toggle" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Choose a theme"><i data-lucide="chevron-down"></i></button>
+    <div class="menu">
+        <h6 class="menu-header">Theme</h6>
+        <button type="button" class="menu-item" data-aui-setting="theme" value="">
             <span class="aui-theme-dot" style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
             <span>Business</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="orange">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="orange">
             <span class="aui-theme-dot" style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
             <span>Orange</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="indigo">
             <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
             <span>Indigo</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo-img">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="indigo-img">
             <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
             <span>Indigo Calathea</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="coffee">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="coffee">
             <span class="aui-theme-dot" style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
             <span>Coffee</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="green">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="green">
             <span class="aui-theme-dot" style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
             <span>Garden</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="raspberry">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="raspberry">
             <span class="aui-theme-dot" style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
             <span>Warm</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="teal">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="teal">
             <span class="aui-theme-dot" style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
             <span>Operations</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="violet">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="violet">
             <span class="aui-theme-dot" style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
             <span>Space</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="cyberpunk">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="cyberpunk">
             <span class="aui-theme-dot" style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
             <span>Cyberpunk</span>
             <small class="opacity-75">dark only</small>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal" class="me-2 opacity-50"></i>All interface settings</a>
+        <hr class="menu-divider">
+        <a class="menu-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal"></i>All interface settings</a>
     </div>
 </div>
-<div class="dropdown">
-    <a class="d-inline-flex align-items-center text-reset text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
-        <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
-        <i data-lucide="chevron-down" class="ms-2 opacity-75"></i>
+<div>
+    <a class="d-inline-flex align-items-center fg-reset text-decoration-none" href="#" role="button" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="User menu">
+        <span class="avatar"><img src="assets/images/avatars/1.jpg" class="avatar-img" alt=""></span>
+        <i data-lucide="chevron-down" class="ms-3 opacity-75"></i>
     </a>
-    <div class="dropdown-menu dropdown-menu-end">
-        <a class="dropdown-item" href="pages-profile.html"><i data-lucide="user" class="me-2 opacity-50"></i>My profile</a>
-        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="settings" class="me-2 opacity-50"></i>Interface settings</a>
-        <h6 class="dropdown-header">Workspace</h6>
-        <a class="dropdown-item" href="apps-users.html"><i data-lucide="users" class="me-2 opacity-50"></i>Team members</a>
-        <a class="dropdown-item" href="pages-pricing.html"><i data-lucide="credit-card" class="me-2 opacity-50"></i>Billing</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="pages-login.html"><i data-lucide="log-out" class="me-2 opacity-50"></i>Sign out</a>
+    <div class="menu">
+        <a class="menu-item" href="pages-profile.html"><i data-lucide="user"></i>My profile</a>
+        <a class="menu-item" href="pages-profile.html#interface"><i data-lucide="settings"></i>Interface settings</a>
+        <h6 class="menu-header">Workspace</h6>
+        <a class="menu-item" href="apps-users.html"><i data-lucide="users"></i>Team members</a>
+        <a class="menu-item" href="pages-pricing.html"><i data-lucide="credit-card"></i>Billing</a>
+        <hr class="menu-divider">
+        <a class="menu-item" href="pages-login.html"><i data-lucide="log-out"></i>Sign out</a>
     </div>
 </div>
-<div class="d-none d-xxl-block lh-sm">
+<div class="d-none 2xl:d-block lh-sm">
     <div class="fw-bold opacity-75 text-nowrap">Alina Mclourd</div>
     <div class="small opacity-50 text-nowrap">VP People Manager</div>
 </div>
-<button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 d-none d-xxl-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
+<button type="button" class="btn-solid btn-icon btn-sm theme-primary shadow-sm shadow-primary d-none 2xl:d-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar"></i></button>
 
         </div>
     </div>
 </header>
 
-        <aside class="aui-sidebar">
-    <div class="offcanvas-md offcanvas-start" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
-        <div class="offcanvas-header">
+        
+<aside class="aui-sidebar">
+    <dialog class="drawer drawer-start drawer-sheet md:drawer" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
+        <div class="drawer-header">
             
 <a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
     <img src="assets/images/logo.svg" alt="ArchitectUI">
     <img src="assets/images/logo-on-dark.svg" alt="">
 </a>
 
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#auiSidebar" aria-label="Close menu"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close menu"></button>
         </div>
-        <div class="offcanvas-body">
+        <div class="drawer-body">
             <ul class="nav flex-column flex-nowrap" id="auiNav">
                 <li class="nav-item"><h6>Dashboards</h6></li>
                 <li class="nav-item">
@@ -244,7 +247,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-components">
+                    <a class="nav-link" href="#nav-components" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-components">
                         <i data-lucide="car"></i>Components<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-components" data-bs-parent="#auiNav">
@@ -265,7 +268,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-tables" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-tables">
+                    <a class="nav-link" href="#nav-tables" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-tables">
                         <i data-lucide="table"></i>Tables<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-tables" data-bs-parent="#auiNav">
@@ -351,7 +354,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-authentication">
+                    <a class="nav-link" href="#nav-authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-authentication">
                         <i data-lucide="log-in"></i>Authentication<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-authentication" data-bs-parent="#auiNav">
@@ -363,7 +366,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-errors">
+                    <a class="nav-link" href="#nav-errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-errors">
                         <i data-lucide="triangle-alert"></i>Errors<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-errors" data-bs-parent="#auiNav">
@@ -387,42 +390,32 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </dialog>
 </aside>
 
         <main class="d-flex flex-column" id="main" tabindex="-1">
             <div class="flex-grow-1 aui-content">
-                <div class="aui-page-title d-md-flex align-items-center text-center text-md-start">
-    <div class="d-none d-md-flex align-items-center justify-content-center flex-shrink-0 me-4">
+                <div class="aui-page-title md:d-flex align-items-center text-center md:text-start">
+    <div class="d-none md:d-flex align-items-center justify-content-center flex-shrink-0 me-7">
         <i data-lucide="umbrella" class="aui-icon-gradient-primary"></i>
     </div>
     <div>
         <h1>Dropdowns</h1>
-        <p>Multiple styles, actions and effects are available for the ArchitectUI dropdown buttons.</p>
+        <p>Bootstrap 6 menus: a toggle and a sibling menu in every color, split buttons, sizes and placements.</p>
     </div>
-    <div class="ms-md-auto mt-3 mt-md-0 d-print-none">
-    <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
+    <div class="md:ms-auto mt-5 md:mt-0 d-flex justify-content-center gap-5 print:d-none">
+    <button type="button" class="btn-solid btn-icon theme-inverse shadow-sm shadow-inverse" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
         <i data-lucide="star"></i>
     </button>
-    <div class="d-inline-block dropdown">
-        <button type="button" class="btn btn-info aui-btn-shadow d-inline-flex align-items-center gap-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons
+    <div>
+        <button type="button" class="btn-solid theme-info shadow-sm shadow-info" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false">
+            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons<i data-lucide="chevron-down"></i>
         </button>
-        <div class="dropdown-menu dropdown-menu-end">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="inbox" class="me-2"></i><span>Inbox</span><span class="ms-auto badge rounded-pill bg-secondary">86</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="book-open" class="me-2"></i><span>Reports</span><span class="ms-auto badge rounded-pill bg-danger">5</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="image" class="me-2"></i><span>Media</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link disabled" aria-disabled="true"><i data-lucide="file" class="me-2"></i><span>Archive</span></a>
-                </li>
-            </ul>
+        <div class="menu">
+            <a href="#" class="menu-item"><i data-lucide="inbox"></i><span>Inbox</span><span class="ms-auto badge theme-secondary">86</span></a>
+            <a href="#" class="menu-item"><i data-lucide="book-open"></i><span>Reports</span><span class="ms-auto badge theme-danger">5</span></a>
+            <a href="#" class="menu-item"><i data-lucide="image"></i><span>Media</span></a>
+            <a href="#" class="menu-item disabled" aria-disabled="true"><i data-lucide="file"></i><span>Archive</span></a>
         </div>
     </div>
 </div>
@@ -430,665 +423,665 @@
 </div>
 
                 <div class="row">
-    <div class="col-lg-6">
-        <div class="mb-3 card">
+    <div class="lg:col-6">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Basic</h5>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-primary">Primary</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-primary mb-3 me-3">Primary<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-secondary">Secondary</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-secondary mb-3 me-3">Secondary<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-success">Success</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-success mb-3 me-3">Success<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-info">Info</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-info mb-3 me-3">Info<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-warning">Warning</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-warning mb-3 me-3">Warning<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-danger">Danger</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-danger mb-3 me-3">Danger<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-focus">Focus</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-focus mb-3 me-3">Focus<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-alternate">Alt</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-accent mb-3 me-3">Alt<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-light">Light</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-secondary mb-3 me-3">Light<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-dark">Dark</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-inverse mb-3 me-3">Dark<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-link">Link</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-link mb-3 me-3">Link<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mb-3 card">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Split Dropdowns</h5>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-primary">Primary</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-primary"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-solid theme-primary">Primary</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-primary menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-secondary">Secondary</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-secondary"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-solid theme-secondary">Secondary</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-secondary menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-success">Success</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-success"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-solid theme-success">Success</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-success menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-info">Info</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-info"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-solid theme-info">Info</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-info menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-warning">Warning</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-warning"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-solid theme-warning">Warning</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-warning menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-danger">Danger</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-danger"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-solid theme-danger">Danger</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-danger menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-focus">Focus</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-focus"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-solid theme-focus">Focus</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-focus menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-alternate">Alt</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-alternate"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-solid theme-accent">Alt</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-accent menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-light">Light</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-light"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-solid theme-secondary">Light</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-secondary menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-dark">Dark</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-dark"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-solid theme-inverse">Dark</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-inverse menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mb-3 card">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Split Outline Dropdowns</h5>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-outline-primary">Primary</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-outline-primary"><span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-outline theme-primary">Primary</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-primary menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span>
+                    <i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-outline-secondary">Secondary</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-outline-secondary"><span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-outline theme-secondary">Secondary</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-secondary menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span>
+                    <i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-outline-success">Success</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-outline-success"><span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-outline theme-success">Success</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-success menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span>
+                    <i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-outline-info">Info</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-outline-info"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-outline theme-info">Info</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-info menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-outline-warning">Warning</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-outline-warning"><span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-outline theme-warning">Warning</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-warning menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span>
+                    <i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-outline-danger">Danger</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-outline-danger"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-outline theme-danger">Danger</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-danger menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-outline-focus">Focus</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-outline-focus"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-outline theme-focus">Focus</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-focus menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-outline-alternate">Alt</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-outline-alternate"><span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-outline theme-accent">Alt</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-accent menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span>
+                    <i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-outline-light">Light</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-outline-light"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-outline theme-secondary">Light</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-secondary menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="mb-2 me-2 btn-group">
-                    <button class="btn btn-outline-dark">Dark</button>
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-outline-dark"><span class="visually-hidden">Toggle Dropdown</span></button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="mb-3 me-3 btn-group">
+                    <button class="btn-outline theme-inverse">Dark</button>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-inverse menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mb-3 card">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Menu positions</h5>
                 <div class="text-center">
-                    <div class="mb-2 me-2 dropstart btn-group">
-                        <button class="px-4 btn btn-primary">Dropleft</button>
-                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-primary"><span class="visually-hidden">Toggle Dropdown</span></button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                            <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                            <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                            <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                            <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                            <div tabindex="-1" class="dropdown-divider"></div>
-                            <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                    <div class="mb-3 me-3 btn-group">
+                        <button class="btn-solid theme-primary px-7">Dropleft</button>
+                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-placement="left-start" data-bs-toggle="menu" class="btn-solid theme-primary menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                            <button type="button" tabindex="0" class="menu-item">Edit</button>
+                            <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                            <h6 tabindex="-1" class="menu-header">Share</h6>
+                            <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                            <div tabindex="-1" class="menu-divider"></div>
+                            <button type="button" tabindex="0" class="menu-item">Archive</button>
                         </div>
                     </div>
-                    <div class="mb-2 me-2 dropup btn-group">
-                        <button class="px-4 btn btn-primary">Dropup</button>
-                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-primary"><span class="visually-hidden">Toggle Dropdown</span></button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                            <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                            <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                            <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                            <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                            <div tabindex="-1" class="dropdown-divider"></div>
-                            <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                    <div class="mb-3 me-3 btn-group">
+                        <button class="btn-solid theme-primary px-7">Dropup</button>
+                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-placement="top-start" data-bs-toggle="menu" class="btn-solid theme-primary menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                            <button type="button" tabindex="0" class="menu-item">Edit</button>
+                            <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                            <h6 tabindex="-1" class="menu-header">Share</h6>
+                            <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                            <div tabindex="-1" class="menu-divider"></div>
+                            <button type="button" tabindex="0" class="menu-item">Archive</button>
                         </div>
                     </div>
-                    <div class="mb-2 me-2 dropend btn-group">
-                        <button class="px-4 btn btn-primary">Dropright</button>
-                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-primary"><span class="visually-hidden">Toggle Dropdown</span></button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                            <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                            <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                            <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                            <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                            <div tabindex="-1" class="dropdown-divider"></div>
-                            <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                    <div class="mb-3 me-3 btn-group">
+                        <button class="btn-solid theme-primary px-7">Dropright</button>
+                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-placement="right-start" data-bs-toggle="menu" class="btn-solid theme-primary menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                            <button type="button" tabindex="0" class="menu-item">Edit</button>
+                            <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                            <h6 tabindex="-1" class="menu-header">Share</h6>
+                            <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                            <div tabindex="-1" class="menu-divider"></div>
+                            <button type="button" tabindex="0" class="menu-item">Archive</button>
                         </div>
                     </div>
                 </div>
                 <hr>
                 <div class="text-center">
-                    <div class="dropstart btn-group">
-                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="px-4 mb-2 me-2 dropdown-toggle btn btn-primary">Dropleft</button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                            <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                            <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                            <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                            <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                            <div tabindex="-1" class="dropdown-divider"></div>
-                            <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                    <div class="btn-group">
+                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-placement="left-start" data-bs-toggle="menu" class="btn-solid theme-primary px-7 mb-3 me-3">Dropleft<i data-lucide="chevron-down"></i></button>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                            <button type="button" tabindex="0" class="menu-item">Edit</button>
+                            <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                            <h6 tabindex="-1" class="menu-header">Share</h6>
+                            <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                            <div tabindex="-1" class="menu-divider"></div>
+                            <button type="button" tabindex="0" class="menu-item">Archive</button>
                         </div>
                     </div>
-                    <div class="dropup btn-group">
-                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="px-4 mb-2 me-2 dropdown-toggle btn btn-primary">Dropup</button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                            <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                            <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                            <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                            <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                            <div tabindex="-1" class="dropdown-divider"></div>
-                            <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                    <div class="btn-group">
+                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-placement="top-start" data-bs-toggle="menu" class="btn-solid theme-primary px-7 mb-3 me-3">Dropup<i data-lucide="chevron-down"></i></button>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                            <button type="button" tabindex="0" class="menu-item">Edit</button>
+                            <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                            <h6 tabindex="-1" class="menu-header">Share</h6>
+                            <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                            <div tabindex="-1" class="menu-divider"></div>
+                            <button type="button" tabindex="0" class="menu-item">Archive</button>
                         </div>
                     </div>
-                    <div class="dropend btn-group">
-                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="px-4 mb-2 me-2 dropdown-toggle btn btn-primary">Dropright</button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                            <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                            <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                            <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                            <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                            <div tabindex="-1" class="dropdown-divider"></div>
-                            <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                    <div class="btn-group">
+                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-placement="right-start" data-bs-toggle="menu" class="btn-solid theme-primary px-7 mb-3 me-3">Dropright<i data-lucide="chevron-down"></i></button>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                            <button type="button" tabindex="0" class="menu-item">Edit</button>
+                            <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                            <h6 tabindex="-1" class="menu-header">Share</h6>
+                            <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                            <div tabindex="-1" class="menu-divider"></div>
+                            <button type="button" tabindex="0" class="menu-item">Archive</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="mb-3 card">
+    <div class="lg:col-6">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Outline</h5>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-outline-primary">Primary</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-primary mb-3 me-3">Primary<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-outline-secondary">Secondary</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-secondary mb-3 me-3">Secondary<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-outline-success">Success</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-success mb-3 me-3">Success<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-outline-info">Info</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-info mb-3 me-3">Info<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-outline-warning">Warning</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-warning mb-3 me-3">Warning<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-outline-danger">Danger</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-danger mb-3 me-3">Danger<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-outline-focus">Focus</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-focus mb-3 me-3">Focus<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-outline-alternate">Alt</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-accent mb-3 me-3">Alt<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-outline-light">Light</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-secondary mb-3 me-3">Light<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-outline-dark">Dark</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-outline theme-inverse mb-3 me-3">Dark<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
-                <div class="dropdown d-inline-block">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-link">Link</button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                        <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                        <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                        <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                        <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                        <div tabindex="-1" class="dropdown-divider"></div>
-                        <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                <div class="d-inline-block">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-link mb-3 me-3">Link<i data-lucide="chevron-down"></i></button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                        <button type="button" tabindex="0" class="menu-item">Edit</button>
+                        <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                        <h6 tabindex="-1" class="menu-header">Share</h6>
+                        <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                        <div tabindex="-1" class="menu-divider"></div>
+                        <button type="button" tabindex="0" class="menu-item">Archive</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mb-3 card">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Sizing</h5>
                 <div class="text-center">
-                    <div class="mb-2 me-2 btn-group">
-                        <button class="btn btn-primary btn-lg">Large</button>
-                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-primary btn-lg"><span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                            <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                            <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                            <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                            <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                            <div tabindex="-1" class="dropdown-divider"></div>
-                            <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                    <div class="mb-3 me-3 btn-group">
+                        <button class="btn-solid theme-primary btn-lg">Large</button>
+                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-primary menu-toggle-split btn-lg"><span class="visually-hidden">Toggle Dropdown</span>
+                        <i data-lucide="chevron-down"></i></button>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                            <button type="button" tabindex="0" class="menu-item">Edit</button>
+                            <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                            <h6 tabindex="-1" class="menu-header">Share</h6>
+                            <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                            <div tabindex="-1" class="menu-divider"></div>
+                            <button type="button" tabindex="0" class="menu-item">Archive</button>
                         </div>
                     </div>
-                    <div class="mb-2 me-2 btn-group">
-                        <button class="btn btn-primary">Normal</button>
-                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-primary"><span class="visually-hidden">Toggle Dropdown</span></button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                            <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                            <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                            <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                            <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                            <div tabindex="-1" class="dropdown-divider"></div>
-                            <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                    <div class="mb-3 me-3 btn-group">
+                        <button class="btn-solid theme-primary">Normal</button>
+                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-primary menu-toggle-split"><span class="visually-hidden">Toggle Dropdown</span><i data-lucide="chevron-down"></i></button>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                            <button type="button" tabindex="0" class="menu-item">Edit</button>
+                            <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                            <h6 tabindex="-1" class="menu-header">Share</h6>
+                            <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                            <div tabindex="-1" class="menu-divider"></div>
+                            <button type="button" tabindex="0" class="menu-item">Archive</button>
                         </div>
                     </div>
-                    <div class="mb-2 me-2 btn-group">
-                        <button class="btn btn-primary btn-sm">Small</button>
-                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-primary btn-sm"><span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                            <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                            <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                            <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                            <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                            <div tabindex="-1" class="dropdown-divider"></div>
-                            <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                    <div class="mb-3 me-3 btn-group">
+                        <button class="btn-solid theme-primary btn-sm">Small</button>
+                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-primary menu-toggle-split btn-sm"><span class="visually-hidden">Toggle Dropdown</span>
+                        <i data-lucide="chevron-down"></i></button>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                            <button type="button" tabindex="0" class="menu-item">Edit</button>
+                            <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                            <h6 tabindex="-1" class="menu-header">Share</h6>
+                            <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                            <div tabindex="-1" class="menu-divider"></div>
+                            <button type="button" tabindex="0" class="menu-item">Archive</button>
                         </div>
                     </div>
                 </div>
                 <hr>
                 <div class="text-center">
-                    <div class="dropdown d-inline-block">
-                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-primary btn-lg">Large</button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                            <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                            <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                            <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                            <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                            <div tabindex="-1" class="dropdown-divider"></div>
-                            <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                    <div class="d-inline-block">
+                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-primary mb-3 me-3 btn-lg">Large<i data-lucide="chevron-down"></i></button>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                            <button type="button" tabindex="0" class="menu-item">Edit</button>
+                            <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                            <h6 tabindex="-1" class="menu-header">Share</h6>
+                            <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                            <div tabindex="-1" class="menu-divider"></div>
+                            <button type="button" tabindex="0" class="menu-item">Archive</button>
                         </div>
                     </div>
-                    <div class="dropdown d-inline-block">
-                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-primary">Normal</button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                            <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                            <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                            <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                            <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                            <div tabindex="-1" class="dropdown-divider"></div>
-                            <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                    <div class="d-inline-block">
+                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-primary mb-3 me-3">Normal<i data-lucide="chevron-down"></i></button>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                            <button type="button" tabindex="0" class="menu-item">Edit</button>
+                            <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                            <h6 tabindex="-1" class="menu-header">Share</h6>
+                            <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                            <div tabindex="-1" class="menu-divider"></div>
+                            <button type="button" tabindex="0" class="menu-item">Archive</button>
                         </div>
                     </div>
-                    <div class="dropdown d-inline-block">
-                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="mb-2 me-2 dropdown-toggle btn btn-primary btn-sm">Small</button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                            <button type="button" tabindex="0" class="dropdown-item">Edit</button>
-                            <button type="button" tabindex="0" class="dropdown-item">Duplicate</button>
-                            <h6 tabindex="-1" class="dropdown-header">Share</h6>
-                            <button type="button" tabindex="0" class="dropdown-item">Copy link</button>
-                            <div tabindex="-1" class="dropdown-divider"></div>
-                            <button type="button" tabindex="0" class="dropdown-item">Archive</button>
+                    <div class="d-inline-block">
+                        <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="menu" class="btn-solid theme-primary mb-3 me-3 btn-sm">Small<i data-lucide="chevron-down"></i></button>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="menu">
+                            <button type="button" tabindex="0" class="menu-item">Edit</button>
+                            <button type="button" tabindex="0" class="menu-item">Duplicate</button>
+                            <h6 tabindex="-1" class="menu-header">Share</h6>
+                            <button type="button" tabindex="0" class="menu-item">Copy link</button>
+                            <div tabindex="-1" class="menu-divider"></div>
+                            <button type="button" tabindex="0" class="menu-item">Archive</button>
                         </div>
                     </div>
                 </div>
@@ -1103,18 +1096,18 @@
         <li class="nav-item"><a href="#" class="nav-link">Help Center</a></li>
         <li class="nav-item"><a href="#" class="nav-link">API Docs</a></li>
     </ul>
-    <ul class="nav ms-auto d-none d-md-flex">
+    <ul class="nav ms-auto d-none md:d-flex">
         <li class="nav-item"><a href="#" class="nav-link">System Status</a></li>
-        <li class="nav-item"><a href="#" class="nav-link"><span class="badge bg-success me-1 ms-0"><small>NEW</small></span>What's New</a></li>
+        <li class="nav-item"><a href="#" class="nav-link"><span class="badge theme-success"><small>NEW</small></span>What's New</a></li>
     </ul>
 </footer>
 
         </main>
     </div>
-    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
-    <div class="toast text-bg-primary" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-5">
+    <div class="toast theme-primary" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
         <div class="toast-header">
-            <i data-lucide="calendar" class="me-2"></i>
+            <i data-lucide="calendar" class="me-3"></i>
             <strong class="me-auto">Example Toast</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>

@@ -8,7 +8,7 @@
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="architectui.css?v=6.2.37">
 
 <script>
@@ -40,7 +40,9 @@
 })();
 </script>
 
-<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+<script type="importmap">{ "imports": { "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" } }</script>
+<script type="module">import * as bootstrap from "bootstrap"; window.bootstrap = bootstrap; document.dispatchEvent(new Event("aui:bootstrap"));</script>
 <script defer src="https://cdn.jsdelivr.net/npm/lucide@1.65.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
 
 <script defer src="architectui.js?v=6.2.37"></script>
@@ -58,7 +60,7 @@
 
 </head>
 <body>
-    <a class="visually-hidden-focusable btn btn-primary aui-skip-link" href="#main">Skip to content</a>
+    <a class="visually-hidden-focusable btn-solid theme-primary aui-skip-link" href="#main">Skip to content</a>
     
 <svg class="position-absolute" width="0" height="0" aria-hidden="true" focusable="false">
     <defs>
@@ -68,150 +70,151 @@
         <linearGradient id="aui-gradient-warning" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f6d365"/><stop offset="1" stop-color="#fda085"/></linearGradient>
         <linearGradient id="aui-gradient-danger" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#f093fb"/><stop offset="1" stop-color="#f5576c"/></linearGradient>
         <linearGradient id="aui-gradient-secondary" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#29323c"/><stop offset="1" stop-color="#485563"/></linearGradient>
-        <linearGradient id="aui-gradient-dark" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
+        <linearGradient id="aui-gradient-inverse" gradientUnits="userSpaceOnUse" x1="0" y1="12" x2="24" y2="12"><stop offset="0" stop-color="#434343"/><stop offset="1" stop-color="#000"/></linearGradient>
         <linearGradient id="aui-gradient-focus" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#3a3648"/><stop offset="1" stop-color="#5d5873"/></linearGradient>
-        <linearGradient id="aui-gradient-alternate" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
+        <linearGradient id="aui-gradient-accent" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="24" y2="0"><stop offset="0" stop-color="#674175"/><stop offset="1" stop-color="#9a6aad"/></linearGradient>
     </defs>
 </svg>
 
     <div class="aui-app">
-        <header class="navbar navbar-expand-md aui-header">
+        <header class="navbar navbar-expand aui-header">
     <div class="navbar-brand">
-        <button type="button" class="btn aui-burger d-md-none" data-bs-toggle="offcanvas" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
+        <button type="button" class="aui-burger md:d-none" data-bs-toggle="drawer" data-bs-target="#auiSidebar" aria-controls="auiSidebar" aria-expanded="false" aria-label="Open menu"><span><span></span></span></button>
         
 <a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
     <img src="assets/images/logo.svg" alt="ArchitectUI">
     <img src="assets/images/logo-on-dark.svg" alt="">
 </a>
 
-        <button type="button" class="btn aui-burger d-none d-xl-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
-        <button type="button" class="btn btn-primary btn-sm d-md-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
+        <button type="button" class="aui-burger d-none xl:d-inline-flex" data-aui-toggle="sidebar" aria-pressed="false" aria-label="Collapse menu"><span><span></span></span></button>
+        <button type="button" class="btn-solid btn-icon btn-sm theme-primary md:d-none" data-bs-toggle="collapse" data-bs-target="#auiHeaderContent" aria-controls="auiHeaderContent" aria-expanded="false" aria-label="Show header menu"><i data-lucide="ellipsis-vertical"></i></button>
     </div>
-    <div class="collapse navbar-collapse" id="auiHeaderContent">
+    <div class="collapse aui-header-panel" id="auiHeaderContent">
         
-<form class="aui-expand me-3" role="search" action="pages-search.html" data-aui-expand>
+<form class="aui-expand me-5" role="search" action="pages-search.html" data-aui-expand>
     <input type="search" class="form-control" name="q" placeholder="Type to search" aria-label="Search" autocomplete="off">
-    <button type="button" class="btn" data-aui-expand-toggle aria-label="Search"></button>
+    <button type="button" data-aui-expand-toggle aria-label="Search"></button>
     <button type="button" class="btn-close" data-aui-expand-close aria-label="Close search"></button>
 </form>
-<ul class="navbar-nav d-none d-md-flex">
+<ul class="navbar-nav d-none md:d-flex">
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="database" class="me-2"></i>Statistics</a>
+        <a href="#" class="nav-link"><i data-lucide="database"></i>Statistics</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="square-pen" class="me-2"></i>Projects</a>
+        <a href="#" class="nav-link"><i data-lucide="square-pen"></i>Projects</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i data-lucide="settings" class="me-2"></i>Settings</a>
+        <a href="#" class="nav-link"><i data-lucide="settings"></i>Settings</a>
     </li>
 </ul>
 
-        <div class="d-flex align-items-center gap-3 ms-auto">
-            <span class="badge text-bg-success d-none d-lg-inline-flex align-items-center gap-1"><i data-lucide="activity"></i>All systems normal</span>
-<a class="btn aui-header-btn" href="apps-notifications.html" aria-label="Notifications, 4 unread">
+        <div class="d-flex align-items-center gap-5 ms-auto">
+            <span class="badge theme-success d-none lg:d-inline-flex"><i data-lucide="activity"></i>All systems normal</span>
+<a class="aui-header-btn" href="apps-notifications.html" aria-label="Notifications, 4 unread">
     <i data-lucide="bell"></i>
-    <span class="badge text-bg-danger" data-notification-count aria-hidden="true">4</span>
+    <span class="badge theme-danger" data-notification-count aria-hidden="true">4</span>
 </a>
-<div class="btn-group aui-theme-switch">
-    <button type="button" class="btn aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
+<div class="aui-theme-switch">
+    <button type="button" class="aui-mode-toggle" data-aui-toggle="mode" aria-label="Toggle light and dark mode">
         <i data-lucide="moon"></i>
         <i data-lucide="sun"></i>
     </button>
-    <button type="button" class="btn aui-mode-toggle dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Choose a theme"></button>
-    <div class="dropdown-menu dropdown-menu-end">
-        <h6 class="dropdown-header">Theme</h6>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="">
+    <button type="button" class="aui-mode-toggle" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="Choose a theme"><i data-lucide="chevron-down"></i></button>
+    <div class="menu">
+        <h6 class="menu-header">Theme</h6>
+        <button type="button" class="menu-item" data-aui-setting="theme" value="">
             <span class="aui-theme-dot" style="--aui-dot-brand: #2f5f9e; --aui-dot-accent: #3c7185"></span>
             <span>Business</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="orange">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="orange">
             <span class="aui-theme-dot" style="--aui-dot-brand: #eeaa55; --aui-dot-accent: #4facfe"></span>
             <span>Orange</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="indigo">
             <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #4f46e5"></span>
             <span>Indigo</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="indigo-img">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="indigo-img">
             <span class="aui-theme-dot" style="--aui-dot-brand: #4f46e5; --aui-dot-accent: #c7d2fe"></span>
             <span>Indigo Calathea</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="coffee">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="coffee">
             <span class="aui-theme-dot" style="--aui-dot-brand: #8b4513; --aui-dot-accent: #d99235"></span>
             <span>Coffee</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="green">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="green">
             <span class="aui-theme-dot" style="--aui-dot-brand: #2f6b45; --aui-dot-accent: #6e8f5a"></span>
             <span>Garden</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="raspberry">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="raspberry">
             <span class="aui-theme-dot" style="--aui-dot-brand: #a8446f; --aui-dot-accent: #b98a5e"></span>
             <span>Warm</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="teal">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="teal">
             <span class="aui-theme-dot" style="--aui-dot-brand: #0f6e77; --aui-dot-accent: #96754f"></span>
             <span>Operations</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="violet">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="violet">
             <span class="aui-theme-dot" style="--aui-dot-brand: #6b5ca0; --aui-dot-accent: #327382"></span>
             <span>Space</span>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <button type="button" class="dropdown-item d-flex align-items-center gap-2" data-aui-setting="theme" value="cyberpunk">
+        <button type="button" class="menu-item" data-aui-setting="theme" value="cyberpunk">
             <span class="aui-theme-dot" style="--aui-dot-brand: #ff2d78; --aui-dot-accent: #22e5ff"></span>
             <span>Cyberpunk</span>
             <small class="opacity-75">dark only</small>
             <i data-lucide="check" class="ms-auto aui-theme-check"></i>
         </button>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal" class="me-2 opacity-50"></i>All interface settings</a>
+        <hr class="menu-divider">
+        <a class="menu-item" href="pages-profile.html#interface"><i data-lucide="sliders-horizontal"></i>All interface settings</a>
     </div>
 </div>
-<div class="dropdown">
-    <a class="d-inline-flex align-items-center text-reset text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
-        <img src="assets/images/avatars/1.jpg" width="42" height="42" class="rounded-circle" alt="">
-        <i data-lucide="chevron-down" class="ms-2 opacity-75"></i>
+<div>
+    <a class="d-inline-flex align-items-center fg-reset text-decoration-none" href="#" role="button" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="User menu">
+        <span class="avatar"><img src="assets/images/avatars/1.jpg" class="avatar-img" alt=""></span>
+        <i data-lucide="chevron-down" class="ms-3 opacity-75"></i>
     </a>
-    <div class="dropdown-menu dropdown-menu-end">
-        <a class="dropdown-item" href="pages-profile.html"><i data-lucide="user" class="me-2 opacity-50"></i>My profile</a>
-        <a class="dropdown-item" href="pages-profile.html#interface"><i data-lucide="settings" class="me-2 opacity-50"></i>Interface settings</a>
-        <h6 class="dropdown-header">Workspace</h6>
-        <a class="dropdown-item" href="apps-users.html"><i data-lucide="users" class="me-2 opacity-50"></i>Team members</a>
-        <a class="dropdown-item" href="pages-pricing.html"><i data-lucide="credit-card" class="me-2 opacity-50"></i>Billing</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="pages-login.html"><i data-lucide="log-out" class="me-2 opacity-50"></i>Sign out</a>
+    <div class="menu">
+        <a class="menu-item" href="pages-profile.html"><i data-lucide="user"></i>My profile</a>
+        <a class="menu-item" href="pages-profile.html#interface"><i data-lucide="settings"></i>Interface settings</a>
+        <h6 class="menu-header">Workspace</h6>
+        <a class="menu-item" href="apps-users.html"><i data-lucide="users"></i>Team members</a>
+        <a class="menu-item" href="pages-pricing.html"><i data-lucide="credit-card"></i>Billing</a>
+        <hr class="menu-divider">
+        <a class="menu-item" href="pages-login.html"><i data-lucide="log-out"></i>Sign out</a>
     </div>
 </div>
-<div class="d-none d-xxl-block lh-sm">
+<div class="d-none 2xl:d-block lh-sm">
     <div class="fw-bold opacity-75 text-nowrap">Alina Mclourd</div>
     <div class="small opacity-50 text-nowrap">VP People Manager</div>
 </div>
-<button type="button" class="btn btn-primary btn-sm aui-btn-shadow p-1 d-none d-xxl-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar" class="mx-1"></i></button>
+<button type="button" class="btn-solid btn-icon btn-sm theme-primary shadow-sm shadow-primary d-none 2xl:d-inline-flex" data-aui-toast="#auiCalendarToast" aria-label="Calendar"><i data-lucide="calendar"></i></button>
 
         </div>
     </div>
 </header>
 
-        <aside class="aui-sidebar">
-    <div class="offcanvas-md offcanvas-start" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
-        <div class="offcanvas-header">
+        
+<aside class="aui-sidebar">
+    <dialog class="drawer drawer-start drawer-sheet md:drawer" id="auiSidebar" tabindex="-1" aria-label="Main navigation">
+        <div class="drawer-header">
             
 <a class="aui-logo" href="index.html" aria-label="ArchitectUI home">
     <img src="assets/images/logo.svg" alt="ArchitectUI">
     <img src="assets/images/logo-on-dark.svg" alt="">
 </a>
 
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#auiSidebar" aria-label="Close menu"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close menu"></button>
         </div>
-        <div class="offcanvas-body">
+        <div class="drawer-body">
             <ul class="nav flex-column flex-nowrap" id="auiNav">
                 <li class="nav-item"><h6>Dashboards</h6></li>
                 <li class="nav-item">
@@ -226,7 +229,7 @@
                 </li>
                 <li class="nav-item"><h6>UI Components</h6></li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
+                    <a class="nav-link" href="#nav-elements" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-elements">
                         <i data-lucide="gem"></i>Elements<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-elements" data-bs-parent="#auiNav">
@@ -265,7 +268,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-tables" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-tables">
+                    <a class="nav-link" href="#nav-tables" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-tables">
                         <i data-lucide="table"></i>Tables<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-tables" data-bs-parent="#auiNav">
@@ -351,7 +354,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-authentication">
+                    <a class="nav-link" href="#nav-authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-authentication">
                         <i data-lucide="log-in"></i>Authentication<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-authentication" data-bs-parent="#auiNav">
@@ -363,7 +366,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#nav-errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-errors">
+                    <a class="nav-link" href="#nav-errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nav-errors">
                         <i data-lucide="triangle-alert"></i>Errors<i data-lucide="chevron-down"></i>
                     </a>
                     <div class="collapse" id="nav-errors" data-bs-parent="#auiNav">
@@ -387,42 +390,32 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </dialog>
 </aside>
 
         <main class="d-flex flex-column" id="main" tabindex="-1">
             <div class="flex-grow-1 aui-content">
-                <div class="aui-page-title d-md-flex align-items-center text-center text-md-start">
-    <div class="d-none d-md-flex align-items-center justify-content-center flex-shrink-0 me-4">
+                <div class="aui-page-title md:d-flex align-items-center text-center md:text-start">
+    <div class="d-none md:d-flex align-items-center justify-content-center flex-shrink-0 me-7">
         <i data-lucide="archive" class="aui-icon-gradient-primary"></i>
     </div>
     <div>
         <h1>Tabs</h1>
         <p>Tabs are used to split content between multiple sections. Wide variety available.</p>
     </div>
-    <div class="ms-md-auto mt-3 mt-md-0 d-print-none">
-    <button type="button" class="btn btn-dark aui-btn-shadow me-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
+    <div class="md:ms-auto mt-5 md:mt-0 d-flex justify-content-center gap-5 print:d-none">
+    <button type="button" class="btn-solid btn-icon theme-inverse shadow-sm shadow-inverse" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Example Tooltip" aria-label="Favourite">
         <i data-lucide="star"></i>
     </button>
-    <div class="d-inline-block dropdown">
-        <button type="button" class="btn btn-info aui-btn-shadow d-inline-flex align-items-center gap-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons
+    <div>
+        <button type="button" class="btn-solid theme-info shadow-sm shadow-info" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false">
+            <i data-lucide="briefcase-business" class="opacity-75"></i>Buttons<i data-lucide="chevron-down"></i>
         </button>
-        <div class="dropdown-menu dropdown-menu-end">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="inbox" class="me-2"></i><span>Inbox</span><span class="ms-auto badge rounded-pill bg-secondary">86</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="book-open" class="me-2"></i><span>Reports</span><span class="ms-auto badge rounded-pill bg-danger">5</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="image" class="me-2"></i><span>Media</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link disabled" aria-disabled="true"><i data-lucide="file" class="me-2"></i><span>Archive</span></a>
-                </li>
-            </ul>
+        <div class="menu">
+            <a href="#" class="menu-item"><i data-lucide="inbox"></i><span>Inbox</span><span class="ms-auto badge theme-secondary">86</span></a>
+            <a href="#" class="menu-item"><i data-lucide="book-open"></i><span>Reports</span><span class="ms-auto badge theme-danger">5</span></a>
+            <a href="#" class="menu-item"><i data-lucide="image"></i><span>Media</span></a>
+            <a href="#" class="menu-item disabled" aria-disabled="true"><i data-lucide="file"></i><span>Archive</span></a>
         </div>
     </div>
 </div>
@@ -447,16 +440,46 @@
     </li>
 </ul>
 <div class="tab-content">
-    <div class="tab-pane fade show active" id="tab-content-0" role="tabpanel">
+    <div class="tab-pane active" id="tab-content-0" role="tabpanel">
+        <div class="mb-5 card">
+            <div class="card-body">
+                <h5 class="card-title">Tabs with overflow</h5>
+                <p class="card-subtitle">Make the window narrower: the tabs that do not fit move into a More menu, and the active tab keeps its place.</p>
+                <div class="nav-overflow" data-bs-toggle="nav-overflow">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item" role="presentation"><button type="button" class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-overflow-1" role="tab" aria-selected="true">Overview</button></li>
+                        <li class="nav-item" role="presentation"><button type="button" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-overflow-2" role="tab" aria-selected="false">Activity</button></li>
+                        <li class="nav-item" role="presentation"><button type="button" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-overflow-3" role="tab" aria-selected="false">Orders</button></li>
+                        <li class="nav-item" role="presentation"><button type="button" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-overflow-4" role="tab" aria-selected="false">Invoices</button></li>
+                        <li class="nav-item" role="presentation"><button type="button" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-overflow-5" role="tab" aria-selected="false">Documents</button></li>
+                        <li class="nav-item" role="presentation"><button type="button" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-overflow-6" role="tab" aria-selected="false">Members</button></li>
+                        <li class="nav-item" role="presentation"><button type="button" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-overflow-7" role="tab" aria-selected="false">Integrations</button></li>
+                        <li class="nav-item" role="presentation"><button type="button" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-overflow-8" role="tab" aria-selected="false">Settings</button></li>
+                        <li class="nav-item" role="presentation"><button type="button" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-overflow-9" role="tab" aria-selected="false">Audit log</button></li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab-overflow-1" role="tabpanel"><p class="mb-0">Overview: the pane fades in by itself when the tab opens.</p></div>
+                    <div class="tab-pane" id="tab-overflow-2" role="tabpanel"><p class="mb-0">Activity: the pane fades in by itself when the tab opens.</p></div>
+                    <div class="tab-pane" id="tab-overflow-3" role="tabpanel"><p class="mb-0">Orders: the pane fades in by itself when the tab opens.</p></div>
+                    <div class="tab-pane" id="tab-overflow-4" role="tabpanel"><p class="mb-0">Invoices: the pane fades in by itself when the tab opens.</p></div>
+                    <div class="tab-pane" id="tab-overflow-5" role="tabpanel"><p class="mb-0">Documents: the pane fades in by itself when the tab opens.</p></div>
+                    <div class="tab-pane" id="tab-overflow-6" role="tabpanel"><p class="mb-0">Members: the pane fades in by itself when the tab opens.</p></div>
+                    <div class="tab-pane" id="tab-overflow-7" role="tabpanel"><p class="mb-0">Integrations: the pane fades in by itself when the tab opens.</p></div>
+                    <div class="tab-pane" id="tab-overflow-8" role="tabpanel"><p class="mb-0">Settings: the pane fades in by itself when the tab opens.</p></div>
+                    <div class="tab-pane" id="tab-overflow-9" role="tabpanel"><p class="mb-0">Audit log: the pane fades in by itself when the tab opens.</p></div>
+                </div>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-md-6">
-                <div class="mb-3 card">
-                    <div class="card-header"><i data-lucide="award" class="me-2"></i>Header with Tabs
+            <div class="md:col-6">
+                <div class="mb-5 card">
+                    <div class="card-header"><i data-lucide="award" class="me-3"></i>Header with Tabs
                         <div class="ms-auto text-nowrap">
                             <div role="group" class="btn-group-sm nav btn-group">
-                                <a data-bs-toggle="tab" href="#tab-eg1-0" class="aui-btn-shadow active btn btn-primary">Overview</a>
-                                <a data-bs-toggle="tab" href="#tab-eg1-1" class="aui-btn-shadow btn btn-primary">Activity</a>
-                                <a data-bs-toggle="tab" href="#tab-eg1-2" class="aui-btn-shadow btn btn-primary">Settings</a>
+                                <a data-bs-toggle="tab" href="#tab-eg1-0" class="btn-solid theme-primary shadow-sm shadow-primary active">Overview</a>
+                                <a data-bs-toggle="tab" href="#tab-eg1-1" class="btn-solid theme-primary shadow-sm shadow-primary">Activity</a>
+                                <a data-bs-toggle="tab" href="#tab-eg1-2" class="btn-solid theme-primary shadow-sm shadow-primary">Settings</a>
                             </div>
                         </div>
                     </div>
@@ -468,16 +491,16 @@
                         </div>
                     </div>
                     <div class="d-block text-end card-footer">
-                        <a href="#" class="px-4 btn btn-success">Save</a>
+                        <a href="#" class="btn-solid theme-success px-7">Save</a>
                     </div>
                 </div>
-                <div class="mb-3 card">
-                    <div class="card-header"><i data-lucide="award" class="me-2"></i>Header Tabs Buttons
+                <div class="mb-5 card">
+                    <div class="card-header"><i data-lucide="award" class="me-3"></i>Header Tabs Buttons
                         <div class="ms-auto text-nowrap">
                             <div class="nav">
-                                <a data-bs-toggle="tab" href="#tab-eg2-0" class="rounded-pill px-4 active btn btn-outline-alternate btn-sm">Overview</a>
-                                <a data-bs-toggle="tab" href="#tab-eg2-1" class="rounded-pill px-4 me-1 ms-1 btn btn-outline-alternate btn-sm">Activity</a>
-                                <a data-bs-toggle="tab" href="#tab-eg2-2" class="rounded-pill px-4 btn btn-outline-alternate btn-sm">Settings</a>
+                                <a data-bs-toggle="tab" href="#tab-eg2-0" class="btn-outline theme-accent rounded-pill px-7 active btn-sm">Overview</a>
+                                <a data-bs-toggle="tab" href="#tab-eg2-1" class="btn-outline theme-accent rounded-pill px-7 me-1 ms-1 btn-sm">Activity</a>
+                                <a data-bs-toggle="tab" href="#tab-eg2-2" class="btn-outline theme-accent rounded-pill px-7 btn-sm">Settings</a>
                             </div>
                         </div>
                     </div>
@@ -489,16 +512,16 @@
                         </div>
                     </div>
                     <div class="d-block text-end card-footer">
-                        <a href="#" class="px-4 btn btn-success">Save</a>
+                        <a href="#" class="btn-solid theme-success px-7">Save</a>
                     </div>
                 </div>
-                <div class="mb-3 card">
-                    <div class="card-header"><i data-lucide="gift" class="me-2"></i>Alternate Tabs
+                <div class="mb-5 card">
+                    <div class="card-header"><i data-lucide="gift" class="me-3"></i>Alternate Tabs
                         <div class="ms-auto text-nowrap">
                             <div role="group" class="btn-group-sm nav btn-group">
-                                <a data-bs-toggle="tab" href="#tab-eg3-0" class="rounded-start-pill ps-3 active btn btn-focus">Overview</a>
-                                <a data-bs-toggle="tab" href="#tab-eg3-1" class="btn btn-focus">Activity</a>
-                                <a data-bs-toggle="tab" href="#tab-eg3-2" class="rounded-end-pill pe-3 btn btn-focus">Settings</a>
+                                <a data-bs-toggle="tab" href="#tab-eg3-0" class="btn-solid theme-focus rounded-start-pill ps-5 active">Overview</a>
+                                <a data-bs-toggle="tab" href="#tab-eg3-1" class="btn-solid theme-focus">Activity</a>
+                                <a data-bs-toggle="tab" href="#tab-eg3-2" class="btn-solid theme-focus rounded-end-pill pe-5">Settings</a>
                             </div>
                         </div>
                     </div>
@@ -510,13 +533,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
-                    <div class="card-header"><i data-lucide="gift" class="me-2"></i>Header Tabs Standard Buttons
+                <div class="mb-5 card">
+                    <div class="card-header"><i data-lucide="gift" class="me-3"></i>Header Tabs Standard Buttons
                         <div class="ms-auto text-nowrap">
                             <div class="nav">
-                                <a data-bs-toggle="tab" href="#tab-eg4-0" class="border-0 rounded-pill px-4 aui-btn-transition active btn btn-outline-danger">Overview</a>
-                                <a data-bs-toggle="tab" href="#tab-eg4-1" class="me-1 ms-1 rounded-pill px-4 border-0 aui-btn-transition btn btn-outline-danger">Activity</a>
-                                <a data-bs-toggle="tab" href="#tab-eg4-2" class="border-0 rounded-pill px-4 aui-btn-transition btn btn-outline-danger">Settings</a>
+                                <a data-bs-toggle="tab" href="#tab-eg4-0" class="btn-subtle theme-danger border-0 rounded-pill px-7 active">Overview</a>
+                                <a data-bs-toggle="tab" href="#tab-eg4-1" class="btn-subtle theme-danger me-1 ms-1 rounded-pill px-7 border-0">Activity</a>
+                                <a data-bs-toggle="tab" href="#tab-eg4-2" class="btn-subtle theme-danger border-0 rounded-pill px-7">Settings</a>
                             </div>
                         </div>
                     </div>
@@ -528,15 +551,15 @@
                         </div>
                     </div>
                     <div class="d-block text-end card-footer">
-                        <a href="#" class="px-4 btn btn-success">Save</a>
+                        <a href="#" class="btn-solid theme-success px-7">Save</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="mb-3 card">
+            <div class="md:col-6">
+                <div class="mb-5 card">
                     <div class="card-header">
                         <div class="d-flex align-items-center text-nowrap">
-                            <i data-lucide="bike" class="me-2"></i>
+                            <i data-lucide="bike" class="me-3"></i>
                             Header Alternate Tabs
                         </div>
                         <ul class="nav ms-auto">
@@ -553,16 +576,16 @@
                         </div>
                     </div>
                     <div class="d-block text-end card-footer">
-                        <a href="#" class="px-4 aui-btn-shadow btn btn-danger">Delete</a>
+                        <a href="#" class="btn-solid theme-danger shadow-sm shadow-danger px-7">Delete</a>
                     </div>
                 </div>
-                <div class="mb-3 card">
-                    <div class="card-header"><i data-lucide="gift" class="me-2"></i>Header Tabs Standard Buttons
+                <div class="mb-5 card">
+                    <div class="card-header"><i data-lucide="gift" class="me-3"></i>Header Tabs Standard Buttons
                         <div class="ms-auto text-nowrap">
                             <div class="nav">
-                                <a data-bs-toggle="tab" href="#tab-eg6-0" class="border-0 aui-btn-transition active btn btn-outline-primary">Overview</a>
-                                <a data-bs-toggle="tab" href="#tab-eg6-1" class="me-1 ms-1 border-0 aui-btn-transition btn btn-outline-primary">Activity</a>
-                                <a data-bs-toggle="tab" href="#tab-eg6-2" class="border-0 aui-btn-transition btn btn-outline-primary">Settings</a>
+                                <a data-bs-toggle="tab" href="#tab-eg6-0" class="btn-subtle theme-primary border-0 active">Overview</a>
+                                <a data-bs-toggle="tab" href="#tab-eg6-1" class="btn-subtle theme-primary me-1 ms-1 border-0">Activity</a>
+                                <a data-bs-toggle="tab" href="#tab-eg6-2" class="btn-subtle theme-primary border-0">Settings</a>
                             </div>
                         </div>
                     </div>
@@ -574,10 +597,10 @@
                         </div>
                     </div>
                     <div class="d-block text-end card-footer">
-                        <a href="#" class="px-4 btn btn-success">Save</a>
+                        <a href="#" class="btn-solid theme-success px-7">Save</a>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-header">
                         <ul class="nav nav-justified">
                             <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg7-0" class="active nav-link">Overview</a></li>
@@ -596,10 +619,10 @@
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="tab-content-1" role="tabpanel">
+    <div class="tab-pane" id="tab-content-1" role="tabpanel">
         <div class="row">
-            <div class="col-md-6">
-                <div class="mb-3 card">
+            <div class="md:col-6">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <ul class="aui-tabs-shadow nav-underline nav">
                             <li class="nav-item">
@@ -631,7 +654,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-header">
                         <ul class="nav nav-justified nav-underline">
                             <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg115-0" class="active nav-link">Overview</a></li>
@@ -648,8 +671,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="mb-3 card">
+            <div class="md:col-6">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <ul class="aui-tabs-shadow nav-justified nav-underline nav">
                             <li class="nav-item">
@@ -681,9 +704,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-header">
-                        <div class="d-flex align-items-center text-nowrap fs-6 text-capitalize fw-normal"><i data-lucide="gift" class="me-2"></i>Tabs Alternate Animation</div>
+                        <div class="d-flex align-items-center text-nowrap fs-md text-capitalize fw-normal"><i data-lucide="gift" class="me-3"></i>Tabs Alternate Animation</div>
                         <ul class="nav ms-auto nav-underline">
                             <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg8-0" class="active nav-link">Overview</a></li>
                             <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg8-1" class="nav-link">Activity</a></li>
@@ -698,18 +721,18 @@
                         </div>
                     </div>
                     <div class="d-block text-center card-footer">
-                        <a href="#" class="px-4 btn btn-link">Link Button</a>
-                        <a href="#" class="px-4 aui-btn-shadow btn btn-danger">Delete</a>
+                        <a href="#" class="btn-link px-7">Link Button</a>
+                        <a href="#" class="btn-solid theme-danger shadow-sm shadow-danger px-7">Delete</a>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
-    <div class="tab-pane fade" id="tab-content-2" role="tabpanel">
+    <div class="tab-pane" id="tab-content-2" role="tabpanel">
         <div class="row">
-            <div class="col-md-6">
-                <div class="mb-3 card">
+            <div class="md:col-6">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Basic</h5>
                         <ul class="nav nav-tabs">
                             <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg10-0" class="active nav-link">Overview</a></li>
@@ -723,7 +746,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Justified Alignment</h5>
                         <ul class="nav nav-tabs nav-justified">
                             <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg11-0" class="active nav-link">Overview</a></li>
@@ -737,13 +760,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Tabs Variations</h5>
-                        <div class="mb-3">
+                        <div class="mb-5">
                             <div role="group" class="btn-group-sm nav btn-group">
-                                <a data-bs-toggle="tab" href="#tab-eg12-0" class="rounded-start-pill ps-3 active btn btn-warning">Overview</a>
-                                <a data-bs-toggle="tab" href="#tab-eg12-1" class="btn btn-warning">Activity</a>
-                                <a data-bs-toggle="tab" href="#tab-eg12-2" class="rounded-end-pill pe-3 btn btn-warning">Settings</a>
+                                <a data-bs-toggle="tab" href="#tab-eg12-0" class="btn-solid theme-warning rounded-start-pill ps-5 active">Overview</a>
+                                <a data-bs-toggle="tab" href="#tab-eg12-1" class="btn-solid theme-warning">Activity</a>
+                                <a data-bs-toggle="tab" href="#tab-eg12-2" class="btn-solid theme-warning rounded-end-pill pe-5">Settings</a>
                             </div>
                         </div>
                         <div class="tab-content">
@@ -754,8 +777,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="mb-3 card">
+            <div class="md:col-6">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <h5 class="card-title">Pills</h5>
                         <ul class="nav nav-pills">
@@ -770,7 +793,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Pills</h5>
                         <ul class="nav nav-pills nav-fill">
                             <li class="nav-item"><a data-bs-toggle="tab" href="#tab-eg14-0" class="active nav-link">Pill 1</a></li>
@@ -784,13 +807,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-3 card">
+                <div class="mb-5 card">
                     <div class="card-body"><h5 class="card-title">Button Group Tabs</h5>
-                        <div class="mb-3 text-center">
+                        <div class="mb-5 text-center">
                             <div role="group" class="btn-group-sm nav btn-group">
-                                <a data-bs-toggle="tab" href="#tab-eg15-0" class="aui-btn-shadow active btn btn-primary">Overview</a>
-                                <a data-bs-toggle="tab" href="#tab-eg15-1" class="aui-btn-shadow btn btn-primary">Activity</a>
-                                <a data-bs-toggle="tab" href="#tab-eg15-2" class="aui-btn-shadow btn btn-primary">Settings</a>
+                                <a data-bs-toggle="tab" href="#tab-eg15-0" class="btn-solid theme-primary shadow-sm shadow-primary active">Overview</a>
+                                <a data-bs-toggle="tab" href="#tab-eg15-1" class="btn-solid theme-primary shadow-sm shadow-primary">Activity</a>
+                                <a data-bs-toggle="tab" href="#tab-eg15-2" class="btn-solid theme-primary shadow-sm shadow-primary">Settings</a>
                             </div>
                         </div>
                         <div class="tab-content">
@@ -811,18 +834,18 @@
         <li class="nav-item"><a href="#" class="nav-link">Help Center</a></li>
         <li class="nav-item"><a href="#" class="nav-link">API Docs</a></li>
     </ul>
-    <ul class="nav ms-auto d-none d-md-flex">
+    <ul class="nav ms-auto d-none md:d-flex">
         <li class="nav-item"><a href="#" class="nav-link">System Status</a></li>
-        <li class="nav-item"><a href="#" class="nav-link"><span class="badge bg-success me-1 ms-0"><small>NEW</small></span>What's New</a></li>
+        <li class="nav-item"><a href="#" class="nav-link"><span class="badge theme-success"><small>NEW</small></span>What's New</a></li>
     </ul>
 </footer>
 
         </main>
     </div>
-    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
-    <div class="toast text-bg-primary" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-5">
+    <div class="toast theme-primary" id="auiCalendarToast" role="status" aria-live="polite" aria-atomic="true">
         <div class="toast-header">
-            <i data-lucide="calendar" class="me-2"></i>
+            <i data-lucide="calendar" class="me-3"></i>
             <strong class="me-auto">Example Toast</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>

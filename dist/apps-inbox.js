@@ -68,7 +68,7 @@
   // Phones: the list or the conversation; from md both are visible
   function showThreadPane(open) {
     listPane.classList.toggle("d-none", open);
-    listPane.classList.toggle("d-md-block", open);
+    listPane.classList.toggle("md:d-block", open);
     threadPane.classList.toggle("d-none", !open);
     threadPane.classList.toggle("d-flex", open);
   }
@@ -113,8 +113,8 @@
     if (star) {
       const on = star.getAttribute("aria-pressed") !== "true";
       star.setAttribute("aria-pressed", String(on));
-      star.classList.toggle("text-warning", on);
-      star.classList.toggle("text-body-secondary", !on);
+      star.classList.toggle("fg-warning", on);
+      star.classList.toggle("fg-2", !on);
       itemOf(current).dataset.starred = String(on);
       filter();
       status.textContent = on ? "Starred" : "Star removed";
@@ -141,7 +141,7 @@
     const body = document.createElement("div");
     const bubble = Object.assign(document.createElement("div"), { className: "aui-chat-bubble", textContent: text });
     const time = Object.assign(document.createElement("div"), {
-      className: "small text-body-secondary mt-1",
+      className: "small fg-2 mt-1",
       textContent: new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hourCycle: "h23" }),
     });
     body.append(bubble, time);

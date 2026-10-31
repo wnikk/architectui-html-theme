@@ -1,30 +1,7 @@
-// Theme tokens: every value that can change without a rebuild.
-// Bootstrap reads --bs-*, the theme reads --aui-*. Colors, gradients and shadows come from the Business
-// rules (_business.scss) or from the selected theme stylesheet.
-@use "sass:list";
-@use "sass:map";
-@use "config" as *;
-
+// Layout tokens of the theme: every value that can change without a rebuild. Colors come from the theme base
+// (_business.scss for the default look, themes/<id>.scss for a theme). The theme reads --aui-*, Bootstrap --bs-*.
+// Bootstrap 6 declares its tokens on :root outside of CSS layers, so these blocks stay outside of @layer too.
 :root {
-  --aui-secondary-contrast: #{list.nth(map.get($aui-colors, "secondary"), 2)};
-
-  // Bootstrap palette overrides
-  --bs-blue: #33aaff;
-  --bs-indigo: #444054;
-  --bs-purple: #794c8a;
-  --bs-pink: #f65ca2;
-  --bs-red: #d92550;
-  --bs-orange: #f97316;
-  --bs-green: #50c366;
-  --bs-teal: #16e0bd;
-  --bs-cyan: #16aaff;
-
-  --bs-code-color: var(--bs-pink);
-  --bs-form-valid-color: var(--bs-success);
-  --bs-form-valid-border-color: var(--bs-success);
-  --bs-form-invalid-color: var(--bs-danger);
-  --bs-form-invalid-border-color: var(--bs-danger);
-
   // Layout
   --aui-header-height: 60px;
   --aui-sidebar-width: 250px;
@@ -44,30 +21,11 @@
   --aui-density: calc(2 / 3);
   --aui-gutter: 1rem;
   --aui-card-header-height: 2.75rem;
+}
 
-  // Rows with their own g-* or gx-* class keep it
-  .row:not([class^="g-"], [class*=" g-"], [class^="gx-"], [class*=" gx-"]) {
+@layer custom {
+  // Rows with their own g-*, gx-* or <bp>:g-* class keep it
+  :root[data-aui-density="compact"] .row:not([class^="g-"], [class*=" g-"], [class*=":g-"], [class^="gx-"], [class*=" gx-"], [class*=":gx-"]) {
     --bs-gutter-x: 1rem;
-  }
-}
-
-// Subtle variants of the colors that themes do not set themselves
-:root:not([data-bs-theme="dark"]) {
-  @each $name, $def in $aui-colors {
-    @if not list.index($aui-theme-colors, $name) {
-      --bs-#{$name}-bg-subtle: color-mix(in srgb, var(--bs-#{$name}) 20%, #fff);
-      --bs-#{$name}-border-subtle: color-mix(in srgb, var(--bs-#{$name}) 40%, #fff);
-      --bs-#{$name}-text-emphasis: color-mix(in srgb, var(--bs-#{$name}) 40%, #000);
-    }
-  }
-}
-
-[data-bs-theme="dark"] {
-  @each $name, $def in $aui-colors {
-    @if not list.index($aui-theme-colors, $name) {
-      --bs-#{$name}-bg-subtle: color-mix(in srgb, var(--bs-#{$name}) 20%, #000);
-      --bs-#{$name}-border-subtle: color-mix(in srgb, var(--bs-#{$name}) 60%, #000);
-      --bs-#{$name}-text-emphasis: color-mix(in srgb, var(--bs-#{$name}) 60%, #fff);
-    }
   }
 }

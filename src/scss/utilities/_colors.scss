@@ -1,44 +1,45 @@
-// Color utilities: theme colors missing in Bootstrap and brand gradients
+// Color utilities: the theme color "focus" that Bootstrap 6 does not have, and the brand gradients.
+// The classes join the Bootstrap layers (helpers, utilities), so they behave like the Bootstrap ones.
 @use "sass:string";
 @use "../config" as *;
 
-@each $name in $aui-extra-colors {
-  .bg-#{$name} {
-    --bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-#{$name}-rgb), var(--bs-bg-opacity)) !important;
-  }
-
-  .text-#{$name} {
-    --bs-text-opacity: 1;
-    color: rgba(var(--bs-#{$name}-rgb), var(--bs-text-opacity)) !important;
-  }
-
-  .border-#{$name} {
-    --bs-border-opacity: 1;
-    border-color: rgba(var(--bs-#{$name}-rgb), var(--bs-border-opacity)) !important;
-  }
-}
-
-// text-bg-<color> takes the text color from the theme contrast token instead of Bootstrap's fixed one
-@each $name, $def in $aui-colors {
-  .text-bg-#{$name} {
-    color: var(--aui-#{$name}-contrast) !important;
-    background-color: rgba(var(--bs-#{$name}-rgb), var(--bs-bg-opacity, 1)) !important;
-  }
-}
-
-// bg-<color> paints the brand gradient over the Bootstrap color. bg-<color>-subtle stays the pale
-// Bootstrap background in every theme; the -subtle gradients are tokens for custom CSS.
-@each $name, $gradient in $aui-gradients {
-  @if not string.index($name, "-subtle") {
-    .bg-#{$name} {
-      background-image: var(--aui-gradient-#{$name}) !important;
+@layer helpers {
+  @each $name in $aui-extra-colors {
+    .theme-#{$name} {
+      --bs-theme-base: var(--bs-#{$name}-base);
+      --bs-theme-fg: var(--bs-#{$name}-fg);
+      --bs-theme-fg-emphasis: var(--bs-#{$name}-fg-emphasis);
+      --bs-theme-bg: var(--bs-#{$name}-bg);
+      --bs-theme-bg-subtle: var(--bs-#{$name}-bg-subtle);
+      --bs-theme-bg-muted: var(--bs-#{$name}-bg-muted);
+      --bs-theme-border: var(--bs-#{$name}-border);
+      --bs-theme-focus-ring: var(--bs-#{$name}-focus-ring);
+      --bs-theme-contrast: var(--bs-#{$name}-contrast);
     }
   }
 }
 
-.bg-warning,
-.bg-light {
-  color: #212529;
-}
+@layer utilities {
+  @each $name in $aui-extra-colors {
+    .fg-#{$name} { --bs-fg: var(--bs-#{$name}-fg); color: var(--bs-fg); }
+    .fg-emphasis-#{$name} { --bs-fg: var(--bs-#{$name}-fg-emphasis); color: var(--bs-fg); }
+    .fg-contrast-#{$name} { --bs-fg: var(--bs-#{$name}-contrast); color: var(--bs-fg); }
+    .bg-#{$name} { --bs-bg: var(--bs-#{$name}-bg); background-color: var(--bs-bg); }
+    .bg-subtle-#{$name} { --bs-bg: var(--bs-#{$name}-bg-subtle); background-color: var(--bs-bg); }
+    .bg-muted-#{$name} { --bs-bg: var(--bs-#{$name}-bg-muted); background-color: var(--bs-bg); }
+    .border-#{$name} { --bs-bc: var(--bs-#{$name}-border); border-color: var(--bs-bc); }
+    .border-subtle-#{$name} { --bs-bc: var(--bs-#{$name}-bg-subtle); border-color: var(--bs-bc); }
+    .shadow-#{$name} { --bs-sc: var(--bs-#{$name}-base); }
+    .underline-#{$name} { text-decoration-color: var(--bs-#{$name}-fg); }
+  }
 
+  // bg-<color> paints the brand gradient over the Bootstrap color. bg-subtle-<color> stays the pale
+  // Bootstrap background in every theme; the -subtle gradients are tokens for custom CSS.
+  @each $name, $gradient in $aui-gradients {
+    @if not string.index($name, "-subtle") {
+      .bg-#{$name} {
+        background-image: var(--aui-gradient-#{$name});
+      }
+    }
+  }
+}

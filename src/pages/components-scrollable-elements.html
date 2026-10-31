@@ -4,8 +4,8 @@ description: "Add scrolling areas to any elements with custom scrollbars or defa
 icon: "hospital"
 ---
 <div class="row">
-    <div class="col-lg-6">
-        <div class="mb-3 card">
+    <div class="lg:col-6">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Medium Scrollable Area</h5>
                 <div class="aui-scroll aui-scroll-md"><p>Two-step sign-in is now required for owners and administrators. Members without a verification app get a code by email. Accounts that do not turn it on within 14 days lose access until they complete the setup.</p>
                         <p>The new pricing for annual plans starts on November 1. Existing customers keep their price until the next renewal. Send the announcement at least 30 days before the change, as the terms of service require.</p>
@@ -14,7 +14,7 @@ icon: "hospital"
                     </div>
             </div>
         </div>
-        <div class="mb-3 card">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Large Scrollable Area</h5>
                 <div class="aui-scroll aui-scroll-lg"><p>Customer support closed 312 tickets this week. Most questions were about delivery dates and invoice copies. Adding the tracking link to the order email should cut these questions by about a third, according to last quarter's test.</p>
                         <p>The quarterly report is ready for review. It covers revenue, refunds, new customers and churn by region. Comments from the finance team are due on Friday, after which the report goes to the board.</p>
@@ -24,8 +24,8 @@ icon: "hospital"
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="mb-3 card">
+    <div class="lg:col-6">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Small Scrollable Area</h5>
                 <div class="aui-scroll aui-scroll-sm"><p>This month the store processed 1,896 orders with an average value of $73. Conversion on mobile rose from 2.1% to 2.6% after the new checkout went live, while desktop stayed flat. The team plans to test one-click payments next.</p>
                         <p>Inventory for 14 products is below the reorder level. The suggested purchase order covers four weeks of sales based on the last 90 days. Review the quantities before you send it to the supplier, because two items have seasonal demand.</p>
@@ -34,23 +34,23 @@ icon: "hospital"
                     </div>
             </div>
         </div>
-        <div class="mb-3 card">
+        <div class="mb-5 card">
             <div class="card-header">
-                <i data-lucide="laptop" class="me-2"></i>
+                <i data-lucide="laptop" class="me-3"></i>
                 Header Menu
                 <div class="ms-auto text-nowrap">
-                    <button type="button" class="d-inline-flex align-items-center px-1 btn btn-link text-body" aria-label="Pets"><i data-lucide="paw-print"></i></button>
-                    <button type="button" class="d-inline-flex align-items-center px-1 btn btn-link text-body" aria-label="Download"><i data-lucide="download"></i></button>
+                    <button type="button" class="btn-link d-inline-flex align-items-center px-1 fg-body" aria-label="Pets"><i data-lucide="paw-print"></i></button>
+                    <button type="button" class="btn-link d-inline-flex align-items-center px-1 fg-body" aria-label="Download"><i data-lucide="download"></i></button>
                     <div class="btn-group">
-                        <button type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menu" class="d-inline-flex align-items-center px-1 btn btn-link text-body"><i data-lucide="list"></i></button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu-end shadow dropdown-menu"><h6 tabindex="-1" class="dropdown-header">Share</h6>
-                            <button type="button" tabindex="0" class="dropdown-item"><i data-lucide="inbox" class="me-2 opacity-50"></i><span>Edit</span></button>
-                            <button type="button" tabindex="0" class="dropdown-item"><i data-lucide="file" class="me-2 opacity-50"></i><span>Duplicate</span></button>
-                            <button type="button" tabindex="0" class="dropdown-item"><i data-lucide="book-open" class="me-2 opacity-50"></i><span>Copy link</span></button>
-                            <div tabindex="-1" class="dropdown-divider"></div>
-                            <div class="p-3 text-end">
-                                <button class="me-2 aui-btn-shadow btn-sm btn btn-link">View Details</button>
-                                <button class="me-2 aui-btn-shadow btn-sm btn btn-primary">Edit</button>
+                        <button type="button" data-bs-placement="bottom-end" data-bs-toggle="menu" aria-expanded="false" aria-label="Menu" class="btn-link d-inline-flex align-items-center px-1 fg-body"><i data-lucide="list"></i></button>
+                        <div class="shadow menu"><h6 tabindex="-1" class="menu-header">Share</h6>
+                            <button type="button" tabindex="0" class="menu-item"><i data-lucide="inbox" class="me-3 opacity-50"></i><span>Edit</span></button>
+                            <button type="button" tabindex="0" class="menu-item"><i data-lucide="file" class="me-3 opacity-50"></i><span>Duplicate</span></button>
+                            <button type="button" tabindex="0" class="menu-item"><i data-lucide="book-open" class="me-3 opacity-50"></i><span>Copy link</span></button>
+                            <div tabindex="-1" class="menu-divider"></div>
+                            <div class="p-5 text-end">
+                                <button class="btn-link shadow-sm shadow-primary me-3 btn-sm">View Details</button>
+                                <button class="btn-solid theme-primary shadow-sm shadow-primary me-3 btn-sm">Edit</button>
                             </div>
                         </div>
                     </div>
@@ -63,8 +63,8 @@ icon: "hospital"
                     </div>
             </div>
             <div class="d-block text-end card-footer">
-                <button class="me-2 btn btn-link btn-sm">Cancel</button>
-                <button class="btn btn-success btn-lg">Save</button>
+                <button class="btn-link me-3 btn-sm">Cancel</button>
+                <button class="btn-solid theme-success btn-lg">Save</button>
             </div>
         </div>
     </div>

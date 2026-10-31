@@ -16,69 +16,69 @@ script: "elements-icons.js"
     </li>
 </ul>
 <div class="tab-content">
-    <div class="tab-pane fade show active" id="tab-content-0" role="tabpanel">
-        <div class="mb-3 card">
+    <div class="tab-pane active" id="tab-content-0" role="tabpanel">
+        <div class="mb-5 card">
             <div class="card-body">
-                <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                <div class="d-flex flex-wrap align-items-center gap-5 mb-5">
                     <h5 class="card-title mb-0">All Icons</h5>
-                    <span class="badge bg-secondary" id="iconCount">{{ lucideIcons.names.length }}</span>
+                    <span class="badge theme-secondary" id="iconCount">{{ lucideIcons.names.length }}</span>
                     <input type="search" class="form-control ms-auto w-auto" id="iconSearch" placeholder="Search icons ..." aria-label="Search icons">
                 </div>
-                <p class="text-body-secondary small">Click an icon to copy its markup.</p>
-                <div class="d-grid gap-2" id="iconGrid" style="grid-template-columns: repeat(auto-fill, minmax(110px, 1fr))">
+                <p class="fg-2 small">Click an icon to copy its markup.</p>
+                <div class="d-grid gap-3" id="iconGrid" style="grid-template-columns: repeat(auto-fill, minmax(110px, 1fr))">
                     {%- for name in lucideIcons.names %}
-                    <button type="button" class="btn btn-sm border rounded d-flex flex-column align-items-center gap-2 py-3 px-2" data-icon="{{ name }}"><i data-lucide="{{ name }}" class="fs-4"></i><span class="small text-break lh-sm">{{ name }}</span></button>
+                    <button type="button" class="btn-text theme-secondary btn-sm border rounded d-flex flex-column align-items-center gap-3 py-5 px-3" data-icon="{{ name }}"><i data-lucide="{{ name }}" class="fs-xl"></i><span class="small text-break lh-sm">{{ name }}</span></button>
                     {%- endfor %}
                 </div>
             </div>
         </div>
     </div>
     {#- Bootstrap Icons: the stylesheet and the icon list come from the CDN when this tab opens (elements-icons.js) #}
-    <div class="tab-pane fade" id="tab-content-1" role="tabpanel" data-icons-css="{{ cdn.bootstrapIcons.css }}" data-icons-list="{{ cdn.bootstrapIcons.list }}">
-        <div class="alert alert-info d-flex gap-2 mb-3" role="note">
+    <div class="tab-pane" id="tab-content-1" role="tabpanel" data-icons-css="{{ cdn.bootstrapIcons.css }}" data-icons-list="{{ cdn.bootstrapIcons.list }}">
+        <div class="alert theme-info d-flex gap-3 mb-5" role="note">
             <i data-lucide="info" class="flex-shrink-0 mt-1"></i>
             <div>This icon set is added dynamically from the CDN: when this tab opens, the page loads the Bootstrap Icons {{ cdn.bootstrapIcons.version }} stylesheet and the icon list from jsDelivr. The theme and the other pages use Lucide and do not load Bootstrap Icons. Markup: <code>&lt;i class="bi bi-rocket"&gt;&lt;/i&gt;</code>.</div>
         </div>
-        <div class="mb-3 card">
+        <div class="mb-5 card">
             <div class="card-body">
-                <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                <div class="d-flex flex-wrap align-items-center gap-5 mb-5">
                     <h5 class="card-title mb-0">All Icons</h5>
-                    <span class="badge bg-secondary" id="biCount">…</span>
+                    <span class="badge theme-secondary" id="biCount">…</span>
                     <input type="search" class="form-control ms-auto w-auto" id="biSearch" placeholder="Search icons ..." aria-label="Search Bootstrap Icons" disabled>
                 </div>
-                <p class="text-body-secondary small">Click an icon to copy its markup.</p>
-                <div class="d-flex align-items-center gap-2 text-body-secondary" id="biStatus" role="status">
-                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <p class="fg-2 small">Click an icon to copy its markup.</p>
+                <div class="d-flex align-items-center gap-3 fg-2" id="biStatus" role="status">
+                    <span class="spinner-border spinner-sm" aria-hidden="true"></span>
                     <span>Loading Bootstrap Icons from the CDN…</span>
                 </div>
-                <div class="d-grid gap-2" id="biGrid" style="grid-template-columns: repeat(auto-fill, minmax(110px, 1fr))"></div>
+                <div class="d-grid gap-3" id="biGrid" style="grid-template-columns: repeat(auto-fill, minmax(110px, 1fr))"></div>
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="tab-content-2" role="tabpanel">
+    <div class="tab-pane" id="tab-content-2" role="tabpanel">
         <div class="row">
-            <div class="col-lg-6">
-                <div class="mb-3 card">
+            <div class="lg:col-6">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <h5 class="card-title">Usage</h5>
                         <p>Add an element with the icon name. The theme module renders it into an inline SVG.</p>
-                        <pre class="p-3 rounded bg-body-tertiary small text-wrap text-break"><code>&lt;i data-lucide="rocket"&gt;&lt;/i&gt;</code></pre>
-                        <p class="mb-2">Icons take the text color and scale with the font size:</p>
-                        <div class="d-flex flex-wrap align-items-end gap-3">
+                        <pre class="p-5 rounded bg-1 small text-wrap text-break"><code>&lt;i data-lucide="rocket"&gt;&lt;/i&gt;</code></pre>
+                        <p class="mb-3">Icons take the text color and scale with the font size:</p>
+                        <div class="d-flex flex-wrap align-items-end gap-5">
                             <i data-lucide="rocket"></i>
-                            <i data-lucide="rocket" class="fs-5"></i>
-                            <i data-lucide="rocket" class="fs-4 text-primary"></i>
-                            <i data-lucide="rocket" class="fs-2 text-success"></i>
+                            <i data-lucide="rocket" class="fs-lg"></i>
+                            <i data-lucide="rocket" class="fs-xl fg-primary"></i>
+                            <i data-lucide="rocket" class="fs-3xl fg-success"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="mb-3 card">
+            <div class="lg:col-6">
+                <div class="mb-5 card">
                     <div class="card-body">
                         <h5 class="card-title">Gradient Icons</h5>
                         <p>Add <code>aui-icon-gradient-&lt;color&gt;</code> to stroke an icon with the theme gradient.</p>
-                        <div class="d-flex flex-wrap gap-4 fs-2">
+                        <div class="d-flex flex-wrap gap-7 fs-3xl">
                             {%- for color in ["primary", "info", "success", "warning", "danger", "secondary", "dark", "focus", "alternate"] %}
                             <i data-lucide="gem" class="aui-icon-gradient-{{ color }}" data-bs-toggle="tooltip" title="aui-icon-gradient-{{ color }}"></i>
                             {%- endfor %}
@@ -89,11 +89,11 @@ script: "elements-icons.js"
         </div>
     </div>
 </div>
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div class="toast align-items-center text-bg-dark border-0" id="iconCopied" role="status" aria-live="polite" aria-atomic="true">
+<div class="toast-container position-fixed bottom-0 end-0 p-5">
+    <div class="toast align-items-center theme-inverse border-0" id="iconCopied" role="status" aria-live="polite" aria-atomic="true">
         <div class="d-flex">
             <div class="toast-body" id="iconCopiedText">Copied</div>
-            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            <button type="button" class="btn-close me-3 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     </div>
 </div>

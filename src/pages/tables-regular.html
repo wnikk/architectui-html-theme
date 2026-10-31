@@ -3,24 +3,24 @@ title: "Regular Tables"
 description: "Bootstrap tables: a list with search, sorting and pages, an empty state and the table variants."
 icon: "archive"
 ---
-<div class="mb-3 card">
+<div class="mb-5 card">
     <div class="card-header">
-        <i data-lucide="shopping-cart" class="me-2"></i>Recent orders
-        <div class="ms-auto d-flex gap-2">
-            <button type="button" class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2"><i data-lucide="download"></i>Export</button>
-            <button type="button" class="btn btn-primary btn-sm d-inline-flex align-items-center gap-2"><i data-lucide="plus"></i>New order</button>
+        <i data-lucide="shopping-cart" class="me-3"></i>Recent orders
+        <div class="ms-auto d-flex gap-3">
+            <button type="button" class="btn-outline theme-secondary btn-sm d-inline-flex align-items-center gap-3"><i data-lucide="download"></i>Export</button>
+            <button type="button" class="btn-solid theme-primary btn-sm d-inline-flex align-items-center gap-3"><i data-lucide="plus"></i>New order</button>
         </div>
     </div>
-    <div class="card-body pb-3">
-        <form class="row g-2 align-items-center" role="search">
-            <div class="col-md">
+    <div class="card-body pb-5">
+        <form class="row g-3 align-items-center" role="search">
+            <div class="md:col">
                 <div class="input-group">
                     <span class="input-group-text"><i data-lucide="search"></i></span>
                     <input type="search" class="form-control" placeholder="Search by order or customer" aria-label="Search orders">
                 </div>
             </div>
-            <div class="col-6 col-md-auto">
-                <select class="form-select" aria-label="Status">
+            <div class="col-6 md:col-auto">
+                <select class="form-control" aria-label="Status">
                     <option selected>All statuses</option>
                     <option>Paid</option>
                     <option>Shipped</option>
@@ -29,8 +29,8 @@ icon: "archive"
                     <option>Failed</option>
                 </select>
             </div>
-            <div class="col-6 col-md-auto">
-                <select class="form-select" aria-label="Period">
+            <div class="col-6 md:col-auto">
+                <select class="form-control" aria-label="Period">
                     <option>Last 7 days</option>
                     <option selected>Last 30 days</option>
                     <option>This year</option>
@@ -42,12 +42,12 @@ icon: "archive"
         <table class="table table-hover align-middle mb-0">
             <thead>
             <tr>
-                <th scope="col"><input class="form-check-input" type="checkbox" id="selectAllOrders" aria-label="Select all orders"></th>
-                <th scope="col" aria-sort="none"><a href="#" class="d-inline-flex align-items-center gap-1 text-reset">Order<i data-lucide="chevrons-up-down" class="opacity-50"></i></a></th>
-                <th scope="col" aria-sort="none"><a href="#" class="d-inline-flex align-items-center gap-1 text-reset">Customer<i data-lucide="chevrons-up-down" class="opacity-50"></i></a></th>
+                <th scope="col"><input class="check" type="checkbox" id="selectAllOrders" aria-label="Select all orders"></th>
+                <th scope="col" aria-sort="none"><a href="#" class="d-inline-flex align-items-center gap-1 fg-reset">Order<i data-lucide="chevrons-up-down" class="opacity-50"></i></a></th>
+                <th scope="col" aria-sort="none"><a href="#" class="d-inline-flex align-items-center gap-1 fg-reset">Customer<i data-lucide="chevrons-up-down" class="opacity-50"></i></a></th>
                 <th scope="col">Status</th>
-                <th scope="col" aria-sort="descending"><a href="#" class="d-inline-flex align-items-center gap-1 text-reset">Date<i data-lucide="arrow-down" class="text-primary"></i></a></th>
-                <th scope="col" class="text-end" aria-sort="none"><a href="#" class="d-inline-flex align-items-center gap-1 text-reset">Amount<i data-lucide="chevrons-up-down" class="opacity-50"></i></a></th>
+                <th scope="col" aria-sort="descending"><a href="#" class="d-inline-flex align-items-center gap-1 fg-reset">Date<i data-lucide="arrow-down" class="fg-primary"></i></a></th>
+                <th scope="col" class="text-end" aria-sort="none"><a href="#" class="d-inline-flex align-items-center gap-1 fg-reset">Amount<i data-lucide="chevrons-up-down" class="opacity-50"></i></a></th>
                 <th scope="col"><span class="visually-hidden">Actions</span></th>
             </tr>
             </thead>
@@ -59,11 +59,11 @@ icon: "archive"
             </tbody>
         </table>
     </div>
-    <div class="card-footer flex-wrap gap-3 py-3">
-        <span class="text-body-secondary small">Showing 1–8 of {{ orders.length }} orders</span>
-        <div class="ms-md-auto d-flex align-items-center gap-2">
-            <label for="ordersPerPage" class="small text-body-secondary text-nowrap">Rows per page</label>
-            <select class="form-select form-select-sm w-auto" id="ordersPerPage">
+    <div class="card-footer flex-wrap gap-5 py-5">
+        <span class="fg-2 small">Showing 1–8 of {{ orders.length }} orders</span>
+        <div class="md:ms-auto d-flex align-items-center gap-3">
+            <label for="ordersPerPage" class="small fg-2 text-nowrap">Rows per page</label>
+            <select class="form-control form-control-sm w-auto" id="ordersPerPage">
                 <option selected>8</option>
                 <option>25</option>
                 <option>50</option>
@@ -81,9 +81,9 @@ icon: "archive"
         </nav>
     </div>
 </div>
-<div class="mb-3 card">
-    <div class="card-header"><i data-lucide="funnel" class="me-2"></i>Empty state</div>
-    <div class="card-body pb-3">
+<div class="mb-5 card">
+    <div class="card-header"><i data-lucide="funnel" class="me-3"></i>Empty state</div>
+    <div class="card-body pb-5">
         <div class="input-group">
             <span class="input-group-text"><i data-lucide="search"></i></span>
             <input type="search" class="form-control" value="ORD-9999" aria-label="Search orders">
@@ -102,11 +102,11 @@ icon: "archive"
             </thead>
             <tbody>
             <tr>
-                <td colspan="5" class="text-center py-5">
-                    <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-body-tertiary text-body-secondary mb-3 p-3"><i data-lucide="search-x" class="fs-3"></i></div>
-                    <div class="fw-bold text-body">No orders match the filters</div>
-                    <p class="text-body-secondary mb-3">Check the order number or reset the filters.</p>
-                    <button type="button" class="btn btn-outline-primary btn-sm">Reset filters</button>
+                <td colspan="5" class="text-center py-12">
+                    <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-1 fg-2 mb-5 p-5"><i data-lucide="search-x" class="fs-2xl"></i></div>
+                    <div class="fw-bold fg-body">No orders match the filters</div>
+                    <p class="fg-2 mb-5">Check the order number or reset the filters.</p>
+                    <button type="button" class="btn-outline theme-primary btn-sm">Reset filters</button>
                 </td>
             </tr>
             </tbody>
@@ -114,8 +114,8 @@ icon: "archive"
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-6">
-        <div class="mb-3 card">
+    <div class="lg:col-6">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Simple table</h5>
                 <table class="mb-0 table">
                     <thead>
@@ -150,8 +150,8 @@ icon: "archive"
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="mb-3 card">
+    <div class="lg:col-6">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Table bordered</h5>
                 <table class="mb-0 table table-bordered">
                     <thead>
@@ -186,8 +186,8 @@ icon: "archive"
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="mb-3 card">
+    <div class="lg:col-6">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Table without border</h5>
                 <table class="mb-0 table table-borderless">
                     <thead>
@@ -222,10 +222,10 @@ icon: "archive"
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="mb-3 card">
+    <div class="lg:col-6">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Table dark</h5>
-                <table class="mb-0 table table-dark">
+                <table class="mb-0 table" data-bs-theme="dark">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -258,8 +258,8 @@ icon: "archive"
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="mb-3 card">
+    <div class="lg:col-6">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Table with hover</h5>
                 <table class="mb-0 table table-hover">
                     <thead>
@@ -294,8 +294,8 @@ icon: "archive"
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="mb-3 card">
+    <div class="lg:col-6">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Table responsive</h5>
                 <div class="table-responsive">
                     <table class="mb-0 table">
@@ -344,8 +344,8 @@ icon: "archive"
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="mb-3 card">
+    <div class="lg:col-6">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Table sizing</h5>
                 <table class="mb-0 table table-sm">
                     <thead>
@@ -380,8 +380,8 @@ icon: "archive"
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="mb-3 card">
+    <div class="lg:col-6">
+        <div class="mb-5 card">
             <div class="card-body"><h5 class="card-title">Table striped</h5>
                 <table class="mb-0 table table-striped">
                     <thead>
@@ -415,5 +415,21 @@ icon: "archive"
                 </table>
             </div>
         </div>
+    </div>
+</div>
+<div class="mb-5 card">
+    <div class="card-body">
+        <h5 class="card-title">Stacked table</h5>
+        <p class="card-subtitle">New in Bootstrap 6: below 768 px every row becomes a card and each cell shows its column name from <code>data-cell</code>; <code>table-card</code> frames the table, <code>theme-*</code> colors a row.</p>
+        <table class="table md:table-stacked table-card mb-0">
+            <thead>
+                <tr><th scope="col">Server</th><th scope="col">Region</th><th scope="col">Load</th><th scope="col">Uptime</th><th scope="col">State</th></tr>
+            </thead>
+            <tbody>
+                <tr><td data-cell="Server">web-01</td><td data-cell="Region">EU West (Frankfurt)</td><td data-cell="Load">42%</td><td data-cell="Uptime">99.98%</td><td data-cell="State"><span class="badge theme-success">Healthy</span></td></tr>
+                <tr class="theme-warning"><td data-cell="Server">db-02</td><td data-cell="Region">US East (Virginia)</td><td data-cell="Load">88%</td><td data-cell="Uptime">99.90%</td><td data-cell="State"><span class="badge theme-warning">Busy</span></td></tr>
+                <tr><td data-cell="Server">cache-03</td><td data-cell="Region">Asia Pacific (Singapore)</td><td data-cell="Load">12%</td><td data-cell="Uptime">100%</td><td data-cell="State"><span class="badge theme-success">Healthy</span></td></tr>
+            </tbody>
+        </table>
     </div>
 </div>

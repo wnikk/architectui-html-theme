@@ -5,60 +5,60 @@ icon: "user-round"
 script: "pages-profile.js"
 breadcrumbs: "title"
 ---
-<div class="row g-3 mb-3">
-    <div class="col-12 col-xl-4">
+<div class="row g-5 mb-5">
+    <div class="col-12 xl:col-4">
         <div class="card h-100">
             <div class="card-body text-center">
-                <img src="assets/images/avatars/1.jpg" width="96" height="96" class="rounded-circle mb-3" alt="">
+                <span class="avatar avatar-xl mb-5"><img class="avatar-img" src="assets/images/avatars/1.jpg" alt=""></span>
                 <h5 class="mb-1">Alina Mclourd</h5>
-                <div class="text-body-secondary mb-3">VP People Manager · Northwind</div>
-                <div class="d-flex justify-content-center gap-2 mb-4">
-                    <span class="badge text-bg-success">Active</span>
-                    <span class="badge text-bg-secondary">Administrator</span>
+                <div class="fg-2 mb-5">VP People Manager · Northwind</div>
+                <div class="d-flex justify-content-center gap-3 mb-7">
+                    <span class="badge theme-success">Active</span>
+                    <span class="badge theme-secondary">Administrator</span>
                 </div>
-                <div class="row row-cols-3 g-0 border-top border-bottom py-3 mb-3">
-                    <div class="col"><div class="aui-number fs-5 fw-bold">24</div><div class="small text-body-secondary">Projects</div></div>
-                    <div class="col border-start"><div class="aui-number fs-5 fw-bold">6</div><div class="small text-body-secondary">Teams</div></div>
-                    <div class="col border-start"><div class="aui-number fs-5 fw-bold">4.9</div><div class="small text-body-secondary">Rating</div></div>
+                <div class="row row-cols-3 g-0 border-top border-bottom py-5 mb-5">
+                    <div class="col"><div class="aui-number fs-lg fw-bold">24</div><div class="small fg-2">Projects</div></div>
+                    <div class="col border-start"><div class="aui-number fs-lg fw-bold">6</div><div class="small fg-2">Teams</div></div>
+                    <div class="col border-start"><div class="aui-number fs-lg fw-bold">4.9</div><div class="small fg-2">Rating</div></div>
                 </div>
                 <ul class="list-unstyled text-start mb-0">
-                    <li class="d-flex align-items-center gap-2 mb-2"><i data-lucide="mail" class="text-body-secondary"></i><a href="mailto:alina.mclourd@northwind.test">alina.mclourd@northwind.test</a></li>
-                    <li class="d-flex align-items-center gap-2 mb-2"><i data-lucide="phone" class="text-body-secondary"></i>+1 415 555 0132</li>
-                    <li class="d-flex align-items-center gap-2 mb-2"><i data-lucide="map-pin" class="text-body-secondary"></i>San Francisco, United States</li>
-                    <li class="d-flex align-items-center gap-2"><i data-lucide="clock" class="text-body-secondary"></i>Pacific Time (UTC−08:00)</li>
+                    <li class="d-flex align-items-center gap-3 mb-3"><i data-lucide="mail" class="fg-2"></i><a href="mailto:alina.mclourd@northwind.test">alina.mclourd@northwind.test</a></li>
+                    <li class="d-flex align-items-center gap-3 mb-3"><i data-lucide="phone" class="fg-2"></i>+1 415 555 0132</li>
+                    <li class="d-flex align-items-center gap-3 mb-3"><i data-lucide="map-pin" class="fg-2"></i>San Francisco, United States</li>
+                    <li class="d-flex align-items-center gap-3"><i data-lucide="clock" class="fg-2"></i>Pacific Time (UTC−08:00)</li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="col-12 col-xl-8">
+    <div class="col-12 xl:col-8">
         <div class="card h-100">
-            <div class="card-header"><i data-lucide="id-card" class="me-2"></i>Personal information</div>
+            <div class="card-header"><i data-lucide="id-card" class="me-3"></i>Personal information</div>
             <div class="card-body">
                 <form id="profile-form">
-                    <div class="row g-3">
-                        <div class="col-md-6">
+                    <div class="row g-5">
+                        <div class="md:col-6">
                             <label for="profile-first-name" class="form-label">First name</label>
                             <input type="text" class="form-control" id="profile-first-name" value="Alina" autocomplete="given-name">
                         </div>
-                        <div class="col-md-6">
+                        <div class="md:col-6">
                             <label for="profile-last-name" class="form-label">Last name</label>
                             <input type="text" class="form-control" id="profile-last-name" value="Mclourd" autocomplete="family-name">
                         </div>
-                        <div class="col-md-6">
+                        <div class="md:col-6">
                             <label for="profile-email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="profile-email" value="alina.mclourd@northwind.test" autocomplete="email">
                         </div>
-                        <div class="col-md-6">
+                        <div class="md:col-6">
                             <label for="profile-phone" class="form-label">Phone</label>
                             <input type="tel" class="form-control" id="profile-phone" value="+1 415 555 0132" autocomplete="tel">
                         </div>
-                        <div class="col-md-6">
+                        <div class="md:col-6">
                             <label for="profile-title" class="form-label">Job title</label>
                             <input type="text" class="form-control" id="profile-title" value="VP People Manager" autocomplete="organization-title">
                         </div>
-                        <div class="col-md-6">
+                        <div class="md:col-6">
                             <label for="profile-timezone" class="form-label">Time zone</label>
-                            <select class="form-select" id="profile-timezone">
+                            <select class="form-control" id="profile-timezone">
                                 <option>Pacific Time (UTC−08:00)</option>
                                 <option>Eastern Time (UTC−05:00)</option>
                                 <option>Central European Time (UTC+01:00)</option>
@@ -72,33 +72,33 @@ breadcrumbs: "title"
                     </div>
                 </form>
             </div>
-            <div class="card-footer d-flex justify-content-end gap-2">
-                <button type="reset" form="profile-form" class="btn btn-outline-secondary">Cancel</button>
-                <button type="submit" form="profile-form" class="btn btn-primary">Save changes</button>
+            <div class="card-footer d-flex justify-content-end gap-3">
+                <button type="reset" form="profile-form" class="btn-outline theme-secondary">Cancel</button>
+                <button type="submit" form="profile-form" class="btn-solid theme-primary">Save changes</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="card mb-3" id="interface">
+<div class="card mb-5" id="interface">
     <div class="card-header">
-        <i data-lucide="sliders-horizontal" class="me-2"></i>Interface
+        <i data-lucide="sliders-horizontal" class="me-3"></i>Interface
         <div class="ms-auto">
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-aui-reset>Restore default</button>
+            <button type="button" class="btn-outline theme-secondary btn-sm" data-aui-reset>Restore default</button>
         </div>
     </div>
     <div class="card-body">
-        <p class="text-body-secondary">The settings apply at once on every page and stay in this browser.</p>
+        <p class="fg-2">The settings apply at once on every page and stay in this browser.</p>
         {%- set prefix = "profile" %}
         {% include "partials/interface-settings.njk" %}
     </div>
 </div>
 
-<div class="toast-container position-fixed top-0 end-0 p-3">
-    <div class="toast text-bg-success" id="profile-saved" role="status" aria-live="polite" aria-atomic="true">
+<div class="toast-container position-fixed top-0 end-0 p-5">
+    <div class="toast theme-success" id="profile-saved" role="status" aria-live="polite" aria-atomic="true">
         <div class="d-flex">
-            <div class="toast-body d-flex align-items-center gap-2"><i data-lucide="circle-check"></i>Profile saved.</div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            <div class="toast-body d-flex align-items-center gap-3"><i data-lucide="circle-check"></i>Profile saved.</div>
+            <button type="button" class="btn-close me-3 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     </div>
 </div>

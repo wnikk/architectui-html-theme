@@ -8,10 +8,13 @@
  * =========================================================
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
-// DataTables 3 on a table rendered in the page. The Bootstrap 5 integration and the theme style it.
+// DataTables 3 on a table rendered in the page. The Bootstrap 5 integration (its classes exist in Bootstrap 6) and the theme style it.
 (() => {
   const table = document.getElementById("ordersTable");
   if (!table || !window.DataTable) return;
+
+  // The Bootstrap 5 integration renders form-select, which Bootstrap 6 does not have: a select is a form-control
+  DataTable.ext.classes.length.select = "form-control form-control-sm";
 
   new DataTable(table, {
     responsive: true,

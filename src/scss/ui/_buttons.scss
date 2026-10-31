@@ -1,112 +1,32 @@
-// Buttons. Variants use Bootstrap CSS variables, so changing --bs-<color> recolors them without a rebuild.
-@use "sass:list";
+// Buttons. Colors come from the Bootstrap 6 theme classes (btn-solid theme-primary, btn-outline theme-danger);
+// the theme only adjusts a few details. A colored shadow is the Bootstrap utility pair shadow + shadow-<color>,
+// a lift on hover is the hover-lift helper.
 @use "../config" as *;
 
-.btn {
-  --bs-btn-focus-box-shadow: none;
-  position: relative;
-  transition: color .15s, background-color .15s, border-color .15s, box-shadow .15s;
-}
-
-@each $name, $def in $aui-colors {
-  $contrast: var(--aui-#{$name}-contrast);
-
-  .btn-#{$name} {
-    --bs-btn-color: #{$contrast};
-    --bs-btn-bg: var(--bs-#{$name});
-    --bs-btn-border-color: var(--bs-#{$name});
-    --bs-btn-hover-color: #{$contrast};
-    --bs-btn-active-color: #{$contrast};
-    --bs-btn-disabled-color: #{$contrast};
-    --bs-btn-disabled-bg: var(--bs-#{$name});
-    --bs-btn-disabled-border-color: var(--bs-#{$name});
-    @if list.nth($def, 3) == tint {
-      --bs-btn-hover-bg: color-mix(in srgb, var(--bs-#{$name}), #fff 15%);
-      --bs-btn-hover-border-color: color-mix(in srgb, var(--bs-#{$name}), #fff 10%);
-      --bs-btn-active-bg: color-mix(in srgb, var(--bs-#{$name}), #fff 20%);
-      --bs-btn-active-border-color: color-mix(in srgb, var(--bs-#{$name}), #fff 10%);
-    } @else {
-      --bs-btn-hover-bg: color-mix(in srgb, var(--bs-#{$name}), #000 15%);
-      --bs-btn-hover-border-color: color-mix(in srgb, var(--bs-#{$name}), #000 20%);
-      --bs-btn-active-bg: color-mix(in srgb, var(--bs-#{$name}), #000 20%);
-      --bs-btn-active-border-color: color-mix(in srgb, var(--bs-#{$name}), #000 25%);
-    }
+@layer custom {
+  // Outline and text buttons of the neutral color: the label takes the muted text color of the theme,
+  // so it reads on the page and on cards
+  .btn-outline.theme-secondary,
+  .btn-text.theme-secondary {
+    --bs-btn-color: var(--bs-secondary-fg);
+    --bs-btn-border-color: var(--bs-border-color);
   }
 
-  .btn-outline-#{$name} {
-    --bs-btn-color: var(--bs-#{$name});
-    --bs-btn-border-color: var(--bs-#{$name});
-    --bs-btn-hover-color: #{$contrast};
-    --bs-btn-hover-bg: var(--bs-#{$name});
-    --bs-btn-hover-border-color: var(--bs-#{$name});
-    --bs-btn-active-color: #{$contrast};
-    --bs-btn-active-bg: var(--bs-#{$name});
-    --bs-btn-active-border-color: var(--bs-#{$name});
-    --bs-btn-disabled-color: var(--bs-#{$name});
-    --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: var(--bs-#{$name});
+  // Icon inside a button: larger than the button text. Frame buttons set their own size.
+  :where(.btn-solid, .btn-outline, .btn-subtle, .btn-text, .btn-link, .btn-icon, .btn-check) > :is(i[data-lucide], svg.lucide) {
+    width: 1.35em;
+    height: 1.35em;
   }
 
-  .btn-#{$name}.aui-btn-shadow,
-  .btn-outline-#{$name}.aui-btn-shadow {
-    --aui-btn-shadow-rgb: var(--bs-#{$name}-rgb);
-  }
-}
-
-.btn-outline-light {
-  --bs-btn-color: #939393;
-}
-
-// Outline secondary: the label takes the muted text color of the theme, so it reads on the page and on cards
-.btn-outline-secondary {
-  --bs-btn-color: var(--bs-secondary-color);
-}
-
-// Shadow in the button color
-.aui-btn-shadow {
-  --aui-btn-shadow-rgb: 0, 0, 0;
-  box-shadow: 0 .125rem .625rem rgba(var(--aui-btn-shadow-rgb), .4), 0 .0625rem .125rem rgba(var(--aui-btn-shadow-rgb), .5);
-
-  &:hover {
-    box-shadow: 0 .125rem .625rem rgba(var(--aui-btn-shadow-rgb), .5), 0 .0625rem .125rem rgba(var(--aui-btn-shadow-rgb), .6);
+  // A chevron at the end of a menu toggle (Bootstrap 6 draws no caret): smaller and a little quiet
+  [data-bs-toggle="menu"] > [data-lucide="chevron-down"]:last-child {
+    width: 1em;
+    height: 1em;
+    opacity: .8;
   }
 
-  &.active {
-    box-shadow: none;
+  // Split toggle of a button group: a thin line separates it from the main button
+  .btn-group > .menu-toggle-split {
+    border-left: 2px solid rgba(255, 255, 255, .1);
   }
-}
-
-// Transition buttons: gray at rest, variant color on hover
-.aui-btn-transition {
-  --bs-btn-disabled-color: var(--bs-gray-600);
-  --bs-btn-disabled-border-color: var(--bs-gray-200);
-}
-
-// Icon inside a button: larger than the button text. Frame buttons set their own size.
-:where(.btn) > :is(i[data-lucide], svg.lucide) {
-  width: 1.35em;
-  height: 1.35em;
-}
-
-.dropdown-toggle::after {
-  position: relative;
-  top: 2px;
-  margin-left: 5px;
-  opacity: .8;
-}
-
-.dropdown-toggle-split {
-  border-left: 2px solid rgba(255, 255, 255, .1);
-
-  &::after {
-    margin-left: 0;
-  }
-}
-
-.dropend .dropdown-toggle::after {
-  top: 0;
-}
-
-.btn .badge {
-  margin-left: 8px;
 }
