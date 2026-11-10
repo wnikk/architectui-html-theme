@@ -59,6 +59,8 @@ CDN dependencies. The exact, tested URLs are in `src/_data/cdn.json` and in the 
 
 All paths are relative and all scripts are classic `defer` scripts. The demo works from any folder of a web server and from disk (`file://`). To work offline, copy the CDN files to a local folder and change the URLs; the markup does not change.
 
+The demo pages link the theme files with `?v=<version>`, so a new version reaches visitors past their browser cache. Do the same on your pages; the theme stylesheets keep the query.
+
 ## 3. Minimal page
 
 The CDN URLs below follow the latest release of each major version; for pinned versions use the ones from `src/_data/cdn.json`. Load order matters: Bootstrap CSS, page library CSS, `architectui.css`, the inline settings script, then deferred scripts in this order: Bootstrap bundle, Lucide, page libraries, `architectui.js`, the page script.
@@ -676,7 +678,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 
 - Chart.js: load the UMD bundle before the page script. Call `ArchitectUI.chartDefaults(Chart)`, take series colors from `ArchitectUI.token("success")` and `ArchitectUI.rgba("success", .5)`, and re-render on `aui:theme-change` (call `chartDefaults` again first). Put the canvas in `.aui-chart`.
 - FullCalendar 7: load `skeleton.css` and the Bootstrap 5 theme `theme.css` of `@fullcalendar/bootstrap5`, then `all/global.min.js` and the plugin `global.min.js`; the plugin registers itself. Set `headerToolbar` (it is off by default in 7). The plugin uses Bootstrap classes and colors, so the calendar follows the theme and the mode; the theme draws the plugin icons, so Bootstrap Icons are not needed. Event colors: `color` and `contrastColor` (for example `--bs-success` and `--aui-success-contrast`); repaint them on `aui:theme-change` with `event.setProp()`.
-- Leaflet: load `leaflet.css` and `leaflet.js`; put the map in `.aui-map`.
+- Leaflet: load `leaflet.css` and `leaflet.js`; put the map in `.aui-map`. The Maps demo page uses public OpenStreetMap tiles: fine for a demo; use your own tile server or a tile provider in production.
 - DataTables 3: load the CSS of `datatables.net-bs5` and `datatables.net-responsive-bs5`, then `dataTables.min.js`, `dataTables.bootstrap5.min.js`, `dataTables.responsive.min.js`, `responsive.bootstrap5.min.js`. Put rows in a regular `table.table` and call `new DataTable(table, { responsive: true })`. The theme styles the toolbar, sorting, empty result and pagination. Put `data-order` on cells whose text does not sort well (dates, amounts). DataTables right-aligns date columns; add `className: "dt-left"` to keep them left. Set `responsivePriority` so the key columns stay on a phone.
 - Wrap page scripts in an IIFE and read libraries from `window` so nothing leaks into the global scope.
 

@@ -1,98 +1,76 @@
-# ArchitectUI Bootstrap 5 HTML Theme
+# ArchitectUI — Bootstrap 5 Admin Dashboard Theme
 
-ArchitectUI is a clean, responsive admin dashboard theme. It is a thin layer on top of Bootstrap 5.3:
-one stylesheet and one dependency-free script. Bootstrap and the icons come from a CDN, so any markup written
-for Bootstrap 5 works inside the theme without changes, and you never rebuild Bootstrap.
+[![Release](https://img.shields.io/github/v/release/wnikk/architectui-html-theme?label=release)](https://github.com/wnikk/architectui-html-theme/releases)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Bootstrap 5.3](https://img.shields.io/badge/Bootstrap-5.3-7952b3)](https://getbootstrap.com)
 
-![ArchitectUI Bootstrap 5](preview.png)
+ArchitectUI is a ready-made admin theme for Bootstrap 5.3. Write standard Bootstrap markup and get a finished
+admin interface: a page frame, every Bootstrap component, a dark mode and ten visual themes.
 
-**Demo:** https://wnikk.github.io/architectui-html-theme/
+**[Live demo](https://wnikk.github.io/architectui-html-theme/)** ·
+[Download ZIP](https://github.com/wnikk/architectui-html-theme/archive/refs/heads/master.zip) ·
+[Releases](https://github.com/wnikk/architectui-html-theme/releases) ·
+[Changelog](Changelog.md)
 
-## What you get
+![ArchitectUI dashboard in the default Business theme](preview.png)
 
-- `dist/architectui.css` — the theme: layout, components, colors and dark mode in the default Business look, all driven by CSS variables.
-- `dist/architectui.js` — the theme behavior of the admin pages: collapsible sidebar, interface settings, theme and mode switching, header search, file drop zone, icon rendering.
-- `dist/architectui-auth.js` — the script of the guest pages (sign in, sign up, errors) instead of `architectui.js`: mode toggle, icons, form steps with a verification code.
-- `dist/themes/*.css` — nine optional visual themes loaded on top of `architectui.css`, including Orange, the original ArchitectUI look.
-- Wide screens and dense pages: grid and display classes `3xl` (from 1560 px) and `4xl` (from 1860 px) after Bootstrap `xxl` for 1600 and 1920 px monitors, a compact density setting, the Operations Wall demo page.
-- `dist/*.html` — demo pages: dashboards (including the Operations Wall for wide screens), elements, every Bootstrap component on one page, a starter page, a profile page with the interface settings, guest pages (sign in, sign up, password reset, errors 403, 404 and 500, maintenance), Bootstrap tables and DataTables, components, forms (including a wizard in several steps), a Kanban board, an inbox, a user list with a modal form, a notifications center, workspace settings in sections, an invoice ready for print, pricing plans, search results, the palettes of all themes, tables, charts, calendar and maps.
-- Page path and print: breadcrumbs in the header or a path line with a Back link above the page title (`aui-page-path`, `data-aui-back`); print styles that put only the page content on paper in the light mode (`data-aui-print` opens the print dialog).
-- No jQuery, no build step for your app. Icons are [Lucide](https://lucide.dev).
+## Why ArchitectUI
+
+| Advantage | What you get |
+|-----------|--------------|
+| **Standard Bootstrap markup** | Markup written for Bootstrap 5.3 works without changes. There is no second framework to learn. |
+| **Two files** | One stylesheet and one script without dependencies. Bootstrap and the icons come from a CDN. |
+| **No build step** | Copy the files and write HTML. Your project needs no jQuery, no bundler and no Node. |
+| **Ten themes** | One extra stylesheet changes the look. Light, dark and system modes. |
+| **48 demo pages** | Dashboards, forms, tables, charts, apps and sign-in pages. Copy the markup that you need. |
+| **Ready for daily work** | Phones, wide monitors (1600 and 1920 px), a compact density and print styles. |
+| **Ready for AI agents** | `AGENTS.md` and `llms-full.txt` tell a coding agent how to build pages with the theme. |
 
 ## Quick start
 
-ArchitectUI is a template: take your own copy and adapt it to your project. The built files are in the `dist/`
-folder of this repository, always the latest version (its number is in `package.json` and `Changelog.md`).
+ArchitectUI is a template. Take your own copy and adapt it to your project.
 
-Download the repository as a [ZIP of the `master` branch](https://github.com/wnikk/architectui-html-theme/archive/refs/heads/master.zip)
-or clone it. A fixed version is on the [Releases](https://github.com/wnikk/architectui-html-theme/releases) page: its ZIP holds the `dist/` files of that version. Copy from `dist/` the files `architectui.css`, `architectui.js` (and `architectui-auth.js` for sign-in pages),
-the folders `themes/` and `assets/` to your project, then add to `<head>`:
+1. Download the [ZIP of the `master` branch](https://github.com/wnikk/architectui-html-theme/archive/refs/heads/master.zip).
+   For a fixed version, take the ZIP from the [Releases](https://github.com/wnikk/architectui-html-theme/releases) page.
+2. Copy these items from `dist/` to your project: `architectui.css`, `architectui.js`, `themes/`, `assets/` and `LICENSE`.
+3. Add these lines to the `<head>` of your page:
 
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="architectui.css">
-<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/lucide@1.65.0/dist/umd/lucide.min.js"></script>
-<script defer src="architectui.js"></script>
-```
+   ```html
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+   <link rel="stylesheet" href="architectui.css">
+   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+   <script defer src="https://cdn.jsdelivr.net/npm/lucide@1.65.0/dist/umd/lucide.min.js"></script>
+   <script defer src="architectui.js"></script>
+   ```
 
-Themes load from the folder next to `architectui.css`. Logos, avatars and other images are part of your markup:
-keep `assets/` next to the pages or change the paths. The copy is yours: change the variables, the sources in `src/`
-and the demo pages as your project needs, and build them again with `npm run build`.
+4. Start from a demo page and replace its content with your Bootstrap markup:
+   - `dist/pages-starter.html` — a page with the frame (header, sidebar, page title, footer);
+   - `dist/pages-login.html` — a page without the frame. It loads `architectui-auth.js` instead of `architectui.js`; copy that file too.
 
-All links are relative, and every script is a classic `defer` script. The demo works from any folder of a local
-server and from disk (`file://`). The theme script adds one global, `window.ArchitectUI`. Markup that a script inserts
-later renders its icons, tooltips and popovers by itself. `ArchitectUI.token("primary")`, `ArchitectUI.rgba("primary", .5)`
-and `ArchitectUI.chartDefaults(Chart)` give page scripts the colors of the current theme.
-
-The demo pages link the theme files with `?v=<version>` (for example `architectui.css?v=6.2.37`), so a new version reaches
-visitors past their browser cache. Do the same on your pages; the theme stylesheets keep the query.
-
-Start from `dist/pages-starter.html` for a page with the frame (header, sidebar, page title, footer) and from
-`dist/pages-login.html` for a page without it.
-
-## Icons
-
-Write an element with the icon name. The theme script turns it into an inline SVG:
-
-```html
-<i data-lucide="rocket"></i>
-```
-
-Icons take the text color and scale with the font size. `aui-icon-gradient-<color>` strokes an icon with a theme gradient.
-The Icons demo page lists every icon with search and copy on click.
-
-## Logo
-
-Replace the files, nothing else:
-
-- `assets/images/logo.svg` — logo for light backgrounds;
-- `assets/images/logo-on-dark.svg` — logo for dark backgrounds (dark theme, dark header colors).
-
-Wide and square logos both fit automatically. The maximum height is the `--aui-logo-max-height` variable (2.25rem).
+All paths are relative. The pages work from any folder of a web server and from disk.
 
 ## Themes
 
-`architectui.css` alone draws the default look, Business. Nine more visual themes are optional. A theme is one extra
-stylesheet loaded after `architectui.css`; it changes palette, typography, radii, shadows and table density, not the markup.
+`architectui.css` alone gives the default look, Business. A theme is one more stylesheet. It changes the colors,
+type, radii and shadows. The markup stays the same.
 
-| Theme | File | Character |
-|-------|------|-----------|
-| Business (default) | none, built into `architectui.css` | Dense, smaller type, lines instead of shadows |
-| Orange | `themes/orange.css` | The original ArchitectUI look: orange accents, color gradients, soft shadows |
-| Indigo | `themes/indigo.css` | Indigo palette with the depth of Orange: soft shadows instead of lines, a floating header and sidebar, vivid two-color gradients |
-| Indigo Calathea | `themes/indigo-img.css` | Indigo with a subtle photo of Calathea leaves behind the content |
-| Coffee | `themes/coffee.css` | Warm browns with the depth of Orange (warm shadows, caramel and honey gradients) at the compact sizes of Business |
-| Garden | `themes/green.css` | Calm green, serif headings, airy rows for long reading |
-| Warm | `themes/raspberry.css` | Berry accent, pill buttons, rounder corners |
-| Operations | `themes/teal.css` | Zebra tables, monospace numbers |
-| Space | `themes/violet.css` | Large radii, soft violet shadows, heavy headings |
-| Cyberpunk | `themes/cyberpunk.css` | Neon on black, monospace; dark only |
+![Nine optional themes of ArchitectUI](preview-themes.png)
 
-Pick a theme in the list next to the light/dark button in the header, or a theme and a mode (Light, Dark, System)
-in the Interface section of the profile page (`pages-profile.html`). The choice is stored in `localStorage` and applied before the first paint.
-To ship a fixed theme without the settings,
-add the stylesheet yourself and put the theme id on `<html>`. The attribute switches the built-in Business values off:
+| Theme | Id | Look |
+|-------|----|------|
+| Business | default | Dense, small type, lines instead of shadows |
+| Orange | `orange` | Orange accents, color gradients, soft shadows |
+| Indigo | `indigo` | Indigo palette, floating header and sidebar, vivid gradients |
+| Indigo Calathea | `indigo-img` | Indigo with a photo of leaves behind the content |
+| Coffee | `coffee` | Warm browns, soft shadows, compact sizes |
+| Garden | `green` | Calm green, serif headings, airy rows |
+| Warm | `raspberry` | Berry accent, pill buttons, round corners |
+| Operations | `teal` | Zebra tables, monospace numbers |
+| Space | `violet` | Large radii, violet shadows, heavy headings |
+| Cyberpunk | `cyberpunk` | Neon on black, monospace, dark only |
+
+Users select a theme and a mode in the header. The browser keeps the selection.
+To set one theme for all users, add its id and its stylesheet:
 
 ```html
 <html data-aui-theme="coffee">
@@ -100,70 +78,66 @@ add the stylesheet yourself and put the theme id on `<html>`. The attribute swit
 <link rel="stylesheet" href="themes/coffee.css">
 ```
 
-Theme sources live in `src/scss/themes/`. A new theme is one file: its palette for both modes, other variable values
-and the rules only this theme needs. The shared rules of all themes come from `_theme.scss` and are part of
-`architectui.css`. Two optional looks are mixins of the theme base: `t.depth()` gives a theme the soft shadows and
-gradients of Orange in its own colors (Indigo, Coffee), `t.compact` gives it the compact sizes of Business (Coffee).
-Add the theme to `src/_data/themes.json` to list it in the settings.
+## Demo pages
 
-## Layout options
+Each page is complete. Open it in the [live demo](https://wnikk.github.io/architectui-html-theme/) and copy its markup from `dist/`.
 
-Layout modes are attributes on `<html>`. The Interface section of the profile page (`pages-profile.html`, user menu → Interface settings) changes them and remembers the choice in `localStorage`.
+| Group | Pages |
+|-------|-------|
+| Dashboards | [Analytics](https://wnikk.github.io/architectui-html-theme/index.html) · [Operations Wall](https://wnikk.github.io/architectui-html-theme/dashboard-operations.html) · [Dashboard Boxes](https://wnikk.github.io/architectui-html-theme/dashboard-boxes.html) |
+| Elements | [Buttons](https://wnikk.github.io/architectui-html-theme/elements-buttons-standard.html) · [Dropdowns](https://wnikk.github.io/architectui-html-theme/elements-dropdowns.html) · [Icons](https://wnikk.github.io/architectui-html-theme/elements-icons.html) · [Badges](https://wnikk.github.io/architectui-html-theme/elements-badges-labels.html) · [Cards](https://wnikk.github.io/architectui-html-theme/elements-cards.html) · [List Groups](https://wnikk.github.io/architectui-html-theme/elements-list-group.html) · [Navigation](https://wnikk.github.io/architectui-html-theme/elements-navigation.html) · [Utilities](https://wnikk.github.io/architectui-html-theme/elements-utilities.html) · [Theme Palettes](https://wnikk.github.io/architectui-html-theme/elements-palettes.html) |
+| Components | [All Bootstrap components](https://wnikk.github.io/architectui-html-theme/components-bootstrap.html) · [Tabs](https://wnikk.github.io/architectui-html-theme/components-tabs.html) · [Accordions](https://wnikk.github.io/architectui-html-theme/components-accordions.html) · [Notifications](https://wnikk.github.io/architectui-html-theme/components-notifications.html) · [Modals](https://wnikk.github.io/architectui-html-theme/components-modals.html) · [Progress](https://wnikk.github.io/architectui-html-theme/components-progress-bar.html) · [Tooltips and Popovers](https://wnikk.github.io/architectui-html-theme/components-tooltips-popovers.html) · [Carousel](https://wnikk.github.io/architectui-html-theme/components-carousel.html) · [Calendar](https://wnikk.github.io/architectui-html-theme/components-calendar.html) · [Pagination](https://wnikk.github.io/architectui-html-theme/components-pagination.html) · [Scroll areas](https://wnikk.github.io/architectui-html-theme/components-scrollable-elements.html) · [Maps](https://wnikk.github.io/architectui-html-theme/components-maps.html) |
+| Forms | [Controls](https://wnikk.github.io/architectui-html-theme/forms-controls.html) · [Layouts](https://wnikk.github.io/architectui-html-theme/forms-layouts.html) · [Validation](https://wnikk.github.io/architectui-html-theme/forms-validation.html) · [Wizard](https://wnikk.github.io/architectui-html-theme/forms-wizard.html) |
+| Tables and charts | [Bootstrap tables](https://wnikk.github.io/architectui-html-theme/tables-regular.html) · [DataTables](https://wnikk.github.io/architectui-html-theme/tables-datatables.html) · [Chart.js](https://wnikk.github.io/architectui-html-theme/charts-chartjs.html) |
+| Apps | [Kanban board](https://wnikk.github.io/architectui-html-theme/apps-kanban.html) · [Inbox](https://wnikk.github.io/architectui-html-theme/apps-inbox.html) · [Users](https://wnikk.github.io/architectui-html-theme/apps-users.html) · [Notifications](https://wnikk.github.io/architectui-html-theme/apps-notifications.html) |
+| Pages | [Starter](https://wnikk.github.io/architectui-html-theme/pages-starter.html) · [Invoice](https://wnikk.github.io/architectui-html-theme/pages-invoice.html) · [Pricing](https://wnikk.github.io/architectui-html-theme/pages-pricing.html) · [Search](https://wnikk.github.io/architectui-html-theme/pages-search.html) · [Settings](https://wnikk.github.io/architectui-html-theme/pages-settings.html) · [Profile](https://wnikk.github.io/architectui-html-theme/pages-profile.html) |
+| Sign-in and errors | [Sign in](https://wnikk.github.io/architectui-html-theme/pages-login.html) · [Sign up](https://wnikk.github.io/architectui-html-theme/pages-register.html) · [Password reset](https://wnikk.github.io/architectui-html-theme/pages-forgot-password.html) · [403](https://wnikk.github.io/architectui-html-theme/pages-403.html) · [404](https://wnikk.github.io/architectui-html-theme/pages-404.html) · [500](https://wnikk.github.io/architectui-html-theme/pages-500.html) · [Maintenance](https://wnikk.github.io/architectui-html-theme/pages-maintenance.html) |
 
-| Attribute | Values | Default |
-|-----------|--------|---------|
-| `data-aui-header` | `fixed`, `static` | `fixed` |
-| `data-aui-sidebar` | `fixed`, `static` | `fixed` |
-| `data-aui-footer` | `fixed`, `static` | `static` |
-| `data-aui-sidebar-collapsed` | present or absent | absent |
-| `data-aui-tabs` | `shadow`, `line` | `shadow` |
-| `data-aui-density` | `compact`, or none for the normal density | none |
-| `data-aui-header-scheme`, `data-aui-sidebar-scheme` | `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, `dark`, `focus`, `alternate` | none |
-| `data-aui-mode` | `light`, `dark`, `system` | `light` |
-| `data-aui-theme` | theme id from the table above, or none for Business | none |
-| `data-bs-theme` | `light`, `dark` — set by the theme script from the mode | `light` |
+## Customize
 
-The sidebar is full width from 1200 px, an icon rail from 768 px (it expands on hover or keyboard focus) and an off-canvas panel below 768 px.
+- **Colors, radii, shadows and sizes** are CSS variables. Change them in your own stylesheet after `architectui.css`:
 
-For monitors 1600 and 1920 px wide, the grid continues after `xxl`: `col-3xl-*`, `row-cols-3xl-*`, `g-3xl-*`, `d-3xl-*` from 1560 px and the same `4xl` classes from 1860 px. The compact density (`data-aui-density="compact"`) makes the frame gutter, cards and tables denser in every theme.
+  ```css
+  :root {
+    --bs-primary: #3f6ad8;
+    --bs-primary-rgb: 63, 106, 216;
+  }
+  ```
 
-## Theme colors
+  The [Theme Palettes](https://wnikk.github.io/architectui-html-theme/elements-palettes.html) page shows every color of every theme with its class and variable.
+- **Layout** options are attributes on `<html>`. They set a fixed or static header, sidebar and footer, a collapsed sidebar,
+  a compact density and the header and sidebar colors. Users change them on the [Profile](https://wnikk.github.io/architectui-html-theme/pages-profile.html#interface) page.
+- **Icons** are [Lucide](https://lucide.dev): `<i data-lucide="rocket"></i>`. The [Icons](https://wnikk.github.io/architectui-html-theme/elements-icons.html) page has a search and copies a name on click.
+- **Logo**: replace `assets/images/logo.svg` and `assets/images/logo-on-dark.svg`.
 
-All colors are CSS variables. Override them after `architectui.css`, no rebuild needed:
+## Documentation
 
-```css
-:root {
-  --bs-primary: #3f6ad8;
-  --bs-primary-rgb: 63, 106, 216;
-}
-```
-
-The theme adds `focus`, `alternate` and `tertiary` to the Bootstrap color set (`btn-focus`, `bg-alternate`, `text-focus` and so on).
-
-The Theme Palettes demo page (`elements-palettes.html`) shows every color of every theme in both modes with its class,
-variable and HEX value, and explains how to use the colors in markup, CSS and scripts.
-
-## For AI agents
-
-- [`llms.txt`](llms.txt) — short description of the theme and links, in the [llms.txt](https://llmstxt.org) format.
-- [`llms-full.txt`](llms-full.txt) — complete usage reference: page template, frame markup, settings, script API, themes, tokens, component classes.
-- [`AGENTS.md`](AGENTS.md) — short how-to for agents: which files to take, how to build a page, settings, customizing, rules.
+| Document | Content |
+|----------|---------|
+| [`llms-full.txt`](llms-full.txt) | The complete reference: page template, frame markup, layout attributes, script API, themes, variables, component classes |
+| [`AGENTS.md`](AGENTS.md) | A short guide for AI coding agents: files, steps to build a page, rules |
+| [`llms.txt`](llms.txt) | A short index in the [llms.txt](https://llmstxt.org) format |
+| [`Changelog.md`](Changelog.md) | The changes of each version |
 
 ## Development
 
-Requires Node 22 or newer.
+You need Node 22 or newer only to change the theme sources or the demo pages.
 
 ```bash
 npm install
 npm run dev
 ```
 
-`npm run dev` serves the demo at http://localhost:8080 and rebuilds pages and styles on change. `npm run build` writes the built files into `dist/`.
+`npm run dev` serves the demo at http://localhost:8080 and builds again on each change. `npm run build` writes the files to `dist/`.
 
-
-The demo pages are built with [Eleventy 3](https://www.11ty.dev), the styles with [Sass](https://sass-lang.com). These are the only two dependencies.
-
-The Maps page uses public OpenStreetMap tiles. They are fine for a demo; use your own tile server or a tile provider in production.
+```
+src/pages/      demo pages and their scripts
+src/_includes/  page layouts and partials
+src/_data/      menu, theme list, demo data, CDN addresses
+src/scss/       theme styles; themes/ has one file for each theme
+src/js/         theme scripts
+dist/           built files: copy these to your project
+```
 
 ## License
 
