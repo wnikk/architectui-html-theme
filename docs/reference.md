@@ -1,8 +1,8 @@
-# ArchitectUI — full reference for agents
+# ArchitectUI reference
 
 > A ready-made Bootstrap 5.3 admin theme: `architectui.css` + `architectui.js` on top of CDN Bootstrap and Lucide. Write standard Bootstrap 5 markup, add `aui-` classes for the theme extras, and every page gets the same finished look, dark mode and switchable themes. MIT license.
 
-This file is the complete usage reference. The short index is `llms.txt`; a short how-to is `AGENTS.md`.
+This file is the complete usage reference for people and AI agents. The short index is [`llms.txt`](../llms.txt); a short how-to is [`AGENTS.md`](../AGENTS.md).
 
 ## 1. What it is and when to use it
 

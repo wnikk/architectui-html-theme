@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Guide for AI agents that build pages or applications with ArchitectUI. The complete reference is [`llms-full.txt`](llms-full.txt); the short index is [`llms.txt`](llms.txt).
+Guide for AI agents that build pages or applications with ArchitectUI. The complete reference is [`docs/reference.md`](docs/reference.md); the short index is [`llms.txt`](llms.txt).
 
 ## What it is
 
@@ -26,7 +26,7 @@ Bootstrap 5.3 (CSS and bundle JS) and Lucide come from a CDN; the exact URLs are
 
 1. Copy `dist/pages-starter.html`. Keep the `<head>` and the frame; replace the content after the page title inside `main`. For a guest page (sign in, sign up, errors), copy `dist/pages-login.html` or `dist/pages-404.html`: it loads `architectui-auth.js` instead of `architectui.js`.
 2. Write standard Bootstrap 5.3 markup: grid, cards, tables, forms, navs, modals, toasts. The theme already styles them.
-3. Build layout with Bootstrap utilities. Add `aui-` classes only for what Bootstrap does not have (number font, colored card shadows, scroll areas, chart heights). The list is in `llms-full.txt`, section 8.
+3. Build layout with Bootstrap utilities. Add `aui-` classes only for what Bootstrap does not have (number font, colored card shadows, scroll areas, chart heights). The list is in `docs/reference.md`, section 8.
    For monitors 1600 and 1920 px wide, grid and display classes continue after `xxl` with `3xl` (from 1560 px) and `4xl` (from 1860 px): `col-4xl-3`, `row-cols-3xl-6`, `g-4xl-4`, `d-4xl-block`.
 4. Icons: `<i data-lucide="name"></i>`. Markup inserted later renders its icons, tooltips and popovers by itself. For theme colors in scripts (charts) use `ArchitectUI.token("primary")`, `ArchitectUI.rgba("primary", .5)` and `ArchitectUI.chartDefaults(Chart)`.
 5. Keep paths relative and scripts as classic `<script defer>`: the pages then work from any folder and from disk.
@@ -45,7 +45,7 @@ Bootstrap 5.3 (CSS and bundle JS) and Lucide come from a CDN; the exact URLs are
 
 - Colors, radii, shadows and sizes are CSS variables (`--bs-*`, `--aui-*`). Override them in your own stylesheet loaded after `architectui.css`; no rebuild is needed.
 - For your own styles, use the variables instead of fixed colors, so themes and dark mode keep working. `dist/elements-palettes.html` lists every color with its class and variable in every theme.
-- A new visual theme is one Sass file in `src/scss/themes/`: a palette for both modes and the rules only this theme needs. For soft shadows and gradients like Orange include `t.depth($tint, $gradients)`; for the compact sizes of Business include `t.compact` (`llms-full.txt`, section 6). Build it with `npm install` and `npm run build` (Node 22 or newer). Check it on `components-bootstrap.html`: every Bootstrap component is on that page.
+- A new visual theme is one Sass file in `src/scss/themes/`: a palette for both modes and the rules only this theme needs. For soft shadows and gradients like Orange include `t.depth($tint, $gradients)`; for the compact sizes of Business include `t.compact` (`docs/reference.md`, section 6). Build it with `npm install` and `npm run build` (Node 22 or newer). Check it on `components-bootstrap.html`: every Bootstrap component is on that page.
 
 ## Rules
 

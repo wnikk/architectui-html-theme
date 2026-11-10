@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Changed
+- **Documents.** The complete reference is now `docs/reference.md`.
+
 ## [6.2.37] - 2026-10-30
 
 Updated build and a release workflow.

@@ -12,7 +12,7 @@ admin interface: a page frame, every Bootstrap component, a dark mode and ten vi
 [Releases](https://github.com/wnikk/architectui-html-theme/releases) ·
 [Changelog](Changelog.md)
 
-![ArchitectUI dashboard in the default Business theme](preview.png)
+![ArchitectUI dashboard in the default Business theme](docs/preview.png)
 
 ## Why ArchitectUI
 
@@ -24,7 +24,7 @@ admin interface: a page frame, every Bootstrap component, a dark mode and ten vi
 | **Ten themes** | One extra stylesheet changes the look. Light, dark and system modes. |
 | **48 demo pages** | Dashboards, forms, tables, charts, apps and sign-in pages. Copy the markup that you need. |
 | **Ready for daily work** | Phones, wide monitors (1600 and 1920 px), a compact density and print styles. |
-| **Ready for AI agents** | `AGENTS.md` and `llms-full.txt` tell a coding agent how to build pages with the theme. |
+| **Ready for AI agents** | `AGENTS.md` and `docs/reference.md` tell a coding agent how to build pages with the theme. |
 
 ## Quick start
 
@@ -54,7 +54,7 @@ All paths are relative. The pages work from any folder of a web server and from 
 `architectui.css` alone gives the default look, Business. A theme is one more stylesheet. It changes the colors,
 type, radii and shadows. The markup stays the same.
 
-![Nine optional themes of ArchitectUI](preview-themes.png)
+![Nine optional themes of ArchitectUI](docs/preview-themes.png)
 
 | Theme | Id | Look |
 |-------|----|------|
@@ -114,7 +114,7 @@ Each page is complete. Open it in the [live demo](https://wnikk.github.io/archit
 
 | Document | Content |
 |----------|---------|
-| [`llms-full.txt`](llms-full.txt) | The complete reference: page template, frame markup, layout attributes, script API, themes, variables, component classes |
+| [`docs/reference.md`](docs/reference.md) | The complete reference for people and AI agents: page template, frame markup, layout attributes, script API, themes, variables, component classes |
 | [`AGENTS.md`](AGENTS.md) | A short guide for AI coding agents: files, steps to build a page, rules |
 | [`llms.txt`](llms.txt) | A short index in the [llms.txt](https://llmstxt.org) format |
 | [`Changelog.md`](Changelog.md) | The changes of each version |
