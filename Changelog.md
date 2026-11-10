@@ -25,8 +25,13 @@ ArchitectUI on Bootstrap 6 (`bootstrap@6.0.0-alpha.1`). The markup of Bootstrap 
 - **Theme tokens of Bootstrap 6.** Every theme maps its palette to the Bootstrap 6 tokens, so `theme-*`, `fg-*`, `bg-*` and `shadow-*` follow the theme and the mode; the palette keys `brand-contrast` and `accent-contrast` set the text on the solid colors.
 
 ### Changed
-- **Documentation.** README, `AGENTS.md`, `llms.txt` and `llms-full.txt` describe the use with Bootstrap 6: the import map, the class names, the tokens, the `3xl:` prefix, the new components.
+- **Documentation.** README, `AGENTS.md`, `llms.txt` and `docs/reference.md` describe the use with Bootstrap 6: the import map, the class names, the tokens, the `3xl:` prefix, the new components.
 - **Theme Palettes page.** The tokens of Bootstrap 6 (`--bs-primary-base`, `--bs-bg-1`, `--bs-fg-2` and others) with their classes; the build reads `light-dark()` values per mode.
+
+## [Unreleased]
+
+### Changed
+- **Documents.** The complete reference is now `docs/reference.md`.
 
 ## [6.2.37] - 2026-10-30
 

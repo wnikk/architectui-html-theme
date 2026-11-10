@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Guide for AI agents that build pages or applications with ArchitectUI. The complete reference is [`llms-full.txt`](llms-full.txt); the short index is [`llms.txt`](llms.txt).
+Guide for AI agents that build pages or applications with ArchitectUI. The complete reference is [`docs/reference.md`](docs/reference.md); the short index is [`llms.txt`](llms.txt).
 
 ## What it is
 
@@ -26,7 +26,7 @@ Bootstrap 6 (CSS and bundle JS) and Lucide come from a CDN; the exact URLs are i
 
 1. Copy `dist/pages-starter.html`. Keep the `<head>` and the frame; replace the content after the page title inside `main`. For a guest page (sign in, sign up, errors), copy `dist/pages-login.html` or `dist/pages-404.html`: it loads `architectui-auth.js` instead of `architectui.js`.
 2. Write standard Bootstrap 6 markup: grid, cards, tables, forms, navs, menus, dialogs, drawers, toasts. The theme already styles them. Colors are theme classes on the component: `btn-solid theme-primary`, `badge theme-success`, `alert theme-warning`; text and backgrounds are `fg-*` and `bg-*` utilities.
-3. Build layout with Bootstrap utilities. Responsive classes use the prefix form: `md:col-6`, `lg:d-none`, `sm:text-end`. Add `aui-` classes only for what Bootstrap does not have (number font, scroll areas, chart heights, the expanding search). The list is in `llms-full.txt`, section 8.
+3. Build layout with Bootstrap utilities. Responsive classes use the prefix form: `md:col-6`, `lg:d-none`, `sm:text-end`. Add `aui-` classes only for what Bootstrap does not have (number font, scroll areas, chart heights, the expanding search). The list is in `docs/reference.md`, section 8.
    For monitors 1920 px wide, grid and display classes continue after `2xl` with `3xl:` (from 1860 px): `3xl:col-3`, `3xl:row-cols-6`, `3xl:g-4`, `3xl:d-block`.
 4. Icons: `<i data-lucide="name"></i>`. Markup inserted later renders its icons by itself; Bootstrap 6 tooltips, popovers and other data-API components initialise themselves. For theme colors in scripts (charts) use `ArchitectUI.token("primary")`, `ArchitectUI.rgba("primary", .5)` and `ArchitectUI.chartDefaults(Chart)`.
 5. Keep paths relative and the theme and page scripts as classic `<script defer>`; the only module is the inline one in `<head>`. The pages then work from any folder and from disk.
@@ -45,7 +45,7 @@ Bootstrap 6 (CSS and bundle JS) and Lucide come from a CDN; the exact URLs are i
 
 - Colors, radii, shadows and sizes are CSS variables (`--bs-*`, `--aui-*`). Override them in your own stylesheet loaded after `architectui.css`; no rebuild is needed. Write both modes in one value with `light-dark()`, as Bootstrap 6 does.
 - For your own styles, use the variables instead of fixed colors, so themes and dark mode keep working. `dist/elements-palettes.html` lists every color with its class and variable in every theme.
-- A new visual theme is one Sass file in `src/scss/themes/`: a palette for both modes and the rules only this theme needs. For soft shadows and gradients like Orange include `t.depth($tint, $gradients)`; for the compact sizes of Business include `t.compact` (`llms-full.txt`, section 6). Build it with `npm install` and `npm run build` (Node 22 or newer). Check it on `components-bootstrap.html`: every Bootstrap 6 component is on that page.
+- A new visual theme is one Sass file in `src/scss/themes/`: a palette for both modes and the rules only this theme needs. For soft shadows and gradients like Orange include `t.depth($tint, $gradients)`; for the compact sizes of Business include `t.compact` (`docs/reference.md`, section 6). Build it with `npm install` and `npm run build` (Node 22 or newer). Check it on `components-bootstrap.html`: every Bootstrap 6 component is on that page.
 
 ## Rules
 

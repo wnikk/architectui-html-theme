@@ -1,8 +1,8 @@
-# ArchitectUI — full reference for agents
+# ArchitectUI reference
 
 > A ready-made Bootstrap 6 admin theme: `architectui.css` + `architectui.js` on top of CDN Bootstrap 6 (`bootstrap@6.0.0-alpha.1`) and Lucide. Write standard Bootstrap 6 markup, add `aui-` classes for the theme extras, and every page gets the same finished look, dark mode and switchable themes. MIT license.
 
-This file is the complete usage reference. The short index is `llms.txt`; a short how-to is `AGENTS.md`.
+This file is the complete usage reference for people and AI agents. The short index is [`llms.txt`](../llms.txt); a short how-to is [`AGENTS.md`](../AGENTS.md).
 
 ## 1. What it is and when to use it
 
@@ -64,6 +64,8 @@ CDN dependencies. The exact, tested URLs are in `src/_data/cdn.json` and in the 
 - Optional, per page: Chart.js 4 (`chart.umd.min.js`, global `Chart`), Leaflet 1.9 (`leaflet.js` + `leaflet.css`, global `L`), FullCalendar 7 with its classic theme plugin (`all/global.min.js` + `themes/classic/global.js`, `skeleton.css` + `themes/classic/theme.css`, global `FullCalendar`), DataTables 3 with the Bootstrap 5 integration and Responsive (`dataTables.min.js`, `dataTables.bootstrap5.min.js`, `dataTables.responsive.min.js`, `responsive.bootstrap5.min.js` + two CSS files, global `DataTable`, no jQuery; the classes it renders exist in Bootstrap 6).
 
 All paths are relative; the theme and page scripts are classic `defer` scripts and the only module is inline. The demo works from any folder of a web server and from disk (`file://`): a page opened from disk can import a module from the CDN but not a local module file, so the theme and page scripts stay classic. To work offline, copy the CDN files to a local folder and change the URLs; the markup does not change.
+
+The demo pages link the theme files with `?v=<version>`, so a new version reaches visitors past their browser cache. Do the same on your pages; the theme stylesheets keep the query.
 
 ## 3. Minimal page
 
@@ -673,7 +675,7 @@ Lucide icons: `<i data-lucide="name"></i>`. The full list with search is on the 
 
 - Chart.js: load the UMD bundle before the page script. Call `ArchitectUI.chartDefaults(Chart)`, take series colors from `ArchitectUI.token("success")` and `ArchitectUI.rgba("success", .5)`, and re-render on `aui:theme-change` (call `chartDefaults` again first). Put the canvas in `.aui-chart`.
 - FullCalendar 7: load `skeleton.css` and the classic theme `themes/classic/theme.css`, then `all/global.min.js` and `themes/classic/global.js`; the theme plugin registers itself. Set `headerToolbar` (it is off by default in 7). The theme sets the `--fc-classic-*` variables from its tokens, so the calendar follows the theme and the mode. Event colors: `color` and `contrastColor` (for example `token("success")` and `token("success-contrast")`); repaint them on `aui:theme-change` with `event.setProp()`.
-- Leaflet: load `leaflet.css` and `leaflet.js`; put the map in `.aui-map`.
+- Leaflet: load `leaflet.css` and `leaflet.js`; put the map in `.aui-map`. The Maps demo page uses public OpenStreetMap tiles: fine for a demo; use your own tile server or a tile provider in production.
 - DataTables 3: load the CSS of `datatables.net-bs5` and `datatables.net-responsive-bs5`, then `dataTables.min.js`, `dataTables.bootstrap5.min.js`, `dataTables.responsive.min.js`, `responsive.bootstrap5.min.js`. The Bootstrap 5 integration renders `pagination`, `page-item`, `page-link` and `form-control`, which exist in Bootstrap 6; set `DataTable.ext.classes.length.select = "form-control form-control-sm"` before the first table, because `form-select` is gone. Put rows in a regular `table.table` and call `new DataTable(table, { responsive: true })`. The theme styles the toolbar, sorting, empty result and pagination. Put `data-order` on cells whose text does not sort well (dates, amounts). DataTables right-aligns date columns; add `className: "dt-left"` to keep them left. Set `responsivePriority` so the key columns stay on a phone.
 - Wrap page scripts in an IIFE and read libraries from `window` (`window.bootstrap` included) so nothing leaks into the global scope.
 
